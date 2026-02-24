@@ -46,9 +46,9 @@ function generatePayslipHTML(inputs, r, info) {
   return `<!DOCTYPE html><html lang="sr"><head><meta charset="UTF-8"/>
 <title>Platni Listić – ${info.employeeName || 'Zaposleni'} – ${monthName} ${info.year}</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Outfit',sans-serif;background:#fff;color:#1a1a2e;font-size:13px}
+body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;font-size:13px;-webkit-font-smoothing:antialiased}
 .page{max-width:780px;margin:0 auto;padding:32px 36px}
 .hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;padding-bottom:18px;border-bottom:3px solid #003d1a}
 .hdr h1{font-size:24px;font-weight:800;color:#003d1a}
@@ -240,139 +240,144 @@ export default function App() {
   const setI = (key) => (val) => setInfo((p) => ({ ...p, [key]: val }));
 
   const CSS = `
-    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #003d1a;
-      --surface: #00521f;
-      --surface2: #006427;
-      --surface3: #007530;
-      --border: #009940;
-      --text: #f0fff6;
-      --text2: #9ee8b8;
-      --text3: #5ecf80;
-      --white: #ffffff;
-      --yellow: #ffd166;
-      --orange: #ff8c42;
-      --red: #ff4d4d;
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --surface2: #f0f2f5;
+      --surface3: #e8ebf0;
+      --border: #e0e4eb;
+      --accent: #0057ff;
+      --accent-light: #e8efff;
+      --green: #00b341;
+      --green-light: #e6f9ed;
+      --red: #f02d3a;
+      --red-light: #ffeaec;
+      --amber: #f59e0b;
+      --amber-light: #fff8e6;
+      --text: #0f1623;
+      --text2: #4b5563;
+      --text3: #9ca3af;
       --mono: 'JetBrains Mono', monospace;
-      --sans: 'Outfit', sans-serif;
+      --sans: 'Inter', sans-serif;
+      --radius: 14px;
     }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
-    .app { max-width: 1100px; margin: 0 auto; padding: 24px 16px 60px; }
+    body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    .app { max-width: 1100px; margin: 0 auto; padding: 32px 20px 60px; }
 
     /* HEADER */
-    .header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 32px; gap: 16px; flex-wrap: wrap; }
-    .header-badge { display: inline-block; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: var(--text2); font-family: var(--mono); font-size: 10px; letter-spacing: 2px; padding: 4px 10px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase; }
-    .header h1 { font-size: clamp(20px,4vw,32px); font-weight: 800; line-height: 1.1; letter-spacing: -1px; background: linear-gradient(135deg, #ffffff 40%, #9ee8b8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .header-sub { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-top: 6px; letter-spacing: 1px; }
+    .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; gap: 16px; flex-wrap: wrap; }
+    .header-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--accent-light); color: var(--accent); font-family: var(--mono); font-size: 10px; font-weight: 600; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 100px; margin-bottom: 10px; text-transform: uppercase; }
+    .header h1 { font-size: clamp(22px,3.5vw,34px); font-weight: 700; line-height: 1.1; letter-spacing: -0.8px; color: var(--text); }
+    .header h1 span { color: var(--accent); }
+    .header-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 8px; letter-spacing: 1px; text-transform: uppercase; }
 
     /* PDF BUTTON */
-    .btn-pdf { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.12); border: 2px solid rgba(255,255,255,0.4); color: #ffffff; border-radius: 10px; padding: 12px 22px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap; letter-spacing: 0.3px; }
-    .btn-pdf:hover { background: rgba(255,255,255,0.22); border-color: #ffffff; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(0,0,0,0.25); }
-    .btn-pdf:active { transform: translateY(0); }
-    .btn-pdf svg { width: 18px; height: 18px; flex-shrink: 0; }
+    .btn-pdf { display: flex; align-items: center; gap: 8px; background: var(--accent); border: none; color: #ffffff; border-radius: 10px; padding: 11px 22px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; letter-spacing: -0.1px; box-shadow: 0 4px 16px rgba(0,87,255,0.25); }
+    .btn-pdf:hover { background: #0047dd; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,87,255,0.35); }
+    .btn-pdf:active { transform: translateY(0); box-shadow: 0 2px 8px rgba(0,87,255,0.2); }
+    .btn-pdf svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     /* HERO */
-    .hero-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 28px; }
+    .hero-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 24px; }
     @media (max-width:600px) { .hero-cards { grid-template-columns: 1fr; } }
-    .hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; position: relative; overflow: hidden; }
-    .hero-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
-    .hero-card.neto::before { background: linear-gradient(90deg, #ffffff, #9ee8b8); }
-    .hero-card.bruto::before { background: linear-gradient(90deg, var(--yellow), #ffb347); }
-    .hero-card.cost::before { background: linear-gradient(90deg, var(--orange), var(--red)); }
-    .hero-card-label { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-    .hero-card-value { font-family: var(--mono); font-size: clamp(18px,3vw,26px); font-weight: 500; letter-spacing: -1px; }
-    .hero-card.neto .hero-card-value { color: #ffffff; }
-    .hero-card.bruto .hero-card-value { color: var(--yellow); }
-    .hero-card.cost .hero-card-value { color: var(--orange); }
-    .hero-card-sub { font-family: var(--mono); font-size: 11px; color: var(--text3); margin-top: 4px; }
+    .hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; position: relative; overflow: hidden; transition: box-shadow 0.2s; }
+    .hero-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.07); }
+    .hero-card.neto { border-top: 3px solid var(--green); }
+    .hero-card.bruto { border-top: 3px solid var(--accent); }
+    .hero-card.cost { border-top: 3px solid var(--amber); }
+    .hero-card-label { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+    .hero-card-value { font-family: var(--mono); font-size: clamp(17px,2.2vw,22px); font-weight: 500; letter-spacing: -0.5px; }
+    .hero-card.neto .hero-card-value { color: var(--green); }
+    .hero-card.bruto .hero-card-value { color: var(--accent); }
+    .hero-card.cost .hero-card-value { color: var(--amber); }
+    .hero-card-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 5px; }
 
     /* RATIO BAR */
-    .ratio-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; margin-bottom: 28px; }
-    .ratio-bar-header { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--text3); margin-bottom: 10px; }
-    .ratio-bar { height: 10px; border-radius: 6px; background: var(--surface3); overflow: hidden; display: flex; }
+    .ratio-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 22px; margin-bottom: 24px; }
+    .ratio-bar-header { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: var(--text3); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+    .ratio-bar { height: 8px; border-radius: 100px; background: var(--surface3); overflow: hidden; display: flex; }
     .ratio-seg { height: 100%; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .ratio-legend { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
-    .ratio-legend-item { display: flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; color: var(--text2); }
-    .ratio-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .ratio-legend { display: flex; gap: 18px; margin-top: 12px; flex-wrap: wrap; }
+    .ratio-legend-item { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--text2); font-weight: 500; }
+    .ratio-dot { width: 7px; height: 7px; border-radius: 50%; }
 
     /* TABS */
-    .tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
-    .tab { padding: 8px 18px; border-radius: 8px; border: 1px solid var(--border); background: transparent; color: var(--text3); font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s; letter-spacing: 0.3px; }
-    .tab:hover { background: var(--surface2); color: var(--text2); }
-    .tab.active { background: var(--surface2); color: #ffffff; border-color: rgba(255,255,255,0.5); }
+    .tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; background: var(--surface2); padding: 4px; border-radius: 10px; width: fit-content; border: 1px solid var(--border); }
+    .tab { padding: 7px 18px; border-radius: 7px; border: none; background: transparent; color: var(--text3); font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; letter-spacing: -0.1px; }
+    .tab:hover { color: var(--text2); background: rgba(255,255,255,0.7); }
+    .tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
 
     /* GRID & CARD */
     .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     @media (max-width:760px) { .main-grid { grid-template-columns: 1fr; } }
     .full-width { grid-column: 1 / -1; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 
     /* SECTION TITLE */
-    .section-title { display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--text2); }
-    .section-icon { font-size: 14px; }
+    .section-title { display: flex; align-items: center; gap: 8px; padding: 10px 16px; background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); }
+    .section-icon { font-size: 13px; }
 
     /* INPUTS */
-    .inputs-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
-    .input-field { display: flex; flex-direction: column; gap: 4px; }
-    .input-field label { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 0.8px; text-transform: uppercase; }
-    .sublabel { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-left: 8px; text-transform: none; letter-spacing: 0; }
-    .input-wrap { display: flex; align-items: center; background: var(--surface3); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.15s; }
-    .input-wrap:focus-within { border-color: rgba(255,255,255,0.6); }
-    .input-wrap input { flex: 1; background: transparent; border: none; outline: none; color: #ffffff; font-family: var(--mono); font-size: 14px; padding: 9px 12px; width: 100%; }
-    .input-wrap input[type="text"] { font-family: var(--sans); font-size: 13px; }
-    .input-wrap input::placeholder { color: var(--text3); }
-    .input-wrap input::-webkit-inner-spin-button, .input-wrap input::-webkit-outer-spin-button { opacity: 0.4; }
-    .unit { font-family: var(--mono); font-size: 11px; color: var(--text3); padding: 0 10px; border-left: 1px solid var(--border); white-space: nowrap; background: var(--surface2); align-self: stretch; display: flex; align-items: center; }
+    .inputs-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 11px; }
+    .input-field { display: flex; flex-direction: column; gap: 5px; }
+    .input-field label { font-size: 11px; font-weight: 600; color: var(--text2); letter-spacing: 0.1px; }
+    .sublabel { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-left: 6px; font-weight: 400; }
+    .input-wrap { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
+    .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,87,255,0.1); }
+    .input-wrap input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: var(--mono); font-size: 13px; font-weight: 500; padding: 9px 12px; width: 100%; }
+    .input-wrap input[type="text"] { font-family: var(--sans); font-size: 13px; font-weight: 400; }
+    .input-wrap input::placeholder { color: var(--text3); font-weight: 400; }
+    .input-wrap input::-webkit-inner-spin-button, .input-wrap input::-webkit-outer-spin-button { opacity: 0.3; }
+    .unit { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--text3); padding: 0 10px; border-left: 1px solid var(--border); white-space: nowrap; background: var(--surface2); align-self: stretch; display: flex; align-items: center; letter-spacing: 0.5px; }
     .select-wrap { display: flex; gap: 8px; }
-    .select-wrap select { flex: 1; background: var(--surface3); border: 1px solid var(--border); border-radius: 8px; color: #ffffff; font-family: var(--sans); font-size: 13px; padding: 9px 12px; outline: none; cursor: pointer; }
-    .select-wrap select:focus { border-color: rgba(255,255,255,0.6); }
-    .select-wrap select option { background: var(--surface2); color: #ffffff; }
+    .select-wrap select { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--sans); font-size: 13px; font-weight: 400; padding: 9px 12px; outline: none; cursor: pointer; transition: border-color 0.15s; }
+    .select-wrap select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,87,255,0.1); }
 
     /* RESULTS */
-    .results-body { padding: 8px 0; }
-    .result-row { display: flex; justify-content: space-between; align-items: baseline; padding: 9px 16px; border-bottom: 1px solid rgba(0,153,64,0.3); transition: background 0.1s; }
-    .result-row:hover { background: rgba(255,255,255,0.03); }
+    .results-body { padding: 4px 0; }
+    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 16px; border-bottom: 1px solid var(--border); transition: background 0.1s; gap: 12px; }
+    .result-row:hover { background: var(--surface2); }
     .result-row:last-child { border-bottom: none; }
-    .result-label { font-size: 12px; color: var(--text2); display: flex; flex-direction: column; gap: 2px; }
-    .result-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); }
-    .result-value { font-family: var(--mono); font-size: 13px; font-weight: 500; white-space: nowrap; color: var(--text); }
-    .rsd { font-size: 10px; color: var(--text3); margin-left: 3px; }
-    .result-row.positive .result-value { color: #ffffff; }
+    .result-label { font-size: 12px; color: var(--text2); display: flex; flex-direction: column; gap: 2px; font-weight: 400; }
+    .result-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); font-weight: 400; letter-spacing: 0.3px; }
+    .result-value { font-family: var(--mono); font-size: 12px; font-weight: 500; white-space: nowrap; color: var(--text); }
+    .rsd { font-size: 9px; color: var(--text3); margin-left: 3px; font-weight: 400; letter-spacing: 0.5px; }
+    .result-row.positive .result-value { color: var(--green); }
     .result-row.negative .result-value { color: var(--red); }
-    .result-row.total .result-value { color: var(--yellow); font-size: 14px; }
-    .result-row.total .result-label { color: var(--text); font-weight: 700; font-size: 13px; }
-    .result-row.total { background: rgba(255,209,102,0.07); }
-    .result-row.grand .result-value { color: var(--orange); font-size: 15px; }
-    .result-row.grand .result-label { color: var(--text); font-weight: 700; font-size: 13px; }
-    .result-row.grand { background: rgba(255,140,66,0.1); }
+    .result-row.total { background: var(--accent-light); border-top: 1px solid #c8d8ff; border-bottom: none; margin-top: 2px; }
+    .result-row.total .result-value { color: var(--accent); font-size: 13px; font-weight: 600; }
+    .result-row.total .result-label { color: var(--text); font-weight: 600; font-size: 12px; }
+    .result-row.grand { background: var(--amber-light); border-top: 1px solid #fde68a; border-bottom: none; margin-top: 2px; }
+    .result-row.grand .result-value { color: var(--amber); font-size: 14px; font-weight: 700; }
+    .result-row.grand .result-label { color: var(--text); font-weight: 600; font-size: 12px; }
 
     /* GAUGES */
-    .gauges-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 12px; }
-    .gauge-header { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; color: var(--text2); margin-bottom: 6px; }
-    .gauge-track { height: 6px; background: var(--surface3); border-radius: 4px; overflow: hidden; }
-    .gauge-fill { height: 100%; border-radius: 4px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .gauges-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 13px; }
+    .gauge-header { display: flex; justify-content: space-between; font-size: 11px; font-weight: 500; color: var(--text2); margin-bottom: 6px; }
+    .gauge-track { height: 5px; background: var(--surface3); border-radius: 100px; overflow: hidden; }
+    .gauge-fill { height: 100%; border-radius: 100px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
 
     /* INFO GRID */
     .info-grid { padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .info-item { background: var(--surface2); border-radius: 8px; padding: 10px 12px; border: 1px solid var(--border); }
-    .info-item-label { font-family: var(--mono); font-size: 10px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .info-item-val { font-family: var(--mono); font-size: 13px; color: #ffffff; }
+    .info-item { background: var(--surface2); border-radius: 8px; padding: 11px 13px; border: 1px solid var(--border); }
+    .info-item-label { font-size: 9px; font-weight: 700; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 5px; }
+    .info-item-val { font-family: var(--mono); font-size: 15px; font-weight: 500; color: var(--text); }
 
     /* RATES */
     .rates-body { padding: 0; }
-    .rate-row { display: grid; grid-template-columns: 1fr 80px 80px 80px; padding: 9px 16px; border-bottom: 1px solid rgba(0,153,64,0.3); font-family: var(--mono); font-size: 12px; align-items: center; gap: 8px; }
+    .rate-row { display: grid; grid-template-columns: 1fr 80px 80px 80px; padding: 9px 16px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 11px; align-items: center; gap: 8px; }
     .rate-row:last-child { border-bottom: none; }
-    .rate-row.header-row { background: var(--surface2); color: var(--text3); font-size: 10px; letter-spacing: 1px; text-transform: uppercase; }
-    .rate-row:not(.header-row):hover { background: rgba(255,255,255,0.03); }
+    .rate-row.header-row { background: var(--surface2); color: var(--text3); font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-family: var(--sans); }
+    .rate-row:not(.header-row):hover { background: var(--surface2); }
     .rate-cell-right { text-align: right; }
-    .rate-cell-green { color: #ffffff; }
-    .rate-cell-red { color: var(--red); }
-    .rate-cell-yellow { color: var(--yellow); }
+    .rate-cell-green { color: var(--green); font-weight: 600; }
+    .rate-cell-red { color: var(--red); font-weight: 600; }
+    .rate-cell-yellow { color: var(--amber); font-weight: 600; }
 
-    .pdf-note { font-family: var(--mono); font-size: 10px; color: var(--text3); padding: 10px 16px; border-top: 1px solid var(--border); }
-    .btn-pdf-full { width: 100%; justify-content: center; margin: 14px 16px; width: calc(100% - 32px); }
+    .pdf-note { font-size: 11px; color: var(--text3); padding: 10px 16px; border-top: 1px solid var(--border); }
+    .btn-pdf-full { width: calc(100% - 32px); justify-content: center; margin: 14px 16px 16px; }
   `;
 
   return (
@@ -383,9 +388,9 @@ export default function App() {
         {/* HEADER */}
         <div className="header">
           <div>
-            <div className="header-badge">SRBIJA · 2025</div>
-            <h1>PlatniListić</h1>
-            <div className="header-sub">OBRAČUN ZARADA · PREKOVREMENI · PRAZNICI · BONUSI · POREZ</div>
+            <div className="header-badge">Srbija · 2025</div>
+            <h1>Platni<span>Listić</span></h1>
+            <div className="header-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
           </div>
           <button className="btn-pdf" onClick={() => printPayslip(inputs, r, info)}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -420,17 +425,17 @@ export default function App() {
         <div className="ratio-bar-wrap">
           <div className="ratio-bar-header">
             <span>RASPODELA BRUTO 1</span>
-            <span style={{ color: "#ffffff" }}>Neto {pct(r.netoBruto1Ratio)}</span>
+            <span style={{ color: "var(--green)", fontWeight: 600 }}>Neto {pct(r.netoBruto1Ratio)}</span>
           </div>
           <div className="ratio-bar">
-            <div className="ratio-seg" style={{ width: `${r.neto/r.bruto1*100}%`, background: "#ffffff" }} />
-            <div className="ratio-seg" style={{ width: `${r.totalEmpContrib/r.bruto1*100}%`, background: "#ffd166" }} />
-            <div className="ratio-seg" style={{ width: `${r.tax/r.bruto1*100}%`, background: "#ff4d4d" }} />
+            <div className="ratio-seg" style={{ width: `${r.neto/r.bruto1*100}%`, background: "#00b341" }} />
+            <div className="ratio-seg" style={{ width: `${r.totalEmpContrib/r.bruto1*100}%`, background: "#f59e0b" }} />
+            <div className="ratio-seg" style={{ width: `${r.tax/r.bruto1*100}%`, background: "#f02d3a" }} />
           </div>
           <div className="ratio-legend">
-            <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#ffffff" }} />Neto ({pct(r.neto/r.bruto1)})</div>
-            <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#ffd166" }} />Doprinosi zaposl. ({pct(r.totalEmpContrib/r.bruto1)})</div>
-            <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#ff4d4d" }} />Porez ({pct(r.tax/r.bruto1)})</div>
+            <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#00b341" }} />Neto ({pct(r.neto/r.bruto1)})</div>
+            <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f59e0b" }} />Doprinosi zaposl. ({pct(r.totalEmpContrib/r.bruto1)})</div>
+            <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f02d3a" }} />Porez ({pct(r.tax/r.bruto1)})</div>
           </div>
         </div>
 
@@ -473,7 +478,7 @@ export default function App() {
                 <NumberInput label="Procentualni bonus (% od osnovne)" value={inputs.bonusPct} onChange={set("bonusPct")} unit="%" step={0.5} />
                 <div className="result-row positive" style={{ borderRadius: 8, border: "1px solid var(--border)", margin: 0 }}>
                   <span className="result-label">Ukupno bonusi</span>
-                  <span className="result-value" style={{color:"#ffffff"}}>+{fmt(r.bonusAmount)} <span className="rsd">RSD</span></span>
+                  <span className="result-value" style={{color:"var(--green)"}}>+{fmt(r.bonusAmount)} <span className="rsd">RSD</span></span>
                 </div>
               </div>
               <SectionTitle icon="🍽️">Naknade van zarade</SectionTitle>
@@ -482,16 +487,16 @@ export default function App() {
                 <NumberInput label="Radnih dana (topli obrok)" sublabel="(1.490 RSD/dan)" value={inputs.mealDays} onChange={set("mealDays")} unit="dana" min={0} />
                 <div className="result-row positive" style={{ borderRadius: 8, border: "1px solid var(--border)", margin: 0 }}>
                   <span className="result-label">Ukupno naknade</span>
-                  <span className="result-value" style={{color:"#ffffff"}}>+{fmt(r.mealAllowance + r.transportActual)} <span className="rsd">RSD</span></span>
+                  <span className="result-value" style={{color:"var(--green)"}}>+{fmt(r.mealAllowance + r.transportActual)} <span className="rsd">RSD</span></span>
                 </div>
               </div>
               <SectionTitle icon="📈">Uvećanja zarade</SectionTitle>
               <div className="gauges-body">
-                <GaugeBar label="Prekovremeni rad" value={r.overtimePay} max={r.bruto1} color="#ffffff" />
-                <GaugeBar label="Noćni rad" value={r.nightPay} max={r.bruto1} color="#9ee8b8" />
-                <GaugeBar label="Vikend rad" value={r.weekendPay} max={r.bruto1} color="#ffd166" />
-                <GaugeBar label="Rad na praznike" value={r.holidayPay} max={r.bruto1} color="#ff8c42" />
-                <GaugeBar label="Bonusi" value={r.bonusAmount} max={r.bruto1} color="#ff6b9d" />
+                <GaugeBar label="Prekovremeni rad" value={r.overtimePay} max={r.bruto1} color="#0057ff" />
+                <GaugeBar label="Noćni rad" value={r.nightPay} max={r.bruto1} color="#7c3aed" />
+                <GaugeBar label="Vikend rad" value={r.weekendPay} max={r.bruto1} color="#00b341" />
+                <GaugeBar label="Rad na praznike" value={r.holidayPay} max={r.bruto1} color="#f59e0b" />
+                <GaugeBar label="Bonusi" value={r.bonusAmount} max={r.bruto1} color="#f02d3a" />
               </div>
             </div>
           </div>
@@ -598,10 +603,10 @@ export default function App() {
               </div>
               <SectionTitle icon="📊">Efektivne stope</SectionTitle>
               <div className="info-grid">
-                <div className="info-item"><div className="info-item-label">Neto / Bruto1</div><div className="info-item-val" style={{color:"#ffffff"}}>{pct(r.netoBruto1Ratio)}</div></div>
-                <div className="info-item"><div className="info-item-label">Trošak / Neto</div><div className="info-item-val" style={{color:"#ffd166"}}>{r.costPerNeto.toFixed(2)}x</div></div>
-                <div className="info-item"><div className="info-item-label">Odbitci iz zarade</div><div className="info-item-val" style={{color:"#ff4d4d"}}>{fmt(r.totalEmpContrib + r.tax)}</div></div>
-                <div className="info-item"><div className="info-item-label">Ef. poreska stopa</div><div className="info-item-val" style={{color:"#ff4d4d"}}>{pct((r.totalEmpContrib + r.tax) / r.bruto1)}</div></div>
+                <div className="info-item"><div className="info-item-label">Neto / Bruto1</div><div className="info-item-val" style={{color:"#00b341"}}>{pct(r.netoBruto1Ratio)}</div></div>
+                <div className="info-item"><div className="info-item-label">Trošak / Neto</div><div className="info-item-val" style={{color:"#f59e0b"}}>{r.costPerNeto.toFixed(2)}x</div></div>
+                <div className="info-item"><div className="info-item-label">Odbitci iz zarade</div><div className="info-item-val" style={{color:"#f02d3a"}}>{fmt(r.totalEmpContrib + r.tax)}</div></div>
+                <div className="info-item"><div className="info-item-label">Ef. poreska stopa</div><div className="info-item-val" style={{color:"#f02d3a"}}>{pct((r.totalEmpContrib + r.tax) / r.bruto1)}</div></div>
               </div>
             </div>
           </div>
@@ -656,7 +661,7 @@ export default function App() {
                 ].map(([lbl,p,sub],i) => (
                   <div key={i} className="result-row">
                     <span className="result-label">{lbl}<span className="result-sub">{sub}</span></span>
-                    <span className="result-value" style={{color:"#ffffff"}}>{p}</span>
+                    <span className="result-value" style={{color:"var(--green)"}}>{p}</span>
                   </div>
                 ))}
               </div>
