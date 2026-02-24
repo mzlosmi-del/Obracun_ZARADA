@@ -384,8 +384,8 @@ export default function App() {
         <div className="header">
           <div>
             <div className="header-badge">SRBIJA · 2025</div>
-            <h1>Obračun Zarada</h1>
-            <div className="header-sub">PREKOVREMENI · PRAZNICI · BONUSI · DOPRINOSI · POREZ</div>
+            <h1>PlatniListić</h1>
+            <div className="header-sub">OBRAČUN ZARADA · PREKOVREMENI · PRAZNICI · BONUSI · POREZ</div>
           </div>
           <button className="btn-pdf" onClick={() => printPayslip(inputs, r, info)}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
