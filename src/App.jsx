@@ -828,10 +828,12 @@ export default function App() {
 
     /* ── SIDEBAR ── */
     .sidebar { width: var(--sidebar-w); background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: transform 0.25s; }
-    .sidebar-logo { padding: 20px 18px 16px; border-bottom: 1px solid var(--border); }
-    .sidebar-logo-name { font-size: 17px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); }
+    .sidebar-logo { padding: 16px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+    .sidebar-logo img { width: 44px; height: 44px; flex-shrink: 0; }
+    .sidebar-logo-text {}
+    .sidebar-logo-name { font-size: 15px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; }
     .sidebar-logo-name span { color: var(--accent); }
-    .sidebar-logo-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-top: 3px; }
+    .sidebar-logo-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
     .sidebar-nav { padding: 12px 10px; flex: 1; }
     .sidebar-section-label { font-size: 9px; font-weight: 700; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 8px 4px; }
     .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; transition: all 0.12s; font-size: 13px; font-weight: 500; color: var(--text2); border: none; background: none; width: 100%; text-align: left; }
@@ -1017,8 +1019,11 @@ export default function App() {
         {/* SIDEBAR */}
         <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
           <div className="sidebar-logo">
-            <div className="sidebar-logo-name">Platni<span>Listić</span></div>
-            <div className="sidebar-logo-sub">Srbija</div>
+            <img src="/logo.svg" alt="PlatniListić logo" />
+            <div className="sidebar-logo-text">
+              <div className="sidebar-logo-name">Platni<span>Listić</span></div>
+              <div className="sidebar-logo-sub">Srbija</div>
+            </div>
           </div>
           <nav className="sidebar-nav">
             <div className="sidebar-section-label">Alati</div>
@@ -1040,6 +1045,7 @@ export default function App() {
         <main className="main">
           {/* TOPBAR (mobile) */}
           <div className="topbar">
+            <img src="/logo.svg" alt="PlatniListić" style={{width: 32, height: 32}} />
             <div className="topbar-title">Platni<span>Listić</span></div>
             <button className="menu-btn" onClick={() => setSidebarOpen(true)}>☰</button>
           </div>
@@ -1049,10 +1055,12 @@ export default function App() {
             {page === "calculator" && (
               <>
                 <div className="page-header">
-                  <div>
-                    <div className="page-eyebrow">Srbija</div>
-                    <div className="page-title">Platni<span>Listić</span></div>
-                    <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
+                  <div style={{display:"flex", alignItems:"center", gap:14}}>
+                    <img src="/logo.svg" alt="PlatniListić" style={{width: 64, height: 64}} />
+                    <div>
+                      <div className="page-title">Platni<span>Listić</span></div>
+                      <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
+                    </div>
                   </div>
                   <button className="btn-pdf" onClick={() => document.querySelector('.tab[data-tab="payslip"]')?.click()}>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
