@@ -1,13 +1,34 @@
 import { useState, useEffect, useRef } from "react";
 
 // ── PARAMETERS ───────────────────────────────────────────────────────────────
-const P = {
-  taxRate: 0.10, nonTaxable: 28423,
-  pioPct_emp: 0.14, health_emp: 0.0515, unemp_emp: 0.0075,
-  pio_er: 0.10, health_er: 0.0515,
-  overtimeCoef: 1.26, nightCoef: 1.26, weekendCoef: 1.26, holidayCoef: 1.26,
-  minBase: 45950, maxBase: 656425,
-  mealDaily: 1490, transportMax: 5630, minWage: 73274, standardHours: 168,
+// Neoporezivi iznos — date-aware
+function getNonTaxable() {
+  const now = new Date();
+  const yr = now.getFullYear();
+  const mo = now.getMonth() + 1; // 1-based
+  // Feb 2026 onwards: 34,221 RSD
+  if (yr > 2026 || (yr === 2026 && mo >= 2)) return 34221;
+  // Feb 2025 – Jan 2026: 28,423 RSD
+  return 28423;
+}
+
+const DEFAULT_RATES = {
+  taxRate: 10,           // %
+  nonTaxable: getNonTaxable(), // RSD — auto from date
+  pioPct_emp: 14,        // %
+  health_emp: 5.15,      // %
+  unemp_emp: 0.75,       // %
+  pio_er: 10,            // %
+  health_er: 5.15,       // %
+  overtimeCoef: 26,      // % above base
+  nightCoef: 26,
+  weekendCoef: 26,
+  holidayCoef: 26,
+  minBase: 45950,        // RSD
+  maxBase: 656425,       // RSD
+  mealDaily: 1490,       // RSD
+  transportMax: 5630,    // RSD
+  minWage: 73274,        // RSD
 };
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 const fmt = (n) => new Intl.NumberFormat("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
@@ -228,35 +249,41 @@ Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svoj
 ];
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
-function calculate(inputs) {
+function calculate(inputs, rates) {
   const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, transport, mealDays } = inputs;
+  const R = rates;
+  const overtimeCoef = 1 + R.overtimeCoef / 100;
+  const nightCoef    = 1 + R.nightCoef / 100;
+  const weekendCoef  = 1 + R.weekendCoef / 100;
+  const holidayCoef  = 1 + R.holidayCoef / 100;
   const hourRate = basicBruto / (standardHours || 168);
-  const overtimePay = overtimeH * hourRate * P.overtimeCoef;
-  const nightPay = nightH * hourRate * P.nightCoef;
-  const weekendPay = weekendH * hourRate * P.weekendCoef;
-  const holidayPay = holidayH * hourRate * P.holidayCoef;
+  const overtimePay = overtimeH * hourRate * overtimeCoef;
+  const nightPay = nightH * hourRate * nightCoef;
+  const weekendPay = weekendH * hourRate * weekendCoef;
+  const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
   const bruto1 = basicBruto + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount;
-  const contribBase = Math.max(Math.min(bruto1, P.maxBase), P.minBase);
-  const pio_emp = contribBase * P.pioPct_emp;
-  const health_emp = contribBase * P.health_emp;
-  const unemp = contribBase * P.unemp_emp;
+  const contribBase = Math.max(Math.min(bruto1, R.maxBase), R.minBase);
+  const pio_emp = contribBase * R.pioPct_emp / 100;
+  const health_emp = contribBase * R.health_emp / 100;
+  const unemp = contribBase * R.unemp_emp / 100;
   const totalEmpContrib = pio_emp + health_emp + unemp;
-  const taxBase = Math.max(bruto1 - P.nonTaxable, 0);
-  const tax = taxBase * P.taxRate;
+  const taxBase = Math.max(bruto1 - R.nonTaxable, 0);
+  const tax = taxBase * R.taxRate / 100;
   const neto = bruto1 - totalEmpContrib - tax;
-  const pio_er = contribBase * P.pio_er;
-  const health_er = contribBase * P.health_er;
+  const pio_er = contribBase * R.pio_er / 100;
+  const health_er = contribBase * R.health_er / 100;
   const totalErContrib = pio_er + health_er;
   const bruto2 = bruto1 + totalErContrib;
-  const mealAllowance = mealDays * P.mealDaily;
-  const transportActual = Math.min(transport, P.transportMax);
+  const mealAllowance = mealDays * R.mealDaily;
+  const transportActual = Math.min(transport, R.transportMax);
   const totalCost = bruto2 + mealAllowance + transportActual;
   return { hourRate, overtimePay, nightPay, weekendPay, holidayPay, bonusAmount, bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib, taxBase, tax, neto, pio_er, health_er, totalErContrib, bruto2, mealAllowance, transportActual, totalCost, netoBruto1Ratio: bruto1 > 0 ? neto / bruto1 : 0, costPerNeto: neto > 0 ? totalCost / neto : 0 };
 }
 
 // ── PAYSLIP PDF ───────────────────────────────────────────────────────────────
-function generatePayslipHTML(inputs, r, info) {
+function generatePayslipHTML(inputs, r, info, rates) {
+  const R = rates;
   const now = new Date();
   const monthName = MONTHS[(info.month || 1) - 1];
   const trow = (label, value, color, sub) => `<tr><td class="rl">${label}${sub ? `<span class="rs">${sub}</span>` : ''}</td><td class="rv" style="color:${color}">${fmt(value)} RSD</td></tr>`;
@@ -351,8 +378,8 @@ ${trow('Osiguranje za slučaj nezaposlenosti (0,75%)', r.unemp, '#f02d3a')}
 ${trow('UKUPNO doprinosi zaposleni (19,90%)', r.totalEmpContrib, '#f02d3a')}
 </table></div>
 <div class="sec"><div class="sh">C. Porez na zaradu</div><table>
-${trow('Neoporezivi iznos', P.nonTaxable, '#4b5563')}
-${trow('Poreska osnovica (Bruto1 – neoporezivi)', r.taxBase, '#4b5563', `${fmt(r.bruto1)} – ${fmt(P.nonTaxable)}`)}
+${trow('Neoporezivi iznos', R.nonTaxable, '#4b5563')}
+${trow('Poreska osnovica (Bruto1 – neoporezivi)', r.taxBase, '#4b5563', `${fmt(r.bruto1)} – ${fmt(R.nonTaxable)}`)}
 ${trow('Porez na zaradu (10%)', r.tax, '#f02d3a')}
 </table></div>
 <div class="sec"><div class="sh">D. Neto zarada i trošak poslodavca</div><table>
@@ -376,8 +403,8 @@ ${trow('UKUPAN TROŠAK POSLODAVCA', r.totalCost, '#f59e0b')}
 </div></body></html>`;
 }
 
-function printPayslip(inputs, r, info) {
-  const html = generatePayslipHTML(inputs, r, info);
+function printPayslip(inputs, r, info, rates) {
+  const html = generatePayslipHTML(inputs, r, info, rates);
   const win = window.open('', '_blank');
   win.document.write(html);
   win.document.close();
@@ -516,10 +543,13 @@ function CalculatorPage() {
     employeeName: "", employeeJmbg: "", employeePosition: "", employeeBank: "",
     month: now.getMonth() + 1, year: now.getFullYear(),
   });
+  const [rates, setRates] = useState({ ...DEFAULT_RATES });
   const [activeTab, setActiveTab] = useState("inputs");
-  const r = calculate(inputs);
+  const r = calculate(inputs, rates);
   const set = (key) => (val) => setInputs((p) => ({ ...p, [key]: val }));
   const setI = (key) => (val) => setInfo((p) => ({ ...p, [key]: val }));
+  const setR = (key) => (val) => setRates((p) => ({ ...p, [key]: val }));
+  const resetRates = () => setRates({ ...DEFAULT_RATES, nonTaxable: getNonTaxable() });
 
   return (
     <>
@@ -656,7 +686,7 @@ function CalculatorPage() {
             </div>
             <div className="pdf-note">Sva polja su opcionalna. Platni listić se generiše sa unetim podacima.</div>
             <div style={{padding:"14px 16px"}}>
-              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(inputs, r, info)}>
+              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(inputs, r, info, rates)}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14,2 14,8 20,8"/>
@@ -692,8 +722,8 @@ function CalculatorPage() {
             </div>
             <SectionTitle icon="💸">Porez na zaradu</SectionTitle>
             <div className="results-body">
-              <ResultRow label="Neoporezivi iznos" value={P.nonTaxable} />
-              <ResultRow label="Poreska osnovica" value={r.taxBase} sub="Bruto1 − 28.423 RSD" />
+              <ResultRow label="Neoporezivi iznos" value={rates.nonTaxable} />
+              <ResultRow label="Poreska osnovica" value={r.taxBase} sub={`Bruto1 − ${fmt(rates.nonTaxable)} RSD`} />
               <ResultRow label="Porez 10%" value={-r.tax} type="negative" />
             </div>
             <SectionTitle icon="✅">Neto zarada</SectionTitle>
@@ -732,51 +762,59 @@ function CalculatorPage() {
 
       {activeTab === "rates" && (
         <div className="main-grid">
-          <div className="card full-width">
-            <SectionTitle icon="📋">Važeće stope i parametri</SectionTitle>
-            <div className="rates-body">
-              <div className="rate-row header-row">
-                <span>Opis</span>
-                <span className="rate-cell-right">Zaposl.</span>
-                <span className="rate-cell-right">Posl.</span>
-                <span className="rate-cell-right">Ukupno</span>
+          {/* Reset button */}
+          <div className="full-width" style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:4}}>
+            <span style={{fontSize:12, color:"var(--text3)", fontFamily:"var(--mono)"}}>
+              Neoporezivi iznos je automatski podešen prema trenutnom datumu ({now.toLocaleDateString('sr-RS')})
+            </span>
+            <button className="reset-btn" onClick={resetRates}>↺ Vrati na podrazumevane vrednosti</button>
+          </div>
+
+          <div className="card">
+            <SectionTitle icon="💰">Porez na zaradu</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="Stopa poreza na zaradu" value={rates.taxRate} onChange={setR("taxRate")} unit="%" step={0.1} min={0} />
+              <NumberInput label="Neoporezivi iznos" value={rates.nonTaxable} onChange={setR("nonTaxable")} step={1} min={0} />
+            </div>
+            <SectionTitle icon="👤">Doprinosi — zaposleni</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="PIO — penzijsko i invalidsko" value={rates.pioPct_emp} onChange={setR("pioPct_emp")} unit="%" step={0.01} min={0} />
+              <NumberInput label="Zdravstveno osiguranje" value={rates.health_emp} onChange={setR("health_emp")} unit="%" step={0.01} min={0} />
+              <NumberInput label="Osiguranje za nezaposlenost" value={rates.unemp_emp} onChange={setR("unemp_emp")} unit="%" step={0.01} min={0} />
+              <div className="rate-summary-row">
+                <span>Ukupno doprinosi zaposleni</span>
+                <span style={{color:"var(--red)", fontFamily:"var(--mono)", fontWeight:600}}>{(rates.pioPct_emp + rates.health_emp + rates.unemp_emp).toFixed(2)}%</span>
               </div>
-              {[["PIO – penzijsko i invalidsko","14.00%","10.00%","24.00%"],["Zdravstveno osiguranje","5.15%","5.15%","10.30%"],["Nezaposlenost","0.75%","—","0.75%"],["UKUPNO doprinosi","19.90%","15.15%","35.05%"]].map(([lbl,emp,er,tot],i) => (
-                <div key={i} className="rate-row">
-                  <span style={{color:"var(--text2)"}}>{lbl}</span>
-                  <span className="rate-cell-right rate-cell-green">{emp}</span>
-                  <span className="rate-cell-right rate-cell-red">{er}</span>
-                  <span className="rate-cell-right rate-cell-yellow">{tot}</span>
-                </div>
-              ))}
+            </div>
+            <SectionTitle icon="🏢">Doprinosi — poslodavac</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="PIO — penzijsko i invalidsko" value={rates.pio_er} onChange={setR("pio_er")} unit="%" step={0.01} min={0} />
+              <NumberInput label="Zdravstveno osiguranje" value={rates.health_er} onChange={setR("health_er")} unit="%" step={0.01} min={0} />
+              <div className="rate-summary-row">
+                <span>Ukupno doprinosi poslodavac</span>
+                <span style={{color:"var(--amber)", fontFamily:"var(--mono)", fontWeight:600}}>{(rates.pio_er + rates.health_er).toFixed(2)}%</span>
+              </div>
             </div>
           </div>
+
           <div className="card">
-            <SectionTitle icon="🔢">Poreske vrednosti</SectionTitle>
-            <div className="results-body">
-              <ResultRow label="Porez na zaradu" value={null} sub="stopa: 10%" />
-              <ResultRow label="Neoporezivi iznos" value={28423} sub="važi 01.02.2025 – 31.01.2026" />
-              <ResultRow label="Minimalna bruto zarada" value={73274} />
-              <ResultRow label="Najniža osnovica doprinosa" value={45950} />
-              <ResultRow label="Najviša osnovica doprinosa" value={656425} />
-              <ResultRow label="Neoporezivi iznos od 2026." value={34221} sub="povećanje >20%" />
+            <SectionTitle icon="⏫">Uvećana zarada (koeficijenti)</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="Prekovremeni rad (min +26%)" value={rates.overtimeCoef} onChange={setR("overtimeCoef")} unit="%" step={1} min={0} sublabel="čl. 108 ZOR" />
+              <NumberInput label="Noćni rad (22h–06h)" value={rates.nightCoef} onChange={setR("nightCoef")} unit="%" step={1} min={0} />
+              <NumberInput label="Rad vikendom" value={rates.weekendCoef} onChange={setR("weekendCoef")} unit="%" step={1} min={0} />
+              <NumberInput label="Rad na državni praznik" value={rates.holidayCoef} onChange={setR("holidayCoef")} unit="%" step={1} min={0} />
             </div>
-          </div>
-          <div className="card">
-            <SectionTitle icon="⏫">Uvećana zarada (Čl. 108 ZOR)</SectionTitle>
-            <div className="results-body">
-              {[["Prekovremeni rad","+26%","min. koeficijent 1.26"],["Noćni rad (22h–06h)","+26%","min. koeficijent 1.26"],["Rad vikendom","+26%","min. koeficijent 1.26"],["Rad na državni praznik","+26%","min. koeficijent 1.26"]].map(([lbl,p,sub],i) => (
-                <div key={i} className="result-row">
-                  <span className="result-label">{lbl}<span className="result-sub">{sub}</span></span>
-                  <span className="result-value" style={{color:"var(--green)"}}>{p}</span>
-                </div>
-              ))}
+            <SectionTitle icon="📏">Granice osnovice i minimumi</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="Najniža mesečna osnovica" value={rates.minBase} onChange={setR("minBase")} step={100} min={0} />
+              <NumberInput label="Najviša mesečna osnovica" value={rates.maxBase} onChange={setR("maxBase")} step={1000} min={0} />
+              <NumberInput label="Minimalna bruto zarada" value={rates.minWage} onChange={setR("minWage")} step={100} min={0} />
             </div>
             <SectionTitle icon="🍽️">Neoporezivi dodaci</SectionTitle>
-            <div className="results-body">
-              <ResultRow label="Topli obrok (dnevno max)" value={1490} />
-              <ResultRow label="Prevoz (mesečno max)" value={5630} />
-              <ResultRow label="Regres (godišnje max)" value={14560} />
+            <div className="inputs-body">
+              <NumberInput label="Topli obrok (dnevno max)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
+              <NumberInput label="Prevoz (mesečno max)" value={rates.transportMax} onChange={setR("transportMax")} step={10} min={0} />
             </div>
           </div>
         </div>
@@ -970,6 +1008,11 @@ export default function App() {
     .rate-cell-red { color: var(--red); font-weight: 600; }
     .rate-cell-yellow { color: var(--amber); font-weight: 600; }
     .pdf-note { font-size: 11px; color: var(--text3); padding: 9px 14px; border-top: 1px solid var(--border); }
+
+    /* ── RESET BUTTON & RATE SUMMARY ── */
+    .reset-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; transition: all 0.12s; white-space: nowrap; }
+    .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .rate-summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0 2px; font-size: 12px; font-weight: 600; color: var(--text2); border-top: 1px dashed var(--border); margin-top: 4px; }
 
     /* ── BLOG ── */
     .blog-page { max-width: 720px; }
