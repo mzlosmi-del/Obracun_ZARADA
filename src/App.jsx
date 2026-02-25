@@ -351,7 +351,7 @@ ${trow('Osiguranje za slučaj nezaposlenosti (0,75%)', r.unemp, '#f02d3a')}
 ${trow('UKUPNO doprinosi zaposleni (19,90%)', r.totalEmpContrib, '#f02d3a')}
 </table></div>
 <div class="sec"><div class="sh">C. Porez na zaradu</div><table>
-${trow('Neoporezivi iznos (2025)', P.nonTaxable, '#4b5563')}
+${trow('Neoporezivi iznos', P.nonTaxable, '#4b5563')}
 ${trow('Poreska osnovica (Bruto1 – neoporezivi)', r.taxBase, '#4b5563', `${fmt(r.bruto1)} – ${fmt(P.nonTaxable)}`)}
 ${trow('Porez na zaradu (10%)', r.tax, '#f02d3a')}
 </table></div>
@@ -370,7 +370,7 @@ ${trow('UKUPAN TROŠAK POSLODAVCA', r.totalCost, '#f59e0b')}
   <div><div class="sl">Potpis zaposlenog / prijem platnog listića</div><div class="sln">${info.employeeName || 'Zaposleni'}</div></div>
 </div>
 <div class="footer">
-  <span>Zakon o radu čl. 105, 108 · Zakon o porezu na dohodak · Zakon o doprinosima · Srbija 2025</span>
+  <span>Zakon o radu čl. 105, 108 · Zakon o porezu na dohodak · Zakon o doprinosima · Republika Srbija</span>
   <span>${now.toLocaleDateString('sr-RS')} ${now.toLocaleTimeString('sr-RS',{hour:'2-digit',minute:'2-digit'})}</span>
 </div>
 </div></body></html>`;
@@ -692,7 +692,7 @@ function CalculatorPage() {
             </div>
             <SectionTitle icon="💸">Porez na zaradu</SectionTitle>
             <div className="results-body">
-              <ResultRow label="Neoporezivi iznos (2025)" value={P.nonTaxable} />
+              <ResultRow label="Neoporezivi iznos" value={P.nonTaxable} />
               <ResultRow label="Poreska osnovica" value={r.taxBase} sub="Bruto1 − 28.423 RSD" />
               <ResultRow label="Porez 10%" value={-r.tax} type="negative" />
             </div>
@@ -733,7 +733,7 @@ function CalculatorPage() {
       {activeTab === "rates" && (
         <div className="main-grid">
           <div className="card full-width">
-            <SectionTitle icon="📋">Važeće stope i parametri – Srbija 2025</SectionTitle>
+            <SectionTitle icon="📋">Važeće stope i parametri</SectionTitle>
             <div className="rates-body">
               <div className="rate-row header-row">
                 <span>Opis</span>
@@ -756,9 +756,9 @@ function CalculatorPage() {
             <div className="results-body">
               <ResultRow label="Porez na zaradu" value={null} sub="stopa: 10%" />
               <ResultRow label="Neoporezivi iznos" value={28423} sub="važi 01.02.2025 – 31.01.2026" />
-              <ResultRow label="Minimalna bruto zarada" value={73274} sub="2025" />
-              <ResultRow label="Najniža osnovica doprinosa" value={45950} sub="2025" />
-              <ResultRow label="Najviša osnovica doprinosa" value={656425} sub="2025" />
+              <ResultRow label="Minimalna bruto zarada" value={73274} />
+              <ResultRow label="Najniža osnovica doprinosa" value={45950} />
+              <ResultRow label="Najviša osnovica doprinosa" value={656425} />
               <ResultRow label="Neoporezivi iznos od 2026." value={34221} sub="povećanje >20%" />
             </div>
           </div>
@@ -1018,7 +1018,7 @@ export default function App() {
         <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
           <div className="sidebar-logo">
             <div className="sidebar-logo-name">Platni<span>Listić</span></div>
-            <div className="sidebar-logo-sub">Srbija · 2025</div>
+            <div className="sidebar-logo-sub">Srbija</div>
           </div>
           <nav className="sidebar-nav">
             <div className="sidebar-section-label">Alati</div>
@@ -1050,7 +1050,7 @@ export default function App() {
               <>
                 <div className="page-header">
                   <div>
-                    <div className="page-eyebrow">Srbija · 2025</div>
+                    <div className="page-eyebrow">Srbija</div>
                     <div className="page-title">Platni<span>Listić</span></div>
                     <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
                   </div>
