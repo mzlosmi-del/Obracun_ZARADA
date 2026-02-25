@@ -1033,7 +1033,6 @@ export default function App() {
     .nav-item:hover { background: var(--surface2); color: var(--text); }
     .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
     .nav-icon { font-size: 15px; width: 20px; text-align: center; }
-    .sidebar-footer { padding: 14px 16px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.5px; }
 
     /* ── TOPBAR (mobile) ── */
     .topbar { display: none; align-items: center; gap: 12px; padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 90; }
