@@ -488,6 +488,79 @@ function GaugeBar({ label, value, max, color }) {
   );
 }
 
+// ── BREVO SIGNUP ─────────────────────────────────────────────────────────────
+function BrevoSignup() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!email || !email.includes("@")) return;
+    setStatus("loading");
+    setErrorMsg("");
+    try {
+      const res = await fetch("https://api.brevo.com/v3/contacts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": import.meta.env.VITE_BREVO_API_KEY,
+        },
+        body: JSON.stringify({
+          email: email.trim().toLowerCase(),
+          listIds: [3],
+          updateEnabled: true,
+        }),
+      });
+      if (res.ok || res.status === 204) {
+        setStatus("success");
+        setEmail("");
+      } else if (res.status === 400) {
+        // Already exists is fine
+        const data = await res.json();
+        if (data.code === "duplicate_parameter") {
+          setStatus("success");
+          setEmail("");
+        } else {
+          setErrorMsg("Proverite email adresu.");
+          setStatus("error");
+        }
+      } else {
+        setErrorMsg("Greška. Pokušajte ponovo.");
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg("Greška. Proverite konekciju.");
+      setStatus("error");
+    }
+  };
+
+  return (
+    <div className="brevo-box">
+      <div className="brevo-title">📬 Ostanite u toku</div>
+      <div className="brevo-sub">Promene zakona, novi parametri, saveti.</div>
+      {status === "success" ? (
+        <div className="brevo-success">✓ Prijavljeni ste!</div>
+      ) : (
+        <form className="brevo-form" onSubmit={submit}>
+          <input
+            className="brevo-input"
+            type="email"
+            placeholder="vas@email.com"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            disabled={status === "loading"}
+          />
+          <button className="brevo-btn" type="submit" disabled={status === "loading"}>
+            {status === "loading" ? "..." : "Prijavi se"}
+          </button>
+          {status === "error" && <div className="brevo-error">{errorMsg}</div>}
+        </form>
+      )}
+    </div>
+  );
+}
+
 // ── PAGES ─────────────────────────────────────────────────────────────────────
 function BlogList({ onOpen }) {
   return (
@@ -1049,7 +1122,19 @@ export default function App() {
     .post-cta { margin-top: 36px; padding: 20px 22px; background: var(--accent-light); border-radius: var(--radius); border: 1px solid #c8d8ff; }
     .post-cta p { font-size: 14px; color: var(--text2); margin-bottom: 14px; }
     .cta-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
-    .cta-btn:hover { background: #0047dd; }
+    /* ── BREVO SIGNUP ── */
+    .brevo-box { padding: 14px 14px 16px; border-top: 1px solid var(--border); }
+    .brevo-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+    .brevo-sub { font-size: 11px; color: var(--text3); margin-bottom: 10px; line-height: 1.4; }
+    .brevo-form { display: flex; flex-direction: column; gap: 7px; }
+    .brevo-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; font-family: var(--sans); font-size: 12px; color: var(--text); outline: none; transition: border-color 0.15s; }
+    .brevo-input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,87,255,0.1); }
+    .brevo-input::placeholder { color: var(--text3); }
+    .brevo-btn { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 7px; padding: 8px; font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+    .brevo-btn:hover:not(:disabled) { background: #0047dd; }
+    .brevo-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .brevo-success { background: var(--green-light); color: var(--green); border-radius: 7px; padding: 9px 12px; font-size: 12px; font-weight: 600; text-align: center; }
+    .brevo-error { font-size: 11px; color: var(--red); text-align: center; }
   `;
 
   return (
@@ -1082,6 +1167,7 @@ export default function App() {
               </button>
             ))}
           </nav>
+          <BrevoSignup />
           <div className="sidebar-footer">platnilistic.rs</div>
         </aside>
 
