@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // ── PARAMETERS ───────────────────────────────────────────────────────────────
 const P = {
@@ -1046,7 +1047,7 @@ export default function App() {
           {/* TOPBAR (mobile) */}
           <div className="topbar">
             <img src="/logo.svg" alt="PlatniListić" style={{width: 32, height: 32}} />
-            <div className="topbar-title">Platni<span>Listić</span></div>
+            <div className="topbar-title">Platni<span>Listi��</span></div>
             <button className="menu-btn" onClick={() => setSidebarOpen(true)}>☰</button>
           </div>
 
@@ -1079,6 +1080,7 @@ export default function App() {
           </div>
         </main>
       </div>
+      <Analytics />
     </>
   );
 }
