@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // ── PARAMETERS ───────────────────────────────────────────────────────────────
 // Neoporezivi iznos — date-aware
@@ -1122,6 +1123,7 @@ export default function App() {
           </div>
         </main>
       </div>
+      <Analytics />
     </>
   );
 }
