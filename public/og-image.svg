@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#f5f7fa"/>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#eef4fb"/>
+      <stop offset="100%" stop-color="#f5f7fa"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="100" r="200" fill="#0057ff" opacity="0.05"/>
+  <circle cx="150" cy="530" r="150" fill="#00b341" opacity="0.05"/>
+
+  <!-- Logo paper icon (simplified) -->
+  <rect x="80" y="200" width="120" height="150" rx="10" fill="white" stroke="#cce3f5" stroke-width="2"/>
+  <rect x="80" y="200" width="80" height="40" rx="10" fill="#2e9de4" opacity="0.9"/>
+  <rect x="80" y="230" width="80" height="10" fill="#2e9de4" opacity="0.9"/>
+  <rect x="95" y="265" width="50" height="6" rx="3" fill="#b8d8ee"/>
+  <rect x="95" y="278" width="40" height="6" rx="3" fill="#b8d8ee"/>
+  <rect x="95" y="291" width="45" height="6" rx="3" fill="#b8d8ee"/>
+  <rect x="95" y="310" width="90" height="10" rx="5" fill="#2e9de4" opacity="0.3"/>
+
+  <!-- Title -->
+  <text x="240" y="270" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="#0f1623" letter-spacing="-2">Platni</text>
+  <text x="240" y="270" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800" fill="#0057ff" letter-spacing="-2" dx="248">Listić</text>
+
+  <!-- Subtitle -->
+  <text x="240" y="330" font-family="Inter, Arial, sans-serif" font-size="28" fill="#4b5563" font-weight="400">Besplatni kalkulator za obračun zarada u Srbiji</text>
+
+  <!-- Tags -->
+  <rect x="240" y="370" width="130" height="36" rx="18" fill="#e8efff"/>
+  <text x="305" y="393" font-family="Inter, Arial, sans-serif" font-size="16" fill="#0057ff" font-weight="600" text-anchor="middle">Bruto / Neto</text>
+
+  <rect x="385" y="370" width="150" height="36" rx="18" fill="#e6f9ed"/>
+  <text x="460" y="393" font-family="Inter, Arial, sans-serif" font-size="16" fill="#00b341" font-weight="600" text-anchor="middle">Prekovremeni</text>
+
+  <rect x="550" y="370" width="120" height="36" rx="18" fill="#fff8e6"/>
+  <text x="610" y="393" font-family="Inter, Arial, sans-serif" font-size="16" fill="#f59e0b" font-weight="600" text-anchor="middle">PDF listić</text>
+
+  <!-- URL -->
+  <text x="240" y="460" font-family="monospace, Courier" font-size="22" fill="#9ca3af" letter-spacing="1">www.platnilistic.rs</text>
+</svg>
