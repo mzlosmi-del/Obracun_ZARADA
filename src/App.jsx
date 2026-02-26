@@ -301,6 +301,25 @@ function calculate(inputs, rates) {
   };
 }
 
+// ── REVERSE: neto → bruto ────────────────────────────────────────────────────
+// Solves for basicBruto given a desired neto using binary search.
+// The tax/contrib system is piecewise so closed-form is messy; bisection is clean.
+function netoToBruto(targetNeto, rates) {
+  let lo = targetNeto, hi = targetNeto * 2.5;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const testInputs = {
+      basicBruto: mid, standardHours: 168, overtimeH: 0, nightH: 0,
+      weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
+      transport: 0, mealDays: 0, sickDays: 0, sickPct: 65,
+    };
+    const r = calculate(testInputs, rates);
+    if (Math.abs(r.neto - targetNeto) < 0.01) return mid;
+    if (r.neto < targetNeto) lo = mid; else hi = mid;
+  }
+  return (lo + hi) / 2;
+}
+
 // ── PAYSLIP PDF ───────────────────────────────────────────────────────────────
 function generatePayslipHTML(inputs, r, info, rates) {
   const R = rates;
@@ -631,6 +650,8 @@ function BlogPost({ post, onBack }) {
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
 function CalculatorPage() {
   const now = new Date();
+  const [calcMode, setCalcMode] = useState("bruto"); // "bruto" | "neto"
+  const [targetNeto, setTargetNeto] = useState(70000);
   const [inputs, setInputs] = useState({
     basicBruto: 100000, standardHours: 168, overtimeH: 0, nightH: 0,
     weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0, transport: 0, mealDays: 21,
@@ -643,7 +664,13 @@ function CalculatorPage() {
   });
   const [rates, setRates] = useState({ ...DEFAULT_RATES });
   const [activeTab, setActiveTab] = useState("inputs");
-  const r = calculate(inputs, rates);
+
+  // In neto mode, derive basicBruto from targetNeto
+  const effectiveInputs = calcMode === "neto"
+    ? { ...inputs, basicBruto: netoToBruto(targetNeto, rates) }
+    : inputs;
+
+  const r = calculate(effectiveInputs, rates);
   const set = (key) => (val) => setInputs((p) => ({ ...p, [key]: val }));
   const setI = (key) => (val) => setInfo((p) => ({ ...p, [key]: val }));
   const setR = (key) => (val) => setRates((p) => ({ ...p, [key]: val }));
@@ -651,6 +678,31 @@ function CalculatorPage() {
 
   return (
     <>
+      {/* MODE TOGGLE */}
+      <div className="mode-toggle-wrap">
+        <div className="mode-toggle">
+          <button className={`mode-btn ${calcMode === "bruto" ? "active" : ""}`} onClick={() => setCalcMode("bruto")}>
+            Unesite Bruto
+          </button>
+          <button className={`mode-btn ${calcMode === "neto" ? "active" : ""}`} onClick={() => setCalcMode("neto")}>
+            Unesite Neto
+          </button>
+        </div>
+        {calcMode === "neto" && (
+          <div className="neto-input-wrap">
+            <NumberInput
+              label="Željena neto zarada"
+              value={targetNeto}
+              onChange={setTargetNeto}
+              step={1000}
+            />
+            <div className="neto-derived">
+              Odgovara bruto zaradi od: <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
+            </div>
+          </div>
+        )}
+      </div>
+
       {/* HERO CARDS */}
       <div className="hero-cards">
         <div className="hero-card neto">
@@ -702,7 +754,14 @@ function CalculatorPage() {
           <div className="card">
             <SectionTitle icon="💰">Osnovna zarada</SectionTitle>
             <div className="inputs-body">
-              <NumberInput label="Osnovna bruto zarada" value={inputs.basicBruto} onChange={set("basicBruto")} step={1000} />
+              {calcMode === "bruto" ? (
+                <NumberInput label="Osnovna bruto zarada" value={inputs.basicBruto} onChange={set("basicBruto")} step={1000} />
+              ) : (
+                <div className="result-row total" style={{borderRadius:8, border:"1px solid var(--border)", margin:0}}>
+                  <span className="result-label">Izračunata bruto zarada<span className="result-sub">na osnovu unetog neta</span></span>
+                  <span className="result-value" style={{color:"var(--accent)"}}>{fmt(effectiveInputs.basicBruto)} <span className="rsd">RSD</span></span>
+                </div>
+              )}
               <NumberInput label="Standardnih radnih sati" value={inputs.standardHours} onChange={set("standardHours")} unit="h" sublabel="(21 dan × 8h = 168)" />
             </div>
             <SectionTitle icon="⏰">Prekovremeni rad</SectionTitle>
@@ -805,7 +864,7 @@ function CalculatorPage() {
             </div>
             <div className="pdf-note">Sva polja su opcionalna. Platni listić se generiše sa unetim podacima.</div>
             <div style={{padding:"14px 16px"}}>
-              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(inputs, r, info, rates)}>
+              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(effectiveInputs, r, info, rates)}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14,2 14,8 20,8"/>
@@ -823,9 +882,9 @@ function CalculatorPage() {
           <div className="card">
             <SectionTitle icon="🧮">Formiranje Bruto 1</SectionTitle>
             <div className="results-body">
-              <ResultRow label="Osnovna bruto zarada" value={inputs.basicBruto} type="positive" />
-              {r.sickDaysActual > 0 && <ResultRow label={`Odbitak za bolovanje (${r.sickDaysActual} dana)`} value={-(inputs.basicBruto - r.workedBruto)} type="negative" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`} />}
-              {r.workedBruto !== inputs.basicBruto && <ResultRow label="Zarada za odrađene dane" value={r.workedBruto} sub={`${r.workedDays} radnih dana`} />}
+              <ResultRow label="Osnovna bruto zarada" value={effectiveInputs.basicBruto} type="positive" />
+              {r.sickDaysActual > 0 && <ResultRow label={`Odbitak za bolovanje (${r.sickDaysActual} dana)`} value={-(effectiveInputs.basicBruto - r.workedBruto)} type="negative" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`} />}
+              {r.workedBruto !== effectiveInputs.basicBruto && <ResultRow label="Zarada za odrađene dane" value={r.workedBruto} sub={`${r.workedDays} radnih dana`} />}
               {r.overtimePay > 0 && <ResultRow label="Prekovremeni rad (+26%)" value={r.overtimePay} type="positive" sub={`${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.nightPay > 0 && <ResultRow label="Noćni rad (+26%)" value={r.nightPay} type="positive" sub={`${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.weekendPay > 0 && <ResultRow label="Vikend rad (+26%)" value={r.weekendPay} type="positive" sub={`${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`} />}
@@ -1211,6 +1270,15 @@ export default function App() {
     .rate-cell-red { color: var(--red); font-weight: 600; }
     .rate-cell-yellow { color: var(--amber); font-weight: 600; }
     .pdf-note { font-size: 11px; color: var(--text3); padding: 9px 14px; border-top: 1px solid var(--border); }
+
+    /* ── MODE TOGGLE ── */
+    .mode-toggle-wrap { margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px; }
+    .mode-toggle { display: flex; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; gap: 3px; }
+    .mode-btn { padding: 8px 20px; border-radius: 7px; border: none; background: transparent; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text3); cursor: pointer; transition: all 0.15s; }
+    .mode-btn:hover { color: var(--text2); }
+    .mode-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
+    .neto-input-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; max-width: 360px; border-top: 3px solid var(--green); }
+    .neto-derived { font-size: 12px; color: var(--text2); line-height: 1.5; }
 
     /* ── SICK LEAVE INFO ── */
     .sick-info { background: #f0f7ff; border: 1px solid #c8dff2; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
