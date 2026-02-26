@@ -474,15 +474,50 @@ function renderMd(text) {
 }
 
 // ── UI COMPONENTS ─────────────────────────────────────────────────────────────
-const NumberInput = ({ label, value, onChange, unit = "RSD", min = 0, step = 1, sublabel }) => (
-  <div className="input-field">
-    <label>{label}{sublabel && <span className="sublabel">{sublabel}</span>}</label>
-    <div className="input-wrap">
-      <input type="number" value={value} min={min} step={step} onChange={(e) => onChange(parseFloat(e.target.value) || 0)} />
-      <span className="unit">{unit}</span>
+const NumberInput = ({ label, value, onChange, unit = "RSD", min = 0, step = 1, sublabel }) => {
+  const [raw, setRaw] = useState(String(value));
+
+  // Sync external value changes (e.g. reset) back into raw
+  useEffect(() => {
+    // Only overwrite if the parsed value differs — don't stomp mid-edit
+    if (parseFloat(raw) !== value && raw !== "" && raw !== "-") {
+      setRaw(String(value));
+    }
+  }, [value]);
+
+  const handleChange = (e) => {
+    const str = e.target.value;
+    setRaw(str);
+    const parsed = parseFloat(str);
+    if (!isNaN(parsed)) onChange(parsed);
+    else if (str === "" || str === "-") onChange(0);
+  };
+
+  const handleBlur = () => {
+    const parsed = parseFloat(raw);
+    const clamped = isNaN(parsed) ? 0 : Math.max(min, parsed);
+    setRaw(String(clamped));
+    onChange(clamped);
+  };
+
+  return (
+    <div className="input-field">
+      <label>{label}{sublabel && <span className="sublabel">{sublabel}</span>}</label>
+      <div className="input-wrap">
+        <input
+          type="text"
+          inputMode="decimal"
+          value={raw}
+          step={step}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          style={{ fontFamily: "var(--mono)" }}
+        />
+        <span className="unit">{unit}</span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const TextInput = ({ label, value, onChange, placeholder = "" }) => (
   <div className="input-field">
