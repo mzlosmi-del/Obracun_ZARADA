@@ -251,19 +251,28 @@ Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svoj
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
 function calculate(inputs, rates) {
-  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, transport, mealDays } = inputs;
+  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, transport, mealDays, sickDays, sickPct } = inputs;
   const R = rates;
+  const totalWorkDays = (standardHours || 168) / 8;
   const overtimeCoef = 1 + R.overtimeCoef / 100;
   const nightCoef    = 1 + R.nightCoef / 100;
   const weekendCoef  = 1 + R.weekendCoef / 100;
   const holidayCoef  = 1 + R.holidayCoef / 100;
-  const hourRate = basicBruto / (standardHours || 168);
+
+  // Sick leave — reduces worked days, employer pays sickPct% of daily rate
+  const sickDaysActual = Math.min(sickDays || 0, totalWorkDays);
+  const workedDays = totalWorkDays - sickDaysActual;
+  const dailyBruto = basicBruto / totalWorkDays;
+  const workedBruto = dailyBruto * workedDays;
+  const sickPay = sickDaysActual > 0 ? dailyBruto * sickDaysActual * ((sickPct || 65) / 100) : 0;
+
+  const hourRate = workedBruto / (workedDays * 8 || 1);
   const overtimePay = overtimeH * hourRate * overtimeCoef;
   const nightPay = nightH * hourRate * nightCoef;
   const weekendPay = weekendH * hourRate * weekendCoef;
   const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
-  const bruto1 = basicBruto + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount;
+  const bruto1 = workedBruto + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount;
   const contribBase = Math.max(Math.min(bruto1, R.maxBase), R.minBase);
   const pio_emp = contribBase * R.pioPct_emp / 100;
   const health_emp = contribBase * R.health_emp / 100;
@@ -271,15 +280,25 @@ function calculate(inputs, rates) {
   const totalEmpContrib = pio_emp + health_emp + unemp;
   const taxBase = Math.max(bruto1 - R.nonTaxable, 0);
   const tax = taxBase * R.taxRate / 100;
-  const neto = bruto1 - totalEmpContrib - tax;
+  const netoFromWork = bruto1 - totalEmpContrib - tax;
+  const neto = netoFromWork + sickPay;
   const pio_er = contribBase * R.pio_er / 100;
   const health_er = contribBase * R.health_er / 100;
   const totalErContrib = pio_er + health_er;
   const bruto2 = bruto1 + totalErContrib;
   const mealAllowance = mealDays * R.mealDaily;
   const transportActual = Math.min(transport, R.transportMax);
-  const totalCost = bruto2 + mealAllowance + transportActual;
-  return { hourRate, overtimePay, nightPay, weekendPay, holidayPay, bonusAmount, bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib, taxBase, tax, neto, pio_er, health_er, totalErContrib, bruto2, mealAllowance, transportActual, totalCost, netoBruto1Ratio: bruto1 > 0 ? neto / bruto1 : 0, costPerNeto: neto > 0 ? totalCost / neto : 0 };
+  const totalCost = bruto2 + mealAllowance + transportActual + sickPay;
+  return {
+    hourRate, dailyBruto, workedDays, sickDaysActual, sickPay, workedBruto,
+    overtimePay, nightPay, weekendPay, holidayPay, bonusAmount,
+    bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib,
+    taxBase, tax, netoFromWork, neto,
+    pio_er, health_er, totalErContrib, bruto2,
+    mealAllowance, transportActual, totalCost,
+    netoBruto1Ratio: bruto1 > 0 ? neto / bruto1 : 0,
+    costPerNeto: neto > 0 ? totalCost / neto : 0,
+  };
 }
 
 // ── PAYSLIP PDF ───────────────────────────────────────────────────────────────
@@ -364,6 +383,8 @@ tr:last-child td{border-bottom:none}
 </div>
 <div class="sec"><div class="sh">A. Formiranje Bruto 1</div><table>
 ${trow('Osnovna bruto zarada', inputs.basicBruto, '#00b341')}
+${r.sickDaysActual > 0 ? trow('Odbitak za bolovanje', -(inputs.basicBruto - r.workedBruto), '#f02d3a', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`) : ''}
+${r.sickDaysActual > 0 ? trow('Zarada za odrađene dane', r.workedBruto, '#4b5563', `${r.workedDays} radnih dana`) : ''}
 ${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#00b341', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.nightH > 0 ? trow('Noćni rad (+26%)', r.nightPay, '#00b341', `${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.weekendH > 0 ? trow('Vikend rad (+26%)', r.weekendPay, '#00b341', `${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
@@ -384,6 +405,8 @@ ${trow('Poreska osnovica (Bruto1 – neoporezivi)', r.taxBase, '#4b5563', `${fmt
 ${trow('Porez na zaradu (10%)', r.tax, '#f02d3a')}
 </table></div>
 <div class="sec"><div class="sh">D. Neto zarada i trošak poslodavca</div><table>
+${r.sickDaysActual > 0 ? trow('Neto od rada', r.netoFromWork, '#4b5563') : ''}
+${r.sickDaysActual > 0 ? trow(`Naknada za bolovanje (${inputs.sickPct}%)`, r.sickPay, '#00b341', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} × ${inputs.sickPct}%`) : ''}
 ${trow('NETO ZARADA (iznos na račun zaposlenog)', r.neto, '#00b341')}
 ${trow('PIO – doprinos poslodavca (10%)', r.pio_er, '#f59e0b')}
 ${trow('Zdravstvo – doprinos poslodavca (5,15%)', r.health_er, '#f59e0b')}
@@ -611,6 +634,7 @@ function CalculatorPage() {
   const [inputs, setInputs] = useState({
     basicBruto: 100000, standardHours: 168, overtimeH: 0, nightH: 0,
     weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0, transport: 0, mealDays: 21,
+    sickDays: 0, sickPct: 65,
   });
   const [info, setInfo] = useState({
     companyName: "", companyPib: "", companyAddress: "",
@@ -693,6 +717,27 @@ function CalculatorPage() {
             <div className="inputs-body">
               <NumberInput label="Sati rada vikendom" sublabel="(min +26%)" value={inputs.weekendH} onChange={set("weekendH")} unit="h" />
               <NumberInput label="Sati rada na državni praznik" sublabel="(min +26%)" value={inputs.holidayH} onChange={set("holidayH")} unit="h" />
+            </div>
+            <SectionTitle icon="🏥">Bolovanje</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="Dani bolovanja" sublabel="(do 30 dana — na teret poslodavca)" value={inputs.sickDays} onChange={set("sickDays")} unit="dana" min={0} />
+              <NumberInput label="Naknada za bolovanje" sublabel="(zakonski min. 65%)" value={inputs.sickPct} onChange={set("sickPct")} unit="%" step={1} min={0} max={100} />
+              {inputs.sickDays > 0 && (
+                <div className="sick-info">
+                  <div className="sick-info-row">
+                    <span>Dnevna bruto osnova</span>
+                    <span style={{fontFamily:"var(--mono)", color:"var(--text)"}}>{fmt(r.dailyBruto)} RSD</span>
+                  </div>
+                  <div className="sick-info-row">
+                    <span>Naknada za {r.sickDaysActual} {r.sickDaysActual === 1 ? "dan" : "dana"}</span>
+                    <span style={{fontFamily:"var(--mono)", color:"var(--accent)", fontWeight:600}}>{fmt(r.sickPay)} RSD</span>
+                  </div>
+                  <div className="sick-info-row">
+                    <span>Odradnih dana</span>
+                    <span style={{fontFamily:"var(--mono)", color:"var(--text)"}}>{r.workedDays}</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div className="card">
@@ -779,6 +824,8 @@ function CalculatorPage() {
             <SectionTitle icon="🧮">Formiranje Bruto 1</SectionTitle>
             <div className="results-body">
               <ResultRow label="Osnovna bruto zarada" value={inputs.basicBruto} type="positive" />
+              {r.sickDaysActual > 0 && <ResultRow label={`Odbitak za bolovanje (${r.sickDaysActual} dana)`} value={-(inputs.basicBruto - r.workedBruto)} type="negative" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`} />}
+              {r.workedBruto !== inputs.basicBruto && <ResultRow label="Zarada za odrađene dane" value={r.workedBruto} sub={`${r.workedDays} radnih dana`} />}
               {r.overtimePay > 0 && <ResultRow label="Prekovremeni rad (+26%)" value={r.overtimePay} type="positive" sub={`${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.nightPay > 0 && <ResultRow label="Noćni rad (+26%)" value={r.nightPay} type="positive" sub={`${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.weekendPay > 0 && <ResultRow label="Vikend rad (+26%)" value={r.weekendPay} type="positive" sub={`${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`} />}
@@ -802,6 +849,8 @@ function CalculatorPage() {
             </div>
             <SectionTitle icon="✅">Neto zarada</SectionTitle>
             <div className="results-body">
+              {r.sickDaysActual > 0 && <ResultRow label="Neto od rada" value={r.netoFromWork} />}
+              {r.sickDaysActual > 0 && <ResultRow label={`Naknada za bolovanje (${inputs.sickPct}%)`} value={r.sickPay} type="positive" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} × ${inputs.sickPct}%`} />}
               <ResultRow label="NETO ZARADA (na račun)" value={r.neto} type="total" />
             </div>
           </div>
@@ -1162,6 +1211,10 @@ export default function App() {
     .rate-cell-red { color: var(--red); font-weight: 600; }
     .rate-cell-yellow { color: var(--amber); font-weight: 600; }
     .pdf-note { font-size: 11px; color: var(--text3); padding: 9px 14px; border-top: 1px solid var(--border); }
+
+    /* ── SICK LEAVE INFO ── */
+    .sick-info { background: #f0f7ff; border: 1px solid #c8dff2; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
+    .sick-info-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text2); }
 
     /* ── RESET BUTTON & RATE SUMMARY ── */
     .reset-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; transition: all 0.12s; white-space: nowrap; }
