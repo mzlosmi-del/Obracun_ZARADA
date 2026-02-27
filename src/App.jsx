@@ -44,6 +44,8 @@ const POSTS = [
     title: "Neoporezivi iznos zarade u 2025. godini: 28.423 RSD",
     summary: "Od 1. februara 2025. godine, neoporezivi iznos zarade iznosi 28.423 RSD mesečno. Šta to znači za vaš obračun i koliko štedite na porezu?",
     body: `
+![Obračun poreza na zaradu](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
+
 Od 1. februara 2025. godine, neoporezivi iznos zarade u Srbiji iznosi **28.423 RSD** mesečno. Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%.
 
 ## Kako funkcioniše neoporezivi iznos?
@@ -72,6 +74,11 @@ Od 1. februara 2026. godine, neoporezivi iznos raste na **34.221 RSD** — pove�
 ## Važno napomenuti
 
 Neoporezivi iznos važi samo za zarade iz radnog odnosa. Za preduzetnike paušalce i vlasnike privrednih društava pravila su drugačija.
+
+## Korisni linkovi
+
+- [Zakon o porezu na dohodak građana — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
+- [Poreska uprava Srbije — porezi na zaradu](https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html)
     `,
   },
   {
@@ -81,6 +88,8 @@ Neoporezivi iznos važi samo za zarade iz radnog odnosa. Za preduzetnike paušal
     title: "Razlika između bruto i neto zarade — jednostavno objašnjenje",
     summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja.",
     body: `
+![Računanje zarade na laptopu](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80)
+
 Kada potpisujete ugovor o radu, zarada je obično izražena u bruto iznosu. Ali šta zapravo dobijate na račun? I zašto je razlika toliko velika?
 
 ## Bruto 1 — šta je to?
@@ -119,6 +128,11 @@ Poslodavac pored isplate zarade plaća i sopstvene doprinose (15,15%):
 **Bruto 2 = Bruto 1 + Doprinosi poslodavca**
 
 Za zaradu od 100.000 RSD bruto 1, ukupan trošak poslodavca iznosi oko **115.150 RSD** — pre dodavanja naknada za prevoz i topli obrok.
+
+## Korisni linkovi
+
+- [Zakon o radu Srbije — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_radu.html)
+- [Republički zavod za statistiku — prosečne zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
     `,
   },
   {
@@ -128,6 +142,8 @@ Za zaradu od 100.000 RSD bruto 1, ukupan trošak poslodavca iznosi oko **115.150
     title: "Prekovremeni rad u Srbiji: prava i obračun po Zakonu o radu",
     summary: "Zakon o radu propisuje minimum od +26% za prekovremeni rad. Kako se obračunava, koliko može trajati i šta su vaša prava kao zaposlenog?",
     body: `
+![Prekovremeni rad u kancelariji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
+
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 
 ## Minimalni koeficijent uvećanja
@@ -159,6 +175,11 @@ Prema Zakonu o radu:
 Poslodavac je dužan da vodi evidenciju o radnom vremenu i da prekovremeni rad evidentira odvojeno. Zaposleni ima pravo da zahteva uvid u evidenciju i da ospori netačne podatke.
 
 Koristite **PlatniListić kalkulator** da proverite da li vam je prekovremeni rad ispravno obračunat.
+
+## Korisni linkovi
+
+- [Zakon o radu — čl. 108 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
+- [Inspekcija rada Srbije — prijava nepravilnosti](https://www.minrzs.gov.rs/sr/inspekcija-rada)
     `,
   },
   {
@@ -168,6 +189,8 @@ Koristite **PlatniListić kalkulator** da proverite da li vam je prekovremeni ra
     title: "Minimalna zarada u Srbiji za 2025. godinu: 73.274 RSD bruto",
     summary: "Vlada Srbije je utvrdila minimalnu zaradu za 2025. godinu. Koliko iznosi, ko ima pravo na nju i kako je obračunati?",
     body: `
+![Minimalna zarada i novac](https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80)
+
 Za 2025. godinu, minimalna zarada u Srbiji iznosi **73.274 RSD bruto mesečno** za puno radno vreme (mesec sa 168 radnih sati).
 
 ## Minimalna satnica
@@ -197,6 +220,11 @@ Ukupan trošak poslodavca za zaposlenog na minimalnoj zarade:
 Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomskog saveta, a primenjuje se od 1. januara tekuće godine.
 
 Sledeća revizija planirana je za januar 2026. godine, a prema najavljenim tendencijama, rast bi mogao biti u rasponu od 8–12%.
+
+## Korisni linkovi
+
+- [Uredba o minimalnoj zaradi — Paragraf.rs](https://www.paragraf.rs/propisi/uredba-o-visini-minimalne-zarade.html)
+- [Republički zavod za statistiku — zarade i troškovi rada](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
     `,
   },
   {
@@ -206,6 +234,8 @@ Sledeća revizija planirana je za januar 2026. godine, a prema najavljenim tende
     title: "Doprinosi za socijalno osiguranje u Srbiji: kompletan vodič za 2025.",
     summary: "Ko plaća doprinose, koliko iznose i na šta imate pravo? Kompletan pregled sistema socijalnog osiguranja za zaposlene u Srbiji.",
     body: `
+![Socijalno osiguranje i penzijski sistem](https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80)
+
 Sistem socijalnog osiguranja u Srbiji finansira se putem doprinosa koje plaćaju i zaposleni i poslodavci. Evo kompletnog pregleda za 2025. godinu.
 
 ## Doprinosi na teret zaposlenog — 19,90% ukupno
@@ -245,6 +275,12 @@ Ako zaposleni prima zaradu ispod najniže osnovice, doprinosi se ipak računaju 
 ## Plaćanje doprinosa
 
 Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svojih) zajedno sa isplatom zarade. Rok za uplatu je isti dan kada se isplaćuje zarada.
+
+## Korisni linkovi
+
+- [Zakon o doprinosima za obavezno socijalno osiguranje — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_doprinosima_za_obavezno_socijalno_osiguranje.html)
+- [Fond PIO Srbije — pravo na penziju](https://www.pio.rs/sr/osiguranici/pravo-na-penziju.html)
+- [RFZO — prava iz zdravstvenog osiguranja](https://www.rfzo.rs/index.php/osiguranici-s/prava-iz-zo)
     `,
   },
   {
@@ -254,6 +290,8 @@ Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svoj
     title: "Minimalna zarada u Srbiji za 2026. godinu",
     summary: "Od februara 2026. minimalna neto zarada iznosi 69.000 RSD, a bruto 93.264 RSD. Šta se promenilo i kako to utiče na poslodavce?",
     body: `
+![Minimalna zarada rast 2026](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80)
+
 Od **1. februara 2026. godine** u Srbiji važe novi iznosi minimalne zarade, usklađeni sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
 
 ## Iznosi minimalne zarade u 2026. godini
@@ -299,6 +337,12 @@ Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji 
 Od februara 2026. neoporezivi iznos je **34.221 RSD**. Budući da je minimalna bruto zarada 93.264 RSD, poreska osnovica iznosi 59.043 RSD, a porez 5.904 RSD.
 
 Koristite naš **besplatni kalkulator** za tačan obračun minimalne i svake druge zarade.
+
+## Korisni linkovi
+
+- [Vlada Srbije — uredba o minimalnoj zarade](https://www.srbija.gov.rs)
+- [Republički zavod za statistiku — zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
+- [Socijalno-ekonomski savet Srbije](https://www.socijalnoekonomskisavet.rs)
     `,
   },
   {
@@ -308,6 +352,8 @@ Koristite naš **besplatni kalkulator** za tačan obračun minimalne i svake dru
     title: "Naknada zarade za godišnji odmor — kako se obračunava?",
     summary: "Za vreme godišnjeg odmora zaposleni ima pravo na naknadu u visini prosečne zarade. Objašnjavamo kako se tačno obračunava i šta kaže Zakon o radu.",
     body: `
+![Godišnji odmor i odmor od posla](https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80)
+
 Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Zakonom o radu (čl. 68–76)**. Za vreme korišćenja godišnjeg odmora, zaposleni ima pravo na naknadu zarade — ali kako se ona tačno obračunava?
 
 ## Pravo na godišnji odmor
@@ -354,6 +400,11 @@ Ako zaposleni za vreme godišnjeg odmora padne na bolovanje, odmor se prekida. N
 ## Zastarелост prava
 
 Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako nije iskorišćeno krivicom zaposlenog. Ako nije iskorišćen krivicom poslodavca, zaposleni ima pravo na naknadu štete.
+
+## Korisni linkovi
+
+- [Zakon o radu — čl. 68–76 (godišnji odmor)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
+- [Inspekcija rada — prava zaposlenih](https://www.minrzs.gov.rs/sr/inspekcija-rada)
     `,
   },
   {
@@ -363,6 +414,8 @@ Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako n
     title: "Otpremnina u Srbiji — pravo, iznos i obračun",
     summary: "Ko ima pravo na otpremninu, koliko iznosi i kako se obračunava? Sve što trebate znati po Zakonu o radu Srbije.",
     body: `
+![Prestanak radnog odnosa i otpremnina](https://images.unsplash.com/photo-1586769852044-692d6e3703f0?w=800&q=80)
+
 Otpremnina je jednokratna novčana naknada koju poslodavac isplaćuje zaposlenom prilikom prestanka radnog odnosa pod određenim uslovima. Regulisana je **Zakonom o radu (čl. 158–160)**.
 
 ## Ko ima pravo na otpremninu?
@@ -414,6 +467,12 @@ Otpremnina se isplaćuje **najkasnije 30 dana od dana prestanka radnog odnosa**.
 ## Savet
 
 Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu i da li je iznos u skladu sa zakonom. Preporuka je konsultovati se sa pravnikom ili sindikatom.
+
+## Korisni linkovi
+
+- [Zakon o radu — čl. 158–160 (otpremnina)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
+- [Nacionalna služba za zapošljavanje — prava pri gubitku posla](https://www.nsz.gov.rs/live/digitalAssets/10/10017_pravo_na_novcanu_naknadu.pdf)
+- [Poreska uprava — porez na otpremninu](https://www.purs.gov.rs)
     `,
   },
 ];
@@ -629,6 +688,8 @@ function renderMd(text) {
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="post-img" loading="lazy" />')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-link">$1</a>')
     .replace(/^\|(.+)\|$/gm, (m) => {
       if (m.includes('---')) return '';
       const cells = m.split('|').filter(Boolean).map(c => `<td>${c.trim()}</td>`).join('');
@@ -1524,6 +1585,9 @@ export default function App() {
     .post-body td { padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: var(--mono); }
     .post-body tr:last-child td { border-bottom: none; }
     .post-body tr:nth-child(even) td { background: var(--surface2); }
+    .post-body .post-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin: 16px 0; display: block; }
+    .post-body .post-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+    .post-body .post-link:hover { color: #0047dd; }
     .post-cta { margin-top: 36px; padding: 20px 22px; background: var(--accent-light); border-radius: var(--radius); border: 1px solid #c8d8ff; }
     .post-cta p { font-size: 14px; color: var(--text2); margin-bottom: 14px; }
     .cta-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
