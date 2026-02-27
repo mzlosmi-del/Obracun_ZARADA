@@ -247,6 +247,175 @@ Ako zaposleni prima zaradu ispod najniže osnovice, doprinosi se ipak računaju 
 Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svojih) zajedno sa isplatom zarade. Rok za uplatu je isti dan kada se isplaćuje zarada.
     `,
   },
+  {
+    id: "minimalna-zarada-2026",
+    date: "1. februar 2026",
+    tag: "Novosti",
+    title: "Minimalna zarada u Srbiji za 2026. godinu",
+    summary: "Od februara 2026. minimalna neto zarada iznosi 69.000 RSD, a bruto 93.264 RSD. Šta se promenilo i kako to utiče na poslodavce?",
+    body: `
+Od **1. februara 2026. godine** u Srbiji važe novi iznosi minimalne zarade, usklađeni sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
+
+## Iznosi minimalne zarade u 2026. godini
+
+| Pokazatelj | Iznos |
+|---|---|
+| Minimalna neto zarada (mesečno) | 69.000 RSD |
+| Minimalna bruto zarada (mesečno) | 93.264 RSD |
+| Minimalna satnica (neto) | 410,71 RSD |
+| Minimalna satnica (bruto) | 554,90 RSD |
+
+## Kako se izračunava minimalna zarada?
+
+Minimalna zarada se određuje po satu rada. Za pun radni mesec od 168 sati (21 radni dan × 8 sati), množi se minimalna satnica sa brojem sati.
+
+**Primer za februar 2026:**
+- Minimalna satnica bruto: 554,90 RSD
+- Radnih sati: 168
+- Minimalna bruto zarada: 93.264 RSD
+
+## Šta se menja za poslodavce?
+
+Svaki poslodavac u Srbiji dužan je da zaposlenima isplati **najmanje minimalnu zaradu**. Isplata ispod minimalca je prekršaj koji se kažnjava novčanom kaznom od 800.000 do 2.000.000 RSD za pravno lice.
+
+Uz minimalnu zaradu, poslodavac plaća i doprinose na teret poslodavca od **15,15%**, što ukupan trošak rada podiže na oko **107.381 RSD mesečno**.
+
+## Poređenje sa prethodnim godinama
+
+| Godina | Minimalna bruto zarada |
+|---|---|
+| 2024 | 69.423 RSD |
+| 2025 | 73.274 RSD |
+| 2026 | 93.264 RSD |
+
+Rast minimalne zarade u 2026. godini je značajan — oko **27% u odnosu na 2025.** godinu.
+
+## Ko prima minimalnu zaradu?
+
+Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji prima zaradu blizu minimuma. Najzastupljenije su delatnosti: tekstilna industrija, poljoprivreda, ugostiteljstvo i maloprodaja.
+
+## Neoporezivi iznos i minimalna zarada
+
+Od februara 2026. neoporezivi iznos je **34.221 RSD**. Budući da je minimalna bruto zarada 93.264 RSD, poreska osnovica iznosi 59.043 RSD, a porez 5.904 RSD.
+
+Koristite naš **besplatni kalkulator** za tačan obračun minimalne i svake druge zarade.
+    `,
+  },
+  {
+    id: "godisnji-odmor-naknada",
+    date: "15. januar 2026",
+    tag: "Zakon o radu",
+    title: "Naknada zarade za godišnji odmor — kako se obračunava?",
+    summary: "Za vreme godišnjeg odmora zaposleni ima pravo na naknadu u visini prosečne zarade. Objašnjavamo kako se tačno obračunava i šta kaže Zakon o radu.",
+    body: `
+Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Zakonom o radu (čl. 68–76)**. Za vreme korišćenja godišnjeg odmora, zaposleni ima pravo na naknadu zarade — ali kako se ona tačno obračunava?
+
+## Pravo na godišnji odmor
+
+Svaki zaposleni koji je zasnovao radni odnos stiče pravo na godišnji odmor. Minimalni godišnji odmor iznosi **20 radnih dana** godišnje. Kolektivnim ugovorom ili ugovorom o radu može se utvrditi duži odmor.
+
+Pravo na puni godišnji odmor stiče se **nakon 6 meseci** neprekidnog rada kod istog poslodavca.
+
+## Kako se obračunava naknada za godišnji odmor?
+
+Prema članu 104. Zakona o radu, naknada zarade za godišnji odmor ne može biti niža od **prosečne zarade zaposlenog u prethodnih 12 meseci**.
+
+**Formula:**
+1. Sabrajte sve bruto zarade u prethodnih 12 meseci
+2. Podelite sa 12 (prosečna mesečna bruto zarada)
+3. Podelite sa prosečnim brojem radnih dana u mesecu (21-22)
+4. Pomnožite sa brojem dana godišnjeg odmora
+
+**Primer:**
+- Prosečna bruto zarada (12 meseci): 100.000 RSD
+- Dnevna osnova: 100.000 / 21 = 4.762 RSD
+- Godišnji odmor: 20 radnih dana
+- Naknada bruto: 4.762 × 20 = **95.238 RSD**
+
+## Da li se plaćaju doprinosi i porez na naknadu?
+
+Da. Naknada za godišnji odmor tretira se kao zarada i podleže:
+- Doprinosima zaposlenog (19,90%)
+- Porezu na dohodak (10% iznad neoporezivog iznosa)
+- Doprinosima poslodavca (15,15%)
+
+## Kada se isplaćuje naknada?
+
+Naknada za godišnji odmor isplaćuje se **najkasnije 3 radna dana pre početka korišćenja odmora**, ukoliko zaposleni to zahteva.
+
+## Raspored godišnjeg odmora
+
+Poslodavac je dužan da zaposlenom dostavi rešenje o korišćenju godišnjeg odmora najmanje **15 dana unapred**. Odmor se može koristiti u celini ili u delovima — ali najmanje 10 radnih dana mora biti neprekidno.
+
+## Godišnji odmor i bolovanje
+
+Ako zaposleni za vreme godišnjeg odmora padne na bolovanje, odmor se prekida. Neiskorišćeni dani godišnjeg odmora mogu se koristiti naknadno.
+
+## Zastarелост prava
+
+Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako nije iskorišćeno krivicom zaposlenog. Ako nije iskorišćen krivicom poslodavca, zaposleni ima pravo na naknadu štete.
+    `,
+  },
+  {
+    id: "otpremnina-obracun",
+    date: "5. januar 2026",
+    tag: "Zakon o radu",
+    title: "Otpremnina u Srbiji — pravo, iznos i obračun",
+    summary: "Ko ima pravo na otpremninu, koliko iznosi i kako se obračunava? Sve što trebate znati po Zakonu o radu Srbije.",
+    body: `
+Otpremnina je jednokratna novčana naknada koju poslodavac isplaćuje zaposlenom prilikom prestanka radnog odnosa pod određenim uslovima. Regulisana je **Zakonom o radu (čl. 158–160)**.
+
+## Ko ima pravo na otpremninu?
+
+Pravo na otpremninu ima zaposleni kome prestaje radni odnos:
+- **Zbog tehnološkog viška** (proglašavanje za višak zaposlenih)
+- **Sporazumnim raskidom** — ako je to predviđeno ugovorom ili kolektivnim ugovorom
+- **Odlaskom u penziju** — starosnu ili invalidsku
+
+**Nema pravo** na otpremninu zaposleni kome je radni odnos prestao:
+- Zbog otkaza iz razloga na strani zaposlenog (disciplinski, nepoštovanje obaveza)
+- Istekom ugovora o radu na određeno vreme
+- Na lični zahtev (ostavka)
+
+## Koliko iznosi otpremnina?
+
+Zakon o radu propisuje **minimalni iznos otpremnine**. Poslodavac može isplatiti i više kolektivnim ugovorom ili ugovorom o radu.
+
+### Za tehnološki višak (čl. 158):
+
+Minimalni iznos: **1/3 prosečne mesečne zarade** za svaku navršenu godinu rada kod tog poslodavca.
+
+**Primer:**
+- Prosečna bruto zarada: 100.000 RSD
+- Godine rada kod poslodavca: 10
+- Minimalna otpremnina: 100.000 / 3 × 10 = **333.333 RSD**
+
+### Za odlazak u penziju (čl. 119):
+
+Minimalni iznos: **2 prosečne mesečne zarade** u Republici Srbiji prema poslednjem objavljenom podatku Republičkog zavoda za statistiku.
+
+## Koja zarada se uzima kao osnova?
+
+Osnova za obračun otpremnine je **prosečna mesečna zarada zaposlenog isplaćena u prethodnih 12 meseci** — ne minimalna zarada, ne zarada na dan prestanka radnog odnosa, već prosek.
+
+## Poreski tretman otpremnine
+
+Otpremnina do **zakonom propisanog iznosa** je oslobođena poreza na dohodak i doprinosa za socijalno osiguranje. Iznos koji prelazi zakonski minimum oporezuje se kao zarada.
+
+| Deo otpremnine | Porez | Doprinosi |
+|---|---|---|
+| Do zakonskog minimuma | Ne | Ne |
+| Iznos iznad minimuma | 10% (porez) | 35,05% |
+
+## Rok isplate
+
+Otpremnina se isplaćuje **najkasnije 30 dana od dana prestanka radnog odnosa**. Kašnjenje u isplati daje zaposlenom pravo na zakonsku zateznu kamatu.
+
+## Savet
+
+Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu i da li je iznos u skladu sa zakonom. Preporuka je konsultovati se sa pravnikom ili sindikatom.
+    `,
+  },
 ];
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
