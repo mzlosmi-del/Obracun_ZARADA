@@ -1343,8 +1343,8 @@ function CalculatorPage() {
           <div className="card">
             <SectionTitle icon="📅">Minuli rad</SectionTitle>
             <div className="inputs-body">
-              <NumberInput label="Godine staža" sublabel="(ukupno kod svih poslodavaca)" value={inputs.yearsOfService} onChange={set("yearsOfService")} unit="god." min={0} step={1} />
-              <NumberInput label="Stopa po godini" sublabel="(zakonski min. 0,4% — čl. 108 ZOR)" value={inputs.minuliRadPct} onChange={set("minuliRadPct")} unit="%" step={0.1} min={0.4} />
+              <NumberInput label="Godine staža kod trenutnog poslodavca" sublabel="(min. 0,4% po godini — čl. 108 ZOR)" value={inputs.yearsOfService} onChange={set("yearsOfService")} unit="god." min={0} step={1} />
+              <NumberInput label="Stopa po godini" sublabel="(zakonski min. 0,4%)" value={inputs.minuliRadPct} onChange={set("minuliRadPct")} unit="%" step={0.1} min={0.4} />
               {inputs.yearsOfService > 0 && (
                 <div className="sick-info">
                   <div className="sick-info-row">
