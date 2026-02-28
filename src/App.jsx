@@ -479,7 +479,7 @@ Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu 
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
 function calculate(inputs, rates) {
-  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, transport, mealDays, sickDays, sickPct, publicHolidayDays } = inputs;
+  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, transport, mealDays, sickDays, sickPct, publicHolidayDays, unpaidDays, syndikat, syndikatPct, kredit, adminZabrana, ostaliOdbici } = inputs;
   const R = rates;
   const totalWorkDays = (standardHours || 168) / 8;
   const overtimeCoef = 1 + R.overtimeCoef / 100;
@@ -487,19 +487,22 @@ function calculate(inputs, rates) {
   const weekendCoef  = 1 + R.weekendCoef / 100;
   const holidayCoef  = 1 + R.holidayCoef / 100;
 
-  // Public holidays falling on workdays — employee stays home, gets full pay
+  // Public holidays falling on workdays — full pay, no reduction
   const publicHolidayDaysActual = Math.min(publicHolidayDays || 0, totalWorkDays);
 
-  // Sick leave — reduces worked days, employer pays sickPct% of daily rate
+  // Sick leave — employer pays sickPct% of daily rate
   const sickDaysActual = Math.min(sickDays || 0, totalWorkDays - publicHolidayDaysActual);
-  const workedDays = totalWorkDays - sickDaysActual - publicHolidayDaysActual;
+
+  // Unpaid absence — UMANJENJE: reduces bruto, affects tax/contributions
+  const unpaidDaysActual = Math.min(unpaidDays || 0, totalWorkDays - publicHolidayDaysActual - sickDaysActual);
+
+  const workedDays = totalWorkDays - sickDaysActual - publicHolidayDaysActual - unpaidDaysActual;
   const dailyBruto = basicBruto / totalWorkDays;
 
-  // Public holiday pay = full daily rate (paid day off, no reduction)
-  const publicHolidayPaidDays = publicHolidayDaysActual; // informational
   const workedBruto = dailyBruto * workedDays;
-  const publicHolidayBasePay = dailyBruto * publicHolidayDaysActual; // included in bruto1
+  const publicHolidayBasePay = dailyBruto * publicHolidayDaysActual;
   const sickPay = sickDaysActual > 0 ? dailyBruto * sickDaysActual * ((sickPct || 65) / 100) : 0;
+  const unpaidDeduction = dailyBruto * unpaidDaysActual; // reduces bruto1
 
   const hourRate = workedBruto / (workedDays * 8 || 1);
   const overtimePay = overtimeH * hourRate * overtimeCoef;
@@ -508,7 +511,7 @@ function calculate(inputs, rates) {
   const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
 
-  // Bruto1 = worked days + public holiday days (full pay) + extra hours + bonuses
+  // Bruto1 — unpaid days already excluded via workedDays
   const bruto1 = workedBruto + publicHolidayBasePay + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount;
   const contribBase = Math.max(Math.min(bruto1, R.maxBase), R.minBase);
   const pio_emp = contribBase * R.pioPct_emp / 100;
@@ -518,7 +521,14 @@ function calculate(inputs, rates) {
   const taxBase = Math.max(bruto1 - R.nonTaxable, 0);
   const tax = taxBase * R.taxRate / 100;
   const netoFromWork = bruto1 - totalEmpContrib - tax;
-  const neto = netoFromWork + sickPay;
+
+  // ODBICI — deducted from neto after tax/contributions
+  const syndikatAmount = (syndikat || 0) + netoFromWork * ((syndikatPct || 0) / 100);
+  const totalOdbici = syndikatAmount + (kredit || 0) + (adminZabrana || 0) + (ostaliOdbici || 0);
+
+  const netoBeforeOdbici = netoFromWork + sickPay;
+  const neto = Math.max(netoBeforeOdbici - totalOdbici, 0);
+
   const pio_er = contribBase * R.pio_er / 100;
   const health_er = contribBase * R.health_er / 100;
   const totalErContrib = pio_er + health_er;
@@ -528,10 +538,12 @@ function calculate(inputs, rates) {
   const totalCost = bruto2 + mealAllowance + transportActual + sickPay;
   return {
     hourRate, dailyBruto, workedDays, sickDaysActual, sickPay, workedBruto,
-    publicHolidayDaysActual, publicHolidayBasePay, publicHolidayPaidDays,
+    publicHolidayDaysActual, publicHolidayBasePay,
+    unpaidDaysActual, unpaidDeduction,
     overtimePay, nightPay, weekendPay, holidayPay, bonusAmount,
     bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib,
-    taxBase, tax, netoFromWork, neto,
+    taxBase, tax, netoFromWork,
+    syndikatAmount, totalOdbici, netoBeforeOdbici, neto,
     pio_er, health_er, totalErContrib, bruto2,
     mealAllowance, transportActual, totalCost,
     netoBruto1Ratio: bruto1 > 0 ? neto / bruto1 : 0,
@@ -550,6 +562,7 @@ function netoToBruto(targetNeto, rates) {
       basicBruto: mid, standardHours: 168, overtimeH: 0, nightH: 0,
       weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
       transport: 0, mealDays: 0, sickDays: 0, sickPct: 65, publicHolidayDays: 0,
+      unpaidDays: 0, syndikat: 0, syndikatPct: 0, kredit: 0, adminZabrana: 0, ostaliOdbici: 0,
     };
     const r = calculate(testInputs, rates);
     if (Math.abs(r.neto - targetNeto) < 0.01) return mid;
@@ -643,6 +656,7 @@ ${trow('Osnovna bruto zarada', inputs.basicBruto, '#00b341')}
 ${r.sickDaysActual > 0 ? trow('Odbitak za bolovanje', -(inputs.basicBruto - r.workedBruto - r.publicHolidayBasePay), '#f02d3a', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`) : ''}
 ${r.sickDaysActual > 0 ? trow('Zarada za odrađene dane', r.workedBruto, '#4b5563', `${r.workedDays} radnih dana`) : ''}
 ${r.publicHolidayDaysActual > 0 ? trow(`Državni praznici (${r.publicHolidayDaysActual} dana)`, r.publicHolidayBasePay, '#4b5563', 'Plaćeni neradni dani — puna naknada') : ''}
+${r.unpaidDaysActual > 0 ? trow(`Neplaćeno odsustvo (${r.unpaidDaysActual} dana)`, -r.unpaidDeduction, '#f02d3a', 'Umanjenje bruta') : ''}
 ${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#00b341', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.nightH > 0 ? trow('Noćni rad (+26%)', r.nightPay, '#00b341', `${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.weekendH > 0 ? trow('Vikend rad (+26%)', r.weekendPay, '#00b341', `${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
@@ -662,9 +676,15 @@ ${trow('Neoporezivi iznos', R.nonTaxable, '#4b5563')}
 ${trow('Poreska osnovica (Bruto1 – neoporezivi)', r.taxBase, '#4b5563', `${fmt(r.bruto1)} – ${fmt(R.nonTaxable)}`)}
 ${trow('Porez na zaradu (10%)', r.tax, '#f02d3a')}
 </table></div>
-<div class="sec"><div class="sh">D. Neto zarada i trošak poslodavca</div><table>
+<div class="sec"><div class="sh">D. Neto zarada i odbici</div><table>
 ${r.sickDaysActual > 0 ? trow('Neto od rada', r.netoFromWork, '#4b5563') : ''}
 ${r.sickDaysActual > 0 ? trow(`Naknada za bolovanje (${inputs.sickPct}%)`, r.sickPay, '#00b341', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} × ${inputs.sickPct}%`) : ''}
+${r.totalOdbici > 0 ? trow('Neto pre odbitaka', r.netoBeforeOdbici, '#4b5563') : ''}
+${r.syndikatAmount > 0 ? trow('Sindikalna članarina', -r.syndikatAmount, '#f02d3a') : ''}
+${inputs.kredit > 0 ? trow('Kredit / pozajmica od poslodavca', -inputs.kredit, '#f02d3a') : ''}
+${inputs.adminZabrana > 0 ? trow('Administrativna zabrana', -inputs.adminZabrana, '#f02d3a') : ''}
+${inputs.ostaliOdbici > 0 ? trow('Ostali odbici', -inputs.ostaliOdbici, '#f02d3a') : ''}
+${r.totalOdbici > 0 ? trow('UKUPNO odbici od zarade', -r.totalOdbici, '#f02d3a') : ''}
 ${trow('NETO ZARADA (iznos na račun zaposlenog)', r.neto, '#00b341')}
 ${trow('PIO – doprinos poslodavca (10%)', r.pio_er, '#f59e0b')}
 ${trow('Zdravstvo – doprinos poslodavca (5,15%)', r.health_er, '#f59e0b')}
@@ -923,6 +943,205 @@ function BlogPost({ post, onBack }) {
   );
 }
 
+// ── PPP-PD XML GENERATOR ─────────────────────────────────────────────────────
+function generatePPPPD(inputs, r, info, rates) {
+  const pad2 = (n) => String(n).padStart(2, "0");
+  const fmtXml = (n) => (Math.round((n || 0) * 100) / 100).toFixed(2);
+  const period = `${info.year}-${pad2(info.month)}`;
+  const datumPlacanja = `${info.year}-${pad2(info.month)}-${pad2(new Date(info.year, info.month, 0).getDate())}`;
+  const totalWorkDays = (inputs.standardHours || 168) / 8;
+  // Efektivni sati = only actually worked days × 8 + overtime (unpaid days excluded)
+  const efektivniSati = r.workedDays * 8 + (inputs.overtimeH || 0);
+  // Kalendarski dani = worked + sick + public holidays (NOT unpaid — those don't count)
+  const kalendarskiDani = Math.round(r.workedDays + r.sickDaysActual + r.publicHolidayDaysActual);
+
+  // Split name into ime/prezime
+  const nameParts = (info.employeeName || "Zaposleni").trim().split(" ");
+  const prezime = nameParts[0] || "";
+  const ime = nameParts.slice(1).join(" ") || "-";
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<PodaciPoreskeDeklaracije xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PodaciOPrijavi>
+    <VrstaPrijave>1</VrstaPrijave>
+    <ObracunskiPeriod>${period}</ObracunskiPeriod>
+    <DatumPlacanja>${datumPlacanja}</DatumPlacanja>
+  </PodaciOPrijavi>
+  <PodaciOIsplatiocu>
+    <TipIsplatioca>1</TipIsplatioca>
+    <PoreskiIdentifikacioniBroj>${info.companyPib || "000000000"}</PoreskiIdentifikacioniBroj>${info.companyMbr ? `\n    <MaticniBrojisplatioca>${info.companyMbr}</MaticniBrojisplatioca>` : ""}${info.companyName ? `\n    <NazivPrezimeIme>${info.companyName}</NazivPrezimeIme>` : ""}
+    <SedistePrebivaliste>${info.companyOpstina || "000"}</SedistePrebivaliste>${info.companyTelefon ? `\n    <Telefon>${info.companyTelefon}</Telefon>` : ""}${info.companyAddress ? `\n    <UlicaIBroj>${info.companyAddress}</UlicaIBroj>` : ""}
+    <eMail>${info.companyEmail || "kontakt@firma.rs"}</eMail>
+  </PodaciOIsplatiocu>
+  <DeklarisaniPrihodi>
+    <PodaciOPrihodima>
+      <RedniBroj>1</RedniBroj>
+      <VrstaIdentifikatoraPrimaoca>1</VrstaIdentifikatoraPrimaoca>
+      <IdentifikatorPrimaoca>${info.employeeJmbg || "0000000000000"}</IdentifikatorPrimaoca>
+      <Prezime>${prezime}</Prezime>
+      <Ime>${ime}</Ime>
+      <OznakaPrebivalista>${info.employeeOpstina || "000"}</OznakaPrebivalista>
+      <SVP>${info.svp || "111001001"}</SVP>
+      <BrojKalendarskihDana>${kalendarskiDani}</BrojKalendarskihDana>
+      <BrojEfektivnihSati>${efektivniSati.toFixed(2)}</BrojEfektivnihSati>
+      <MesecniFondSati>${(inputs.standardHours || 168).toFixed(2)}</MesecniFondSati>
+      <Bruto>${fmtXml(r.bruto1)}</Bruto>
+      <OsnovicaPorez>${fmtXml(r.taxBase)}</OsnovicaPorez>
+      <Porez>${fmtXml(r.tax)}</Porez>
+      <OsnovicaDoprinosi>${fmtXml(r.contribBase)}</OsnovicaDoprinosi>
+      <PIO>${fmtXml(r.pio_emp)}</PIO>
+      <ZDR>${fmtXml(r.health_emp)}</ZDR>
+      <NEZ>${fmtXml(r.unemp)}</NEZ>
+      <PIOBen>0.00</PIOBen>
+    </PodaciOPrihodima>
+  </DeklarisaniPrihodi>
+</PodaciPoreskeDeklaracije>`;
+}
+
+// ── OPSTINE (sample most common ones) ─────────────────────────────────────────
+const OPSTINE = [
+  ["000","— nije odabrano —"],["701","Beograd - Stari Grad"],["703","Beograd - Savski Venac"],
+  ["705","Beograd - Vračar"],["707","Beograd - Rakovica"],["709","Beograd - Čukarica"],
+  ["711","Beograd - Palilula"],["713","Beograd - Zvezdara"],["715","Beograd - Voždovac"],
+  ["717","Beograd - Novi Beograd"],["719","Beograd - Zemun"],["721","Beograd - Surčin"],
+  ["723","Beograd - Grocka"],["725","Beograd - Lazarevac"],["727","Beograd - Obrenovac"],
+  ["729","Beograd - Sopot"],["731","Beograd - Barajevo"],["733","Beograd - Mladenovac"],
+  ["101","Novi Sad"],["105","Subotica"],["107","Zrenjanin"],["109","Pančevo"],
+  ["111","Sombor"],["113","Kikinda"],["115","Vršac"],["201","Niš"],["203","Leskovac"],
+  ["205","Vranje"],["207","Pirot"],["209","Zaječar"],["301","Kragujevac"],["303","Čačak"],
+  ["305","Kraljevo"],["307","Kruševac"],["309","Jagodina"],["401","Novi Pazar"],
+  ["403","Subotica - ostalo"],["501","Šabac"],["503","Valjevo"],["505","Smederevo"],
+];
+
+// ── SVP COMMON VALUES ──────────────────────────────────────────────────────────
+const SVP_LIST = [
+  ["111001001","111001001 — Zarada (redovni rad)"],
+  ["111001002","111001002 — Zarada (prekovremeni rad)"],
+  ["111002001","111002001 — Naknada zarade (bolovanje do 30 dana)"],
+  ["111002002","111002002 — Naknada zarade (godišnji odmor)"],
+  ["111002003","111002003 — Naknada zarade (praznik)"],
+  ["111005001","111005001 — Regres za godišnji odmor"],
+  ["111006001","111006001 — Jubilarna nagrada"],
+  ["101001001","101001001 — Zarada preduzetnika"],
+];
+
+function PPPPDTab({ inputs, r, info, setI, rates }) {
+  const [xml, setXml] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [showXml, setShowXml] = useState(false);
+
+  const generate = () => {
+    const generated = generatePPPPD(inputs, r, info, rates);
+    setXml(generated);
+    setShowXml(true);
+    setCopied(false);
+  };
+
+  const download = () => {
+    const pad2 = (n) => String(n).padStart(2, "0");
+    const blob = new Blob([xml], { type: "application/xml" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `PPPPD_${info.companyPib || "PIB"}_${info.year}${pad2(info.month)}.xml`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  const copy = () => {
+    navigator.clipboard.writeText(xml).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <div className="main-grid">
+      <div className="card">
+        <SectionTitle icon="🏢">Podaci o isplatiocu</SectionTitle>
+        <div className="inputs-body">
+          <TextInput label="PIB isplatioca" value={info.companyPib} onChange={setI("companyPib")} placeholder="123456789" />
+          <TextInput label="Matični broj (MBR)" value={info.companyMbr || ""} onChange={setI("companyMbr")} placeholder="12345678" />
+          <TextInput label="Naziv firme" value={info.companyName} onChange={setI("companyName")} placeholder="Firma d.o.o." />
+          <TextInput label="Email za kontakt" value={info.companyEmail || ""} onChange={setI("companyEmail")} placeholder="kontakt@firma.rs" />
+          <TextInput label="Telefon" value={info.companyTelefon || ""} onChange={setI("companyTelefon")} placeholder="+381 11 123 4567" />
+          <TextInput label="Adresa (ulica i broj)" value={info.companyAddress} onChange={setI("companyAddress")} placeholder="Ulica br. 1, Beograd" />
+          <div className="input-field">
+            <label>Opština sedišta isplatioca</label>
+            <div className="input-wrap">
+              <select value={info.companyOpstina || "000"} onChange={e => setI("companyOpstina")(e.target.value)} style={{fontFamily:"var(--sans)", fontSize:13, width:"100%", background:"var(--surface)", border:"1.5px solid var(--border)", borderRadius:8, padding:"8px 12px", color:"var(--text)"}}>
+                {OPSTINE.map(([k,v]) => <option key={k} value={k}>{v}</option>)}
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="card">
+        <SectionTitle icon="👤">Podaci o primaocu prihoda</SectionTitle>
+        <div className="inputs-body">
+          <TextInput label="Ime i prezime" value={info.employeeName} onChange={setI("employeeName")} placeholder="Prezime Ime" />
+          <TextInput label="JMBG primaoca" value={info.employeeJmbg} onChange={setI("employeeJmbg")} placeholder="0101990000000" />
+          <div className="input-field">
+            <label>Opština prebivališta primaoca</label>
+            <div className="input-wrap">
+              <select value={info.employeeOpstina || "000"} onChange={e => setI("employeeOpstina")(e.target.value)} style={{fontFamily:"var(--sans)", fontSize:13, width:"100%", background:"var(--surface)", border:"1.5px solid var(--border)", borderRadius:8, padding:"8px 12px", color:"var(--text)"}}>
+                {OPSTINE.map(([k,v]) => <option key={k} value={k}>{v}</option>)}
+              </select>
+            </div>
+          </div>
+          <div className="input-field">
+            <label>Šifra vrste prihoda (ŠVP)</label>
+            <div className="input-wrap">
+              <select value={info.svp || "111001001"} onChange={e => setI("svp")(e.target.value)} style={{fontFamily:"var(--mono)", fontSize:12, width:"100%", background:"var(--surface)", border:"1.5px solid var(--border)", borderRadius:8, padding:"8px 12px", color:"var(--text)"}}>
+                {SVP_LIST.map(([k,v]) => <option key={k} value={k}>{v}</option>)}
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <SectionTitle icon="📋">Pregled vrednosti za prijavu</SectionTitle>
+        <div className="results-body" style={{margin:"0 16px 16px"}}>
+          <ResultRow label="Bruto 1 (pos. 3.9)" value={r.bruto1} />
+          <ResultRow label="Osnovica za porez (pos. 3.10)" value={r.taxBase} />
+          <ResultRow label="Porez (pos. 3.11)" value={r.tax} />
+          <ResultRow label="Osnovica za doprinose (pos. 3.12)" value={r.contribBase} />
+          <ResultRow label="PIO — zaposleni (pos. 3.13)" value={r.pio_emp} />
+          <ResultRow label="Zdravstvo — zaposleni (pos. 3.14)" value={r.health_emp} />
+          <ResultRow label="Nezaposlenost — zaposleni (pos. 3.15)" value={r.unemp} />
+        </div>
+
+        <div style={{padding:"0 16px 16px", display:"flex", flexDirection:"column", gap:10}}>
+          <button className="btn-pdf btn-pdf-full" onClick={generate} style={{background:"var(--accent)"}}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+            Generiši PPP-PD XML
+          </button>
+          {xml && (
+            <div style={{display:"flex", gap:8}}>
+              <button className="btn-pdf btn-pdf-full" onClick={download} style={{flex:1, background:"#00a33b"}}>
+                ⬇ Preuzmi .xml fajl
+              </button>
+              <button className="btn-pdf btn-pdf-full" onClick={copy} style={{flex:1, background: copied ? "#00a33b" : "var(--surface2)", color: copied ? "white" : "var(--text)"}}>
+                {copied ? "✓ Kopirano!" : "📋 Kopiraj XML"}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {showXml && xml && (
+        <div className="card full-width">
+          <SectionTitle icon="📄">Generisani XML</SectionTitle>
+          <div className="ppppd-note">
+            ⚠️ Pre upload-a na portal ePorezi, proverite sve podatke. Prijava je vaša odgovornost.
+          </div>
+          <pre className="xml-preview">{xml}</pre>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
 function CalculatorPage() {
   const now = new Date();
@@ -932,10 +1151,15 @@ function CalculatorPage() {
     basicBruto: 100000, standardHours: 168, overtimeH: 0, nightH: 0,
     weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0, transport: 0, mealDays: 21,
     sickDays: 0, sickPct: 65, publicHolidayDays: 0,
+    unpaidDays: 0,
+    syndikat: 0, syndikatPct: 0,
+    kredit: 0, adminZabrana: 0, ostaliOdbici: 0,
   });
   const [info, setInfo] = useState({
-    companyName: "", companyPib: "", companyAddress: "",
+    companyName: "", companyPib: "", companyAddress: "", companyMbr: "",
+    companyOpstina: "000", companyEmail: "", companyTelefon: "",
     employeeName: "", employeeJmbg: "", employeePosition: "", employeeBank: "",
+    employeeOpstina: "000", svp: "111001001",
     month: now.getMonth() + 1, year: now.getFullYear(),
   });
   const [rates, setRates] = useState({ ...DEFAULT_RATES });
@@ -984,7 +1208,7 @@ function CalculatorPage() {
         <div className="hero-card neto">
           <div className="hero-card-label">Neto zarada</div>
           <div className="hero-card-value"><AnimatedNum value={r.neto} /></div>
-          <div className="hero-card-sub">RSD · na račun zaposlenog</div>
+          <div className="hero-card-sub">{r.totalOdbici > 0 ? `RSD · posle odbitaka (${fmt(r.totalOdbici)} RSD)` : "RSD · na račun zaposlenog"}</div>
         </div>
         <div className="hero-card bruto">
           <div className="hero-card-label">Bruto 1</div>
@@ -1018,9 +1242,9 @@ function CalculatorPage() {
 
       {/* TABS */}
       <div className="tabs">
-        {["inputs","payslip","results","rates"].map((t) => (
+        {["inputs","payslip","results","rates","ppppd"].map((t) => (
           <button key={t} className={`tab ${activeTab===t?"active":""}`} onClick={() => setActiveTab(t)}>
-            {{"inputs":"📝 Unos","payslip":"🧾 Platni Listić","results":"📊 Obračun","rates":"📋 Stope"}[t]}
+            {{"inputs":"📝 Unos","payslip":"🧾 Platni Listić","results":"📊 Obračun","rates":"📋 Stope","ppppd":"🏛️ PPP-PD"}[t]}
           </button>
         ))}
       </div>
@@ -1090,6 +1314,21 @@ function CalculatorPage() {
                 </div>
               )}
             </div>
+            <SectionTitle icon="🚫">Neplaćeno odsustvo</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="Dani neplaćenog odsustva" sublabel="(umanjuje bruto — utiče na porez i doprinose)" value={inputs.unpaidDays} onChange={set("unpaidDays")} unit="dana" min={0} />
+              {inputs.unpaidDays > 0 && (
+                <div className="sick-info" style={{background:"#fff0f0", borderColor:"#fca5a5"}}>
+                  <div className="sick-info-row">
+                    <span>Umanjenje bruta</span>
+                    <span style={{fontFamily:"var(--mono)", color:"#dc2626", fontWeight:600}}>−{fmt(r.unpaidDeduction)} RSD</span>
+                  </div>
+                  <div className="sick-info-row">
+                    <span>Nema naknade — zaposleni ne prima ništa za te dane</span>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
           <div className="card">
             <SectionTitle icon="🎁">Bonusi i nagrade</SectionTitle>
@@ -1117,6 +1356,30 @@ function CalculatorPage() {
               <GaugeBar label="Vikend rad" value={r.weekendPay} max={r.bruto1} color="#00b341" />
               <GaugeBar label="Rad na praznike" value={r.holidayPay} max={r.bruto1} color="#f59e0b" />
               <GaugeBar label="Bonusi" value={r.bonusAmount} max={r.bruto1} color="#f02d3a" />
+            </div>
+            <SectionTitle icon="✂️">Odbici od zarade</SectionTitle>
+            <div className="inputs-body">
+              <NumberInput label="Sindikalna članarina (iznos)" sublabel="(fiksni mesečni odbitak)" value={inputs.syndikat} onChange={set("syndikat")} step={100} />
+              <NumberInput label="Sindikalna članarina (%)" sublabel="(% od neto zarade)" value={inputs.syndikatPct} onChange={set("syndikatPct")} unit="%" step={0.1} />
+              <NumberInput label="Kredit / pozajmica od poslodavca" sublabel="(mesečna rata)" value={inputs.kredit} onChange={set("kredit")} step={100} />
+              <NumberInput label="Administrativna zabrana" sublabel="(sudski nalog za obustavu)" value={inputs.adminZabrana} onChange={set("adminZabrana")} step={100} />
+              <NumberInput label="Ostali odbici" sublabel="(solidarni fond, alimentacija...)" value={inputs.ostaliOdbici} onChange={set("ostaliOdbici")} step={100} />
+              {r.totalOdbici > 0 && (
+                <div className="sick-info" style={{background:"#fff0f0", borderColor:"#fca5a5"}}>
+                  <div className="sick-info-row">
+                    <span>Ukupno odbici od neta</span>
+                    <span style={{fontFamily:"var(--mono)", color:"#dc2626", fontWeight:600}}>−{fmt(r.totalOdbici)} RSD</span>
+                  </div>
+                  <div className="sick-info-row">
+                    <span>Neto pre odbitaka</span>
+                    <span style={{fontFamily:"var(--mono)", color:"var(--text)"}}>{fmt(r.netoBeforeOdbici)} RSD</span>
+                  </div>
+                  <div className="sick-info-row">
+                    <span style={{fontWeight:600}}>Neto na račun (posle odbitaka)</span>
+                    <span style={{fontFamily:"var(--mono)", color:"var(--green)", fontWeight:700}}>{fmt(r.neto)} RSD</span>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -1177,6 +1440,7 @@ function CalculatorPage() {
               <ResultRow label="Osnovna bruto zarada" value={effectiveInputs.basicBruto} type="positive" />
               {r.sickDaysActual > 0 && <ResultRow label={`Odbitak za bolovanje (${r.sickDaysActual} dana)`} value={-(effectiveInputs.basicBruto - r.workedBruto - r.publicHolidayBasePay)} type="negative" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`} />}
               {r.publicHolidayDaysActual > 0 && <ResultRow label={`Državni praznici (${r.publicHolidayDaysActual} dana)`} value={r.publicHolidayBasePay} sub="Plaćeni neradni dani — puna naknada" />}
+              {r.unpaidDaysActual > 0 && <ResultRow label={`Neplaćeno odsustvo (${r.unpaidDaysActual} dana)`} value={-r.unpaidDeduction} type="negative" sub="Umanjenje bruta — utiče na porez i doprinose" />}
               {(r.workedBruto !== effectiveInputs.basicBruto || r.publicHolidayDaysActual > 0) && <ResultRow label="Zarada za odrađene dane" value={r.workedBruto} sub={`${r.workedDays} radnih dana`} />}
               {r.overtimePay > 0 && <ResultRow label="Prekovremeni rad (+26%)" value={r.overtimePay} type="positive" sub={`${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.nightPay > 0 && <ResultRow label="Noćni rad (+26%)" value={r.nightPay} type="positive" sub={`${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`} />}
@@ -1203,6 +1467,12 @@ function CalculatorPage() {
             <div className="results-body">
               {r.sickDaysActual > 0 && <ResultRow label="Neto od rada" value={r.netoFromWork} />}
               {r.sickDaysActual > 0 && <ResultRow label={`Naknada za bolovanje (${inputs.sickPct}%)`} value={r.sickPay} type="positive" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} × ${inputs.sickPct}%`} />}
+              {r.totalOdbici > 0 && <ResultRow label="Neto pre odbitaka" value={r.netoBeforeOdbici} />}
+              {r.syndikatAmount > 0 && <ResultRow label="Sindikalna članarina" value={-r.syndikatAmount} type="negative" />}
+              {inputs.kredit > 0 && <ResultRow label="Kredit / pozajmica" value={-inputs.kredit} type="negative" />}
+              {inputs.adminZabrana > 0 && <ResultRow label="Administrativna zabrana" value={-inputs.adminZabrana} type="negative" />}
+              {inputs.ostaliOdbici > 0 && <ResultRow label="Ostali odbici" value={-inputs.ostaliOdbici} type="negative" />}
+              {r.totalOdbici > 0 && <ResultRow label="Ukupno odbici" value={-r.totalOdbici} type="negative" />}
               <ResultRow label="NETO ZARADA (na račun)" value={r.neto} type="total" />
             </div>
           </div>
@@ -1293,6 +1563,10 @@ function CalculatorPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {activeTab === "ppppd" && (
+        <PPPPDTab inputs={effectiveInputs} r={r} info={info} setI={setI} rates={rates} />
       )}
     </>
   );
@@ -1563,6 +1837,11 @@ export default function App() {
     .rate-cell-red { color: var(--red); font-weight: 600; }
     .rate-cell-yellow { color: var(--amber); font-weight: 600; }
     .pdf-note { font-size: 11px; color: var(--text3); padding: 9px 14px; border-top: 1px solid var(--border); }
+
+    /* ── PPP-PD ── */
+    .ppppd-note { margin: 0 16px 12px; padding: 10px 14px; background: #fff8e6; border: 1px solid #f59e0b; border-radius: 8px; font-size: 12px; color: #92400e; }
+    .xml-preview { margin: 0 16px 16px; padding: 14px; background: #0f1623; color: #a8d8a8; font-family: var(--mono); font-size: 11px; border-radius: 8px; overflow-x: auto; white-space: pre; line-height: 1.6; max-height: 400px; overflow-y: auto; }
+    .full-width { grid-column: 1 / -1; }
 
     /* ── MODE TOGGLE ── */
     .mode-toggle-wrap { margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px; }
