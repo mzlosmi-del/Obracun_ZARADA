@@ -27,9 +27,9 @@ const DEFAULT_RATES = {
   holidayCoef: 26,
   minBase: 45950,        // RSD
   maxBase: 656425,       // RSD
-  mealDaily: 1490,       // RSD
-  transportMax: 5630,    // RSD
-  minWage: 73274,        // RSD
+  mealDaily: 1490,       // RSD/dan — podrazumevana vrednost u kalkulatoru
+  transportMax: 5782,    // RSD/mesec — neoporezivi max od 1.2.2026. (ZPDG usklađeni iznosi)
+  minWage: 93264,        // RSD bruto — minimalna zarada 2026
 };
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 const fmt = (n) => new Intl.NumberFormat("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
@@ -479,7 +479,7 @@ Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu 
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
 function calculate(inputs, rates) {
-  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, yearsOfService, minuliRadPct, transport, mealDays, sickDays, sickPct, publicHolidayDays, unpaidDays, syndikat, syndikatPct, kredit, adminZabrana, ostaliOdbici } = inputs;
+  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, yearsOfService, minuliRadPct, transport, mealDays, mealDailyActual, regres, sickDays, sickPct, publicHolidayDays, unpaidDays, syndikat, syndikatPct, kredit, adminZabrana, ostaliOdbici } = inputs;
   const R = rates;
   const totalWorkDays = (standardHours || 168) / 8;
   const overtimeCoef = 1 + R.overtimeCoef / 100;
@@ -515,8 +515,16 @@ function calculate(inputs, rates) {
   const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
 
-  // Bruto1 — includes minuli rad
-  const bruto1 = workedBruto + publicHolidayBasePay + minuliRadAmount + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount;
+  // Topli obrok u novcu i regres — u potpunosti oporezivi (ulaze u bruto1)
+  const mealDailyRate = mealDailyActual || R.mealDaily;
+  const mealAmount = mealDays * mealDailyRate;
+  const regresAmount = regres || 0;
+
+  // Prevoz — neoporeziv do zakonskog max, ne ulazi u bruto1
+  const transportActual = Math.min(transport || 0, R.transportMax);
+
+  // Bruto1 = zarada + minuli rad + uvećanja + bonusi + topli obrok + regres
+  const bruto1 = workedBruto + publicHolidayBasePay + minuliRadAmount + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount + mealAmount + regresAmount;
   const contribBase = Math.max(Math.min(bruto1, R.maxBase), R.minBase);
   const pio_emp = contribBase * R.pioPct_emp / 100;
   const health_emp = contribBase * R.health_emp / 100;
@@ -537,20 +545,20 @@ function calculate(inputs, rates) {
   const health_er = contribBase * R.health_er / 100;
   const totalErContrib = pio_er + health_er;
   const bruto2 = bruto1 + totalErContrib;
-  const mealAllowance = mealDays * R.mealDaily;
-  const transportActual = Math.min(transport, R.transportMax);
-  const totalCost = bruto2 + mealAllowance + transportActual + sickPay;
+  const totalCost = bruto2 + transportActual + sickPay;
   return {
     hourRate, dailyBruto, workedDays, sickDaysActual, sickPay, workedBruto,
     publicHolidayDaysActual, publicHolidayBasePay,
     unpaidDaysActual, unpaidDeduction,
     minuliRadAmount, minuliRadRate,
     overtimePay, nightPay, weekendPay, holidayPay, bonusAmount,
+    mealAmount, regresAmount,
+    transportActual,
     bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib,
     taxBase, tax, netoFromWork,
     syndikatAmount, totalOdbici, netoBeforeOdbici, neto,
     pio_er, health_er, totalErContrib, bruto2,
-    mealAllowance, transportActual, totalCost,
+    totalCost,
     netoBruto1Ratio: bruto1 > 0 ? neto / bruto1 : 0,
     costPerNeto: neto > 0 ? totalCost / neto : 0,
   };
@@ -697,8 +705,8 @@ ${trow('PIO – doprinos poslodavca (10%)', r.pio_er, '#f59e0b')}
 ${trow('Zdravstvo – doprinos poslodavca (5,15%)', r.health_er, '#f59e0b')}
 ${trow('UKUPNO doprinosi poslodavca (15,15%)', r.totalErContrib, '#f59e0b')}
 ${trow('BRUTO 2 (Bruto1 + doprinosi poslodavca)', r.bruto2, '#0057ff')}
-${r.mealAllowance > 0 ? trow('Topli obrok', r.mealAllowance, '#4b5563', `${inputs.mealDays} dana × 1.490 RSD`) : ''}
-${r.transportActual > 0 ? trow('Naknada za prevoz', r.transportActual, '#4b5563') : ''}
+${r.mealAmount > 0 ? trow(`Topli obrok (${inputs.mealDays} × ${fmt(inputs.mealDailyActual || 1490)} RSD)`, r.mealAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
+${r.regresAmount > 0 ? trow('Regres za godišnji odmor', r.regresAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${trow('UKUPAN TROŠAK POSLODAVCA', r.totalCost, '#f59e0b')}
 </table></div>
 <div class="sigs">
@@ -1109,7 +1117,8 @@ function PPPPDTab({ inputs, r, info, setI, rates }) {
 
         <SectionTitle icon="📋">Pregled vrednosti za prijavu</SectionTitle>
         <div className="results-body" style={{margin:"0 16px 16px"}}>
-          {r.minuliRadAmount > 0 && <ResultRow label={`Minuli rad (uključen u bruto)`} value={r.minuliRadAmount} type="positive" sub={`${inputs.yearsOfService} god. × ${inputs.minuliRadPct}% = ${(r.minuliRadRate*100).toFixed(2)}%`} />}
+          {r.mealAmount > 0 && <ResultRow label="Topli obrok (u Bruto 1)" value={r.mealAmount} sub="oporezivo" />}
+          {r.regresAmount > 0 && <ResultRow label="Regres (u Bruto 1)" value={r.regresAmount} sub="oporezivo" />}
           <ResultRow label="Bruto 1 (pos. 3.9)" value={r.bruto1} />
           <ResultRow label="Osnovica za porez (pos. 3.10)" value={r.taxBase} />
           <ResultRow label="Porez (pos. 3.11)" value={r.tax} />
@@ -1159,7 +1168,7 @@ function CalculatorPage() {
     basicBruto: 100000, standardHours: 168, overtimeH: 0, nightH: 0,
     weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
     yearsOfService: 0, minuliRadPct: 0.4,
-    transport: 0, mealDays: 21,
+    transport: 0, mealDays: 21, mealDailyActual: 1490, regres: 0,
     sickDays: 0, sickPct: 65, publicHolidayDays: 0,
     unpaidDays: 0,
     syndikat: 0, syndikatPct: 0,
@@ -1367,13 +1376,30 @@ function CalculatorPage() {
                 <span className="result-value" style={{color:"var(--green)"}}>+{fmt(r.bonusAmount)} <span className="rsd">RSD</span></span>
               </div>
             </div>
-            <SectionTitle icon="🍽️">Naknade van zarade</SectionTitle>
+            <SectionTitle icon="🍽️">Naknade i primanja</SectionTitle>
             <div className="inputs-body">
-              <NumberInput label="Prevoz (mesečno)" sublabel="(neopor. max 5.630 RSD)" value={inputs.transport} onChange={set("transport")} step={100} />
-              <NumberInput label="Radnih dana (topli obrok)" sublabel="(1.490 RSD/dan)" value={inputs.mealDays} onChange={set("mealDays")} unit="dana" min={0} />
+              <NumberInput label="Prevoz (mesečno)" sublabel="(neopor. do 5.630 RSD — čl. 18 ZPDG)" value={inputs.transport} onChange={set("transport")} step={100} />
+              <NumberInput label="Radnih dana (topli obrok)" sublabel="(u novcu — u celosti oporezivo)" value={inputs.mealDays} onChange={set("mealDays")} unit="dana" min={0} />
+              <NumberInput label="Dnevni iznos toplog obroka" value={inputs.mealDailyActual || 1490} onChange={set("mealDailyActual")} step={10} min={0} unit="RSD" />
+              <NumberInput label="Regres za godišnji odmor" sublabel="(u celosti oporezivo)" value={inputs.regres} onChange={set("regres")} step={1000} />
+              {(r.mealAmount > 0 || r.regresAmount > 0) && (
+                <div className="sick-info" style={{background:"#fff8e6", borderColor:"#f59e0b"}}>
+                  {r.mealAmount > 0 && <div className="sick-info-row">
+                    <span>Topli obrok → Bruto 1</span>
+                    <span style={{fontFamily:"var(--mono)", color:"#b45309", fontWeight:600}}>{fmt(r.mealAmount)} RSD</span>
+                  </div>}
+                  {r.regresAmount > 0 && <div className="sick-info-row">
+                    <span>Regres → Bruto 1</span>
+                    <span style={{fontFamily:"var(--mono)", color:"#b45309", fontWeight:600}}>{fmt(r.regresAmount)} RSD</span>
+                  </div>}
+                  <div className="sick-info-row" style={{fontSize:11, color:"var(--text3)"}}>
+                    Podležu porezu i svim doprinosima kao zarada.
+                  </div>
+                </div>
+              )}
               <div className="result-row positive" style={{ borderRadius: 8, border: "1px solid var(--border)", margin: 0 }}>
-                <span className="result-label">Ukupno naknade</span>
-                <span className="result-value" style={{color:"var(--green)"}}>+{fmt(r.mealAllowance + r.transportActual)} <span className="rsd">RSD</span></span>
+                <span className="result-label">Prevoz (neopor.)</span>
+                <span className="result-value" style={{color:"var(--green)"}}>+{fmt(r.transportActual)} <span className="rsd">RSD</span></span>
               </div>
             </div>
             <SectionTitle icon="📈">Uvećanja zarade</SectionTitle>
@@ -1476,6 +1502,8 @@ function CalculatorPage() {
               {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+26%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.minuliRadAmount > 0 && <ResultRow label={`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}%)`} value={r.minuliRadAmount} type="positive" sub={`${(r.minuliRadRate*100).toFixed(2)}% od zarade za odrađene dane`} />}
               {r.bonusAmount > 0 && <ResultRow label="Bonusi / nagrade" value={r.bonusAmount} type="positive" />}
+              {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(inputs.mealDailyActual || 1490)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}
+              {r.regresAmount > 0 && <ResultRow label="Regres za godišnji odmor" value={r.regresAmount} type="positive" sub="u celosti oporezivo" />}
               <ResultRow label="BRUTO 1 (ukupna bruto zarada)" value={r.bruto1} type="total" />
             </div>
             <SectionTitle icon="➖">Doprinosi na teret zaposlenog</SectionTitle>
@@ -1515,9 +1543,8 @@ function CalculatorPage() {
             </div>
             <SectionTitle icon="🍽️">Naknade van zarade</SectionTitle>
             <div className="results-body">
-              <ResultRow label="Topli obrok" value={r.mealAllowance} type="positive" sub={`${inputs.mealDays} dana × 1.490 RSD`} />
-              <ResultRow label="Naknada za prevoz" value={r.transportActual} type="positive" sub="neoporezivi iznos" />
-              <ResultRow label="UKUPNO naknade" value={r.mealAllowance + r.transportActual} type="total" />
+              <ResultRow label="Naknada za prevoz" value={r.transportActual} type="positive" sub="neoporezivo do 5.630 RSD" />
+              <ResultRow label="UKUPNO naknade (van zarade)" value={r.transportActual} type="total" />
             </div>
             <SectionTitle icon="💼">Ukupan trošak poslodavca</SectionTitle>
             <div className="results-body">
@@ -1587,8 +1614,8 @@ function CalculatorPage() {
             </div>
             <SectionTitle icon="🍽️">Neoporezivi dodaci</SectionTitle>
             <div className="inputs-body">
-              <NumberInput label="Topli obrok (dnevno max)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
-              <NumberInput label="Prevoz (mesečno max)" value={rates.transportMax} onChange={setR("transportMax")} step={10} min={0} />
+              <NumberInput label="Topli obrok — podrazumevani iznos" sublabel="(u novcu — u celosti oporezivo)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
+              <NumberInput label="Prevoz (mesečno max neopor.)" sublabel="(čl. 18 ZPDG)" value={rates.transportMax} onChange={setR("transportMax")} step={10} min={0} />
             </div>
           </div>
         </div>
