@@ -479,7 +479,7 @@ Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu 
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
 function calculate(inputs, rates) {
-  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, yearsOfService, minuliRadPct, transport, mealDays, mealDailyActual, regres, sickDays, sickPct, publicHolidayDays, unpaidDays, syndikat, syndikatPct, kredit, adminZabrana, ostaliOdbici } = inputs;
+  const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, yearsOfService, minuliRadPct, transport, mealDays, mealDailyActual, regres, sickDays, sickPct, publicHolidayDays, vacationHolidayDays, unpaidDays, syndikat, syndikatPct, kredit, adminZabrana, ostaliOdbici } = inputs;
   const R = rates;
   const totalWorkDays = (standardHours || 168) / 8;
   const overtimeCoef = 1 + R.overtimeCoef / 100;
@@ -504,6 +504,10 @@ function calculate(inputs, rates) {
   const sickPay = sickDaysActual > 0 ? dailyBruto * sickDaysActual * ((sickPct || 65) / 100) : 0;
   const unpaidDeduction = dailyBruto * unpaidDaysActual;
 
+  // Praznik tokom godišnjeg odmora — zaposleni prima punu dnevnu zaradu, odmor se produžava
+  const vacationHolidayDaysActual = Math.max(vacationHolidayDays || 0, 0);
+  const vacationHolidayPay = dailyBruto * vacationHolidayDaysActual;
+
   // Minuli rad — uvećanje po godinama staža (zakonski min 0,4% po godini)
   const minuliRadRate = (yearsOfService || 0) * ((minuliRadPct || 0.4) / 100);
   const minuliRadAmount = workedBruto * minuliRadRate;
@@ -523,8 +527,8 @@ function calculate(inputs, rates) {
   // Prevoz — neoporeziv do zakonskog max, ne ulazi u bruto1
   const transportActual = Math.min(transport || 0, R.transportMax);
 
-  // Bruto1 = zarada + minuli rad + uvećanja + bonusi + topli obrok + regres
-  const bruto1 = workedBruto + publicHolidayBasePay + minuliRadAmount + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount + mealAmount + regresAmount;
+  // Bruto1 = zarada + minuli rad + uvećanja + bonusi + topli obrok + regres + praznici tokom odmora
+  const bruto1 = workedBruto + publicHolidayBasePay + vacationHolidayPay + minuliRadAmount + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount + mealAmount + regresAmount;
   const contribBase = Math.max(Math.min(bruto1, R.maxBase), R.minBase);
   const pio_emp = contribBase * R.pioPct_emp / 100;
   const health_emp = contribBase * R.health_emp / 100;
@@ -549,6 +553,7 @@ function calculate(inputs, rates) {
   return {
     hourRate, dailyBruto, workedDays, sickDaysActual, sickPay, workedBruto,
     publicHolidayDaysActual, publicHolidayBasePay,
+    vacationHolidayDaysActual, vacationHolidayPay,
     unpaidDaysActual, unpaidDeduction,
     minuliRadAmount, minuliRadRate,
     overtimePay, nightPay, weekendPay, holidayPay, bonusAmount,
@@ -575,7 +580,7 @@ function netoToBruto(targetNeto, rates) {
       basicBruto: mid, standardHours: 168, overtimeH: 0, nightH: 0,
       weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
       yearsOfService: 0, minuliRadPct: 0.4,
-      transport: 0, mealDays: 0, sickDays: 0, sickPct: 65, publicHolidayDays: 0,
+      transport: 0, mealDays: 0, sickDays: 0, sickPct: 65, publicHolidayDays: 0, vacationHolidayDays: 0,
       unpaidDays: 0, syndikat: 0, syndikatPct: 0, kredit: 0, adminZabrana: 0, ostaliOdbici: 0,
     };
     const r = calculate(testInputs, rates);
@@ -670,6 +675,7 @@ ${trow('Osnovna bruto zarada', inputs.basicBruto, '#00b341')}
 ${r.sickDaysActual > 0 ? trow('Odbitak za bolovanje', -(inputs.basicBruto - r.workedBruto - r.publicHolidayBasePay), '#f02d3a', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`) : ''}
 ${r.sickDaysActual > 0 ? trow('Zarada za odrađene dane', r.workedBruto, '#4b5563', `${r.workedDays} radnih dana`) : ''}
 ${r.publicHolidayDaysActual > 0 ? trow(`Državni praznici (${r.publicHolidayDaysActual} dana)`, r.publicHolidayBasePay, '#4b5563', 'Plaćeni neradni dani — puna naknada') : ''}
+${r.vacationHolidayDaysActual > 0 ? trow(`Praznici tokom godišnjeg odmora (${r.vacationHolidayDaysActual} dana)`, r.vacationHolidayPay, '#00b341', 'Puna naknada — odmor se produžava') : ''}
 ${r.unpaidDaysActual > 0 ? trow(`Neplaćeno odsustvo (${r.unpaidDaysActual} dana)`, -r.unpaidDeduction, '#f02d3a', 'Umanjenje bruta') : ''}
 ${r.minuliRadAmount > 0 ? trow(`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}% = ${(r.minuliRadRate*100).toFixed(2)}%)`, r.minuliRadAmount, '#00b341') : ''}
 ${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#00b341', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
@@ -1169,7 +1175,7 @@ function CalculatorPage() {
     weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
     yearsOfService: 0, minuliRadPct: 0.4,
     transport: 0, mealDays: 21, mealDailyActual: 1490, regres: 0,
-    sickDays: 0, sickPct: 65, publicHolidayDays: 0,
+    sickDays: 0, sickPct: 65, publicHolidayDays: 0, vacationHolidayDays: 0,
     unpaidDays: 0,
     syndikat: 0, syndikatPct: 0,
     kredit: 0, adminZabrana: 0, ostaliOdbici: 0,
@@ -1308,6 +1314,18 @@ function CalculatorPage() {
                   </div>
                   <div className="sick-info-row" style={{fontSize:11, color:"var(--text3)"}}>
                     <span>Puna zarada se isplaćuje — praznik ne smanjuje bruto</span>
+                  </div>
+                </div>
+              )}
+              <NumberInput label="Praznici tokom godišnjeg odmora" sublabel="(odmor se produžava — zaposleni prima punu naknadu)" value={inputs.vacationHolidayDays} onChange={set("vacationHolidayDays")} unit="dana" min={0} />
+              {inputs.vacationHolidayDays > 0 && (
+                <div className="sick-info">
+                  <div className="sick-info-row">
+                    <span>Naknada za {r.vacationHolidayDaysActual} {r.vacationHolidayDaysActual === 1 ? "dan" : "dana"}</span>
+                    <span style={{fontFamily:"var(--mono)", color:"var(--green)", fontWeight:600}}>{fmt(r.vacationHolidayPay)} RSD</span>
+                  </div>
+                  <div className="sick-info-row" style={{fontSize:11, color:"var(--text3)"}}>
+                    Praznik se ne računa kao dan godišnjeg odmora — odmor se produžava.
                   </div>
                 </div>
               )}
@@ -1495,6 +1513,7 @@ function CalculatorPage() {
               {r.sickDaysActual > 0 && <ResultRow label={`Odbitak za bolovanje (${r.sickDaysActual} dana)`} value={-(effectiveInputs.basicBruto - r.workedBruto - r.publicHolidayBasePay)} type="negative" sub={`${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`} />}
               {r.publicHolidayDaysActual > 0 && <ResultRow label={`Državni praznici (${r.publicHolidayDaysActual} dana)`} value={r.publicHolidayBasePay} sub="Plaćeni neradni dani — puna naknada" />}
               {r.unpaidDaysActual > 0 && <ResultRow label={`Neplaćeno odsustvo (${r.unpaidDaysActual} dana)`} value={-r.unpaidDeduction} type="negative" sub="Umanjenje bruta — utiče na porez i doprinose" />}
+              {r.vacationHolidayDaysActual > 0 && <ResultRow label={`Praznici tokom godišnjeg odmora (${r.vacationHolidayDaysActual} dana)`} value={r.vacationHolidayPay} type="positive" sub="Puna naknada — odmor se produžava" />}
               {(r.workedBruto !== effectiveInputs.basicBruto || r.publicHolidayDaysActual > 0) && <ResultRow label="Zarada za odrađene dane" value={r.workedBruto} sub={`${r.workedDays} radnih dana`} />}
               {r.overtimePay > 0 && <ResultRow label="Prekovremeni rad (+26%)" value={r.overtimePay} type="positive" sub={`${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.nightPay > 0 && <ResultRow label="Noćni rad (+26%)" value={r.nightPay} type="positive" sub={`${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`} />}
