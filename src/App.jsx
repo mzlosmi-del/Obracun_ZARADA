@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Routes, Route, Link, useNavigate, useLocation, useParams } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 
 // ── PARAMETERS ───────────────────────────────────────────────────────────────
@@ -1010,7 +1011,7 @@ function LeadForm() {
 }
 
 // ── PAGES ─────────────────────────────────────────────────────────────────────
-function BlogList({ onOpen }) {
+function BlogList() {
   return (
     <div className="blog-page">
       <div className="blog-header">
@@ -1020,7 +1021,7 @@ function BlogList({ onOpen }) {
       </div>
       <div className="post-list">
         {POSTS.map(post => (
-          <div key={post.id} className="post-card" onClick={() => onOpen(post.id)}>
+          <Link key={post.id} className="post-card" to={`/blog/${post.id}`} style={{textDecoration:"none", color:"inherit", display:"block"}}>
             <div className="post-meta">
               <span className="post-tag">{post.tag}</span>
               <span className="post-date">{post.date}</span>
@@ -1028,7 +1029,7 @@ function BlogList({ onOpen }) {
             <h3 className="post-title">{post.title}</h3>
             <p className="post-summary">{post.summary}</p>
             <div className="post-read">Pročitaj više →</div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
@@ -1051,6 +1052,27 @@ function BlogPost({ post, onBack }) {
       </div>
     </div>
   );
+}
+
+function BlogPostRoute({ onBack }) {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const post = POSTS.find(p => p.id === slug);
+
+  useEffect(() => {
+    if (post) {
+      document.title = `${post.title} | PlatniListić`;
+    }
+    return () => { document.title = "Platni Listić – Kalkulator Bruto Neto Zarade Srbija 2026 | PlatniListić"; };
+  }, [post]);
+
+  if (!post) return (
+    <div className="blog-page">
+      <button className="back-btn" onClick={() => navigate("/blog")}>← Svi članci</button>
+      <h1 style={{marginTop:32}}>Članak nije pronađen</h1>
+    </div>
+  );
+  return <BlogPost post={post} onBack={onBack} />;
 }
 
 // ── PPP-PD XML GENERATOR ─────────────────────────────────────────────────────
@@ -1819,14 +1841,13 @@ function UsloviKoriscenja({ onBack }) {
 
 // ── ROOT APP ──────────────────────────────────────────────────────────────────
 export default function App() {
-  const [page, setPage] = useState("calculator");
+  const navigate = useNavigate();
+  const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const currentPost = POSTS.find(p => p.id === page);
-
   const navItems = [
-    { id: "calculator", icon: "⚡", label: "Kalkulator" },
-    { id: "blog",       icon: "📰", label: "Blog" },
+    { path: "/", icon: "⚡", label: "Kalkulator" },
+    { path: "/blog", icon: "📰", label: "Blog" },
   ];
 
   const CSS = `
@@ -2156,9 +2177,9 @@ export default function App() {
             <div className="sidebar-section-label">Alati</div>
             {navItems.map(item => (
               <button
-                key={item.id}
-                className={`nav-item ${(page === item.id || (item.id === 'blog' && currentPost)) ? 'active' : ''}`}
-                onClick={() => { setPage(item.id); setSidebarOpen(false); }}
+                key={item.path}
+                className={`nav-item ${location.pathname === item.path || (item.path === '/blog' && location.pathname.startsWith('/blog')) ? 'active' : ''}`}
+                onClick={() => { navigate(item.path); setSidebarOpen(false); }}
               >
                 <span className="nav-icon">{item.icon}</span>
                 {item.label}
@@ -2169,8 +2190,8 @@ export default function App() {
           <div className="sidebar-footer">
             <div className="sidebar-footer-site">platnilistic.rs</div>
             <div className="sidebar-footer-links">
-              <button className="sidebar-footer-link" onClick={() => { setPage("privatnost"); setSidebarOpen(false); }}>Privatnost</button>
-              <button className="sidebar-footer-link" onClick={() => { setPage("uslovi"); setSidebarOpen(false); }}>Uslovi</button>
+              <button className="sidebar-footer-link" onClick={() => { navigate("/privatnost"); setSidebarOpen(false); }}>Privatnost</button>
+              <button className="sidebar-footer-link" onClick={() => { navigate("/uslovi"); setSidebarOpen(false); }}>Uslovi</button>
             </div>
           </div>
         </aside>
@@ -2185,39 +2206,30 @@ export default function App() {
           </div>
 
           <div className="main-inner">
-            {/* CALCULATOR PAGE */}
-            {page === "calculator" && (
-              <>
-                <div className="page-header">
-                  <div style={{display:"flex", alignItems:"center", gap:14}}>
-                    <img src="/logo.svg" alt="PlatniListić" style={{width: 64, height: 64}} />
-                    <div>
-                      <div className="page-title">Platni<span>Listić</span></div>
-                      <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
+            <Routes>
+              <Route path="/" element={
+                <>
+                  <div className="page-header">
+                    <div style={{display:"flex", alignItems:"center", gap:14}}>
+                      <img src="/logo.svg" alt="PlatniListić" style={{width: 64, height: 64}} />
+                      <div>
+                        <div className="page-title">Platni<span>Listić</span></div>
+                        <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <CalculatorPage />
-                <div className="disclaimer">
-                  ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
-                </div>
-                <LeadForm />
-              </>
-            )}
-
-            {/* BLOG LIST */}
-            {page === "blog" && !currentPost && (
-              <BlogList onOpen={(id) => setPage(id)} />
-            )}
-
-            {/* BLOG POST */}
-            {currentPost && (
-              <BlogPost post={currentPost} onBack={() => setPage("blog")} />
-            )}
-
-            {/* LEGAL PAGES */}
-            {page === "privatnost" && <PolitikaPrivatnosti onBack={() => setPage("calculator")} />}
-            {page === "uslovi" && <UsloviKoriscenja onBack={() => setPage("calculator")} />}
+                  <CalculatorPage />
+                  <div className="disclaimer">
+                    ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
+                  </div>
+                  <LeadForm />
+                </>
+              } />
+              <Route path="/blog" element={<BlogList />} />
+              <Route path="/blog/:slug" element={<BlogPostRoute onBack={() => navigate("/blog")} />} />
+              <Route path="/privatnost" element={<PolitikaPrivatnosti onBack={() => navigate("/")} />} />
+              <Route path="/uslovi" element={<UsloviKoriscenja onBack={() => navigate("/")} />} />
+            </Routes>
           </div>
         </main>
       </div>
