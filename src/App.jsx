@@ -850,7 +850,7 @@ function GaugeBar({ label, value, max, color }) {
 // ── BREVO SIGNUP ─────────────────────────────────────────────────────────────
 function BrevoSignup() {
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState("idle"); // idle | loading | success | error
+  const [status, setStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const submit = async (e) => {
@@ -875,7 +875,6 @@ function BrevoSignup() {
         setStatus("success");
         setEmail("");
       } else if (res.status === 400) {
-        // Already exists is fine
         const data = await res.json();
         if (data.code === "duplicate_parameter") {
           setStatus("success");
@@ -917,6 +916,96 @@ function BrevoSignup() {
         </form>
       )}
     </div>
+  );
+}
+
+function LeadFormContent({ onSubmit, form, setForm, status }) {
+  if (status === "success") return (
+    <div className="lead-success">
+      <div className="lead-success-icon">✓</div>
+      <div className="lead-success-title">Poruka primljena!</div>
+      <div className="lead-success-sub">Javiću se u roku od 24 sata.</div>
+    </div>
+  );
+  return (
+    <form className="lead-form" onSubmit={onSubmit}>
+      <input className="lead-input" type="text" placeholder="Ime i prezime" value={form.ime} onChange={e => setForm(f => ({...f, ime: e.target.value}))} disabled={status === "loading"} required />
+      <input className="lead-input" type="email" placeholder="Email adresa" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} disabled={status === "loading"} required />
+      <textarea className="lead-input lead-textarea" placeholder="Čime se baviš i šta bi ti pomoglo?" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} required />
+      <button className="lead-btn" type="submit" disabled={status === "loading"}>
+        {status === "loading" ? "Šaljem..." : "Porazgovarajmo →"}
+      </button>
+      {status === "error" && <div className="brevo-error">Greška. Pokušajte ponovo.</div>}
+    </form>
+  );
+}
+
+function LeadForm() {
+  const [form, setForm] = useState({ ime: "", email: "", opis: "" });
+  const [status, setStatus] = useState("idle");
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const submit = async (e) => {
+    e.preventDefault();
+    if (!form.email.includes("@") || !form.ime || !form.opis) return;
+    setStatus("loading");
+    try {
+      const res = await fetch("https://api.brevo.com/v3/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "api-key": import.meta.env.VITE_BREVO_API_KEY },
+        body: JSON.stringify({
+          email: form.email.trim().toLowerCase(),
+          attributes: { FIRSTNAME: form.ime, OPIS: form.opis },
+          listIds: [4],
+          updateEnabled: true,
+        }),
+      });
+      if (res.ok || res.status === 204 || res.status === 400) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <>
+      {/* ── DESKTOP: inline sekcija ── */}
+      <section className="lead-section lead-desktop">
+        <div className="lead-inner">
+          <div className="lead-text">
+            <div className="lead-eyebrow">Web aplikacije po meri</div>
+            <h2 className="lead-title">Treba ti softver koji radi za tebe?</h2>
+            <p className="lead-body">
+              Sviđa ti se kako je PlatniListić napravljen? Pravim web aplikacije i alate za firme — od kalkulatora i internih sistema do kompletnih rešenja. Čak i ako ne znaš tačno šta ti treba, javi se — zajedno ćemo pronaći rešenje.
+            </p>
+          </div>
+          <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
+        </div>
+      </section>
+
+      {/* ── MOBILE: sticky bottom bar ── */}
+      {status !== "success" && (
+        <div className="lead-sticky" onClick={() => setModalOpen(true)}>
+          <span className="lead-sticky-text">Treba ti softver po meri?</span>
+          <span className="lead-sticky-cta">Javi se →</span>
+        </div>
+      )}
+
+      {/* ── MOBILE: modal ── */}
+      {modalOpen && (
+        <div className="lead-modal-overlay" onClick={() => setModalOpen(false)}>
+          <div className="lead-modal" onClick={e => e.stopPropagation()}>
+            <button className="lead-modal-close" onClick={() => setModalOpen(false)}>✕</button>
+            <div className="lead-eyebrow" style={{color:"rgba(255,255,255,0.7)"}}>Web aplikacije po meri</div>
+            <h2 className="lead-title" style={{marginBottom:16}}>Treba ti softver koji radi za tebe?</h2>
+            <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
@@ -1976,6 +2065,45 @@ export default function App() {
     /* ── DISCLAIMER ── */
     .disclaimer { margin-top: 24px; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); font-size: 11px; color: var(--text3); line-height: 1.6; }
 
+    /* ── LEAD FORM ── */
+    .lead-section { margin-top: 32px; background: linear-gradient(135deg, #0047dd 0%, #0057ff 100%); border-radius: 16px; overflow: hidden; }
+    .lead-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; align-items: start; }
+    @media (max-width: 700px) { .lead-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; } }
+    .lead-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+    .lead-title { font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 14px; }
+    .lead-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.65; }
+    .lead-form { display: flex; flex-direction: column; gap: 10px; }
+    .lead-input { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 10px; padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: #fff; outline: none; transition: border 0.2s; }
+    .lead-input::placeholder { color: rgba(255,255,255,0.5); }
+    .lead-input:focus { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.18); }
+    .lead-textarea { resize: vertical; min-height: 80px; }
+    .lead-btn { background: #fff; color: var(--accent); border: none; border-radius: 10px; padding: 13px 20px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 4px; }
+    .lead-btn:hover { background: #f0f4ff; transform: translateY(-1px); }
+    .lead-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+    .lead-success { text-align: center; padding: 48px 32px; }
+    .lead-success-icon { font-size: 40px; color: #fff; margin-bottom: 12px; }
+    .lead-success-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
+    .lead-success-sub { font-size: 14px; color: rgba(255,255,255,0.8); }
+
+    /* Desktop: show inline, hide sticky */
+    .lead-desktop { display: block; }
+    .lead-sticky { display: none; }
+
+    @media (max-width: 760px) {
+      /* Mobile: hide inline, show sticky */
+      .lead-desktop { display: none; }
+      .lead-sticky { display: flex; align-items: center; justify-content: space-between; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: linear-gradient(90deg, #0047dd, #0057ff); padding: 14px 20px; cursor: pointer; box-shadow: 0 -4px 20px rgba(0,87,255,0.3); }
+      .lead-sticky-text { font-size: 14px; font-weight: 600; color: #fff; }
+      .lead-sticky-cta { font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 100px; white-space: nowrap; }
+    }
+
+    /* Modal */
+    .lead-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; align-items: flex-end; }
+    .lead-modal-overlay { display: flex; }
+    .lead-modal { background: linear-gradient(135deg, #0047dd, #0057ff); border-radius: 20px 20px 0 0; padding: 28px 24px 36px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
+    .lead-modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    @media (min-width: 761px) { .lead-modal-overlay { display: none !important; } .lead-sticky { display: none !important; } }
+
     /* ── LEGAL PAGES ── */
     .legal-page { max-width: 680px; }
     .legal-title { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
@@ -2073,6 +2201,7 @@ export default function App() {
                 <div className="disclaimer">
                   ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
                 </div>
+                <LeadForm />
               </>
             )}
 
