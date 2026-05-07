@@ -229,7 +229,19 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .post-body .post-link:hover { color: #0047dd; }
 .post-cta { margin-top: 36px; padding: 20px 22px; background: var(--accent-light); border-radius: var(--radius); border: 1px solid #c8d8ff; }
 .post-cta p { font-size: 14px; color: var(--text2); margin-bottom: 14px; }
-.cta-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: background-color 0.15s; }
+.cta-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: background-color 0.15s; text-decoration: none; display: inline-block; }
+.cta-btn:hover { background: #0047dd; }
+.cta-btn-secondary { background: transparent; color: var(--accent); border: 1px solid #c8d8ff; }
+.cta-btn-secondary:hover { background: #fff; color: #0047dd; }
+.cta-link-group { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.post-related { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+.post-related-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; letter-spacing: -0.3px; }
+.post-related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+.post-related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; display: block; }
+.post-related-card:hover { border-color: var(--accent); transform: translateY(-1px); }
+.post-related-tag { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.post-related-heading { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 
 /* ── DISCLAIMER ── */
 .disclaimer { margin-top: 24px; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); font-size: 11px; color: var(--text3); line-height: 1.6; }

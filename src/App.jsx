@@ -2,12 +2,14 @@ import { useState, lazy, Suspense } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
+import { useSeo } from "./seo.jsx";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
 const BlogPostRoute = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogPostRoute })));
 const PolitikaPrivatnosti = lazy(() => import("./Legal.jsx").then(m => ({ default: m.PolitikaPrivatnosti })));
 const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: m.UsloviKoriscenja })));
+const ONama = lazy(() => import("./About.jsx").then(m => ({ default: m.ONama })));
 const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
 
 // ── PARAMETERS ───────────────────────────────────────────────────────────────
@@ -451,6 +453,11 @@ function LeadForm() {
 
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
 function CalculatorPage() {
+  useSeo({
+    title: "Platni Listić – Kalkulator Bruto Neto Zarade Srbija 2026 | PlatniListić",
+    description: "Besplatni online kalkulator bruto neto zarade u Srbiji 2026. Obračunajte porez, doprinose, prekovremeni rad, minuli rad, bolovanje, otpremninu i regres. PDF platni listić i PPP-PD XML.",
+    path: "/",
+  });
   const now = new Date();
   const [calcMode, setCalcMode] = useState("bruto");
   const [targetNeto, setTargetNeto] = useState(70000);
@@ -970,6 +977,7 @@ export default function App() {
         <div className="sidebar-footer">
           <div className="sidebar-footer-site">platnilistic.rs</div>
           <div className="sidebar-footer-links">
+            <button className="sidebar-footer-link" onClick={() => { navigate("/o-nama"); setSidebarOpen(false); }}>O nama</button>
             <button className="sidebar-footer-link" onClick={() => { navigate("/privatnost"); setSidebarOpen(false); }}>Privatnost</button>
             <button className="sidebar-footer-link" onClick={() => { navigate("/uslovi"); setSidebarOpen(false); }}>Uslovi</button>
           </div>
@@ -1005,6 +1013,7 @@ export default function App() {
             } />
             <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
+            <Route path="/o-nama" element={<Suspense fallback={<RouteLoader />}><ONama onBack={() => navigate("/")} /></Suspense>} />
             <Route path="/privatnost" element={<Suspense fallback={<RouteLoader />}><PolitikaPrivatnosti onBack={() => navigate("/")} /></Suspense>} />
             <Route path="/uslovi" element={<Suspense fallback={<RouteLoader />}><UsloviKoriscenja onBack={() => navigate("/")} /></Suspense>} />
           </Routes>

@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { useSeo } from "./seo.jsx";
 
 export function PolitikaPrivatnosti({ onBack }) {
-  useEffect(() => {
-    document.title = "Politika privatnosti | PlatniListić";
-    return () => { document.title = "Platni Listić – Kalkulator Bruto Neto Zarade Srbija 2026 | PlatniListić"; };
-  }, []);
+  useSeo({
+    title: "Politika privatnosti | PlatniListić",
+    description: "Politika privatnosti sajta PlatniListić. Saznajte koje podatke prikupljamo, kako koristimo Vercel Analytics bez kolačića i kako se rukuje email adresama prijavljenim na newsletter.",
+    path: "/privatnost",
+  });
 
   return (
     <div className="legal-page">
@@ -47,10 +48,11 @@ export function PolitikaPrivatnosti({ onBack }) {
 }
 
 export function UsloviKoriscenja({ onBack }) {
-  useEffect(() => {
-    document.title = "Uslovi korišćenja | PlatniListić";
-    return () => { document.title = "Platni Listić – Kalkulator Bruto Neto Zarade Srbija 2026 | PlatniListić"; };
-  }, []);
+  useSeo({
+    title: "Uslovi korišćenja | PlatniListić",
+    description: "Uslovi korišćenja kalkulatora zarade PlatniListić. Informativni alat za obračun zarada u Srbiji — odricanje od odgovornosti, intelektualna svojina, merodavno pravo.",
+    path: "/uslovi",
+  });
 
   return (
     <div className="legal-page">

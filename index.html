@@ -157,7 +157,48 @@
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "PlatniListić", "item": "https://www.platnilistic.rs/" },
         { "@type": "ListItem", "position": 2, "name": "Kalkulator zarade", "item": "https://www.platnilistic.rs/" },
-        { "@type": "ListItem", "position": 3, "name": "Blog", "item": "https://www.platnilistic.rs/#blog" }
+        { "@type": "ListItem", "position": 3, "name": "Blog", "item": "https://www.platnilistic.rs/blog" }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data – HowTo (kako izračunati neto zaradu) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "Kako izračunati neto zaradu iz bruto u Srbiji",
+      "description": "Korak-po-korak vodič za obračun neto zarade iz bruto za Srbiju u 2026. godini, sa doprinosima i porezom na zaradu.",
+      "totalTime": "PT2M",
+      "inLanguage": "sr-RS",
+      "tool": [
+        { "@type": "HowToTool", "name": "PlatniListić — kalkulator bruto neto zarade" }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Unesite bruto zaradu",
+          "text": "U polje „Osnovna bruto zarada\" unesite bruto iznos iz ugovora o radu (Bruto 1). Možete uneti i neto iznos — kalkulator će automatski izračunati odgovarajuću bruto zaradu."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Dodajte uvećanja zarade",
+          "text": "Unesite prekovremeni rad, noćni rad, vikend, praznike, godine staža za minuli rad i bonuse — kalkulator automatski primenjuje +26% i ostala uvećanja propisana članom 108. Zakona o radu."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Dodajte naknade i odbitke",
+          "text": "Unesite topli obrok, regres, prevoz, kao i odbitke (kredit, sindikat, administrativna zabrana, alimentacija). Kalkulator vodi računa o neoporezivim limitima i poreskoj osnovici."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "Pročitajte rezultat i preuzmite PDF",
+          "text": "Kalkulator prikazuje neto zaradu, Bruto 1, Bruto 2, ukupan trošak poslodavca i strukturu odbitaka. PDF platni listić i PPP-PD XML datoteka se generišu jednim klikom."
+        }
       ]
     }
     </script>
