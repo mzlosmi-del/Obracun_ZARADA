@@ -1,482 +1,43 @@
-import { useState, useEffect, useRef } from "react";
-import { Routes, Route, Link, useNavigate, useLocation, useParams } from "react-router-dom";
+import { useState, lazy, Suspense } from "react";
+import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
+
+// Lazy-loaded routes — keep main bundle small
+const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
+const BlogPostRoute = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogPostRoute })));
+const PolitikaPrivatnosti = lazy(() => import("./Legal.jsx").then(m => ({ default: m.PolitikaPrivatnosti })));
+const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: m.UsloviKoriscenja })));
+const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
 
 // ── PARAMETERS ───────────────────────────────────────────────────────────────
-// Neoporezivi iznos — date-aware
 function getNonTaxable() {
   const now = new Date();
   const yr = now.getFullYear();
-  const mo = now.getMonth() + 1; // 1-based
-  // Feb 2026 onwards: 34,221 RSD
+  const mo = now.getMonth() + 1;
   if (yr > 2026 || (yr === 2026 && mo >= 2)) return 34221;
-  // Feb 2025 – Jan 2026: 28,423 RSD
   return 28423;
 }
 
 const DEFAULT_RATES = {
-  taxRate: 10,           // %
-  nonTaxable: getNonTaxable(), // RSD — auto from date
-  pioPct_emp: 14,        // %
-  health_emp: 5.15,      // %
-  unemp_emp: 0.75,       // %
-  pio_er: 10,            // %
-  health_er: 5.15,       // %
-  overtimeCoef: 26,      // % above base
+  taxRate: 10,
+  nonTaxable: getNonTaxable(),
+  pioPct_emp: 14,
+  health_emp: 5.15,
+  unemp_emp: 0.75,
+  pio_er: 10,
+  health_er: 5.15,
+  overtimeCoef: 26,
   nightCoef: 26,
   weekendCoef: 26,
   holidayCoef: 26,
-  minBase: 45950,        // RSD
-  maxBase: 656425,       // RSD
-  mealDaily: 1490,       // RSD/dan — podrazumevana vrednost u kalkulatoru
-  transportMax: 5782,    // RSD/mesec — neoporezivi max od 1.2.2026. (ZPDG usklađeni iznosi)
-  minWage: 93264,        // RSD bruto — minimalna zarada 2026
+  minBase: 45950,
+  maxBase: 656425,
+  mealDaily: 1490,
+  transportMax: 5782,
+  minWage: 93264,
 };
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
-const fmt = (n) => new Intl.NumberFormat("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
-const pct = (n) => (n * 100).toFixed(2) + "%";
-
-// ── BLOG DATA ─────────────────────────────────────────────────────────────────
-const POSTS = [
-  {
-    id: "neoporezivi-2025",
-    date: "1. februar 2025",
-    tag: "Porez",
-    title: "Neoporezivi iznos zarade u 2025. godini: 28.423 RSD",
-    summary: "Od 1. februara 2025. godine, neoporezivi iznos zarade iznosi 28.423 RSD mesečno. Šta to znači za vaš obračun i koliko štedite na porezu?",
-    body: `
-![Obračun poreza na zaradu](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
-
-Od 1. februara 2025. godine, neoporezivi iznos zarade u Srbiji iznosi **28.423 RSD** mesečno. Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%.
-
-## Kako funkcioniše neoporezivi iznos?
-
-Poreska osnovica se dobija kada se od bruto zarade (Bruto 1) oduzme neoporezivi iznos:
-
-**Poreska osnovica = Bruto 1 − 28.423 RSD**
-
-Na tu razliku se primenjuje stopa poreza od 10%.
-
-## Primer obračuna
-
-Za zaposlenog sa bruto zaradom od **100.000 RSD**:
-
-- Bruto 1: 100.000 RSD
-- Neoporezivi iznos: 28.423 RSD
-- Poreska osnovica: 71.577 RSD
-- Porez (10%): **7.158 RSD**
-
-Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi 2.842 RSD mesečno**, odnosno 34.108 RSD godišnje.
-
-## Promena u 2026. godini
-
-Od 1. februara 2026. godine, neoporezivi iznos raste na **34.221 RSD** — povećanje od više od 20%. Ovo je direktna posledica usklađivanja sa rastom minimalnih zarada i inflacijom.
-
-## Važno napomenuti
-
-Neoporezivi iznos važi samo za zarade iz radnog odnosa. Za preduzetnike paušalce i vlasnike privrednih društava pravila su drugačija.
-
-## Korisni linkovi
-
-- [Zakon o porezu na dohodak građana — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
-- [Poreska uprava Srbije — porezi na zaradu](https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html)
-    `,
-  },
-  {
-    id: "bruto-neto-razlika",
-    date: "15. januar 2025",
-    tag: "Osnove",
-    title: "Razlika između bruto i neto zarade — jednostavno objašnjenje",
-    summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja.",
-    body: `
-![Računanje zarade na laptopu](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80)
-
-Kada potpisujete ugovor o radu, zarada je obično izražena u bruto iznosu. Ali šta zapravo dobijate na račun? I zašto je razlika toliko velika?
-
-## Bruto 1 — šta je to?
-
-**Bruto 1** je ukupna zarada koja se ugovara između poslodavca i zaposlenog. Uključuje osnovnu zaradu, ali i sve dodatke:
-
-- Prekovremeni rad (+26% minimum)
-- Noćni rad (+26% minimum)
-- Rad vikendom i praznicima (+26% minimum)
-- Bonuse i nagrade
-
-## Od bruto do neto — odbitci
-
-Iz bruto 1 zarade se oduzimaju dve vrste obaveza:
-
-**1. Doprinosi na teret zaposlenog (19,90%)**
-- PIO — penzijsko i invalidsko osiguranje: 14%
-- Zdravstveno osiguranje: 5,15%
-- Osiguranje za slučaj nezaposlenosti: 0,75%
-
-**2. Porez na dohodak (10%)**
-- Primenjuje se na bruto zaradu umanjenu za neoporezivi iznos od 28.423 RSD
-
-## Neto zarada
-
-Neto zarada = Bruto 1 − Doprinosi zaposlenog − Porez
-
-Za prosečnu zaradu u Srbiji (~100.000 RSD bruto), neto iznosi oko **72.000–74.000 RSD**.
-
-## Bruto 2 — trošak poslodavca
-
-Poslodavac pored isplate zarade plaća i sopstvene doprinose (15,15%):
-- PIO na teret poslodavca: 10%
-- Zdravstvo na teret poslodavca: 5,15%
-
-**Bruto 2 = Bruto 1 + Doprinosi poslodavca**
-
-Za zaradu od 100.000 RSD bruto 1, ukupan trošak poslodavca iznosi oko **115.150 RSD** — pre dodavanja naknada za prevoz i topli obrok.
-
-## Korisni linkovi
-
-- [Zakon o radu Srbije — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_radu.html)
-- [Republički zavod za statistiku — prosečne zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
-    `,
-  },
-  {
-    id: "prekovremeni-rad",
-    date: "10. januar 2025",
-    tag: "Zakon o radu",
-    title: "Prekovremeni rad u Srbiji: prava i obračun po Zakonu o radu",
-    summary: "Zakon o radu propisuje minimum od +26% za prekovremeni rad. Kako se obračunava, koliko može trajati i šta su vaša prava kao zaposlenog?",
-    body: `
-![Prekovremeni rad u kancelariji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
-
-Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
-
-## Minimalni koeficijent uvećanja
-
-Za prekovremeni rad, poslodavac je obavezan da plati zaradu uvećanu za **najmanje 26%** u odnosu na redovnu satnicu. Ovo je zakonski minimum — kolektivnim ugovorom ili ugovorom o radu može se utvrditi i veći koeficijent.
-
-Isto uvećanje od minimum 26% važi za:
-- Noćni rad (između 22:00 i 06:00 sati)
-- Rad vikendom (subota i nedelja)
-- Rad na državni praznik
-
-## Kako se računa satnica za prekovremeni?
-
-**Satnica = Osnovna bruto zarada ÷ Broj standardnih radnih sati**
-
-Za mesec sa 168 radnih sati (21 dan × 8 sati) i osnovnom zaradom od 100.000 RSD:
-
-- Regularna satnica: 595,24 RSD
-- Satnica za prekovremeni rad (+26%): **750,00 RSD**
-
-## Ograničenja prekovremenog rada
-
-Prema Zakonu o radu:
-- Prekovremeni rad ne može trajati duže od **8 sati nedeljno**
-- Ukupno radno vreme (redovno + prekovremeno) ne može biti duže od **12 sati dnevno**
-
-## Evidencija i obaveze poslodavca
-
-Poslodavac je dužan da vodi evidenciju o radnom vremenu i da prekovremeni rad evidentira odvojeno. Zaposleni ima pravo da zahteva uvid u evidenciju i da ospori netačne podatke.
-
-Koristite **PlatniListić kalkulator** da proverite da li vam je prekovremeni rad ispravno obračunat.
-
-## Korisni linkovi
-
-- [Zakon o radu — čl. 108 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
-- [Inspekcija rada Srbije — prijava nepravilnosti](https://www.minrzs.gov.rs/sr/inspekcija-rada)
-    `,
-  },
-  {
-    id: "minimalna-zarada-2025",
-    date: "2. januar 2025",
-    tag: "Novosti",
-    title: "Minimalna zarada u Srbiji za 2025. godinu: 73.274 RSD bruto",
-    summary: "Vlada Srbije je utvrdila minimalnu zaradu za 2025. godinu. Koliko iznosi, ko ima pravo na nju i kako je obračunati?",
-    body: `
-![Minimalna zarada i novac](https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80)
-
-Za 2025. godinu, minimalna zarada u Srbiji iznosi **73.274 RSD bruto mesečno** za puno radno vreme (mesec sa 168 radnih sati).
-
-## Minimalna satnica
-
-Minimalna satnica iznosi: 73.274 ÷ 168 = **436,27 RSD po satu**.
-
-Ovo je zakonski minimum. Svaki zaposleni koji radi puno radno vreme mora primiti najmanje ovaj iznos bez obzira na granu delatnosti.
-
-## Neto iznos minimalne zarade
-
-Koliko zaposleni prima na račun pri minimalnoj zarade?
-
-- Bruto 1: 73.274 RSD
-- Doprinosi zaposlenog (19,90%): 14.582 RSD
-- Poreska osnovica: 73.274 − 28.423 = 44.851 RSD
-- Porez (10%): 4.485 RSD
-- **Neto: oko 54.207 RSD**
-
-## Trošak poslodavca
-
-Ukupan trošak poslodavca za zaposlenog na minimalnoj zarade:
-- Bruto 2 (sa doprinosima poslodavca 15,15%): **84.383 RSD**
-- Plus naknade za prevoz i topli obrok
-
-## Ko određuje minimalnu zaradu?
-
-Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomskog saveta, a primenjuje se od 1. januara tekuće godine.
-
-Sledeća revizija planirana je za januar 2026. godine, a prema najavljenim tendencijama, rast bi mogao biti u rasponu od 8–12%.
-
-## Korisni linkovi
-
-- [Uredba o minimalnoj zaradi — Paragraf.rs](https://www.paragraf.rs/propisi/uredba-o-visini-minimalne-zarade.html)
-- [Republički zavod za statistiku — zarade i troškovi rada](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
-    `,
-  },
-  {
-    id: "doprinosi-srbija",
-    date: "20. decembar 2024",
-    tag: "Doprinosi",
-    title: "Doprinosi za socijalno osiguranje u Srbiji: kompletan vodič za 2025.",
-    summary: "Ko plaća doprinose, koliko iznose i na šta imate pravo? Kompletan pregled sistema socijalnog osiguranja za zaposlene u Srbiji.",
-    body: `
-![Socijalno osiguranje i penzijski sistem](https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80)
-
-Sistem socijalnog osiguranja u Srbiji finansira se putem doprinosa koje plaćaju i zaposleni i poslodavci. Evo kompletnog pregleda za 2025. godinu.
-
-## Doprinosi na teret zaposlenog — 19,90% ukupno
-
-| Vrsta doprinosa | Stopa |
-|---|---|
-| PIO — penzijsko i invalidsko | 14,00% |
-| Zdravstveno osiguranje | 5,15% |
-| Nezaposlenost | 0,75% |
-| **Ukupno** | **19,90%** |
-
-## Doprinosi na teret poslodavca — 15,15% ukupno
-
-| Vrsta doprinosa | Stopa |
-|---|---|
-| PIO — penzijsko i invalidsko | 10,00% |
-| Zdravstveno osiguranje | 5,15% |
-| **Ukupno** | **15,15%** |
-
-## Osnovica za obračun doprinosa
-
-Doprinosi se ne računaju na celu zaradu bez ograničenja. Postoje zakonski limiti:
-
-- **Najniža mesečna osnovica**: 45.950 RSD (za 2025)
-- **Najviša mesečna osnovica**: 656.425 RSD (za 2025)
-
-Ako zaposleni prima zaradu ispod najniže osnovice, doprinosi se ipak računaju na 45.950 RSD. Ako prima iznad najviše, doprinosi se računaju samo do 656.425 RSD.
-
-## Šta dobijate uplatom doprinosa?
-
-**PIO doprinosi** obezbeđuju pravo na starosnu penziju, invalidsku penziju i porodičnu penziju. Uslov za starosnu penziju je 65 godina starosti i 15 godina staža (ili 45 godina staža bez obzira na godine).
-
-**Zdravstveni doprinosi** obezbeđuju pravo na zdravstvenu zaštitu, bolovanje, naknadu za porodiljsko odsustvo i refundaciju troškova lečenja.
-
-**Doprinos za nezaposlenost** obezbeđuje pravo na novčanu naknadu u slučaju gubitka posla.
-
-## Plaćanje doprinosa
-
-Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svojih) zajedno sa isplatom zarade. Rok za uplatu je isti dan kada se isplaćuje zarada.
-
-## Korisni linkovi
-
-- [Zakon o doprinosima za obavezno socijalno osiguranje — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_doprinosima_za_obavezno_socijalno_osiguranje.html)
-- [Fond PIO Srbije — pravo na penziju](https://www.pio.rs/sr/osiguranici/pravo-na-penziju.html)
-- [RFZO — prava iz zdravstvenog osiguranja](https://www.rfzo.rs/index.php/osiguranici-s/prava-iz-zo)
-    `,
-  },
-  {
-    id: "minimalna-zarada-2026",
-    date: "1. februar 2026",
-    tag: "Novosti",
-    title: "Minimalna zarada u Srbiji za 2026. godinu",
-    summary: "Od februara 2026. minimalna neto zarada iznosi 69.000 RSD, a bruto 93.264 RSD. Šta se promenilo i kako to utiče na poslodavce?",
-    body: `
-![Minimalna zarada rast 2026](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80)
-
-Od **1. februara 2026. godine** u Srbiji važe novi iznosi minimalne zarade, usklađeni sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
-
-## Iznosi minimalne zarade u 2026. godini
-
-| Pokazatelj | Iznos |
-|---|---|
-| Minimalna neto zarada (mesečno) | 69.000 RSD |
-| Minimalna bruto zarada (mesečno) | 93.264 RSD |
-| Minimalna satnica (neto) | 410,71 RSD |
-| Minimalna satnica (bruto) | 554,90 RSD |
-
-## Kako se izračunava minimalna zarada?
-
-Minimalna zarada se određuje po satu rada. Za pun radni mesec od 168 sati (21 radni dan × 8 sati), množi se minimalna satnica sa brojem sati.
-
-**Primer za februar 2026:**
-- Minimalna satnica bruto: 554,90 RSD
-- Radnih sati: 168
-- Minimalna bruto zarada: 93.264 RSD
-
-## Šta se menja za poslodavce?
-
-Svaki poslodavac u Srbiji dužan je da zaposlenima isplati **najmanje minimalnu zaradu**. Isplata ispod minimalca je prekršaj koji se kažnjava novčanom kaznom od 800.000 do 2.000.000 RSD za pravno lice.
-
-Uz minimalnu zaradu, poslodavac plaća i doprinose na teret poslodavca od **15,15%**, što ukupan trošak rada podiže na oko **107.381 RSD mesečno**.
-
-## Poređenje sa prethodnim godinama
-
-| Godina | Minimalna bruto zarada |
-|---|---|
-| 2024 | 69.423 RSD |
-| 2025 | 73.274 RSD |
-| 2026 | 93.264 RSD |
-
-Rast minimalne zarade u 2026. godini je značajan — oko **27% u odnosu na 2025.** godinu.
-
-## Ko prima minimalnu zaradu?
-
-Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji prima zaradu blizu minimuma. Najzastupljenije su delatnosti: tekstilna industrija, poljoprivreda, ugostiteljstvo i maloprodaja.
-
-## Neoporezivi iznos i minimalna zarada
-
-Od februara 2026. neoporezivi iznos je **34.221 RSD**. Budući da je minimalna bruto zarada 93.264 RSD, poreska osnovica iznosi 59.043 RSD, a porez 5.904 RSD.
-
-Koristite naš **besplatni kalkulator** za tačan obračun minimalne i svake druge zarade.
-
-## Korisni linkovi
-
-- [Vlada Srbije — uredba o minimalnoj zarade](https://www.srbija.gov.rs)
-- [Republički zavod za statistiku — zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
-- [Socijalno-ekonomski savet Srbije](https://www.socijalnoekonomskisavet.rs)
-    `,
-  },
-  {
-    id: "godisnji-odmor-naknada",
-    date: "15. januar 2026",
-    tag: "Zakon o radu",
-    title: "Naknada zarade za godišnji odmor — kako se obračunava?",
-    summary: "Za vreme godišnjeg odmora zaposleni ima pravo na naknadu u visini prosečne zarade. Objašnjavamo kako se tačno obračunava i šta kaže Zakon o radu.",
-    body: `
-![Godišnji odmor i odmor od posla](https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80)
-
-Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Zakonom o radu (čl. 68–76)**. Za vreme korišćenja godišnjeg odmora, zaposleni ima pravo na naknadu zarade — ali kako se ona tačno obračunava?
-
-## Pravo na godišnji odmor
-
-Svaki zaposleni koji je zasnovao radni odnos stiče pravo na godišnji odmor. Minimalni godišnji odmor iznosi **20 radnih dana** godišnje. Kolektivnim ugovorom ili ugovorom o radu može se utvrditi duži odmor.
-
-Pravo na puni godišnji odmor stiče se **nakon 6 meseci** neprekidnog rada kod istog poslodavca.
-
-## Kako se obračunava naknada za godišnji odmor?
-
-Prema članu 104. Zakona o radu, naknada zarade za godišnji odmor ne može biti niža od **prosečne zarade zaposlenog u prethodnih 12 meseci**.
-
-**Formula:**
-1. Sabrajte sve bruto zarade u prethodnih 12 meseci
-2. Podelite sa 12 (prosečna mesečna bruto zarada)
-3. Podelite sa prosečnim brojem radnih dana u mesecu (21-22)
-4. Pomnožite sa brojem dana godišnjeg odmora
-
-**Primer:**
-- Prosečna bruto zarada (12 meseci): 100.000 RSD
-- Dnevna osnova: 100.000 / 21 = 4.762 RSD
-- Godišnji odmor: 20 radnih dana
-- Naknada bruto: 4.762 × 20 = **95.238 RSD**
-
-## Da li se plaćaju doprinosi i porez na naknadu?
-
-Da. Naknada za godišnji odmor tretira se kao zarada i podleže:
-- Doprinosima zaposlenog (19,90%)
-- Porezu na dohodak (10% iznad neoporezivog iznosa)
-- Doprinosima poslodavca (15,15%)
-
-## Kada se isplaćuje naknada?
-
-Naknada za godišnji odmor isplaćuje se **najkasnije 3 radna dana pre početka korišćenja odmora**, ukoliko zaposleni to zahteva.
-
-## Raspored godišnjeg odmora
-
-Poslodavac je dužan da zaposlenom dostavi rešenje o korišćenju godišnjeg odmora najmanje **15 dana unapred**. Odmor se može koristiti u celini ili u delovima — ali najmanje 10 radnih dana mora biti neprekidno.
-
-## Godišnji odmor i bolovanje
-
-Ako zaposleni za vreme godišnjeg odmora padne na bolovanje, odmor se prekida. Neiskorišćeni dani godišnjeg odmora mogu se koristiti naknadno.
-
-## Zastarелост prava
-
-Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako nije iskorišćeno krivicom zaposlenog. Ako nije iskorišćen krivicom poslodavca, zaposleni ima pravo na naknadu štete.
-
-## Korisni linkovi
-
-- [Zakon o radu — čl. 68–76 (godišnji odmor)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
-- [Inspekcija rada — prava zaposlenih](https://www.minrzs.gov.rs/sr/inspekcija-rada)
-    `,
-  },
-  {
-    id: "otpremnina-obracun",
-    date: "5. januar 2026",
-    tag: "Zakon o radu",
-    title: "Otpremnina u Srbiji — pravo, iznos i obračun",
-    summary: "Ko ima pravo na otpremninu, koliko iznosi i kako se obračunava? Sve što trebate znati po Zakonu o radu Srbije.",
-    body: `
-![Prestanak radnog odnosa i otpremnina](https://images.unsplash.com/photo-1586769852044-692d6e3703f0?w=800&q=80)
-
-Otpremnina je jednokratna novčana naknada koju poslodavac isplaćuje zaposlenom prilikom prestanka radnog odnosa pod određenim uslovima. Regulisana je **Zakonom o radu (čl. 158–160)**.
-
-## Ko ima pravo na otpremninu?
-
-Pravo na otpremninu ima zaposleni kome prestaje radni odnos:
-- **Zbog tehnološkog viška** (proglašavanje za višak zaposlenih)
-- **Sporazumnim raskidom** — ako je to predviđeno ugovorom ili kolektivnim ugovorom
-- **Odlaskom u penziju** — starosnu ili invalidsku
-
-**Nema pravo** na otpremninu zaposleni kome je radni odnos prestao:
-- Zbog otkaza iz razloga na strani zaposlenog (disciplinski, nepoštovanje obaveza)
-- Istekom ugovora o radu na određeno vreme
-- Na lični zahtev (ostavka)
-
-## Koliko iznosi otpremnina?
-
-Zakon o radu propisuje **minimalni iznos otpremnine**. Poslodavac može isplatiti i više kolektivnim ugovorom ili ugovorom o radu.
-
-### Za tehnološki višak (čl. 158):
-
-Minimalni iznos: **1/3 prosečne mesečne zarade** za svaku navršenu godinu rada kod tog poslodavca.
-
-**Primer:**
-- Prosečna bruto zarada: 100.000 RSD
-- Godine rada kod poslodavca: 10
-- Minimalna otpremnina: 100.000 / 3 × 10 = **333.333 RSD**
-
-### Za odlazak u penziju (čl. 119):
-
-Minimalni iznos: **2 prosečne mesečne zarade** u Republici Srbiji prema poslednjem objavljenom podatku Republičkog zavoda za statistiku.
-
-## Koja zarada se uzima kao osnova?
-
-Osnova za obračun otpremnine je **prosečna mesečna zarada zaposlenog isplaćena u prethodnih 12 meseci** — ne minimalna zarada, ne zarada na dan prestanka radnog odnosa, već prosek.
-
-## Poreski tretman otpremnine
-
-Otpremnina do **zakonom propisanog iznosa** je oslobođena poreza na dohodak i doprinosa za socijalno osiguranje. Iznos koji prelazi zakonski minimum oporezuje se kao zarada.
-
-| Deo otpremnine | Porez | Doprinosi |
-|---|---|---|
-| Do zakonskog minimuma | Ne | Ne |
-| Iznos iznad minimuma | 10% (porez) | 35,05% |
-
-## Rok isplate
-
-Otpremnina se isplaćuje **najkasnije 30 dana od dana prestanka radnog odnosa**. Kašnjenje u isplati daje zaposlenom pravo na zakonsku zateznu kamatu.
-
-## Savet
-
-Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu i da li je iznos u skladu sa zakonom. Preporuka je konsultovati se sa pravnikom ili sindikatom.
-
-## Korisni linkovi
-
-- [Zakon o radu — čl. 158–160 (otpremnina)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
-- [Nacionalna služba za zapošljavanje — prava pri gubitku posla](https://www.nsz.gov.rs/live/digitalAssets/10/10017_pravo_na_novcanu_naknadu.pdf)
-- [Poreska uprava — porez na otpremninu](https://www.purs.gov.rs)
-    `,
-  },
-];
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
 function calculate(inputs, rates) {
@@ -488,13 +49,8 @@ function calculate(inputs, rates) {
   const weekendCoef  = 1 + R.weekendCoef / 100;
   const holidayCoef  = 1 + R.holidayCoef / 100;
 
-  // Public holidays falling on workdays — full pay, no reduction
   const publicHolidayDaysActual = Math.min(publicHolidayDays || 0, totalWorkDays);
-
-  // Sick leave — employer pays sickPct% of daily rate
   const sickDaysActual = Math.min(sickDays || 0, totalWorkDays - publicHolidayDaysActual);
-
-  // Unpaid absence — UMANJENJE: reduces bruto, affects tax/contributions
   const unpaidDaysActual = Math.min(unpaidDays || 0, totalWorkDays - publicHolidayDaysActual - sickDaysActual);
 
   const workedDays = totalWorkDays - sickDaysActual - publicHolidayDaysActual - unpaidDaysActual;
@@ -505,11 +61,9 @@ function calculate(inputs, rates) {
   const sickPay = sickDaysActual > 0 ? dailyBruto * sickDaysActual * ((sickPct || 65) / 100) : 0;
   const unpaidDeduction = dailyBruto * unpaidDaysActual;
 
-  // Praznik tokom godišnjeg odmora — zaposleni prima punu dnevnu zaradu, odmor se produžava
   const vacationHolidayDaysActual = Math.max(vacationHolidayDays || 0, 0);
   const vacationHolidayPay = dailyBruto * vacationHolidayDaysActual;
 
-  // Minuli rad — uvećanje po godinama staža (zakonski min 0,4% po godini)
   const minuliRadRate = (yearsOfService || 0) * ((minuliRadPct || 0.4) / 100);
   const minuliRadAmount = workedBruto * minuliRadRate;
 
@@ -520,15 +74,12 @@ function calculate(inputs, rates) {
   const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
 
-  // Topli obrok u novcu i regres — u potpunosti oporezivi (ulaze u bruto1)
   const mealDailyRate = mealDailyActual || R.mealDaily;
   const mealAmount = mealDays * mealDailyRate;
   const regresAmount = regres || 0;
 
-  // Prevoz — neoporeziv do zakonskog max, ne ulazi u bruto1
   const transportActual = Math.min(transport || 0, R.transportMax);
 
-  // Bruto1 = zarada + minuli rad + uvećanja + bonusi + topli obrok + regres + praznici tokom odmora
   const bruto1 = workedBruto + publicHolidayBasePay + vacationHolidayPay + minuliRadAmount + overtimePay + nightPay + weekendPay + holidayPay + bonusAmount + mealAmount + regresAmount;
   const contribBase = Math.max(Math.min(bruto1, R.maxBase), R.minBase);
   const pio_emp = contribBase * R.pioPct_emp / 100;
@@ -539,7 +90,6 @@ function calculate(inputs, rates) {
   const tax = taxBase * R.taxRate / 100;
   const netoFromWork = bruto1 - totalEmpContrib - tax;
 
-  // ODBICI — deducted from neto after tax/contributions
   const syndikatAmount = (syndikat || 0) + netoFromWork * ((syndikatPct || 0) / 100);
   const totalOdbici = syndikatAmount + (kredit || 0) + (adminZabrana || 0) + (ostaliOdbici || 0);
 
@@ -570,9 +120,6 @@ function calculate(inputs, rates) {
   };
 }
 
-// ── REVERSE: neto → bruto ────────────────────────────────────────────────────
-// Solves for basicBruto given a desired neto using binary search.
-// The tax/contrib system is piecewise so closed-form is messy; bisection is clean.
 function netoToBruto(targetNeto, rates) {
   let lo = targetNeto, hi = targetNeto * 2.5;
   for (let i = 0; i < 60; i++) {
@@ -599,8 +146,10 @@ function generatePayslipHTML(inputs, r, info, rates) {
   const trow = (label, value, color, sub) => `<tr><td class="rl">${label}${sub ? `<span class="rs">${sub}</span>` : ''}</td><td class="rv" style="color:${color}">${fmt(value)} RSD</td></tr>`;
   return `<!DOCTYPE html><html lang="sr"><head><meta charset="UTF-8"/>
 <title>Platni Listić – ${info.employeeName || 'Zaposleni'} – ${monthName} ${info.year}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;font-size:13px;-webkit-font-smoothing:antialiased}
 .page{max-width:780px;margin:0 auto;padding:32px 36px}
@@ -735,119 +284,6 @@ function printPayslip(inputs, r, info, rates) {
   win.onload = () => { win.focus(); win.print(); };
 }
 
-// ── MARKDOWN RENDERER (simple) ────────────────────────────────────────────────
-function renderMd(text) {
-  return text.trim()
-    .replace(/^## (.+)$/gm, '<h2>$1</h2>')
-    .replace(/^### (.+)$/gm, '<h3>$1</h3>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="post-img" loading="lazy" />')
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-link">$1</a>')
-    .replace(/^\|(.+)\|$/gm, (m) => {
-      if (m.includes('---')) return '';
-      const cells = m.split('|').filter(Boolean).map(c => `<td>${c.trim()}</td>`).join('');
-      return `<tr>${cells}</tr>`;
-    })
-    .replace(/(<tr>.*<\/tr>\n?)+/gs, (m) => `<table>${m}</table>`)
-    .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/gs, (m) => `<ul>${m}</ul>`)
-    .split(/\n\n+/)
-    .map(b => b.startsWith('<') ? b : `<p>${b.replace(/\n/g,' ')}</p>`)
-    .join('\n');
-}
-
-// ── UI COMPONENTS ─────────────────────────────────────────────────────────────
-const NumberInput = ({ label, value, onChange, unit = "RSD", min = 0, step = 1, sublabel }) => {
-  const [raw, setRaw] = useState(String(value));
-
-  // Sync external value changes (e.g. reset) back into raw
-  useEffect(() => {
-    // Only overwrite if the parsed value differs — don't stomp mid-edit
-    if (parseFloat(raw) !== value && raw !== "" && raw !== "-") {
-      setRaw(String(value));
-    }
-  }, [value]);
-
-  const handleChange = (e) => {
-    const str = e.target.value;
-    setRaw(str);
-    const parsed = parseFloat(str);
-    if (!isNaN(parsed)) onChange(parsed);
-    else if (str === "" || str === "-") onChange(0);
-  };
-
-  const handleBlur = () => {
-    const parsed = parseFloat(raw);
-    const clamped = isNaN(parsed) ? 0 : Math.max(min, parsed);
-    setRaw(String(clamped));
-    onChange(clamped);
-  };
-
-  return (
-    <div className="input-field">
-      <label>{label}{sublabel && <span className="sublabel">{sublabel}</span>}</label>
-      <div className="input-wrap">
-        <input
-          type="text"
-          inputMode="decimal"
-          value={raw}
-          step={step}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          style={{ fontFamily: "var(--mono)" }}
-        />
-        <span className="unit">{unit}</span>
-      </div>
-    </div>
-  );
-};
-
-const TextInput = ({ label, value, onChange, placeholder = "" }) => (
-  <div className="input-field">
-    <label>{label}</label>
-    <div className="input-wrap">
-      <input type="text" value={value} placeholder={placeholder} onChange={(e) => onChange(e.target.value)} style={{ fontFamily: "var(--sans)" }} />
-    </div>
-  </div>
-);
-
-const ResultRow = ({ label, value, type = "neutral", sub }) => (
-  <div className={`result-row ${type}`}>
-    <span className="result-label">{label}{sub && <span className="result-sub">{sub}</span>}</span>
-    <span className="result-value">{fmt(value)} <span className="rsd">RSD</span></span>
-  </div>
-);
-
-const SectionTitle = ({ children, icon }) => (
-  <div className="section-title"><span className="section-icon">{icon}</span><span>{children}</span></div>
-);
-
-function AnimatedNum({ value }) {
-  const [display, setDisplay] = useState(value);
-  const prev = useRef(value);
-  useEffect(() => {
-    const start = prev.current, end = value, dur = 400, t0 = performance.now();
-    const tick = (now) => {
-      const p = Math.min((now - t0) / dur, 1);
-      const ease = p < 0.5 ? 2*p*p : -1+(4-2*p)*p;
-      setDisplay(start + (end - start) * ease);
-      if (p < 1) requestAnimationFrame(tick); else prev.current = end;
-    };
-    requestAnimationFrame(tick);
-  }, [value]);
-  return <span>{fmt(display)}</span>;
-}
-
-function GaugeBar({ label, value, max, color }) {
-  const pctVal = max > 0 ? (value / max) * 100 : 0;
-  return (
-    <div className="gauge">
-      <div className="gauge-header"><span>{label}</span><span style={{ color }}>{fmt(value)} RSD</span></div>
-      <div className="gauge-track"><div className="gauge-fill" style={{ width: `${Math.min(pctVal, 100)}%`, background: color }} /></div>
-    </div>
-  );
-}
-
 // ── BREVO SIGNUP ─────────────────────────────────────────────────────────────
 function BrevoSignup() {
   const [email, setEmail] = useState("");
@@ -902,18 +338,21 @@ function BrevoSignup() {
         <div className="brevo-success">✓ Prijavljeni ste!</div>
       ) : (
         <form className="brevo-form" onSubmit={submit}>
+          <label htmlFor="brevo-email" className="visually-hidden">Email adresa</label>
           <input
+            id="brevo-email"
             className="brevo-input"
             type="email"
             placeholder="vas@email.com"
             value={email}
             onChange={e => setEmail(e.target.value)}
             disabled={status === "loading"}
+            autoComplete="email"
           />
           <button className="brevo-btn" type="submit" disabled={status === "loading"}>
             {status === "loading" ? "..." : "Prijavi se"}
           </button>
-          {status === "error" && <div className="brevo-error">{errorMsg}</div>}
+          {status === "error" && <div className="brevo-error" role="alert">{errorMsg}</div>}
         </form>
       )}
     </div>
@@ -922,21 +361,24 @@ function BrevoSignup() {
 
 function LeadFormContent({ onSubmit, form, setForm, status }) {
   if (status === "success") return (
-    <div className="lead-success">
-      <div className="lead-success-icon">✓</div>
+    <div className="lead-success" role="status">
+      <div className="lead-success-icon" aria-hidden="true">✓</div>
       <div className="lead-success-title">Poruka primljena!</div>
       <div className="lead-success-sub">Javiću se u roku od 24 sata.</div>
     </div>
   );
   return (
     <form className="lead-form" onSubmit={onSubmit}>
-      <input className="lead-input" type="text" placeholder="Ime i prezime" value={form.ime} onChange={e => setForm(f => ({...f, ime: e.target.value}))} disabled={status === "loading"} required />
-      <input className="lead-input" type="email" placeholder="Email adresa" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} disabled={status === "loading"} required />
-      <textarea className="lead-input lead-textarea" placeholder="Čime se baviš i šta bi ti pomoglo?" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} required />
+      <label htmlFor="lead-ime" className="visually-hidden">Ime i prezime</label>
+      <input id="lead-ime" className="lead-input" type="text" placeholder="Ime i prezime" autoComplete="name" value={form.ime} onChange={e => setForm(f => ({...f, ime: e.target.value}))} disabled={status === "loading"} required />
+      <label htmlFor="lead-email" className="visually-hidden">Email adresa</label>
+      <input id="lead-email" className="lead-input" type="email" placeholder="Email adresa" autoComplete="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} disabled={status === "loading"} required />
+      <label htmlFor="lead-opis" className="visually-hidden">Opis projekta</label>
+      <textarea id="lead-opis" className="lead-input lead-textarea" placeholder="Čime se baviš i šta bi ti pomoglo?" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} required />
       <button className="lead-btn" type="submit" disabled={status === "loading"}>
         {status === "loading" ? "Šaljem..." : "Porazgovarajmo →"}
       </button>
-      {status === "error" && <div className="brevo-error">Greška. Pokušajte ponovo.</div>}
+      {status === "error" && <div className="brevo-error" role="alert">Greška. Pokušajte ponovo.</div>}
     </form>
   );
 }
@@ -973,12 +415,11 @@ function LeadForm() {
 
   return (
     <>
-      {/* ── DESKTOP: inline sekcija ── */}
-      <section className="lead-section lead-desktop">
+      <section className="lead-section lead-desktop" aria-labelledby="lead-section-title">
         <div className="lead-inner">
           <div className="lead-text">
             <div className="lead-eyebrow">Web aplikacije po meri</div>
-            <h2 className="lead-title">Treba ti softver koji radi za tebe?</h2>
+            <h2 id="lead-section-title" className="lead-title">Treba ti softver koji radi za tebe?</h2>
             <p className="lead-body">
               Sviđa ti se kako je PlatniListić napravljen? Pravim web aplikacije i alate za firme — od kalkulatora i internih sistema do kompletnih rešenja. Čak i ako ne znaš tačno šta ti treba, javi se — zajedno ćemo pronaći rešenje.
             </p>
@@ -987,21 +428,19 @@ function LeadForm() {
         </div>
       </section>
 
-      {/* ── MOBILE: sticky bottom bar ── */}
       {status !== "success" && (
-        <div className="lead-sticky" onClick={() => setModalOpen(true)}>
+        <button className="lead-sticky" type="button" onClick={() => setModalOpen(true)} aria-label="Otvori formu za kontakt">
           <span className="lead-sticky-text">Treba ti softver po meri?</span>
-          <span className="lead-sticky-cta">Javi se →</span>
-        </div>
+          <span className="lead-sticky-cta" aria-hidden="true">Javi se →</span>
+        </button>
       )}
 
-      {/* ── MOBILE: modal ── */}
       {modalOpen && (
-        <div className="lead-modal-overlay" onClick={() => setModalOpen(false)}>
+        <div className="lead-modal-overlay" onClick={() => setModalOpen(false)} role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
           <div className="lead-modal" onClick={e => e.stopPropagation()}>
-            <button className="lead-modal-close" onClick={() => setModalOpen(false)}>✕</button>
+            <button className="lead-modal-close" onClick={() => setModalOpen(false)} aria-label="Zatvori">✕</button>
             <div className="lead-eyebrow" style={{color:"rgba(255,255,255,0.7)"}}>Web aplikacije po meri</div>
-            <h2 className="lead-title" style={{marginBottom:16}}>Treba ti softver koji radi za tebe?</h2>
+            <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:16}}>Treba ti softver koji radi za tebe?</h2>
             <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
           </div>
         </div>
@@ -1010,276 +449,10 @@ function LeadForm() {
   );
 }
 
-// ── PAGES ─────────────────────────────────────────────────────────────────────
-function BlogList() {
-  return (
-    <div className="blog-page">
-      <div className="blog-header">
-        <div className="page-eyebrow">Blog</div>
-        <h2 className="page-title">Novosti i vodiči</h2>
-        <p className="page-sub">Aktuelne informacije o zaradama, doprinosima i poreskim promenama u Srbiji.</p>
-      </div>
-      <div className="post-list">
-        {POSTS.map(post => (
-          <Link key={post.id} className="post-card" to={`/blog/${post.id}`} style={{textDecoration:"none", color:"inherit", display:"block"}}>
-            <div className="post-meta">
-              <span className="post-tag">{post.tag}</span>
-              <span className="post-date">{post.date}</span>
-            </div>
-            <h3 className="post-title">{post.title}</h3>
-            <p className="post-summary">{post.summary}</p>
-            <div className="post-read">Pročitaj više →</div>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function BlogPost({ post, onBack }) {
-  return (
-    <div className="blog-page">
-      <button className="back-btn" onClick={onBack}>← Svi članci</button>
-      <div className="post-meta" style={{marginBottom: 16}}>
-        <span className="post-tag">{post.tag}</span>
-        <span className="post-date">{post.date}</span>
-      </div>
-      <h1 className="post-full-title">{post.title}</h1>
-      <div className="post-body" dangerouslySetInnerHTML={{ __html: renderMd(post.body) }} />
-      <div className="post-cta">
-        <p>Proverite tačan obračun vaše zarade koristeći naš besplatni kalkulator.</p>
-        <button className="cta-btn" onClick={onBack}>← Nazad na blog</button>
-      </div>
-    </div>
-  );
-}
-
-function BlogPostRoute({ onBack }) {
-  const { slug } = useParams();
-  const navigate = useNavigate();
-  const post = POSTS.find(p => p.id === slug);
-
-  useEffect(() => {
-    if (post) {
-      document.title = `${post.title} | PlatniListić`;
-    }
-    return () => { document.title = "Platni Listić – Kalkulator Bruto Neto Zarade Srbija 2026 | PlatniListić"; };
-  }, [post]);
-
-  if (!post) return (
-    <div className="blog-page">
-      <button className="back-btn" onClick={() => navigate("/blog")}>← Svi članci</button>
-      <h1 style={{marginTop:32}}>Članak nije pronađen</h1>
-    </div>
-  );
-  return <BlogPost post={post} onBack={onBack} />;
-}
-
-// ── PPP-PD XML GENERATOR ─────────────────────────────────────────────────────
-function generatePPPPD(inputs, r, info, rates) {
-  const pad2 = (n) => String(n).padStart(2, "0");
-  const fmtXml = (n) => (Math.round((n || 0) * 100) / 100).toFixed(2);
-  const period = `${info.year}-${pad2(info.month)}`;
-  const datumPlacanja = `${info.year}-${pad2(info.month)}-${pad2(new Date(info.year, info.month, 0).getDate())}`;
-  const totalWorkDays = (inputs.standardHours || 168) / 8;
-  // Efektivni sati = only actually worked days × 8 + overtime (unpaid days excluded)
-  const efektivniSati = r.workedDays * 8 + (inputs.overtimeH || 0);
-  // Kalendarski dani = worked + sick + public holidays (NOT unpaid — those don't count)
-  const kalendarskiDani = Math.round(r.workedDays + r.sickDaysActual + r.publicHolidayDaysActual);
-
-  // Split name into ime/prezime
-  const nameParts = (info.employeeName || "Zaposleni").trim().split(" ");
-  const prezime = nameParts[0] || "";
-  const ime = nameParts.slice(1).join(" ") || "-";
-
-  return `<?xml version="1.0" encoding="UTF-8"?>
-<PodaciPoreskeDeklaracije xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <PodaciOPrijavi>
-    <VrstaPrijave>1</VrstaPrijave>
-    <ObracunskiPeriod>${period}</ObracunskiPeriod>
-    <DatumPlacanja>${datumPlacanja}</DatumPlacanja>
-  </PodaciOPrijavi>
-  <PodaciOIsplatiocu>
-    <TipIsplatioca>1</TipIsplatioca>
-    <PoreskiIdentifikacioniBroj>${info.companyPib || "000000000"}</PoreskiIdentifikacioniBroj>${info.companyMbr ? `\n    <MaticniBrojisplatioca>${info.companyMbr}</MaticniBrojisplatioca>` : ""}${info.companyName ? `\n    <NazivPrezimeIme>${info.companyName}</NazivPrezimeIme>` : ""}
-    <SedistePrebivaliste>${info.companyOpstina || "000"}</SedistePrebivaliste>${info.companyTelefon ? `\n    <Telefon>${info.companyTelefon}</Telefon>` : ""}${info.companyAddress ? `\n    <UlicaIBroj>${info.companyAddress}</UlicaIBroj>` : ""}
-    <eMail>${info.companyEmail || "kontakt@firma.rs"}</eMail>
-  </PodaciOIsplatiocu>
-  <DeklarisaniPrihodi>
-    <PodaciOPrihodima>
-      <RedniBroj>1</RedniBroj>
-      <VrstaIdentifikatoraPrimaoca>1</VrstaIdentifikatoraPrimaoca>
-      <IdentifikatorPrimaoca>${info.employeeJmbg || "0000000000000"}</IdentifikatorPrimaoca>
-      <Prezime>${prezime}</Prezime>
-      <Ime>${ime}</Ime>
-      <OznakaPrebivalista>${info.employeeOpstina || "000"}</OznakaPrebivalista>
-      <SVP>${info.svp || "111001001"}</SVP>
-      <BrojKalendarskihDana>${kalendarskiDani}</BrojKalendarskihDana>
-      <BrojEfektivnihSati>${efektivniSati.toFixed(2)}</BrojEfektivnihSati>
-      <MesecniFondSati>${(inputs.standardHours || 168).toFixed(2)}</MesecniFondSati>
-      <Bruto>${fmtXml(r.bruto1)}</Bruto>
-      <OsnovicaPorez>${fmtXml(r.taxBase)}</OsnovicaPorez>
-      <Porez>${fmtXml(r.tax)}</Porez>
-      <OsnovicaDoprinosi>${fmtXml(r.contribBase)}</OsnovicaDoprinosi>
-      <PIO>${fmtXml(r.pio_emp)}</PIO>
-      <ZDR>${fmtXml(r.health_emp)}</ZDR>
-      <NEZ>${fmtXml(r.unemp)}</NEZ>
-      <PIOBen>0.00</PIOBen>
-    </PodaciOPrihodima>
-  </DeklarisaniPrihodi>
-</PodaciPoreskeDeklaracije>`;
-}
-
-// ── OPSTINE (sample most common ones) ─────────────────────────────────────────
-const OPSTINE = [
-  ["000","— nije odabrano —"],["701","Beograd - Stari Grad"],["703","Beograd - Savski Venac"],
-  ["705","Beograd - Vračar"],["707","Beograd - Rakovica"],["709","Beograd - Čukarica"],
-  ["711","Beograd - Palilula"],["713","Beograd - Zvezdara"],["715","Beograd - Voždovac"],
-  ["717","Beograd - Novi Beograd"],["719","Beograd - Zemun"],["721","Beograd - Surčin"],
-  ["723","Beograd - Grocka"],["725","Beograd - Lazarevac"],["727","Beograd - Obrenovac"],
-  ["729","Beograd - Sopot"],["731","Beograd - Barajevo"],["733","Beograd - Mladenovac"],
-  ["101","Novi Sad"],["105","Subotica"],["107","Zrenjanin"],["109","Pančevo"],
-  ["111","Sombor"],["113","Kikinda"],["115","Vršac"],["201","Niš"],["203","Leskovac"],
-  ["205","Vranje"],["207","Pirot"],["209","Zaječar"],["301","Kragujevac"],["303","Čačak"],
-  ["305","Kraljevo"],["307","Kruševac"],["309","Jagodina"],["401","Novi Pazar"],
-  ["403","Subotica - ostalo"],["501","Šabac"],["503","Valjevo"],["505","Smederevo"],
-];
-
-// ── SVP COMMON VALUES ──────────────────────────────────────────────────────────
-const SVP_LIST = [
-  ["111001001","111001001 — Zarada (redovni rad)"],
-  ["111001002","111001002 — Zarada (prekovremeni rad)"],
-  ["111002001","111002001 — Naknada zarade (bolovanje do 30 dana)"],
-  ["111002002","111002002 — Naknada zarade (godišnji odmor)"],
-  ["111002003","111002003 — Naknada zarade (praznik)"],
-  ["111005001","111005001 — Regres za godišnji odmor"],
-  ["111006001","111006001 — Jubilarna nagrada"],
-  ["101001001","101001001 — Zarada preduzetnika"],
-];
-
-function PPPPDTab({ inputs, r, info, setI, rates }) {
-  const [xml, setXml] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [showXml, setShowXml] = useState(false);
-
-  const generate = () => {
-    const generated = generatePPPPD(inputs, r, info, rates);
-    setXml(generated);
-    setShowXml(true);
-    setCopied(false);
-  };
-
-  const download = () => {
-    const pad2 = (n) => String(n).padStart(2, "0");
-    const blob = new Blob([xml], { type: "application/xml" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `PPPPD_${info.companyPib || "PIB"}_${info.year}${pad2(info.month)}.xml`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
-  const copy = () => {
-    navigator.clipboard.writeText(xml).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
-  };
-
-  return (
-    <div className="main-grid">
-      <div className="card">
-        <SectionTitle icon="🏢">Podaci o isplatiocu</SectionTitle>
-        <div className="inputs-body">
-          <TextInput label="PIB isplatioca" value={info.companyPib} onChange={setI("companyPib")} placeholder="123456789" />
-          <TextInput label="Matični broj (MBR)" value={info.companyMbr || ""} onChange={setI("companyMbr")} placeholder="12345678" />
-          <TextInput label="Naziv firme" value={info.companyName} onChange={setI("companyName")} placeholder="Firma d.o.o." />
-          <TextInput label="Email za kontakt" value={info.companyEmail || ""} onChange={setI("companyEmail")} placeholder="kontakt@firma.rs" />
-          <TextInput label="Telefon" value={info.companyTelefon || ""} onChange={setI("companyTelefon")} placeholder="+381 11 123 4567" />
-          <TextInput label="Adresa (ulica i broj)" value={info.companyAddress} onChange={setI("companyAddress")} placeholder="Ulica br. 1, Beograd" />
-          <div className="input-field">
-            <label>Opština sedišta isplatioca</label>
-            <div className="input-wrap">
-              <select value={info.companyOpstina || "000"} onChange={e => setI("companyOpstina")(e.target.value)} style={{fontFamily:"var(--sans)", fontSize:13, width:"100%", background:"var(--surface)", border:"1.5px solid var(--border)", borderRadius:8, padding:"8px 12px", color:"var(--text)"}}>
-                {OPSTINE.map(([k,v]) => <option key={k} value={k}>{v}</option>)}
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="card">
-        <SectionTitle icon="👤">Podaci o primaocu prihoda</SectionTitle>
-        <div className="inputs-body">
-          <TextInput label="Ime i prezime" value={info.employeeName} onChange={setI("employeeName")} placeholder="Prezime Ime" />
-          <TextInput label="JMBG primaoca" value={info.employeeJmbg} onChange={setI("employeeJmbg")} placeholder="0101990000000" />
-          <div className="input-field">
-            <label>Opština prebivališta primaoca</label>
-            <div className="input-wrap">
-              <select value={info.employeeOpstina || "000"} onChange={e => setI("employeeOpstina")(e.target.value)} style={{fontFamily:"var(--sans)", fontSize:13, width:"100%", background:"var(--surface)", border:"1.5px solid var(--border)", borderRadius:8, padding:"8px 12px", color:"var(--text)"}}>
-                {OPSTINE.map(([k,v]) => <option key={k} value={k}>{v}</option>)}
-              </select>
-            </div>
-          </div>
-          <div className="input-field">
-            <label>Šifra vrste prihoda (ŠVP)</label>
-            <div className="input-wrap">
-              <select value={info.svp || "111001001"} onChange={e => setI("svp")(e.target.value)} style={{fontFamily:"var(--mono)", fontSize:12, width:"100%", background:"var(--surface)", border:"1.5px solid var(--border)", borderRadius:8, padding:"8px 12px", color:"var(--text)"}}>
-                {SVP_LIST.map(([k,v]) => <option key={k} value={k}>{v}</option>)}
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <SectionTitle icon="📋">Pregled vrednosti za prijavu</SectionTitle>
-        <div className="results-body" style={{margin:"0 16px 16px"}}>
-          {r.mealAmount > 0 && <ResultRow label="Topli obrok (u Bruto 1)" value={r.mealAmount} sub="oporezivo" />}
-          {r.regresAmount > 0 && <ResultRow label="Regres (u Bruto 1)" value={r.regresAmount} sub="oporezivo" />}
-          <ResultRow label="Bruto 1 (pos. 3.9)" value={r.bruto1} />
-          <ResultRow label="Osnovica za porez (pos. 3.10)" value={r.taxBase} />
-          <ResultRow label="Porez (pos. 3.11)" value={r.tax} />
-          <ResultRow label="Osnovica za doprinose (pos. 3.12)" value={r.contribBase} />
-          <ResultRow label="PIO — zaposleni (pos. 3.13)" value={r.pio_emp} />
-          <ResultRow label="Zdravstvo — zaposleni (pos. 3.14)" value={r.health_emp} />
-          <ResultRow label="Nezaposlenost — zaposleni (pos. 3.15)" value={r.unemp} />
-        </div>
-
-        <div style={{padding:"0 16px 16px", display:"flex", flexDirection:"column", gap:10}}>
-          <button className="btn-pdf btn-pdf-full" onClick={generate} style={{background:"var(--accent)"}}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
-            Generiši PPP-PD XML
-          </button>
-          {xml && (
-            <div style={{display:"flex", gap:8}}>
-              <button className="btn-pdf btn-pdf-full" onClick={download} style={{flex:1, background:"#00a33b"}}>
-                ⬇ Preuzmi .xml fajl
-              </button>
-              <button className="btn-pdf btn-pdf-full" onClick={copy} style={{flex:1, background: copied ? "#00a33b" : "var(--surface2)", color: copied ? "white" : "var(--text)"}}>
-                {copied ? "✓ Kopirano!" : "📋 Kopiraj XML"}
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {showXml && xml && (
-        <div className="card full-width">
-          <SectionTitle icon="📄">Generisani XML</SectionTitle>
-          <div className="ppppd-note">
-            ⚠️ Pre upload-a na portal ePorezi, proverite sve podatke. Prijava je vaša odgovornost.
-          </div>
-          <pre className="xml-preview">{xml}</pre>
-        </div>
-      )}
-    </div>
-  );
-}
-
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
 function CalculatorPage() {
   const now = new Date();
-  const [calcMode, setCalcMode] = useState("bruto"); // "bruto" | "neto"
+  const [calcMode, setCalcMode] = useState("bruto");
   const [targetNeto, setTargetNeto] = useState(70000);
   const [inputs, setInputs] = useState({
     basicBruto: 100000, standardHours: 168, overtimeH: 0, nightH: 0,
@@ -1301,7 +474,6 @@ function CalculatorPage() {
   const [rates, setRates] = useState({ ...DEFAULT_RATES });
   const [activeTab, setActiveTab] = useState("inputs");
 
-  // In neto mode, derive basicBruto from targetNeto
   const effectiveInputs = calcMode === "neto"
     ? { ...inputs, basicBruto: netoToBruto(targetNeto, rates) }
     : inputs;
@@ -1314,13 +486,12 @@ function CalculatorPage() {
 
   return (
     <>
-      {/* MODE TOGGLE */}
       <div className="mode-toggle-wrap">
-        <div className="mode-toggle">
-          <button className={`mode-btn ${calcMode === "bruto" ? "active" : ""}`} onClick={() => setCalcMode("bruto")}>
+        <div className="mode-toggle" role="tablist" aria-label="Način unosa zarade">
+          <button className={`mode-btn ${calcMode === "bruto" ? "active" : ""}`} onClick={() => setCalcMode("bruto")} role="tab" aria-selected={calcMode === "bruto"}>
             Unesite Bruto
           </button>
-          <button className={`mode-btn ${calcMode === "neto" ? "active" : ""}`} onClick={() => setCalcMode("neto")}>
+          <button className={`mode-btn ${calcMode === "neto" ? "active" : ""}`} onClick={() => setCalcMode("neto")} role="tab" aria-selected={calcMode === "neto"}>
             Unesite Neto
           </button>
         </div>
@@ -1339,7 +510,6 @@ function CalculatorPage() {
         )}
       </div>
 
-      {/* HERO CARDS */}
       <div className="hero-cards">
         <div className="hero-card neto">
           <div className="hero-card-label">Neto zarada</div>
@@ -1358,28 +528,26 @@ function CalculatorPage() {
         </div>
       </div>
 
-      {/* RATIO BAR */}
       <div className="ratio-bar-wrap">
         <div className="ratio-bar-header">
           <span>Raspodela Bruto 1</span>
           <span style={{ color: "var(--green)", fontWeight: 600 }}>Neto {pct(r.netoBruto1Ratio)}</span>
         </div>
-        <div className="ratio-bar">
+        <div className="ratio-bar" role="img" aria-label={`Raspodela bruto 1: neto ${pct(r.neto/r.bruto1)}, doprinosi ${pct(r.totalEmpContrib/r.bruto1)}, porez ${pct(r.tax/r.bruto1)}`}>
           <div className="ratio-seg" style={{ width: `${r.neto/r.bruto1*100}%`, background: "#00b341" }} />
           <div className="ratio-seg" style={{ width: `${r.totalEmpContrib/r.bruto1*100}%`, background: "#f59e0b" }} />
           <div className="ratio-seg" style={{ width: `${r.tax/r.bruto1*100}%`, background: "#f02d3a" }} />
         </div>
         <div className="ratio-legend">
-          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#00b341" }} />Neto ({pct(r.neto/r.bruto1)})</div>
-          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f59e0b" }} />Doprinosi ({pct(r.totalEmpContrib/r.bruto1)})</div>
-          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f02d3a" }} />Porez ({pct(r.tax/r.bruto1)})</div>
+          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#00b341" }} aria-hidden="true" />Neto ({pct(r.neto/r.bruto1)})</div>
+          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f59e0b" }} aria-hidden="true" />Doprinosi ({pct(r.totalEmpContrib/r.bruto1)})</div>
+          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f02d3a" }} aria-hidden="true" />Porez ({pct(r.tax/r.bruto1)})</div>
         </div>
       </div>
 
-      {/* TABS */}
-      <div className="tabs">
+      <div className="tabs" role="tablist" aria-label="Sekcije kalkulatora">
         {["inputs","payslip","results","rates","ppppd"].map((t) => (
-          <button key={t} className={`tab ${activeTab===t?"active":""}`} onClick={() => setActiveTab(t)}>
+          <button key={t} className={`tab ${activeTab===t?"active":""}`} onClick={() => setActiveTab(t)} role="tab" aria-selected={activeTab===t}>
             {{"inputs":"📝 Unos","payslip":"🧾 Platni Listić","results":"📊 Obračun","rates":"📋 Stope","ppppd":"🏛️ PPP-PD"}[t]}
           </button>
         ))}
@@ -1580,12 +748,12 @@ function CalculatorPage() {
             <SectionTitle icon="📅">Period obračuna</SectionTitle>
             <div className="inputs-body">
               <div className="input-field">
-                <label>Mesec i godina</label>
+                <label htmlFor="payslip-month">Mesec i godina</label>
                 <div className="select-wrap">
-                  <select value={info.month} onChange={(e) => setI("month")(parseInt(e.target.value))}>
+                  <select id="payslip-month" value={info.month} onChange={(e) => setI("month")(parseInt(e.target.value))} aria-label="Mesec">
                     {MONTHS.map((m, i) => <option key={i} value={i+1}>{m}</option>)}
                   </select>
-                  <select value={info.year} onChange={(e) => setI("year")(parseInt(e.target.value))}>
+                  <select value={info.year} onChange={(e) => setI("year")(parseInt(e.target.value))} aria-label="Godina">
                     {[2024,2025,2026].map(y => <option key={y} value={y}>{y}</option>)}
                   </select>
                 </div>
@@ -1602,8 +770,8 @@ function CalculatorPage() {
             </div>
             <div className="pdf-note">Sva polja su opcionalna. Platni listić se generiše sa unetim podacima.</div>
             <div style={{padding:"14px 16px"}}>
-              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(effectiveInputs, r, info, rates)}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(effectiveInputs, r, info, rates)} style={{margin: 0, width: "100%"}}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14,2 14,8 20,8"/>
                   <line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/>
@@ -1693,8 +861,7 @@ function CalculatorPage() {
 
       {activeTab === "rates" && (
         <div className="main-grid">
-          {/* Reset button */}
-          <div className="full-width" style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:4}}>
+          <div className="full-width" style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:4, gap:10, flexWrap:"wrap"}}>
             <span style={{fontSize:12, color:"var(--text3)", fontFamily:"var(--mono)"}}>
               Neoporezivi iznos je automatski podešen prema trenutnom datumu ({now.toLocaleDateString('sr-RS')})
             </span>
@@ -1752,92 +919,15 @@ function CalculatorPage() {
       )}
 
       {activeTab === "ppppd" && (
-        <PPPPDTab inputs={effectiveInputs} r={r} info={info} setI={setI} rates={rates} />
+        <Suspense fallback={<div className="route-loader">Učitavam PPP-PD modul…</div>}>
+          <PPPPDTab inputs={effectiveInputs} r={r} info={info} setI={setI} />
+        </Suspense>
       )}
     </>
   );
 }
 
-// ── LEGAL PAGES ───────────────────────────────────────────────────────────────
-function PolitikaPrivatnosti({ onBack }) {
-  return (
-    <div className="legal-page">
-      <button className="back-btn" onClick={onBack}>← Nazad</button>
-      <h1 className="legal-title">Politika privatnosti</h1>
-      <p className="legal-date">Poslednje ažuriranje: februar 2025.</p>
-
-      <div className="legal-body">
-        <h2>Ko smo mi</h2>
-        <p>PlatniListić (<strong>platnilistic.rs</strong>) je besplatni online kalkulator za obračun zarada u Republici Srbiji. Usluga je namenjena zaposlenima, poslodavcima i računovođama koji žele brz i transparentan uvid u strukturu zarade.</p>
-
-        <h2>Koje podatke prikupljamo</h2>
-        <p>Prikupljamo isključivo podatke koje nam vi dobrovoljno date:</p>
-        <ul>
-          <li><strong>Email adresa</strong> — samo ako se prijavite na newsletter putem forme u bočnom meniju. Ova adresa se čuva u sistemu Brevo (brevo.com) i koristi se samo za slanje informacija o promenama poreskih parametara i novostima vezanim za obračun zarada.</li>
-        </ul>
-        <p>Podaci koje unosite u kalkulator (iznosi zarada, sati rada, bonusi) <strong>se ne čuvaju</strong> ni na kakvom serveru — obračun se vrši isključivo u vašem pregledaču i nigde se ne prenosi.</p>
-
-        <h2>Analitika i praćenje</h2>
-        <p>Koristimo <strong>Vercel Web Analytics</strong> — sistem analitike koji je dizajniran sa privatnošću kao prioritetom. Vercel Analytics:</p>
-        <ul>
-          <li>Ne koristi kolačiće (cookies)</li>
-          <li>Ne prikuplja lične podatke</li>
-          <li>Ne prati korisnike između sajtova</li>
-          <li>Usklađen je sa GDPR regulativom bez potrebe za pristankom</li>
-        </ul>
-        <p>Prikupljamo isključivo anonimne agregatne podatke: broj poseta, posećene stranice i geografsku regiju (na nivou države).</p>
-
-        <h2>Newsletter</h2>
-        <p>Ako se prijavite na newsletter, vaša email adresa se šalje servisu Brevo (SAS, Francuska), koji je usklađen sa GDPR regulativom. Možete se odjaviti u bilo kom trenutku klikom na link u svakom emailu koji primite.</p>
-
-        <h2>Vaša prava</h2>
-        <p>Imate pravo da zatražite uvid u podatke koje smo prikupili, ispravku ili brisanje iste. Pišite nam na: <strong>kontakt@platnilistic.rs</strong></p>
-
-        <h2>Izmene politike</h2>
-        <p>Zadržavamo pravo izmene ove politike. Svaka izmena biće objavljena na ovoj stranici sa datumom poslednjeg ažuriranja.</p>
-      </div>
-    </div>
-  );
-}
-
-function UsloviKoriscenja({ onBack }) {
-  return (
-    <div className="legal-page">
-      <button className="back-btn" onClick={onBack}>← Nazad</button>
-      <h1 className="legal-title">Uslovi korišćenja</h1>
-      <p className="legal-date">Poslednje ažuriranje: februar 2025.</p>
-
-      <div className="legal-body">
-        <h2>Prihvatanje uslova</h2>
-        <p>Korišćenjem sajta platnilistic.rs prihvatate ove uslove korišćenja. Ako se ne slažete sa uslovima, molimo vas da ne koristite sajt.</p>
-
-        <h2>Svrha alata</h2>
-        <p>PlatniListić je informativni alat za okvirni obračun zarada u Republici Srbiji. Alat je namenjen za brzo i pregledono razumevanje strukture zarade — nije zamena za profesionalni računovodstveni ili pravni savet.</p>
-
-        <h2>Odricanje od odgovornosti</h2>
-        <p>PlatniListić pruža <strong>isključivo informativne obračune</strong> zasnovane na važećim poreskim propisima i parametrima koji su bili dostupni u trenutku razvoja alata.</p>
-        <ul>
-          <li>Rezultati obračuna <strong>ne predstavljaju pravni ni poreski savet</strong>.</li>
-          <li>Za zvanični i pravno obavezujući obračun zarade konsultujte ovlašćenog računovođu ili nadležni organ.</li>
-          <li>Poreske stope i parametri mogu se promeniti zakonodavnim izmenama. PlatniListić ne garantuje ažurnost parametara u svakom trenutku.</li>
-          <li>Korisnik snosi punu odgovornost za eventualne odluke donete na osnovu rezultata ovog kalkulatora.</li>
-        </ul>
-
-        <h2>Intelektualna svojina</h2>
-        <p>Sav sadržaj na sajtu platnilistic.rs, uključujući dizajn, tekstove i kod, zaštićen je autorskim pravom. Nije dozvoljeno kopiranje, reprodukcija ni komercijalno korišćenje bez pisane saglasnosti.</p>
-
-        <h2>Dostupnost usluge</h2>
-        <p>Zadržavamo pravo da u bilo kom trenutku, bez prethodnog obaveštenja, izmenimo, privremeno ili trajno obustavimo pristup sajtu. Nismo odgovorni za eventualne štete nastale usled nedostupnosti usluge.</p>
-
-        <h2>Merodavno pravo</h2>
-        <p>Na ove uslove primenjuje se pravo Republike Srbije. Svi eventualni sporovi rešavaju se pred nadležnim sudom u Republici Srbiji.</p>
-
-        <h2>Kontakt</h2>
-        <p>Za sva pitanja vezana za uslove korišćenja: <strong>kontakt@platnilistic.rs</strong></p>
-      </div>
-    </div>
-  );
-}
+const RouteLoader = () => <div className="route-loader" role="status">Učitavam…</div>;
 
 // ── ROOT APP ──────────────────────────────────────────────────────────────────
 export default function App() {
@@ -1850,390 +940,77 @@ export default function App() {
     { path: "/blog", icon: "📰", label: "Blog" },
   ];
 
-  const CSS = `
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --bg: #f5f7fa;
-      --surface: #ffffff;
-      --surface2: #f0f2f5;
-      --surface3: #e8ebf0;
-      --border: #e0e4eb;
-      --accent: #0057ff;
-      --accent-light: #e8efff;
-      --green: #00b341;
-      --green-light: #e6f9ed;
-      --red: #f02d3a;
-      --amber: #f59e0b;
-      --amber-light: #fff8e6;
-      --text: #0f1623;
-      --text2: #4b5563;
-      --text3: #9ca3af;
-      --sidebar-w: 220px;
-      --mono: 'JetBrains Mono', monospace;
-      --sans: 'Inter', sans-serif;
-      --radius: 12px;
-    }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; -webkit-font-smoothing: antialiased; }
-
-    /* ── LAYOUT ── */
-    .layout { display: flex; min-height: 100vh; }
-
-    /* ── SIDEBAR ── */
-    .sidebar { width: var(--sidebar-w); background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; transition: transform 0.25s; }
-    .sidebar-logo { padding: 16px 18px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
-    .sidebar-logo img { width: 44px; height: 44px; flex-shrink: 0; }
-    .sidebar-logo-text {}
-    .sidebar-logo-name { font-size: 15px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; }
-    .sidebar-logo-name span { color: var(--accent); }
-    .sidebar-logo-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
-    .sidebar-nav { padding: 12px 10px; flex: 1; }
-    .sidebar-section-label { font-size: 9px; font-weight: 700; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 8px 4px; }
-    .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; transition: all 0.12s; font-size: 13px; font-weight: 500; color: var(--text2); border: none; background: none; width: 100%; text-align: left; }
-    .nav-item:hover { background: var(--surface2); color: var(--text); }
-    .nav-item.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
-    .nav-icon { font-size: 15px; width: 20px; text-align: center; }
-
-    /* ── TOPBAR (mobile) ── */
-    .topbar { display: none; align-items: center; gap: 12px; padding: 12px 16px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 90; }
-    .topbar-title { font-size: 15px; font-weight: 800; letter-spacing: -0.5px; }
-    .topbar-title span { color: var(--accent); }
-    .menu-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; cursor: pointer; font-size: 16px; color: var(--text2); margin-left: auto; }
-    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.3); z-index: 99; }
-
-    @media (max-width: 760px) {
-      .sidebar { transform: translateX(-100%); }
-      .sidebar.open { transform: translateX(0); }
-      .sidebar-overlay.open { display: block; }
-      .topbar { display: flex; }
-      .main { margin-left: 0 !important; }
-    }
-
-    /* ── MAIN CONTENT ── */
-    .main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; }
-    .main-inner { max-width: 1060px; padding: 28px 24px 60px; }
-
-    /* ── PAGE HEADER ── */
-    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; }
-    .page-eyebrow { display: inline-flex; align-items: center; background: var(--accent-light); color: var(--accent); font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; padding: 3px 9px; border-radius: 100px; margin-bottom: 8px; text-transform: uppercase; }
-    .page-title { font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; color: var(--text); }
-    .page-title span { color: var(--accent); }
-    .page-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
-
-    /* ── PDF BUTTON ── */
-    .btn-pdf { display: flex; align-items: center; gap: 7px; background: var(--accent); border: none; color: #fff; border-radius: 9px; padding: 10px 20px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; white-space: nowrap; box-shadow: 0 3px 12px rgba(0,87,255,0.22); }
-    .btn-pdf:hover { background: #0047dd; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,87,255,0.32); }
-    .btn-pdf svg { width: 15px; height: 15px; flex-shrink: 0; }
-    .btn-pdf-full { width: calc(100% - 32px); justify-content: center; margin: 14px 16px 16px; }
-
-    /* ── HERO CARDS ── */
-    .hero-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-bottom: 20px; }
-    @media (max-width:600px) { .hero-cards { grid-template-columns: 1fr; } }
-    .hero-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 20px; }
-    .hero-card.neto { border-top: 3px solid var(--green); }
-    .hero-card.bruto { border-top: 3px solid var(--accent); }
-    .hero-card.cost { border-top: 3px solid var(--amber); }
-    .hero-card-label { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-    .hero-card-value { font-family: var(--mono); font-size: clamp(16px,2vw,21px); font-weight: 500; }
-    .hero-card.neto .hero-card-value { color: var(--green); }
-    .hero-card.bruto .hero-card-value { color: var(--accent); }
-    .hero-card.cost .hero-card-value { color: var(--amber); }
-    .hero-card-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-top: 4px; }
-
-    /* ── RATIO BAR ── */
-    .ratio-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; }
-    .ratio-bar-header { display: flex; justify-content: space-between; font-size: 10px; font-weight: 600; color: var(--text3); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
-    .ratio-bar { height: 8px; border-radius: 100px; background: var(--surface3); overflow: hidden; display: flex; }
-    .ratio-seg { height: 100%; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .ratio-legend { display: flex; gap: 16px; margin-top: 10px; flex-wrap: wrap; }
-    .ratio-legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text2); font-weight: 500; }
-    .ratio-dot { width: 7px; height: 7px; border-radius: 50%; }
-
-    /* ── TABS ── */
-    .tabs { display: flex; gap: 3px; margin-bottom: 18px; background: var(--surface2); padding: 4px; border-radius: 10px; width: fit-content; border: 1px solid var(--border); flex-wrap: wrap; }
-    .tab { padding: 7px 16px; border-radius: 7px; border: none; background: transparent; color: var(--text3); font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.12s; }
-    .tab:hover { color: var(--text2); background: rgba(255,255,255,0.7); }
-    .tab.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-
-    /* ── CARD / GRID ── */
-    .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width:760px) { .main-grid { grid-template-columns: 1fr; } }
-    .full-width { grid-column: 1 / -1; }
-    .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-
-    /* ── SECTION TITLE ── */
-    .section-title { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); }
-    .section-icon { font-size: 13px; }
-
-    /* ── INPUTS ── */
-    .inputs-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
-    .input-field { display: flex; flex-direction: column; gap: 4px; }
-    .input-field label { font-size: 11px; font-weight: 600; color: var(--text2); }
-    .sublabel { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-left: 5px; font-weight: 400; }
-    .input-wrap { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
-    .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,87,255,0.1); }
-    .input-wrap input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: var(--mono); font-size: 13px; font-weight: 500; padding: 9px 11px; width: 100%; }
-    .input-wrap input[type="text"] { font-family: var(--sans); font-size: 12px; font-weight: 400; }
-    .input-wrap input::placeholder { color: var(--text3); font-weight: 400; }
-    .input-wrap input::-webkit-inner-spin-button, .input-wrap input::-webkit-outer-spin-button { opacity: 0.3; }
-    .unit { font-family: var(--mono); font-size: 10px; font-weight: 500; color: var(--text3); padding: 0 10px; border-left: 1px solid var(--border); white-space: nowrap; background: var(--surface2); align-self: stretch; display: flex; align-items: center; }
-    .select-wrap { display: flex; gap: 7px; }
-    .select-wrap select { flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--sans); font-size: 12px; padding: 9px 11px; outline: none; cursor: pointer; transition: border-color 0.15s; }
-    .select-wrap select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,87,255,0.1); }
-
-    /* ── RESULTS ── */
-    .results-body { padding: 4px 0; }
-    .result-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px; border-bottom: 1px solid var(--border); transition: background 0.1s; gap: 10px; }
-    .result-row:hover { background: var(--surface2); }
-    .result-row:last-child { border-bottom: none; }
-    .result-label { font-size: 12px; color: var(--text2); display: flex; flex-direction: column; gap: 2px; font-weight: 400; }
-    .result-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); }
-    .result-value { font-family: var(--mono); font-size: 12px; font-weight: 500; white-space: nowrap; color: var(--text); }
-    .rsd { font-size: 9px; color: var(--text3); margin-left: 2px; }
-    .result-row.positive .result-value { color: var(--green); }
-    .result-row.negative .result-value { color: var(--red); }
-    .result-row.total { background: var(--accent-light); border-top: 1px solid #c8d8ff; border-bottom: none; margin-top: 1px; }
-    .result-row.total .result-value { color: var(--accent); font-size: 13px; font-weight: 600; }
-    .result-row.total .result-label { color: var(--text); font-weight: 600; }
-    .result-row.grand { background: var(--amber-light); border-top: 1px solid #fde68a; border-bottom: none; margin-top: 1px; }
-    .result-row.grand .result-value { color: var(--amber); font-size: 14px; font-weight: 700; }
-    .result-row.grand .result-label { color: var(--text); font-weight: 600; }
-
-    /* ── GAUGES ── */
-    .gauges-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 12px; }
-    .gauge-header { display: flex; justify-content: space-between; font-size: 11px; font-weight: 500; color: var(--text2); margin-bottom: 5px; }
-    .gauge-track { height: 5px; background: var(--surface3); border-radius: 100px; overflow: hidden; }
-    .gauge-fill { height: 100%; border-radius: 100px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-
-    /* ── INFO GRID ── */
-    .info-grid { padding: 12px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-    .info-item { background: var(--surface2); border-radius: 8px; padding: 10px 12px; border: 1px solid var(--border); }
-    .info-item-label { font-size: 9px; font-weight: 700; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-    .info-item-val { font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--text); }
-
-    /* ── RATES ── */
-    .rates-body { padding: 0; }
-    .rate-row { display: grid; grid-template-columns: 1fr 80px 80px 80px; padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 11px; align-items: center; gap: 8px; }
-    .rate-row:last-child { border-bottom: none; }
-    .rate-row.header-row { background: var(--surface2); color: var(--text3); font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; font-family: var(--sans); }
-    .rate-row:not(.header-row):hover { background: var(--surface2); }
-    .rate-cell-right { text-align: right; }
-    .rate-cell-green { color: var(--green); font-weight: 600; }
-    .rate-cell-red { color: var(--red); font-weight: 600; }
-    .rate-cell-yellow { color: var(--amber); font-weight: 600; }
-    .pdf-note { font-size: 11px; color: var(--text3); padding: 9px 14px; border-top: 1px solid var(--border); }
-
-    /* ── PPP-PD ── */
-    .ppppd-note { margin: 0 16px 12px; padding: 10px 14px; background: #fff8e6; border: 1px solid #f59e0b; border-radius: 8px; font-size: 12px; color: #92400e; }
-    .xml-preview { margin: 0 16px 16px; padding: 14px; background: #0f1623; color: #a8d8a8; font-family: var(--mono); font-size: 11px; border-radius: 8px; overflow-x: auto; white-space: pre; line-height: 1.6; max-height: 400px; overflow-y: auto; }
-    .full-width { grid-column: 1 / -1; }
-
-    /* ── MODE TOGGLE ── */
-    .mode-toggle-wrap { margin-bottom: 20px; display: flex; flex-direction: column; gap: 12px; }
-    .mode-toggle { display: flex; background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 4px; width: fit-content; gap: 3px; }
-    .mode-btn { padding: 8px 20px; border-radius: 7px; border: none; background: transparent; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--text3); cursor: pointer; transition: all 0.15s; }
-    .mode-btn:hover { color: var(--text2); }
-    .mode-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-    .neto-input-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; max-width: 360px; border-top: 3px solid var(--green); }
-    .neto-derived { font-size: 12px; color: var(--text2); line-height: 1.5; }
-
-    /* ── SICK LEAVE INFO ── */
-    .sick-info { background: #f0f7ff; border: 1px solid #c8dff2; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
-    .sick-info-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text2); }
-
-    /* ── RESET BUTTON & RATE SUMMARY ── */
-    .reset-btn { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; transition: all 0.12s; white-space: nowrap; }
-    .reset-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .rate-summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0 2px; font-size: 12px; font-weight: 600; color: var(--text2); border-top: 1px dashed var(--border); margin-top: 4px; }
-
-    /* ── BLOG ── */
-    .blog-page { max-width: 720px; }
-    .blog-header { margin-bottom: 28px; }
-    .blog-header .page-eyebrow { margin-bottom: 10px; }
-    .blog-header h2 { font-size: 26px; font-weight: 800; letter-spacing: -0.8px; margin-bottom: 8px; }
-    .blog-header p { font-size: 14px; color: var(--text2); line-height: 1.6; }
-    .post-list { display: flex; flex-direction: column; gap: 14px; }
-    .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; cursor: pointer; transition: all 0.15s; }
-    .post-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(0,87,255,0.08); transform: translateY(-1px); }
-    .post-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-    .post-tag { background: var(--accent-light); color: var(--accent); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; letter-spacing: 0.5px; }
-    .post-date { font-family: var(--mono); font-size: 10px; color: var(--text3); }
-    .post-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; color: var(--text); }
-    .post-summary { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
-    .post-read { font-size: 12px; font-weight: 600; color: var(--accent); }
-
-    /* ── BLOG POST ── */
-    .back-btn { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--text2); cursor: pointer; margin-bottom: 20px; transition: all 0.12s; }
-    .back-btn:hover { border-color: var(--accent); color: var(--accent); }
-    .post-full-title { font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; margin-bottom: 24px; line-height: 1.2; }
-    .post-body { font-size: 14px; line-height: 1.75; color: var(--text2); }
-    .post-body h2 { font-size: 18px; font-weight: 700; color: var(--text); margin: 28px 0 12px; letter-spacing: -0.3px; }
-    .post-body h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
-    .post-body p { margin-bottom: 14px; }
-    .post-body strong { color: var(--text); font-weight: 600; }
-    .post-body ul { padding-left: 20px; margin-bottom: 14px; }
-    .post-body li { margin-bottom: 6px; }
-    .post-body table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-    .post-body td { padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: var(--mono); }
-    .post-body tr:last-child td { border-bottom: none; }
-    .post-body tr:nth-child(even) td { background: var(--surface2); }
-    .post-body .post-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin: 16px 0; display: block; }
-    .post-body .post-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
-    .post-body .post-link:hover { color: #0047dd; }
-    .post-cta { margin-top: 36px; padding: 20px 22px; background: var(--accent-light); border-radius: var(--radius); border: 1px solid #c8d8ff; }
-    .post-cta p { font-size: 14px; color: var(--text2); margin-bottom: 14px; }
-    .cta-btn { background: var(--accent); color: #fff; border: none; border-radius: 8px; padding: 9px 18px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
-    /* ── DISCLAIMER ── */
-    .disclaimer { margin-top: 24px; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); font-size: 11px; color: var(--text3); line-height: 1.6; }
-
-    /* ── LEAD FORM ── */
-    .lead-section { margin-top: 32px; background: linear-gradient(135deg, #0047dd 0%, #0057ff 100%); border-radius: 16px; overflow: hidden; }
-    .lead-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; align-items: start; }
-    @media (max-width: 700px) { .lead-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; } }
-    .lead-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
-    .lead-title { font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 14px; }
-    .lead-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.65; }
-    .lead-form { display: flex; flex-direction: column; gap: 10px; }
-    .lead-input { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 10px; padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: #fff; outline: none; transition: border 0.2s; }
-    .lead-input::placeholder { color: rgba(255,255,255,0.5); }
-    .lead-input:focus { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.18); }
-    .lead-textarea { resize: vertical; min-height: 80px; }
-    .lead-btn { background: #fff; color: var(--accent); border: none; border-radius: 10px; padding: 13px 20px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 4px; }
-    .lead-btn:hover { background: #f0f4ff; transform: translateY(-1px); }
-    .lead-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
-    .lead-success { text-align: center; padding: 48px 32px; }
-    .lead-success-icon { font-size: 40px; color: #fff; margin-bottom: 12px; }
-    .lead-success-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
-    .lead-success-sub { font-size: 14px; color: rgba(255,255,255,0.8); }
-
-    /* Desktop: show inline, hide sticky */
-    .lead-desktop { display: block; }
-    .lead-sticky { display: none; }
-
-    @media (max-width: 760px) {
-      /* Mobile: hide inline, show sticky */
-      .lead-desktop { display: none; }
-      .lead-sticky { display: flex; align-items: center; justify-content: space-between; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: linear-gradient(90deg, #0047dd, #0057ff); padding: 14px 20px; cursor: pointer; box-shadow: 0 -4px 20px rgba(0,87,255,0.3); }
-      .lead-sticky-text { font-size: 14px; font-weight: 600; color: #fff; }
-      .lead-sticky-cta { font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 100px; white-space: nowrap; }
-    }
-
-    /* Modal */
-    .lead-modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; align-items: flex-end; }
-    .lead-modal-overlay { display: flex; }
-    .lead-modal { background: linear-gradient(135deg, #0047dd, #0057ff); border-radius: 20px 20px 0 0; padding: 28px 24px 36px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
-    .lead-modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    @media (min-width: 761px) { .lead-modal-overlay { display: none !important; } .lead-sticky { display: none !important; } }
-
-    /* ── LEGAL PAGES ── */
-    .legal-page { max-width: 680px; }
-    .legal-title { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
-    .legal-date { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 28px; }
-    .legal-body { font-size: 14px; line-height: 1.75; color: var(--text2); }
-    .legal-body h2 { font-size: 16px; font-weight: 700; color: var(--text); margin: 28px 0 10px; letter-spacing: -0.3px; }
-    .legal-body p { margin-bottom: 12px; }
-    .legal-body ul { padding-left: 20px; margin-bottom: 14px; }
-    .legal-body li { margin-bottom: 6px; }
-    .legal-body strong { color: var(--text); font-weight: 600; }
-
-    /* ── SIDEBAR FOOTER ── */
-    .sidebar-footer { padding: 12px 14px; border-top: 1px solid var(--border); }
-    .sidebar-footer-site { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 8px; }
-    .sidebar-footer-links { display: flex; gap: 10px; flex-wrap: wrap; }
-    .sidebar-footer-link { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; padding: 0; font-family: var(--sans); transition: color 0.12s; text-decoration: underline; text-underline-offset: 2px; }
-    .sidebar-footer-link:hover { color: var(--accent); }
-    .brevo-box { padding: 14px 14px 16px; border-top: 1px solid var(--border); }
-    .brevo-title { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
-    .brevo-sub { font-size: 11px; color: var(--text3); margin-bottom: 10px; line-height: 1.4; }
-    .brevo-form { display: flex; flex-direction: column; gap: 7px; }
-    .brevo-input { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 7px; padding: 8px 10px; font-family: var(--sans); font-size: 12px; color: var(--text); outline: none; transition: border-color 0.15s; }
-    .brevo-input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(0,87,255,0.1); }
-    .brevo-input::placeholder { color: var(--text3); }
-    .brevo-btn { width: 100%; background: var(--accent); color: #fff; border: none; border-radius: 7px; padding: 8px; font-family: var(--sans); font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.15s; }
-    .brevo-btn:hover:not(:disabled) { background: #0047dd; }
-    .brevo-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-    .brevo-success { background: var(--green-light); color: var(--green); border-radius: 7px; padding: 9px 12px; font-size: 12px; font-weight: 600; text-align: center; }
-    .brevo-error { font-size: 11px; color: var(--red); text-align: center; }
-  `;
-
   return (
-    <>
-      <style>{CSS}</style>
-      <div className="layout">
+    <div className="layout">
+      <div className={`sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} aria-hidden={!sidebarOpen} />
 
-        {/* SIDEBAR OVERLAY (mobile) */}
-        <div className={`sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} />
-
-        {/* SIDEBAR */}
-        <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
-          <div className="sidebar-logo">
-            <img src="/logo.svg" alt="PlatniListić logo" />
-            <div className="sidebar-logo-text">
-              <div className="sidebar-logo-name">Platni<span>Listić</span></div>
-              <div className="sidebar-logo-sub">Srbija</div>
-            </div>
+      <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`} aria-label="Glavna navigacija">
+        <div className="sidebar-logo">
+          <img src="/logo.svg" alt="" width="44" height="44" decoding="async" />
+          <div className="sidebar-logo-text">
+            <div className="sidebar-logo-name">Platni<span>Listić</span></div>
+            <div className="sidebar-logo-sub">Srbija</div>
           </div>
-          <nav className="sidebar-nav">
-            <div className="sidebar-section-label">Alati</div>
-            {navItems.map(item => (
-              <button
-                key={item.path}
-                className={`nav-item ${location.pathname === item.path || (item.path === '/blog' && location.pathname.startsWith('/blog')) ? 'active' : ''}`}
-                onClick={() => { navigate(item.path); setSidebarOpen(false); }}
-              >
-                <span className="nav-icon">{item.icon}</span>
-                {item.label}
-              </button>
-            ))}
-          </nav>
-          <BrevoSignup />
-          <div className="sidebar-footer">
-            <div className="sidebar-footer-site">platnilistic.rs</div>
-            <div className="sidebar-footer-links">
-              <button className="sidebar-footer-link" onClick={() => { navigate("/privatnost"); setSidebarOpen(false); }}>Privatnost</button>
-              <button className="sidebar-footer-link" onClick={() => { navigate("/uslovi"); setSidebarOpen(false); }}>Uslovi</button>
-            </div>
+        </div>
+        <nav className="sidebar-nav">
+          <div className="sidebar-section-label">Alati</div>
+          {navItems.map(item => (
+            <button
+              key={item.path}
+              className={`nav-item ${location.pathname === item.path || (item.path === '/blog' && location.pathname.startsWith('/blog')) ? 'active' : ''}`}
+              onClick={() => { navigate(item.path); setSidebarOpen(false); }}
+              aria-current={location.pathname === item.path ? "page" : undefined}
+            >
+              <span className="nav-icon" aria-hidden="true">{item.icon}</span>
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <BrevoSignup />
+        <div className="sidebar-footer">
+          <div className="sidebar-footer-site">platnilistic.rs</div>
+          <div className="sidebar-footer-links">
+            <button className="sidebar-footer-link" onClick={() => { navigate("/privatnost"); setSidebarOpen(false); }}>Privatnost</button>
+            <button className="sidebar-footer-link" onClick={() => { navigate("/uslovi"); setSidebarOpen(false); }}>Uslovi</button>
           </div>
-        </aside>
+        </div>
+      </aside>
 
-        {/* MAIN */}
-        <main className="main">
-          {/* TOPBAR (mobile) */}
-          <div className="topbar">
-            <img src="/logo.svg" alt="PlatniListić" style={{width: 32, height: 32}} />
-            <div className="topbar-title">Platni<span>Listić</span></div>
-            <button className="menu-btn" onClick={() => setSidebarOpen(true)}>☰</button>
-          </div>
+      <main className="main">
+        <div className="topbar">
+          <img src="/logo.svg" alt="" width="32" height="32" decoding="async" />
+          <div className="topbar-title">Platni<span>Listić</span></div>
+          <button className="menu-btn" onClick={() => setSidebarOpen(true)} aria-label="Otvori meni" aria-expanded={sidebarOpen}>☰</button>
+        </div>
 
-          <div className="main-inner">
-            <Routes>
-              <Route path="/" element={
-                <>
-                  <div className="page-header">
-                    <div style={{display:"flex", alignItems:"center", gap:14}}>
-                      <img src="/logo.svg" alt="PlatniListić" style={{width: 64, height: 64}} />
-                      <div>
-                        <div className="page-title">Platni<span>Listić</span></div>
-                        <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
-                      </div>
+        <div className="main-inner">
+          <Routes>
+            <Route path="/" element={
+              <>
+                <header className="page-header">
+                  <div style={{display:"flex", alignItems:"center", gap:14}}>
+                    <img src="/logo.svg" alt="" width="64" height="64" fetchpriority="high" decoding="async" />
+                    <div>
+                      <h1 className="page-title">Platni<span>Listić</span></h1>
+                      <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
                     </div>
                   </div>
-                  <CalculatorPage />
-                  <div className="disclaimer">
-                    ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
-                  </div>
-                  <LeadForm />
-                </>
-              } />
-              <Route path="/blog" element={<BlogList />} />
-              <Route path="/blog/:slug" element={<BlogPostRoute onBack={() => navigate("/blog")} />} />
-              <Route path="/privatnost" element={<PolitikaPrivatnosti onBack={() => navigate("/")} />} />
-              <Route path="/uslovi" element={<UsloviKoriscenja onBack={() => navigate("/")} />} />
-            </Routes>
-          </div>
-        </main>
-      </div>
+                </header>
+                <CalculatorPage />
+                <div className="disclaimer">
+                  ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
+                </div>
+                <LeadForm />
+              </>
+            } />
+            <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
+            <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
+            <Route path="/privatnost" element={<Suspense fallback={<RouteLoader />}><PolitikaPrivatnosti onBack={() => navigate("/")} /></Suspense>} />
+            <Route path="/uslovi" element={<Suspense fallback={<RouteLoader />}><UsloviKoriscenja onBack={() => navigate("/")} /></Suspense>} />
+          </Routes>
+        </div>
+      </main>
       <Analytics />
-    </>
+    </div>
   );
 }
