@@ -107,6 +107,18 @@ function BlogPost({ post, navigate }) {
       <h1 className="post-full-title">{post.title}</h1>
       <div className="post-body" onClick={onBodyClick} dangerouslySetInnerHTML={{ __html: renderMd(post.body) }} />
 
+      {post.faq && post.faq.length > 0 && (
+        <section className="post-faq" aria-label="Često postavljana pitanja">
+          <h2 className="post-faq-title">Često postavljana pitanja</h2>
+          {post.faq.map((f, i) => (
+            <div className="post-faq-item" key={i}>
+              <h3>{f.q}</h3>
+              <p>{f.a}</p>
+            </div>
+          ))}
+        </section>
+      )}
+
       <div className="post-cta">
         <p>Proverite tačan obračun vaše zarade koristeći naš besplatni kalkulator — bruto u neto, doprinosi, porez i PDF platni listić u nekoliko sekundi.</p>
         <div className="cta-link-group">
@@ -160,6 +172,7 @@ export function BlogPostRoute() {
       "inLanguage": "sr-RS",
       "url": `${SITE_URL}/blog/${post.id}`,
     } : null,
+    faq: post && post.faq ? post.faq : null,
   });
 
   if (!post) return (

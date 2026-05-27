@@ -286,8 +286,8 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
     id: "kako-se-obracunava-bolovanje",
     date: "1. maj 2026",
     tag: "Bolovanje",
-    title: "Kako se obračunava bolovanje u Srbiji — naknada zarade za vreme privremene sprečenosti za rad",
-    summary: "Naknada za bolovanje iznosi minimum 65% prosečne zarade za prvih 30 dana, a zatim ide na teret RFZO. Detaljno objašnjenje obračuna sa primerima.",
+    title: "Kako se obračunava bolovanje do 30 dana u Srbiji — kalkulator i naknada zarade (PDF)",
+    summary: "Obračun bolovanja do 30 dana: naknada iznosi minimum 65% prosečne zarade, a od 31. dana ide na teret RFZO. Kalkulator naknade sa primerima i PDF platnim listićem.",
     body: `
 ![Bolovanje i naknada zarade](https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80)
 
@@ -368,9 +368,9 @@ Zaposleni je dužan da:
 3. Dostavi doznaku poslodavcu najkasnije u roku od 5 dana
 4. Bude dostupan na adresi prijavljenoj u doznaki (kontrole RFZO-a)
 
-## Kalkulator obračuna bolovanja
+## Kalkulator obračuna bolovanja do 30 dana (sa PDF-om)
 
-Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i naknadu prema unetom procentu (65–100%). Primer kalkulacije možete videti u kartici „Obračun" — bolovanje se prikazuje kao zasebna stavka.
+Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i naknadu za **bolovanje do 30 dana** prema unetom procentu (65–100%). Primer kalkulacije možete videti u kartici „Obračun" — bolovanje se prikazuje kao zasebna stavka, a ceo obračun možete preuzeti kao **PDF platni listić**.
 
 ## Korisni linkovi
 
@@ -461,6 +461,10 @@ Pravilo je da se minuli rad računa na **osnovnu bruto zaradu** za odrađeni mes
 
 Sudska praksa je u nekim slučajevima dozvoljavala da se minuli rad računa i na uvećanu zaradu (sa prekovremenim radom), ali pravilo je da se primenjuje na osnovnu zaradu.
 
+## Da li se minuli rad obračunava na godišnji odmor?
+
+Da. Naknada za [godišnji odmor](/blog/godisnji-odmor-naknada) računa se na osnovu prosečne zarade u prethodnih 12 meseci, a u tu prosečnu zaradu ulazi i minuli rad. To znači da se minuli rad posredno obračunava i u naknadi za godišnji odmor — zaposleni za dane odmora ne gubi pravo na uvećanje po osnovu godina staža.
+
 ## Kalkulator minulog rada
 
 U našem [kalkulatoru zarade](/) možete uneti broj godina staža kod trenutnog poslodavca i stopu po godini — minuli rad se automatski obračunava i prikazuje kao zasebna stavka u Bruto 1. Pogledajte i kako se obračunava [prekovremeni rad](/blog/prekovremeni-rad), koji se često kombinuje sa minulim radom.
@@ -480,6 +484,10 @@ Zaposleni može pokrenuti tužbu za isplatu zaostatka uz zakonsku zateznu kamatu
 - [Inspekcija rada Srbije](https://www.minrzs.gov.rs/sr/inspekcija-rada)
 - [Sindikat samostalnih sindikata Srbije — minuli rad](http://www.sindikat.rs/)
     `,
+    faq: [
+      { q: "Koliko iznosi minuli rad po godini staža?", a: "Zakonski minimum je 0,4% osnovne zarade za svaku godinu rada kod istog poslodavca. Kolektivnim ugovorom može se utvrditi i veći procenat (npr. 0,5%)." },
+      { q: "Da li se minuli rad obračunava na godišnji odmor?", a: "Da. Naknada za godišnji odmor računa se iz prosečne zarade poslednjih 12 meseci, u koju ulazi i minuli rad, pa se on posredno obračunava i u naknadi za godišnji odmor." },
+    ],
   },
   {
     id: "porez-na-bonus",
@@ -602,6 +610,8 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
 
 **Jubilarna nagrada** je jednokratna isplata zaposlenom povodom navršenih „okruglih" godina rada kod istog poslodavca. U Srbiji je ova vrsta nagrade poreski povlašćena — deo iznosa je **u potpunosti neoporeziv**.
 
+**Kratak odgovor:** za 2026. godinu, uz prosečnu zaradu od oko 140.000 RSD, jubilarna nagrada neoporezivo iznosi do **140.000 RSD za 10 godina**, do **280.000 RSD za 20 godina**, do **350.000 RSD za 30 godina** i do **420.000 RSD za 40 godina** rada kod istog poslodavca.
+
 ## Pravni okvir
 
 Jubilarna nagrada je regulisana na dva nivoa:
@@ -624,14 +634,14 @@ Najčešća praksa u Srbiji je da se jubilarna nagrada isplaćuje za:
 
 **Prosečna mesečna zarada u Republici Srbiji** koja se uzima u obzir je ona koju je poslednju objavio Republički zavod za statistiku — krajem 2025. godine ova prosečna zarada iznosila je oko **140.000 RSD bruto**.
 
-## Šta to znači u dinarima?
+## Koliko iznosi jubilarna nagrada za 10, 20, 30 i 40 godina?
 
-Za 2026. godinu, ako je zvanična prosečna zarada 140.000 RSD bruto:
+Za 2026. godinu, ako je zvanična prosečna zarada 140.000 RSD bruto, jubilarna nagrada (neoporezivi maksimum) iznosi:
 
-- **10 godina:** do 140.000 RSD neoporezivo
-- **20 godina:** do 280.000 RSD neoporezivo
-- **30 godina:** do 350.000 RSD neoporezivo
-- **40 godina:** do 420.000 RSD neoporezivo
+- **Jubilarna nagrada za 10 godina:** do 140.000 RSD neoporezivo
+- **Jubilarna nagrada za 20 godina:** do 280.000 RSD neoporezivo
+- **Jubilarna nagrada za 30 godina:** do 350.000 RSD neoporezivo
+- **Jubilarna nagrada za 40 godina staža:** do 420.000 RSD neoporezivo
 
 Ako poslodavac isplati **veći iznos** od neoporezivog limita, razlika podleže porezu na zaradu (10%) i punim doprinosima (35,05%) — kao i bilo koji drugi bonus. Detaljan vodič za [porez na bonus](/blog/porez-na-bonus) objašnjava ovaj princip.
 
@@ -700,6 +710,13 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
 - [Republički zavod za statistiku — prosečne zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
 - [Sindikat samostalnih sindikata Srbije](http://www.sindikat.rs/)
     `,
+    faq: [
+      { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Za 20 godina rada kod istog poslodavca jubilarna nagrada je neoporeziva do dvostruke prosečne zarade u Srbiji — u 2026. godini to je oko 280.000 RSD. Poslodavac može isplatiti i više, ali se razlika iznad limita oporezuje kao zarada." },
+      { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Za 10 godina rada jubilarna nagrada je neoporeziva do jedne prosečne mesečne zarade u Republici Srbiji — oko 140.000 RSD u 2026. godini." },
+      { q: "Koliko iznosi jubilarna nagrada za 30 godina?", a: "Za 30 godina rada jubilarna nagrada je neoporeziva do 2,5 prosečne zarade — oko 350.000 RSD u 2026. godini." },
+      { q: "Koliko iznosi jubilarna nagrada za 40 godina staža?", a: "Za 40 godina rada jubilarna nagrada je neoporeziva do tri prosečne zarade — oko 420.000 RSD u 2026. godini." },
+      { q: "Kako izgleda primer obračuna jubilarne nagrade?", a: "Ako poslodavac za 20 godina isplati 250.000 RSD, a neoporezivi limit je 280.000 RSD, ceo iznos je neoporeziv i zaposleni dobija 250.000 RSD na račun. Ako isplati 400.000 RSD, oporezuje se samo 120.000 RSD iznad limita." },
+    ],
   },
   {
     id: "neoporezivi-2025",
@@ -819,14 +836,17 @@ Za precizan obračun bilo koje zarade, koristite naš [besplatni bruto-neto kalk
 
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 
-## Minimalni koeficijent uvećanja
+**Kratak odgovor:** prema **Zakonu o radu Srbije, član 108**, za prekovremeni rad pripada **uvećana zarada od najmanje 26%** u odnosu na redovnu satnicu. Isto uvećanje (minimum 26%) važi i za noćni rad, rad nedeljom i rad na praznik.
+
+## Minimalni koeficijent uvećanja (najmanje 26%, član 108)
 
 Za prekovremeni rad, poslodavac je obavezan da plati zaradu uvećanu za **najmanje 26%** u odnosu na redovnu satnicu. Ovo je zakonski minimum — kolektivnim ugovorom ili ugovorom o radu može se utvrditi i veći koeficijent.
 
 Isto uvećanje od minimum 26% važi za:
 - Noćni rad (između 22:00 i 06:00 sati)
 - Rad vikendom (subota i nedelja)
-- Rad na državni praznik
+- **Rad nedeljom** — uvećanje najmanje 26%
+- **Rad na praznik** (državni praznik) — uvećanje najmanje 26%
 
 ## Kako se računa satnica za prekovremeni?
 
@@ -855,6 +875,11 @@ Koristite naš [PlatniListić kalkulator](/) da proverite da li vam je prekovrem
 - [Inspekcija rada Srbije — prijava nepravilnosti](https://www.minrzs.gov.rs/sr/inspekcija-rada)
 - [Sindikat samostalnih sindikata Srbije](http://www.sindikat.rs/)
     `,
+    faq: [
+      { q: "Koliko se plaća prekovremeni rad po Zakonu o radu?", a: "Prema članu 108. Zakona o radu Srbije, za prekovremeni rad pripada uvećana zarada od najmanje 26% u odnosu na redovnu satnicu. Kolektivnim ugovorom može se utvrditi i veći procenat." },
+      { q: "Koliko se plaća rad nedeljom?", a: "Za rad nedeljom pripada uvećanje od najmanje 26% u odnosu na redovnu satnicu — isto kao i za prekovremeni i noćni rad, prema članu 108. Zakona o radu." },
+      { q: "Koliko se plaća rad na praznik?", a: "Za rad na državni praznik pripada uvećana zarada od najmanje 26%. Mnogi kolektivni ugovori predviđaju i veće uvećanje za rad na praznik." },
+    ],
   },
   {
     id: "minimalna-zarada-2025",
@@ -1028,12 +1053,14 @@ Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake dr
     id: "godisnji-odmor-naknada",
     date: "15. januar 2026",
     tag: "Zakon o radu",
-    title: "Naknada zarade za godišnji odmor — kako se obračunava?",
-    summary: "Za vreme godišnjeg odmora zaposleni ima pravo na naknadu u visini prosečne zarade. Objašnjavamo kako se tačno obračunava i šta kaže Zakon o radu.",
+    title: "Kako se računa godišnji odmor — naknada zarade po novom Zakonu o radu",
+    summary: "Kako se računa i kako se plaća godišnji odmor po novom zakonu? Naknada za godišnji odmor ne može biti niža od prosečne zarade u prethodnih 12 meseci. Formula, primer obračuna i prava zaposlenih.",
     body: `
 ![Godišnji odmor i odmor od posla](https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80)
 
 Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Zakonom o radu (čl. 68–76)**. Za vreme korišćenja godišnjeg odmora, zaposleni ima pravo na naknadu zarade — ali kako se ona tačno obračunava?
+
+**Kratak odgovor:** naknada za godišnji odmor računa se kao **prosečna zarada zaposlenog u prethodnih 12 meseci** (čl. 104 Zakona o radu) i ne može biti niža od tog proseka. Po novom zakonu, u prosek ulaze osnovna zarada, minuli rad i sva redovna uvećanja.
 
 ## Pravo na godišnji odmor
 
@@ -1088,17 +1115,24 @@ Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zara
 - [Inspekcija rada — prava zaposlenih](https://www.minrzs.gov.rs/sr/inspekcija-rada)
 - [Ministarstvo za rad](https://www.minrzs.gov.rs/)
     `,
+    faq: [
+      { q: "Kako se računa godišnji odmor?", a: "Naknada za godišnji odmor računa se kao prosečna bruto zarada zaposlenog u prethodnih 12 meseci, podeljena brojem radnih dana u mesecu i pomnožena brojem dana odmora. Ne može biti niža od tog proseka (čl. 104 Zakona o radu)." },
+      { q: "Kako se plaća godišnji odmor po novom zakonu o radu?", a: "Po važećem Zakonu o radu, za dane godišnjeg odmora isplaćuje se naknada u visini prosečne zarade iz prethodnih 12 meseci, sa svim doprinosima (19,90% zaposleni) i porezom (10%) kao i kod redovne zarade." },
+      { q: "Koliko dana godišnjeg odmora pripada zaposlenom?", a: "Zakonski minimum je 20 radnih dana godišnje. Pravo na puni godišnji odmor stiče se nakon 6 meseci neprekidnog rada kod istog poslodavca, a kolektivnim ugovorom može se utvrditi i duži odmor." },
+    ],
   },
   {
     id: "otpremnina-obracun",
     date: "5. januar 2026",
     tag: "Zakon o radu",
-    title: "Otpremnina u Srbiji — pravo, iznos i obračun",
-    summary: "Ko ima pravo na otpremninu, koliko iznosi i kako se obračunava? Sve što trebate znati po Zakonu o radu Srbije.",
+    title: "Otpremnina u Srbiji — minimalna otpremnina po Zakonu o radu, iznos i porez",
+    summary: "Otpremnina u Srbiji: ko ima pravo, kolika je minimalna otpremnina po Zakonu o radu i kako se plaća porez na otpremninu. Obračun za tehnološki višak i odlazak u penziju.",
     body: `
 ![Prestanak radnog odnosa i otpremnina](https://images.unsplash.com/photo-1586769852044-692d6e3703f0?w=800&q=80)
 
 Otpremnina je jednokratna novčana naknada koju poslodavac isplaćuje zaposlenom prilikom prestanka radnog odnosa pod određenim uslovima. Regulisana je **Zakonom o radu (čl. 158–160)**.
+
+**Kratak odgovor:** minimalna otpremnina po Zakonu o radu za tehnološki višak iznosi **1/3 prosečne mesečne zarade za svaku navršenu godinu rada** kod tog poslodavca. Otpremnina do zakonskog minimuma je oslobođena poreza i doprinosa; porez na otpremninu (10%) plaća se samo na iznos iznad zakonskog minimuma.
 
 ## Ko ima pravo na otpremninu?
 
@@ -1159,5 +1193,10 @@ Pogledajte i [jubilarnu nagradu](/blog/jubilarna-nagrada) — koju neki poslodav
 - [Poreska uprava — porez na otpremninu](https://www.purs.gov.rs/)
 - [Sindikat samostalnih sindikata Srbije](http://www.sindikat.rs/)
     `,
+    faq: [
+      { q: "Kolika je minimalna otpremnina po Zakonu o radu?", a: "Za tehnološki višak minimalna otpremnina iznosi najmanje 1/3 prosečne mesečne zarade zaposlenog (prosek poslednjih 12 meseci) za svaku navršenu godinu rada kod tog poslodavca. Poslodavac može isplatiti i više kolektivnim ugovorom." },
+      { q: "Da li se plaća porez na otpremninu?", a: "Otpremnina do zakonom propisanog minimuma oslobođena je poreza i doprinosa. Na iznos koji prelazi zakonski minimum plaća se porez na zaradu od 10% i pripadajući doprinosi, kao i na svaki drugi bonus." },
+      { q: "Kolika je otpremnina pri odlasku u penziju?", a: "Pri odlasku u penziju zaposleni ima pravo na otpremninu od najmanje dve prosečne mesečne zarade u Republici Srbiji prema poslednjem objavljenom podatku Republičkog zavoda za statistiku." },
+    ],
   },
 ];

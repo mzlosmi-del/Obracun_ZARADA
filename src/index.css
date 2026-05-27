@@ -235,6 +235,12 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .cta-btn-secondary:hover { background: #fff; color: #0047dd; }
 .cta-link-group { display: flex; gap: 10px; flex-wrap: wrap; }
 
+.post-faq { margin-top: 36px; padding-top: 24px; border-top: 1px solid var(--border); }
+.post-faq-title { font-size: 20px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 14px; }
+.post-faq-item { padding: 14px 0; border-bottom: 1px solid var(--border); }
+.post-faq-item h3 { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.post-faq-item p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
 .post-related { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
 .post-related-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 14px; letter-spacing: -0.3px; }
 .post-related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
@@ -245,6 +251,19 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── DISCLAIMER ── */
 .disclaimer { margin-top: 24px; padding: 12px 16px; background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius); font-size: 11px; color: var(--text3); line-height: 1.6; }
+
+/* ── HOME INTRO & FAQ (SEO content) ── */
+.home-intro { margin: 16px 0 8px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.home-intro-title { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 8px; }
+.home-intro p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+.home-faq { margin-top: 24px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.home-faq-title { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 14px; }
+.home-faq-item { padding: 12px 0; border-top: 1px solid var(--border); }
+.home-faq-item:first-of-type { border-top: none; padding-top: 0; }
+.home-faq-item h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.home-faq-item p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.home-faq-item a { color: var(--accent); text-decoration: none; }
+.home-faq-item a:hover { text-decoration: underline; }
 
 /* ── LEAD FORM ── */
 .lead-section { margin-top: 32px; background: linear-gradient(135deg, #0047dd 0%, #0057ff 100%); border-radius: 16px; overflow: hidden; }

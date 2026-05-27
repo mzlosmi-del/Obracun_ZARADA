@@ -454,8 +454,8 @@ function LeadForm() {
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
 function CalculatorPage() {
   useSeo({
-    title: "Platni Listić – Kalkulator Bruto Neto Zarade Srbija 2026 | PlatniListić",
-    description: "Besplatni online kalkulator bruto neto zarade u Srbiji 2026. Obračunajte porez, doprinose, prekovremeni rad, minuli rad, bolovanje, otpremninu i regres. PDF platni listić i PPP-PD XML.",
+    title: "Bruto u Neto Kalkulator — Obračun Zarade Srbija 2026 | PlatniListić",
+    description: "Besplatni kalkulator bruto u neto zarade u Srbiji 2026. Obračun zarade, poreza i doprinosa, prekovremeni i minuli rad, bolovanje, otpremnina i regres. PDF platni listić i PPP-PD XML.",
     path: "/",
   });
   const now = new Date();
@@ -1004,10 +1004,53 @@ export default function App() {
                     </div>
                   </div>
                 </header>
+                <section className="home-intro">
+                  <h2 className="home-intro-title">Kalkulator bruto u neto zarade — Srbija 2026</h2>
+                  <p>
+                    Besplatan <strong>kalkulator zarade</strong> za obračun zarade u Srbiji u 2026. godini.
+                    Pretvorite <strong>bruto u neto</strong> (i neto u bruto) i izračunajte porez na zaradu,
+                    doprinose, prekovremeni i minuli rad, bolovanje, otpremninu i regres. Rezultat preuzimate
+                    kao PDF platni listić i PPP-PD XML datoteku.
+                  </p>
+                </section>
                 <CalculatorPage />
                 <div className="disclaimer">
                   ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
                 </div>
+                <section className="home-faq" aria-label="Česta pitanja o obračunu zarade">
+                  <h2 className="home-faq-title">Česta pitanja — obračun zarade i bruto u neto</h2>
+                  <div className="home-faq-item">
+                    <h3>Kako izračunati neto zaradu iz bruto u Srbiji?</h3>
+                    <p>
+                      Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos
+                      iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto
+                      100.000 RSD daje neto oko 73.542 RSD. Naš kalkulator radi obračun u oba smera.
+                    </p>
+                  </div>
+                  <div className="home-faq-item">
+                    <h3>Kolika je minimalna zarada u Srbiji u 2026. godini?</h3>
+                    <p>
+                      Od februara 2026. minimalna bruto zarada iznosi 93.264 RSD mesečno, a minimalna neto
+                      zarada 69.000 RSD. Više u vodiču o <a href="/blog/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
+                    </p>
+                  </div>
+                  <div className="home-faq-item">
+                    <h3>Koliki su doprinosi za socijalno osiguranje?</h3>
+                    <p>
+                      Zaposleni plaća 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), a poslodavac
+                      15,15% (PIO 10%, zdravstvo 5,15%) — ukupno 35,05%. Detaljnije u članku o
+                      <a href="/blog/doprinosi-srbija"> doprinosima u Srbiji</a>.
+                    </p>
+                  </div>
+                  <div className="home-faq-item">
+                    <h3>Koja je razlika između bruto 1, bruto 2 i neto zarade?</h3>
+                    <p>
+                      Bruto 1 je ugovorena zarada, neto je iznos na račun, a bruto 2 je ukupan trošak poslodavca
+                      (Bruto 1 + doprinosi poslodavca). Pogledajte vodič o
+                      <a href="/blog/bruto-neto-razlika"> razlici između bruto i neto zarade</a>.
+                    </p>
+                  </div>
+                </section>
                 <LeadForm />
               </>
             } />
