@@ -1,5 +1,6 @@
 import { preview } from "vite";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chromium from "@sparticuz/chromium";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { mkdir, writeFile } from "node:fs/promises";
@@ -59,9 +60,11 @@ async function run() {
   const server = await preview({ preview: { port: 4191, strictPort: true } });
   const base = `http://localhost:4191`;
 
+  chromium.setGraphicsMode = false;
   const browser = await puppeteer.launch({
-    headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath: await chromium.executablePath(),
+    headless: true,
   });
 
   let failures = 0;
