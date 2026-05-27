@@ -26,8 +26,20 @@ function setCanonical(url) {
   el.href = url;
 }
 
-export function useSeo({ title, description, path = "/", image, jsonLd }) {
+export function useSeo({ title, description, path = "/", image, jsonLd, faq }) {
   const jsonLdStr = jsonLd ? JSON.stringify(jsonLd) : "";
+  const faqLd = faq && faq.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faq.map((f) => ({
+          "@type": "Question",
+          "name": f.q,
+          "acceptedAnswer": { "@type": "Answer", "text": f.a },
+        })),
+      }
+    : null;
+  const faqLdStr = faqLd ? JSON.stringify(faqLd) : "";
 
   useEffect(() => {
     const fullTitle = title || DEFAULT_TITLE;
@@ -51,6 +63,9 @@ export function useSeo({ title, description, path = "/", image, jsonLd }) {
     const ROUTE_LD_ID = "route-jsonld";
     const prev = document.getElementById(ROUTE_LD_ID);
     if (prev) prev.remove();
+    const FAQ_LD_ID = "route-faq-jsonld";
+    const prevFaq = document.getElementById(FAQ_LD_ID);
+    if (prevFaq) prevFaq.remove();
 
     let scriptEl = null;
     if (jsonLdStr) {
@@ -61,8 +76,18 @@ export function useSeo({ title, description, path = "/", image, jsonLd }) {
       document.head.appendChild(scriptEl);
     }
 
+    let faqEl = null;
+    if (faqLdStr) {
+      faqEl = document.createElement("script");
+      faqEl.type = "application/ld+json";
+      faqEl.id = FAQ_LD_ID;
+      faqEl.textContent = faqLdStr;
+      document.head.appendChild(faqEl);
+    }
+
     return () => {
       if (scriptEl && scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
+      if (faqEl && faqEl.parentNode) faqEl.parentNode.removeChild(faqEl);
     };
-  }, [title, description, path, image, jsonLdStr]);
+  }, [title, description, path, image, jsonLdStr, faqLdStr]);
 }
