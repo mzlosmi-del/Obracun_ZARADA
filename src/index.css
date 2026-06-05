@@ -339,3 +339,18 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Homepage worked-examples table (SEO content block) */
+.home-examples{width:100%;border-collapse:collapse;margin:16px 0 8px;font-size:15px}
+.home-examples th,.home-examples td{padding:10px 12px;text-align:right;border-bottom:1px solid #e6eaf0}
+.home-examples th:first-child,.home-examples td:first-child{text-align:left}
+.home-examples thead th{font-weight:600;color:#0f1623;border-bottom:2px solid #d7dde6}
+.home-examples tbody tr:last-child td{border-bottom:none}
+.home-examples-note{font-size:13px;color:#5b6573;margin-top:4px}
+
+/* Homepage internal-links (popularni vodiči) */
+.home-guides{margin:24px 0 8px}
+.home-guides-title{font-size:18px;font-weight:600;margin-bottom:10px}
+.home-guides ul{list-style:none;display:grid;gap:8px}
+.home-guides a{color:#0057ff;text-decoration:none}
+.home-guides a:hover{text-decoration:underline}
