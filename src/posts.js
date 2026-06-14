@@ -1,5 +1,199 @@
 export const POSTS = [
   {
+    id: "ugovor-o-delu",
+    date: "14. jun 2026",
+    tag: "Ugovori",
+    title: "Ugovor o delu 2026 — porez, doprinosi i obračun (sa primerom)",
+    summary: "Ugovor o delu u Srbiji 2026: porez 20%, PIO 24% i zdravstvo 10,3%, normirani troškovi 20% i primer obračuna bruto u neto — koliko zaista ostaje na ruke.",
+    body: `
+![Ugovor o delu u Srbiji — porez, doprinosi i obračun](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80)
+
+**Ugovor o delu** je jedan od najčešćih oblika angažovanja van radnog odnosa u Srbiji — koristi se za konkretan, samostalan posao sa jasnim rezultatom. Ali upravo zbog posebnog poreskog tretmana, mnogi ne znaju **koliko se zaista plaća poreza i doprinosa** i koliko ostaje „na ruke". U ovom vodiču objašnjavamo obračun za **2026. godinu** korak po korak, sa konkretnim primerom i poređenjem sa ugovorom o radu.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Za zvaničan obračun konkretne isplate konsultujte knjigovođu ili Poresku upravu, jer se parametri mogu menjati u toku godine.
+
+## Šta je ugovor o delu?
+
+Ugovor o delu je uređen **Zakonom o radu** (član 199) i **Zakonom o obligacionim odnosima**. Njime se jedno lice (izvršilac) obavezuje da za naručioca obavi **tačno određen, samostalan posao** — fizički ili intelektualni — a naručilac da mu za to isplati naknadu.
+
+Ključno je da posao:
+
+- predstavlja **zaokruženu celinu** sa definisanim rezultatom (npr. izrada sajta, prevod, projekat, popravka),
+- je **van pretežne delatnosti** naručioca,
+- nema elemente stalnog rada (radno vreme, kontrola, uklapanje u organizaciju) — u suprotnom postoji rizik da se tretira kao **prikriveni radni odnos**.
+
+Po ugovoru o delu **ne ostvaruju se prava iz radnog odnosa** — nema godišnjeg odmora, bolovanja, ni otpremnine.
+
+## Koliko se plaća poreza i doprinosa u 2026?
+
+Naknada po ugovoru o delu oporezuje se kao **drugi prihod** (ugovorena naknada za rad), a ne kao zarada. Obračun se uvek radi iz **bruto** iznosa, po sledećim pravilima za 2026. godinu:
+
+- **Normirani troškovi: 20%** bruto naknade (umanjuju osnovicu),
+- **Porez na dohodak građana: 20%** na osnovicu,
+- **Doprinos za PIO: 24%** na osnovicu,
+- **Doprinos za zdravstveno osiguranje: 10,3%** na osnovicu — **samo ako lice nije osigurano po drugom osnovu**.
+
+Osnovica za porez i doprinose je, dakle, **bruto naknada umanjena za 20% normiranih troškova**.
+
+> **Važno:** ako je izvršilac već zaposlen, penzioner ili na drugi način zdravstveno osiguran, **zdravstveni doprinos od 10,3% se ne plaća** — plaćaju se samo porez (20%) i PIO (24%).
+
+## Primer obračuna ugovora o delu (bruto 100.000 dinara)
+
+Pretpostavimo da je ugovorena **bruto naknada 100.000 dinara**.
+
+| Stavka | Iznos |
+|---|---|
+| Bruto naknada | 100.000 |
+| Normirani troškovi (20%) | 20.000 |
+| **Osnovica** | **80.000** |
+| Porez (20% od 80.000) | 16.000 |
+| Doprinos za PIO (24% od 80.000) | 19.200 |
+| Doprinos za zdravstvo (10,3% od 80.000) | 8.240 |
+
+**Neto iznos (ako je lice osigurano po drugom osnovu — npr. zaposleno):**
+
+100.000 − 16.000 − 19.200 = **64.800 dinara**
+
+**Neto iznos (ako lice nije osigurano po drugom osnovu):**
+
+100.000 − 16.000 − 19.200 − 8.240 = **56.560 dinara**
+
+Isti princip „bruto u neto" možete brzo proveriti i [kalkulatorom zarade](/), a logiku odnosa bruto i neto detaljno objašnjavamo u vodiču o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika).
+
+## Ko obračunava i plaća porez i doprinose?
+
+- **Ako je naručilac firma ili preduzetnik** — on obračunava, obustavlja i uplaćuje sve dažbine, podnosi **PPP-PD** prijavu, a izvršiocu isplaćuje **neto** iznos. Izvršilac nema dodatnih obaveza.
+- **Ako je naručilac fizičko lice** (bez zaposlenih) — **izvršilac sam** obračunava i plaća porez i doprinose i podnosi prijavu (obrazac **PP OPO**), u roku od 30 dana od isplate.
+
+## Ugovor o delu, privremeni poslovi i ugovor o radu — razlika
+
+Ovo su tri različita oblika angažovanja, sa različitim pravima i troškovima:
+
+| Obeležje | Ugovor o delu | Privremeni i povremeni poslovi | Ugovor o radu |
+|---|---|---|---|
+| Pravni osnov | Van radnog odnosa | Van radnog odnosa | Radni odnos |
+| Predmet | Konkretan rezultat | Povremeni posao | Kontinuirani rad |
+| Osnovica | Bruto − 20% norm. troškova | Bruto naknada (puna) | Bruto zarada |
+| Prava iz radnog odnosa | Ne | Ograničena | Puna (odmor, bolovanje…) |
+| Topli obrok / regres | Ne | Ne | Da |
+
+Ako vas zanima kako se obračunava puna zarada iz radnog odnosa, pogledajte vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i o tome da li su [topli obrok i regres obavezni](/blog/topli-obrok-i-regres).
+
+## Ugovor o delu i penzija (radni staž)
+
+Ugovor o delu **ne donosi radni staž** kao zaposlenje, ali se na naknadu **uvek plaća PIO doprinos (24%)**, pa uplaćeni iznos ulazi u evidenciju penzijskog osiguranja i utiče na buduću penziju. Staž se ne računa po trajanju angažovanja, već po visini uplaćenih doprinosa. Kako se penzija obračunava, objasnili smo u vodiču [kako se obračunava penzija](/blog/kako-se-obracunava-penzija).
+
+## Da li je ugovor o delu povoljniji od frilenser-statusa ili paušala?
+
+Za **povremene, jednokratne poslove** ugovor o delu je najjednostavniji. Ali ako ostvarujete **redovne prihode** od samostalnog rada, često je povoljnije:
+
+- **samooporezivanje kao frilenser** — pogledajte [porez za frilensere (Model A i B)](/blog/porez-za-frilensere), ili
+- **paušalno oporezivanje** kao preduzetnik — uslovi i iznosi su u vodiču o [paušalnom oporezivanju](/blog/pausalno-oporezivanje).
+
+Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdravstvo bez gornjeg limita po isplati) zna biti viša nego kod paušala. Konkretan izbor zavisi od visine i učestalosti prihoda — za procenu se obratite knjigovođi.
+
+## Česte greške
+
+- **Korišćenje ugovora o delu za stalan posao.** Ako angažovanje ima elemente radnog odnosa, inspekcija ga može prekvalifikovati u ugovor o radu.
+- **Zaboravljanje doprinosa.** Porez je samo deo obaveze — PIO (24%) je po pravilu veći od poreza.
+- **Pogrešna pretpostavka o zdravstvu.** Zdravstveni doprinos (10,3%) plaća se samo ako niste osigurani po drugom osnovu.
+- **Fizičko lice kao isplatilac.** Kada vam plaća fizičko lice, vi sami podnosite PP OPO i plaćate dažbine.
+
+## Korisni linkovi
+
+- [Poreska uprava Srbije](https://www.purs.gov.rs/)
+- [Zakon o radu (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
+- [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
+    `,
+    faq: [
+      { q: "Koliko se plaća porez i doprinosi na ugovor o delu u 2026?", a: "Osnovicu čini bruto naknada umanjena za 20% normiranih troškova. Na tu osnovicu plaća se porez 20% i doprinos za PIO 24%, a doprinos za zdravstveno osiguranje 10,3% samo ako lice nije osigurano po drugom osnovu." },
+      { q: "Koliko ostaje neto od 100.000 dinara po ugovoru o delu?", a: "Osnovica je 80.000 (100.000 − 20% normiranih troškova). Porez je 16.000, a PIO 19.200, pa je neto 64.800 dinara ako je lice osigurano po drugom osnovu. Ako nije osigurano, dodaje se zdravstvo 8.240, pa je neto 56.560 dinara." },
+      { q: "Da li ugovor o delu nosi radni staž i penziju?", a: "Ugovor o delu ne donosi radni staž kao zaposlenje, ali se na naknadu uvek plaća doprinos za PIO (24%), pa uplaćeni iznos ulazi u evidenciju penzijskog osiguranja i utiče na buduću penziju." },
+      { q: "Ko plaća porez i doprinose za ugovor o delu?", a: "Ako je naručilac firma ili preduzetnik, on obračunava i uplaćuje sve dažbine i podnosi PPP-PD, a izvršiocu isplaćuje neto iznos. Ako je naručilac fizičko lice, izvršilac sam obračunava i plaća dažbine i podnosi prijavu PP OPO u roku od 30 dana." },
+      { q: "Koja je razlika između ugovora o delu i ugovora o radu?", a: "Ugovor o delu je angažovanje van radnog odnosa za konkretan rezultat, bez prava na godišnji odmor, bolovanje, topli obrok i regres. Ugovor o radu zasniva radni odnos sa punim pravima i standardnim obračunom zarade." },
+    ],
+  },
+
+  {
+    id: "topli-obrok-i-regres",
+    date: "11. jun 2026",
+    tag: "Zarada",
+    title: "Topli obrok i regres 2026 — da li su obavezni i kako se obračunavaju?",
+    summary: "Topli obrok i regres za godišnji odmor su, prema Zakonu o radu, sastavni deo zarade u Srbiji. Objašnjavamo da li su obavezni, da li ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade tokom bolovanja i godišnjeg odmora.",
+    body: `
+![Topli obrok i regres u Srbiji](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80)
+
+**Topli obrok** i **regres za godišnji odmor** česta su tema nesporazuma između zaposlenih i poslodavaca. Mnogi misle da su to dodatne, dobrovoljne isplate — ali prema **Zakonu o radu**, oni su **sastavni deo zarade**. U ovom vodiču objašnjavamo šta zakon propisuje u **2026. godini**, da li ova primanja ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Za konkretnu situaciju konsultujte pravnika ili knjigovođu.
+
+## Da li su topli obrok i regres deo zarade?
+
+Da. Prema **Zakonu o radu**, zarada se sastoji iz zarade za obavljeni rad, ali i iz drugih primanja po osnovu radnog odnosa — u koja spadaju **topli obrok** (naknada troškova ishrane u toku rada) i **regres** (naknada za korišćenje godišnjeg odmora).
+
+Pošto su deo zarade, ova primanja **podležu porezu na zaradu i doprinosima**, isto kao i osnovna zarada.
+
+## Da li su obavezni?
+
+Poslodavac je **obavezan** da zaposlenom obezbedi naknadu za topli obrok i regres. Međutim, **zakon ne propisuje minimalni iznos** ovih naknada — njihovu visinu utvrđuje poslodavac svojim **opštim aktom** (kolektivnim ugovorom ili pravilnikom o radu) ili **ugovorom o radu**.
+
+Drugim rečima, obaveza isplate postoji, ali konkretan iznos zavisi od akta poslodavca.
+
+## Odnos prema minimalnoj zaradi
+
+Ovo je ključna stavka koju mnogi previde: **topli obrok i regres ne mogu biti ukalkulisani u minimalnu zaradu**. Zaposleni koji prima minimalac ima pravo na topli obrok i regres **pored** iznosa minimalne zarade, a ne umesto njega.
+
+Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/blog/minimalna-zarada-2026).
+
+## Kako se oporezuju
+
+Kao deo zarade, topli obrok i regres ulaze u **bruto** osnovicu i na njih se obračunavaju:
+
+- **doprinosi za socijalno osiguranje** (zaposleni 19,90%, poslodavac 15,15%),
+- **porez na zaradu** od 10% (na deo iznad neoporezivog iznosa zarade).
+
+To znači da se topli obrok i regres oporezuju zajedno sa ostatkom zarade u mesecu isplate. Neto efekat možete proveriti u našem [kalkulatoru zarade](/).
+
+## Regres — jednokratno ili u 12 delova?
+
+Regres za godišnji odmor može se isplatiti na dva načina, u zavisnosti od akta poslodavca:
+
+- **jednokratno**, obično pre korišćenja godišnjeg odmora, ili
+- **u dvanaestinama**, kroz mesečnu zaradu tokom cele godine.
+
+Oba načina su dozvoljena ako su uređena opštim aktom ili ugovorom o radu.
+
+## Uticaj na naknadu zarade (bolovanje i godišnji odmor)
+
+Pošto se za osnovicu naknade zarade uzima **prosečna zarada u prethodnih 12 meseci**, a topli obrok i regres su deo zarade, oni **ulaze u tu osnovicu**. To znači da utiču na visinu naknade tokom **bolovanja** i **godišnjeg odmora**.
+
+Detaljnije o naknadi za godišnji odmor pišemo u [posebnom vodiču](/blog/godisnji-odmor-naknada).
+
+## Česte greške
+
+- **Mišljenje da su topli obrok i regres dobra volja poslodavca.** Obaveza isplate postoji po zakonu, iako iznos nije propisan.
+- **Ukalkulisavanje u minimalac.** Zaposleni na minimalnoj zaradi ima pravo na ova primanja pored minimalca.
+- **Izostavljanje iz osnovice za naknadu zarade.** Topli obrok i regres ulaze u prosek za bolovanje i godišnji odmor.
+
+## Savet
+
+Proverite svoj ugovor o radu i opšti akt poslodavca da vidite kako su definisani iznosi toplog obroka i regresa. Ako sumnjate da vam primanja nisu pravilno obračunata, obratite se knjigovođi, pravniku ili sindikatu.
+
+Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika) i o [naknadi za godišnji odmor](/blog/godisnji-odmor-naknada).
+
+## Korisni linkovi
+
+- [Zakon o radu Republike Srbije](https://www.paragraf.rs/propisi/zakon_o_radu.html)
+- [Ministarstvo za rad, zapošljavanje, boračka i socijalna pitanja](https://www.minrzs.gov.rs/)
+    `,
+    faq: [
+      { q: "Da li su topli obrok i regres obavezni u Srbiji?", a: "Da. Poslodavac je po Zakonu o radu obavezan da zaposlenom obezbedi naknadu za topli obrok i regres za godišnji odmor. Zakon ne propisuje minimalni iznos — visinu utvrđuje poslodavac opštim aktom ili ugovorom o radu." },
+      { q: "Da li topli obrok i regres ulaze u minimalnu zaradu?", a: "Ne. Topli obrok i regres ne mogu biti ukalkulisani u minimalnu zaradu. Zaposleni koji prima minimalac ima pravo na ova primanja pored iznosa minimalne zarade." },
+      { q: "Da li se topli obrok i regres oporezuju?", a: "Da. Kao sastavni deo zarade, topli obrok i regres ulaze u bruto osnovicu i podležu doprinosima i porezu na zaradu, isto kao i osnovna zarada." },
+      { q: "Kako se isplaćuje regres za godišnji odmor?", a: "Regres se može isplatiti jednokratno (obično pre korišćenja godišnjeg odmora) ili u dvanaestinama kroz mesečnu zaradu tokom godine, u zavisnosti od opšteg akta ili ugovora o radu." },
+    ],
+  },
+  {
     id: "pausalno-oporezivanje",
     date: "8. jun 2026",
     tag: "Paušal",
@@ -85,7 +279,7 @@ Pošto prelomna tačka zavisi od konkretnih iznosa, najbolje je uporediti obe op
 
 Pre registracije proverite da li je vaša šifra delatnosti dozvoljena za paušal i zatražite okvirnu procenu mesečne obaveze za vašu opštinu. Za precizan obračun i poređenje sa samooporezivanjem konsultujte knjigovođu.
 
-Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere) i o [doprinosima u Srbiji](/blog/doprinosi-srbija), a zaradu iz radnog odnosa izračunajte [kalkulatorom zarade](/).
+Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [ugovoru o delu](/blog/ugovor-o-delu) i o [doprinosima u Srbiji](/blog/doprinosi-srbija), a zaradu iz radnog odnosa izračunajte [kalkulatorom zarade](/).
 
 ## Korisni linkovi
 
@@ -198,7 +392,7 @@ Porez i doprinosi plaćaju se u istom roku u kojem se podnosi prijava.
 
 ## Savet
 
-Ako imate redovne i veće prihode, razmotrite i **paušalno oporezivanje** kao preduzetnik — u pojedinim slučajevima je ukupna obaveza niža nego kod samooporezivanja. Za procenu konkretne situacije konsultujte knjigovođu.
+Ako imate redovne i veće prihode, razmotrite i **paušalno oporezivanje** kao preduzetnik — u pojedinim slučajevima je ukupna obaveza niža nego kod samooporezivanja. Za **povremene, jednokratne poslove** pogledajte i [ugovor o delu](/blog/ugovor-o-delu). Za procenu konkretne situacije konsultujte knjigovođu.
 
 Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [razlici između bruto i neto zarade](/blog/bruto-neto-razlika), a zaradu iz radnog odnosa izračunajte [kalkulatorom zarade](/).
 
@@ -936,20 +1130,20 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
   },
   {
     id: "neoporezivi-2025",
-    date: "1. februar 2025",
+    date: "1. februar 2026",
     tag: "Porez",
-    title: "Neoporezivi iznos zarade u 2025. godini: 28.423 RSD",
-    summary: "Od 1. februara 2025. godine, neoporezivi iznos zarade iznosi 28.423 RSD mesečno. Šta to znači za vaš obračun i koliko štedite na porezu?",
+    title: "Neoporezivi iznos zarade u 2026. godini: 34.221 RSD",
+    summary: "Od 1. februara 2026. godine, neoporezivi iznos zarade iznosi 34.221 RSD mesečno. Šta to znači za obračun poreza na zaradu i koliko štedite?",
     body: `
 ![Obračun poreza na zaradu](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
-Od 1. februara 2025. godine, neoporezivi iznos zarade u Srbiji iznosi **28.423 RSD** mesečno. Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%.
+Od 1. februara 2026. godine, neoporezivi iznos zarade u Srbiji iznosi **34.221 RSD** mesečno (povećan sa ranijih 28.423 RSD). Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%.
 
 ## Kako funkcioniše neoporezivi iznos?
 
 Poreska osnovica se dobija kada se od bruto zarade (Bruto 1) oduzme neoporezivi iznos:
 
-**Poreska osnovica = Bruto 1 − 28.423 RSD**
+**Poreska osnovica = Bruto 1 − 34.221 RSD**
 
 Na tu razliku se primenjuje stopa poreza od 10%.
 
@@ -958,15 +1152,15 @@ Na tu razliku se primenjuje stopa poreza od 10%.
 Za zaposlenog sa bruto zaradom od **100.000 RSD**:
 
 - Bruto 1: 100.000 RSD
-- Neoporezivi iznos: 28.423 RSD
-- Poreska osnovica: 71.577 RSD
-- Porez (10%): **7.158 RSD**
+- Neoporezivi iznos: 34.221 RSD
+- Poreska osnovica: 65.779 RSD
+- Porez (10%): **6.578 RSD**
 
-Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi 2.842 RSD mesečno**, odnosno 34.108 RSD godišnje.
+Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi 3.422 RSD mesečno**, odnosno oko 41.064 RSD godišnje.
 
-## Promena u 2026. godini
+## Promena u odnosu na 2025. godinu
 
-Od 1. februara 2026. godine, neoporezivi iznos raste na **34.221 RSD** — povećanje od više od 20%. Ovo je direktna posledica usklađivanja sa rastom minimalnih zarada i inflacijom. Pogledajte i pregled [minimalne zarade za 2026. godinu](/blog/minimalna-zarada-2026).
+Do 31. januara 2026. godine neoporezivi iznos je bio **28.423 RSD**. Od 1. februara 2026. povećan je na **34.221 RSD** — rast od preko 20%, kao posledica usklađivanja sa rastom zarada i inflacijom. Pogledajte i pregled [minimalne zarade za 2026. godinu](/blog/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
 
 ## Važno napomenuti
 
