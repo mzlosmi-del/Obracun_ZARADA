@@ -8,6 +8,8 @@ export const POSTS = [
     body: `
 ![Ugovor o delu u Srbiji — porez, doprinosi i obračun](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80)
 
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+
 **Ugovor o delu** je jedan od najčešćih oblika angažovanja van radnog odnosa u Srbiji — koristi se za konkretan, samostalan posao sa jasnim rezultatom. Ali upravo zbog posebnog poreskog tretmana, mnogi ne znaju **koliko se zaista plaća poreza i doprinosa** i koliko ostaje „na ruke". U ovom vodiču objašnjavamo obračun za **2026. godinu** korak po korak, sa konkretnim primerom i poređenjem sa ugovorom o radu.
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Za zvaničan obračun konkretne isplate konsultujte knjigovođu ili Poresku upravu, jer se parametri mogu menjati u toku godine.
@@ -99,8 +101,9 @@ Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdrav
 - **Pogrešna pretpostavka o zdravstvu.** Zdravstveni doprinos (10,3%) plaća se samo ako niste osigurani po drugom osnovu.
 - **Fizičko lice kao isplatilac.** Kada vam plaća fizičko lice, vi sami podnosite PP OPO i plaćate dažbine.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Poreska uprava Srbije](https://www.purs.gov.rs/)
 - [Zakon o radu (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
@@ -122,6 +125,8 @@ Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdrav
     summary: "Topli obrok i regres za godišnji odmor su, prema Zakonu o radu, sastavni deo zarade u Srbiji. Objašnjavamo da li su obavezni, da li ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade tokom bolovanja i godišnjeg odmora.",
     body: `
 ![Topli obrok i regres u Srbiji](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Topli obrok** i **regres za godišnji odmor** česta su tema nesporazuma između zaposlenih i poslodavaca. Mnogi misle da su to dodatne, dobrovoljne isplate — ali prema **Zakonu o radu**, oni su **sastavni deo zarade**. U ovom vodiču objašnjavamo šta zakon propisuje u **2026. godini**, da li ova primanja ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade.
 
@@ -181,8 +186,9 @@ Proverite svoj ugovor o radu i opšti akt poslodavca da vidite kako su definisan
 
 Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika) i o [naknadi za godišnji odmor](/blog/godisnji-odmor-naknada).
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Zakon o radu Republike Srbije](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Ministarstvo za rad, zapošljavanje, boračka i socijalna pitanja](https://www.minrzs.gov.rs/)
     `,
@@ -201,6 +207,8 @@ Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-n
     summary: "Paušalno oporezivanje je najjednostavniji način da preduzetnik posluje u Srbiji: fiksni mesečni porez i doprinosi, bez vođenja poslovnih knjiga. Objašnjavamo uslove, limit od 6 miliona dinara, delatnosti koje ne mogu u paušal, način obračuna i poređenje sa samooporezivanjem frilensera.",
     body: `
 ![Paušalno oporezivanje u Srbiji](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Paušalno oporezivanje** je najjednostavniji poreski režim za preduzetnike u Srbiji. Paušalac plaća **fiksan mesečni iznos** poreza i doprinosa, bez obzira na to koliko je tačno zaradio, i **ne vodi poslovne knjige** (osim jednostavne KPO knjige). Zbog toga je paušal veoma popularan kod programera, konsultanata, dizajnera i drugih koji pružaju usluge. U ovom vodiču objašnjavamo ko može da bude paušalac u **2026. godini**, koliko to košta i kada se više isplati od samooporezivanja.
 
@@ -281,8 +289,9 @@ Pre registracije proverite da li je vaša šifra delatnosti dozvoljena za pauša
 
 Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [ugovoru o delu](/blog/ugovor-o-delu) i o [doprinosima u Srbiji](/blog/doprinosi-srbija), a zaradu iz radnog odnosa izračunajte [kalkulatorom zarade](/).
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Agencija za privredne registre (APR)](https://www.apr.gov.rs/)
 - [Poreska uprava Republike Srbije](https://www.purs.gov.rs/)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
@@ -302,6 +311,8 @@ Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [u
     summary: "Frilenseri u Srbiji sami plaćaju porez i doprinose kvartalno, biranjem između dva modela samooporezivanja. Objašnjavamo Model A i Model B za 2026. godinu, normirane troškove, doprinose za PIO i zdravstvo, rokove prijave i konkretne primere obračuna.",
     body: `
 ![Porez za frilensere u Srbiji](https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Sve veći broj ljudi u Srbiji ostvaruje prihode kao **frilenseri** — radom za klijente iz inostranstva ili iz zemlje, bez osnivanja firme ili paušalne radnje. Takvi prihodi se oporezuju, a frilenseri porez i doprinose obračunavaju i plaćaju **sami, kvartalno**, kroz sistem **samooporezivanja**. U ovom vodiču objašnjavamo dva modela oporezivanja koja su na raspolaganju u **2026. godini**, sa konkretnim primerima, rokovima i čestim greškama.
 
@@ -396,8 +407,9 @@ Ako imate redovne i veće prihode, razmotrite i **paušalno oporezivanje** kao p
 
 Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [razlici između bruto i neto zarade](/blog/bruto-neto-razlika), a zaradu iz radnog odnosa izračunajte [kalkulatorom zarade](/).
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Poreska uprava — portal Frilenseri](https://frilenseri.purs.gov.rs/)
 - [Kalkulator poreza i doprinosa (PURS)](https://frilenseri.purs.gov.rs/kalkulator-poreza.html)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
@@ -417,6 +429,8 @@ Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [raz
     summary: "Penzija u Srbiji se računa po bodovnom sistemu: lični bodovi × vrednost opšteg boda. Detaljan vodič kroz formulu, lični koeficijent, uslove za starosnu, prevremenu i invalidsku penziju u 2026. godini.",
     body: `
 ![Kako se obračunava penzija u Srbiji](https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Pitanje **„kako se obračunava penzija u Srbiji"** najčešće je pitanje koje Fond PIO dobija od budućih penzionera. Sistem deluje komplikovano jer se sastoji iz više elemenata — **ličnog koeficijenta**, **penzijskog staža**, **ličnih bodova** i **vrednosti opšteg boda**. U ovom vodiču objašnjavamo formulu korak po korak, sa konkretnim primerima obračuna prema **Zakonu o penzijskom i invalidskom osiguranju** (ZPIO).
 
@@ -682,7 +696,7 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
 2. Razumete [razliku između bruto i neto](/blog/bruto-neto-razlika) — penzija se računa iz **bruto** zarade
 3. Optimizujete strukturu zarade za što veće lične bodove
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Zakon o penzijskom i invalidskom osiguranju (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_penzijskom_i_invalidskom_osiguranju.html)
 - [Fond PIO Srbije — pravo na penziju i izračun](https://www.pio.rs/sr/osiguranici/pravo-na-penziju.html)
@@ -700,6 +714,8 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
     summary: "Obračun bolovanja do 30 dana: naknada iznosi minimum 65% prosečne zarade, a od 31. dana ide na teret RFZO. Kalkulator naknade sa primerima i PDF platnim listićem.",
     body: `
 ![Bolovanje i naknada zarade](https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Bolovanje, odnosno **naknada zarade za vreme privremene sprečenosti za rad**, regulisano je **Zakonom o zdravstvenom osiguranju** (čl. 79–95) i **Zakonom o radu** (čl. 115). Evo svega što zaposleni i poslodavci treba da znaju o obračunu.
 
@@ -782,8 +798,9 @@ Zaposleni je dužan da:
 
 Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i naknadu za **bolovanje do 30 dana** prema unetom procentu (65–100%). Primer kalkulacije možete videti u kartici „Obračun" — bolovanje se prikazuje kao zasebna stavka, a ceo obračun možete preuzeti kao **PDF platni listić**.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Zakon o zdravstvenom osiguranju (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon-o-zdravstvenom-osiguranju.html)
 - [Zakon o radu — čl. 115 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [RFZO — naknada zarade za vreme bolovanja](https://www.rfzo.rs/index.php/osiguranici-s/naknada-zarade)
@@ -798,6 +815,8 @@ Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i n
     summary: "Minuli rad je obavezno uvećanje zarade od 0,4% za svaku godinu rada kod istog poslodavca. Detaljan vodič sa primerima obračuna prema članu 108. Zakona o radu.",
     body: `
 ![Minuli rad i godine staža](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Minuli rad** je zakonsko uvećanje zarade koje pripada zaposlenom za svaku godinu rada provedenu kod istog poslodavca. Regulisan je **članom 108. tačka 4. Zakona o radu** Republike Srbije.
 
@@ -888,8 +907,9 @@ Neisplata minulog rada je prekršaj prema članu 273. Zakona o radu, sa kaznama:
 
 Zaposleni može pokrenuti tužbu za isplatu zaostatka uz zakonsku zateznu kamatu. Rok zastarelosti je 3 godine.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Zakon o radu — čl. 108 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Inspekcija rada Srbije](https://www.minrzs.gov.rs/sr/inspekcija-rada)
 - [Sindikat samostalnih sindikata Srbije — minuli rad](http://www.sindikat.rs/)
@@ -907,6 +927,8 @@ Zaposleni može pokrenuti tužbu za isplatu zaostatka uz zakonsku zateznu kamatu
     summary: "Bonus, godišnja nagrada, 13. plata i jubilarna nagrada — sve što treba znati o porezima i doprinosima na nestandardna primanja zaposlenih u Srbiji.",
     body: `
 ![Bonus i nagrada zaposlenom](https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Bonus i nagrade zaposlenima su odlične motivacione alatke, ali često iznenade kada zaposleni vidi da na **100.000 RSD bonusa** dobije manje od 65.000 RSD na račun. Evo zašto i kako se to računa.
 
@@ -1001,8 +1023,9 @@ U našem [kalkulatoru zarade](/) imate dve opcije za bonus:
 
 Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinose. Možete videti tačno koliko zaposleni dobija na račun. Pogledajte i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika) za bolje razumevanje strukture.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Zakon o porezu na dohodak građana — čl. 18 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
 - [Pravilnik o uslovima za neoporezive iznose](https://www.paragraf.rs/propisi/pravilnik-uslovi-neoporezivi-iznosi.html)
 - [Poreska uprava — porezi na zaradu](https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html)
@@ -1017,6 +1040,8 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
     summary: "Za 10, 20 i 30 godina rada kod istog poslodavca zaposleni ima pravo na jubilarnu nagradu. Kolika je, kako se obračunava i zašto je deo neoporeziv?",
     body: `
 ![Jubilarna nagrada za godine staža](https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Jubilarna nagrada** je jednokratna isplata zaposlenom povodom navršenih „okruglih" godina rada kod istog poslodavca. U Srbiji je ova vrsta nagrade poreski povlašćena — deo iznosa je **u potpunosti neoporeziv**.
 
@@ -1113,7 +1138,7 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
 3. Ako poslodavac odbija da isplati uz postojanje kolektivnog ugovora, **konsultujte sindikat ili pravnika**
 4. Rok zastarelosti potraživanja jubilarne nagrade je **3 godine** od dana navršenog jubileja
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Zakon o porezu na dohodak građana — čl. 18 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
 - [Pravilnik o ostvarivanju neoporezivih primanja](https://www.paragraf.rs/propisi/pravilnik-uslovi-neoporezivi-iznosi.html)
@@ -1136,6 +1161,8 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
     summary: "Od 1. februara 2026. godine, neoporezivi iznos zarade iznosi 34.221 RSD mesečno. Šta to znači za obračun poreza na zaradu i koliko štedite?",
     body: `
 ![Obračun poreza na zaradu](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Od 1. februara 2026. godine, neoporezivi iznos zarade u Srbiji iznosi **34.221 RSD** mesečno (povećan sa ranijih 28.423 RSD). Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%.
 
@@ -1168,7 +1195,7 @@ Neoporezivi iznos važi samo za zarade iz radnog odnosa. Za preduzetnike paušal
 
 Za precizan obračun poreza na vašu zaradu, koristite naš [besplatni kalkulator zarade](/) — automatski primenjuje aktuelan neoporezivi iznos prema datumu obračuna.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Zakon o porezu na dohodak građana — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
 - [Poreska uprava Srbije — porezi na zaradu](https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html)
@@ -1228,7 +1255,7 @@ Za zaradu od 100.000 RSD bruto 1, ukupan trošak poslodavca iznosi oko **115.150
 
 Za precizan obračun bilo koje zarade, koristite naš [besplatni bruto-neto kalkulator](/) — možete uneti i bruto i neto iznos, kalkulator automatski radi obračun u oba smera.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Zakon o radu Srbije — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Zakon o doprinosima — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_doprinosima_za_obavezno_socijalno_osiguranje.html)
@@ -1243,6 +1270,8 @@ Za precizan obračun bilo koje zarade, koristite naš [besplatni bruto-neto kalk
     summary: "Zakon o radu propisuje minimum od +26% za prekovremeni rad. Kako se obračunava, koliko može trajati i šta su vaša prava kao zaposlenog?",
     body: `
 ![Prekovremeni rad u kancelariji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 
@@ -1279,7 +1308,7 @@ Poslodavac je dužan da vodi evidenciju o radnom vremenu i da prekovremeni rad e
 
 Koristite naš [PlatniListić kalkulator](/) da proverite da li vam je prekovremeni rad ispravno obračunat. Pogledajte i kako se obračunava [minuli rad](/blog/minuli-rad-obracun) — često se kombinuje sa prekovremenim u istom obračunu.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Zakon o radu — čl. 108 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Inspekcija rada Srbije — prijava nepravilnosti](https://www.minrzs.gov.rs/sr/inspekcija-rada)
@@ -1330,7 +1359,7 @@ Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomsko
 
 Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/blog/minimalna-zarada-2026) za aktuelne iznose.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Uredba o minimalnoj zaradi — Paragraf.rs](https://www.paragraf.rs/propisi/uredba-o-visini-minimalne-zarade.html)
 - [Republički zavod za statistiku — zarade i troškovi rada](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
@@ -1345,6 +1374,8 @@ Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [mi
     summary: "Ko plaća doprinose, koliko iznose i na šta imate pravo? Kompletan pregled sistema socijalnog osiguranja za zaposlene u Srbiji.",
     body: `
 ![Socijalno osiguranje i penzijski sistem](https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Sistem socijalnog osiguranja u Srbiji finansira se putem doprinosa koje plaćaju i zaposleni i poslodavci. Evo kompletnog pregleda za 2025. godinu.
 
@@ -1388,8 +1419,9 @@ Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svoj
 
 Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarade](/) — automatski primenjuje aktuelne stope i osnovice. Pogledajte i pregled [razlike između bruto 1 i bruto 2](/blog/bruto-neto-razlika) gde su doprinosi stavljeni u kontekst.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Zakon o doprinosima za obavezno socijalno osiguranje — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_doprinosima_za_obavezno_socijalno_osiguranje.html)
 - [Fond PIO Srbije — pravo na penziju](https://www.pio.rs/sr/osiguranici/pravo-na-penziju.html)
 - [RFZO — prava iz zdravstvenog osiguranja](https://www.rfzo.rs/index.php/osiguranici-s/prava-iz-zo)
@@ -1404,6 +1436,8 @@ Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarad
     summary: "Od februara 2026. minimalna neto zarada iznosi 69.000 RSD, a bruto 93.264 RSD. Šta se promenilo i kako to utiče na poslodavce?",
     body: `
 ![Minimalna zarada rast 2026](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Od **1. februara 2026. godine** u Srbiji važe novi iznosi minimalne zarade, usklađeni sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
 
@@ -1451,7 +1485,7 @@ Od februara 2026. neoporezivi iznos je **34.221 RSD**. Budući da je minimalna b
 
 Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake druge zarade.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Vlada Srbije — uredba o minimalnoj zarade](https://www.srbija.gov.rs/)
 - [Republički zavod za statistiku — zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
@@ -1467,6 +1501,8 @@ Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake dr
     summary: "Kako se računa i kako se plaća godišnji odmor po novom zakonu? Naknada za godišnji odmor ne može biti niža od prosečne zarade u prethodnih 12 meseci. Formula, primer obračuna i prava zaposlenih.",
     body: `
 ![Godišnji odmor i odmor od posla](https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Zakonom o radu (čl. 68–76)**. Za vreme korišćenja godišnjeg odmora, zaposleni ima pravo na naknadu zarade — ali kako se ona tačno obračunava?
 
@@ -1519,7 +1555,7 @@ Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako n
 
 Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zarade](/) i unesite broj dana godišnjeg odmora u sekciji „Vikend i praznici".
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
 - [Zakon o radu — čl. 68–76 (godišnji odmor)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Inspekcija rada — prava zaposlenih](https://www.minrzs.gov.rs/sr/inspekcija-rada)
@@ -1539,6 +1575,8 @@ Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zara
     summary: "Otpremnina u Srbiji: ko ima pravo, kolika je minimalna otpremnina po Zakonu o radu i kako se plaća porez na otpremninu. Obračun za tehnološki višak i odlazak u penziju.",
     body: `
 ![Prestanak radnog odnosa i otpremnina](https://images.unsplash.com/photo-1586769852044-692d6e3703f0?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Otpremnina je jednokratna novčana naknada koju poslodavac isplaćuje zaposlenom prilikom prestanka radnog odnosa pod određenim uslovima. Regulisana je **Zakonom o radu (čl. 158–160)**.
 
@@ -1596,8 +1634,9 @@ Pre potpisivanja sporazumnog raskida, proverite da li imate pravo na otpremninu 
 
 Pogledajte i [jubilarnu nagradu](/blog/jubilarna-nagrada) — koju neki poslodavci isplaćuju uz otpremninu pri odlasku u penziju.
 
-## Korisni linkovi
+## Izvori i korisni linkovi
 
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
 - [Zakon o radu — čl. 158–160 (otpremnina)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Nacionalna služba za zapošljavanje — prava pri gubitku posla](https://www.nsz.gov.rs/live/digitalAssets/10/10017_pravo_na_novcanu_naknadu.pdf)
 - [Poreska uprava — porez na otpremninu](https://www.purs.gov.rs/)
