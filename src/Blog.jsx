@@ -5,11 +5,23 @@ import { useSeo } from "./seo.jsx";
 const SITE_URL = "https://www.platnilistic.rs";
 
 function renderMd(text) {
+  let imgN = 0;
   return text.trim()
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="post-img" loading="lazy" decoding="async" width="800" height="300" />')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, src) => {
+      // First image = hero (LCP): load eagerly + high priority; rest stay lazy.
+      const isHero = imgN++ === 0;
+      const loadAttr = isHero ? 'fetchpriority="high"' : 'loading="lazy"';
+      // Serve responsive WebP for Unsplash images (much smaller on mobile).
+      if (/images\.unsplash\.com/.test(src)) {
+        const u = src.split('?')[0];
+        const mk = (w) => `${u}?w=${w}&fm=webp&q=70`;
+        return `<img src="${mk(800)}" srcset="${mk(480)} 480w, ${mk(800)} 800w, ${mk(1200)} 1200w" sizes="(max-width: 700px) 100vw, 680px" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
+      }
+      return `<img src="${src}" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
+    })
     .replace(/\[([^\]]+)\]\((\/[^)]*)\)/g, '<a href="$2" class="post-link post-link-internal">$1</a>')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-link">$1</a>')
     .replace(/^\|(.+)\|$/gm, (m) => {

@@ -3,7 +3,7 @@ import puppeteer from "puppeteer-core";
 import chromium from "@sparticuz/chromium";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile, readdir } from "node:fs/promises";
 import { POSTS } from "../src/posts.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -60,6 +60,18 @@ async function run() {
   const server = await preview({ preview: { port: 4191, strictPort: true } });
   const base = `http://localhost:4191`;
 
+  // Read the built main CSS so we can inline it into each prerendered page.
+  // This removes the render-blocking stylesheet request on the critical path,
+  // which is the main lever for FCP/LCP on mobile (CSS gated first paint).
+  let inlineCss = "";
+  try {
+    const assetsDir = join(DIST, "assets");
+    const cssFile = (await readdir(assetsDir)).find((f) => /^index-.*\.css$/.test(f));
+    if (cssFile) inlineCss = await readFile(join(assetsDir, cssFile), "utf8");
+  } catch {
+    /* if not found, pages fall back to the external stylesheet */
+  }
+
   chromium.setGraphicsMode = false;
   const browser = await puppeteer.launch({
     args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
@@ -87,7 +99,15 @@ async function run() {
       if (route.startsWith("/blog/")) {
         await page.waitForSelector(".post-body", { timeout: 15000 });
       }
-      const html = "<!DOCTYPE html>\n" + (await page.content()).replace(/^<!DOCTYPE html>/i, "");
+      let html = "<!DOCTYPE html>\n" + (await page.content()).replace(/^<!DOCTYPE html>/i, "");
+      // Inline the main CSS and drop the render-blocking <link> so first paint
+      // doesn't wait on a network round-trip for the stylesheet.
+      if (inlineCss) {
+        html = html.replace(
+          /<link\b[^>]*rel="stylesheet"[^>]*href="\/assets\/index-[^"]*\.css"[^>]*>/i,
+          `<style>${inlineCss}</style>`
+        );
+      }
       const out = outPathFor(route);
       await mkdir(dirname(out), { recursive: true });
       await writeFile(out, html, "utf8");
