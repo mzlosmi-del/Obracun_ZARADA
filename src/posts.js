@@ -1,5 +1,193 @@
 export const POSTS = [
   {
+    id: "kosta-otvaranje-firme",
+    date: "17. jun 2026",
+    tag: "Biznis",
+    title: "Koliko košta otvaranje firme u Srbiji 2026?",
+    summary: "Koliko košta otvaranje firme u Srbiji 2026? APR naknade za paušal i DOO, notar, minimalni kapital i ukupan realan trošak — uz tabelu i česte greške.",
+    body: `
+![Koliko košta otvaranje firme u Srbiji 2026 — paušal i DOO](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** APR naknade su **povećane od 1. januara 2026.** (nova Odluka o naknadama, „Službeni glasnik RS" br. 94/2025). Iznosi u nastavku su okvirni i mogu se razlikovati po proceduri (online/klasično) — **pre uplate proverite tačan iznos na zvaničnom sajtu APR.**
+
+Otvaranje firme u Srbiji je među jeftinijim u regionu, ali „koliko košta" zavisi od toga da li otvarate **paušalnu radnju (preduzetnik)** ili **DOO**, i da li uključite notara, knjigovođu i pravnu pomoć. U ovom vodiču razdvajamo **zvanične APR naknade** od **realnog ukupnog troška**, sa tabelom za 2026. godinu.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Iznosi naknada se menjaju uredbom — pre podnošenja prijave proverite aktuelne podatke na APR-u ili se obratite knjigovođi.
+
+## Od čega zavisi trošak
+
+Glavni faktor je **pravna forma**. Paušalac (preduzetnik) ima najnižu naknadu i nema notarske troškove; DOO je nešto skuplji jer zahteva osnivački akt i (po pravilu) notarsku overu. Koju formu izabrati objasnili smo u vodičima [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma) i [paušalno oporezivanje](/blog/pausalno-oporezivanje).
+
+## APR naknade za 2026. godinu
+
+Zvanične naknade Agencije za privredne registre (okvirno, online procedura):
+
+| Stavka | Iznos (RSD) | Napomena |
+|---|---|---|
+| Registracija preduzetnika (paušal) | ≈ 2.500–2.900 | Najjeftinije osnivanje, online |
+| Registracija DOO (online) | ≈ 5.900 | E-registracija preko APR aplikacije |
+| Registracija DOO (klasično) | ≈ 6.500 | Podnošenje preko zastupnika |
+| Minimalni osnovni kapital DOO | 100 | Simbolično; uplata moguća naknadno |
+
+> **Važno:** prema novoj Odluci od 1.1.2026. pojedini izvori navode i višu jedinstvenu naknadu (do ~8.000 RSD) kada se uz osnivanje registruju i dodatni dokumenti. Tačan iznos za vaš slučaj **proverite na [APR — naknade](https://www.apr.gov.rs/registri/privredna-drustva/naknade.2044.html).**
+
+## Dodatni troškovi (van APR-a)
+
+- **Notarska overa** (kod DOO): okvirno **2.000–5.000 RSD**, zavisno od beležnika.
+- **Pečat:** zakonski više nije obavezan, ali ga neke banke traže — izrada ~**2.500–5.000 RSD**.
+- **Poslovni račun u banci:** otvaranje je obično besplatno, uz mesečno održavanje ~**500–1.200 RSD**.
+- **Knjigovodstvo:** paušalcu nije obavezno; DOO mora da vodi dvojno knjigovodstvo (mesečna usluga knjigovođe).
+
+## Ukupan realan trošak
+
+- **Paušalna radnja:** sama registracija je vrlo jeftina — uz APR naknadu i eventualni pečat, start je često ispod **10.000 RSD**.
+- **DOO:** samo formalno osnivanje (APR online + notar) kreće se okvirno **8.000–11.000 RSD**; sa pravnom pomoći i pripremom dokumentacije, ukupan realan trošak standardnog slučaja ide od **500 do 1.500 EUR**.
+
+## Mesečni troškovi posle osnivanja
+
+Registracija je jednokratna — veći deo troška su **mesečne obaveze**:
+
+- **Paušalac:** fiksni mesečni porez i doprinosi, okvirno **30.000–45.000 RSD**, zavisno od šifre delatnosti i opštine (tačan iznos određuje rešenje Poreske uprave). Limit prometa za paušal je **6.000.000 RSD** godišnje.
+- **DOO:** doprinosi za direktora, knjigovodstvene usluge i bankarske naknade; varira, ali je po pravilu viši od paušala.
+
+## Rok koji se najčešće promaši
+
+U roku od **15 dana od registracije**, firma mora podneti **prvu (akontacionu) poresku prijavu** (PPPDG-1S za DOO, odnosno odgovarajuća prijava za preduzetnika). Kašnjenje povlači **automatske penale** — ovo je najčešća skupa greška novih osnivača.
+
+## Česte greške
+
+- **Računanje samo APR naknade.** Notar, knjigovodstvo i mesečne obaveze čine najveći deo troška.
+- **Otvaranje DOO „jer zvuči ozbiljnije".** Za samostalan rad niskog rizika paušal je često jeftiniji — uporedite pre odluke.
+- **Propuštanje roka od 15 dana** za prvu poresku prijavu.
+- **Mešanje privatnog i poslovnog računa**, što kasnije pravi probleme u knjigovodstvu i kod kontrole.
+
+## Savet
+
+Pre osnivanja, uporedite forme i izračunajte ukupan mesečni trošak, ne samo naknadu za registraciju. Za izbor između samostalnog rada, paušala i firme pogledajte [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma), a obračun zarade iz radnog odnosa proverite [kalkulatorom zarade](/). Za konkretan slučaj se obratite knjigovođi.
+
+## Izvori i korisni linkovi
+
+- [APR — naknade (privredna društva)](https://www.apr.gov.rs/registri/privredna-drustva/naknade.2044.html)
+- [APR — eRegistracija osnivanja preduzetnika](https://www.apr.gov.rs/usluge/eservisi/eregistracija-osnivanja-preduzetnika.2406.html)
+- [Poreska uprava Srbije](https://www.purs.gov.rs/)
+- [Zakon o privrednim društvima (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_privrednim_drustvima.html)
+    `,
+    faq: [
+      { q: "Koliko košta otvaranje paušalne radnje u 2026. godini?", a: "APR naknada za registraciju preduzetnika (paušalca) iznosi okvirno 2.500–2.900 RSD za online prijavu. Paušalac nema notarske troškove ni obavezno knjigovodstvo, pa je ukupan start često ispod 10.000 RSD. Tačan iznos naknade proverite na sajtu APR." },
+      { q: "Koliko košta osnivanje DOO u Srbiji 2026?", a: "APR naknada za DOO je okvirno 5.900 RSD online, odnosno 6.500 RSD klasičnom procedurom; pojedini izvori navode i višu jedinstvenu naknadu (do ~8.000 RSD) uz registraciju dodatnih dokumenata. Uz notarsku overu i pravnu pomoć, ukupan realan trošak kreće se od 500 do 1.500 EUR." },
+      { q: "Koliki je minimalni kapital za DOO?", a: "Minimalni osnovni kapital za DOO je simboličnih 100 RSD, a može se uplatiti i naknadno. Strancima koji apliciraju za privremeni boravak po osnovu firme često se preporučuje viši kapital (oko 250 EUR)." },
+      { q: "Koliko traje osnivanje firme u Srbiji?", a: "APR donosi rešenje o registraciji u roku od 3 do 5 radnih dana od uredne dokumentacije. Ceo proces, uključujući pripremu dokumentacije i otvaranje bankovnog računa, traje najčešće 10 do 15 radnih dana." },
+    ],
+  },
+
+  {
+    id: "frilenser-pausalac-firma",
+    date: "17. jun 2026",
+    tag: "Frilenseri",
+    title: "Frilenser, paušalac ili firma — kada preći na radnju?",
+    summary: "Kada se frilenseru isplati prelazak na paušal ili otvaranje firme? Poredimo poreze, troškove, fakturisanje i odgovornost — i kada je pravi trenutak.",
+    body: `
+![Frilenser, paušalac ili firma — kada preći na radnju u Srbiji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
+
+> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, APR, CROSO) za 2026. godinu. Parametri se mogu menjati tokom godine — pre odluke proverite aktuelne podatke ili se obratite knjigovođi.
+
+Sve više ljudi u Srbiji radi samostalno — za klijente iz inostranstva ili iz zemlje. Na početku je najlakše raditi kao **frilenser** (fizičko lice koje se samooporezuje), ali kako prihodi rastu, postavlja se pitanje: **da li i kada preći na paušal ili otvoriti firmu?** U ovom vodiču poredimo tri statusa — frilenser, paušalac (preduzetnik) i DOO — i objašnjavamo po kojim signalima prepoznajete da je vreme za prelazak.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski ni pravni savet. Za procenu konkretne situacije konsultujte knjigovođu ili Poresku upravu.
+
+## Tri načina da legalno radite kao samostalac
+
+- **Frilenser (samooporezivanje):** fizičko lice koje kvartalno prijavljuje i plaća porez i doprinose, bez osnivanja radnje.
+- **Paušalac (preduzetnik):** registrovana preduzetnička radnja sa fiksnim mesečnim porezom i doprinosima.
+- **DOO (društvo sa ograničenom odgovornošću):** pravno lice sa ograničenom odgovornošću i obaveznim knjigovodstvom.
+
+## Frilenser — najjednostavniji start
+
+Kao frilenser plaćate porez i doprinose **sami, kvartalno**, biranjem između dva modela samooporezivanja. Detaljno smo to objasnili u vodiču o [porezu za frilensere (Model A i B)](/blog/porez-za-frilensere).
+
+- **Prednost:** nema fiksnih mesečnih troškova kada nema prihoda; prijava ide preko portala bez knjigovođe.
+- **Mana:** kao fizičko lice **ne možete da izdajete fakture**, što veći klijenti i firme često zahtevaju; status je bankama manje „stabilan" za kredite; pri visokim i redovnim prihodima ukupna obaveza (porez + PIO 24% + zdravstvo 10,3%) zna biti veća nego kod paušala.
+
+## Paušalac — fiksni mesečni iznos i fakture
+
+Paušalac je preduzetnik registrovan u **Agenciji za privredne registre (APR)** koji plaća **fiksan mesečni iznos** poreza i doprinosa, bez obzira na to koliko je tog meseca zaradio. Ko ispunjava uslove i kako se obračunava — u vodiču o [paušalnom oporezivanju](/blog/pausalno-oporezivanje).
+
+- **Mesečna obaveza:** okvirno **30.000–45.000 RSD**, u zavisnosti od šifre delatnosti i opštine (tačan iznos određuje rešenje Poreske uprave).
+- **Limit prometa:** do **6.000.000 RSD** godišnje za ostanak u paušalu; prag za PDV je **8.000.000 RSD**.
+- **Prednosti:** možete da **izdajete fakture**, nema obaveznog knjigovodstva, troškovi su predvidivi.
+- **Mana:** za obaveze odgovarate **celokupnom ličnom imovinom**; neke delatnosti (trgovina, ugostiteljstvo, finansije) ne mogu biti na paušalu.
+
+## DOO — kada vam treba pravno lice
+
+DOO je posebno **pravno lice**. Osnivač odgovara samo **do visine uloga**, a ne ličnom imovinom — što je ključna razlika u odnosu na preduzetnika.
+
+- **Osnivanje:** minimalni kapital je simboličnih **100 RSD**; registracija u APR-u.
+- **Obaveze:** **obavezno dvojno knjigovodstvo** (trošak knjigovođe), složenija administracija.
+- **Najbolje za:** partnerstva, ozbiljniji rast, veće B2B i inostrane ugovore, i sve gde je važna zaštita lične imovine i kredibilitet.
+
+## Poređenje: frilenser vs paušalac vs DOO
+
+| Obeležje | Frilenser | Paušalac | DOO |
+|---|---|---|---|
+| Pravni status | Fizičko lice | Preduzetnik | Pravno lice |
+| Izdavanje faktura | Ne | Da | Da |
+| Fiksni mesečni trošak | Ne (plaća se po prihodu) | Da (~30–45k RSD) | Varijabilno (knjigovođa, doprinosi) |
+| Knjigovodstvo | Nije potrebno | Nije obavezno | Obavezno |
+| Odgovornost | Lična imovina | Lična imovina | Do visine uloga |
+| Limit prometa | — | 6.000.000 RSD/god. | — |
+| Najbolje za | Povremene i inostrane prihode | Stabilan samostalni rad | Partnere, rast, B2B |
+
+## Kada preći sa frilensera na paušal
+
+Razmislite o prelasku na paušal kada:
+
+- imate **redovne i rastuće prihode**, pa fiksni mesečni iznos postaje povoljniji od procentualnog samooporezivanja;
+- vam **klijenti traže fakturu** koju kao fizičko lice ne možete izdati;
+- želite **uredan preduzetnički status** (lakše do kredita, ozbiljniji nastup prema firmama);
+- prihodi su stabilno na nivou na kome paušalni iznos „radi" u vašu korist.
+
+Okvirno pravilo: dok su prihodi mali ili neredovni, samooporezivanje (posebno Model A) je često najjeftinije. Kada prihod postane redovan i veći, fiksni paušal od ~30–45k mesečno zna biti niži od ukupne obaveze frilensera — uz dodatnu vrednost mogućnosti fakturisanja.
+
+## Kada otvoriti DOO umesto paušala
+
+Pređite na DOO kada:
+
+- vam je **ograničena odgovornost** važna (ne želite da rizikujete ličnu imovinu);
+- poslujete **sa partnerom** ili više osnivača;
+- se približavate ili prelazite **paušalni limit od 6 miliona** dinara;
+- imate **ozbiljne B2B ili inostrane ugovore** gde je pravno lice uslov ili znak kredibiliteta;
+- planirate **zapošljavanje i rast**.
+
+## Prihodi iz inostranstva — kratak savet
+
+Ako naplaćujete od stranih klijenata, prihod prijavljujete po **srednjem kursu NBS na dan priliva**. Mnogi frilenseri i preduzetnici za prijem uplata koriste multivalutne račune (npr. Wise ili Revolut) ili devizni račun u banci — uz uredno čuvanje faktura i izvoda. Pravilan obračun bruto u neto za zaradu iz radnog odnosa možete brzo proveriti i [kalkulatorom zarade](/), a osnovne pojmove objašnjavamo u vodiču o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika).
+
+## Česte greške
+
+- **Ostajanje na samooporezivanju predugo.** Kada prihodi narastu, paušal često bude jeftiniji i omogućava fakturisanje.
+- **Prerano otvaranje DOO.** Obavezno knjigovodstvo i administracija nose trošak koji mali biznis ne mora odmah da snosi.
+- **Pogrešna šifra delatnosti.** Neke delatnosti ne mogu na paušal — proverite pre registracije.
+- **Računanje samo poreza.** Doprinosi za PIO i zdravstvo često su veći od samog poreza — gledajte ukupnu obavezu.
+
+## Savet
+
+Izbor zavisi od visine i stabilnosti prihoda, potrebe za fakturama i tolerancije na rizik. Za povremene, jednokratne poslove pogledajte i [ugovor o delu](/blog/ugovor-o-delu), a za pun pregled doprinosa vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija). Pre same odluke o prelasku, proverite konkretne iznose sa knjigovođom.
+
+## Izvori i korisni linkovi
+
+- [Agencija za privredne registre (APR)](https://www.apr.gov.rs/)
+- [Poreska uprava — portal Frilenseri](https://frilenseri.purs.gov.rs/)
+- [Zakon o privrednim društvima (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_privrednim_drustvima.html)
+    `,
+    faq: [
+      { q: "Kada frilenser treba da pređe na paušal?", a: "Kada prihodi postanu redovni i veći, kada klijenti traže fakture (koje fizičko lice ne može da izda) ili kada fiksni mesečni paušal (okvirno 30.000–45.000 RSD) postane povoljniji od procentualnog samooporezivanja. Za male i neredovne prihode samooporezivanje je obično jeftinije." },
+      { q: "Da li frilenser može da izdaje fakture?", a: "Ne. Kao fizičko lice u sistemu samooporezivanja frilenser ne može da izdaje fakture. Ako klijenti zahtevaju fakturu, potrebno je registrovati preduzetničku radnju (paušal) ili osnovati firmu (DOO)." },
+      { q: "Koliko paušalac plaća mesečno u 2026. godini?", a: "Okvirno 30.000–45.000 RSD mesečno, u zavisnosti od šifre delatnosti i opštine. Tačan iznos određuje rešenje Poreske uprave. Limit prometa za ostanak u paušalu je 6.000.000 RSD godišnje." },
+      { q: "Paušal ili DOO — šta je bolje za početak?", a: "Za samostalan rad sa malim rashodima paušal je jednostavniji i jeftiniji, ali nosi ličnu odgovornost. DOO se bira kada je potrebna ograničena odgovornost, kod više osnivača, većeg prometa ili ozbiljnijih B2B i inostranih ugovora, uz obavezno knjigovodstvo." },
+    ],
+  },
+
+  {
     id: "ugovor-o-delu",
     date: "14. jun 2026",
     tag: "Ugovori",
@@ -308,7 +496,7 @@ Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [u
     date: "5. jun 2026",
     tag: "Frilenseri",
     title: "Porez za frilensere u Srbiji 2026 — Model A ili Model B, šta se više isplati?",
-    summary: "Frilenseri u Srbiji sami plaćaju porez i doprinose kvartalno, biranjem između dva modela samooporezivanja. Objašnjavamo Model A i Model B za 2026. godinu, normirane troškove, doprinose za PIO i zdravstvo, rokove prijave i konkretne primere obračuna.",
+    summary: "Frilenseri u Srbiji 2026 sami plaćaju porez kvartalno, biranjem Modela A ili B. Objašnjavamo normirane troškove, stope, doprinose, rokove i primer obračuna.",
     body: `
 ![Porez za frilensere u Srbiji](https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80)
 
