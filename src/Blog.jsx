@@ -165,7 +165,10 @@ export function BlogPostRoute() {
     title: post ? `${post.title} | PlatniListić` : "Članak nije pronađen | PlatniListić",
     description: post ? post.summary : "Tražena strana nije pronađena.",
     path: post ? `/blog/${post.id}` : "/blog",
-    jsonLd: post ? {
+    ogType: post ? "article" : "website",
+    articlePublished: post ? isoDate(post.date) : undefined,
+    articleModified: post ? isoDate(post.date) : undefined,
+    jsonLd: post ? [{
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": post.title,
@@ -183,7 +186,15 @@ export function BlogPostRoute() {
       "articleSection": post.tag,
       "inLanguage": "sr-RS",
       "url": `${SITE_URL}/blog/${post.id}`,
-    } : null,
+    }, {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Početna", "item": `${SITE_URL}/` },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog` },
+        { "@type": "ListItem", "position": 3, "name": post.title, "item": `${SITE_URL}/blog/${post.id}` },
+      ],
+    }] : null,
     faq: post && post.faq ? post.faq : null,
   });
 

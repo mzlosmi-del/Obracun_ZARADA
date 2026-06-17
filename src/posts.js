@@ -310,7 +310,7 @@ Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdrav
     date: "11. jun 2026",
     tag: "Zarada",
     title: "Topli obrok i regres 2026 — da li su obavezni i kako se obračunavaju?",
-    summary: "Topli obrok i regres za godišnji odmor su, prema Zakonu o radu, sastavni deo zarade u Srbiji. Objašnjavamo da li su obavezni, da li ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade tokom bolovanja i godišnjeg odmora.",
+    summary: "Topli obrok i regres 2026: da li su obavezni, da li ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade. Pravila po Zakonu o radu.",
     body: `
 ![Topli obrok i regres u Srbiji](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80)
 
@@ -392,7 +392,7 @@ Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-n
     date: "8. jun 2026",
     tag: "Paušal",
     title: "Paušalno oporezivanje u Srbiji 2026 — ko može da bude paušalac i koliko plaća?",
-    summary: "Paušalno oporezivanje je najjednostavniji način da preduzetnik posluje u Srbiji: fiksni mesečni porez i doprinosi, bez vođenja poslovnih knjiga. Objašnjavamo uslove, limit od 6 miliona dinara, delatnosti koje ne mogu u paušal, način obračuna i poređenje sa samooporezivanjem frilensera.",
+    summary: "Paušalno oporezivanje 2026: ko može da bude paušalac, limit od 6 miliona, koje delatnosti ne mogu i koliko se plaća mesečno. Jednostavan vodič za preduzetnike.",
     body: `
 ![Paušalno oporezivanje u Srbiji](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
@@ -614,7 +614,7 @@ Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [raz
     date: "12. maj 2026",
     tag: "Penzija",
     title: "Kako se obračunava penzija u Srbiji — formula, lični bodovi i primeri obračuna",
-    summary: "Penzija u Srbiji se računa po bodovnom sistemu: lični bodovi × vrednost opšteg boda. Detaljan vodič kroz formulu, lični koeficijent, uslove za starosnu, prevremenu i invalidsku penziju u 2026. godini.",
+    summary: "Kako se obračunava penzija u Srbiji 2026: bodovni sistem, lični bodovi i koeficijent, uslovi za starosnu, prevremenu i invalidsku penziju — uz primere.",
     body: `
 ![Kako se obračunava penzija u Srbiji](https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&q=80)
 
@@ -899,7 +899,7 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
     date: "1. maj 2026",
     tag: "Bolovanje",
     title: "Kako se obračunava bolovanje do 30 dana u Srbiji — kalkulator i naknada zarade (PDF)",
-    summary: "Obračun bolovanja do 30 dana: naknada iznosi minimum 65% prosečne zarade, a od 31. dana ide na teret RFZO. Kalkulator naknade sa primerima i PDF platnim listićem.",
+    summary: "Obračun bolovanja do 30 dana: naknada je minimum 65% prosečne zarade, a od 31. dana na teret RFZO. Kalkulator sa primerima i PDF platni listić.",
     body: `
 ![Bolovanje i naknada zarade](https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80)
 

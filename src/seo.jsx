@@ -16,6 +16,11 @@ function setMeta(name, content, attr = "name") {
   el.setAttribute("content", content);
 }
 
+function removeMeta(name, attr = "name") {
+  const el = document.head.querySelector(`meta[${attr}="${name}"]`);
+  if (el) el.remove();
+}
+
 function setCanonical(url) {
   let el = document.head.querySelector('link[rel="canonical"]');
   if (!el) {
@@ -26,7 +31,7 @@ function setCanonical(url) {
   el.href = url;
 }
 
-export function useSeo({ title, description, path = "/", image, jsonLd, faq }) {
+export function useSeo({ title, description, path = "/", image, jsonLd, faq, ogType = "website", articlePublished, articleModified }) {
   const jsonLdStr = jsonLd ? JSON.stringify(jsonLd) : "";
   const faqLd = faq && faq.length
     ? {
@@ -51,10 +56,19 @@ export function useSeo({ title, description, path = "/", image, jsonLd, faq }) {
     setMeta("description", desc);
     setCanonical(url);
 
+    setMeta("og:type", ogType, "property");
     setMeta("og:title", fullTitle, "property");
     setMeta("og:description", desc, "property");
     setMeta("og:url", url, "property");
     setMeta("og:image", img, "property");
+    // article:* tags only on article pages; remove them elsewhere (SPA nav).
+    if (articlePublished) {
+      setMeta("article:published_time", articlePublished, "property");
+      setMeta("article:modified_time", articleModified || articlePublished, "property");
+    } else {
+      removeMeta("article:published_time", "property");
+      removeMeta("article:modified_time", "property");
+    }
     setMeta("twitter:title", fullTitle);
     setMeta("twitter:description", desc);
     setMeta("twitter:url", url);
@@ -89,5 +103,5 @@ export function useSeo({ title, description, path = "/", image, jsonLd, faq }) {
       if (scriptEl && scriptEl.parentNode) scriptEl.parentNode.removeChild(scriptEl);
       if (faqEl && faqEl.parentNode) faqEl.parentNode.removeChild(faqEl);
     };
-  }, [title, description, path, image, jsonLdStr, faqLdStr]);
+  }, [title, description, path, image, jsonLdStr, faqLdStr, ogType, articlePublished, articleModified]);
 }
