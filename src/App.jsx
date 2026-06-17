@@ -464,7 +464,7 @@ function LeadForm() {
         <div className="lead-inner">
           <div className="lead-text">
             <div className="lead-eyebrow">Za firme i knjigovođe · softver po meri</div>
-            <h2 id="lead-section-title" className="lead-title">Vašoj firmi treba alat po meri?</h2>
+            <h2 id="lead-section-title" className="lead-title">Vašoj firmi treba softver po meri?</h2>
             <p className="lead-body">
               Vodite firmu ili knjigovodstvenu agenciju? Pravim web aplikacije i interne alate — kalkulatore, sisteme za obračun i evidenciju, kompletna rešenja. Ovaj kalkulator je primer; vaš alat pravim prema vašem procesu i radi posao umesto vas.
             </p>
@@ -478,7 +478,7 @@ function LeadForm() {
 
       {status !== "success" && (
         <button className="lead-sticky" type="button" onClick={() => setModalOpen(true)} aria-label="Otvori formu za besplatne konsultacije">
-          <span className="lead-sticky-text">Vašoj firmi treba alat po meri?</span>
+          <span className="lead-sticky-text">Vašoj firmi treba softver po meri?</span>
           <span className="lead-sticky-cta" aria-hidden="true">Konsultacije →</span>
         </button>
       )}
@@ -488,7 +488,7 @@ function LeadForm() {
           <div className="lead-modal" onClick={e => e.stopPropagation()}>
             <button className="lead-modal-close" onClick={() => setModalOpen(false)} aria-label="Zatvori">✕</button>
             <div className="lead-eyebrow" style={{color:"rgba(255,255,255,0.7)"}}>Za firme i knjigovođe · softver po meri</div>
-            <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:16}}>Vašoj firmi treba alat po meri?</h2>
+            <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:16}}>Vašoj firmi treba softver po meri?</h2>
             <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
           </div>
         </div>
