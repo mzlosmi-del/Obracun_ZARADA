@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
@@ -361,12 +361,37 @@ function BrevoSignup() {
   );
 }
 
+// Direct-contact channels for the "custom software" lead funnel.
+// To enable the Viber + WhatsApp quick-contact buttons, set CONTACT_PHONE
+// in international format WITHOUT the leading "+" (e.g. "381641234567").
+// Leave it as "" to hide them — only the email button shows.
+const CONTACT_EMAIL = "kontakt@platnilistic.rs";
+const CONTACT_PHONE = "";
+
+function LeadQuickContacts() {
+  const subject = encodeURIComponent("Upit za softver po meri — PlatniListić");
+  return (
+    <div className="lead-alt">
+      <div className="lead-alt-label">ili odmah pišite direktno</div>
+      <div className="lead-alt-row">
+        <a className="lead-alt-btn" href={`mailto:${CONTACT_EMAIL}?subject=${subject}`}>✉️ Email</a>
+        {CONTACT_PHONE && (
+          <>
+            <a className="lead-alt-btn" href={`https://wa.me/${CONTACT_PHONE}`} target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
+            <a className="lead-alt-btn" href={`viber://chat?number=%2B${CONTACT_PHONE}`}>🟣 Viber</a>
+          </>
+        )}
+      </div>
+    </div>
+  );
+}
+
 function LeadFormContent({ onSubmit, form, setForm, status }) {
   if (status === "success") return (
     <div className="lead-success" role="status">
       <div className="lead-success-icon" aria-hidden="true">✓</div>
-      <div className="lead-success-title">Poruka primljena!</div>
-      <div className="lead-success-sub">Javiću se u roku od 24 sata.</div>
+      <div className="lead-success-title">Upit primljen!</div>
+      <div className="lead-success-sub">Javljam se u roku od 24 sata — bez obaveze.</div>
     </div>
   );
   return (
@@ -375,12 +400,13 @@ function LeadFormContent({ onSubmit, form, setForm, status }) {
       <input id="lead-ime" className="lead-input" type="text" placeholder="Ime i prezime" autoComplete="name" value={form.ime} onChange={e => setForm(f => ({...f, ime: e.target.value}))} disabled={status === "loading"} required />
       <label htmlFor="lead-email" className="visually-hidden">Email adresa</label>
       <input id="lead-email" className="lead-input" type="email" placeholder="Email adresa" autoComplete="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} disabled={status === "loading"} required />
-      <label htmlFor="lead-opis" className="visually-hidden">Opis projekta</label>
-      <textarea id="lead-opis" className="lead-input lead-textarea" placeholder="Čime se baviš i šta bi ti pomoglo?" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} required />
+      <label htmlFor="lead-opis" className="visually-hidden">Opis projekta (opciono)</label>
+      <textarea id="lead-opis" className="lead-input lead-textarea" placeholder="Ukratko: čime se firma bavi i šta bi vam pomoglo? (opciono)" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} />
       <button className="lead-btn" type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Šaljem..." : "Porazgovarajmo →"}
+        {status === "loading" ? "Šaljem..." : "Zakažite besplatne konsultacije →"}
       </button>
       {status === "error" && <div className="brevo-error" role="alert">Greška. Pokušajte ponovo.</div>}
+      <LeadQuickContacts />
     </form>
   );
 }
@@ -389,10 +415,27 @@ function LeadForm() {
   const [form, setForm] = useState({ ime: "", email: "", opis: "" });
   const [status, setStatus] = useState("idle");
   const [modalOpen, setModalOpen] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Contextual CTAs inside the calculator tabs dispatch "open-lead-modal".
+  // On mobile we open the modal; on desktop the inline form is visible, so
+  // we smooth-scroll to it and focus the first field.
+  useEffect(() => {
+    const handler = () => {
+      if (window.matchMedia("(max-width: 760px)").matches) {
+        setModalOpen(true);
+      } else {
+        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setTimeout(() => sectionRef.current?.querySelector("input")?.focus(), 500);
+      }
+    };
+    window.addEventListener("open-lead-modal", handler);
+    return () => window.removeEventListener("open-lead-modal", handler);
+  }, []);
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!form.email.includes("@") || !form.ime || !form.opis) return;
+    if (!form.email.includes("@") || !form.ime) return;
     setStatus("loading");
     try {
       const res = await fetch("https://api.brevo.com/v3/contacts", {
@@ -417,13 +460,16 @@ function LeadForm() {
 
   return (
     <>
-      <section className="lead-section lead-desktop" aria-labelledby="lead-section-title">
+      <section className="lead-section lead-desktop" aria-labelledby="lead-section-title" ref={sectionRef}>
         <div className="lead-inner">
           <div className="lead-text">
-            <div className="lead-eyebrow">Web aplikacije po meri</div>
-            <h2 id="lead-section-title" className="lead-title">Treba ti softver koji radi za tebe?</h2>
+            <div className="lead-eyebrow">Za firme i knjigovođe · softver po meri</div>
+            <h2 id="lead-section-title" className="lead-title">Vašoj firmi treba alat po meri?</h2>
             <p className="lead-body">
-              Sviđa ti se kako je PlatniListić napravljen? Pravim web aplikacije i alate za firme — od kalkulatora i internih sistema do kompletnih rešenja. Čak i ako ne znaš tačno šta ti treba, javi se — zajedno ćemo pronaći rešenje.
+              Vodite firmu ili knjigovodstvenu agenciju? Pravim web aplikacije i interne alate — kalkulatore, sisteme za obračun i evidenciju, kompletna rešenja. Ovaj kalkulator je primer; vaš alat pravim prema vašem procesu i radi posao umesto vas.
+            </p>
+            <p className="lead-body" style={{marginTop:12, fontWeight:600}}>
+              Besplatne konsultacije, bez obaveze — javljam se u roku od 24 sata.
             </p>
           </div>
           <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
@@ -431,9 +477,9 @@ function LeadForm() {
       </section>
 
       {status !== "success" && (
-        <button className="lead-sticky" type="button" onClick={() => setModalOpen(true)} aria-label="Otvori formu za kontakt">
-          <span className="lead-sticky-text">Treba ti softver po meri?</span>
-          <span className="lead-sticky-cta" aria-hidden="true">Javi se →</span>
+        <button className="lead-sticky" type="button" onClick={() => setModalOpen(true)} aria-label="Otvori formu za besplatne konsultacije">
+          <span className="lead-sticky-text">Vašoj firmi treba alat po meri?</span>
+          <span className="lead-sticky-cta" aria-hidden="true">Konsultacije →</span>
         </button>
       )}
 
@@ -441,13 +487,36 @@ function LeadForm() {
         <div className="lead-modal-overlay" onClick={() => setModalOpen(false)} role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
           <div className="lead-modal" onClick={e => e.stopPropagation()}>
             <button className="lead-modal-close" onClick={() => setModalOpen(false)} aria-label="Zatvori">✕</button>
-            <div className="lead-eyebrow" style={{color:"rgba(255,255,255,0.7)"}}>Web aplikacije po meri</div>
-            <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:16}}>Treba ti softver koji radi za tebe?</h2>
+            <div className="lead-eyebrow" style={{color:"rgba(255,255,255,0.7)"}}>Za firme i knjigovođe · softver po meri</div>
+            <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:16}}>Vašoj firmi treba alat po meri?</h2>
             <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
           </div>
         </div>
       )}
     </>
+  );
+}
+
+// Contextual lead CTA shown inside the "professional" tabs (payslip, results,
+// rates, PPP-PD) — these users are accountants / business owners, the slice
+// that can actually commission custom software. Clicking opens the lead form.
+const PRO_CTA_COPY = {
+  payslip: "Pravite platne listiće ručno svakog meseca? Mogu da vam napravim alat koji ih generiše automatski — za vašu firmu ili knjigovodstvenu agenciju.",
+  results: "Treba vam ovakav obračun u vašem sistemu ili na sajtu? Pravim kalkulatore i interne alate po meri vašeg procesa.",
+  rates: "Pratite stope i parametre za više klijenata? Pravim interne alate za knjigovođe i firme — automatizovano i po vašoj meri.",
+  ppppd: "Generišete PPP-PD za više firmi? Mogu da vam automatizujem obračun i izvoz XML-a kroz alat po meri.",
+};
+function ProCTA({ variant }) {
+  return (
+    <aside className="pro-cta" aria-label="Ponuda za firme i knjigovođe">
+      <div className="pro-cta-text">
+        <div className="pro-cta-eyebrow">Za firme i knjigovođe</div>
+        <p>{PRO_CTA_COPY[variant] || PRO_CTA_COPY.results}</p>
+      </div>
+      <button type="button" className="pro-cta-btn" onClick={() => window.dispatchEvent(new Event("open-lead-modal"))}>
+        Besplatne konsultacije →
+      </button>
+    </aside>
   );
 }
 
@@ -744,6 +813,7 @@ function CalculatorPage() {
       )}
 
       {activeTab === "payslip" && (
+        <>
         <div className="main-grid">
           <div className="card">
             <SectionTitle icon="🏢">Podaci o poslodavcu</SectionTitle>
@@ -788,9 +858,12 @@ function CalculatorPage() {
             </div>
           </div>
         </div>
+        <ProCTA variant="payslip" />
+        </>
       )}
 
       {activeTab === "results" && (
+        <>
         <div className="main-grid">
           <div className="card">
             <SectionTitle icon="🧮">Formiranje Bruto 1</SectionTitle>
@@ -864,9 +937,12 @@ function CalculatorPage() {
             </div>
           </div>
         </div>
+        <ProCTA variant="results" />
+        </>
       )}
 
       {activeTab === "rates" && (
+        <>
         <div className="main-grid">
           <div className="full-width" style={{display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:4, gap:10, flexWrap:"wrap"}}>
             <span style={{fontSize:12, color:"var(--text3)", fontFamily:"var(--mono)"}}>
@@ -923,11 +999,14 @@ function CalculatorPage() {
             </div>
           </div>
         </div>
+        <ProCTA variant="rates" />
+        </>
       )}
 
       {activeTab === "ppppd" && (
         <Suspense fallback={<div className="route-loader">Učitavam PPP-PD modul…</div>}>
           <PPPPDTab inputs={effectiveInputs} r={r} info={info} setI={setI} />
+          <ProCTA variant="ppppd" />
         </Suspense>
       )}
     </>

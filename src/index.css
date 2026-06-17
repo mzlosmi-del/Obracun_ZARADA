@@ -302,6 +302,21 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .lead-modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; color: #fff; width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 @media (min-width: 761px) { .lead-modal-overlay { display: none !important; } .lead-sticky { display: none !important; } }
 
+/* ── LEAD: QUICK CONTACT (email / WhatsApp / Viber) ── */
+.lead-alt { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.18); }
+.lead-alt-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px; text-align: center; }
+.lead-alt-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.lead-alt-btn { flex: 1 1 auto; min-width: 90px; text-align: center; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #fff; text-decoration: none; border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 600; transition: background-color 0.2s, border-color 0.2s; }
+.lead-alt-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); }
+
+/* ── PRO CTA (contextual, inside professional tabs) ── */
+.pro-cta { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 18px; background: var(--accent-light); border: 1px solid #c8d8ff; border-radius: 14px; padding: 18px 22px; }
+.pro-cta-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+.pro-cta-text p { font-size: 14px; line-height: 1.55; color: var(--text); margin: 0; }
+.pro-cta-btn { flex-shrink: 0; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 20px; font-family: var(--sans); font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 3px 12px rgba(0,87,255,0.22); }
+.pro-cta-btn:hover { background: #0047dd; transform: translateY(-1px); }
+@media (max-width: 700px) { .pro-cta { flex-direction: column; align-items: stretch; text-align: left; padding: 16px 18px; } .pro-cta-btn { width: 100%; } }
+
 /* ── LEGAL PAGES ── */
 .legal-page { max-width: 680px; }
 .legal-title { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
