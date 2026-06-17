@@ -1,5 +1,484 @@
 export const POSTS = [
   {
+    id: "kako-registrovati-firmu",
+    date: "17. jun 2026",
+    tag: "Biznis",
+    title: "Kako registrovati firmu u Srbiji 2026 — paušal ili DOO",
+    summary: "Kako registrovati firmu u Srbiji 2026: paušal, preduzetnik ili DOO — koraci u APR-u, troškovi, porezi i koju formu izabrati. Vodič korak po korak.",
+    body: `
+![Kako registrovati firmu u Srbiji 2026 — paušal, preduzetnik ili DOO](https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&fm=webp&q=70)
+
+> **Provereno i ažurirano: jun 2026.** Podaci su usklađeni sa zvaničnim izvorima (APR, Poreska uprava, Zakon o privrednim društvima) za 2026. godinu. APR naknade su povećane od 1. januara 2026. — pre uplate proverite tačan iznos na zvaničnom sajtu APR.
+
+Registracija firme u Srbiji je danas potpuno digitalizovana i među jeftinijima u regionu. Ipak, najvažnija odluka se donosi **pre** registracije: koji oblik izabrati — **paušalnu radnju (preduzetnik)** ili **DOO**. U ovom vodiču vodimo vas korak po korak kroz ceo postupak: izbor forme, registraciju u APR-u, troškove, i obaveze koje nastaju odmah posle osnivanja.
+
+**Ukratko:** firmu u Srbiji registrujete **elektronski u APR-u** — kao **preduzetnika** (paušalac: najjeftinije i najbrže) ili kao **DOO** (ograničena odgovornost). Rešenje stiže za **3–5 radnih dana**, a APR naknada je okvirno **2.500 RSD** za preduzetnika, odnosno **~5.900 RSD** za DOO.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Pre podnošenja prijave proverite aktuelne podatke na APR-u i Poreskoj upravi ili se obratite knjigovođi i advokatu.
+
+## Koji oblik firme izabrati — paušal, preduzetnik ili DOO
+
+Za većinu novih osnivača izbor se svodi na dve forme: **preduzetnik** (najčešće paušalac) i **DOO**. Ključna razlika je u **odgovornosti** i **administraciji**.
+
+| Karakteristika | Preduzetnik (paušalac) | DOO |
+|---|---|---|
+| Pravni status | Fizičko lice | Pravno lice |
+| Odgovornost | Cela lična imovina | Do visine uloga |
+| Minimalni kapital | Nema | 100 RSD |
+| Knjigovodstvo | Nije obavezno (paušal) | Obavezno (dvojno) |
+| Mesečni trošak | Fiksni (~30–45k RSD) | Varijabilan (knjigovođa, doprinosi) |
+| Najbolje za | Samostalan rad, niži rizik | Partneri, rast, B2B, zaštita imovine |
+
+Preduzetnik je jednostavniji i jeftiniji, ali odgovarate **celokupnom ličnom imovinom**. DOO štiti ličnu imovinu (odgovornost do uloga), ali nosi obavezno knjigovodstvo i više administracije. Detaljnije poređenje troškova je u vodiču [koliko košta otvaranje firme](/blog/kosta-otvaranje-firme), a kada preći sa frilensera na firmu u tekstu [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma).
+
+## Ko može da bude paušalac (uslovi i limiti)
+
+Paušalno oporezivanje je najpopularniji režim za nove preduzetnike. Da biste bili paušalac:
+
+- morate biti registrovani kao **preduzetnik** u APR-u,
+- **promet ne sme da pređe 6.000.000 RSD** godišnje,
+- ne smete biti **u sistemu PDV-a** (prag za PDV je 8.000.000 RSD),
+- vaša **delatnost** mora biti dozvoljena za paušal — trgovina, ugostiteljstvo i finansijske delatnosti su po pravilu isključene.
+
+Više o uslovima i obračunu je u vodiču o [paušalnom oporezivanju](/blog/pausalno-oporezivanje).
+
+## Kako registrovati firmu korak po korak (APR)
+
+Od maja 2023. godine registracija je **isključivo elektronska** — papirne prijave na šalteru više nisu opcija. Za e-registraciju potreban je **kvalifikovani elektronski potpis** i platna kartica za naknadu.
+
+**Šta vam je potrebno:** kvalifikovani elektronski potpis, lična karta (identifikacioni dokument), naziv firme i šifra pretežne delatnosti, adresa sedišta, i — kod DOO — osnivački akt overen kod javnog beležnika.
+
+### 1. Izbor i provera poslovnog imena
+Naziv mora biti jedinstven u registru i sadržati oznaku pravne forme (npr. „d.o.o."). Dostupnost proverite u APR pretrazi privrednih subjekata pre podnošenja.
+
+### 2. Pretežna delatnost (šifra)
+Odaberite šifru pretežne delatnosti. Pažljivo — neke šifre ne mogu u paušal, a izbor utiče i na visinu paušalnog poreza.
+
+### 3. Sedište firme
+Firma mora imati registrovanu adresu u Srbiji. To može biti fizički prostor ili **virtuelna kancelarija** (legalno i dovoljno za registraciju).
+
+### 4. Osnivački akt (za DOO)
+Za jednočlano DOO izrađuje se **Odluka o osnivanju**, za višečlano **Ugovor o osnivanju**. Akt se potpisuje elektronski; potpis se po pravilu overava kod javnog beležnika. Preduzetnik ne sastavlja osnivački akt — podnosi registracionu prijavu.
+
+### 5. Elektronska prijava u APR
+Prijava se podnosi kroz APR aplikaciju, uz elektronski potpis i dokaz o uplati naknade. Uz prijavu idu identifikacioni dokumenti osnivača i (za DOO) osnivački akt.
+
+### 6. Rešenje o registraciji
+APR donosi rešenje **u roku od 3 do 5 radnih dana** od uredne dokumentacije. Rešenjem se dodeljuju **PIB**, **matični broj** i broj zdravstvenog osiguranja. Tek dostavljanjem rešenja registracija je okončana.
+
+## Koliko košta otvaranje firme 2026
+
+Okvirne zvanične naknade (online procedura):
+
+| Stavka | Iznos (RSD) |
+|---|---|
+| Registracija preduzetnika (paušal) | ≈ 2.500–2.900 |
+| Registracija DOO (online) | ≈ 5.900 |
+| Registracija DOO (klasično) | ≈ 6.500 |
+| Notarska overa (DOO) | ≈ 2.000–5.000 |
+| Minimalni kapital DOO | 100 |
+
+Iznosi su okvirni i menjaju se uredbom — tačan iznos proverite na [APR — naknade](https://www.apr.gov.rs/registri/privredna-drustva/naknade.2044.html). Detaljnu razradu troškova (sa mesečnim obavezama) dajemo u vodiču [koliko košta otvaranje firme 2026](/blog/kosta-otvaranje-firme).
+
+## Obaveze posle registracije
+
+Registracija je tek početak — odmah nastaju zakonske obaveze:
+
+- **Poslovni račun u banci.** Firma ne može legalno da prima ni vrši plaćanja dok račun nije otvoren.
+- **Prva (akontaciona) poreska prijava — rok 15 dana.** U roku od 15 dana od registracije podnosi se prva poreska prijava. Kašnjenje povlači **automatske penale** — najčešća skupa greška novih osnivača.
+- **Evidencija stvarnih vlasnika (za DOO).** Upis u Centralnu evidenciju u roku od 15 dana.
+- **Knjigovodstvo.** DOO mora da vodi dvojno knjigovodstvo od početka; paušalcu nije obavezno.
+- **PDV.** Obaveza nastaje pri prometu od **8.000.000 RSD** godišnje (moguća je i dobrovoljna registracija ranije).
+
+## Paušal vs DOO — šta se više isplati
+
+- **Paušal** je najbolji za samostalan rad, male rashode i niži poslovni rizik: jeftino, predvidivo, bez knjigovođe.
+- **DOO** birajte kada vam je važna **ograničena odgovornost**, kada poslujete sa partnerom, kada se približavate paušalnom limitu od 6 miliona, ili kod ozbiljnih B2B i inostranih ugovora.
+
+Forma se može menjati kako biznis raste — mnogi krenu kao paušalci pa pređu na DOO.
+
+## Česte greške
+
+- **Propuštanje roka od 15 dana** za prvu poresku prijavu (automatski penali).
+- **Pogrešna šifra delatnosti** koja onemogućava paušal.
+- **Biranje DOO „jer zvuči ozbiljnije"** iako je paušal jeftiniji za dati posao.
+- **Mešanje privatnog i poslovnog računa**, što kasnije pravi probleme u knjigovodstvu i kod kontrole.
+
+## Savet
+
+Pre registracije uporedite forme i izračunajte **ukupan mesečni trošak**, ne samo naknadu za osnivanje. Za izbor između samostalnog rada, paušala i firme pogledajte [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma) i [paušalno oporezivanje](/blog/pausalno-oporezivanje), a zaradu iz radnog odnosa proverite [kalkulatorom zarade](/). Za konkretan slučaj se obratite knjigovođi.
+
+## Izvori i korisni linkovi
+
+- [Agencija za privredne registre (APR)](https://www.apr.gov.rs/)
+- [APR — naknade (privredna društva)](https://www.apr.gov.rs/registri/privredna-drustva/naknade.2044.html)
+- [Poreska uprava Srbije](https://www.purs.gov.rs/)
+- [Zakon o privrednim društvima (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_privrednim_drustvima.html)
+    `,
+    faq: [
+      { q: "Koliko košta otvaranje firme u Srbiji 2026?", a: "Registracija preduzetnika (paušalca) u APR-u košta okvirno 2.500–2.900 RSD online, a DOO oko 5.900 RSD online (6.500 RSD klasično) uz notarsku overu ~2.000–5.000 RSD i minimalni kapital od 100 RSD. APR naknade su povećane od 1.1.2026 — proverite tačan iznos na sajtu APR." },
+      { q: "Šta je bolje, paušal ili DOO?", a: "Paušal (preduzetnik) je jednostavniji i jeftiniji, ali odgovarate celom ličnom imovinom i bez mogućnosti za sve delatnosti. DOO štiti ličnu imovinu (odgovornost do uloga) i pogodnije je za partnerstva, veći rast i B2B, ali zahteva obavezno knjigovodstvo." },
+      { q: "Koliko traje registracija firme u APR-u?", a: "APR donosi rešenje o registraciji najkasnije u roku od 3 do 5 radnih dana od uredne dokumentacije. Ceo proces sa pripremom dokumentacije i otvaranjem računa obično traje 10 do 15 radnih dana." },
+      { q: "Koliki je limit za paušalce?", a: "Promet za ostanak u paušalu ne sme da pređe 6.000.000 RSD godišnje. Prag za ulazak u sistem PDV-a je 8.000.000 RSD. Pojedine delatnosti (trgovina, ugostiteljstvo, finansije) ne mogu biti na paušalu." },
+      { q: "Da li je paušalcu potreban knjigovođa?", a: "Zakonski nije obavezan — paušalac ne vodi dvojno knjigovodstvo. Mnogi ipak angažuju knjigovođu radi rokova, prijava i evidencije. DOO, za razliku od paušalca, mora da vodi knjige od početka." },
+    ],
+  },
+
+  {
+    id: "pausal-ili-doo",
+    date: "17. jun 2026",
+    tag: "Biznis",
+    title: "Paušal ili DOO 2026 — šta se više isplati?",
+    summary: "Paušal ili DOO 2026: razlika u odgovornosti, porezima i tome koliko vam ostaje kad izvučete dobit. Vodič za izbor pravne forme sa primerima.",
+    body: `
+![Paušal ili DOO 2026 — poređenje pravne forme za firmu u Srbiji](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&fm=webp&q=70)
+
+> **Provereno i ažurirano: jun 2026.** Stope i pragovi usklađeni su sa zvaničnim izvorima (Poreska uprava, APR, Zakon o privrednim društvima i Zakon o porezu na dobit) za 2026. godinu. Poreski parametri se menjaju — pre odluke proverite aktuelne podatke ili se obratite knjigovođi.
+
+„Paušal ili DOO?" je prva velika dilema pri pokretanju biznisa u Srbiji. Mnogi biraju DOO „jer zvuči ozbiljnije", a onda plaćaju višak poreza i knjigovodstva. Odluka se zapravo svodi na tri stvari: **odgovornost**, **koliko vam ostaje kad novac izvučete iz firme**, i **administraciju**. U ovom vodiču poredimo obe forme po tim kriterijumima, sa primerima.
+
+**Ukratko:** za **samostalan rad niskog rizika** i prihode ispod **6 miliona RSD** godišnje, **paušal** je obično jeftiniji i jednostavniji — ali odgovarate ličnom imovinom. **DOO** se isplati kod partnerstva, većeg rasta i potrebe za zaštitom imovine, uz **15% poreza na dobit** i još **15% na dividendu** pri isplati vlasniku.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Za procenu konkretne situacije konsultujte knjigovođu.
+
+## Osnovna razlika: odgovornost
+
+- **Paušalac (preduzetnik)** je **fizičko lice**. Za sve obaveze iz poslovanja odgovara **celokupnom ličnom imovinom** — stanom, kolima, štednjom.
+- **DOO** je **pravno lice**. Osnivač odgovara **samo do visine uloga** — lična imovina je, po pravilu, zaštićena.
+
+Za delatnosti niskog rizika (konsalting, IT, usluge) lična odgovornost retko postaje problem. Kod većih ugovora, dugova ili partnerstava, zaštita koju daje DOO postaje važna.
+
+## Kako se oporezuju — i koliko vam ostaje
+
+Ovo je deo koji se najčešće pogrešno razume.
+
+**Paušalac** plaća **fiksni mesečni paušalni porez i doprinose** (okvirno 30.000–45.000 RSD, zavisno od šifre i opštine). Kada to plati, **ostatak prihoda je njegov** — nema dodatnog poreza da bi „izvukao" novac.
+
+**DOO** ima **dva sloja**:
+
+1. **Porez na dobit: 15%** na ostvarenu dobit firme.
+2. **Porez na dividendu: 15%** kada se dobit isplaćuje vlasniku (fizičkom licu).
+
+To znači da na dobit koju izvučete kao dividendu efektivno ode oko **27,75%** poreza (od 100 dinara dobiti: 15 porez na dobit → ostaje 85 → 12,75 porez na dividendu → vlasniku ~72,25). Pored toga, **direktor DOO mora biti osiguran** i na njega se plaćaju doprinosi, čak i uz minimalnu zaradu.
+
+| Stavka | Paušalac | DOO |
+|---|---|---|
+| Porez na prihod/dobit | Fiksni paušalni porez | 15% porez na dobit |
+| „Izvlačenje" novca | Nema dodatnog poreza | + 15% porez na dividendu |
+| Doprinosi | Uključeni u paušal | Obavezni za direktora |
+| Predvidljivost | Visoka (fiksno) | Zavisi od dobiti i isplata |
+
+Zato je za manje, stabilne prihode paušal često **neto povoljniji** — ceo iznos posle fiksne obaveze je vaš. DOO se isplati kada dobit i potreba za zaštitom imovine porastu, ili kada novac ostaje u firmi i reinvestira se.
+
+## Administracija i troškovi
+
+- **Paušalac:** nema obaveznog knjigovodstva, prijava je jednostavna, troškovi predvidivi. Trošak osnivanja je nizak.
+- **DOO:** **obavezno dvojno knjigovodstvo** (mesečni trošak knjigovođe), složenija administracija, viši trošak osnivanja i overe. Detaljnu razradu troškova dajemo u vodiču [koliko košta otvaranje firme 2026](/blog/kosta-otvaranje-firme).
+
+## Kada je paušal bolji izbor
+
+- radite **samostalno**, sa malim realnim rashodima (konsalting, IT, usluge);
+- prihodi su **stabilni i ispod limita** od 6.000.000 RSD godišnje;
+- želite **predvidive, niske troškove** bez knjigovođe;
+- poslovni rizik je nizak i lična odgovornost vam nije problem.
+
+Uslove za paušal detaljno objašnjavamo u vodiču o [paušalnom oporezivanju](/blog/pausalno-oporezivanje).
+
+## Kada je DOO bolji izbor
+
+- važna vam je **ograničena odgovornost** (zaštita lične imovine);
+- poslujete sa **partnerom** ili više osnivača;
+- približavate se ili prelazite **paušalni limit od 6 miliona** dinara;
+- imate **ozbiljne B2B ili inostrane ugovore** gde je pravno lice uslov ili znak kredibiliteta;
+- planirate **zapošljavanje, rast i reinvestiranje** dobiti.
+
+## Paušal vs DOO — kratak pregled
+
+| Karakteristika | Paušalac | DOO |
+|---|---|---|
+| Pravni status | Fizičko lice | Pravno lice |
+| Odgovornost | Cela lična imovina | Do visine uloga |
+| Minimalni kapital | Nema | 100 RSD |
+| Knjigovodstvo | Nije obavezno | Obavezno |
+| Limit prometa | 6.000.000 RSD/god. | Nema |
+| Oporezivanje | Fiksni paušalni porez | 15% dobit + 15% dividenda |
+| Najbolje za | Samostalan rad, niži rizik | Partneri, rast, zaštita imovine |
+
+## Prelazak sa paušala na DOO
+
+Forma nije doživotna. Mnogi krenu kao **paušalci** dok je posao mali, pa pređu na **DOO** kada porastu prihodi, dođe partner ili zatreba zaštita imovine. Kada birate, gledajte gde ćete biti za godinu-dve, ne samo danas. Pun postupak registracije je u vodiču [kako registrovati firmu u Srbiji 2026](/blog/kako-registrovati-firmu).
+
+## Česte zablude
+
+- **„DOO je uvek ozbiljnije, pa je bolje."** Za samostalan rad niskog rizika paušal je obično jeftiniji i jednostavniji.
+- **Gledanje samo poreza na dobit (15%).** Kod DOO treba računati i porez na dividendu (15%) i doprinose za direktora.
+- **Zaboravljanje limita od 6 miliona.** Prelazak limita znači izlazak iz paušala — planirajte na vreme.
+- **Mešanje privatnog i poslovnog novca**, što ugrožava i knjigovodstvo i samu zaštitu od odgovornosti kod DOO.
+
+## Savet
+
+Ne birajte po tome „šta zvuči bolje", već po odgovornosti, ukupnom porezu na novac koji zaista izvlačite, i administraciji koju možete da nosite. Za prvi izbor pogledajte i [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma), a zaradu iz radnog odnosa proverite [kalkulatorom zarade](/). Za konkretan slučaj se obratite knjigovođi.
+
+## Izvori i korisni linkovi
+
+- [Poreska uprava Srbije](https://www.purs.gov.rs/)
+- [Agencija za privredne registre (APR)](https://www.apr.gov.rs/)
+- [Zakon o porezu na dobit pravnih lica (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dobit_preduzeca.html)
+- [Zakon o privrednim društvima (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_privrednim_drustvima.html)
+    `,
+    faq: [
+      { q: "Šta je bolje, paušal ili DOO?", a: "Za samostalan rad niskog rizika sa stabilnim prihodima ispod 6 miliona RSD godišnje paušal je obično jeftiniji i jednostavniji (fiksni porez, bez knjigovođe), ali odgovarate celom ličnom imovinom. DOO se isplati kod partnerstva, većeg rasta, potrebe za zaštitom imovine i ozbiljnih B2B ugovora." },
+      { q: "Koliko se plaća porez kod DOO u Srbiji 2026?", a: "DOO plaća 15% poreza na dobit, a pri isplati dobiti vlasniku (fizičkom licu) dodatnih 15% poreza na dividendu — efektivno oko 27,75% na izvučenu dobit. Uz to se plaćaju i doprinosi za direktora. Paušalac, za razliku, plaća samo fiksni mesečni paušalni porez i doprinose." },
+      { q: "Koliki je limit za paušalca?", a: "Promet za ostanak u paušalu ne sme da pređe 6.000.000 RSD godišnje. Prelazak limita znači izlazak iz paušalnog režima, pa je važno planirati prelazak na vreme (npr. na DOO)." },
+      { q: "Da li mogu da pređem sa paušala na DOO?", a: "Da. Forma nije doživotna — mnogi krenu kao paušalci dok je posao mali, pa pređu na DOO kada porastu prihodi, dođe partner ili zatreba zaštita lične imovine." },
+    ],
+  },
+
+  {
+    id: "koliko-pausalac-placa-mesecno",
+    date: "17. jun 2026",
+    tag: "Paušal",
+    title: "Koliko paušalac plaća mesečno u Srbiji 2026?",
+    summary: "Koliko paušalac plaća mesečno u 2026? Od čega zavisi iznos (delatnost, opština), šta čine porez i doprinosi i kako saznati tačnu sumu iz rešenja PU.",
+    body: `
+![Koliko paušalac plaća mesečno u Srbiji 2026 — porez i doprinosi](https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&fm=webp&q=70)
+
+> **Provereno i ažurirano: jun 2026.** Stope i pravila usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO) za 2026. godinu. Tačan mesečni iznos određuje rešenje Poreske uprave — pre planiranja proverite svoj konkretan iznos.
+
+Najveća prednost paušalca je predvidljivost: plaćate **isti fiksni iznos svakog meseca**, bez obzira na to koliko ste zaradili. Ali „koliko tačno" zavisi od nekoliko faktora i razlikuje se od preduzetnika do preduzetnika. U ovom vodiču objašnjavamo od čega zavisi mesečna obaveza, šta je sve uključeno i kako da saznate svoj tačan iznos.
+
+**Ukratko:** paušalac u 2026. plaća **fiksni mesečni iznos** koji najčešće iznosi okvirno **30.000–45.000 RSD** (porez 10% + doprinosi PIO 24% i zdravstvo 10,3% na paušalnu osnovicu). Tačan iznos zavisi od **delatnosti i opštine** i naveden je u rešenju Poreske uprave.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski savet. Tačan iznos zavisi od rešenja Poreske uprave; za procenu se obratite knjigovođi.
+
+## Od čega zavisi mesečni iznos
+
+Paušalac ne plaća porez na stvarni prihod, već na **paušalno utvrđen prihod (osnovicu)** koji određuje Poreska uprava. Ta osnovica se računa od **polazne osnovice** (vezane za prosečnu zaradu) koja se množi koeficijentima, najvažniji su:
+
+- **šifra delatnosti** — različite delatnosti imaju različite koeficijente;
+- **opština i zona** — Beograd i veći gradovi su skuplji od manjih opština;
+- **starost preduzetnika i dužina poslovanja** — novi i mlađi preduzetnici često imaju umanjenja;
+- registrovano **sedište** i drugi propisani elementi.
+
+Zbog toga dva paušalca sa istom delatnošću mogu imati različit iznos ako su u različitim opštinama.
+
+## Šta sve plaća paušalac mesečno
+
+Mesečna obaveza nije samo „porez" — sastoji se od tri dela, svi obračunati na paušalnu osnovicu:
+
+- **Porez na prihod od samostalne delatnosti: 10%**
+- **Doprinos za PIO (penzijsko): 24%**
+- **Doprinos za zdravstveno osiguranje: 10,3%**
+
+Doprinosi su, dakle, veći deo obaveze od samog poreza. Sve troje zajedno čini fiksni mesečni iznos iz rešenja.
+
+## Okvirni mesečni iznos
+
+U praksi, mesečna obaveza paušalca u 2026. najčešće se kreće **okvirno 30.000–45.000 RSD**. Za pojedine delatnosti sa nižim koeficijentom i u jeftinijim opštinama može biti i niža, a u Beogradu i za „skuplje" delatnosti viša. Ovo su orijentacioni iznosi — vaš tačan iznos je u rešenju Poreske uprave.
+
+Kako se bira između paušala i drugih oblika objašnjavamo u vodičima [paušal ili DOO](/blog/pausal-ili-doo) i [paušalno oporezivanje](/blog/pausalno-oporezivanje).
+
+## Kako da saznate svoj tačan iznos
+
+Posle registracije i podnetog zahteva za paušalno oporezivanje, Poreska uprava izdaje **rešenje** sa tačnim mesečnim iznosom poreza i doprinosa. To rešenje (i naloge za plaćanje) vidite preko portala **ePorezi**. Dok rešenje ne stigne, iznos je samo procena.
+
+## Šta nije uključeno u paušal
+
+Pored mesečne obaveze iz rešenja, planirajte i:
+
+- **poslovni račun** u banci (mesečno održavanje),
+- eventualnu **članarinu** privrednoj komori,
+- **knjigovođu** ako ga angažujete (paušalcu nije obavezan, ali mnogi ga uzmu radi rokova).
+
+Ukupne troškove osnivanja i poslovanja razrađujemo u vodiču [koliko košta otvaranje firme 2026](/blog/kosta-otvaranje-firme).
+
+## Limit i kada se iznos menja
+
+Paušalni status važi dok **promet ne pređe 6.000.000 RSD** godišnje. Iznos iz rešenja se može menjati kada se promene parametri (npr. nova polazna osnovica za godinu, promena opštine ili delatnosti). Prelazak limita znači izlazak iz paušala.
+
+## Savet
+
+Pre nego što se registrujete, procenite mesečnu obavezu za svoju delatnost i opštinu — jer to je trošak koji plaćate i kada je mesec slab. Za pun postupak pogledajte [kako registrovati firmu u Srbiji 2026](/blog/kako-registrovati-firmu), a zaradu iz radnog odnosa proverite [kalkulatorom zarade](/). Za tačnu procenu se obratite knjigovođi.
+
+## Izvori i korisni linkovi
+
+- [Poreska uprava Srbije](https://www.purs.gov.rs/)
+- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
+    `,
+    faq: [
+      { q: "Koliko paušalac plaća mesečno u 2026. godini?", a: "Najčešće okvirno 30.000–45.000 RSD mesečno, ali iznos zavisi od šifre delatnosti, opštine i drugih koeficijenata, pa može biti i niži ili viši. Tačan iznos određuje rešenje Poreske uprave." },
+      { q: "Šta sve čini mesečnu obavezu paušalca?", a: "Porez na prihod od samostalne delatnosti (10%) i doprinosi — PIO (24%) i zdravstveno osiguranje (10,3%) — obračunati na paušalno utvrđenu osnovicu. Doprinosi su veći deo obaveze od samog poreza." },
+      { q: "Da li paušalac plaća isto svakog meseca?", a: "Da. Paušalac plaća fiksan iznos iz rešenja bez obzira na to koliko je tog meseca zaradio, sve dok je u paušalnom režimu i ispod limita od 6.000.000 RSD godišnje." },
+      { q: "Gde vidim tačan iznos koji treba da platim?", a: "U rešenju Poreske uprave o paušalnom oporezivanju, koje sa nalozima za plaćanje vidite preko portala ePorezi. Dok rešenje ne stigne, iznos je samo procena." },
+    ],
+  },
+
+  {
+    id: "registracija-pausalca",
+    date: "17. jun 2026",
+    tag: "Biznis",
+    title: "Kako registrovati paušalca korak po korak (APR) 2026",
+    summary: "Kako registrovati paušalca u Srbiji 2026: izbor šifre delatnosti, e-registracija u APR-u, zahtev za paušal i prve obaveze — vodič korak po korak.",
+    body: `
+![Kako registrovati paušalca korak po korak u APR-u 2026](https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=800&fm=webp&q=70)
+
+> **Provereno i ažurirano: jun 2026.** Postupak i naknade usklađeni su sa zvaničnim izvorima (APR, Poreska uprava) za 2026. godinu. APR naknade su povećane od 1. januara 2026. — pre uplate proverite tačan iznos na sajtu APR.
+
+Registracija paušalca je najjednostavniji način da legalno pokrenete biznis u Srbiji — jeftinije i brže od DOO, bez osnivačkog akta i notara. Ceo postupak je elektronski. U ovom vodiču prolazimo kroz registraciju **korak po korak**, od izbora šifre delatnosti do prvog rešenja Poreske uprave.
+
+**Ukratko:** paušalca registrujete **elektronski u APR-u** (uz kvalifikovani e-potpis), **bez osnivačkog akta i notara**; naknada je okvirno **2.500–2.900 RSD**, a rešenje stiže za nekoliko radnih dana. Paušalni status se zatim **posebno traži** zahtevom preko portala ePorezi.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Pre podnošenja prijave proverite aktuelne podatke na APR-u i Poreskoj upravi ili se obratite knjigovođi.
+
+## Pre registracije: tri stvari koje treba pripremiti
+
+1. **Naziv** preduzetničke radnje — proverite dostupnost u APR pretrazi privrednih subjekata.
+2. **Šifra pretežne delatnosti** — biraјte pažljivo: neke delatnosti (trgovina, ugostiteljstvo, finansije) **ne mogu** u paušal, a šifra utiče i na visinu paušalnog poreza.
+3. **Sedište** — adresa u Srbiji (može i kućna adresa ili virtuelna kancelarija).
+
+## Korak po korak: e-registracija u APR-u
+
+Od maja 2023. registracija je **isključivo elektronska**, preko aplikacije APR-a. Potreban vam je **kvalifikovani elektronski potpis** i platna kartica za naknadu.
+
+### 1. Pristup APR aplikaciji
+Prijavite se u sistem za eRegistraciju osnivanja preduzetnika na sajtu APR-a, uz elektronski potpis.
+
+### 2. Popunjavanje prijave
+Unesite naziv, šifru pretežne delatnosti, sedište i lične podatke. Preduzetnik **ne sastavlja osnivački akt** (za razliku od DOO) — podnosi se registraciona prijava.
+
+### 3. Plaćanje naknade
+Naknada za registraciju preduzetnika iznosi okvirno **2.500–2.900 RSD** (online). Tačan iznos proverite na [APR — naknade](https://www.apr.gov.rs/registri/privredna-drustva/naknade.2044.html).
+
+### 4. Rešenje o registraciji
+APR donosi rešenje, po pravilu **u roku od nekoliko radnih dana**. Rešenjem dobijate **PIB** i **matični broj** i zvanično ste preduzetnik.
+
+## Kako tražiti paušalno oporezivanje
+
+Registracija u APR-u vas čini preduzetnikom, ali **paušalni status morate posebno tražiti**. Zahtev za paušalno oporezivanje podnosi se elektronski (preko ePoreza) — za novoosnovane, po pravilu pri registraciji ili u kratkom roku po njoj. Poreska uprava zatim izdaje **rešenje sa tačnim mesečnim iznosom** poreza i doprinosa. Koliko to iznosi i od čega zavisi objasnili smo u vodiču [koliko paušalac plaća mesečno](/blog/koliko-pausalac-placa-mesecno).
+
+## Posle registracije
+
+- **Otvorite poslovni račun** u banci — bez njega ne možete legalno primati ni vršiti plaćanja.
+- **Pratite rešenje i rokove** plaćanja preko ePoreza.
+- **Prva poreska prijava** i prijava za doprinose — u propisanim rokovima (kašnjenje nosi penale).
+
+## APR nije samo za registraciju
+
+Korisno je znati da preko APR-a možete i da **proverite druge firme** — npr. njihove finansijske izveštaje pre nego što uđete u saradnju ili potpišete ugovor. Kako se to radi (po nazivu, matičnom broju ili PIB-u) lepo je objašnjeno u vodiču [APR pretraga finansijskih izveštaja](https://investirajpametno.rs/blog/apr-pretraga-finansijskih-izvestaja/) na sajtu Investiraj Pametno.
+
+## Česte greške
+
+- **Pogrešna šifra delatnosti** koja onemogućava paušal — proverite pre prijave.
+- **Zaboravljen zahtev za paušal** — registracija u APR-u i paušalni status su dva odvojena koraka.
+- **Propuštanje rokova** za prvu prijavu i plaćanje (automatski penali).
+- **Mešanje privatnog i poslovnog računa.**
+
+## Savet
+
+Ako vam je posao samostalan i niskog rizika, paušalna radnja je obično najbolji start. Ako razmišljate i o firmi, uporedite forme u vodičima [paušal ili DOO](/blog/pausal-ili-doo) i [kako registrovati firmu](/blog/kako-registrovati-firmu). Za konkretan slučaj se obratite knjigovođi.
+
+## Izvori i korisni linkovi
+
+- [APR — eRegistracija osnivanja preduzetnika](https://www.apr.gov.rs/usluge/eservisi/eregistracija-osnivanja-preduzetnika.2406.html)
+- [APR — naknade](https://www.apr.gov.rs/registri/privredna-drustva/naknade.2044.html)
+- [Poreska uprava Srbije](https://www.purs.gov.rs/)
+    `,
+    faq: [
+      { q: "Koliko košta registracija paušalca u 2026?", a: "Naknada APR za registraciju preduzetnika iznosi okvirno 2.500–2.900 RSD za online prijavu. Preduzetnik nema troškove notara ni osnivačkog akta. Tačan iznos proverite na sajtu APR jer su naknade povećane od 1.1.2026." },
+      { q: "Da li paušalcu treba osnivački akt i notar?", a: "Ne. Za razliku od DOO, preduzetnik (paušalac) ne sastavlja osnivački akt i ne ide kod notara — podnosi se samo registraciona prijava elektronski u APR-u." },
+      { q: "Kako da dobijem paušalni status?", a: "Registracija u APR-u vas čini preduzetnikom, ali paušalno oporezivanje morate posebno tražiti — zahtevom preko ePoreza, po pravilu pri registraciji ili u kratkom roku po njoj. Poreska uprava izdaje rešenje sa mesečnim iznosom." },
+      { q: "Koliko traje registracija preduzetnika?", a: "APR donosi rešenje o registraciji preduzetnika po pravilu u roku od nekoliko radnih dana od uredne elektronske prijave, nakon čega dobijate PIB i matični broj." },
+    ],
+  },
+
+  {
+    id: "uplate-iz-inostranstva",
+    date: "17. jun 2026",
+    tag: "Frilenseri",
+    title: "Uplate iz inostranstva 2026 — Wise, Payoneer ili devizni račun",
+    summary: "Kako primati uplate iz inostranstva u Srbiji 2026: Wise, Payoneer i devizni račun — naknade, kurs i prijava poreza. I zašto Revolut još ne radi za rezidente.",
+    body: `
+![Primanje uplata iz inostranstva u Srbiji — Wise, Payoneer i devizni račun](https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=800&fm=webp&q=70)
+
+> **Provereno i ažurirano: jun 2026.** Dostupnost servisa i naknade proverene su prema zvaničnim izvorima (Narodna banka Srbije, Wise, Revolut, Payoneer) u junu 2026. Uslovi i naknade se menjaju — pre korišćenja proverite aktuelno stanje kod samog pružaoca usluge.
+
+Ako radite za klijente iz inostranstva, novac stiže u evrima ili dolarima — a vama treba način da ga **legalno primite, konvertujete u dinare i prijavite**. U Srbiji to praktično znači tri opcije: **devizni račun u banci, Wise i Payoneer**. U ovom vodiču poredimo ih po naknadama, kursu i jednostavnosti — i objašnjavamo zašto Revolut (još) nije rešenje za rezidente Srbije.
+
+**Ukratko:** rezidenti Srbije uplate iz inostranstva primaju preko **deviznog računa u banci, Wise-a ili Payoneer-a** — **Revolut još nije dostupan rezidentima Srbije** (2026). Svaki priliv je **oporeziv** i prijavljuje se po **srednjem kursu NBS na dan priliva**.
+
+> **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski ni finansijski savet. Za poresku obavezu se posavetujte sa knjigovođom, a za uslove servisa proverite zvanične stranice pružalaca.
+
+## Tri opcije koje rade za rezidente Srbije
+
+Cilj je isti — da strani klijent uplati, a vi dobijete dinare na svoj račun u Srbiji uz što manje troška. Razlikuju se po naknadama, kursu i tome koliko je jednostavno klijentu da plati.
+
+## Devizni račun u banci
+
+Klasično rešenje: otvorite **devizni račun** u domaćoj banci i date klijentu podatke za međunarodnu (SWIFT) uplatu.
+
+- **Prednost:** sve je „u sistemu", banka radi konverziju i izveštavanje.
+- **Mana:** kod priliva morate banci prijaviti **osnov priliva** (npr. šifra za usluge), a banka primenjuje **srednji kurs NBS ili svoj kupovni kurs**; SWIFT naknade zna da budu više nego kod fintech servisa.
+
+## Wise
+
+Wise (ranije TransferWise) je dostupan rezidentima Srbije za **primanje** novca: otvorite nalog i dobijete **podatke za prijem u EUR i USD** koje date klijentu, a sredstva potom prebacite na svoj račun u Srbiji.
+
+- **Prednost:** konverzija po kursu vrlo bliskom **srednjem tržišnom kursu**, uz nisku i transparentnu naknadu.
+- **Ograničenje:** u Srbiji **kartica i pune multivalutne funkcije nisu dostupne** — Wise koristite prevashodno za prijem i konverziju, pa povlačenje na domaći račun.
+
+## Payoneer
+
+Payoneer je **legalan i veoma raširen** među frilenserima u Srbiji. Posle registracije dobijate **virtuelne devizne naloge** (USD, EUR, GBP i druge) koji za klijenta funkcionišu kao lokalni račun.
+
+- **Prednost:** klijentima je lako da plate „lokalno"; popularno na platformama poput Upwork-a.
+- **Naknade:** okvirno **do 2% za konverziju** pri podizanju na domaći račun, uz fiksnu naknadu od oko **1,50 USD** za podizanje u istoj valuti.
+
+## A Revolut? Još ne radi za rezidente Srbije
+
+Revolut je popularan, ali **rezidenti Srbije trenutno ne mogu da otvore Revolut nalog** — Srbija nije među podržanim zemljama (Revolut posluje u EEA, UK i nizu drugih zemalja, ali ne i u Srbiji). Zato Revolut, do eventualne promene, **nije opcija** za primanje uplata kao rezident Srbije. Ako vidite savet da „koristite Revolut u Srbiji", proverite datum i izvor — uslovi se menjaju, ali u junu 2026. to nije moguće za rezidente.
+
+## Poređenje
+
+| Opcija | Dostupno rezidentima Srbije | Kurs/naknade | Najbolje za |
+|---|---|---|---|
+| Devizni račun (banka) | Da | NBS/kupovni kurs banke + SWIFT naknade | One koji žele sve „u banci" |
+| Wise | Da (prijem; bez kartice) | Blizu tržišnog kursa, niska naknada | Povremene i redovne strane uplate |
+| Payoneer | Da | ~2% konverzija + ~1,5 USD | Platforme (Upwork i sl.) |
+| Revolut | **Ne (2026)** | — | — |
+
+## Porez: svaki priliv se prijavljuje
+
+Bez obzira na to da li novac stigne na devizni račun, Wise ili Payoneer — **svaki priliv je oporeziv prihod**. Prijavljujete ga po **srednjem kursu NBS na dan priliva**, i čuvate **fakture i izvode** kao dokaz. Kako se to tačno oporezuje zavisi od vašeg statusa: kao frilenser (samooporezivanje) — videti [porez za frilensere (Model A i B)](/blog/porez-za-frilensere); kao paušalac — videti [paušalno oporezivanje](/blog/pausalno-oporezivanje). Koji status izabrati objasnili smo u tekstu [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma).
+
+## Koju opciju izabrati
+
+- **Povremene strane uplate, želite najbolji kurs:** Wise.
+- **Radite preko platformi (Upwork, Fiverr):** Payoneer je često najlakši klijentima.
+- **Želite sve kroz banku, uz uredno izveštavanje:** devizni račun.
+
+Mnogi kombinuju — npr. Payoneer/Wise za prijem, pa povlačenje na domaći (devizni ili dinarski) račun. Bitno je samo da je svaki priliv uredno dokumentovan i prijavljen.
+
+## Savet
+
+Izaberite servis po tome **kako vaši klijenti najlakše plaćaju** i po ukupnom trošku (naknada + kurs), a porez planirajte od prvog dana. Obračun zarade iz radnog odnosa proverite [kalkulatorom zarade](/), a za izbor poreskog statusa pogledajte vodiče iznad. Za konkretnu situaciju se obratite knjigovođi.
+
+## Izvori i korisni linkovi
+
+- [Narodna banka Srbije — naknade za prijem novca iz inostranstva](https://nbs.rs/sr/ciljevi-i-funkcije/zastita-korisnika/naknade-ino/)
+- [Wise — Help Centre (prijem novca)](https://wise.com/help/articles/2898124/how-do-i-receive-money-to-my-wise-account-details)
+- [Revolut — podržane zemlje](https://help.revolut.com/help/profile-and-plan/profile-plan/verifying-identity/what-countries-are-supported/)
+- [Poreska uprava — portal Frilenseri](https://frilenseri.purs.gov.rs/)
+    `,
+    faq: [
+      { q: "Da li Revolut radi u Srbiji 2026?", a: "Ne za rezidente. Rezidenti Srbije trenutno ne mogu da otvore Revolut nalog jer Srbija nije među podržanim zemljama (Revolut posluje u EEA, UK i nizu drugih zemalja). Za primanje uplata iz inostranstva rezidenti koriste Wise, Payoneer ili devizni račun u banci." },
+      { q: "Kako frilenser u Srbiji prima uplate iz inostranstva?", a: "Najčešće preko deviznog računa u banci, Wise-a ili Payoneer-a. Klijentu date podatke za uplatu, novac stiže u EUR/USD, a vi ga konvertujete u dinare i povučete na domaći račun. Svaki priliv je oporeziv i prijavljuje se po srednjem kursu NBS na dan priliva." },
+      { q: "Da li je Payoneer legalan u Srbiji?", a: "Da. Payoneer je legalan i veoma raširen među frilenserima u Srbiji. Daje virtuelne devizne naloge (USD, EUR, GBP...) koji za klijenta funkcionišu kao lokalni račun. Naknada za podizanje uz konverziju je okvirno do 2%." },
+      { q: "Da li se uplate preko Wise-a i Payoneer-a prijavljuju za porez?", a: "Da. Svaki priliv iz inostranstva — bez obzira na to da li stigne na banku, Wise ili Payoneer — predstavlja oporeziv prihod. Prijavljuje se po srednjem kursu NBS na dan priliva, uz čuvanje faktura i izvoda kao dokaza." },
+    ],
+  },
+
+  {
     id: "kosta-otvaranje-firme",
     date: "17. jun 2026",
     tag: "Biznis",
