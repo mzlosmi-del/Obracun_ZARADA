@@ -71,8 +71,11 @@ export default async function handler(req, res) {
       }
       return res.status(400).json({ error: "invalid" });
     }
+    const detail = await r.text().catch(() => "");
+    console.error("Brevo upstream error", r.status, detail.slice(0, 500));
     return res.status(502).json({ error: "upstream" });
-  } catch {
+  } catch (err) {
+    console.error("Brevo network error", err?.message || err);
     return res.status(502).json({ error: "network" });
   }
 }
