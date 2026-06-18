@@ -298,30 +298,20 @@ function BrevoSignup() {
     setStatus("loading");
     setErrorMsg("");
     try {
-      const res = await fetch("https://api.brevo.com/v3/contacts", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "api-key": import.meta.env.VITE_BREVO_API_KEY,
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          type: "newsletter",
           email: email.trim().toLowerCase(),
-          listIds: [3],
-          updateEnabled: true,
         }),
       });
-      if (res.ok || res.status === 204) {
+      if (res.ok) {
         setStatus("success");
         setEmail("");
       } else if (res.status === 400) {
-        const data = await res.json();
-        if (data.code === "duplicate_parameter") {
-          setStatus("success");
-          setEmail("");
-        } else {
-          setErrorMsg("Proverite email adresu.");
-          setStatus("error");
-        }
+        setErrorMsg("Proverite email adresu.");
+        setStatus("error");
       } else {
         setErrorMsg("Greška. Pokušajte ponovo.");
         setStatus("error");
@@ -438,17 +428,17 @@ function LeadForm() {
     if (!form.email.includes("@") || !form.ime) return;
     setStatus("loading");
     try {
-      const res = await fetch("https://api.brevo.com/v3/contacts", {
+      const res = await fetch("/api/subscribe", {
         method: "POST",
-        headers: { "Content-Type": "application/json", "api-key": import.meta.env.VITE_BREVO_API_KEY },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          type: "lead",
           email: form.email.trim().toLowerCase(),
-          attributes: { FIRSTNAME: form.ime, OPIS: form.opis },
-          listIds: [4],
-          updateEnabled: true,
+          ime: form.ime,
+          opis: form.opis,
         }),
       });
-      if (res.ok || res.status === 204 || res.status === 400) {
+      if (res.ok || res.status === 400) {
         setStatus("success");
       } else {
         setStatus("error");
