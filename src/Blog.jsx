@@ -20,7 +20,8 @@ function renderMd(text) {
         const mk = (w) => `${u}?w=${w}&fm=webp&q=70`;
         return `<img src="${mk(800)}" srcset="${mk(480)} 480w, ${mk(800)} 800w, ${mk(1200)} 1200w" sizes="(max-width: 700px) 100vw, 680px" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
       }
-      return `<img src="${src}" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
+      // Local images (charts, infographics) render full-size, not cropped to a 300px banner.
+      return `<img src="${src}" alt="${alt}" class="post-chart" ${loadAttr} decoding="async" />`;
     })
     .replace(/\[([^\]]+)\]\((\/[^)]*)\)/g, '<a href="$2" class="post-link post-link-internal">$1</a>')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-link">$1</a>')
@@ -165,6 +166,7 @@ export function BlogPostRoute() {
     title: post ? `${post.title} | PlatniListić` : "Članak nije pronađen | PlatniListić",
     description: post ? post.summary : "Tražena strana nije pronađena.",
     path: post ? `/blog/${post.id}` : "/blog",
+    image: post ? post.ogImage : undefined,
     ogType: post ? "article" : "website",
     articlePublished: post ? isoDate(post.date) : undefined,
     articleModified: post ? isoDate(post.date) : undefined,

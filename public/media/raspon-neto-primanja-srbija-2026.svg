@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="t2 d2" font-family="Inter, Arial, sans-serif">
+  <title id="t2">Raspon neto primanja u Srbiji 2026</title>
+  <desc id="d2">Horizontalni bar grafikon: IT programiranje 311.370, Beograd Stari grad 200.666, državni prosek 121.650, medijalna 91.399, minimalac 64.554 dinara neto.</desc>
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Raspon neto primanja u Srbiji (2026)</text>
+  <text x="40" y="60" font-size="13" fill="#64748b">Od minimalca do IT sektora · mesečno, neto · Izvor: RZS</text>
+
+  <g font-size="13" fill="#0f2742" text-anchor="end" font-weight="600">
+    <text x="190" y="95">IT / programiranje</text>
+    <text x="190" y="147">Beograd (Stari grad)</text>
+    <text x="190" y="199">Državni prosek</text>
+    <text x="190" y="251">Medijalna zarada</text>
+    <text x="190" y="303">Minimalac</text>
+  </g>
+
+  <!-- bars (x start 200, max width 480 at value 311370) -->
+  <g>
+    <rect x="200" y="80"  width="480"   height="30" rx="4" fill="#1f6feb"/>
+    <text x="688" y="101" font-size="13" font-weight="800" fill="#1f6feb">311.370</text>
+    <rect x="200" y="132" width="309.3" height="30" rx="4" fill="#3b82f6"/>
+    <text x="517" y="153" font-size="13" font-weight="700" fill="#0f2742">200.666</text>
+    <rect x="200" y="184" width="187.5" height="30" rx="4" fill="#16a34a"/>
+    <text x="395" y="205" font-size="13" font-weight="800" fill="#16a34a">121.650</text>
+    <rect x="200" y="236" width="140.9" height="30" rx="4" fill="#94a3b8"/>
+    <text x="349" y="257" font-size="13" font-weight="700" fill="#475569">91.399</text>
+    <rect x="200" y="288" width="99.5"  height="30" rx="4" fill="#cbd5e1"/>
+    <text x="308" y="309" font-size="13" font-weight="700" fill="#475569">64.554</text>
+  </g>
+  <text x="40" y="360" font-size="12" fill="#94a3b8">platnilistic.rs · IT je više od 3× iznad državnog proseka; minimalac je ~53% proseka</text>
+</svg>

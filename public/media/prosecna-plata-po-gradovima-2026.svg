@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="t3 d3" font-family="Inter, Arial, sans-serif">
+  <title id="t3">Prosečna neto plata po gradovima i regionima u Srbiji 2026</title>
+  <desc id="d3">Horizontalni bar grafikon neto zarada: Stari grad 200.666, Vračar 192.878, Beogradski region 144.028, državni prosek 121.650, Šumadija i Zapadna Srbija 90.705 dinara.</desc>
+  <rect width="720" height="380" fill="#ffffff"/>
+  <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Prosečna neto plata po gradovima (2026)</text>
+  <text x="40" y="60" font-size="13" fill="#64748b">Februar 2026 · mesečno, neto · Izvor: RZS</text>
+
+  <g font-size="13" fill="#0f2742" text-anchor="end" font-weight="600">
+    <text x="190" y="95">Stari grad (Beograd)</text>
+    <text x="190" y="147">Vračar (Beograd)</text>
+    <text x="190" y="199">Beogradski region</text>
+    <text x="190" y="251">Državni prosek</text>
+    <text x="190" y="303">Šumadija i Zap. Srbija</text>
+  </g>
+
+  <!-- bars (x start 200, max width 480 at value 200666) -->
+  <g>
+    <rect x="200" y="80"  width="480"   height="30" rx="4" fill="#1f6feb"/>
+    <text x="688" y="101" font-size="13" font-weight="800" fill="#1f6feb">200.666</text>
+    <rect x="200" y="132" width="461.4" height="30" rx="4" fill="#3b82f6"/>
+    <text x="669" y="153" font-size="13" font-weight="700" fill="#0f2742">192.878</text>
+    <rect x="200" y="184" width="344.5" height="30" rx="4" fill="#60a5fa"/>
+    <text x="552" y="205" font-size="13" font-weight="700" fill="#0f2742">144.028</text>
+    <rect x="200" y="236" width="290.9" height="30" rx="4" fill="#16a34a"/>
+    <text x="498" y="257" font-size="13" font-weight="800" fill="#16a34a">121.650</text>
+    <rect x="200" y="288" width="216.9" height="30" rx="4" fill="#cbd5e1"/>
+    <text x="425" y="309" font-size="13" font-weight="700" fill="#475569">90.705</text>
+  </g>
+  <text x="40" y="360" font-size="12" fill="#94a3b8">platnilistic.rs · Beograd je ~19% iznad državnog proseka, jug Srbije ~25% ispod</text>
+</svg>

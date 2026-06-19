@@ -7,3 +7,6 @@ dist/
 .env.*.local
 .vercel
 .vite
+
+# Internal planning / strategy notes — local only, not published
+_planning/
