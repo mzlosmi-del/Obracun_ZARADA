@@ -73,9 +73,15 @@ async function run() {
   }
 
   chromium.setGraphicsMode = false;
+  // Local dev: set PUPPETEER_EXECUTABLE_PATH to a system Chrome/Edge binary so
+  // prerendering works off-Lambda. On Vercel the var is unset and we fall back
+  // to the bundled @sparticuz/chromium binary — production build is unchanged.
+  const localChrome = process.env.PUPPETEER_EXECUTABLE_PATH;
   const browser = await puppeteer.launch({
-    args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
-    executablePath: await chromium.executablePath(),
+    args: localChrome
+      ? ["--no-sandbox", "--disable-setuid-sandbox"]
+      : [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath: localChrome || (await chromium.executablePath()),
     headless: true,
   });
 
