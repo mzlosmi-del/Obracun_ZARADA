@@ -11,7 +11,7 @@ const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITE_URL = "https://www.platnilistic.rs";
 
-const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi"];
+const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/bruto-neto", "/neto-bruto"];
 const ROUTES = [...STATIC_ROUTES, ...POSTS.map((p) => `/blog/${p.id}`)];
 
 const MONTHS = {
@@ -38,6 +38,8 @@ function sitemapXml() {
     "/o-nama": { changefreq: "monthly", priority: "0.6", lastmod: new Date().toISOString().slice(0, 10) },
     "/privatnost": { changefreq: "yearly", priority: "0.3", lastmod: "2025-02-01" },
     "/uslovi": { changefreq: "yearly", priority: "0.3", lastmod: "2025-02-01" },
+    "/bruto-neto": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/neto-bruto": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
   };
   const entries = [];
   for (const r of STATIC_ROUTES) {

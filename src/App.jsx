@@ -12,6 +12,8 @@ const PolitikaPrivatnosti = lazy(() => import("./Legal.jsx").then(m => ({ defaul
 const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: m.UsloviKoriscenja })));
 const ONama = lazy(() => import("./About.jsx").then(m => ({ default: m.ONama })));
 const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
+const BrutoNetoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BrutoNetoPage })));
+const NetoBrutoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NetoBrutoPage })));
 
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 
@@ -1159,6 +1161,8 @@ export default function App() {
         <div className="main-inner">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/bruto-neto" element={<Suspense fallback={<RouteLoader />}><BrutoNetoPage /></Suspense>} />
+            <Route path="/neto-bruto" element={<Suspense fallback={<RouteLoader />}><NetoBrutoPage /></Suspense>} />
             <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
             <Route path="/o-nama" element={<Suspense fallback={<RouteLoader />}><ONama onBack={() => navigate("/")} /></Suspense>} />
