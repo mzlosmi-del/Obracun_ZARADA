@@ -11,7 +11,7 @@ const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITE_URL = "https://www.platnilistic.rs";
 
-const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/bruto-neto", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/minimalna-zarada-2026", "/radni-dani-2026", "/praznici-2026"];
+const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/bruto-neto", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/ugovor-o-delu", "/minimalna-zarada-2026", "/radni-dani-2026", "/praznici-2026"];
 const ROUTES = [...STATIC_ROUTES, ...POSTS.map((p) => `/blog/${p.id}`)];
 
 const MONTHS = {
@@ -44,6 +44,9 @@ function sitemapXml() {
     "/bolovanje": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/otpremnina": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/minuli-rad": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/dodaci-na-zaradu": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/godisnji-porez": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/ugovor-o-delu": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/minimalna-zarada-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
     "/radni-dani-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
     "/praznici-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },

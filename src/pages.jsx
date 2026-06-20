@@ -261,6 +261,83 @@ export function NetoBrutoPage() {
   }} />;
 }
 
+const DODACI_RELATED = [
+  { href: "/minuli-rad", label: "Kalkulator minulog rada" },
+  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/bolovanje", label: "Kalkulator bolovanja" },
+  { href: "/otpremnina", label: "Kalkulator otpremnine" },
+];
+
+export function DodaciPage() {
+  return <ToolPage cfg={{
+    slug: "dodaci-na-zaradu",
+    title: "Dodaci na zaradu 2026 — prekovremeni, noćni | PlatniListić",
+    description: "Obračun dodataka na zaradu za 2026: prekovremeni rad, noćni rad, rad vikendom i praznikom, minuli rad. Uvećanja po Zakonu o radu. Besplatno.",
+    h1: "Kalkulator dodataka na zaradu (2026)",
+    breadcrumbName: "Dodaci na zaradu",
+    calc: "full",
+    intro: (<p>Ovaj kalkulator obračunava <strong>dodaci na zaradu</strong> za 2026. godinu — uvećanja za prekovremeni rad, noćni rad, rad vikendom i rad na državni praznik, kao i dodatak za minuli rad. Unesite sate rada i osnovu u kalkulator ispod za tačan obračun.</p>),
+    guide: (<><h2>Kako se obračunavaju dodaci na zaradu</h2>
+      <p>Zakon o radu (čl. 108) propisuje minimalna uvećanja: prekovremeni rad najmanje +26%, noćni rad (22h–06h) najmanje +26%, rad vikendom najmanje +26%, rad na državni praznik najmanje +110%, a minuli rad najmanje 0,4% po navršenoj godini staža kod istog poslodavca. Dodaci se obračunavaju na osnovu hourly stope i ulaze u bruto 1 zaradu — podležu porezu i doprinosima. Detaljan vodič: <a href="/blog/prekovremeni-rad">prekovremeni rad 2026</a>.</p></>),
+    faq: [
+      { q: "Koliko iznosi uvećanje za prekovremeni rad?", a: "Zakonski minimum je +26% po satu prekovremenog rada (čl. 108 Zakona o radu). Poslodavac može kolektivnim ugovorom utvrditi veće uvećanje." },
+      { q: "Koliko se plaća rad na državni praznik?", a: "Uvećanje za rad na državni praznik iznosi najmanje +110% po satu rada na taj dan, u skladu sa čl. 108 Zakona o radu." },
+      { q: "Da li se dodaci na zaradu međusobno sabiraju?", a: "Da — ako zaposleni radi prekovremeno u noćnoj smeni, oba uvećanja se primenjuju kumulativno. Kalkulator ispod sabira sve unete sate i uvećanja u jednom obračunu." },
+    ],
+    related: DODACI_RELATED,
+  }} />;
+}
+
+const GODISNJI_POREZ_RELATED = [
+  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/pausal", label: "Paušal kalkulator" },
+  { href: "/ugovor-o-delu", label: "Ugovor o delu kalkulator" },
+  { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
+];
+
+export function GodisnjiPorezPage() {
+  return <ToolPage cfg={{
+    slug: "godisnji-porez",
+    title: "Godišnji porez na dohodak 2026 — kalkulator | PlatniListić",
+    description: "Procena godišnjeg poreza na dohodak građana za 2026: neoporezivi cenzus, stope i ko je obavezan da podnese prijavu. Besplatno, za Srbiju.",
+    h1: "Kalkulator godišnjeg poreza na dohodak (2026)",
+    breadcrumbName: "Godišnji porez",
+    calc: "full",
+    intro: (<p>Ovaj kalkulator procenjuje <strong>godišnji porez na dohodak</strong> građana za 2026. godinu. Godišnji porez plaćaju fizička lica čiji godišnji prihod prelazi neoporezivi cenzus, uz primenu progresivnih stopa od 10% i 15%. Unesite podatke o prihodima u kalkulator ispod.</p>),
+    guide: (<><h2>Kako se obračunava godišnji porez na dohodak</h2>
+      <p>Godišnji porez na dohodak građana plaćaju lica čiji ukupni godišnji dohodak prelazi neoporezivi cenzus, koji iznosi tri prosečne godišnje zarade u Republici Srbiji. Na deo dohotka iznad jednog cenzusa primenjuje se stopa 10%, a na deo iznad dva cenzusa stopa 15%. Poreska prijava podnosi se Poreskoj upravi do 15. maja naredne kalendarske godine. Detaljnije o doprinosima i poreskom sistemu: <a href="/blog/doprinosi-srbija">doprinosi u Srbiji 2026</a>.</p></>),
+    faq: [
+      { q: "Ko je obavezan da plaća godišnji porez na dohodak?", a: "Fizička lica rezidenti čiji ukupni godišnji dohodak premašuje neoporezivi cenzus (tri prosečne godišnje zarade u RS). Ukoliko je porez po odbitku već plaćen, godišnji porez je razlika do konačne obaveze." },
+      { q: "Kolike su stope godišnjeg poreza na dohodak?", a: "Na deo dohotka iznad neoporezivog cenzusa do visine dvostrukog cenzusa primenjuje se stopa 10%; na deo iznad dvostrukog cenzusa stopa je 15%." },
+      { q: "Do kada se podnosi poreska prijava za godišnji porez?", a: "Poreska prijava za godišnji porez na dohodak građana podnosi se Poreskoj upravi do 15. maja naredne kalendarske godine (npr. za 2026. godinu — do 15. maja 2027)." },
+    ],
+    related: GODISNJI_POREZ_RELATED,
+  }} />;
+}
+
+export function UgovorODeluPage() {
+  return <ToolPage cfg={{
+    slug: "ugovor-o-delu",
+    title: "Ugovor o delu kalkulator 2026 — porez i doprinosi | PlatniListić",
+    description: "Obračun ugovora o delu za 2026: porez 20% na 50% prihoda i doprinosi. Bruto, neto i ukupan trošak. Besplatno, za Srbiju.",
+    h1: "Kalkulator ugovora o delu (2026)",
+    breadcrumbName: "Ugovor o delu",
+    calc: "full",
+    intro: (<p>Ovaj <strong>kalkulator ugovora o delu</strong> računa porez i doprinose za honorarni angažman u 2026. Za detaljan obračun po vrsti angažmana koristite kalkulator ispod.</p>),
+    guide: (<><h2>Kako se obračunava ugovor o delu</h2>
+      <p>Kod ugovora o delu primenjuju se normirani troškovi i porez na deo prihoda, uz doprinose za PIO (i zdravstveno ako lice nije osigurano po drugom osnovu). Detaljan vodič sa primerom: <a href="/blog/ugovor-o-delu">ugovor o delu 2026</a>.</p></>),
+    faq: [
+      { q: "Koliki je porez na ugovor o delu?", a: "Porez se plaća po stopi 20% na oporezivi deo prihoda (posle normiranih troškova), uz odgovarajuće doprinose. Tačan obračun zavisi od osnova osiguranja." },
+      { q: "Da li se plaćaju doprinosi na ugovor o delu?", a: "Da — PIO, a zdravstveno ako lice nije osigurano po drugom osnovu. Detalje vidite u vodiču." },
+    ],
+    related: [
+      { href: "/pausal", label: "Paušal kalkulator" },
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
+    ],
+  }} />;
+}
+
 export function MinimalnaZaradaPage() {
   const m = REFERENCE_DATA.minimalnaZarada2026;
   return <ReferencePage cfg={{
