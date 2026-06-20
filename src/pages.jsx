@@ -260,3 +260,124 @@ export function NetoBrutoPage() {
     related: NETO_BRUTO_RELATED,
   }} />;
 }
+
+export function MinimalnaZaradaPage() {
+  const m = REFERENCE_DATA.minimalnaZarada2026;
+  return <ReferencePage cfg={{
+    slug: "minimalna-zarada-2026",
+    title: "Minimalna zarada 2026 u Srbiji — bruto i neto | PlatniListić",
+    description: `Minimalna neto zarada ${(m.netoMesecno/1000)} hiljada RSD, bruto ${m.brutoMesecno.toLocaleString("sr-RS")} RSD (od ${m.vaziOd}). Ko ima pravo i kako se obračunava.`,
+    h1: "Minimalna zarada u Srbiji za 2026.",
+    breadcrumbName: "Minimalna zarada 2026",
+    body: (<>
+      <p>Minimalna zarada u Srbiji za 2026. godinu (važi od {m.vaziOd}):</p>
+      <table className="ref-table">
+        <tbody>
+          <tr><th>Minimalna neto zarada</th><td>{m.netoMesecno.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Minimalna bruto zarada</th><td>{m.brutoMesecno.toLocaleString("sr-RS")} RSD</td></tr>
+          {m.cenaRadnogCasaNeto != null && (
+            <tr><th>Cena radnog časa (neto)</th><td>{m.cenaRadnogCasaNeto.toLocaleString("sr-RS")} RSD</td></tr>
+          )}
+        </tbody>
+      </table>
+      <p>Minimalna zarada se obračunava po ceni radnog časa pomnoženoj fondom sati u mesecu, pa se mesečni iznos razlikuje po mesecima zbog različitog broja radnih dana. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a>.</p>
+    </>),
+    faq: [
+      { q: "Kolika je minimalna zarada u Srbiji 2026?", a: `Minimalna neto zarada je ${m.netoMesecno.toLocaleString("sr-RS")} RSD, a bruto ${m.brutoMesecno.toLocaleString("sr-RS")} RSD, sa primenom od ${m.vaziOd}.` },
+      { q: "Kako se obračunava minimalna zarada?", a: "Po ceni radnog časa × fond sati u mesecu, pa mesečni iznos varira zbog različitog broja radnih dana." },
+      { q: "Ko ima pravo na minimalnu zaradu?", a: "Svi zaposleni u Srbiji imaju pravo na zaradu koja ne može biti niža od propisanog minimuma. Minimalna zarada se primenjuje i na zaposlene sa nepunim radnim vremenom, srazmerno satima rada." },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/radni-dani-2026", label: "Radni dani 2026" },
+      { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
+    ],
+    sourceNote: (<>Izvor: {m.izvor}.</>),
+  }} />;
+}
+
+export function RadniDaniPage() {
+  const dana = REFERENCE_DATA.radniDani2026;
+  const ukupnoDana = dana.reduce((s, r) => s + r.radniDani, 0);
+  const ukupnoSati = dana.reduce((s, r) => s + r.radniSati, 0);
+  return <ReferencePage cfg={{
+    slug: "radni-dani-2026",
+    title: "Radni dani 2026 u Srbiji — po mesecima | PlatniListić",
+    description: "Broj radnih dana i radnih sati po mesecima za 2026, sa praznicima i fondom sati. Korisno za obračun zarade i bolovanja.",
+    h1: "Radni dani u 2026. godini (Srbija)",
+    breadcrumbName: "Radni dani 2026",
+    body: (<>
+      <p>Tabela broja radnih dana i fonda radnih sati (8 sati po danu) po mesecima za 2026. godinu u Srbiji. Fond sati je osnova za obračun minimalne zarade i naknade bolovanja.</p>
+      <table className="ref-table">
+        <thead>
+          <tr><th>Mesec</th><th>Radni dani</th><th>Fond sati</th></tr>
+        </thead>
+        <tbody>
+          {dana.map((r) => (
+            <tr key={r.mesec}>
+              <td>{r.mesec}</td>
+              <td>{r.radniDani}</td>
+              <td>{r.radniSati}</td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr><th>Ukupno 2026.</th><th>{ukupnoDana}</th><th>{ukupnoSati}</th></tr>
+        </tfoot>
+      </table>
+      <p>Napomena: tabela prikazuje standardne radne dane (ponedeljak–petak) umanjene za državne praznike. Proverite <a href="/praznici-2026">spisak praznika za 2026</a> za tačne datume neradnih dana.</p>
+    </>),
+    faq: [
+      { q: "Koliko radnih dana ima u 2026. godini u Srbiji?", a: `Ukupno ${ukupnoDana} radnih dana u 2026, odnosno ${ukupnoSati} radnih sati (po 8 sati dnevno), ne računajući državne praznike.` },
+      { q: "Zašto je broj radnih dana važan za obračun zarade?", a: "Fond sati u mesecu određuje iznos minimalne zarade i naknade za bolovanje — minimalna zarada = cena radnog časa × fond sati. Mesečni iznos stoga varira." },
+      { q: "Kako se tretiraju državni praznici u obračunu zarade?", a: "Zaposleni koji ne rade na državni praznik imaju pravo na punu naknadu zarade (1 dan = 1 radni dan u obračunu). Ko radi na praznik prima uvećanje od najmanje 110% zarade za taj dan." },
+    ],
+    related: [
+      { href: "/praznici-2026", label: "Praznici 2026" },
+      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/bolovanje", label: "Kalkulator bolovanja" },
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+    ],
+    sourceNote: <>Izvor: Zakon o radu (Sl. glasnik RS) i Vlada RS — odluka o neradnim danima za 2026. <strong>VERIFY:</strong> Proverite tačne vrednosti prema zvaničnom kalendaru pre objave.</>,
+  }} />;
+}
+
+export function PrazniciPage() {
+  const praznici = REFERENCE_DATA.praznici2026;
+  return <ReferencePage cfg={{
+    slug: "praznici-2026",
+    title: "Praznici 2026 u Srbiji — neradni dani | PlatniListić",
+    description: "Spisak državnih i verskih praznika u Srbiji za 2026, neradni dani i pravila za rad na praznik (+min. 110% zarade).",
+    h1: "Državni praznici i neradni dani 2026.",
+    breadcrumbName: "Praznici 2026",
+    body: (<>
+      <p>Spisak državnih i verskih praznika u Srbiji za 2026. godinu. Svi navedeni datumi su neradni dani za zaposlene.</p>
+      <table className="ref-table">
+        <thead>
+          <tr><th>Datum</th><th>Naziv praznika</th></tr>
+        </thead>
+        <tbody>
+          {praznici.map((p) => (
+            <tr key={p.datum}>
+              <td>{p.datum}</td>
+              <td>{p.naziv}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>Zaposleni koji rade na državni praznik imaju pravo na uvećanu zaradu od najmanje 110% za svaki sat rada na taj dan, u skladu sa čl. 108 Zakona o radu. Pogledajte <a href="/radni-dani-2026">fond radnih dana i sati po mesecima za 2026</a>.</p>
+    </>),
+    faq: [
+      { q: "Koliko državnih praznika ima u Srbiji u 2026. godini?", a: `U 2026. godini u Srbiji ima ${praznici.length} državnih i verskih praznika koji su neradni dani.` },
+      { q: "Koliko se plaća rad na državni praznik?", a: "Zaposleni koji radi na državni praznik prima uvećanje zarade od najmanje 110% za svaki sat rada, prema čl. 108 Zakona o radu. Poslodavac može kolektivnim ugovorom utvrditi veće uvećanje." },
+      { q: "Šta ako praznik pada vikendom?", a: "Ako praznik pada u subotu ili nedeljom, zaposleni koji inače ne radi tim danima ne ostvaruju pravo na slobodan dan umesto praznika, osim ako je to predviđeno kolektivnim ugovorom ili ugovorom o radu." },
+    ],
+    related: [
+      { href: "/radni-dani-2026", label: "Radni dani 2026" },
+      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/bolovanje", label: "Kalkulator bolovanja" },
+    ],
+    sourceNote: <>Izvor: Zakon o državnim i drugim praznicima u Republici Srbiji (Sl. glasnik RS) i Vlada RS. <strong>VERIFY:</strong> Proverite tačne datume prema zvaničnoj odluci o neradnim danima pre objave.</>,
+  }} />;
+}

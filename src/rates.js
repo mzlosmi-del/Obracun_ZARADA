@@ -58,4 +58,31 @@ export const REFERENCE_DATA = {
     kursEur: 117.40,
     izvor: "RZS",
   },
+  // Državni praznici i neradni dani u Srbiji za 2026.
+  // VERIFY: Confirm dates against Vlada RS decision on neradni dani before merge.
+  praznici2026: [
+    { datum: "1–2. januar", naziv: "Nova godina", neradno: true },
+    { datum: "7. januar", naziv: "Božić (pravoslavni)", neradno: true },
+    { datum: "15–16. februar", naziv: "Dan državnosti (Sretenje)", neradno: true },
+    { datum: "10. april", naziv: "Veliki petak", neradno: true },
+    { datum: "12–13. april", naziv: "Vaskrs (Uskrs)", neradno: true },
+    { datum: "1–2. maj", naziv: "Praznik rada", neradno: true },
+    { datum: "11. novembar", naziv: "Dan primirja", neradno: true },
+  ],
+  // radniDani2026 — broj radnih dana i fond sati (radniDani×8) po mesecima.
+  // VERIFY: Confirm counts against the official 2026 calendar before merge.
+  radniDani2026: [
+    { mesec: "Januar", radniDani: 20, radniSati: 160 },
+    { mesec: "Februar", radniDani: 18, radniSati: 144 },
+    { mesec: "Mart", radniDani: 22, radniSati: 176 },
+    { mesec: "April", radniDani: 20, radniSati: 160 },
+    { mesec: "Maj", radniDani: 19, radniSati: 152 },
+    { mesec: "Jun", radniDani: 22, radniSati: 176 },
+    { mesec: "Jul", radniDani: 23, radniSati: 184 },
+    { mesec: "Avgust", radniDani: 21, radniSati: 168 },
+    { mesec: "Septembar", radniDani: 22, radniSati: 176 },
+    { mesec: "Oktobar", radniDani: 22, radniSati: 176 },
+    { mesec: "Novembar", radniDani: 21, radniSati: 168 },
+    { mesec: "Decembar", radniDani: 23, radniSati: 184 },
+  ],
 };
