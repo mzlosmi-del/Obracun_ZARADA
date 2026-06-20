@@ -33,12 +33,16 @@ export default async function handler(req, res) {
     if (!ime) {
       return res.status(400).json({ error: "Missing fields" });
     }
+    const attributes = { FIRSTNAME: String(ime).slice(0, 200) };
+    // NOTE: OPIS must exist as a Text attribute in the Brevo account, otherwise
+    // Brevo silently drops it. Only send it when the user actually wrote something.
+    const cleanOpis = String(opis || "").trim().slice(0, 2000);
+    if (cleanOpis) {
+      attributes.OPIS = cleanOpis;
+    }
     payload = {
       email: cleanEmail,
-      attributes: {
-        FIRSTNAME: String(ime).slice(0, 200),
-        OPIS: String(opis || "").slice(0, 2000),
-      },
+      attributes,
       listIds: [LEAD_LIST_ID],
       updateEnabled: true,
     };
