@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom"
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
 import { useSeo } from "./seo.jsx";
+import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -12,33 +13,6 @@ const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: 
 const ONama = lazy(() => import("./About.jsx").then(m => ({ default: m.ONama })));
 const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
 
-// ── PARAMETERS ───────────────────────────────────────────────────────────────
-function getNonTaxable() {
-  const now = new Date();
-  const yr = now.getFullYear();
-  const mo = now.getMonth() + 1;
-  if (yr > 2026 || (yr === 2026 && mo >= 2)) return 34221;
-  return 28423;
-}
-
-const DEFAULT_RATES = {
-  taxRate: 10,
-  nonTaxable: getNonTaxable(),
-  pioPct_emp: 14,
-  health_emp: 5.15,
-  unemp_emp: 0.75,
-  pio_er: 10,
-  health_er: 5.15,
-  overtimeCoef: 26,
-  nightCoef: 26,
-  weekendCoef: 26,
-  holidayCoef: 26,
-  minBase: 45950,
-  maxBase: 656425,
-  mealDaily: 1490,
-  transportMax: 5782,
-  minWage: 93264,
-};
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
