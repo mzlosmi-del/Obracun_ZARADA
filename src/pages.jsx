@@ -1,7 +1,8 @@
 import { useSeo } from "./seo.jsx";
 import { CalculatorPage } from "./App.jsx";
 import { breadcrumbLd, webAppLd } from "./schema.js";
-import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori } from "./ui.jsx";
+import { useState } from "react";
+import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori, NumberInput, ResultRow, fmt } from "./ui.jsx";
 import { REFERENCE_DATA, PAUSAL_RATES } from "./rates.js";
 
 const FRESHNESS = "jun 2026.";
@@ -78,9 +79,53 @@ export function ReferencePage({ cfg }) {
   );
 }
 
-// PausalCalculator defined in Task 7; placeholder import-safe stub removed there.
 export function PausalCalculator() {
-  return <div className="pausal-calc-stub" />; // REPLACED in Task 7
+  const [prihod, setPrihod] = useState(50000); // mesečna paušalna osnovica iz rešenja PU
+  const porez = prihod * PAUSAL_RATES.porez / 100;
+  const pio = prihod * PAUSAL_RATES.pio / 100;
+  const zdravstveno = prihod * PAUSAL_RATES.zdravstveno / 100;
+  const ukupno = porez + pio + zdravstveno;
+  const neto = prihod - ukupno;
+  const efektivna = prihod > 0 ? (ukupno / prihod) * 100 : 0;
+  return (
+    <div className="pausal-calc">
+      <NumberInput label="Mesečna paušalna osnovica (iz rešenja PU)" value={prihod} onChange={setPrihod} step={1000} />
+      <div className="pausal-results">
+        <ResultRow label={`Porez (${PAUSAL_RATES.porez}%)`} value={`${fmt(porez)} RSD`} />
+        <ResultRow label={`PIO (${PAUSAL_RATES.pio}%)`} value={`${fmt(pio)} RSD`} />
+        <ResultRow label={`Zdravstveno (${PAUSAL_RATES.zdravstveno}%)`} value={`${fmt(zdravstveno)} RSD`} />
+        <ResultRow label="Ukupne mesečne obaveze" value={`${fmt(ukupno)} RSD`} type="negative" />
+        <ResultRow label="Neto nakon obaveza" value={`${fmt(neto)} RSD`} type="positive" />
+        <ResultRow label="Efektivna stopa" value={`${efektivna.toFixed(2)}%`} />
+        <ResultRow label="Godišnje obaveze" value={`${fmt(ukupno * 12)} RSD`} />
+      </div>
+      <p className="pausal-note">Napomena: paušalnu osnovicu i tačan mesečni iznos određuje rešenje Poreske uprave. Izvor stopa: CROSO / Sl. glasnik RS.</p>
+    </div>
+  );
+}
+
+export function PausalPage() {
+  return <ToolPage cfg={{
+    slug: "pausal",
+    title: "Paušal kalkulator 2026 — porez i doprinosi | PlatniListić",
+    description: "Izračunajte mesečne obaveze paušalca: porez 10%, PIO 24%, zdravstveno 10,3%. Neto nakon obaveza i efektivna stopa za 2026.",
+    h1: "Paušal kalkulator za preduzetnike (2026)",
+    breadcrumbName: "Paušal",
+    calc: "pausal",
+    intro: (<p>Ovaj <strong>paušal kalkulator</strong> računa mesečne obaveze paušalca u 2026: porez na prihod (10%) i doprinose (PIO 24%, zdravstveno 10,3%) na paušalnu osnovicu iz rešenja Poreske uprave.</p>),
+    guide: (<><h2>Kako se obračunava paušal</h2>
+      <p>Paušalac plaća porez i doprinose na <strong>paušalno utvrđenu osnovicu</strong> koju određuje Poreska uprava (ne na stvarni prihod). Osnovica zavisi od šifre delatnosti, opštine i drugih koeficijenata. Na nju se primenjuju: porez 10%, PIO 24% i zdravstveno 10,3%. Detaljan vodič: <a href="/blog/koliko-pausalac-placa-mesecno">koliko paušalac plaća mesečno</a> i <a href="/blog/pausalno-oporezivanje">paušalno oporezivanje</a>.</p></>),
+    faq: [
+      { q: "Koliko paušalac plaća mesečno u 2026?", a: "Najčešće okvirno 30.000–45.000 RSD, u zavisnosti od šifre delatnosti i opštine. Tačan iznos je u rešenju Poreske uprave." },
+      { q: "Šta čini mesečnu obavezu paušalca?", a: "Porez 10% i doprinosi — PIO 24% i zdravstveno 10,3% — na paušalnu osnovicu." },
+      { q: "Koji je limit za paušal?", a: "Paušalni status važi dok godišnji promet ne pređe 6.000.000 RSD." },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/ugovor-o-delu", label: "Ugovor o delu kalkulator" },
+      { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
+    ],
+  }} />;
 }
 
 const TOOL_RELATED = [
