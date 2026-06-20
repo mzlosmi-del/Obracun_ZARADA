@@ -378,9 +378,16 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 /* Homepage internal-links (popularni vodiči) */
 .home-guides{margin:24px 0 8px}
 .home-guides-title{font-size:18px;font-weight:600;margin-bottom:10px}
-.home-guides ul{list-style:none;display:grid;gap:8px}
-.home-guides a{color:#0057ff;text-decoration:none}
+.home-guides ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 18px}
+.home-guides a{color:var(--accent);text-decoration:none}
 .home-guides a:hover{text-decoration:underline}
+
+/* Tool/alati link grid — chip-style cards, consistent with the guides list above */
+.home-tools{margin:24px 0 8px}
+.home-tools-title{font-size:18px;font-weight:600;margin-bottom:12px}
+.home-tools ul{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.home-tools a{display:block;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;transition:border-color .12s,background-color .12s}
+.home-tools a:hover{background:var(--accent-light);border-color:var(--accent)}
 
 /* ── BREADCRUMB / FRESHNESS / POVEZANI ── */
 .breadcrumb { font-size: 0.85rem; opacity: 0.75; margin-bottom: 12px; }
