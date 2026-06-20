@@ -15,6 +15,9 @@ const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
 const BrutoNetoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BrutoNetoPage })));
 const NetoBrutoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NetoBrutoPage })));
 const PausalPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PausalPage })));
+const BolovanjePage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BolovanjePage })));
+const OtpremninaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.OtpremninaPage })));
+const MinuliRadPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinuliRadPage })));
 
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 
@@ -1165,6 +1168,9 @@ export default function App() {
             <Route path="/bruto-neto" element={<Suspense fallback={<RouteLoader />}><BrutoNetoPage /></Suspense>} />
             <Route path="/neto-bruto" element={<Suspense fallback={<RouteLoader />}><NetoBrutoPage /></Suspense>} />
             <Route path="/pausal" element={<Suspense fallback={<RouteLoader />}><PausalPage /></Suspense>} />
+            <Route path="/bolovanje" element={<Suspense fallback={<RouteLoader />}><BolovanjePage /></Suspense>} />
+            <Route path="/otpremnina" element={<Suspense fallback={<RouteLoader />}><OtpremninaPage /></Suspense>} />
+            <Route path="/minuli-rad" element={<Suspense fallback={<RouteLoader />}><MinuliRadPage /></Suspense>} />
             <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
             <Route path="/o-nama" element={<Suspense fallback={<RouteLoader />}><ONama onBack={() => navigate("/")} /></Suspense>} />
