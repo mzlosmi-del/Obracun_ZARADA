@@ -13,6 +13,7 @@ let failures = 0;
 function check(cond, msg) { if (!cond) { console.error(`✗ ${msg}`); failures++; } }
 
 for (const slug of ROUTES) {
+  const failuresBefore = failures;
   let html;
   try { html = await readFile(join(DIST, slug, "index.html"), "utf8"); }
   catch { console.error(`✗ ${slug}: missing dist/${slug}/index.html`); failures++; continue; }
@@ -36,7 +37,7 @@ for (const slug of ROUTES) {
     const json = b.replace(/<script[^>]*>/, "").replace(/<\/script>/, "");
     try { JSON.parse(json); } catch { check(false, `${slug}: JSON-LD does not parse`); }
   }
-  if (failures === 0 || true) console.log(`✓ ${slug}`);
+  if (failures === failuresBefore) console.log(`✓ ${slug}`);
 }
 
 if (failures > 0) { console.error(`\ncheck-seo: ${failures} failure(s).`); process.exit(1); }
