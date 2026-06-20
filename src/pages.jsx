@@ -276,7 +276,7 @@ export function DodaciPage() {
     h1: "Kalkulator dodataka na zaradu (2026)",
     breadcrumbName: "Dodaci na zaradu",
     calc: "full",
-    intro: (<p>Ovaj kalkulator obračunava <strong>dodaci na zaradu</strong> za 2026. godinu — uvećanja za prekovremeni rad, noćni rad, rad vikendom i rad na državni praznik, kao i dodatak za minuli rad. Unesite sate rada i osnovu u kalkulator ispod za tačan obračun.</p>),
+    intro: (<p>Ovaj kalkulator obračunava <strong>dodatke na zaradu</strong> za 2026. godinu — uvećanja za prekovremeni rad, noćni rad, rad vikendom i rad na državni praznik, kao i dodatak za minuli rad. Unesite sate rada i osnovu u kalkulator ispod za tačan obračun.</p>),
     guide: (<><h2>Kako se obračunavaju dodaci na zaradu</h2>
       <p>Zakon o radu (čl. 108) propisuje minimalna uvećanja: prekovremeni rad najmanje +26%, noćni rad (22h–06h) najmanje +26%, rad vikendom najmanje +26%, rad na državni praznik najmanje +110%, a minuli rad najmanje 0,4% po navršenoj godini staža kod istog poslodavca. Dodaci se obračunavaju na osnovu hourly stope i ulaze u bruto 1 zaradu — podležu porezu i doprinosima. Detaljan vodič: <a href="/blog/prekovremeni-rad">prekovremeni rad 2026</a>.</p></>),
     faq: [
