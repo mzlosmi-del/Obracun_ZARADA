@@ -378,7 +378,7 @@ export function NeoporeziviPage() {
     h1: "Neoporezivi iznos zarade za 2026.",
     breadcrumbName: "Neoporezivi iznos 2026",
     body: (<>
-      <p>Neoporezivi iznos zarade je deo mesečne bruto zarade koji je izuzet od poreza na zarade. Na preostalI deo bruto zarade iznad ovog iznosa primenjuje se stopa poreza od 10%.</p>
+      <p>Neoporezivi iznos zarade je deo mesečne bruto zarade koji je izuzet od poreza na zarade. Na preostali deo bruto zarade iznad ovog iznosa primenjuje se stopa poreza od 10%.</p>
       <table className="ref-table">
         <tbody>
           <tr><th>Neoporezivi iznos (2026)</th><td>{nonTaxable.toLocaleString("sr-RS")} RSD</td></tr>
