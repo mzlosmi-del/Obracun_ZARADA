@@ -90,14 +90,17 @@ export function PausalCalculator() {
   return (
     <div className="pausal-calc">
       <NumberInput label="Mesečna paušalna osnovica (iz rešenja PU)" value={prihod} onChange={setPrihod} step={1000} />
-      <div className="pausal-results">
-        <ResultRow label={`Porez (${PAUSAL_RATES.porez}%)`} value={`${fmt(porez)} RSD`} />
-        <ResultRow label={`PIO (${PAUSAL_RATES.pio}%)`} value={`${fmt(pio)} RSD`} />
-        <ResultRow label={`Zdravstveno (${PAUSAL_RATES.zdravstveno}%)`} value={`${fmt(zdravstveno)} RSD`} />
-        <ResultRow label="Ukupne mesečne obaveze" value={`${fmt(ukupno)} RSD`} type="negative" />
-        <ResultRow label="Neto nakon obaveza" value={`${fmt(neto)} RSD`} type="positive" />
-        <ResultRow label="Efektivna stopa" value={`${efektivna.toFixed(2)}%`} />
-        <ResultRow label="Godišnje obaveze" value={`${fmt(ukupno * 12)} RSD`} />
+      <div className="pausal-results results-body">
+        <ResultRow label={`Porez (${PAUSAL_RATES.porez}%)`} value={porez} />
+        <ResultRow label={`PIO (${PAUSAL_RATES.pio}%)`} value={pio} />
+        <ResultRow label={`Zdravstveno (${PAUSAL_RATES.zdravstveno}%)`} value={zdravstveno} />
+        <ResultRow label="Ukupne mesečne obaveze" value={ukupno} type="negative" />
+        <ResultRow label="Neto nakon obaveza" value={neto} type="positive" />
+        <ResultRow label="Godišnje obaveze" value={ukupno * 12} />
+        <div className="result-row">
+          <span className="result-label">Efektivna stopa</span>
+          <span className="result-value">{efektivna.toFixed(2).replace(".", ",")}%</span>
+        </div>
       </div>
       <p className="pausal-note">Napomena: paušalnu osnovicu i tačan mesečni iznos određuje rešenje Poreske uprave. Izvor stopa: CROSO / Sl. glasnik RS.</p>
     </div>

@@ -392,3 +392,49 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .povezani-kalkulatori ul { list-style: none; padding: 0; display: grid; gap: 8px; }
 .povezani-kalkulatori a { color: var(--accent, #6ea8fe); text-decoration: none; }
 .povezani-kalkulatori a:hover { text-decoration: underline; }
+
+/* ── TOOL / REFERENCE PAGES ── */
+.tool-page h1, .reference-page h1 { font-size: clamp(20px, 3vw, 28px); font-weight: 800; color: var(--text); letter-spacing: -0.4px; margin: 4px 0 0; line-height: 1.2; }
+
+.tool-intro { margin: 12px 0 18px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.tool-intro p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+.tool-intro strong { color: var(--text); }
+
+.tool-guide { margin-top: 24px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.tool-guide h2 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 10px; }
+.tool-guide p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+.tool-guide a { color: var(--accent); text-decoration: none; }
+.tool-guide a:hover { text-decoration: underline; }
+
+.tool-faq { margin-top: 24px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.tool-faq > h2 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 14px; }
+.tool-faq-item { padding: 12px 0; border-top: 1px solid var(--border); }
+.tool-faq-item:first-of-type { border-top: none; padding-top: 0; }
+.tool-faq-item h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.tool-faq-item p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+.tool-faq-item a { color: var(--accent); text-decoration: none; }
+.tool-faq-item a:hover { text-decoration: underline; }
+
+/* Reference-page body: prose + data table, same card language as the home intro */
+.reference-body { margin: 12px 0 0; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.reference-body p { font-size: 14px; color: var(--text2); line-height: 1.65; margin: 0 0 10px; }
+.reference-body p:last-child { margin-bottom: 0; }
+.reference-body a { color: var(--accent); text-decoration: none; }
+.reference-body a:hover { text-decoration: underline; }
+
+.ref-table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 14px; }
+.ref-table th, .ref-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); }
+.ref-table th:first-child, .ref-table td:first-child { text-align: left; color: var(--text2); font-weight: 500; }
+.ref-table td { font-family: var(--mono); color: var(--text); }
+.ref-table thead th { font-weight: 600; color: var(--text); border-bottom: 2px solid var(--surface3); text-align: right; }
+.ref-table thead th:first-child { text-align: left; }
+.ref-table tbody tr:last-child td { border-bottom: none; }
+.ref-table tfoot td { font-weight: 700; color: var(--text); border-top: 2px solid var(--surface3); border-bottom: none; }
+
+.source-note { margin-top: 16px; font-size: 11px; color: var(--text3); line-height: 1.6; }
+.source-note a { color: var(--accent); text-decoration: none; }
+
+/* Paušal calculator — same card/result language as the main calculator */
+.pausal-calc { margin: 0 0 4px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.pausal-results { margin-top: 14px; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+.pausal-note { margin-top: 12px; font-size: 11px; color: var(--text3); line-height: 1.6; }
