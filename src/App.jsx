@@ -485,7 +485,7 @@ function ProCTA({ variant }) {
 }
 
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
-function CalculatorPage() {
+export function CalculatorPage() {
   const now = new Date();
   const [calcMode, setCalcMode] = useState("bruto");
   const [targetNeto, setTargetNeto] = useState(70000);
