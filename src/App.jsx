@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom"
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
 import { useSeo } from "./seo.jsx";
+import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -11,34 +12,22 @@ const PolitikaPrivatnosti = lazy(() => import("./Legal.jsx").then(m => ({ defaul
 const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: m.UsloviKoriscenja })));
 const ONama = lazy(() => import("./About.jsx").then(m => ({ default: m.ONama })));
 const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
+const BrutoNetoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BrutoNetoPage })));
+const NetoBrutoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NetoBrutoPage })));
+const PausalPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PausalPage })));
+const BolovanjePage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BolovanjePage })));
+const OtpremninaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.OtpremninaPage })));
+const MinuliRadPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinuliRadPage })));
+const MinimalnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinimalnaZaradaPage })));
+const DodaciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.DodaciPage })));
+const GodisnjiPorezPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiPorezPage })));
+const UgovorODeluPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.UgovorODeluPage })));
+const RadniDaniPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.RadniDaniPage })));
+const PrazniciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PrazniciPage })));
+const ProsecnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.ProsecnaZaradaPage })));
+const NeoporeziviPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NeoporeziviPage })));
+const StopeDoprinosaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.StopeDoprinosaPage })));
 
-// ── PARAMETERS ───────────────────────────────────────────────────────────────
-function getNonTaxable() {
-  const now = new Date();
-  const yr = now.getFullYear();
-  const mo = now.getMonth() + 1;
-  if (yr > 2026 || (yr === 2026 && mo >= 2)) return 34221;
-  return 28423;
-}
-
-const DEFAULT_RATES = {
-  taxRate: 10,
-  nonTaxable: getNonTaxable(),
-  pioPct_emp: 14,
-  health_emp: 5.15,
-  unemp_emp: 0.75,
-  pio_er: 10,
-  health_er: 5.15,
-  overtimeCoef: 26,
-  nightCoef: 26,
-  weekendCoef: 26,
-  holidayCoef: 26,
-  minBase: 45950,
-  maxBase: 656425,
-  mealDaily: 1490,
-  transportMax: 5782,
-  minWage: 93264,
-};
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
@@ -511,12 +500,7 @@ function ProCTA({ variant }) {
 }
 
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
-function CalculatorPage() {
-  useSeo({
-    title: "Bruto u Neto Kalkulator — Obračun Zarade Srbija 2026 | PlatniListić",
-    description: "Besplatni kalkulator bruto u neto zarade u Srbiji 2026. Obračun zarade, poreza i doprinosa, prekovremeni i minuli rad, bolovanje, otpremnina i regres. PDF platni listić i PPP-PD XML.",
-    path: "/",
-  });
+export function CalculatorPage() {
   const now = new Date();
   const [calcMode, setCalcMode] = useState("bruto");
   const [targetNeto, setTargetNeto] = useState(70000);
@@ -1005,6 +989,151 @@ function CalculatorPage() {
 
 const RouteLoader = () => <div className="route-loader" role="status">Učitavam…</div>;
 
+// ── HOME PAGE ─────────────────────────────────────────────────────────────────
+function HomePage() {
+  useSeo({
+    title: "Bruto u Neto Kalkulator — Obračun Zarade Srbija 2026 | PlatniListić",
+    description: "Besplatni kalkulator bruto u neto zarade u Srbiji 2026. Obračun zarade, poreza i doprinosa, prekovremeni i minuli rad, bolovanje, otpremnina i regres. PDF platni listić i PPP-PD XML.",
+    path: "/",
+  });
+  return (
+    <>
+      <header className="page-header">
+        <div style={{display:"flex", alignItems:"center", gap:14}}>
+          <img src="/logo.svg" alt="" width="64" height="64" fetchpriority="high" decoding="async" />
+          <div>
+            <div className="page-title" role="text" aria-label="PlatniListić">Platni<span>Listić</span></div>
+            <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
+          </div>
+        </div>
+      </header>
+      <section className="home-intro">
+        <h1 className="home-intro-title">Kalkulator zarade 2026 — bruto u neto za Srbiju</h1>
+        <p>
+          Besplatan <strong>kalkulator zarade</strong> za obračun zarade u Srbiji u 2026. godini.
+          Pretvorite <strong>bruto u neto</strong> (i neto u bruto) i izračunajte porez na zaradu,
+          doprinose, prekovremeni i minuli rad, bolovanje, otpremninu i regres. Rezultat preuzimate
+          kao PDF platni listić i PPP-PD XML datoteku.
+        </p>
+        <p>
+          Obračun zarade u Srbiji polazi od <strong>bruto 1</strong> iznosa iz ugovora o radu. Od njega
+          se oduzimaju doprinosi zaposlenog (19,90%) i porez na zaradu (10% na deo iznad neoporezivog
+          iznosa od 34.221 RSD za 2026), čime se dobija <strong>neto zarada</strong> — iznos koji
+          zaposleni prima na račun. Ispod su okvirni primeri obračuna; za tačan iznos sa svim
+          uvećanjima i odbicima koristite kalkulator.
+        </p>
+        <table className="home-examples" aria-label="Primeri obračuna bruto u neto za 2026">
+          <thead>
+            <tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>80.000</td><td>≈ 59.500</td><td>≈ 92.120</td></tr>
+            <tr><td>100.000</td><td>≈ 73.520</td><td>≈ 115.150</td></tr>
+            <tr><td>150.000</td><td>≈ 108.570</td><td>≈ 172.725</td></tr>
+            <tr><td>200.000</td><td>≈ 143.620</td><td>≈ 230.300</td></tr>
+          </tbody>
+        </table>
+        <p className="home-examples-note">
+          Vrednosti su približne (zaokružene) i ne uključuju dodatna uvećanja ili naknade —
+          za precizan obračun unesite svoje podatke u kalkulator iznad.
+        </p>
+      </section>
+      <CalculatorPage />
+      <div className="disclaimer">
+        ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
+      </div>
+      <section className="home-faq" aria-label="Česta pitanja o obračunu zarade">
+        <h2 className="home-faq-title">Česta pitanja — obračun zarade i bruto u neto</h2>
+        <div className="home-faq-item">
+          <h3>Kako izračunati neto zaradu iz bruto u Srbiji?</h3>
+          <p>
+            Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos
+            iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto
+            100.000 RSD daje neto oko 73.542 RSD. Naš kalkulator radi obračun u oba smera.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Kolika je minimalna zarada u Srbiji u 2026. godini?</h3>
+          <p>
+            Od februara 2026. minimalna bruto zarada iznosi 93.264 RSD mesečno, a minimalna neto
+            zarada 69.000 RSD. Više u vodiču o <a href="/blog/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Koliki su doprinosi za socijalno osiguranje?</h3>
+          <p>
+            Zaposleni plaća 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), a poslodavac
+            15,15% (PIO 10%, zdravstvo 5,15%) — ukupno 35,05%. Detaljnije u članku o
+            <a href="/blog/doprinosi-srbija"> doprinosima u Srbiji</a>.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Koja je razlika između bruto 1, bruto 2 i neto zarade?</h3>
+          <p>
+            Bruto 1 je ugovorena zarada, neto je iznos na račun, a bruto 2 je ukupan trošak poslodavca
+            (Bruto 1 + doprinosi poslodavca). Pogledajte vodič o
+            <a href="/blog/bruto-neto-razlika"> razlici između bruto i neto zarade</a>.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Kako se računa neto u bruto zaradu?</h3>
+          <p>
+            Obračun <strong>neto u bruto</strong> je obrnuti postupak: iz željenog neto iznosa
+            kalkulator rekonstruiše Bruto 1 tako da posle doprinosa (19,90%) i poreza dobijete tačno
+            taj neto. PlatniListić radi obračun u oba smera — bruto u neto i neto u bruto.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Kako se obračunava minuli rad?</h3>
+          <p>
+            Minuli rad iznosi najmanje 0,4% osnovice za svaku navršenu godinu staža kod poslodavca.
+            Pri bruto zaradi od 100.000 RSD i 10 godina staža minuli rad je oko 4.000 RSD. Detaljnije u
+            vodiču o <a href="/blog/minuli-rad-obracun">obračunu minulog rada</a>.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Koliko se plaća porez na bonus?</h3>
+          <p>
+            Bonus, stimulacija i 13. plata oporezuju se kao deo zarade — porez 10% i doprinosi 19,90%.
+            Bonus se dodaje na bruto osnovicu meseca isplate. Više u članku o
+            <a href="/blog/porez-na-bonus"> porezu na bonus</a>.
+          </p>
+        </div>
+      </section>
+      <nav className="home-guides" aria-label="Popularni vodiči o zaradi">
+        <h2 className="home-guides-title">Popularni vodiči</h2>
+        <ul>
+          <li><a href="/blog/prekovremeni-rad">Prekovremeni rad — uvećanje 26% (član 108. Zakona o radu)</a></li>
+          <li><a href="/blog/otpremnina-obracun">Otpremnina — obračun i poreski tretman</a></li>
+          <li><a href="/blog/minuli-rad-obracun">Minuli rad — kako se računa 0,4% po godini staža</a></li>
+          <li><a href="/blog/godisnji-odmor-naknada">Naknada za godišnji odmor</a></li>
+          <li><a href="/blog/jubilarna-nagrada">Jubilarna nagrada — iznosi i obračun</a></li>
+          <li><a href="/blog/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/blog/pausalno-oporezivanje">Paušalno oporezivanje 2026</a></li>
+          <li><a href="/blog/porez-za-frilensere">Porez za frilensere 2026</a></li>
+          <li><a href="/blog/ugovor-o-delu">Ugovor o delu — porez i doprinosi</a></li>
+        </ul>
+      </nav>
+      <nav className="home-tools" aria-label="Kalkulatori i alati">
+        <h2 className="home-tools-title">Kalkulatori i alati</h2>
+        <ul>
+          <li><a href="/bruto-neto">Bruto u neto kalkulator</a></li>
+          <li><a href="/neto-bruto">Neto u bruto kalkulator</a></li>
+          <li><a href="/pausal">Paušal kalkulator</a></li>
+          <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
+          <li><a href="/otpremnina">Kalkulator otpremnine</a></li>
+          <li><a href="/minuli-rad">Kalkulator minulog rada</a></li>
+          <li><a href="/ugovor-o-delu">Ugovor o delu kalkulator</a></li>
+          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
+          <li><a href="/praznici-2026">Praznici 2026</a></li>
+        </ul>
+      </nav>
+      <LeadForm />
+    </>
+  );
+}
+
 // ── ROOT APP ──────────────────────────────────────────────────────────────────
 export default function App() {
   const navigate = useNavigate();
@@ -1013,6 +1142,12 @@ export default function App() {
 
   const navItems = [
     { path: "/", icon: "⚡", label: "Kalkulator" },
+    { path: "/bruto-neto", icon: "🔁", label: "Bruto u neto" },
+    { path: "/neto-bruto", icon: "🔁", label: "Neto u bruto" },
+    { path: "/pausal", icon: "🧾", label: "Paušal" },
+    { path: "/bolovanje", icon: "🏥", label: "Bolovanje" },
+    { path: "/otpremnina", icon: "📤", label: "Otpremnina" },
+    { path: "/minuli-rad", icon: "📈", label: "Minuli rad" },
     { path: "/blog", icon: "📰", label: "Blog" },
   ];
 
@@ -1062,124 +1197,22 @@ export default function App() {
 
         <div className="main-inner">
           <Routes>
-            <Route path="/" element={
-              <>
-                <header className="page-header">
-                  <div style={{display:"flex", alignItems:"center", gap:14}}>
-                    <img src="/logo.svg" alt="" width="64" height="64" fetchpriority="high" decoding="async" />
-                    <div>
-                      <div className="page-title" role="text" aria-label="PlatniListić">Platni<span>Listić</span></div>
-                      <div className="page-sub">obračun zarada · prekovremeni · praznici · bonusi · porez</div>
-                    </div>
-                  </div>
-                </header>
-                <section className="home-intro">
-                  <h1 className="home-intro-title">Kalkulator zarade 2026 — bruto u neto za Srbiju</h1>
-                  <p>
-                    Besplatan <strong>kalkulator zarade</strong> za obračun zarade u Srbiji u 2026. godini.
-                    Pretvorite <strong>bruto u neto</strong> (i neto u bruto) i izračunajte porez na zaradu,
-                    doprinose, prekovremeni i minuli rad, bolovanje, otpremninu i regres. Rezultat preuzimate
-                    kao PDF platni listić i PPP-PD XML datoteku.
-                  </p>
-                  <p>
-                    Obračun zarade u Srbiji polazi od <strong>bruto 1</strong> iznosa iz ugovora o radu. Od njega
-                    se oduzimaju doprinosi zaposlenog (19,90%) i porez na zaradu (10% na deo iznad neoporezivog
-                    iznosa od 34.221 RSD za 2026), čime se dobija <strong>neto zarada</strong> — iznos koji
-                    zaposleni prima na račun. Ispod su okvirni primeri obračuna; za tačan iznos sa svim
-                    uvećanjima i odbicima koristite kalkulator.
-                  </p>
-                  <table className="home-examples" aria-label="Primeri obračuna bruto u neto za 2026">
-                    <thead>
-                      <tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr>
-                    </thead>
-                    <tbody>
-                      <tr><td>80.000</td><td>≈ 59.500</td><td>≈ 92.120</td></tr>
-                      <tr><td>100.000</td><td>≈ 73.520</td><td>≈ 115.150</td></tr>
-                      <tr><td>150.000</td><td>≈ 108.570</td><td>≈ 172.725</td></tr>
-                      <tr><td>200.000</td><td>≈ 143.620</td><td>≈ 230.300</td></tr>
-                    </tbody>
-                  </table>
-                  <p className="home-examples-note">
-                    Vrednosti su približne (zaokružene) i ne uključuju dodatna uvećanja ili naknade —
-                    za precizan obračun unesite svoje podatke u kalkulator iznad.
-                  </p>
-                </section>
-                <CalculatorPage />
-                <div className="disclaimer">
-                  ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
-                </div>
-                <section className="home-faq" aria-label="Česta pitanja o obračunu zarade">
-                  <h2 className="home-faq-title">Česta pitanja — obračun zarade i bruto u neto</h2>
-                  <div className="home-faq-item">
-                    <h3>Kako izračunati neto zaradu iz bruto u Srbiji?</h3>
-                    <p>
-                      Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos
-                      iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto
-                      100.000 RSD daje neto oko 73.542 RSD. Naš kalkulator radi obračun u oba smera.
-                    </p>
-                  </div>
-                  <div className="home-faq-item">
-                    <h3>Kolika je minimalna zarada u Srbiji u 2026. godini?</h3>
-                    <p>
-                      Od februara 2026. minimalna bruto zarada iznosi 93.264 RSD mesečno, a minimalna neto
-                      zarada 69.000 RSD. Više u vodiču o <a href="/blog/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
-                    </p>
-                  </div>
-                  <div className="home-faq-item">
-                    <h3>Koliki su doprinosi za socijalno osiguranje?</h3>
-                    <p>
-                      Zaposleni plaća 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), a poslodavac
-                      15,15% (PIO 10%, zdravstvo 5,15%) — ukupno 35,05%. Detaljnije u članku o
-                      <a href="/blog/doprinosi-srbija"> doprinosima u Srbiji</a>.
-                    </p>
-                  </div>
-                  <div className="home-faq-item">
-                    <h3>Koja je razlika između bruto 1, bruto 2 i neto zarade?</h3>
-                    <p>
-                      Bruto 1 je ugovorena zarada, neto je iznos na račun, a bruto 2 je ukupan trošak poslodavca
-                      (Bruto 1 + doprinosi poslodavca). Pogledajte vodič o
-                      <a href="/blog/bruto-neto-razlika"> razlici između bruto i neto zarade</a>.
-                    </p>
-                  </div>
-                  <div className="home-faq-item">
-                    <h3>Kako se računa neto u bruto zaradu?</h3>
-                    <p>
-                      Obračun <strong>neto u bruto</strong> je obrnuti postupak: iz željenog neto iznosa
-                      kalkulator rekonstruiše Bruto 1 tako da posle doprinosa (19,90%) i poreza dobijete tačno
-                      taj neto. PlatniListić radi obračun u oba smera — bruto u neto i neto u bruto.
-                    </p>
-                  </div>
-                  <div className="home-faq-item">
-                    <h3>Kako se obračunava minuli rad?</h3>
-                    <p>
-                      Minuli rad iznosi najmanje 0,4% osnovice za svaku navršenu godinu staža kod poslodavca.
-                      Pri bruto zaradi od 100.000 RSD i 10 godina staža minuli rad je oko 4.000 RSD. Detaljnije u
-                      vodiču o <a href="/blog/minuli-rad-obracun">obračunu minulog rada</a>.
-                    </p>
-                  </div>
-                  <div className="home-faq-item">
-                    <h3>Koliko se plaća porez na bonus?</h3>
-                    <p>
-                      Bonus, stimulacija i 13. plata oporezuju se kao deo zarade — porez 10% i doprinosi 19,90%.
-                      Bonus se dodaje na bruto osnovicu meseca isplate. Više u članku o
-                      <a href="/blog/porez-na-bonus"> porezu na bonus</a>.
-                    </p>
-                  </div>
-                </section>
-                <nav className="home-guides" aria-label="Popularni vodiči o zaradi">
-                  <h2 className="home-guides-title">Popularni vodiči</h2>
-                  <ul>
-                    <li><a href="/blog/prekovremeni-rad">Prekovremeni rad — uvećanje 26% (član 108. Zakona o radu)</a></li>
-                    <li><a href="/blog/otpremnina-obracun">Otpremnina — obračun i poreski tretman</a></li>
-                    <li><a href="/blog/minuli-rad-obracun">Minuli rad — kako se računa 0,4% po godini staža</a></li>
-                    <li><a href="/blog/godisnji-odmor-naknada">Naknada za godišnji odmor</a></li>
-                    <li><a href="/blog/jubilarna-nagrada">Jubilarna nagrada — iznosi i obračun</a></li>
-                    <li><a href="/blog/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
-                  </ul>
-                </nav>
-                <LeadForm />
-              </>
-            } />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/bruto-neto" element={<Suspense fallback={<RouteLoader />}><BrutoNetoPage /></Suspense>} />
+            <Route path="/neto-bruto" element={<Suspense fallback={<RouteLoader />}><NetoBrutoPage /></Suspense>} />
+            <Route path="/pausal" element={<Suspense fallback={<RouteLoader />}><PausalPage /></Suspense>} />
+            <Route path="/bolovanje" element={<Suspense fallback={<RouteLoader />}><BolovanjePage /></Suspense>} />
+            <Route path="/otpremnina" element={<Suspense fallback={<RouteLoader />}><OtpremninaPage /></Suspense>} />
+            <Route path="/minuli-rad" element={<Suspense fallback={<RouteLoader />}><MinuliRadPage /></Suspense>} />
+            <Route path="/dodaci-na-zaradu" element={<Suspense fallback={<RouteLoader />}><DodaciPage /></Suspense>} />
+            <Route path="/godisnji-porez" element={<Suspense fallback={<RouteLoader />}><GodisnjiPorezPage /></Suspense>} />
+            <Route path="/ugovor-o-delu" element={<Suspense fallback={<RouteLoader />}><UgovorODeluPage /></Suspense>} />
+            <Route path="/minimalna-zarada-2026" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
+            <Route path="/radni-dani-2026" element={<Suspense fallback={<RouteLoader />}><RadniDaniPage /></Suspense>} />
+            <Route path="/praznici-2026" element={<Suspense fallback={<RouteLoader />}><PrazniciPage /></Suspense>} />
+            <Route path="/prosecna-zarada" element={<Suspense fallback={<RouteLoader />}><ProsecnaZaradaPage /></Suspense>} />
+            <Route path="/neoporezivi-iznos-2026" element={<Suspense fallback={<RouteLoader />}><NeoporeziviPage /></Suspense>} />
+            <Route path="/stope-doprinosa-2026" element={<Suspense fallback={<RouteLoader />}><StopeDoprinosaPage /></Suspense>} />
             <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
             <Route path="/o-nama" element={<Suspense fallback={<RouteLoader />}><ONama onBack={() => navigate("/")} /></Suspense>} />

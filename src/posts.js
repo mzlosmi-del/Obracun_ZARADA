@@ -471,7 +471,7 @@ Registracija paušalca je najjednostavniji način da legalno pokrenete biznis u 
 ## Pre registracije: tri stvari koje treba pripremiti
 
 1. **Naziv** preduzetničke radnje — proverite dostupnost u APR pretrazi privrednih subjekata.
-2. **Šifra pretežne delatnosti** — biraјte pažljivo: neke delatnosti (trgovina, ugostiteljstvo, finansije) **ne mogu** u paušal, a šifra utiče i na visinu paušalnog poreza.
+2. **Šifra pretežne delatnosti** — birajte pažljivo: neke delatnosti (trgovina, ugostiteljstvo, finansije) **ne mogu** u paušal, a šifra utiče i na visinu paušalnog poreza.
 3. **Sedište** — adresa u Srbiji (može i kućna adresa ili virtuelna kancelarija).
 
 ## Korak po korak: e-registracija u APR-u
@@ -816,6 +816,8 @@ Izbor zavisi od visine i stabilnosti prihoda, potrebe za fakturama i tolerancije
 
 **Ugovor o delu** je jedan od najčešćih oblika angažovanja van radnog odnosa u Srbiji — koristi se za konkretan, samostalan posao sa jasnim rezultatom. Ali upravo zbog posebnog poreskog tretmana, mnogi ne znaju **koliko se zaista plaća poreza i doprinosa** i koliko ostaje „na ruke". U ovom vodiču objašnjavamo obračun za **2026. godinu** korak po korak, sa konkretnim primerom i poređenjem sa ugovorom o radu.
 
+> 🧮 Brzo izračunajte: [kalkulator ugovora o delu](/ugovor-o-delu).
+
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Za zvaničan obračun konkretne isplate konsultujte knjigovođu ili Poresku upravu, jer se parametri mogu menjati u toku godine.
 
 ## Šta je ugovor o delu?
@@ -1015,6 +1017,8 @@ Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-n
 > **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Paušalno oporezivanje** je najjednostavniji poreski režim za preduzetnike u Srbiji. Paušalac plaća **fiksan mesečni iznos** poreza i doprinosa, bez obzira na to koliko je tačno zaradio, i **ne vodi poslovne knjige** (osim jednostavne KPO knjige). Zbog toga je paušal veoma popularan kod programera, konsultanata, dizajnera i drugih koji pružaju usluge. U ovom vodiču objašnjavamo ko može da bude paušalac u **2026. godini**, koliko to košta i kada se više isplati od samooporezivanja.
+
+> 🧮 Izračunajte obaveze: [paušal kalkulator](/pausal).
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski savet. Za konkretan obračun obratite se knjigovođi ili Poreskoj upravi.
 
@@ -1523,6 +1527,8 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
 
 Bolovanje, odnosno **naknada zarade za vreme privremene sprečenosti za rad**, regulisano je **Zakonom o zdravstvenom osiguranju** (čl. 79–95) i **Zakonom o radu** (čl. 115). Evo svega što zaposleni i poslodavci treba da znaju o obračunu.
 
+> 🧮 Brzo izračunajte naknadu: [kalkulator bolovanja](/bolovanje).
+
 ## Ko snosi trošak bolovanja?
 
 Pravilo je jasno i propisano je zakonom:
@@ -1623,6 +1629,8 @@ Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i n
 > **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Minuli rad** je zakonsko uvećanje zarade koje pripada zaposlenom za svaku godinu rada provedenu kod istog poslodavca. Regulisan je **članom 108. tačka 4. Zakona o radu** Republike Srbije.
+
+> 🧮 Brzo izračunajte: [kalkulator minulog rada](/minuli-rad).
 
 ## Koliko iznosi minuli rad?
 
@@ -2353,7 +2361,7 @@ Poslodavac je dužan da zaposlenom dostavi rešenje o korišćenju godišnjeg od
 
 Ako zaposleni za vreme godišnjeg odmora padne na bolovanje, odmor se prekida. Neiskorišćeni dani godišnjeg odmora mogu se koristiti naknadno. Više o [obračunu bolovanja](/blog/kako-se-obracunava-bolovanje).
 
-## Zastarелост prava
+## Zastarelost prava
 
 Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako nije iskorišćeno krivicom zaposlenog. Ako nije iskorišćen krivicom poslodavca, zaposleni ima pravo na naknadu štete.
 
@@ -2385,6 +2393,8 @@ Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zara
 Otpremnina je jednokratna novčana naknada koju poslodavac isplaćuje zaposlenom prilikom prestanka radnog odnosa pod određenim uslovima. Regulisana je **Zakonom o radu (čl. 158–160)**.
 
 **Kratak odgovor:** minimalna otpremnina po Zakonu o radu za tehnološki višak iznosi **1/3 prosečne mesečne zarade za svaku navršenu godinu rada** kod tog poslodavca. Otpremnina do zakonskog minimuma je oslobođena poreza i doprinosa; porez na otpremninu (10%) plaća se samo na iznos iznad zakonskog minimuma.
+
+> 🧮 Brzo izračunajte: [kalkulator otpremnine](/otpremnina).
 
 ## Ko ima pravo na otpremninu?
 

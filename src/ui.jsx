@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export const fmt = (n) => new Intl.NumberFormat("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(n || 0);
 export const pct = (n) => (n * 100).toFixed(2) + "%";
@@ -101,5 +102,38 @@ export function GaugeBar({ label, value, max, color }) {
       <div className="gauge-header"><span>{label}</span><span style={{ color }}>{fmt(value)} RSD</span></div>
       <div className="gauge-track"><div className="gauge-fill" style={{ width: `${Math.min(pctVal, 100)}%`, background: color }} /></div>
     </div>
+  );
+}
+
+export function Breadcrumb({ items }) {
+  return (
+    <nav className="breadcrumb" aria-label="Putanja">
+      {items.map((it, i) => {
+        const last = i === items.length - 1;
+        return (
+          <span key={it.path}>
+            {last ? <span aria-current="page">{it.name}</span> : <Link to={it.path}>{it.name}</Link>}
+            {!last && <span className="breadcrumb-sep" aria-hidden="true"> › </span>}
+          </span>
+        );
+      })}
+    </nav>
+  );
+}
+
+export function FreshnessStamp({ date }) {
+  return <div className="freshness-stamp">Ažurirano: {date}</div>;
+}
+
+export function PovezaniKalkulatori({ links }) {
+  return (
+    <nav className="povezani-kalkulatori" aria-label="Povezani kalkulatori">
+      <h2 className="povezani-title">Povezani kalkulatori</h2>
+      <ul>
+        {links.map((l) => (
+          <li key={l.href}><Link to={l.href}>{l.label}</Link></li>
+        ))}
+      </ul>
+    </nav>
   );
 }

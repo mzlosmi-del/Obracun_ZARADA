@@ -11,7 +11,7 @@ const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITE_URL = "https://www.platnilistic.rs";
 
-const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi"];
+const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/bruto-neto", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/ugovor-o-delu", "/minimalna-zarada-2026", "/radni-dani-2026", "/praznici-2026", "/prosecna-zarada", "/neoporezivi-iznos-2026", "/stope-doprinosa-2026"];
 const ROUTES = [...STATIC_ROUTES, ...POSTS.map((p) => `/blog/${p.id}`)];
 
 const MONTHS = {
@@ -38,6 +38,21 @@ function sitemapXml() {
     "/o-nama": { changefreq: "monthly", priority: "0.6", lastmod: new Date().toISOString().slice(0, 10) },
     "/privatnost": { changefreq: "yearly", priority: "0.3", lastmod: "2025-02-01" },
     "/uslovi": { changefreq: "yearly", priority: "0.3", lastmod: "2025-02-01" },
+    "/bruto-neto": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/neto-bruto": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/pausal": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/bolovanje": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/otpremnina": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/minuli-rad": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/dodaci-na-zaradu": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/godisnji-porez": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/ugovor-o-delu": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/minimalna-zarada-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
+    "/radni-dani-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
+    "/praznici-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
+    "/prosecna-zarada": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
+    "/neoporezivi-iznos-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
+    "/stope-doprinosa-2026": { changefreq: "yearly", priority: "0.7", lastmod: new Date().toISOString().slice(0, 10) },
   };
   const entries = [];
   for (const r of STATIC_ROUTES) {
@@ -73,9 +88,15 @@ async function run() {
   }
 
   chromium.setGraphicsMode = false;
+  // Local dev: set PUPPETEER_EXECUTABLE_PATH to a system Chrome/Edge binary so
+  // prerendering works off-Lambda. On Vercel the var is unset and we fall back
+  // to the bundled @sparticuz/chromium binary — production build is unchanged.
+  const localChrome = process.env.PUPPETEER_EXECUTABLE_PATH;
   const browser = await puppeteer.launch({
-    args: [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
-    executablePath: await chromium.executablePath(),
+    args: localChrome
+      ? ["--no-sandbox", "--disable-setuid-sandbox"]
+      : [...chromium.args, "--no-sandbox", "--disable-setuid-sandbox"],
+    executablePath: localChrome || (await chromium.executablePath()),
     headless: true,
   });
 

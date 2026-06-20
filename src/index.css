@@ -381,3 +381,14 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .home-guides ul{list-style:none;display:grid;gap:8px}
 .home-guides a{color:#0057ff;text-decoration:none}
 .home-guides a:hover{text-decoration:underline}
+
+/* ── BREADCRUMB / FRESHNESS / POVEZANI ── */
+.breadcrumb { font-size: 0.85rem; opacity: 0.75; margin-bottom: 12px; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.freshness-stamp { font-size: 0.8rem; opacity: 0.7; margin: 6px 0 18px; }
+.povezani-kalkulatori { margin-top: 32px; padding-top: 20px; border-top: 1px solid var(--border, #2a2a35); }
+.povezani-title { font-size: 1.1rem; margin-bottom: 10px; }
+.povezani-kalkulatori ul { list-style: none; padding: 0; display: grid; gap: 8px; }
+.povezani-kalkulatori a { color: var(--accent, #6ea8fe); text-decoration: none; }
+.povezani-kalkulatori a:hover { text-decoration: underline; }
