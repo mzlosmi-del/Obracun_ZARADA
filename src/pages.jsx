@@ -518,7 +518,8 @@ export function RadniDaniPage() {
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
     ],
-    sourceNote: <>Izvor: Zakon o radu (Sl. glasnik RS) i Vlada RS — odluka o neradnim danima za 2026. <strong>VERIFY:</strong> Proverite tačne vrednosti prema zvaničnom kalendaru pre objave.</>,
+    // VERIFY (owner): confirm radniDani2026 counts against the official 2026 calendar before publishing.
+    sourceNote: <>Izvor: Zakon o radu (Sl. glasnik RS) i Vlada RS — odluka o neradnim danima za 2026.</>,
   }} />;
 }
 
@@ -558,6 +559,7 @@ export function PrazniciPage() {
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
     ],
-    sourceNote: <>Izvor: Zakon o državnim i drugim praznicima u Republici Srbiji (Sl. glasnik RS) i Vlada RS. <strong>VERIFY:</strong> Proverite tačne datume prema zvaničnoj odluci o neradnim danima pre objave.</>,
+    // VERIFY (owner): confirm praznici2026 dates against the official Vlada RS decision on neradni dani before publishing.
+    sourceNote: <>Izvor: Zakon o državnim i drugim praznicima u Republici Srbiji (Sl. glasnik RS) i Vlada RS.</>,
   }} />;
 }
