@@ -1109,6 +1109,24 @@ function HomePage() {
           <li><a href="/blog/godisnji-odmor-naknada">Naknada za godišnji odmor</a></li>
           <li><a href="/blog/jubilarna-nagrada">Jubilarna nagrada — iznosi i obračun</a></li>
           <li><a href="/blog/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/blog/pausalno-oporezivanje">Paušalno oporezivanje 2026</a></li>
+          <li><a href="/blog/porez-za-frilensere">Porez za frilensere 2026</a></li>
+          <li><a href="/blog/ugovor-o-delu">Ugovor o delu — porez i doprinosi</a></li>
+        </ul>
+      </nav>
+      <nav className="home-tools" aria-label="Kalkulatori i alati">
+        <h2 className="home-tools-title">Kalkulatori i alati</h2>
+        <ul>
+          <li><a href="/bruto-neto">Bruto u neto kalkulator</a></li>
+          <li><a href="/neto-bruto">Neto u bruto kalkulator</a></li>
+          <li><a href="/pausal">Paušal kalkulator</a></li>
+          <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
+          <li><a href="/otpremnina">Kalkulator otpremnine</a></li>
+          <li><a href="/minuli-rad">Kalkulator minulog rada</a></li>
+          <li><a href="/ugovor-o-delu">Ugovor o delu kalkulator</a></li>
+          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
+          <li><a href="/praznici-2026">Praznici 2026</a></li>
         </ul>
       </nav>
       <LeadForm />
@@ -1124,6 +1142,12 @@ export default function App() {
 
   const navItems = [
     { path: "/", icon: "⚡", label: "Kalkulator" },
+    { path: "/bruto-neto", icon: "🔁", label: "Bruto u neto" },
+    { path: "/neto-bruto", icon: "🔁", label: "Neto u bruto" },
+    { path: "/pausal", icon: "🧾", label: "Paušal" },
+    { path: "/bolovanje", icon: "🏥", label: "Bolovanje" },
+    { path: "/otpremnina", icon: "📤", label: "Otpremnina" },
+    { path: "/minuli-rad", icon: "📈", label: "Minuli rad" },
     { path: "/blog", icon: "📰", label: "Blog" },
   ];
 
