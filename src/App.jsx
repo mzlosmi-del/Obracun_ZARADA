@@ -24,6 +24,9 @@ const GodisnjiPorezPage = lazy(() => import("./pages.jsx").then(m => ({ default:
 const UgovorODeluPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.UgovorODeluPage })));
 const RadniDaniPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.RadniDaniPage })));
 const PrazniciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PrazniciPage })));
+const ProsecnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.ProsecnaZaradaPage })));
+const NeoporeziviPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NeoporeziviPage })));
+const StopeDoprinosaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.StopeDoprinosaPage })));
 
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 
@@ -1183,6 +1186,9 @@ export default function App() {
             <Route path="/minimalna-zarada-2026" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
             <Route path="/radni-dani-2026" element={<Suspense fallback={<RouteLoader />}><RadniDaniPage /></Suspense>} />
             <Route path="/praznici-2026" element={<Suspense fallback={<RouteLoader />}><PrazniciPage /></Suspense>} />
+            <Route path="/prosecna-zarada" element={<Suspense fallback={<RouteLoader />}><ProsecnaZaradaPage /></Suspense>} />
+            <Route path="/neoporezivi-iznos-2026" element={<Suspense fallback={<RouteLoader />}><NeoporeziviPage /></Suspense>} />
+            <Route path="/stope-doprinosa-2026" element={<Suspense fallback={<RouteLoader />}><StopeDoprinosaPage /></Suspense>} />
             <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
             <Route path="/o-nama" element={<Suspense fallback={<RouteLoader />}><ONama onBack={() => navigate("/")} /></Suspense>} />

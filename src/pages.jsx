@@ -3,7 +3,7 @@ import { CalculatorPage } from "./App.jsx";
 import { breadcrumbLd, webAppLd } from "./schema.js";
 import { useState } from "react";
 import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori, NumberInput, ResultRow, fmt } from "./ui.jsx";
-import { REFERENCE_DATA, PAUSAL_RATES } from "./rates.js";
+import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES } from "./rates.js";
 
 const FRESHNESS = "jun 2026.";
 const DISCLAIMER = "⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.";
@@ -335,6 +335,109 @@ export function UgovorODeluPage() {
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
       { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
     ],
+  }} />;
+}
+
+export function ProsecnaZaradaPage() {
+  const p = REFERENCE_DATA.prosecnaZarada2026;
+  return <ReferencePage cfg={{
+    slug: "prosecna-zarada",
+    title: "Prosečna zarada u Srbiji 2026 — neto i bruto | PlatniListić",
+    description: `Prosečna neto zarada ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")} RSD (${p.mesec}, RZS). Medijalna i poređenje.`,
+    h1: "Prosečna zarada u Srbiji 2026.",
+    breadcrumbName: "Prosečna zarada",
+    body: (<>
+      <table className="ref-table">
+        <tbody>
+          <tr><th>Prosečna neto zarada</th><td>{p.neto.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Prosečna bruto zarada</th><td>{p.bruto.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Medijalna neto zarada</th><td>{p.medijalnaNeto.toLocaleString("sr-RS")} RSD</td></tr>
+        </tbody>
+      </table>
+      <p>Podaci su za {p.mesec} (RZS). Medijalna zarada (polovina zaposlenih zarađuje manje) realnije opisuje tipičnu platu od proseka. Detaljan pregled po sektorima i gradovima: <a href="/blog/prosecna-plata-srbija">prosečna plata u Srbiji 2026</a>.</p>
+    </>),
+    faq: [
+      { q: "Kolika je prosečna plata u Srbiji 2026?", a: `Prosečna neto plata za ${p.mesec} iznosi ${p.neto.toLocaleString("sr-RS")} RSD, a bruto ${p.bruto.toLocaleString("sr-RS")} RSD (RZS).` },
+      { q: "Kolika je medijalna plata?", a: `Medijalna neto zarada iznosi oko ${p.medijalnaNeto.toLocaleString("sr-RS")} RSD — polovina zaposlenih zarađuje manje od tog iznosa.` },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
+    ],
+    sourceNote: (<>Izvor: {p.izvor}, {p.mesec}. Kurs: 1 € = {p.kursEur} RSD (NBS).</>),
+  }} />;
+}
+
+export function NeoporeziviPage() {
+  const nonTaxable = DEFAULT_RATES.nonTaxable;
+  return <ReferencePage cfg={{
+    slug: "neoporezivi-iznos-2026",
+    title: "Neoporezivi iznos zarade 2026 — 34.221 RSD | PlatniListić",
+    description: "Neoporezivi iznos zarade za 2026. iznosi 34.221 RSD mesečno. Kako utiče na obračun poreza na zaradu i neto iznos. Za Srbiju.",
+    h1: "Neoporezivi iznos zarade za 2026.",
+    breadcrumbName: "Neoporezivi iznos 2026",
+    body: (<>
+      <p>Neoporezivi iznos zarade je deo mesečne bruto zarade koji je izuzet od poreza na zarade. Na preostalI deo bruto zarade iznad ovog iznosa primenjuje se stopa poreza od 10%.</p>
+      <table className="ref-table">
+        <tbody>
+          <tr><th>Neoporezivi iznos (2026)</th><td>{nonTaxable.toLocaleString("sr-RS")} RSD</td></tr>
+        </tbody>
+      </table>
+      <p>Neoporezivi iznos se primenjuje mesečno, po zaposlenom. Znači da se porez na zaradu plaća samo na onaj deo bruto zarade koji prelazi {nonTaxable.toLocaleString("sr-RS")} RSD. Ovo direktno povećava neto iznos koji zaposleni prima na račun. Vidite kako neoporezivi iznos utiče na vaš obračun: <a href="/bruto-neto">bruto u neto kalkulator</a>. Saznajte više o razlici između bruto i neto zarade: <a href="/blog/bruto-neto-razlika">bruto neto razlika</a>.</p>
+    </>),
+    faq: [
+      { q: "Koliki je neoporezivi iznos zarade u 2026?", a: `Neoporezivi iznos zarade za 2026. iznosi ${nonTaxable.toLocaleString("sr-RS")} RSD mesečno. Na deo zarade iznad ovog iznosa primenjuje se porez od 10%.` },
+      { q: "Kako se primenjuje neoporezivi iznos?", a: "Neoporezivi iznos se oduzima od bruto 1 zarade, a porez od 10% plaća se samo na razliku. Na primer, za bruto zaradu od 100.000 RSD, poreska osnovica je 100.000 − " + nonTaxable.toLocaleString("sr-RS") + " = " + (100000 - nonTaxable).toLocaleString("sr-RS") + " RSD, a porez iznosi 10% od toga." },
+      { q: "Da li se neoporezivi iznos odnosi na svaki mesec?", a: "Da, neoporezivi iznos se primenjuje mesečno, posebno za svakog zaposlenog. Ne kumulira se — svaki mesec se iznova oduzima od bruto zarade pre obračuna poreza." },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
+      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+    ],
+    sourceNote: <>Izvor: Sl. glasnik RS.</>,
+  }} />;
+}
+
+export function StopeDoprinosaPage() {
+  const R = DEFAULT_RATES;
+  const zaposleniUkupno = R.pioPct_emp + R.health_emp + R.unemp_emp;
+  const poslodavacUkupno = R.pio_er + R.health_er;
+  return <ReferencePage cfg={{
+    slug: "stope-doprinosa-2026",
+    title: "Stope doprinosa 2026 — PIO, zdravstvo | PlatniListić",
+    description: "Stope doprinosa za 2026: PIO 14%+10%, zdravstveno 5,15%+5,15%, nezaposlenost 0,75%. Na teret zaposlenog i poslodavca. Za Srbiju.",
+    h1: "Stope doprinosa za socijalno osiguranje 2026.",
+    breadcrumbName: "Stope doprinosa 2026",
+    body: (<>
+      <p>Doprinosi za obavezno socijalno osiguranje u Srbiji za 2026. plaćaju se i na teret zaposlenog i na teret poslodavca. Obe strane plaćaju na istu osnovicu (bruto 1 zaradu).</p>
+      <table className="ref-table">
+        <thead>
+          <tr><th>Doprinos</th><th>Na teret zaposlenog</th><th>Na teret poslodavca</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PIO (penzijsko i invalidsko)</td><td>{R.pioPct_emp.toLocaleString("sr-RS")}%</td><td>{R.pio_er.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Zdravstveno osiguranje</td><td>{R.health_emp.toLocaleString("sr-RS")}%</td><td>{R.health_er.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Nezaposlenost</td><td>{R.unemp_emp.toLocaleString("sr-RS")}%</td><td>—</td></tr>
+        </tbody>
+        <tfoot>
+          <tr><th>Ukupno</th><th>{zaposleniUkupno.toFixed(2).replace(".", ",")}%</th><th>{poslodavacUkupno.toFixed(2).replace(".", ",")}%</th></tr>
+        </tfoot>
+      </table>
+      <p>Ukupni doprinosi zaposlenog iznose {zaposleniUkupno.toFixed(2).replace(".", ",")}%, a poslodavca {poslodavacUkupno.toFixed(2).replace(".", ",")}% na bruto zaradu. Detaljnu razradu doprinosa i poreza vidite u <a href="/bruto-neto">bruto u neto kalkulatoru</a>.</p>
+    </>),
+    faq: [
+      { q: "Koliki su ukupni doprinosi na zaradu u 2026?", a: `Zaposleni plaća ${zaposleniUkupno.toFixed(2).replace(".", ",")}% (PIO ${R.pioPct_emp}%, zdravstveno ${R.health_emp}%, nezaposlenost ${R.unemp_emp}%). Poslodavac plaća ${poslodavacUkupno.toFixed(2).replace(".", ",")}% (PIO ${R.pio_er}%, zdravstveno ${R.health_er}%).` },
+      { q: "Ko plaća doprinose za socijalno osiguranje?", a: "Doprinose plaćaju i zaposleni i poslodavac, svaki na svoj teret. Zaposlenom se doprinosi odbijaju od zarade (prikazuju se na platnom listiću), dok poslodavac svoju stopu plaća povrh bruto 1 zarade." },
+      { q: "Na koju osnovicu se obračunavaju doprinosi?", a: "Doprinosi se obračunavaju na bruto 1 zaradu zaposlenog, uz propisane granice — najniža i najviša mesečna osnovica. Izvan tih granica doprinosi se obračunavaju na graničnu vrednost, ne na stvarnu zaradu." },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/neoporezivi-iznos-2026", label: "Neoporezivi iznos 2026" },
+      { href: "/pausal", label: "Paušal kalkulator" },
+    ],
+    sourceNote: <>Izvor: CROSO / Sl. glasnik RS.</>,
   }} />;
 }
 
