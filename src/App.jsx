@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom"
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
 import { useSeo } from "./seo.jsx";
+import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 
 // Lazy-loaded routes — keep main bundle small
@@ -1027,6 +1028,11 @@ function HomePage() {
     title: "Kalkulator zarade 2026 — bruto u neto Srbija | PlatniListić",
     description: "Besplatan kalkulator zarade za Srbiju 2026 — bruto u neto, porez, doprinosi, minuli rad, bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
     path: "/",
+    jsonLd: webAppLd({
+      name: "PlatniListić — Kalkulator zarade Srbija 2026",
+      description: "Besplatan online kalkulator za obračun zarade u Srbiji: bruto u neto, porez, doprinosi, prekovremeni i minuli rad, bolovanje, otpremnina i PDF platni listić.",
+      path: "/",
+    }),
     faq: HOME_FAQ,
   });
   return (

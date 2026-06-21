@@ -55,159 +55,31 @@
       #root{min-height:100vh}
     </style>
 
-    <!-- Structured Data – WebApplication -->
+    <!-- Structured Data – site-level identity (Organization + WebSite).
+         These are the ONLY global JSON-LD blocks. They are site-wide and do
+         NOT duplicate per-page schema. All page-specific schema (WebApplication,
+         BreadcrumbList, FAQPage) is injected per route by src/seo.jsx and is
+         captured in the prerendered HTML. Do NOT add page-specific schema here. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "PlatniListić – Kalkulator Zarade Srbija",
-      "url": "https://www.platnilistic.rs",
-      "description": "Besplatni online kalkulator za obračun zarade u Srbiji. Izračunajte bruto, neto zaradu, doprinose i porez. Prekovremeni rad, noćni rad, praznici, bonusi, bolovanje i PDF platni listić.",
-      "applicationCategory": "FinanceApplication",
-      "operatingSystem": "Web",
-      "inLanguage": "sr-RS",
-      "availableLanguage": { "@type": "Language", "name": "Serbian", "alternateName": "sr" },
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RSD" },
-      "provider": {
-        "@type": "Organization",
-        "name": "PlatniListić",
-        "url": "https://www.platnilistic.rs",
-        "areaServed": { "@type": "Country", "name": "Serbia" }
-      }
-    }
-    </script>
-
-    <!-- Structured Data – FAQPage -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+      "@graph": [
         {
-          "@type": "Question",
-          "name": "Kako izračunati neto zaradu iz bruto u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Neto zarada = Bruto1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto 100.000 RSD → neto oko 73.542 RSD."
-          }
+          "@type": "Organization",
+          "@id": "https://www.platnilistic.rs/#organization",
+          "name": "PlatniListić",
+          "url": "https://www.platnilistic.rs/",
+          "logo": "https://www.platnilistic.rs/logo.svg",
+          "description": "Besplatni online kalkulator za obračun zarade u Republici Srbiji.",
+          "areaServed": { "@type": "Country", "name": "Serbia" }
         },
         {
-          "@type": "Question",
-          "name": "Kolika je minimalna zarada u Srbiji u 2026. godini?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Od februara 2026. minimalna bruto zarada u Srbiji iznosi 93.264 RSD mesečno, a minimalna neto zarada iznosi 69.000 RSD."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Koliki su doprinosi za socijalno osiguranje u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Zaposleni plaća 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%). Poslodavac plaća 15,15% (PIO 10%, zdravstvo 5,15%). Ukupno 35,05%."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Koliki je neoporezivi iznos zarade u 2026. godini?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Od 1. februara 2026. godine neoporezivi iznos zarade iznosi 34.221 RSD mesečno."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Kako se računa neto u bruto zaradu u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Obračun neto u bruto je obrnuti postupak: iz željenog neto iznosa kalkulator rekonstruiše Bruto 1 tako da posle doprinosa (19,90%) i poreza (10% na iznos iznad 34.221 RSD) dobijete tačno taj neto. PlatniListić radi obračun u oba smera — bruto u neto i neto u bruto."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Kako se obračunava minuli rad u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Minuli rad iznosi najmanje 0,4% od osnovice za svaku navršenu godinu radnog staža kod poslodavca. Na bruto zaradu od 100.000 RSD i 10 godina staža, minuli rad je oko 4.000 RSD (0,4% × 10 × 100.000)."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Koliko se plaća porez na bonus u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Bonus, stimulacija i 13. plata oporezuju se kao deo zarade — porez na zaradu 10% i doprinosi 19,90% za zaposlenog. Bonus se dodaje na bruto osnovicu meseca u kojem se isplaćuje."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Kako se obračunava otpremnina u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Minimalna otpremnina za tehnološki višak iznosi 1/3 prosečne mesečne zarade za svaku navršenu godinu rada kod poslodavca. Otpremnina do zakonskog minimuma je oslobođena poreza i doprinosa."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Koliko se plaća prekovremeni rad u Srbiji?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Prema članu 108. Zakona o radu, prekovremeni rad se plaća sa uvećanjem od najmanje 26% u odnosu na redovnu satnicu."
-          }
-        }
-      ]
-    }
-    </script>
-
-    <!-- Structured Data – BreadcrumbList -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "PlatniListić", "item": "https://www.platnilistic.rs/" },
-        { "@type": "ListItem", "position": 2, "name": "Kalkulator zarade", "item": "https://www.platnilistic.rs/" },
-        { "@type": "ListItem", "position": 3, "name": "Blog", "item": "https://www.platnilistic.rs/blog" }
-      ]
-    }
-    </script>
-
-    <!-- Structured Data – HowTo (kako izračunati neto zaradu) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      "name": "Kako izračunati neto zaradu iz bruto u Srbiji",
-      "description": "Korak-po-korak vodič za obračun neto zarade iz bruto za Srbiju u 2026. godini, sa doprinosima i porezom na zaradu.",
-      "totalTime": "PT2M",
-      "inLanguage": "sr-RS",
-      "tool": [
-        { "@type": "HowToTool", "name": "PlatniListić — kalkulator bruto neto zarade" }
-      ],
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Unesite bruto zaradu",
-          "text": "U polje „Osnovna bruto zarada\" unesite bruto iznos iz ugovora o radu (Bruto 1). Možete uneti i neto iznos — kalkulator će automatski izračunati odgovarajuću bruto zaradu."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Dodajte uvećanja zarade",
-          "text": "Unesite prekovremeni rad, noćni rad, vikend, praznike, godine staža za minuli rad i bonuse — kalkulator automatski primenjuje +26% i ostala uvećanja propisana članom 108. Zakona o radu."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Dodajte naknade i odbitke",
-          "text": "Unesite topli obrok, regres, prevoz, kao i odbitke (kredit, sindikat, administrativna zabrana, alimentacija). Kalkulator vodi računa o neoporezivim limitima i poreskoj osnovici."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Pročitajte rezultat i preuzmite PDF",
-          "text": "Kalkulator prikazuje neto zaradu, Bruto 1, Bruto 2, ukupan trošak poslodavca i strukturu odbitaka. PDF platni listić i PPP-PD XML datoteka se generišu jednim klikom."
+          "@type": "WebSite",
+          "@id": "https://www.platnilistic.rs/#website",
+          "name": "PlatniListić",
+          "url": "https://www.platnilistic.rs/",
+          "inLanguage": "sr-RS",
+          "publisher": { "@id": "https://www.platnilistic.rs/#organization" }
         }
       ]
     }
