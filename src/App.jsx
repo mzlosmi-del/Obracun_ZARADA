@@ -1151,6 +1151,10 @@ function HomePage() {
           <li><a href="/blog/pausalno-oporezivanje">Paušalno oporezivanje 2026</a></li>
           <li><a href="/blog/porez-za-frilensere">Porez za frilensere 2026</a></li>
           <li><a href="/blog/ugovor-o-delu">Ugovor o delu — porez i doprinosi</a></li>
+          <li><a href="/blog/kako-se-obracunava-bolovanje">Kako se obračunava bolovanje</a></li>
+          <li><a href="/blog/kako-se-obracunava-penzija">Kako se obračunava penzija</a></li>
+          <li><a href="/blog/neoporezivi-2025">Neoporezivi iznos zarade 2026</a></li>
+          <li><a href="/blog/minimalna-zarada-2025">Minimalna zarada 2025 — poređenje sa 2026</a></li>
         </ul>
       </nav>
       <nav className="home-tools" aria-label="Kalkulatori i alati">

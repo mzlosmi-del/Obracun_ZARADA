@@ -148,7 +148,7 @@ export function BrutoNetoPage() {
     calc: "full",
     intro: (<p>Ovaj <strong>bruto u neto kalkulator</strong> za 2026. pretvara bruto 1 zaradu u neto iznos na račun, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa zaposlenog (19,90%). Rezultat preuzimate kao PDF platni listić i PPP-PD XML.</p>),
     guide: (<><h2>Kako se računa bruto u neto</h2>
-      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a>.</p></>),
+      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/blog/neoporezivi-2025">neoporezivi iznos zarade</a>.</p></>),
     faq: [
       { q: "Kako izračunati neto iz bruto u Srbiji?", a: "Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez 10% na deo iznad neoporezivog iznosa (34.221 RSD za 2026). Kalkulator radi obračun u oba smera." },
       { q: "Koliki su doprinosi zaposlenog?", a: "19,90% — PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%." },
@@ -207,7 +207,7 @@ export function OtpremninaPage() {
     calc: "full",
     intro: (<p>Ovaj <strong>kalkulator otpremnine</strong> pomaže da izračunate pravo na otpremninu po Zakonu o radu: kako za tehnološki višak, tako i za odlazak u penziju. Unesite podatke o zaradi i godinama staža u kalkulatoru ispod kako biste dobili okvirni obračun.</p>),
     guide: (<><h2>Kako se obračunava otpremnina</h2>
-      <p>Zaposlenom kome prestaje radni odnos zbog tehnološkog viška pripada otpremnina najmanje u visini jedne trećine (1/3) prosečne zarade po godini staža kod poslodavca (čl. 158 Zakona o radu). Za odlazak u penziju otpremnina iznosi najmanje dve prosečne zarade u RS. Poreski tretman: iznos otpremnine neoporeziv do propisanog iznosa — deo koji premašuje neoporezivi prag podleže porezu na dohodak. Detaljan vodič: <a href="/blog/otpremnina-obracun">obračun otpremnine</a>.</p></>),
+      <p>Zaposlenom kome prestaje radni odnos zbog tehnološkog viška pripada otpremnina najmanje u visini jedne trećine (1/3) prosečne zarade po godini staža kod poslodavca (čl. 158 Zakona o radu). Za odlazak u penziju otpremnina iznosi najmanje dve prosečne zarade u RS. Poreski tretman: iznos otpremnine neoporeziv do propisanog iznosa — deo koji premašuje neoporezivi prag podleže porezu na dohodak. Detaljan vodič: <a href="/blog/otpremnina-obracun">obračun otpremnine</a>. Za odlazak u penziju pogledajte i vodič <a href="/blog/kako-se-obracunava-penzija">kako se obračunava penzija</a>.</p></>),
     faq: [
       { q: "Kolika je minimalna otpremnina za tehnološki višak?", a: "Najmanje 1/3 prosečne zarade zaposlenog po godini staža kod tog poslodavca, u skladu sa čl. 158 Zakona o radu." },
       { q: "Da li je otpremnina oporeziva?", a: "Deo otpremnine do propisanog neoporezivog iznosa je oslobođen poreza. Iznos koji premašuje taj prag oporezuje se kao dohodak." },
@@ -463,7 +463,7 @@ export function MinimalnaZaradaPage() {
           )}
         </tbody>
       </table>
-      <p>Minimalna zarada se obračunava po ceni radnog časa pomnoženoj fondom sati u mesecu, pa se mesečni iznos razlikuje po mesecima zbog različitog broja radnih dana. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a>.</p>
+      <p>Minimalna zarada se obračunava po ceni radnog časa pomnoženoj fondom sati u mesecu, pa se mesečni iznos razlikuje po mesecima zbog različitog broja radnih dana. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a>. Za poređenje sa prethodnom godinom pogledajte vodič <a href="/blog/minimalna-zarada-2025">minimalna zarada 2025</a>.</p>
     </>),
     faq: [
       { q: "Kolika je minimalna zarada u Srbiji 2026?", a: `Minimalna neto zarada je ${m.netoMesecno.toLocaleString("sr-RS")} RSD, a bruto ${m.brutoMesecno.toLocaleString("sr-RS")} RSD, sa primenom od ${m.vaziOd}.` },
