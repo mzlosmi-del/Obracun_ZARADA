@@ -1,88 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" fill="none">
-  <defs>
-    <filter id="drop" x="-15%" y="-10%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#8fbfe0" flood-opacity="0.30"/>
-    </filter>
-    <linearGradient id="paper" x1="0" y1="0" x2="0.3" y2="1">
-      <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="100%" stop-color="#f0f7ff"/>
-    </linearGradient>
-    <linearGradient id="fold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#daeeff"/>
-      <stop offset="100%" stop-color="#a8d4f0"/>
-    </linearGradient>
-    <linearGradient id="header" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#63c1f8"/>
-      <stop offset="100%" stop-color="#2a9fd6"/>
-    </linearGradient>
-    <linearGradient id="badge" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#4db8f7"/>
-      <stop offset="100%" stop-color="#1a8fc7"/>
-    </linearGradient>
-    <linearGradient id="checkCircle" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#e8f6ff"/>
-      <stop offset="100%" stop-color="#cceeff"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Paper shadow layer (slightly offset) -->
-  <rect x="27" y="21" width="88" height="112" rx="8" fill="#b8d8ee" opacity="0.25"/>
-
-  <!-- Main paper body -->
-  <rect x="22" y="16" width="88" height="112" rx="8" fill="url(#paper)" filter="url(#drop)" stroke="#cce3f5" stroke-width="1.2"/>
-
-  <!-- Top-right folded corner cutout -->
-  <path d="M82 16 L110 16 L110 36 Z" fill="#daeeff" stroke="#b8d8ee" stroke-width="1"/>
-  <!-- Fold crease line -->
-  <line x1="82" y1="16" x2="82" y2="36" stroke="#b8d8ee" stroke-width="1"/>
-  <line x1="82" y1="36" x2="110" y2="36" stroke="#b8d8ee" stroke-width="1"/>
-
-  <!-- Blue header band -->
-  <path d="M22 16 Q22 16 22 24 L22 46 L82 46 L82 16 Z" fill="url(#header)"/>
-  <rect x="22" y="16" width="60" height="30" rx="0" fill="url(#header)"/>
-  <!-- Round top-left of header to match paper -->
-  <path d="M22 24 Q22 16 30 16 L82 16 L82 46 L22 46 Z" fill="url(#header)"/>
-
-  <!-- Header — white title bar -->
-  <rect x="30" y="23" width="34" height="5" rx="2.5" fill="white" opacity="0.95"/>
-  <!-- Header — small subtitle bar -->
-  <rect x="30" y="32" width="22" height="3.5" rx="1.75" fill="white" opacity="0.55"/>
-  <!-- Header — tiny tag -->
-  <rect x="56" y="32" width="14" height="3.5" rx="1.75" fill="white" opacity="0.3"/>
-
-  <!-- Separator -->
-  <line x1="30" y1="55" x2="102" y2="55" stroke="#cde6f7" stroke-width="1" stroke-linecap="round"/>
-
-  <!-- Data rows (label pill + value pill) -->
-  <!-- Row 1 -->
-  <rect x="30" y="62" width="36" height="5" rx="2.5" fill="#b8d8ee" opacity="0.7"/>
-  <rect x="74" y="62" width="28" height="5" rx="2.5" fill="#63c1f8" opacity="0.6"/>
-
-  <!-- Row 2 -->
-  <rect x="30" y="73" width="28" height="5" rx="2.5" fill="#b8d8ee" opacity="0.7"/>
-  <rect x="74" y="73" width="22" height="5" rx="2.5" fill="#63c1f8" opacity="0.6"/>
-
-  <!-- Row 3 -->
-  <rect x="30" y="84" width="32" height="5" rx="2.5" fill="#b8d8ee" opacity="0.7"/>
-  <rect x="74" y="84" width="18" height="5" rx="2.5" fill="#63c1f8" opacity="0.6"/>
-
-  <!-- Dashed divider before total -->
-  <line x1="30" y1="95" x2="102" y2="95" stroke="#cde6f7" stroke-width="1" stroke-dasharray="4,3" stroke-linecap="round"/>
-
-  <!-- Total row — highlighted -->
-  <rect x="30" y="100" width="72" height="8" rx="4" fill="#daeeff" opacity="0.8"/>
-  <rect x="30" y="100" width="28" height="8" rx="4" fill="#b8d8ee" opacity="0.6"/>
-  <rect x="74" y="100" width="28" height="8" rx="4" fill="url(#badge)" opacity="0.9"/>
-
-  <!-- Signature lines -->
-  <line x1="30" y1="117" x2="54" y2="117" stroke="#cde6f7" stroke-width="2" stroke-linecap="round"/>
-  <line x1="78" y1="117" x2="102" y2="117" stroke="#cde6f7" stroke-width="2" stroke-linecap="round"/>
-
-  <!-- Checkmark stamp (bottom-right of paper) -->
-  <circle cx="102" cy="104" r="11" fill="url(#checkCircle)" stroke="#63c1f8" stroke-width="2"/>
-  <polyline points="96.5,104 100,107.5 107.5,98.5" stroke="#1a8fc7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-
-  <!-- Small decorative staple / clip at top -->
-  <rect x="58" y="12" width="16" height="8" rx="4" fill="#63c1f8" stroke="#2a9fd6" stroke-width="1.2"/>
-  <rect x="62" y="14" width="8" height="4" rx="2" fill="#daeeff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 80 80" fill="none">
+  <rect x="8" y="10" width="64" height="64" rx="18" fill="#1452d6"></rect>
+  <rect x="18" y="23" width="9.5" height="37" rx="2.4" fill="#ffffff"></rect>
+  <circle cx="28.5" cy="33" r="12" fill="#ffffff"></circle>
+  <circle cx="32.5" cy="33" r="5.2" fill="#1452d6"></circle>
+  <rect x="44" y="29" width="21" height="4.5" rx="2.25" fill="#ffffff" fill-opacity="0.92"></rect>
+  <rect x="44" y="39.5" width="14" height="4.5" rx="2.25" fill="#ffffff" fill-opacity="0.5"></rect>
+  <rect x="44" y="50" width="21" height="6.5" rx="3.25" fill="#1fd07a"></rect>
 </svg>

@@ -145,7 +145,7 @@ function generatePayslipHTML(inputs, r, info, rates) {
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;font-size:13px;-webkit-font-smoothing:antialiased}
 .page{max-width:780px;margin:0 auto;padding:32px 36px}
-.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;padding-bottom:18px;border-bottom:3px solid #0057ff}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;padding-bottom:18px;border-bottom:3px solid #1452d6}
 .hdr h1{font-size:22px;font-weight:800;color:#0f1623;letter-spacing:-0.5px}
 .hdr .sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:#9ca3af;letter-spacing:1px;text-transform:uppercase;margin-top:4px}
 .hdr-r{text-align:right}.hdr-r .per{font-size:17px;font-weight:700;color:#0f1623}
@@ -157,12 +157,12 @@ body{font-family:'Inter',sans-serif;background:#fff;color:#1a1a2e;font-size:13px
 .pd{font-size:11px;color:#4b5563;line-height:1.6}
 .totals{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:18px}
 .tb{border-radius:8px;padding:14px 16px;text-align:center}
-.tb.neto{background:#e6f9ed;border:1.5px solid #00b341}
-.tb.bruto{background:#e8efff;border:1.5px solid #0057ff}
+.tb.neto{background:#e6f6ec;border:1.5px solid #0a7a45}
+.tb.bruto{background:#eef3ff;border:1.5px solid #1452d6}
 .tb.cost{background:#fff8e6;border:1.5px solid #f59e0b}
 .tbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;margin-bottom:6px}
 .tbv{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:600}
-.tb.neto .tbv{color:#00b341}.tb.bruto .tbv{color:#0057ff}.tb.cost .tbv{color:#f59e0b}
+.tb.neto .tbv{color:#0a7a45}.tb.bruto .tbv{color:#1452d6}.tb.cost .tbv{color:#f59e0b}
 .tbs{font-size:10px;color:#9ca3af;margin-top:3px}
 .rb{margin-bottom:18px;padding:12px 16px;background:#f5f7fa;border:1px solid #e0e4eb;border-radius:8px}
 .rbt{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;margin-bottom:8px}
@@ -202,30 +202,30 @@ tr:last-child td{border-bottom:none}
 <div class="rb">
   <div class="rbt">Raspodela Bruto 1</div>
   <div class="rbar">
-    <div class="rseg" style="width:${r.neto/r.bruto1*100}%;background:#00b341"></div>
+    <div class="rseg" style="width:${r.neto/r.bruto1*100}%;background:#0a7a45"></div>
     <div class="rseg" style="width:${r.totalEmpContrib/r.bruto1*100}%;background:#f59e0b"></div>
     <div class="rseg" style="width:${r.tax/r.bruto1*100}%;background:#f02d3a"></div>
   </div>
   <div class="rleg">
-    <div class="ri"><div class="rd" style="background:#00b341"></div>Neto ${pct(r.neto/r.bruto1)}</div>
+    <div class="ri"><div class="rd" style="background:#0a7a45"></div>Neto ${pct(r.neto/r.bruto1)}</div>
     <div class="ri"><div class="rd" style="background:#f59e0b"></div>Doprinosi zaposl. ${pct(r.totalEmpContrib/r.bruto1)}</div>
     <div class="ri"><div class="rd" style="background:#f02d3a"></div>Porez ${pct(r.tax/r.bruto1)}</div>
   </div>
 </div>
 <div class="sec"><div class="sh">A. Formiranje Bruto 1</div><table>
-${trow('Osnovna bruto zarada', inputs.basicBruto, '#00b341')}
+${trow('Osnovna bruto zarada', inputs.basicBruto, '#0a7a45')}
 ${r.sickDaysActual > 0 ? trow('Odbitak za bolovanje', -(inputs.basicBruto - r.workedBruto - r.publicHolidayBasePay), '#f02d3a', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} RSD`) : ''}
 ${r.sickDaysActual > 0 ? trow('Zarada za odrađene dane', r.workedBruto, '#4b5563', `${r.workedDays} radnih dana`) : ''}
 ${r.publicHolidayDaysActual > 0 ? trow(`Državni praznici (${r.publicHolidayDaysActual} dana)`, r.publicHolidayBasePay, '#4b5563', 'Plaćeni neradni dani — puna naknada') : ''}
-${r.vacationHolidayDaysActual > 0 ? trow(`Praznici tokom godišnjeg odmora (${r.vacationHolidayDaysActual} dana)`, r.vacationHolidayPay, '#00b341', 'Puna naknada — odmor se produžava') : ''}
+${r.vacationHolidayDaysActual > 0 ? trow(`Praznici tokom godišnjeg odmora (${r.vacationHolidayDaysActual} dana)`, r.vacationHolidayPay, '#0a7a45', 'Puna naknada — odmor se produžava') : ''}
 ${r.unpaidDaysActual > 0 ? trow(`Neplaćeno odsustvo (${r.unpaidDaysActual} dana)`, -r.unpaidDeduction, '#f02d3a', 'Umanjenje bruta') : ''}
-${r.minuliRadAmount > 0 ? trow(`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}% = ${(r.minuliRadRate*100).toFixed(2)}%)`, r.minuliRadAmount, '#00b341') : ''}
-${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#00b341', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
-${inputs.nightH > 0 ? trow('Noćni rad (+26%)', r.nightPay, '#00b341', `${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
-${inputs.weekendH > 0 ? trow('Vikend rad (+26%)', r.weekendPay, '#00b341', `${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
-${inputs.holidayH > 0 ? trow('Rad na državni praznik (+26%)', r.holidayPay, '#00b341', `${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
-${r.bonusAmount > 0 ? trow('Bonusi / nagrade', r.bonusAmount, '#00b341') : ''}
-${trow('BRUTO 1 – Ukupna bruto zarada', r.bruto1, '#0057ff')}
+${r.minuliRadAmount > 0 ? trow(`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}% = ${(r.minuliRadRate*100).toFixed(2)}%)`, r.minuliRadAmount, '#0a7a45') : ''}
+${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#0a7a45', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
+${inputs.nightH > 0 ? trow('Noćni rad (+26%)', r.nightPay, '#0a7a45', `${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
+${inputs.weekendH > 0 ? trow('Vikend rad (+26%)', r.weekendPay, '#0a7a45', `${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
+${inputs.holidayH > 0 ? trow('Rad na državni praznik (+26%)', r.holidayPay, '#0a7a45', `${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
+${r.bonusAmount > 0 ? trow('Bonusi / nagrade', r.bonusAmount, '#0a7a45') : ''}
+${trow('BRUTO 1 – Ukupna bruto zarada', r.bruto1, '#1452d6')}
 </table></div>
 <div class="sec"><div class="sh">B. Doprinosi na teret zaposlenog</div><table>
 ${trow('Osnovica za doprinose', r.contribBase, '#4b5563', 'u granicama 45.950 – 656.425 RSD')}
@@ -241,18 +241,18 @@ ${trow('Porez na zaradu (10%)', r.tax, '#f02d3a')}
 </table></div>
 <div class="sec"><div class="sh">D. Neto zarada i odbici</div><table>
 ${r.sickDaysActual > 0 ? trow('Neto od rada', r.netoFromWork, '#4b5563') : ''}
-${r.sickDaysActual > 0 ? trow(`Naknada za bolovanje (${inputs.sickPct}%)`, r.sickPay, '#00b341', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} × ${inputs.sickPct}%`) : ''}
+${r.sickDaysActual > 0 ? trow(`Naknada za bolovanje (${inputs.sickPct}%)`, r.sickPay, '#0a7a45', `${r.sickDaysActual} dana × ${fmt(r.dailyBruto)} × ${inputs.sickPct}%`) : ''}
 ${r.totalOdbici > 0 ? trow('Neto pre odbitaka', r.netoBeforeOdbici, '#4b5563') : ''}
 ${r.syndikatAmount > 0 ? trow('Sindikalna članarina', -r.syndikatAmount, '#f02d3a') : ''}
 ${inputs.kredit > 0 ? trow('Kredit / pozajmica od poslodavca', -inputs.kredit, '#f02d3a') : ''}
 ${inputs.adminZabrana > 0 ? trow('Administrativna zabrana', -inputs.adminZabrana, '#f02d3a') : ''}
 ${inputs.ostaliOdbici > 0 ? trow('Ostali odbici', -inputs.ostaliOdbici, '#f02d3a') : ''}
 ${r.totalOdbici > 0 ? trow('UKUPNO odbici od zarade', -r.totalOdbici, '#f02d3a') : ''}
-${trow('NETO ZARADA (iznos na račun zaposlenog)', r.neto, '#00b341')}
+${trow('NETO ZARADA (iznos na račun zaposlenog)', r.neto, '#0a7a45')}
 ${trow('PIO – doprinos poslodavca (10%)', r.pio_er, '#f59e0b')}
 ${trow('Zdravstvo – doprinos poslodavca (5,15%)', r.health_er, '#f59e0b')}
 ${trow('UKUPNO doprinosi poslodavca (15,15%)', r.totalErContrib, '#f59e0b')}
-${trow('BRUTO 2 (Bruto1 + doprinosi poslodavca)', r.bruto2, '#0057ff')}
+${trow('BRUTO 2 (Bruto1 + doprinosi poslodavca)', r.bruto2, '#1452d6')}
 ${r.mealAmount > 0 ? trow(`Topli obrok (${inputs.mealDays} × ${fmt(inputs.mealDailyActual || 1490)} RSD)`, r.mealAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${r.regresAmount > 0 ? trow('Regres za godišnji odmor', r.regresAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${trow('UKUPAN TROŠAK POSLODAVCA', r.totalCost, '#f59e0b')}
@@ -601,12 +601,12 @@ export function CalculatorPage({ focusSection } = {}) {
           <span style={{ color: "var(--green)", fontWeight: 600 }}>Neto {pct(r.netoBruto1Ratio)}</span>
         </div>
         <div className="ratio-bar" role="img" aria-label={`Raspodela bruto 1: neto ${pct(r.neto/r.bruto1)}, doprinosi ${pct(r.totalEmpContrib/r.bruto1)}, porez ${pct(r.tax/r.bruto1)}`}>
-          <div className="ratio-seg" style={{ width: `${r.neto/r.bruto1*100}%`, background: "#00b341" }} />
+          <div className="ratio-seg" style={{ width: `${r.neto/r.bruto1*100}%`, background: "#0a7a45" }} />
           <div className="ratio-seg" style={{ width: `${r.totalEmpContrib/r.bruto1*100}%`, background: "#f59e0b" }} />
           <div className="ratio-seg" style={{ width: `${r.tax/r.bruto1*100}%`, background: "#f02d3a" }} />
         </div>
         <div className="ratio-legend">
-          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#00b341" }} aria-hidden="true" />Neto ({pct(r.neto/r.bruto1)})</div>
+          <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#0a7a45" }} aria-hidden="true" />Neto ({pct(r.neto/r.bruto1)})</div>
           <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f59e0b" }} aria-hidden="true" />Doprinosi ({pct(r.totalEmpContrib/r.bruto1)})</div>
           <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f02d3a" }} aria-hidden="true" />Porez ({pct(r.tax/r.bruto1)})</div>
         </div>
@@ -772,9 +772,9 @@ export function CalculatorPage({ focusSection } = {}) {
             <SectionTitle icon="📈">Uvećanja zarade</SectionTitle>
             <div className="gauges-body">
               <GaugeBar label="Minuli rad" value={r.minuliRadAmount} max={r.bruto1} color="#0891b2" />
-              <GaugeBar label="Prekovremeni rad" value={r.overtimePay} max={r.bruto1} color="#0057ff" />
+              <GaugeBar label="Prekovremeni rad" value={r.overtimePay} max={r.bruto1} color="#1452d6" />
               <GaugeBar label="Noćni rad" value={r.nightPay} max={r.bruto1} color="#7c3aed" />
-              <GaugeBar label="Vikend rad" value={r.weekendPay} max={r.bruto1} color="#00b341" />
+              <GaugeBar label="Vikend rad" value={r.weekendPay} max={r.bruto1} color="#0a7a45" />
               <GaugeBar label="Rad na praznike" value={r.holidayPay} max={r.bruto1} color="#f59e0b" />
               <GaugeBar label="Bonusi" value={r.bonusAmount} max={r.bruto1} color="#f02d3a" />
             </div>
@@ -924,7 +924,7 @@ export function CalculatorPage({ focusSection } = {}) {
             </div>
             <SectionTitle icon="📊">Efektivne stope</SectionTitle>
             <div className="info-grid">
-              <div className="info-item"><div className="info-item-label">Neto / Bruto1</div><div className="info-item-val" style={{color:"#00b341"}}>{pct(r.netoBruto1Ratio)}</div></div>
+              <div className="info-item"><div className="info-item-label">Neto / Bruto1</div><div className="info-item-val" style={{color:"#0a7a45"}}>{pct(r.netoBruto1Ratio)}</div></div>
               <div className="info-item"><div className="info-item-label">Trošak / Neto</div><div className="info-item-val" style={{color:"#f59e0b"}}>{r.costPerNeto.toFixed(2)}x</div></div>
               <div className="info-item"><div className="info-item-label">Odbitci iz zarade</div><div className="info-item-val" style={{color:"#f02d3a"}}>{fmt(r.totalEmpContrib + r.tax)}</div></div>
               <div className="info-item"><div className="info-item-label">Ef. poreska stopa</div><div className="info-item-val" style={{color:"#f02d3a"}}>{pct((r.totalEmpContrib + r.tax) / r.bruto1)}</div></div>
