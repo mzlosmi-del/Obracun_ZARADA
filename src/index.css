@@ -120,6 +120,18 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .full-width { grid-column: 1 / -1; }
 .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 
+/* ── FOCUS SECTION (tool pages surface one section first via focusSection) ── */
+/* Only inputs-tab cards contain .calc-section; make those flex columns so the
+   focused section can float to the top with order:-1. Other cards unaffected. */
+.card:has(.calc-section) { display: flex; flex-direction: column; }
+.calc-section.is-focused { order: -1; }
+.calc-section.is-focused .section-title {
+  background: var(--accent-light);
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+.calc-section.is-focused { box-shadow: inset 3px 0 0 var(--accent); }
+
 /* ── SECTION TITLE ── */
 .section-title { display: flex; align-items: center; gap: 8px; padding: 9px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--text3); }
 .section-icon { font-size: 13px; }

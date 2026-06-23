@@ -501,7 +501,23 @@ function ProCTA({ variant }) {
 }
 
 // ── CALCULATOR PAGE ───────────────────────────────────────────────────────────
-export function CalculatorPage() {
+// CalcSection wraps a SectionTitle + its body so the pair moves together when a
+// page surfaces one section first via the `focusSection` prop. The focused
+// section gets `order:-1` (floats to the top of its column) plus a highlight.
+function CalcSection({ name, icon, title, focusSection, children }) {
+  const focused = focusSection && name === focusSection;
+  return (
+    <div className={`calc-section${focused ? " is-focused" : ""}`} data-section={name}>
+      <SectionTitle icon={icon}>{title}</SectionTitle>
+      {children}
+    </div>
+  );
+}
+
+// CalculatorPage — shared embedded calculator. `focusSection` (optional) names a
+// section to surface first and highlight on tool pages (e.g. "bolovanje" on the
+// /bolovanje page); when unset, sections render in their natural order.
+export function CalculatorPage({ focusSection } = {}) {
   const now = new Date();
   const [calcMode, setCalcMode] = useState("bruto");
   const [targetNeto, setTargetNeto] = useState(70000);
@@ -607,7 +623,7 @@ export function CalculatorPage() {
       {activeTab === "inputs" && (
         <div className="main-grid">
           <div className="card">
-            <SectionTitle icon="💰">Osnovna zarada</SectionTitle>
+            <CalcSection name="osnovna" icon="💰" title="Osnovna zarada" focusSection={focusSection}>
             <div className="inputs-body">
               {calcMode === "bruto" ? (
                 <NumberInput label="Osnovna bruto zarada" value={inputs.basicBruto} onChange={set("basicBruto")} step={1000} />
@@ -619,6 +635,7 @@ export function CalculatorPage() {
               )}
               <NumberInput label="Standardnih radnih sati" value={inputs.standardHours} onChange={set("standardHours")} unit="h" sublabel="(21 dan × 8h = 168)" />
             </div>
+            </CalcSection>
             <SectionTitle icon="⏰">Prekovremeni rad</SectionTitle>
             <div className="inputs-body">
               <NumberInput label="Prekovremenih sati" sublabel="(min +26% – čl. 108 ZOR)" value={inputs.overtimeH} onChange={set("overtimeH")} unit="h" />
@@ -660,7 +677,7 @@ export function CalculatorPage() {
                 </div>
               )}
             </div>
-            <SectionTitle icon="🏥">Bolovanje</SectionTitle>
+            <CalcSection name="bolovanje" icon="🏥" title="Bolovanje" focusSection={focusSection}>
             <div className="inputs-body">
               <NumberInput label="Dani bolovanja" sublabel="(do 30 dana — na teret poslodavca)" value={inputs.sickDays} onChange={set("sickDays")} unit="dana" min={0} />
               <NumberInput label="Naknada za bolovanje" sublabel="(zakonski min. 65%)" value={inputs.sickPct} onChange={set("sickPct")} unit="%" step={1} min={0} max={100} />
@@ -681,6 +698,7 @@ export function CalculatorPage() {
                 </div>
               )}
             </div>
+            </CalcSection>
             <SectionTitle icon="🚫">Neplaćeno odsustvo</SectionTitle>
             <div className="inputs-body">
               <NumberInput label="Dani neplaćenog odsustva" sublabel="(umanjuje bruto — utiče na porez i doprinose)" value={inputs.unpaidDays} onChange={set("unpaidDays")} unit="dana" min={0} />
@@ -698,7 +716,7 @@ export function CalculatorPage() {
             </div>
           </div>
           <div className="card">
-            <SectionTitle icon="📅">Minuli rad</SectionTitle>
+            <CalcSection name="minuli-rad" icon="📅" title="Minuli rad" focusSection={focusSection}>
             <div className="inputs-body">
               <NumberInput label="Godine staža kod trenutnog poslodavca" sublabel="(min. 0,4% po godini — čl. 108 ZOR)" value={inputs.yearsOfService} onChange={set("yearsOfService")} unit="god." min={0} step={1} />
               <NumberInput label="Stopa po godini" sublabel="(zakonski min. 0,4%)" value={inputs.minuliRadPct} onChange={set("minuliRadPct")} unit="%" step={0.1} min={0.4} />
@@ -715,6 +733,7 @@ export function CalculatorPage() {
                 </div>
               )}
             </div>
+            </CalcSection>
             <SectionTitle icon="🎁">Bonusi i nagrade</SectionTitle>
             <div className="inputs-body">
               <NumberInput label="Fiksni bonus (iznos)" value={inputs.fixedBonus} onChange={set("fixedBonus")} step={1000} />
@@ -1200,7 +1219,7 @@ export default function App() {
 
       <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`} aria-label="Glavna navigacija">
         <div className="sidebar-logo">
-          <img src="/logo.svg" alt="" width="44" height="44" decoding="async" />
+          <img src="/logo.svg" alt="PlatniListić" width="44" height="44" decoding="async" />
           <div className="sidebar-logo-text">
             <div className="sidebar-logo-name">Platni<span>Listić</span></div>
             <div className="sidebar-logo-sub">Srbija</div>
@@ -1233,7 +1252,7 @@ export default function App() {
 
       <main className="main">
         <div className="topbar">
-          <img src="/logo.svg" alt="" width="32" height="32" decoding="async" />
+          <img src="/logo.svg" alt="PlatniListić" width="32" height="32" decoding="async" />
           <div className="topbar-title">Platni<span>Listić</span></div>
           <button className="menu-btn" onClick={() => setSidebarOpen(true)} aria-label="Otvori meni" aria-expanded={sidebarOpen}>☰</button>
         </div>

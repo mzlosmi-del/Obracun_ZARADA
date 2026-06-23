@@ -29,7 +29,9 @@ export function ToolPage({ cfg }) {
       <h1>{cfg.h1}</h1>
       <FreshnessStamp date={FRESHNESS} />
       <div className="tool-intro">{cfg.intro}</div>
-      {cfg.calc === "pausal" ? <PausalCalculator /> : <CalculatorPage />}
+      {cfg.calc === "pausal" ? <PausalCalculator />
+        : cfg.calc === "otpremnina" ? <OtpremninaCalculator />
+        : <CalculatorPage focusSection={cfg.focusSection} />}
       <div className="disclaimer">{DISCLAIMER}</div>
       <section className="tool-guide">{cfg.guide}</section>
       {cfg.faq && cfg.faq.length > 0 && (
@@ -107,6 +109,50 @@ export function PausalCalculator() {
   );
 }
 
+// Otpremnina kalkulator — the shared full calculator does NOT compute severance,
+// so this dedicated mini-calc closes that gap (čl. 158 / čl. 119 ZOR).
+//   tehnološki višak: min. 1/3 prosečne zarade × godine staža kod poslodavca
+//   odlazak u penziju: min. 2 prosečne zarade
+export function OtpremninaCalculator() {
+  const prosNeto = REFERENCE_DATA.prosecnaZarada2026.neto;
+  const [razlog, setRazlog] = useState("visak");
+  const [prosek, setProsek] = useState(prosNeto); // prosečna zarada (osnovica) za obračun
+  const [godine, setGodine] = useState(10);
+  const otpremnina = razlog === "visak"
+    ? (prosek / 3) * (godine || 0)
+    : prosek * 2;
+  return (
+    <div className="pausal-calc">
+      <div className="mode-toggle" role="tablist" aria-label="Razlog otpremnine" style={{ marginBottom: 12 }}>
+        <button className={`mode-btn ${razlog === "visak" ? "active" : ""}`} onClick={() => setRazlog("visak")} role="tab" aria-selected={razlog === "visak"}>
+          Tehnološki višak
+        </button>
+        <button className={`mode-btn ${razlog === "penzija" ? "active" : ""}`} onClick={() => setRazlog("penzija")} role="tab" aria-selected={razlog === "penzija"}>
+          Odlazak u penziju
+        </button>
+      </div>
+      <NumberInput label="Prosečna mesečna zarada (osnovica)" sublabel="(prosek zarade zaposlenog; podrazumevano prosečna u RS)" value={prosek} onChange={setProsek} step={1000} />
+      {razlog === "visak" && (
+        <NumberInput label="Godine staža kod poslodavca" value={godine} onChange={setGodine} unit="god." min={0} step={1} />
+      )}
+      <div className="pausal-results results-body">
+        {razlog === "visak" ? (
+          <>
+            <ResultRow label="Po godini staža (1/3 proseka)" value={prosek / 3} />
+            <ResultRow label={`Otpremnina za ${godine} god. staža`} value={otpremnina} type="positive" />
+          </>
+        ) : (
+          <>
+            <ResultRow label="Dve prosečne zarade" value={prosek * 2} />
+            <ResultRow label="Otpremnina (odlazak u penziju)" value={otpremnina} type="positive" />
+          </>
+        )}
+      </div>
+      <p className="pausal-note">Napomena: prikazani su zakonski minimumi (čl. 158 i čl. 119 Zakona o radu). Poslodavac kolektivnim ugovorom može utvrditi veći iznos. Deo otpremnine iznad neoporezivog praga podleže porezu. Izvor proseka: RZS.</p>
+    </div>
+  );
+}
+
 export function PausalPage() {
   return <ToolPage cfg={{
     slug: "pausal",
@@ -117,7 +163,34 @@ export function PausalPage() {
     calc: "pausal",
     intro: (<p>Ovaj <strong>paušal kalkulator</strong> računa mesečne obaveze paušalca u 2026: porez na prihod (10%) i doprinose (PIO 24%, zdravstveno 10,3%) na paušalnu osnovicu iz rešenja Poreske uprave.</p>),
     guide: (<><h2>Kako se obračunava paušal</h2>
-      <p>Paušalac plaća porez i doprinose na <strong>paušalno utvrđenu osnovicu</strong> koju određuje Poreska uprava (ne na stvarni prihod). Osnovica zavisi od šifre delatnosti, opštine i drugih koeficijenata. Na nju se primenjuju: porez 10%, PIO 24% i zdravstveno 10,3%. Detaljan vodič: <a href="/blog/koliko-pausalac-placa-mesecno">koliko paušalac plaća mesečno</a> i <a href="/blog/pausalno-oporezivanje">paušalno oporezivanje</a>.</p></>),
+      <p>Paušalac plaća porez i doprinose na <strong>paušalno utvrđenu osnovicu</strong> koju određuje Poreska uprava (ne na stvarni prihod). Osnovica zavisi od šifre delatnosti, opštine i drugih koeficijenata. Na nju se primenjuju: porez 10%, PIO 24% i zdravstveno 10,3%. Detaljan vodič: <a href="/blog/koliko-pausalac-placa-mesecno">koliko paušalac plaća mesečno</a> i <a href="/blog/pausalno-oporezivanje">paušalno oporezivanje</a>.</p>
+      <h2>Stope i limit za paušalce 2026</h2>
+      <table className="ref-table" aria-label="Stope i limit za paušalce 2026">
+        <thead><tr><th>Stavka</th><th>Stopa / iznos</th></tr></thead>
+        <tbody>
+          <tr><td>Porez na prihod</td><td>{PAUSAL_RATES.porez}%</td></tr>
+          <tr><td>PIO (penzijsko)</td><td>{PAUSAL_RATES.pio}%</td></tr>
+          <tr><td>Zdravstveno osiguranje</td><td>{PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Godišnji limit prometa</td><td>{PAUSAL_RATES.limitGodisnji.toLocaleString("sr-RS")} RSD</td></tr>
+        </tbody>
+      </table>
+      <h2>Primer obračuna paušala</h2>
+      <table className="ref-table" aria-label="Primeri obračuna paušala 2026">
+        <thead><tr><th>Osnovica (RSD)</th><th>Mesečne obaveze ≈ (RSD)</th><th>Efektivna stopa</th></tr></thead>
+        <tbody>
+          {[30000, 50000, 80000].map((o) => {
+            const obaveze = o * (PAUSAL_RATES.porez + PAUSAL_RATES.pio + PAUSAL_RATES.zdravstveno) / 100;
+            return (
+              <tr key={o}>
+                <td>{o.toLocaleString("sr-RS")}</td>
+                <td>≈ {Math.round(obaveze).toLocaleString("sr-RS")}</td>
+                <td>{(PAUSAL_RATES.porez + PAUSAL_RATES.pio + PAUSAL_RATES.zdravstveno).toLocaleString("sr-RS")}%</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      <p className="home-examples-note">Obaveze = osnovica × (porez {PAUSAL_RATES.porez}% + PIO {PAUSAL_RATES.pio}% + zdravstveno {PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}%). Tačnu osnovicu utvrđuje rešenje Poreske uprave.</p></>),
     faq: [
       { q: "Koliko paušalac plaća mesečno u 2026?", a: "Najčešće okvirno 30.000–45.000 RSD, u zavisnosti od šifre delatnosti i opštine. Tačan iznos je u rešenju Poreske uprave." },
       { q: "Šta čini mesečnu obavezu paušalca?", a: "Porez 10% i doprinosi — PIO 24% i zdravstveno 10,3% — na paušalnu osnovicu." },
@@ -142,13 +215,44 @@ export function BrutoNetoPage() {
   return <ToolPage cfg={{
     slug: "bruto-neto",
     title: "Bruto u neto kalkulator 2026 — Srbija | PlatniListić",
-    description: "Pretvorite bruto u neto zaradu za 2026. Tačan obračun poreza i doprinosa, PDF platni listić i PPP-PD XML. Besplatno, bez registracije.",
+    description: "Bruto u neto kalkulator za 2026 — pretvorite bruto zaradu u neto uz tačan obračun poreza i doprinosa. Preuzmite PDF platni listić i PPP-PD XML. Besplatno.",
     h1: "Bruto u neto kalkulator za Srbiju (2026)",
     breadcrumbName: "Bruto u neto",
     calc: "full",
-    intro: (<p>Ovaj <strong>bruto u neto kalkulator</strong> za 2026. pretvara bruto 1 zaradu u neto iznos na račun, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa zaposlenog (19,90%). Rezultat preuzimate kao PDF platni listić i PPP-PD XML.</p>),
+    intro: (<p>Ovaj <strong>bruto u neto kalkulator</strong> za 2026. pretvara bruto 1 zaradu u neto iznos na račun, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa zaposlenog (19,90%). Rezultat preuzimate kao PDF platni listić i PPP-PD XML. Za obrnuti smer koristite <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>),
     guide: (<><h2>Kako se računa bruto u neto</h2>
-      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/blog/neoporezivi-2025">neoporezivi iznos zarade</a>.</p></>),
+      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/blog/neoporezivi-2025">neoporezivi iznos zarade</a>.</p>
+      <h2>Bruto 1 vs Bruto 2 — koja je razlika</h2>
+      <p><strong>Bruto 1</strong> je ugovorena zarada — osnovica na koju se obračunavaju porez i doprinosi zaposlenog. <strong>Bruto 2</strong> je Bruto 1 uvećan za doprinose na teret poslodavca (15,15%) i predstavlja stvaran trošak rada za poslodavca. Zaposleni „na ruke" prima neto, dok poslodavac plaća bruto 2.</p>
+      <table className="ref-table" aria-label="Bruto 1 vs Bruto 2">
+        <thead><tr><th>Pojam</th><th>Šta obuhvata</th></tr></thead>
+        <tbody>
+          <tr><td>Neto</td><td>Iznos koji zaposleni prima na račun</td></tr>
+          <tr><td>Bruto 1</td><td>Neto + doprinosi zaposlenog (19,90%) + porez (10%)</td></tr>
+          <tr><td>Bruto 2</td><td>Bruto 1 + doprinosi poslodavca (15,15%)</td></tr>
+        </tbody>
+      </table>
+      <h2>Neoporezivi iznos i stope doprinosa za 2026</h2>
+      <p>Doprinosi zaposlenog obračunavaju se na celu bruto 1 zaradu, a porez na zaradu (10%) samo na deo iznad neoporezivog iznosa od {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD.</p>
+      <table className="ref-table" aria-label="Stope doprinosa i poreza 2026">
+        <thead><tr><th>Stavka</th><th>Stopa / iznos</th></tr></thead>
+        <tbody>
+          <tr><td>PIO (penzijsko) — zaposleni</td><td>{DEFAULT_RATES.pioPct_emp}%</td></tr>
+          <tr><td>Zdravstvo — zaposleni</td><td>{DEFAULT_RATES.health_emp.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Nezaposlenost — zaposleni</td><td>{DEFAULT_RATES.unemp_emp.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Neoporezivi iznos</td><td>{DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><td>Porez na zaradu</td><td>{DEFAULT_RATES.taxRate}% (na deo iznad neoporezivog)</td></tr>
+        </tbody>
+      </table>
+      <table className="ref-table" aria-label="Primeri obračuna bruto u neto 2026">
+        <thead><tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr></thead>
+        <tbody>
+          <tr><td>80.000</td><td>≈ 59.500</td><td>≈ 92.120</td></tr>
+          <tr><td>100.000</td><td>≈ 73.520</td><td>≈ 115.150</td></tr>
+          <tr><td>150.000</td><td>≈ 108.570</td><td>≈ 172.725</td></tr>
+          <tr><td>200.000</td><td>≈ 143.620</td><td>≈ 230.300</td></tr>
+        </tbody>
+      </table></>),
     faq: [
       { q: "Kako izračunati neto iz bruto u Srbiji?", a: "Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez 10% na deo iznad neoporezivog iznosa (34.221 RSD za 2026). Kalkulator radi obračun u oba smera." },
       { q: "Koliki su doprinosi zaposlenog?", a: "19,90% — PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%." },
@@ -173,9 +277,20 @@ export function BolovanjePage() {
     h1: "Kalkulator bolovanja i naknade zarade (2026)",
     breadcrumbName: "Bolovanje",
     calc: "full",
+    focusSection: "bolovanje",
     intro: (<p>Ovaj <strong>kalkulator bolovanja</strong> računa naknadu zarade za 2026: do 30 dana najmanje 65% osnovice (na teret poslodavca), a od 31. dana na teret RFZO. Unesite broj dana bolovanja u kalkulatoru ispod.</p>),
     guide: (<><h2>Kako se obračunava naknada za bolovanje</h2>
-      <p>Za prvih 30 dana naknadu plaća poslodavac, najmanje 65% prosečne osnovice (100% za povredu na radu ili profesionalno oboljenje). Od 31. dana naknadu preuzima RFZO. Osnovica je prosek zarade za prethodnih 12 meseci. Detaljan vodič: <a href="/blog/kako-se-obracunava-bolovanje">kako se obračunava bolovanje</a>.</p></>),
+      <p>Za prvih 30 dana naknadu plaća poslodavac, najmanje 65% prosečne osnovice (100% za povredu na radu ili profesionalno oboljenje). Od 31. dana naknadu preuzima RFZO. Osnovica je prosek zarade za prethodnih 12 meseci. Detaljan vodič: <a href="/blog/kako-se-obracunava-bolovanje">kako se obračunava bolovanje</a>.</p>
+      <h2>Bolovanje do 30 dana i preko 30 dana</h2>
+      <table className="ref-table" aria-label="Naknada za bolovanje — do 30 dana i od 31. dana">
+        <thead><tr><th>Period</th><th>Procenat naknade</th><th>Isplatilac</th></tr></thead>
+        <tbody>
+          <tr><td>Do 30 dana</td><td>min. 65% osnovice (100% za povredu na radu)</td><td>Poslodavac</td></tr>
+          <tr><td>Od 31. dana</td><td>min. 65% osnovice</td><td>RFZO</td></tr>
+        </tbody>
+      </table>
+      <h2>Primer obračuna bolovanja</h2>
+      <p>Zaposleni sa prosečnom mesečnom bruto osnovicom od 100.000 RSD (≈ 4.762 RSD dnevno za 21 radni dan) provede 10 radnih dana na bolovanju uz naknadu od 65%. Naknada = 4.762 × 10 × 65% ≈ 30.952 RSD bruto za te dane, dok se za preostale odrađene dane isplaćuje puna zarada.</p></>),
     faq: [
       { q: "Koliki je procenat naknade za bolovanje?", a: "Najmanje 65% osnovice za prvih 30 dana; 100% za povredu na radu ili profesionalno oboljenje. Od 31. dana naknadu isplaćuje RFZO." },
       { q: "Ko plaća bolovanje preko 30 dana?", a: "Od 31. dana naknadu zarade isplaćuje Republički fond za zdravstveno osiguranje (RFZO)." },
@@ -204,10 +319,29 @@ export function OtpremninaPage() {
     description: "Obračun otpremnine za tehnološki višak i odlazak u penziju, sa poreskim tretmanom, po Zakonu o radu. Besplatno, za Srbiju 2026.",
     h1: "Kalkulator otpremnine (2026)",
     breadcrumbName: "Otpremnina",
-    calc: "full",
-    intro: (<p>Ovaj <strong>kalkulator otpremnine</strong> pomaže da izračunate pravo na otpremninu po Zakonu o radu: kako za tehnološki višak, tako i za odlazak u penziju. Unesite podatke o zaradi i godinama staža u kalkulatoru ispod kako biste dobili okvirni obračun.</p>),
+    calc: "otpremnina",
+    intro: (<p>Ovaj <strong>kalkulator otpremnine</strong> računa pravo na otpremninu po Zakonu o radu: za tehnološki višak (min. 1/3 prosečne zarade po godini staža) i za odlazak u penziju (min. dve prosečne zarade). Unesite prosečnu zaradu i godine staža u kalkulatoru ispod.</p>),
     guide: (<><h2>Kako se obračunava otpremnina</h2>
-      <p>Zaposlenom kome prestaje radni odnos zbog tehnološkog viška pripada otpremnina najmanje u visini jedne trećine (1/3) prosečne zarade po godini staža kod poslodavca (čl. 158 Zakona o radu). Za odlazak u penziju otpremnina iznosi najmanje dve prosečne zarade u RS. Poreski tretman: iznos otpremnine neoporeziv do propisanog iznosa — deo koji premašuje neoporezivi prag podleže porezu na dohodak. Detaljan vodič: <a href="/blog/otpremnina-obracun">obračun otpremnine</a>. Za odlazak u penziju pogledajte i vodič <a href="/blog/kako-se-obracunava-penzija">kako se obračunava penzija</a>.</p></>),
+      <p>Zaposlenom kome prestaje radni odnos zbog tehnološkog viška pripada otpremnina najmanje u visini jedne trećine (1/3) prosečne zarade po godini staža kod poslodavca (čl. 158 Zakona o radu). Za odlazak u penziju otpremnina iznosi najmanje dve prosečne zarade u RS. Poreski tretman: iznos otpremnine neoporeziv do propisanog iznosa — deo koji premašuje neoporezivi prag podleže porezu na dohodak. Detaljan vodič: <a href="/blog/otpremnina-obracun">obračun otpremnine</a>. Za odlazak u penziju pogledajte i vodič <a href="/blog/kako-se-obracunava-penzija">kako se obračunava penzija</a>.</p>
+      <h2>Primer obračuna otpremnine</h2>
+      <p>Primeri su zasnovani na prosečnoj neto zaradi u Srbiji od {REFERENCE_DATA.prosecnaZarada2026.neto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS). Za stvaran obračun koristi se prosek zarade samog zaposlenog.</p>
+      <table className="ref-table" aria-label="Primeri obračuna otpremnine 2026">
+        <thead><tr><th>Osnov</th><th>Formula</th><th>Otpremnina ≈ (RSD)</th></tr></thead>
+        <tbody>
+          {[5, 10, 20].map((g) => (
+            <tr key={g}>
+              <td>Tehnološki višak ({g} god.)</td>
+              <td>1/3 proseka × {g}</td>
+              <td>≈ {Math.round(REFERENCE_DATA.prosecnaZarada2026.neto / 3 * g).toLocaleString("sr-RS")}</td>
+            </tr>
+          ))}
+          <tr>
+            <td>Odlazak u penziju</td>
+            <td>2 × prosečna zarada</td>
+            <td>≈ {(REFERENCE_DATA.prosecnaZarada2026.neto * 2).toLocaleString("sr-RS")}</td>
+          </tr>
+        </tbody>
+      </table></>),
     faq: [
       { q: "Kolika je minimalna otpremnina za tehnološki višak?", a: "Najmanje 1/3 prosečne zarade zaposlenog po godini staža kod tog poslodavca, u skladu sa čl. 158 Zakona o radu." },
       { q: "Da li je otpremnina oporeziva?", a: "Deo otpremnine do propisanog neoporezivog iznosa je oslobođen poreza. Iznos koji premašuje taj prag oporezuje se kao dohodak." },
@@ -232,9 +366,26 @@ export function MinuliRadPage() {
     h1: "Kalkulator minulog rada (2026)",
     breadcrumbName: "Minuli rad",
     calc: "full",
+    focusSection: "minuli-rad",
     intro: (<p>Ovaj <strong>kalkulator minulog rada</strong> izračunava dodatak na zaradu za 2026: zaposleni ima pravo na uvećanje od najmanje 0,4% po godini staža kod istog poslodavca (čl. 108 Zakona o radu). Unesite bruto zaradu i broj godina u kalkulatoru ispod.</p>),
     guide: (<><h2>Kako se obračunava minuli rad</h2>
-      <p>Zakon o radu (čl. 108) propisuje uvećanu zaradu od najmanje 0,4% osnovice po svakoj navršenoj godini staža kod istog poslodavca. Primer: zaposleni sa bruto zaradom 100.000 RSD i 10 godina staža ostvaruje minuli rad od 100.000 × 0,4% × 10 = 4.000 RSD mesečno. Detaljan vodič: <a href="/blog/minuli-rad-obracun">obračun minulog rada</a>.</p></>),
+      <p>Zakon o radu (čl. 108) propisuje uvećanu zaradu od najmanje 0,4% osnovice po svakoj navršenoj godini staža kod istog poslodavca. Primer: zaposleni sa bruto zaradom 100.000 RSD i 10 godina staža ostvaruje minuli rad od 100.000 × 0,4% × 10 = 4.000 RSD mesečno. Detaljan vodič: <a href="/blog/minuli-rad-obracun">obračun minulog rada</a>.</p>
+      <h2>Primer obračuna minulog rada</h2>
+      <p>Iznos minulog rada = bruto osnovica × 0,4% × godine staža kod istog poslodavca.</p>
+      <table className="ref-table" aria-label="Primeri obračuna minulog rada 2026">
+        <thead><tr><th>Bruto osnovica (RSD)</th><th>Godine staža</th><th>Minuli rad ≈ (RSD)</th></tr></thead>
+        <tbody>
+          {[[100000, 5], [100000, 10], [150000, 20]].map(([b, g]) => (
+            <tr key={`${b}-${g}`}>
+              <td>{b.toLocaleString("sr-RS")}</td>
+              <td>{g}</td>
+              <td>≈ {Math.round(b * 0.004 * g).toLocaleString("sr-RS")}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <h2>Kako se minuli rad prikazuje na platnom listiću</h2>
+      <p>Minuli rad nije poseban dodatak van zarade — on je sastavni deo <strong>bruto 1</strong> zarade. Na platnom listiću se iskazuje kao zasebna stavka uvećanja na osnovnu zaradu, u sekciji formiranja bruto 1, pa zajedno sa osnovnom zaradom ulazi u osnovicu za porez i doprinose. U <a href="/bruto-neto">bruto u neto kalkulatoru</a> unosite godine staža, a iznos minulog rada se automatski uračunava u bruto 1.</p></>),
     faq: [
       { q: "Koliki je procenat minulog rada?", a: "Zakonski minimum je 0,4% po svakoj navršenoj godini staža kod istog poslodavca. Poslodavac može kolektivnim ugovorom utvrditi viši procenat." },
       { q: "Da li se minuli rad računa na ukupni radni staž?", a: "Ne — minuli rad se obračunava isključivo na osnovu godina staža kod trenutnog (istog) poslodavca, a ne ukupnog radnog staža." },
@@ -248,13 +399,32 @@ export function NetoBrutoPage() {
   return <ToolPage cfg={{
     slug: "neto-bruto",
     title: "Neto u bruto kalkulator 2026 — Srbija | PlatniListić",
-    description: "Iz željene neto zarade izračunajte bruto 1 i ukupan trošak poslodavca za 2026. Tačan obračun, PDF i PPP-PD XML. Besplatno.",
+    description: "Neto u bruto kalkulator za 2026 — iz željene neto zarade izračunajte bruto 1 i ukupan trošak poslodavca. Tačan obračun, PDF i PPP-PD XML. Besplatno.",
     h1: "Neto u bruto kalkulator za Srbiju (2026)",
     breadcrumbName: "Neto u bruto",
     calc: "full",
     intro: (<p>Ovaj <strong>neto u bruto kalkulator</strong> za 2026. iz željene neto zarade rekonstruiše bruto 1 iznos i ukupan trošak poslodavca, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa (19,90%). Unesite željeni neto, a kalkulator automatski pronalazi odgovarajući bruto 1. Rezultat preuzimate kao PDF platni listić i PPP-PD XML.</p>),
     guide: (<><h2>Kako se računa neto u bruto</h2>
-      <p>Obrnuti obračun — iz željenog neto iznosa kalkulator iterativno pronalazi bruto 1 tako da posle oduzimanja doprinosa zaposlenog (19,90%) i poreza na zaradu (10% na deo iznad neoporezivog iznosa od 34.221 RSD) dobijete tačno taj neto. Primer: za željeni neto od 73.522 RSD bruto 1 iznosi 100.000 RSD. Ukupan trošak poslodavca (bruto 2) dobija se dodavanjem doprinosa poslodavca (15,15%) na bruto 1. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a>.</p></>),
+      <p>Obrnuti obračun — iz željenog neto iznosa kalkulator iterativno pronalazi bruto 1 tako da posle oduzimanja doprinosa zaposlenog (19,90%) i poreza na zaradu (10% na deo iznad neoporezivog iznosa od 34.221 RSD) dobijete tačno taj neto. Primer: za željeni neto od 73.522 RSD bruto 1 iznosi 100.000 RSD. Ukupan trošak poslodavca (bruto 2) dobija se dodavanjem doprinosa poslodavca (15,15%) na bruto 1. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a>.</p>
+      <h2>Trošak poslodavca — doprinosi na teret poslodavca (15,15%)</h2>
+      <p>Pored doprinosa koje plaća zaposleni (iz bruto 1), poslodavac na <em>svoj</em> teret plaća dodatne doprinose od {(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}% na istu osnovicu (bruto 1). Zbir bruto 1 i doprinosa poslodavca čini bruto 2 — stvaran trošak rada.</p>
+      <table className="ref-table" aria-label="Doprinosi na teret poslodavca 2026">
+        <thead><tr><th>Doprinos poslodavca</th><th>Stopa</th></tr></thead>
+        <tbody>
+          <tr><td>PIO (penzijsko)</td><td>{DEFAULT_RATES.pio_er}%</td></tr>
+          <tr><td>Zdravstvo</td><td>{DEFAULT_RATES.health_er.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Ukupno na teret poslodavca</td><td>{(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}%</td></tr>
+        </tbody>
+      </table>
+      <table className="ref-table" aria-label="Primeri obračuna neto u bruto 2026">
+        <thead><tr><th>Neto (RSD)</th><th>Bruto 1 ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr></thead>
+        <tbody>
+          <tr><td>59.500</td><td>≈ 80.000</td><td>≈ 92.120</td></tr>
+          <tr><td>73.520</td><td>≈ 100.000</td><td>≈ 115.150</td></tr>
+          <tr><td>108.570</td><td>≈ 150.000</td><td>≈ 172.725</td></tr>
+          <tr><td>143.620</td><td>≈ 200.000</td><td>≈ 230.300</td></tr>
+        </tbody>
+      </table></>),
     faq: [
       { q: "Kako izračunati bruto iz neto zarade u Srbiji?", a: "Kalkulator iterativno pronalazi bruto 1 tako da posle doprinosa zaposlenog (19,90%) i poreza (10% na deo iznad 34.221 RSD) dobijete željeni neto iznos. Unesite ciljani neto u polje 'Unesite Neto' i kalkulator prikazuje odgovarajući bruto 1." },
       { q: "Koliki je ukupan trošak poslodavca za dati neto?", a: "Ukupan trošak = Bruto 1 + doprinosi poslodavca (15,15% — PIO 10% i zdravstvo 5,15%). Za neto 73.522 RSD, bruto 1 je 100.000 RSD, a ukupan trošak oko 115.150 RSD." },
