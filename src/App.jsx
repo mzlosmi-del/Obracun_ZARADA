@@ -228,7 +228,7 @@ ${r.bonusAmount > 0 ? trow('Bonusi / nagrade', r.bonusAmount, '#0a7a45') : ''}
 ${trow('BRUTO 1 – Ukupna bruto zarada', r.bruto1, '#1452d6')}
 </table></div>
 <div class="sec"><div class="sh">B. Doprinosi na teret zaposlenog</div><table>
-${trow('Osnovica za doprinose', r.contribBase, '#4b5563', 'u granicama 45.950 – 656.425 RSD')}
+${trow('Osnovica za doprinose', r.contribBase, '#4b5563', 'u granicama 51.297 – 732.820 RSD')}
 ${trow('PIO – penzijsko i invalidsko (14%)', r.pio_emp, '#f02d3a')}
 ${trow('Zdravstveno osiguranje (5,15%)', r.health_emp, '#f02d3a')}
 ${trow('Osiguranje za slučaj nezaposlenosti (0,75%)', r.unemp, '#f02d3a')}
@@ -880,7 +880,7 @@ export function CalculatorPage({ focusSection } = {}) {
             </div>
             <SectionTitle icon="➖">Doprinosi na teret zaposlenog</SectionTitle>
             <div className="results-body">
-              <ResultRow label="Osnovica za doprinose" value={r.contribBase} sub="u granicama 45.950 – 656.425 RSD" />
+              <ResultRow label="Osnovica za doprinose" value={r.contribBase} sub="u granicama 51.297 – 732.820 RSD" />
               <ResultRow label="PIO – penzijsko (14%)" value={-r.pio_emp} type="negative" />
               <ResultRow label="Zdravstvo (5.15%)" value={-r.health_emp} type="negative" />
               <ResultRow label="Nezaposlenost (0.75%)" value={-r.unemp} type="negative" />
@@ -1014,11 +1014,15 @@ const RouteLoader = () => <div className="route-loader" role="status">Učitavam�
 const HOME_FAQ = [
   {
     q: "Kako izračunati neto zaradu iz bruto u Srbiji?",
-    a: "Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto 100.000 RSD daje neto oko 73.542 RSD. Naš kalkulator radi obračun u oba smera.",
+    a: "Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto 100.000 RSD daje neto oko 73.522 RSD. Naš kalkulator radi obračun u oba smera.",
+  },
+  {
+    q: "Ako je bruto plata 50.000 dinara, koliki je neto?",
+    a: "Za bruto 1 od 50.000 RSD neto je oko 38.472 RSD: doprinosi zaposlenog iznose 9.950 RSD (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD).",
   },
   {
     q: "Kolika je minimalna zarada u Srbiji u 2026. godini?",
-    a: "Od februara 2026. minimalna bruto zarada iznosi 93.264 RSD mesečno, a minimalna neto zarada 69.000 RSD. Više u vodiču o minimalnoj zaradi 2026.",
+    a: "Minimalna cena rada je 371 RSD neto po radnom času (od 1. januara 2026). Mesečni neto iznos varira sa fondom sati — od 59.360 do 68.264 RSD, prosečno oko 64.554 RSD. Više u vodiču o minimalnoj zaradi 2026.",
   },
   {
     q: "Koliki su doprinosi za socijalno osiguranje?",
@@ -1080,15 +1084,20 @@ function HomePage() {
           zaposleni prima na račun. Ispod su okvirni primeri obračuna; za tačan iznos sa svim
           uvećanjima i odbicima koristite kalkulator.
         </p>
-        <table className="home-examples" aria-label="Primeri obračuna bruto u neto za 2026">
+        <h2 className="home-examples-title">Tabela: bruto u neto za 2026</h2>
+        <table className="home-examples" aria-label="Tabela bruto u neto za 2026 — primeri obračuna">
           <thead>
             <tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr>
           </thead>
           <tbody>
-            <tr><td>80.000</td><td>≈ 59.500</td><td>≈ 92.120</td></tr>
-            <tr><td>100.000</td><td>≈ 73.520</td><td>≈ 115.150</td></tr>
-            <tr><td>150.000</td><td>≈ 108.570</td><td>≈ 172.725</td></tr>
-            <tr><td>200.000</td><td>≈ 143.620</td><td>≈ 230.300</td></tr>
+            <tr><td>50.000</td><td>≈ 38.472</td><td>≈ 57.575</td></tr>
+            <tr><td>60.000</td><td>≈ 45.482</td><td>≈ 69.090</td></tr>
+            <tr><td>70.000</td><td>≈ 52.492</td><td>≈ 80.605</td></tr>
+            <tr><td>80.000</td><td>≈ 59.502</td><td>≈ 92.120</td></tr>
+            <tr><td>100.000</td><td>≈ 73.522</td><td>≈ 115.150</td></tr>
+            <tr><td>120.000</td><td>≈ 87.542</td><td>≈ 138.180</td></tr>
+            <tr><td>150.000</td><td>≈ 108.572</td><td>≈ 172.725</td></tr>
+            <tr><td>200.000</td><td>≈ 143.622</td><td>≈ 230.300</td></tr>
           </tbody>
         </table>
         <p className="home-examples-note">
@@ -1107,14 +1116,22 @@ function HomePage() {
           <p>
             Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos
             iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto
-            100.000 RSD daje neto oko 73.542 RSD. Naš kalkulator radi obračun u oba smera.
+            100.000 RSD daje neto oko 73.522 RSD. Naš kalkulator radi obračun u oba smera.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Ako je bruto plata 50.000 dinara, koliki je neto?</h3>
+          <p>
+            Za bruto 1 od 50.000 RSD neto je oko 38.472 RSD: doprinosi zaposlenog iznose 9.950 RSD
+            (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD).
           </p>
         </div>
         <div className="home-faq-item">
           <h3>Kolika je minimalna zarada u Srbiji u 2026. godini?</h3>
           <p>
-            Od februara 2026. minimalna bruto zarada iznosi 93.264 RSD mesečno, a minimalna neto
-            zarada 69.000 RSD. Više u vodiču o <a href="/blog/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
+            Minimalna cena rada je 371 RSD neto po radnom času (od 1. januara 2026). Mesečni neto
+            iznos varira sa fondom sati — od 59.360 do 68.264 RSD, prosečno oko 64.554 RSD. Više u
+            vodiču o <a href="/blog/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
           </p>
         </div>
         <div className="home-faq-item">
