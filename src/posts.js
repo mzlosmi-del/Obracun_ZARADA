@@ -1123,7 +1123,7 @@ Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-n
     id: "pausalno-oporezivanje",
     date: "8. jun 2026",
     tag: "Paušal",
-    title: "Paušalno oporezivanje u Srbiji 2026 — ko može da bude paušalac i koliko plaća?",
+    title: "Paušalno oporezivanje 2026 — ko može i koliko plaća?",
     summary: "Paušalno oporezivanje 2026: ko može da bude paušalac, limit od 6 miliona, koje delatnosti ne mogu i koliko se plaća mesečno. Jednostavan vodič za preduzetnike.",
     body: `
 ![Paušalno oporezivanje u Srbiji](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
@@ -1229,7 +1229,7 @@ Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [u
     id: "porez-za-frilensere",
     date: "5. jun 2026",
     tag: "Frilenseri",
-    title: "Porez za frilensere u Srbiji 2026 — Model A ili Model B, šta se više isplati?",
+    title: "Porez za frilensere 2026 — Model A ili B (šta se isplati)",
     summary: "Frilenseri u Srbiji 2026 sami plaćaju porez kvartalno, biranjem Modela A ili B. Objašnjavamo normirane troškove, stope, doprinose, rokove i primer obračuna.",
     body: `
 ![Porez za frilensere u Srbiji](https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80)
@@ -1347,7 +1347,7 @@ Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [raz
     id: "kako-se-obracunava-penzija",
     date: "12. maj 2026",
     tag: "Penzija",
-    title: "Kako se obračunava penzija u Srbiji — formula, lični bodovi i primeri obračuna",
+    title: "Kako se obračunava penzija u Srbiji — formula i primeri",
     summary: "Kako se obračunava penzija u Srbiji 2026: bodovni sistem, lični bodovi i koeficijent, uslovi za starosnu, prevremenu i invalidsku penziju — uz primere.",
     body: `
 ![Kako se obračunava penzija u Srbiji](https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&q=80)
@@ -1632,7 +1632,7 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
     id: "kako-se-obracunava-bolovanje",
     date: "1. maj 2026",
     tag: "Bolovanje",
-    title: "Kako se obračunava bolovanje do 30 dana u Srbiji — kalkulator i naknada zarade (PDF)",
+    title: "Kako se obračunava bolovanje do 30 dana — naknada 65%",
     summary: "Obračun bolovanja do 30 dana: naknada je minimum 65% prosečne zarade, a od 31. dana na teret RFZO. Kalkulator sa primerima i PDF platni listić.",
     body: `
 ![Bolovanje i naknada zarade](https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80)
@@ -1962,7 +1962,7 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
     id: "jubilarna-nagrada",
     date: "15. februar 2026",
     tag: "Porez",
-    title: "Jubilarna nagrada u Srbiji — koliko iznosi i kako se neoporezivo isplaćuje?",
+    title: "Jubilarna nagrada 2026 — iznos i neoporeziva isplata",
     summary: "Za 10, 20 i 30 godina rada kod istog poslodavca zaposleni ima pravo na jubilarnu nagradu. Kolika je, kako se obračunava i zašto je deo neoporeziv?",
     body: `
 ![Jubilarna nagrada za godine staža](https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80)
@@ -2232,7 +2232,7 @@ Prema Zakonu o radu:
 
 Poslodavac je dužan da vodi evidenciju o radnom vremenu i da prekovremeni rad evidentira odvojeno. Zaposleni ima pravo da zahteva uvid u evidenciju i da ospori netačne podatke.
 
-Koristite naš [PlatniListić kalkulator](/) da proverite da li vam je prekovremeni rad ispravno obračunat. Pogledajte i kako se obračunava [minuli rad](/blog/minuli-rad-obracun) — često se kombinuje sa prekovremenim u istom obračunu.
+Koristite naš [PlatniListić kalkulator](/) da proverite da li vam je prekovremeni rad ispravno obračunat, ili [kalkulator dodataka na zaradu](/dodaci-na-zaradu) za noćni rad i rad na praznik. Pogledajte i kako se obračunava [minuli rad](/blog/minuli-rad-obracun) — često se kombinuje sa prekovremenim u istom obračunu — kao i pravila za [topli obrok i regres](/blog/topli-obrok-i-regres).
 
 ## Izvori i korisni linkovi
 
@@ -2285,6 +2285,8 @@ Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomsko
 
 Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/blog/minimalna-zarada-2026) za aktuelne iznose.
 
+Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/bruto-neto), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
+
 ## Izvori i korisni linkovi
 
 - [Uredba o minimalnoj zaradi — Paragraf.rs](https://www.paragraf.rs/propisi/uredba-o-visini-minimalne-zarade.html)
@@ -2296,7 +2298,7 @@ Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [mi
     id: "doprinosi-srbija",
     date: "20. decembar 2024",
     tag: "Doprinosi",
-    title: "Doprinosi za socijalno osiguranje u Srbiji: kompletan vodič za 2025.",
+    title: "Doprinosi za socijalno osiguranje u Srbiji (vodič)",
     summary: "Ko plaća doprinose, koliko iznose i na šta imate pravo? Kompletan pregled sistema socijalnog osiguranja za zaposlene u Srbiji.",
     body: `
 ![Socijalno osiguranje i penzijski sistem](https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=800&q=80)
@@ -2422,8 +2424,8 @@ Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake dr
     id: "godisnji-odmor-naknada",
     date: "15. januar 2026",
     tag: "Zakon o radu",
-    title: "Kako se računa godišnji odmor — naknada zarade po novom Zakonu o radu",
-    summary: "Kako se računa i kako se plaća godišnji odmor po novom zakonu? Naknada za godišnji odmor ne može biti niža od prosečne zarade u prethodnih 12 meseci. Formula, primer obračuna i prava zaposlenih.",
+    title: "Kako se računa naknada za godišnji odmor 2026",
+    summary: "Kako se računa i plaća godišnji odmor po Zakonu o radu? Naknada ne može biti niža od proseka zarade u prethodnih 12 meseci — formula, primer i prava.",
     body: `
 ![Godišnji odmor i odmor od posla](https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80)
 
@@ -2496,7 +2498,7 @@ Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zara
     id: "otpremnina-obracun",
     date: "5. januar 2026",
     tag: "Zakon o radu",
-    title: "Otpremnina u Srbiji — minimalna otpremnina po Zakonu o radu, iznos i porez",
+    title: "Otpremnina u Srbiji — minimalni iznos, obračun i porez",
     summary: "Otpremnina u Srbiji: ko ima pravo, kolika je minimalna otpremnina po Zakonu o radu i kako se plaća porez na otpremninu. Obračun za tehnološki višak i odlazak u penziju.",
     body: `
 ![Prestanak radnog odnosa i otpremnina](https://images.unsplash.com/photo-1586769852044-692d6e3703f0?w=800&q=80)
