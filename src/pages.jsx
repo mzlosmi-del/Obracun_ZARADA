@@ -526,7 +526,7 @@ export function ProsecnaZaradaPage() {
   return <ReferencePage cfg={{
     slug: "prosecna-zarada",
     title: "Prosečna zarada u Srbiji 2026 — neto i bruto | PlatniListić",
-    description: `Prosečna neto zarada ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")} RSD (${p.mesec}, RZS). Medijalna i poređenje.`,
+    description: `Prosečna neto zarada u Srbiji 2026: ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")} RSD (${p.mesec}, RZS). Pregled po sektorima i gradovima, medijalna zarada i poređenje u evrima.`,
     h1: "Prosečna zarada u Srbiji 2026.",
     breadcrumbName: "Prosečna zarada",
     body: (<>
