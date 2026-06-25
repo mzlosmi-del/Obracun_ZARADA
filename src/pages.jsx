@@ -502,15 +502,15 @@ export function UgovorODeluPage() {
   return <ToolPage cfg={{
     slug: "ugovor-o-delu",
     title: "Ugovor o delu kalkulator 2026 — porez i doprinosi | PlatniListić",
-    description: "Obračun ugovora o delu za 2026: porez 20% na 50% prihoda i doprinosi. Bruto, neto i ukupan trošak. Besplatno, za Srbiju.",
+    description: "Obračun ugovora o delu za 2026: osnovica je bruto − 20% normiranih troškova, porez 20%, PIO 24% i zdravstveno 10,3%. Bruto, neto i trošak. Besplatno.",
     h1: "Kalkulator ugovora o delu (2026)",
     breadcrumbName: "Ugovor o delu",
     calc: "full",
     intro: (<p>Ovaj <strong>kalkulator ugovora o delu</strong> računa porez i doprinose za honorarni angažman u 2026. Za detaljan obračun po vrsti angažmana koristite kalkulator ispod.</p>),
     guide: (<><h2>Kako se obračunava ugovor o delu</h2>
-      <p>Kod ugovora o delu primenjuju se normirani troškovi i porez na deo prihoda, uz doprinose za PIO (i zdravstveno ako lice nije osigurano po drugom osnovu). Detaljan vodič sa primerom: <a href="/blog/ugovor-o-delu">ugovor o delu 2026</a>.</p></>),
+      <p>Kod ugovora o delu osnovicu čini bruto naknada umanjena za <strong>20% normiranih troškova</strong> (oporezivo je 80% prihoda). Na tu osnovicu plaća se <strong>porez 20%</strong> i <strong>doprinos za PIO 24%</strong>, a <strong>zdravstveno 10,3%</strong> samo ako lice nije osigurano po drugom osnovu. Detaljan vodič sa primerom: <a href="/blog/ugovor-o-delu">ugovor o delu 2026</a>.</p></>),
     faq: [
-      { q: "Koliki je porez na ugovor o delu?", a: "Porez se plaća po stopi 20% na oporezivi deo prihoda (posle normiranih troškova), uz odgovarajuće doprinose. Tačan obračun zavisi od osnova osiguranja." },
+      { q: "Koliki je porez na ugovor o delu?", a: "Porez je 20% na osnovicu, koju čini bruto naknada umanjena za 20% normiranih troškova (oporezivo je 80% prihoda). Uz porez se plaća doprinos za PIO 24%, a zdravstveno 10,3% samo ako lice nije osigurano po drugom osnovu." },
       { q: "Da li se plaćaju doprinosi na ugovor o delu?", a: "Da — PIO, a zdravstveno ako lice nije osigurano po drugom osnovu. Detalje vidite u vodiču." },
     ],
     related: [
