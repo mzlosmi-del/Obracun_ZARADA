@@ -244,18 +244,27 @@ export function BrutoNetoPage() {
           <tr><td>Porez na zaradu</td><td>{DEFAULT_RATES.taxRate}% (na deo iznad neoporezivog)</td></tr>
         </tbody>
       </table>
-      <table className="ref-table" aria-label="Primeri obračuna bruto u neto 2026">
+      <h2>Tabela: bruto u neto za 2026 (primeri)</h2>
+      <p>Brza tabela bruto u neto za najčešće iznose zarada u 2026. (neto i ukupan trošak poslodavca, zaokruženo):</p>
+      <table className="ref-table" aria-label="Tabela bruto u neto 2026 — primeri obračuna">
         <thead><tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr></thead>
         <tbody>
-          <tr><td>80.000</td><td>≈ 59.500</td><td>≈ 92.120</td></tr>
-          <tr><td>100.000</td><td>≈ 73.520</td><td>≈ 115.150</td></tr>
-          <tr><td>150.000</td><td>≈ 108.570</td><td>≈ 172.725</td></tr>
-          <tr><td>200.000</td><td>≈ 143.620</td><td>≈ 230.300</td></tr>
+          <tr><td>50.000</td><td>≈ 38.472</td><td>≈ 57.575</td></tr>
+          <tr><td>60.000</td><td>≈ 45.482</td><td>≈ 69.090</td></tr>
+          <tr><td>70.000</td><td>≈ 52.492</td><td>≈ 80.605</td></tr>
+          <tr><td>80.000</td><td>≈ 59.502</td><td>≈ 92.120</td></tr>
+          <tr><td>100.000</td><td>≈ 73.522</td><td>≈ 115.150</td></tr>
+          <tr><td>120.000</td><td>≈ 87.542</td><td>≈ 138.180</td></tr>
+          <tr><td>150.000</td><td>≈ 108.572</td><td>≈ 172.725</td></tr>
+          <tr><td>200.000</td><td>≈ 143.622</td><td>≈ 230.300</td></tr>
         </tbody>
-      </table></>),
+      </table>
+      <p className="home-examples-note">Iznosi su informativni i zaokruženi; za tačan obračun za vašu zaradu unesite bruto u kalkulator iznad.</p></>),
     faq: [
       { q: "Kako izračunati neto iz bruto u Srbiji?", a: "Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez 10% na deo iznad neoporezivog iznosa (34.221 RSD za 2026). Kalkulator radi obračun u oba smera." },
+      { q: "Ako je bruto plata 50.000 dinara, koliki je neto?", a: "Za bruto 1 od 50.000 RSD neto iznosi ≈ 38.472 RSD: doprinosi zaposlenog su 9.950 RSD (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD)." },
       { q: "Koliki su doprinosi zaposlenog?", a: "19,90% — PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%." },
+      { q: "Kako se računa bruto 2 u neto?", a: "Bruto 2 je ukupan trošak poslodavca (bruto 1 + 15,15% doprinosa poslodavca). Da biste iz bruto 2 dobili neto, prvo se izdvoji bruto 1 (bruto 2 ÷ 1,1515), pa se iz njega oduzmu doprinosi zaposlenog (19,90%) i porez (10% na deo iznad 34.221 RSD)." },
       { q: "Da li je obračun besplatan?", a: "Da, kalkulator je besplatan i ne zahteva registraciju. Rezultat preuzimate kao PDF i PPP-PD XML." },
     ],
     related: TOOL_RELATED,
@@ -427,6 +436,7 @@ export function NetoBrutoPage() {
       </table></>),
     faq: [
       { q: "Kako izračunati bruto iz neto zarade u Srbiji?", a: "Kalkulator iterativno pronalazi bruto 1 tako da posle doprinosa zaposlenog (19,90%) i poreza (10% na deo iznad 34.221 RSD) dobijete željeni neto iznos. Unesite ciljani neto u polje 'Unesite Neto' i kalkulator prikazuje odgovarajući bruto 1." },
+      { q: "Ako mi treba neto plata od 100.000 dinara, koliki je bruto?", a: "Za neto od 100.000 RSD bruto 1 iznosi ≈ 137.772 RSD, a ukupan trošak poslodavca (bruto 2) ≈ 158.644 RSD." },
       { q: "Koliki je ukupan trošak poslodavca za dati neto?", a: "Ukupan trošak = Bruto 1 + doprinosi poslodavca (15,15% — PIO 10% i zdravstvo 5,15%). Za neto 73.522 RSD, bruto 1 je 100.000 RSD, a ukupan trošak oko 115.150 RSD." },
       { q: "Da li je neto u bruto kalkulator besplatan?", a: "Da, kalkulator je besplatan i ne zahteva registraciju. Obračun radite u oba smera — bruto u neto i neto u bruto. Rezultat preuzimate kao PDF i PPP-PD XML." },
     ],
@@ -619,25 +629,24 @@ export function MinimalnaZaradaPage() {
   return <ReferencePage cfg={{
     slug: "minimalna-zarada-2026",
     title: "Minimalna zarada 2026 u Srbiji — bruto i neto | PlatniListić",
-    description: `Minimalna neto zarada ${(m.netoMesecno/1000)} hiljada RSD, bruto ${m.brutoMesecno.toLocaleString("sr-RS")} RSD (od ${m.vaziOd}). Ko ima pravo i kako se obračunava.`,
+    description: `Minimalna cena rada u Srbiji 2026: ${m.cenaRadnogCasaNeto} RSD neto po satu (od ${m.vaziOd}). Mesečni neto ${m.netoMin.toLocaleString("sr-RS")}–${m.netoMax.toLocaleString("sr-RS")} RSD, prosek ~${m.netoMesecno.toLocaleString("sr-RS")} RSD.`,
     h1: "Minimalna zarada u Srbiji za 2026.",
     breadcrumbName: "Minimalna zarada 2026",
     body: (<>
-      <p>Minimalna zarada u Srbiji za 2026. godinu (važi od {m.vaziOd}):</p>
+      <p>Minimalna cena rada u Srbiji za 2026. godinu iznosi <strong>{m.cenaRadnogCasaNeto} RSD neto po radnom času</strong> (važi od {m.vaziOd}). To je jedini fiksan iznos — mesečna minimalna zarada nije fiksna, već se dobija množenjem satnice fondom radnih sati u mesecu (160–184 sata), pa varira iz meseca u mesec.</p>
       <table className="ref-table">
         <tbody>
-          <tr><th>Minimalna neto zarada</th><td>{m.netoMesecno.toLocaleString("sr-RS")} RSD</td></tr>
-          <tr><th>Minimalna bruto zarada</th><td>{m.brutoMesecno.toLocaleString("sr-RS")} RSD</td></tr>
-          {m.cenaRadnogCasaNeto != null && (
-            <tr><th>Cena radnog časa (neto)</th><td>{m.cenaRadnogCasaNeto.toLocaleString("sr-RS")} RSD</td></tr>
-          )}
+          <tr><th>Cena radnog časa (neto)</th><td>{m.cenaRadnogCasaNeto.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Mesečni neto — prosek (174 h)</th><td>{m.netoMesecno.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Mesečni neto — raspon</th><td>{m.netoMin.toLocaleString("sr-RS")} – {m.netoMax.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Mesečni bruto — raspon</th><td>{m.brutoMin.toLocaleString("sr-RS")} – {m.brutoMax.toLocaleString("sr-RS")} RSD</td></tr>
         </tbody>
       </table>
-      <p>Minimalna zarada se obračunava po ceni radnog časa pomnoženoj fondom sati u mesecu, pa se mesečni iznos razlikuje po mesecima zbog različitog broja radnih dana. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a>. Za poređenje sa prethodnom godinom pogledajte vodič <a href="/blog/minimalna-zarada-2025">minimalna zarada 2025</a>.</p>
+      <p>Mesečni iznos se razlikuje po mesecima zbog različitog broja radnih dana — najniži je u mesecima sa 160 sati, a najviši sa 184 sata. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a> i izračunajte neto preko <a href="/bruto-neto">bruto u neto kalkulatora</a>. Za poređenje sa prethodnom godinom pogledajte vodič <a href="/blog/minimalna-zarada-2025">minimalna zarada 2025</a>.</p>
     </>),
     faq: [
-      { q: "Kolika je minimalna zarada u Srbiji 2026?", a: `Minimalna neto zarada je ${m.netoMesecno.toLocaleString("sr-RS")} RSD, a bruto ${m.brutoMesecno.toLocaleString("sr-RS")} RSD, sa primenom od ${m.vaziOd}.` },
-      { q: "Kako se obračunava minimalna zarada?", a: "Po ceni radnog časa × fond sati u mesecu, pa mesečni iznos varira zbog različitog broja radnih dana." },
+      { q: "Kolika je minimalna zarada u Srbiji 2026?", a: `Minimalna cena rada je ${m.cenaRadnogCasaNeto} RSD neto po radnom času (od ${m.vaziOd}). Mesečni neto iznos zavisi od fonda sati: od ${m.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m.netoMax.toLocaleString("sr-RS")} RSD (184 h), prosečno oko ${m.netoMesecno.toLocaleString("sr-RS")} RSD.` },
+      { q: "Kako se obračunava minimalna zarada?", a: `Cena radnog časa (${m.cenaRadnogCasaNeto} RSD neto) množi se brojem radnih sati u mesecu. Zato mesečni iznos varira — meseci sa više radnih dana donose veću minimalnu zaradu.` },
       { q: "Ko ima pravo na minimalnu zaradu?", a: "Svi zaposleni u Srbiji imaju pravo na zaradu koja ne može biti niža od propisanog minimuma. Minimalna zarada se primenjuje i na zaposlene sa nepunim radnim vremenom, srazmerno satima rada." },
     ],
     related: [

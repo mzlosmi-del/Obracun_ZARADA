@@ -56,9 +56,9 @@ export function ONama({ onBack }) {
         <p>Kalkulator automatski koristi parametre koji važe u skladu sa kalendarskim periodom:</p>
         <ul>
           <li>Neoporezivi iznos: 28.423 RSD (do 31.01.2026.) → 34.221 RSD (od 01.02.2026.)</li>
-          <li>Minimalna bruto zarada (od 02/2026): 93.264 RSD</li>
-          <li>Najniža mesečna osnovica za doprinose: 45.950 RSD</li>
-          <li>Najviša mesečna osnovica za doprinose: 656.425 RSD</li>
+          <li>Minimalna cena rada (od 01/2026): 371 RSD neto po radnom času (mesečno ~59.360–68.264 RSD neto)</li>
+          <li>Najniža mesečna osnovica za doprinose: 51.297 RSD</li>
+          <li>Najviša mesečna osnovica za doprinose: 732.820 RSD</li>
           <li>Maksimalan neoporezivi iznos prevoza: 5.782 RSD</li>
         </ul>
         <p>Sve stope i parametre korisnik može i ručno menjati u kartici „Stope" — što je korisno za obračun ranijih perioda ili specifičnih kategorija zaposlenih.</p>

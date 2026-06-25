@@ -24,6 +24,9 @@ export function webAppLd({ name, description, path }) {
     "applicationCategory": "FinanceApplication",
     "operatingSystem": "Web",
     "inLanguage": "sr-RS",
+    "isAccessibleForFree": true,
+    "dateModified": new Date().toISOString().slice(0, 10),
+    "provider": { "@type": "Organization", "name": "PlatniListić", "url": `${SITE}/` },
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "RSD" },
   };
 }

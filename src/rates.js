@@ -21,11 +21,11 @@ export const DEFAULT_RATES = {
   nightCoef: 26,
   weekendCoef: 26,
   holidayCoef: 26,
-  minBase: 45950,
-  maxBase: 656425,
+  minBase: 51297,
+  maxBase: 732820,
   mealDaily: 1490,
   transportMax: 5782,
-  minWage: 93264,
+  minWage: 88265,
 };
 
 // Paušal regime — porez 10% + doprinosi on the Tax-Authority-assigned base.
@@ -39,15 +39,19 @@ export const PAUSAL_RATES = {
 };
 
 export const REFERENCE_DATA = {
-  // Minimalna zarada — config is authoritative (Vlada RS). Sl. glasnik RS.
-  // NOTE: blog `prosecna-plata-srbija` cites a different minimalac figure (~64.554);
-  // config wins per spec. cenaRadnogCasaNeto is the official published per-hour figure.
+  // Minimalna zarada 2026 — Odluka o visini minimalne cene rada, "Sl. glasnik RS" br. 78/2025
+  // (od 1. januara 2026). Fiksna je SAMO cena radnog časa (371 RSD neto); mesečni iznos
+  // varira sa fondom sati (160–184 h), pa se daju i prosek (174 h) i raspon.
   minimalnaZarada2026: {
-    netoMesecno: 69000,
-    brutoMesecno: 93264,
-    cenaRadnogCasaNeto: null, // VERIFY: insert official 2026 per-hour neto figure (Sl. glasnik RS) before merge
-    vaziOd: "februar 2026",
-    izvor: "Sl. glasnik RS",
+    cenaRadnogCasaNeto: 371,   // RSD neto po radnom času (fiksno, Sl. glasnik RS 78/2025)
+    netoMesecno: 64554,        // prosek za 174 h (reprezentativni mesečni neto)
+    brutoMesecno: 87207,       // ~ bruto 1 za prosečni neto 64.554 (174 h)
+    netoMin: 59360,            // 160 radnih sati
+    netoMax: 68264,            // 184 radna sata
+    brutoMin: 79797,           // ~ bruto za 160 h
+    brutoMax: 92499,           // ~ bruto za 184 h
+    vaziOd: "1. januar 2026",
+    izvor: "Sl. glasnik RS 78/2025",
   },
   // Prosečna zarada — RZS, mart 2026.
   prosecnaZarada2026: {

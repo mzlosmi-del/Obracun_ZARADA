@@ -1,5 +1,119 @@
 export const POSTS = [
   {
+    id: "otkaz-ugovora-o-radu",
+    date: "25. jun 2026",
+    tag: "Zakon o radu",
+    title: "Otkaz ugovora o radu 2026 — otkazni rok, otpremnina i prava",
+    summary: "Otkaz ugovora o radu 2026: razlozi za otkaz po Zakonu o radu, otkazni rok (8–30 dana), otpremnina za tehnološki višak i prava zaposlenog. Obračun sa primerom.",
+    body: `
+![Otkaz ugovora o radu 2026 — otkazni rok, otpremnina i prava zaposlenog](https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&fm=webp&q=70)
+
+> **Provereno i ažurirano: jun 2026.** Rokovi i pravila usklađeni su sa važećim **Zakonom o radu** („Sl. glasnik RS", sa izmenama). Iznosi otpremnine vezani za prosečnu zaradu računati su prema poslednjem zvaničnom podatku RZS-a (prosečna neto zarada za mart 2026: 121.650 din).
+
+Otkaz ugovora o radu je prestanak radnog odnosa voljom jedne strane — poslodavca ili zaposlenog. Poslodavac može otkazati ugovor **samo iz zakonom propisanog razloga** i uz propisan postupak, dok zaposleni daje otkaz slobodno, uz otkazni rok. U ovom vodiču su tačni razlozi, rokovi, prava i obračun otpremnine — sa konkretnim brojčanim primerom.
+
+**Ukratko:** kada zaposleni daje otkaz, otkazni rok je **najmanje 15 dana**. Kada poslodavac otkazuje zbog neostvarenih rezultata, rok je **8–30 dana**. Otpremnina sledi samo kod **tehnološkog viška** (najmanje 1/3 prosečne zarade po godini staža) i pri **odlasku u penziju** (najmanje 2 prosečne zarade u Srbiji).
+
+> **Napomena:** Tekst je informativnog karaktera i ne zamenjuje pravni savet. Pri izmeni propisa tekst se hitno usklađuje.
+
+## Ključne činjenice (2026)
+
+- **Otkazni rok — zaposleni daje otkaz:** najmanje 15 dana (ugovorom najviše 30).
+- **Otkazni rok — poslodavac (neostvareni rezultati):** 8 do 30 dana, zavisno od staža.
+- **Otpremnina za tehnološki višak:** najmanje 1/3 prosečne zarade za svaku punu godinu rada kod poslodavca.
+- **Otpremnina pri odlasku u penziju:** najmanje 2 prosečne zarade u Republici Srbiji.
+- **Rok za otkaz zbog ponašanja:** 6 meseci od saznanja, najduže 1 godina od učinjenog.
+- **Rok za sudsku zaštitu (radni spor):** 60 dana od dostavljanja rešenja o otkazu.
+
+## Šta je otkaz ugovora o radu
+
+Otkaz je jednostran prestanak radnog odnosa — kada ugovor raskida samo jedna strana. Razlikuje se od **sporazumnog raskida** (dogovor obe strane) i od prestanka po sili zakona (istek ugovora na određeno, odlazak u penziju). Ključno pravilo: **poslodavac ne može da otkaže ugovor „bez razloga"** — mora postojati opravdan razlog iz Zakona o radu. Zaposleni, s druge strane, može dati otkaz slobodno, uz poštovanje otkaznog roka.
+
+## Razlozi za otkaz od strane poslodavca
+
+Zakon o radu (član 179) taksativno nabraja razloge za otkaz. Grupišu se u tri kategorije:
+
+| Kategorija | Primeri razloga | Pravo na otpremninu |
+|---|---|---|
+| Radna sposobnost | ne ostvaruje rezultate; nema potrebna znanja i sposobnosti | Ne |
+| Ponašanje zaposlenog | povreda radne obaveze; nepoštovanje discipline; zloupotreba bolovanja | Ne |
+| Tehnološki / ekonomski razlozi | tehnološki višak (ukidanje radnog mesta, pad obima posla) | **Da** |
+
+Najvažnija razlika za zaposlenog: **otpremnina sledi samo kod tehnološkog viška** (i pri odlasku u penziju), a ne kod otkaza zbog ponašanja ili neostvarenih rezultata. Kod otkaza zbog neostvarenih rezultata, poslodavac je prethodno dužan da **pismeno ukaže na propuste** i ostavi rok za poboljšanje — ako taj korak izostane, otkaz je sporan.
+
+## Otkazni rok — koliko traje
+
+- **Zaposleni daje otkaz:** najmanje **15 dana**, ugovorom najviše **30 dana** (član 178).
+- **Poslodavac otkazuje zbog neostvarenih rezultata** (član 179 st. 1 tač. 1): rok zavisi od staža i **ne može biti kraći od 8 ni duži od 30 dana** (član 189).
+- **Otkaz zbog povrede radne obaveze:** radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka.
+- **Tehnološki višak:** radni odnos prestaje po isteku otkaznog roka, a otpremnina se isplaćuje **pre prestanka** radnog odnosa.
+
+Tokom otkaznog roka prava i obaveze iz ugovora (zarada, [godišnji odmor](/blog/godisnji-odmor-naknada) i druga primanja) i dalje teku normalno.
+
+## Postupak otkaza (korak po korak)
+
+1. **Upozorenje (kod ponašanja):** poslodavac dostavlja pisano upozorenje i ostavlja rok od najmanje 8 dana za izjašnjenje.
+2. **Rok za odluku:** otkaz zbog ponašanja uručuje se u roku od 6 meseci od saznanja, a najkasnije 1 godinu od nastanka razloga.
+3. **Pisano rešenje:** sa obrazloženjem i poukom o pravnom leku.
+4. **Dostavljanje:** rešenje se uručuje lično; ako to nije moguće, dostavlja se na adresu i evidentira.
+5. **Isplata (tehnološki višak):** otpremnina najkasnije poslednjeg dana radnog odnosa.
+
+Vrhovni kasacioni sud više puta je zauzeo stav da je **isplata otpremnine sastavni deo zakonitog otkaza** tehnološkom višku — kašnjenje sa isplatom može biti osnov za poništaj otkaza.
+
+## Otpremnina kod otkaza
+
+**1. Tehnološki višak (član 158).** Najmanje **1/3 prosečne mesečne zarade** zaposlenog za svaku navršenu godinu rada kod tog poslodavca. Osnovica je prosečna zarada isplaćena za poslednja tri meseca pre meseca isplate. Detaljan obračun je u vodiču [otpremnina — obračun i primeri](/blog/otpremnina-obracun), a brzo računanje na [kalkulatoru otpremnine](/otpremnina).
+
+**2. Odlazak u penziju (član 119).** Najmanje **2 prosečne zarade u Republici Srbiji** prema poslednjem podatku RZS-a — bez obzira na vrstu penzije. Ova otpremnina je neoporeziva do zakonskog minimuma.
+
+## Primer obračuna otpremnine (tehnološki višak)
+
+Zaposleni proglašen tehnološkim viškom, sa **10 navršenih godina** rada kod istog poslodavca i prosečnom neto zaradom za poslednja tri meseca od **90.000 dinara**:
+
+> Otpremnina = 1/3 × prosečna zarada × broj godina staža
+> Otpremnina = (1/3 × 90.000) × 10 = **300.000 dinara**
+
+Minimalna zakonska otpremnina je **300.000 dinara**; poslodavac sme isplatiti više, ali ne manje. **Primer za penziju:** uz poslednju prosečnu neto zaradu u Srbiji od 121.650 din ([prosečna plata u Srbiji](/blog/prosecna-plata-srbija)), minimalna otpremnina pri penzionisanju je 2 × 121.650 = **243.300 dinara**.
+
+## Kada zaposleni daje otkaz
+
+Zaposleni može otkazati ugovor u svakom trenutku, bez navođenja razloga:
+
+- Otkaz se daje u pisanoj formi.
+- Poštuje se otkazni rok od najmanje 15 dana (najviše 30 ako je tako ugovoreno).
+- Ako ne ispoštuje rok, poslodavac ima pravo na naknadu štete za neostvareni deo roka.
+- Zaposleni koji sam da otkaz **nema pravo na otpremninu** ni na novčanu naknadu za nezaposlene.
+
+## Sporazumni raskid ugovora o radu
+
+Radni odnos može prestati i **sporazumno** — pisanim dogovorom. Pre potpisivanja, poslodavac je dužan da pisano obavesti zaposlenog o posledicama, pre svega da po osnovu sporazumnog raskida zaposleni **po pravilu gubi pravo na novčanu naknadu** kod Nacionalne službe za zapošljavanje. Zato uslove (npr. stimulativnu otpremninu) treba definisati pre potpisa.
+
+## Prava zaposlenog i zaštita od nezakonitog otkaza
+
+- **Rok za tužbu:** 60 dana od dostavljanja rešenja o otkazu, pred nadležnim sudom.
+- **Posledice nezakonitog otkaza:** sud može poništiti rešenje, vratiti zaposlenog na rad i dosuditi naknadu izgubljene zarade sa [doprinosima](/blog/doprinosi-srbija).
+- **Zabrana otkaza:** poslodavac ne sme otkazati ugovor za vreme trudnoće, porodiljskog odsustva, nege deteta i propisanog bolovanja.
+
+Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otkazu, obračune zarade za poslednja tri meseca i eventualna upozorenja.
+
+## Izvori i korisni linkovi
+
+- [Zakon o radu (Paragraf, prečišćen tekst)](https://www.paragraf.rs/propisi/zakon_o_radu.html) — čl. 158, 178, 179, 189, 119
+- [Zakon o radu, član 158 — otpremnina (Paragraf)](https://www.paragraf.rs/propisi/clanovi/zakon-o-radu-clan-158.html)
+- [RZS — Zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade) (osnovica za otpremninu pri penziji)
+    `,
+    faq: [
+      { q: "Koliki je otkazni rok kada zaposleni da otkaz?", a: "Najmanje 15 dana. Ugovorom o radu može se odrediti duži otkazni rok, ali ne duži od 30 dana." },
+      { q: "Koliki je otkazni rok kada poslodavac otkaže ugovor?", a: "Kod otkaza zbog neostvarenih rezultata rada ili nedostatka znanja, otkazni rok iznosi od 8 do 30 dana, zavisno od staža. Kod otkaza zbog povrede radne obaveze radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka." },
+      { q: "Da li imam pravo na otpremninu ako dobijem otkaz?", a: "Otpremnina sledi kod otkaza zbog tehnološkog viška (najmanje 1/3 prosečne zarade po godini staža kod poslodavca) i pri odlasku u penziju (najmanje 2 prosečne zarade u Srbiji). Kod otkaza zbog ponašanja ili neostvarenih rezultata otpremnina se ne isplaćuje." },
+      { q: "Kako se računa otpremnina za tehnološki višak?", a: "Otpremnina = 1/3 prosečne zarade zaposlenog (prosek poslednja tri meseca) pomnožena brojem navršenih godina rada kod tog poslodavca. Za 10 godina staža i prosek od 90.000 dinara, otpremnina iznosi 300.000 dinara." },
+      { q: "Koliki je rok za žalbu na otkaz?", a: "Tužba sudu podnosi se u roku od 60 dana od dana dostavljanja rešenja o otkazu." },
+      { q: "Da li poslodavac može da me otkaže bez razloga?", a: "Ne. Poslodavac može otkazati ugovor samo iz razloga propisanih članom 179 Zakona o radu i uz propisan postupak. Otkaz bez opravdanog razloga je nezakonit." },
+      { q: "Gubim li pravo na naknadu ako potpišem sporazumni raskid?", a: "Po pravilu da — kod sporazumnog raskida zaposleni obično nema pravo na novčanu naknadu kod Nacionalne službe za zapošljavanje. Zato uslove (npr. otpremninu) treba dogovoriti pre potpisivanja." },
+    ],
+  },
+
+  {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
     tag: "Zarada",
@@ -2045,7 +2159,7 @@ Iz bruto 1 zarade se oduzimaju dve vrste obaveza:
 - Osiguranje za slučaj nezaposlenosti: 0,75%
 
 **2. Porez na dohodak (10%)**
-- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/blog/neoporezivi-2025) od 28.423 RSD (do 02/2026)
+- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/blog/neoporezivi-2025) od **34.221 RSD** (od 02/2026; ranije 28.423 RSD)
 
 ## Neto zarada
 
@@ -2065,7 +2179,7 @@ Za zaradu od 100.000 RSD bruto 1, ukupan trošak poslodavca iznosi oko **115.150
 
 ## Probajte sami
 
-Za precizan obračun bilo koje zarade, koristite naš [besplatni bruto-neto kalkulator](/) — možete uneti i bruto i neto iznos, kalkulator automatski radi obračun u oba smera.
+Za precizan obračun koristite naš [bruto u neto kalkulator](/bruto-neto) kada iz bruto 1 računate neto, odnosno [neto u bruto kalkulator](/neto-bruto) za obrnuti smer — iz željenog neto iznosa dobijate bruto 1 i ukupan trošak poslodavca. Možete koristiti i [glavni kalkulator zarade](/) koji radi u oba smera.
 
 ## Izvori i korisni linkovi
 
@@ -2212,10 +2326,10 @@ Sistem socijalnog osiguranja u Srbiji finansira se putem doprinosa koje plaćaju
 
 Doprinosi se ne računaju na celu zaradu bez ograničenja. Postoje zakonski limiti:
 
-- **Najniža mesečna osnovica**: 45.950 RSD (za 2025)
-- **Najviša mesečna osnovica**: 656.425 RSD (za 2025)
+- **Najniža mesečna osnovica**: 51.297 RSD (za 2026)
+- **Najviša mesečna osnovica**: 732.820 RSD (za 2026)
 
-Ako zaposleni prima zaradu ispod najniže osnovice, doprinosi se ipak računaju na 45.950 RSD. Ako prima iznad najviše, doprinosi se računaju samo do 656.425 RSD.
+Ako zaposleni prima zaradu ispod najniže osnovice, doprinosi se ipak računaju na 51.297 RSD. Ako prima iznad najviše, doprinosi se računaju samo do 732.820 RSD.
 
 ## Šta dobijate uplatom doprinosa?
 
@@ -2245,47 +2359,46 @@ Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarad
     date: "1. februar 2026",
     tag: "Novosti",
     title: "Minimalna zarada u Srbiji za 2026. godinu",
-    summary: "Od februara 2026. minimalna neto zarada iznosi 69.000 RSD, a bruto 93.264 RSD. Šta se promenilo i kako to utiče na poslodavce?",
+    summary: "Minimalna cena rada za 2026. iznosi 371 RSD neto po radnom času (od 1. januara), tj. mesečno oko 59.360–68.264 RSD neto. Šta se promenilo i kako utiče na poslodavce?",
     body: `
 ![Minimalna zarada rast 2026](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80)
 
 > **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
-Od **1. februara 2026. godine** u Srbiji važe novi iznosi minimalne zarade, usklađeni sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
+Od **1. januara 2026. godine** u Srbiji važi nova minimalna cena rada, usklađena sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
 
 ## Iznosi minimalne zarade u 2026. godini
 
 | Pokazatelj | Iznos |
 |---|---|
-| Minimalna neto zarada (mesečno) | 69.000 RSD |
-| Minimalna bruto zarada (mesečno) | 93.264 RSD |
-| Minimalna satnica (neto) | 410,71 RSD |
-| Minimalna satnica (bruto) | 554,90 RSD |
+| Cena radnog časa (neto) | 371,00 RSD |
+| Mesečni neto — prosek (174 h) | 64.554 RSD |
+| Mesečni neto — raspon | 59.360 – 68.264 RSD |
+| Mesečni bruto — raspon | 79.797 – 92.499 RSD |
 
 ## Kako se izračunava minimalna zarada?
 
-Minimalna zarada se određuje po satu rada. Za pun radni mesec od 168 sati (21 radni dan × 8 sati), množi se minimalna satnica sa brojem sati.
+Minimalna zarada se određuje po satu rada — cena radnog časa (371 RSD neto) množi se brojem radnih sati u mesecu (160–184), pa se mesečni iznos razlikuje iz meseca u mesec.
 
-**Primer za februar 2026:**
-- Minimalna satnica bruto: 554,90 RSD
-- Radnih sati: 168
-- Minimalna bruto zarada: 93.264 RSD
+**Primer (mesec sa 174 sata):**
+- Cena radnog časa (neto): 371 RSD
+- Radnih sati: 174
+- Minimalna neto zarada: 64.554 RSD
 
 ## Šta se menja za poslodavce?
 
 Svaki poslodavac u Srbiji dužan je da zaposlenima isplati **najmanje minimalnu zaradu**. Isplata ispod minimalca je prekršaj koji se kažnjava novčanom kaznom od 800.000 do 2.000.000 RSD za pravno lice.
 
-Uz minimalnu zaradu, poslodavac plaća i [doprinose na teret poslodavca](/blog/doprinosi-srbija) od **15,15%**, što ukupan trošak rada podiže na oko **107.381 RSD mesečno**.
+Uz minimalnu zaradu, poslodavac plaća i [doprinose na teret poslodavca](/blog/doprinosi-srbija) od **15,15%**, što ukupan trošak rada za prosečan fond sati podiže na oko **100.400 RSD mesečno**.
 
 ## Poređenje sa prethodnim godinama
 
-| Godina | Minimalna bruto zarada |
+| Period | Cena radnog časa (neto) |
 |---|---|
-| 2024 | 69.423 RSD |
-| 2025 | 73.274 RSD |
-| 2026 | 93.264 RSD |
+| 2025 (od 1. oktobra) | 337 RSD |
+| 2026 (od 1. januara) | 371 RSD |
 
-Rast minimalne zarade u 2026. godini je značajan — oko **27% u odnosu na 2025.** godinu. Pogledajte i [minimalna zarada 2025](/blog/minimalna-zarada-2025) za poređenje.
+Rast cene radnog časa u 2026. godini iznosi oko **10,1%** u odnosu na satnicu s kraja 2025. Pogledajte i [minimalna zarada 2025](/blog/minimalna-zarada-2025) za poređenje.
 
 ## Ko prima minimalnu zaradu?
 
@@ -2293,7 +2406,7 @@ Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji 
 
 ## Neoporezivi iznos i minimalna zarada
 
-Od februara 2026. neoporezivi iznos je **34.221 RSD**. Budući da je minimalna bruto zarada 93.264 RSD, poreska osnovica iznosi 59.043 RSD, a porez 5.904 RSD. Više detalja u članku o [neoporezivom iznosu](/blog/neoporezivi-2025).
+Od 1. februara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/blog/neoporezivi-2025).
 
 Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake druge zarade.
 
