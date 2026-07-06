@@ -23,7 +23,14 @@
 // },
 
 export const JOBS = [
-  // Uskoro — paste agency links here.
+  {
+    id: "agent-podrske-de-en",
+    title: "Agent korisničke podrške — nemački i engleski jezik",
+    location: "Remote (rad od kuće)",
+    salaryMin: null, salaryMax: null,
+    link: "https://poslovi.friendlyhr.rs/jobs/7799407-agent-korisnicke-podrske-nemacki-i-engleski-jezik-remote",
+    active: true,
+  },
 ];
 
 // Jobs currently open.
