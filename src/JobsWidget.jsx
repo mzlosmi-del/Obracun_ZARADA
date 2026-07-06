@@ -11,6 +11,17 @@ import { matchJobs, activeJobs, withTracking } from "./jobs.js";
 
 const fmtRsd = (n) => new Intl.NumberFormat("sr-RS").format(n);
 
+// Count the click in GoatCounter (free, cookieless) AND Vercel Analytics
+// (activates automatically if the site ever moves to a Pro plan).
+function trackJobClick(jobId, placement) {
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: `job-click/${jobId}/${placement}`, event: true });
+    }
+  } catch { /* no-op */ }
+  try { track("job_click", { job: jobId, placement }); } catch { /* no-op */ }
+}
+
 function salaryLabel(j) {
   if (j.salaryMin == null && j.salaryMax == null) return null;
   if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)} RSD neto`;
@@ -48,7 +59,7 @@ export function JobsWidget({ neto, placement = "site" }) {
             href={withTracking(j.link, placement, j.id)}
             target="_blank"
             rel="sponsored noopener noreferrer"
-            onClick={() => { try { track("job_click", { job: j.id, placement }); } catch { /* no-op */ } }}
+            onClick={() => trackJobClick(j.id, placement)}
           >
             <span className="jobs-widget-card-top">
               {j.badge && <span className="jobs-widget-badge">{j.badge}</span>}
