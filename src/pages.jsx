@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori, NumberInput, ResultRow, fmt } from "./ui.jsx";
 import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES } from "./rates.js";
 
-const FRESHNESS = "jun 2026.";
+const FRESHNESS = "jul 2026.";
 const DISCLAIMER = "⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.";
 
 // cfg shape:
@@ -86,7 +86,8 @@ export function PausalCalculator() {
   const porez = prihod * PAUSAL_RATES.porez / 100;
   const pio = prihod * PAUSAL_RATES.pio / 100;
   const zdravstveno = prihod * PAUSAL_RATES.zdravstveno / 100;
-  const ukupno = porez + pio + zdravstveno;
+  const nezaposlenost = prihod * PAUSAL_RATES.nezaposlenost / 100;
+  const ukupno = porez + pio + zdravstveno + nezaposlenost;
   const neto = prihod - ukupno;
   const efektivna = prihod > 0 ? (ukupno / prihod) * 100 : 0;
   return (
@@ -96,6 +97,7 @@ export function PausalCalculator() {
         <ResultRow label={`Porez (${PAUSAL_RATES.porez}%)`} value={porez} />
         <ResultRow label={`PIO (${PAUSAL_RATES.pio}%)`} value={pio} />
         <ResultRow label={`Zdravstveno (${PAUSAL_RATES.zdravstveno}%)`} value={zdravstveno} />
+        <ResultRow label={`Nezaposlenost (${PAUSAL_RATES.nezaposlenost.toLocaleString("sr-RS")}%)`} value={nezaposlenost} />
         <ResultRow label="Ukupne mesečne obaveze" value={ukupno} type="negative" />
         <ResultRow label="Neto nakon obaveza" value={neto} type="positive" />
         <ResultRow label="Godišnje obaveze" value={ukupno * 12} />
@@ -157,13 +159,13 @@ export function PausalPage() {
   return <ToolPage cfg={{
     slug: "pausal",
     title: "Paušal kalkulator 2026 — porez i doprinosi | PlatniListić",
-    description: "Izračunajte mesečne obaveze paušalca: porez 10%, PIO 24%, zdravstveno 10,3%. Neto nakon obaveza i efektivna stopa za 2026.",
+    description: "Izračunajte mesečne obaveze paušalca: porez 10%, PIO 24%, zdravstveno 10,3%, nezaposlenost 0,75%. Neto nakon obaveza i efektivna stopa za 2026.",
     h1: "Paušal kalkulator za preduzetnike (2026)",
     breadcrumbName: "Paušal",
     calc: "pausal",
-    intro: (<p>Ovaj <strong>paušal kalkulator</strong> računa mesečne obaveze paušalca u 2026: porez na prihod (10%) i doprinose (PIO 24%, zdravstveno 10,3%) na paušalnu osnovicu iz rešenja Poreske uprave.</p>),
+    intro: (<p>Ovaj <strong>paušal kalkulator</strong> računa mesečne obaveze paušalca u 2026: porez na prihod (10%) i doprinose (PIO 24%, zdravstveno 10,3%, nezaposlenost 0,75%) na paušalnu osnovicu iz rešenja Poreske uprave.</p>),
     guide: (<><h2>Kako se obračunava paušal</h2>
-      <p>Paušalac plaća porez i doprinose na <strong>paušalno utvrđenu osnovicu</strong> koju određuje Poreska uprava (ne na stvarni prihod). Osnovica zavisi od šifre delatnosti, opštine i drugih koeficijenata. Na nju se primenjuju: porez 10%, PIO 24% i zdravstveno 10,3%. Detaljan vodič: <a href="/blog/koliko-pausalac-placa-mesecno">koliko paušalac plaća mesečno</a> i <a href="/blog/pausalno-oporezivanje">paušalno oporezivanje</a>.</p>
+      <p>Paušalac plaća porez i doprinose na <strong>paušalno utvrđenu osnovicu</strong> koju određuje Poreska uprava (ne na stvarni prihod). Osnovica zavisi od šifre delatnosti, opštine i drugih koeficijenata. Na nju se primenjuju: porez 10%, PIO 24%, zdravstveno 10,3% i doprinos za nezaposlenost 0,75% (ZDOSO čl. 44 i čl. 9). Pažnja: pojedini kalkulatori i dalje prikazuju zastarelu stopu PIO od 25,5% — važeća stopa je 24% (od 2023). Detaljan vodič: <a href="/blog/koliko-pausalac-placa-mesecno">koliko paušalac plaća mesečno</a> i <a href="/blog/pausalno-oporezivanje">paušalno oporezivanje</a>.</p>
       <h2>Stope i limit za paušalce 2026</h2>
       <table className="ref-table" aria-label="Stope i limit za paušalce 2026">
         <thead><tr><th>Stavka</th><th>Stopa / iznos</th></tr></thead>
@@ -171,6 +173,7 @@ export function PausalPage() {
           <tr><td>Porez na prihod</td><td>{PAUSAL_RATES.porez}%</td></tr>
           <tr><td>PIO (penzijsko)</td><td>{PAUSAL_RATES.pio}%</td></tr>
           <tr><td>Zdravstveno osiguranje</td><td>{PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}%</td></tr>
+          <tr><td>Osiguranje za slučaj nezaposlenosti</td><td>{PAUSAL_RATES.nezaposlenost.toLocaleString("sr-RS")}%</td></tr>
           <tr><td>Godišnji limit prometa</td><td>{PAUSAL_RATES.limitGodisnji.toLocaleString("sr-RS")} RSD</td></tr>
         </tbody>
       </table>
@@ -179,21 +182,22 @@ export function PausalPage() {
         <thead><tr><th>Osnovica (RSD)</th><th>Mesečne obaveze ≈ (RSD)</th><th>Efektivna stopa</th></tr></thead>
         <tbody>
           {[30000, 50000, 80000].map((o) => {
-            const obaveze = o * (PAUSAL_RATES.porez + PAUSAL_RATES.pio + PAUSAL_RATES.zdravstveno) / 100;
+            const stopaUkupno = PAUSAL_RATES.porez + PAUSAL_RATES.pio + PAUSAL_RATES.zdravstveno + PAUSAL_RATES.nezaposlenost;
+            const obaveze = o * stopaUkupno / 100;
             return (
               <tr key={o}>
                 <td>{o.toLocaleString("sr-RS")}</td>
                 <td>≈ {Math.round(obaveze).toLocaleString("sr-RS")}</td>
-                <td>{(PAUSAL_RATES.porez + PAUSAL_RATES.pio + PAUSAL_RATES.zdravstveno).toLocaleString("sr-RS")}%</td>
+                <td>{stopaUkupno.toLocaleString("sr-RS")}%</td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <p className="home-examples-note">Obaveze = osnovica × (porez {PAUSAL_RATES.porez}% + PIO {PAUSAL_RATES.pio}% + zdravstveno {PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}%). Tačnu osnovicu utvrđuje rešenje Poreske uprave.</p></>),
+      <p className="home-examples-note">Obaveze = osnovica × (porez {PAUSAL_RATES.porez}% + PIO {PAUSAL_RATES.pio}% + zdravstveno {PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}% + nezaposlenost {PAUSAL_RATES.nezaposlenost.toLocaleString("sr-RS")}%). Tačnu osnovicu utvrđuje rešenje Poreske uprave.</p></>),
     faq: [
       { q: "Koliko paušalac plaća mesečno u 2026?", a: "Najčešće okvirno 30.000–45.000 RSD, u zavisnosti od šifre delatnosti i opštine. Tačan iznos je u rešenju Poreske uprave." },
-      { q: "Šta čini mesečnu obavezu paušalca?", a: "Porez 10% i doprinosi — PIO 24% i zdravstveno 10,3% — na paušalnu osnovicu." },
+      { q: "Šta čini mesečnu obavezu paušalca?", a: "Porez 10% i doprinosi — PIO 24%, zdravstveno 10,3% i nezaposlenost 0,75% — na paušalnu osnovicu. Ukupno 45,05%." },
       { q: "Koji je limit za paušal?", a: "Paušalni status važi dok godišnji promet ne pređe 6.000.000 RSD." },
     ],
     related: [
@@ -221,7 +225,7 @@ export function BrutoNetoPage() {
     calc: "full",
     intro: (<p>Ovaj <strong>bruto u neto kalkulator</strong> za 2026. pretvara bruto 1 zaradu u neto iznos na račun, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa zaposlenog (19,90%). Rezultat preuzimate kao PDF platni listić i PPP-PD XML. Za obrnuti smer koristite <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>),
     guide: (<><h2>Kako se računa bruto u neto</h2>
-      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/blog/neoporezivi-2025">neoporezivi iznos zarade</a>.</p>
+      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/blog/neoporezivi-2026">neoporezivi iznos zarade</a>.</p>
       <h2>Bruto 1 vs Bruto 2 — koja je razlika</h2>
       <p><strong>Bruto 1</strong> je ugovorena zarada — osnovica na koju se obračunavaju porez i doprinosi zaposlenog. <strong>Bruto 2</strong> je Bruto 1 uvećan za doprinose na teret poslodavca (15,15%) i predstavlja stvaran trošak rada za poslodavca. Zaposleni „na ruke" prima neto, dok poslodavac plaća bruto 2.</p>
       <table className="ref-table" aria-label="Bruto 1 vs Bruto 2">
@@ -662,17 +666,19 @@ export function RadniDaniPage() {
   const dana = REFERENCE_DATA.radniDani2026;
   const ukupnoDana = dana.reduce((s, r) => s + r.radniDani, 0);
   const ukupnoSati = dana.reduce((s, r) => s + r.radniSati, 0);
+  const ukupnoBezPraznika = dana.reduce((s, r) => s + r.bezPraznika, 0);
   return <ReferencePage cfg={{
     slug: "radni-dani-2026",
-    title: "Radni dani 2026 u Srbiji — po mesecima | PlatniListić",
-    description: "Broj radnih dana i radnih sati po mesecima za 2026, sa praznicima i fondom sati. Korisno za obračun zarade i bolovanja.",
-    h1: "Radni dani u 2026. godini (Srbija)",
+    title: "Radni dani i radni sati 2026 — po mesecima | PlatniListić",
+    description: "Broj radnih dana i fond radnih sati po mesecima 2026: jun 176 h, jul 184 h… Ukupno 261 dan / 2.088 sati. Tabela sa praznicima, za obračun zarade.",
+    h1: "Radni dani i radni sati u 2026. godini (Srbija)",
     breadcrumbName: "Radni dani 2026",
     body: (<>
-      <p>Tabela broja radnih dana i fonda radnih sati (8 sati po danu) po mesecima za 2026. godinu u Srbiji. Fond sati je osnova za obračun minimalne zarade i naknade bolovanja.</p>
-      <table className="ref-table">
+      <p>U 2026. godini ima ukupno <strong>{ukupnoDana} mogućih radnih dana</strong>, odnosno <strong>{ukupnoSati.toLocaleString("sr-RS")} radnih sati</strong> (fond od 8 sati dnevno, ponedeljak–petak). Kada se odbiju državni praznici koji padaju na radni dan, ostaje <strong>{ukupnoBezPraznika} efektivnih radnih dana</strong>. Fond sati je osnova za obračun minimalne zarade, bolovanja i satnice.</p>
+      <h2>Radni dani i fond sati po mesecima 2026</h2>
+      <table className="ref-table" aria-label="Radni dani i radni sati po mesecima za 2026">
         <thead>
-          <tr><th>Mesec</th><th>Radni dani</th><th>Fond sati</th></tr>
+          <tr><th>Mesec 2026.</th><th>Radni dani (fond)</th><th>Radni sati (fond)</th><th>Praznici na radni dan</th><th>Dani bez praznika</th></tr>
         </thead>
         <tbody>
           {dana.map((r) => (
@@ -680,18 +686,22 @@ export function RadniDaniPage() {
               <td>{r.mesec}</td>
               <td>{r.radniDani}</td>
               <td>{r.radniSati}</td>
+              <td>{r.praznici}</td>
+              <td>{r.bezPraznika}</td>
             </tr>
           ))}
         </tbody>
         <tfoot>
-          <tr><th>Ukupno 2026.</th><th>{ukupnoDana}</th><th>{ukupnoSati}</th></tr>
+          <tr><th>Ukupno 2026.</th><th>{ukupnoDana}</th><th>{ukupnoSati.toLocaleString("sr-RS")}</th><th></th><th>{ukupnoBezPraznika}</th></tr>
         </tfoot>
       </table>
-      <p>Napomena: tabela prikazuje standardne radne dane (ponedeljak–petak) umanjene za državne praznike. Proverite <a href="/praznici-2026">spisak praznika za 2026</a> za tačne datume neradnih dana.</p>
+      <p><strong>„Radni dani (fond)"</strong> su svi dani ponedeljak–petak — to je zvanični mogući fond koji se koristi za obračun <a href="/minimalna-zarada-2026">minimalne zarade</a> (cena radnog časa × fond sati) i satnice. <strong>„Dani bez praznika"</strong> su fond umanjen za državne praznike koji padaju na radni dan — toliko se dana stvarno radi. Napomena za februar: pošto Sretenje (15. februar) pada u nedelju, neradan je i utorak 17. februar. Tačne datume proverite u <a href="/praznici-2026">spisku praznika za 2026</a>.</p>
     </>),
     faq: [
-      { q: "Koliko radnih dana ima u 2026. godini u Srbiji?", a: `Ukupno ${ukupnoDana} radnih dana u 2026, odnosno ${ukupnoSati} radnih sati (po 8 sati dnevno), ne računajući državne praznike.` },
-      { q: "Zašto je broj radnih dana važan za obračun zarade?", a: "Fond sati u mesecu određuje iznos minimalne zarade i naknade za bolovanje — minimalna zarada = cena radnog časa × fond sati. Mesečni iznos stoga varira." },
+      { q: "Koliko radnih dana ima u 2026. godini u Srbiji?", a: `Mogući fond je ${ukupnoDana} radnih dana (${ukupnoSati.toLocaleString("sr-RS")} sati). Kada se odbiju praznici koji padaju na radni dan, efektivno se radi ${ukupnoBezPraznika} dana.` },
+      { q: "Koliko radnih sati ima jul 2026?", a: "Jul 2026. ima 23 radna dana, odnosno fond od 184 radna sata — najviše u godini (uz decembar). Nema praznika." },
+      { q: "Koliko radnih sati ima jun 2026?", a: "Jun 2026. ima 22 radna dana, odnosno fond od 176 radnih sati, bez praznika." },
+      { q: "Zašto je broj radnih dana važan za obračun zarade?", a: "Fond sati u mesecu određuje iznos minimalne zarade i naknade za bolovanje — minimalna zarada = cena radnog časa (371 RSD u 2026) × fond sati. Mesečni iznos stoga varira od 59.360 (160 h) do 68.264 RSD (184 h)." },
       { q: "Kako se tretiraju državni praznici u obračunu zarade?", a: "Zaposleni koji ne rade na državni praznik imaju pravo na punu naknadu zarade (1 dan = 1 radni dan u obračunu). Ko radi na praznik prima uvećanje od najmanje 110% zarade za taj dan." },
     ],
     related: [
@@ -700,8 +710,8 @@ export function RadniDaniPage() {
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
     ],
-    // VERIFY (owner): confirm radniDani2026 counts against the official 2026 calendar before publishing.
-    sourceNote: <>Izvor: Zakon o radu (Sl. glasnik RS) i Vlada RS — odluka o neradnim danima za 2026.</>,
+    // Verifikovano 6.7.2026: fond potvrđen uz Paragraf tabelu minimalne zarade 2026 (261 dan / 2.088 h).
+    sourceNote: <>Izvor: Zakon o državnim i drugim praznicima u RS (Sl. glasnik RS); fond sati usklađen sa zvaničnom tabelom minimalne zarade za 2026.</>,
   }} />;
 }
 

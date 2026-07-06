@@ -8,7 +8,7 @@ export const POSTS = [
     body: `
 ![Otkaz ugovora o radu 2026 — otkazni rok, otpremnina i prava zaposlenog](https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jun 2026.** Rokovi i pravila usklađeni su sa važećim **Zakonom o radu** („Sl. glasnik RS", sa izmenama). Iznosi otpremnine vezani za prosečnu zaradu računati su prema poslednjem zvaničnom podatku RZS-a (prosečna neto zarada za mart 2026: 121.650 din).
+> **Provereno i ažurirano: jul 2026.** Rokovi i pravila usklađeni su sa važećim **Zakonom o radu** („Sl. glasnik RS", sa izmenama). Iznosi otpremnine vezani za prosečnu zaradu računati su prema poslednjem zvaničnom podatku RZS-a (prosečna neto zarada za april 2026: 121.805 din).
 
 Otkaz ugovora o radu je prestanak radnog odnosa voljom jedne strane — poslodavca ili zaposlenog. Poslodavac može otkazati ugovor **samo iz zakonom propisanog razloga** i uz propisan postupak, dok zaposleni daje otkaz slobodno, uz otkazni rok. U ovom vodiču su tačni razlozi, rokovi, prava i obračun otpremnine — sa konkretnim brojčanim primerom.
 
@@ -73,7 +73,7 @@ Zaposleni proglašen tehnološkim viškom, sa **10 navršenih godina** rada kod 
 > Otpremnina = 1/3 × prosečna zarada × broj godina staža
 > Otpremnina = (1/3 × 90.000) × 10 = **300.000 dinara**
 
-Minimalna zakonska otpremnina je **300.000 dinara**; poslodavac sme isplatiti više, ali ne manje. **Primer za penziju:** uz poslednju prosečnu neto zaradu u Srbiji od 121.650 din ([prosečna plata u Srbiji](/blog/prosecna-plata-srbija)), minimalna otpremnina pri penzionisanju je 2 × 121.650 = **243.300 dinara**.
+Minimalna zakonska otpremnina je **300.000 dinara**; poslodavac sme isplatiti više, ali ne manje. **Primer za penziju:** uz poslednju prosečnu neto zaradu u Srbiji od 121.805 din ([prosečna plata u Srbiji](/blog/prosecna-plata-srbija)), minimalna otpremnina pri penzionisanju je 2 × 121.805 = **243.610 dinara**.
 
 ## Kada zaposleni daje otkaz
 
@@ -117,25 +117,23 @@ Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otka
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
     tag: "Zarada",
-    title: "Prosečna plata u Srbiji 2026 (neto i bruto)",
-    summary: "Prosečna neto plata u Srbiji 2026. iznosi oko 121.650 din (≈1.036 €). Pregled po mesecima, sektorima i gradovima — i zašto je medijalna zarada važnija.",
+    title: "Prosečna plata u Srbiji 2026: 121.805 din neto (RZS)",
+    summary: "Prosečna neto plata u Srbiji je 121.805 din (≈1.038 €), bruto 168.008 (RZS, april 2026). Pregled po mesecima, sektorima i gradovima + medijalna zarada.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     body: `
 ![Prosečna plata u Srbiji 2026 — neto 121.650 dinara (≈1.036 €), bruto 167.263, medijalna 91.399, IT 311.370, minimalac 64.554.](/media/prosecna-plata-2026.png)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za mart 2026. Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
+> **Provereno i ažurirano: jul 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za april 2026 (objavljen 25. juna). Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
 
-Koliko zaista iznosi prosečna plata u Srbiji 2026. godine? Zvanični podaci postoje, ali ih mediji često predstave tako da deluje da svi zarađuju više nego što je realno. U ovom vodiču dajemo pregled prosečne neto i bruto zarade po mesecima, po sektorima i po gradovima — u dinarima i evrima — i objašnjavamo zašto je medijalna zarada realnija slika od proseka.
-
-**Ukratko:** prosečna **neto** plata za mart 2026. iznosi **121.650 din (≈ 1.036 €)**, a **bruto** **167.263 din (≈ 1.425 €)**. Ali polovina zaposlenih zarađuje manje od oko **92.000 din** — to je medijalna zarada, i ona bolje opisuje „tipičnu" platu.
+Prosečna plata u Srbiji iznosi **121.805 dinara neto (≈ 1.038 €)**, odnosno **168.008 dinara bruto** — najnoviji zvaničan podatak RZS-a, za april 2026. Medijalna neto zarada je **94.585 dinara**: polovina zaposlenih prima manje od tog iznosa, pa medijalna plata bolje opisuje „tipičnu" zaradu od proseka. U nastavku: pregled po mesecima, sektorima i gradovima, u dinarima i evrima.
 
 > **Napomena:** Ovaj tekst je informativnog karaktera. Zvaničan izvor svih iznosa je Republički zavod za statistiku; podaci se menjaju svakog meseca.
 
-## Ključne brojke (mart 2026, neto)
+## Ključne brojke (april 2026, RZS)
 
-- **Prosečna neto zarada:** 121.650 din ≈ 1.036 €
-- **Prosečna bruto zarada:** 167.263 din ≈ 1.425 €
-- **Medijalna neto zarada:** 91.399 din ≈ 779 € (februar 2026)
+- **Prosečna neto zarada:** 121.805 din ≈ 1.038 €
+- **Prosečna bruto zarada:** 168.008 din ≈ 1.431 €
+- **Medijalna neto zarada:** 94.585 din ≈ 806 €
 - **Najviše — IT sektor:** ~311.370 din ≈ 2.652 €
 - **Najviše — Beograd (prosek):** 144.028 din ≈ 1.227 €
 - **Najmanje — jug Srbije:** ~90.705 din ≈ 772 €
@@ -151,12 +149,13 @@ Prosečna zarada varira iz meseca u mesec, zavisno od isplata bonusa, broja radn
 | Januar | 163.385 din | 118.429 din | 92.671 din |
 | Februar | 160.067 din | 116.127 din | 91.399 din |
 | Mart | 167.263 din | 121.650 din | — |
+| April | 168.008 din | 121.805 din | 94.585 din |
 
-U poređenju sa istim mesecom prethodne godine, prosečna neto zarada za februar 2026. nominalno je veća za **12,2%**, a realno (nakon inflacije) za **9,5%** — plate i dalje rastu brže od cena. Razliku između bruto i neto iznosa objašnjavamo u vodiču [bruto-neto razlika](/blog/bruto-neto-razlika), a sastav doprinosa u tekstu [doprinosi u Srbiji](/blog/doprinosi-srbija).
+U periodu januar–april 2026, u odnosu na isti period prethodne godine, prosečna neto zarada nominalno je veća za **11,6%**, a realno (nakon inflacije) za **8,6%** — plate i dalje rastu brže od cena. Razliku između bruto i neto iznosa objašnjavamo u vodiču [bruto-neto razlika](/blog/bruto-neto-razlika), a sastav doprinosa u tekstu [doprinosi u Srbiji](/blog/doprinosi-srbija).
 
 ## Zašto je medijalna zarada važnija od proseka
 
-Prosečnu platu „naviše vuku" visoke zarade malog broja ljudi (rukovodioci, IT). Realniju sliku daje **medijalna zarada** — iznos koji deli zaposlene na dve jednake polovine. Za februar 2026. medijalna neto zarada iznosila je **91.399 din (≈ 779 €)**: polovina zaposlenih primila je do tog iznosa, a polovina više. Drugim rečima, tipičan zaposleni u Srbiji zarađuje osetno manje od „prosečne" plate od oko 121.000 din.
+Prosečnu platu „naviše vuku" visoke zarade malog broja ljudi (rukovodioci, IT). Realniju sliku daje **medijalna zarada** — iznos koji deli zaposlene na dve jednake polovine. Za april 2026. medijalna neto zarada iznosi **94.585 din (≈ 806 €)**: polovina zaposlenih primila je do tog iznosa, a polovina više. Drugim rečima, tipičan zaposleni u Srbiji zarađuje oko **27.000 din manje** od „prosečne" plate od 121.805 din.
 
 ## Prosečna plata po sektorima
 
@@ -197,9 +196,9 @@ Po srednjem kursu NBS od **117,40 din za 1 €**, ključni iznosi su:
 
 | Pokazatelj (neto, mesečno) | Dinari | Evri |
 |---|---|---|
-| Prosečna bruto zarada | 167.263 | ≈ 1.425 € |
-| Prosečna neto zarada | 121.650 | ≈ 1.036 € |
-| Medijalna neto zarada | 91.399 | ≈ 779 € |
+| Prosečna bruto zarada | 168.008 | ≈ 1.431 € |
+| Prosečna neto zarada | 121.805 | ≈ 1.038 € |
+| Medijalna neto zarada | 94.585 | ≈ 806 € |
 | Beograd (prosek, neto) | 144.028 | ≈ 1.227 € |
 | IT sektor (neto) | 311.370 | ≈ 2.652 € |
 | Minimalac (neto) | 64.554 | ≈ 550 € |
@@ -220,7 +219,7 @@ Neto zarada prati isti trend i čini približno 72% bruto iznosa.
 
 ## Prosečna plata vs. minimalac i penzija
 
-Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/blog/minimalna-zarada-2026). Minimalac je tako oko **71% medijalne** i tek oko **53% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata pet puta većih.
+Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/blog/minimalna-zarada-2026). Minimalac je tako oko **68% medijalne** i tek oko **53% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata pet puta većih.
 
 ## Kako se prosečna plata obračunava
 
@@ -240,10 +239,10 @@ Cela slika prosečne plate u Srbiji 2026. na jednom mestu — slobodno sačuvajt
 - [Narodna banka Srbije — kursna lista](https://www.nbs.rs/sr/scripts/kursnalista/)
     `,
     faq: [
-      { q: "Kolika je prosečna plata u Srbiji 2026?", a: "Prosečna neto plata za mart 2026. iznosi 121.650 dinara (oko 1.036 evra), a bruto 167.263 dinara, prema podacima RZS-a. Tokom prvih meseci 2026. neto prosek se kretao između 116.000 i 122.000 dinara." },
-      { q: "Kolika je prosečna plata u Srbiji u evrima?", a: "Po srednjem kursu NBS (117,40 dinara za 1 evro), prosečna neto plata od 121.650 dinara iznosi približno 1.036 evra mesečno, a bruto zarada oko 1.425 evra." },
-      { q: "Kolika je medijalna plata u Srbiji?", a: "Medijalna neto zarada za februar 2026. iznosila je 91.399 dinara (oko 779 evra). To znači da polovina zaposlenih zarađuje manje od tog iznosa, pa je medijalna plata realnija slika od proseka." },
-      { q: "Da li većina ljudi zarađuje prosečnu platu?", a: "Ne. Većina zaposlenih zarađuje ispod proseka. Tipičnu zaradu bolje opisuje medijalna plata (oko 91.000 dinara) nego prosek (oko 121.000 dinara), jer prosek podižu visoke plate u IT-u i menadžmentu." },
+      { q: "Kolika je prosečna plata u Srbiji 2026?", a: "Prosečna neto plata za april 2026. iznosi 121.805 dinara (oko 1.038 evra), a bruto 168.008 dinara, prema podacima RZS-a. Tokom prvih meseci 2026. neto prosek se kretao između 116.000 i 122.000 dinara." },
+      { q: "Kolika je prosečna plata u Srbiji u evrima?", a: "Po srednjem kursu NBS (117,40 dinara za 1 evro), prosečna neto plata od 121.805 dinara iznosi približno 1.038 evra mesečno, a bruto zarada oko 1.431 evro." },
+      { q: "Kolika je medijalna plata u Srbiji?", a: "Medijalna neto zarada za april 2026. iznosi 94.585 dinara (oko 806 evra). To znači da polovina zaposlenih zarađuje manje od tog iznosa, pa je medijalna plata realnija slika od proseka." },
+      { q: "Da li većina ljudi zarađuje prosečnu platu?", a: "Ne. Većina zaposlenih zarađuje ispod proseka. Tipičnu zaradu bolje opisuje medijalna plata (oko 94.500 dinara) nego prosek (oko 122.000 dinara), jer prosek podižu visoke plate u IT-u i menadžmentu." },
       { q: "Koji sektor ima najveću platu u Srbiji?", a: "Najviše zarađuje IT sektor — prosečna neto plata u računarskom programiranju premašuje 311.000 dinara, više od tri puta iznad državnog proseka. Najmanje se zarađuje u ugostiteljstvu." },
       { q: "Koji grad ima najveću prosečnu platu?", a: "Beograd, sa prosečnom neto zaradom od oko 144.000 dinara. Najviše plate su u opštinama Stari grad i Vračar, preko 190.000 dinara neto." },
       { q: "Da li je prosečna plata bruto ili neto?", a: "Statistika objavljuje oba iznosa. Na ruke se dobija neto plata, dok je bruto iznos pre poreza i doprinosa." },
@@ -494,11 +493,11 @@ Ne birajte po tome „šta zvuči bolje", već po odgovornosti, ukupnom porezu n
     body: `
 ![Koliko paušalac plaća mesečno u Srbiji 2026 — porez i doprinosi](https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jun 2026.** Stope i pravila usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO) za 2026. godinu. Tačan mesečni iznos određuje rešenje Poreske uprave — pre planiranja proverite svoj konkretan iznos.
+> **Provereno i ažurirano: jul 2026.** Stope i pravila usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Zakon o doprinosima čl. 44) za 2026. godinu. Tačan mesečni iznos određuje rešenje Poreske uprave — pre planiranja proverite svoj konkretan iznos.
 
 Najveća prednost paušalca je predvidljivost: plaćate **isti fiksni iznos svakog meseca**, bez obzira na to koliko ste zaradili. Ali „koliko tačno" zavisi od nekoliko faktora i razlikuje se od preduzetnika do preduzetnika. U ovom vodiču objašnjavamo od čega zavisi mesečna obaveza, šta je sve uključeno i kako da saznate svoj tačan iznos.
 
-**Ukratko:** paušalac u 2026. plaća **fiksni mesečni iznos** koji najčešće iznosi okvirno **30.000–45.000 RSD** (porez 10% + doprinosi PIO 24% i zdravstvo 10,3% na paušalnu osnovicu). Tačan iznos zavisi od **delatnosti i opštine** i naveden je u rešenju Poreske uprave.
+**Ukratko:** paušalac u 2026. plaća **fiksni mesečni iznos** koji najčešće iznosi okvirno **30.000–45.000 RSD** (porez 10% + doprinosi: PIO 24%, zdravstvo 10,3% i nezaposlenost 0,75% na paušalnu osnovicu — ukupno **45,05%**). Tačan iznos zavisi od **delatnosti i opštine** i naveden je u rešenju Poreske uprave.
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski savet. Tačan iznos zavisi od rešenja Poreske uprave; za procenu se obratite knjigovođi.
 
@@ -515,13 +514,14 @@ Zbog toga dva paušalca sa istom delatnošću mogu imati različit iznos ako su 
 
 ## Šta sve plaća paušalac mesečno
 
-Mesečna obaveza nije samo „porez" — sastoji se od tri dela, svi obračunati na paušalnu osnovicu:
+Mesečna obaveza nije samo „porez" — sastoji se od četiri dela, svi obračunati na paušalnu osnovicu:
 
 - **Porez na prihod od samostalne delatnosti: 10%**
 - **Doprinos za PIO (penzijsko): 24%**
 - **Doprinos za zdravstveno osiguranje: 10,3%**
+- **Doprinos za osiguranje za slučaj nezaposlenosti: 0,75%**
 
-Doprinosi su, dakle, veći deo obaveze od samog poreza. Sve troje zajedno čini fiksni mesečni iznos iz rešenja.
+Doprinosi (ukupno 35,05%) su, dakle, znatno veći deo obaveze od samog poreza; sa porezom, ukupno opterećenje je **45,05%** paušalne osnovice. Pažnja: pojedini sajtovi i dalje navode zastarelu stopu PIO od 25,5% — važeća stopa je **24%** (Zakon o doprinosima, čl. 44, od 1. januara 2023). Sve zajedno čini fiksni mesečni iznos iz rešenja.
 
 ## Okvirni mesečni iznos
 
@@ -559,7 +559,7 @@ Pre nego što se registrujete, procenite mesečnu obavezu za svoju delatnost i o
     `,
     faq: [
       { q: "Koliko paušalac plaća mesečno u 2026. godini?", a: "Najčešće okvirno 30.000–45.000 RSD mesečno, ali iznos zavisi od šifre delatnosti, opštine i drugih koeficijenata, pa može biti i niži ili viši. Tačan iznos određuje rešenje Poreske uprave." },
-      { q: "Šta sve čini mesečnu obavezu paušalca?", a: "Porez na prihod od samostalne delatnosti (10%) i doprinosi — PIO (24%) i zdravstveno osiguranje (10,3%) — obračunati na paušalno utvrđenu osnovicu. Doprinosi su veći deo obaveze od samog poreza." },
+      { q: "Šta sve čini mesečnu obavezu paušalca?", a: "Porez na prihod od samostalne delatnosti (10%) i doprinosi — PIO (24%), zdravstveno osiguranje (10,3%) i osiguranje za slučaj nezaposlenosti (0,75%) — obračunati na paušalno utvrđenu osnovicu. Ukupno 45,05%; doprinosi su veći deo obaveze od samog poreza." },
       { q: "Da li paušalac plaća isto svakog meseca?", a: "Da. Paušalac plaća fiksan iznos iz rešenja bez obzira na to koliko je tog meseca zaradio, sve dok je u paušalnom režimu i ispod limita od 6.000.000 RSD godišnje." },
       { q: "Gde vidim tačan iznos koji treba da platim?", a: "U rešenju Poreske uprave o paušalnom oporezivanju, koje sa nalozima za plaćanje vidite preko portala ePorezi. Dok rešenje ne stigne, iznos je samo procena." },
     ],
@@ -1128,7 +1128,7 @@ Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-n
     body: `
 ![Paušalno oporezivanje u Srbiji](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Paušalno oporezivanje** je najjednostavniji poreski režim za preduzetnike u Srbiji. Paušalac plaća **fiksan mesečni iznos** poreza i doprinosa, bez obzira na to koliko je tačno zaradio, i **ne vodi poslovne knjige** (osim jednostavne KPO knjige). Zbog toga je paušal veoma popularan kod programera, konsultanata, dizajnera i drugih koji pružaju usluge. U ovom vodiču objašnjavamo ko može da bude paušalac u **2026. godini**, koliko to košta i kada se više isplati od samooporezivanja.
 
@@ -1176,7 +1176,12 @@ Na utvrđenu osnovicu obračunavaju se:
 
 - **porez na prihod: 10%**,
 - **doprinosi za PIO: 24%**,
-- **doprinosi za zdravstveno osiguranje: 10,3%**.
+- **doprinosi za zdravstveno osiguranje: 10,3%**,
+- **doprinos za osiguranje za slučaj nezaposlenosti: 0,75%**.
+
+Ukupno opterećenje je **45,05%** paušalne osnovice.
+
+> ⚠️ **Oprez sa zastarelim ciframa:** pojedini kalkulatori i blogovi i dalje prikazuju PIO stopu od **25,5%** (i ukupno „46,55%") — ta stopa ne važi od 2023. godine. Važeća stopa PIO je **24%** (Zakon o doprinosima za obavezno socijalno osiguranje, čl. 44; izvor: [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)).
 
 Zbir ovih obaveza čini fiksni mesečni iznos iz rešenja. U praksi, mesečni trošak se kreće od **nekoliko hiljada do nekoliko desetina hiljada dinara**, u zavisnosti od delatnosti i opštine — tačan iznos uvek piše u rešenju Poreske uprave.
 
@@ -1220,7 +1225,8 @@ Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [u
     `,
     faq: [
       { q: "Koliki je limit za paušalno oporezivanje u 2026. godini?", a: "Limit za zadržavanje statusa paušalca je 6.000.000 dinara prometa u kalendarskoj godini. Poseban limit od 8.000.000 dinara, koji se posmatra za bilo kojih 365 uzastopnih dana, odnosi se na ulazak u sistem PDV-a i važi za sve privredne subjekte." },
-      { q: "Koliko paušalac plaća poreza i doprinosa mesečno?", a: "Mesečni iznos je fiksan i utvrđuje ga Poreska uprava rešenjem, na osnovu šifre delatnosti, opštine i prosečne zarade. Na utvrđenu osnovicu plaća se porez 10%, doprinos za PIO 24% i doprinos za zdravstveno osiguranje 10,3%. Iznos se najčešće kreće od nekoliko hiljada do nekoliko desetina hiljada dinara mesečno." },
+      { q: "Koliko paušalac plaća poreza i doprinosa mesečno?", a: "Mesečni iznos je fiksan i utvrđuje ga Poreska uprava rešenjem, na osnovu šifre delatnosti, opštine i prosečne zarade. Na utvrđenu osnovicu plaća se porez 10% i doprinosi: PIO 24%, zdravstveno 10,3% i nezaposlenost 0,75% — ukupno 45,05%. Iznos se najčešće kreće od nekoliko hiljada do nekoliko desetina hiljada dinara mesečno." },
+      { q: "Da li je PIO stopa za paušalce 25,5% ili 24%?", a: "24%. Stopa doprinosa za PIO smanjena je na 24% od 1. januara 2023 (čl. 44 Zakona o doprinosima). Sajtovi koji navode 25,5% (ukupno 46,55%) prikazuju zastarele cifre — ukupno opterećenje paušalca danas je 45,05%." },
       { q: "Koje delatnosti ne mogu da budu paušalno oporezovane?", a: "Paušalno oporezivanje nije dozvoljeno za trgovinu na veliko i malo, ugostiteljstvo, finansijsko posredovanje i osiguranje, kao i za delatnosti reklamiranja i istraživanja tržišta. Većina uslužnih i IT delatnosti može da posluje paušalno." },
       { q: "Šta je bolje, paušal ili samooporezivanje?", a: "Za niže i povremene prihode često je jednostavnije samooporezivanje kao frilenser, dok za redovne i veće prihode paušal po pravilu daje nižu ukupnu obavezu. Pošto prelomna tačka zavisi od iznosa, najbolje je uporediti obe opcije pre odluke." },
     ],
@@ -2080,17 +2086,17 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
     ],
   },
   {
-    id: "neoporezivi-2025",
+    id: "neoporezivi-2026",
     date: "1. februar 2026",
     tag: "Porez",
     title: "Neoporezivi iznos zarade u 2026. godini: 34.221 RSD",
-    summary: "Od 1. februara 2026. godine, neoporezivi iznos zarade iznosi 34.221 RSD mesečno. Šta to znači za obračun poreza na zaradu i koliko štedite?",
+    summary: "Od 1. januara 2026. godine, neoporezivi iznos zarade iznosi 34.221 RSD mesečno. Šta to znači za obračun poreza na zaradu i koliko štedite?",
     body: `
 ![Obračun poreza na zaradu](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
-Od 1. februara 2026. godine, neoporezivi iznos zarade u Srbiji iznosi **34.221 RSD** mesečno (povećan sa ranijih 28.423 RSD). Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%.
+Od 1. januara 2026. godine, neoporezivi iznos zarade u Srbiji iznosi **34.221 RSD** mesečno (povećan sa ranijih 28.423 RSD). Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%. Za razliku od ostalih usklađenih neoporezivih iznosa (dnevnice, pomoći i sl.) koji važe od 1. februara, **neoporezivi deo zarade primenjuje se već od 1. januara 2026** — utvrđen je izmenama Zakona o porezu na dohodak građana, a ne februarskim usklađivanjem.
 
 ## Kako funkcioniše neoporezivi iznos?
 
@@ -2113,7 +2119,7 @@ Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi
 
 ## Promena u odnosu na 2025. godinu
 
-Do 31. januara 2026. godine neoporezivi iznos je bio **28.423 RSD**. Od 1. februara 2026. povećan je na **34.221 RSD** — rast od preko 20%, kao posledica usklađivanja sa rastom zarada i inflacijom. Pogledajte i pregled [minimalne zarade za 2026. godinu](/blog/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
+Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% („Sl. glasnik RS" 115/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/blog/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
 
 ## Važno napomenuti
 
@@ -2159,7 +2165,7 @@ Iz bruto 1 zarade se oduzimaju dve vrste obaveza:
 - Osiguranje za slučaj nezaposlenosti: 0,75%
 
 **2. Porez na dohodak (10%)**
-- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/blog/neoporezivi-2025) od **34.221 RSD** (od 02/2026; ranije 28.423 RSD)
+- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/blog/neoporezivi-2026) od **34.221 RSD** (od 1.1.2026; ranije 28.423 RSD)
 
 ## Neto zarada
 
@@ -2365,7 +2371,7 @@ Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarad
     body: `
 ![Minimalna zarada rast 2026](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Od **1. januara 2026. godine** u Srbiji važi nova minimalna cena rada, usklađena sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
 
@@ -2408,7 +2414,7 @@ Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji 
 
 ## Neoporezivi iznos i minimalna zarada
 
-Od 1. februara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/blog/neoporezivi-2025).
+Od 1. januara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/blog/neoporezivi-2026).
 
 Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake druge zarade.
 
