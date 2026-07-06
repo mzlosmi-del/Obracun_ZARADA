@@ -6,27 +6,24 @@
 // Fields:
 //   id         – stable slug, also used as tracking subid
 //   title      – job title shown to the user (Serbian)
+//   hook       – 1 sentence benefit-first sell: WHO is it for + WHY apply.
+//                Lead with the reader ("Govoriš nemački?"), not the company.
+//   perks      – 3-4 short benefit chips (emoji + 2-3 words each)
+//   badge      – small attention label ("NOVO", "HITNO", "TOP PLATA") or null
 //   location   – city / "Remote"
 //   salaryMin/salaryMax – NETO RSD range if the agency provides it (null = unknown).
 //                Used to match jobs to the visitor's calculated salary.
 //   link       – the agency's affiliate landing-page URL (paste as received)
 //   active     – false hides the job everywhere without deleting the entry
-//
-// Example:
-// {
-//   id: "racunovodja-bg",
-//   title: "Samostalni računovođa",
-//   location: "Beograd",
-//   salaryMin: 90000, salaryMax: 130000,
-//   link: "https://agencija.example/landing/xyz?aff=platnilistic",
-//   active: true,
-// },
 
 export const JOBS = [
   {
     id: "agent-podrske-de-en",
-    title: "Agent korisničke podrške — nemački i engleski jezik",
-    location: "Remote (rad od kuće)",
+    title: "Agent korisničke podrške — nemački i engleski",
+    hook: "Govoriš nemački i engleski? Međunarodna kompanija traži pojačanje — stabilna plata, 100% od kuće, uz plaćenu obuku od prvog dana.",
+    perks: ["🏠 100% rad od kuće", "🏥 Privatno zdravstveno", "🎓 Plaćena obuka", "🎂 Slobodan dan za rođendan"],
+    badge: "NOVO",
+    location: "Remote · cela Srbija",
     salaryMin: null, salaryMax: null,
     link: "https://poslovi.friendlyhr.rs/jobs/7799407-agent-korisnicke-podrske-nemacki-i-engleski-jezik-remote",
     active: true,
