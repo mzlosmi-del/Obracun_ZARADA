@@ -32,9 +32,21 @@ function salaryLabel(j) {
   return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
 }
 
-export function JobsWidget({ neto, placement = "site", limit }) {
-  let jobs = neto ? matchJobs(neto) : activeJobs();
-  if (limit && jobs.length > limit) jobs = jobs.slice(0, limit);
+// Serbian plural: 1 pozicija, 2-4 pozicije, 5+ pozicija
+function pozicijaLabel(n) {
+  if (n % 10 === 1 && n % 100 !== 11) return "otvorena pozicija";
+  if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return "otvorene pozicije";
+  return "otvorenih pozicija";
+}
+
+export function JobsWidget({ neto, placement = "site" }) {
+  // Always show ALL active jobs; when we know the visitor's calculated neto,
+  // sort salary-relevant jobs to the top instead of hiding the rest.
+  let jobs = activeJobs();
+  if (neto) {
+    const matched = new Set(matchJobs(neto).map((j) => j.id));
+    jobs = [...jobs].sort((a, b) => (matched.has(b.id) ? 1 : 0) - (matched.has(a.id) ? 1 : 0));
+  }
 
   if (jobs.length === 0) {
     return (
@@ -53,10 +65,13 @@ export function JobsWidget({ neto, placement = "site", limit }) {
       <div className="jobs-widget-head">
         <div>
           <div className="jobs-widget-eyebrow">Poslovi · licencirana agencija</div>
-          <div className="jobs-widget-title">Otvorene pozicije ove nedelje</div>
+          <div className="jobs-widget-title">
+            Otvorene pozicije ove nedelje
+            <span className="jobs-widget-count">{jobs.length} {pozicijaLabel(jobs.length)}</span>
+          </div>
         </div>
       </div>
-      <div className="jobs-widget-list">
+      <div className={`jobs-widget-list${jobs.length > 1 ? " jobs-widget-list-scroll" : ""}`}>
         {jobs.map((j) => (
           <a
             key={j.id}

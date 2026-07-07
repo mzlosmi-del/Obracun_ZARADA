@@ -133,7 +133,7 @@ function BlogPost({ post, navigate }) {
         </section>
       )}
 
-      <JobsWidget placement="blog" limit={3} />
+      <JobsWidget placement="blog" />
 
       <div className="post-cta">
         <p>Proverite tačan obračun vaše zarade koristeći naš besplatni kalkulator — bruto u neto, doprinosi, porez i PDF platni listić u nekoliko sekundi.</p>

@@ -613,7 +613,7 @@ export function CalculatorPage({ focusSection } = {}) {
         </div>
       </div>
 
-      <JobsWidget neto={r.neto} placement="kalkulator" limit={2} />
+      <JobsWidget neto={r.neto} placement="kalkulator" />
 
       <div className="tabs" role="tablist" aria-label="Sekcije kalkulatora">
         {["inputs","payslip","results","rates","ppppd"].map((t) => (
