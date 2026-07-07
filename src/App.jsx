@@ -5,6 +5,7 @@ import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum,
 import { useSeo } from "./seo.jsx";
 import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
+import { JobsWidget } from "./JobsWidget.jsx";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -611,6 +612,8 @@ export function CalculatorPage({ focusSection } = {}) {
           <div className="ratio-legend-item"><div className="ratio-dot" style={{ background: "#f02d3a" }} aria-hidden="true" />Porez ({pct(r.tax/r.bruto1)})</div>
         </div>
       </div>
+
+      <JobsWidget neto={r.neto} placement="kalkulator" />
 
       <div className="tabs" role="tablist" aria-label="Sekcije kalkulatora">
         {["inputs","payslip","results","rates","ppppd"].map((t) => (
