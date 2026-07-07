@@ -1222,6 +1222,25 @@ export default function App() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // GoatCounter pageviews — counted manually (script runs with no_onload so
+  // SPA route changes are captured too). Production hostname only: previews
+  // and localhost must not pollute the stats. Retries while count.js loads.
+  useEffect(() => {
+    if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
+    const path = location.pathname;
+    let tries = 0;
+    let timer;
+    const send = () => {
+      if (window.goatcounter && window.goatcounter.count) {
+        window.goatcounter.count({ path });
+      } else if (tries++ < 10) {
+        timer = setTimeout(send, 500);
+      }
+    };
+    send();
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
+
   const navItems = [
     { path: "/", icon: "⚡", label: "Kalkulator" },
     { path: "/bruto-neto", icon: "🔁", label: "Bruto u neto" },
