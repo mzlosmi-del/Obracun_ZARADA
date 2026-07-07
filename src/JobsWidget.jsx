@@ -14,6 +14,9 @@ const fmtRsd = (n) => new Intl.NumberFormat("sr-RS").format(n);
 // Count the click in GoatCounter (free, cookieless) AND Vercel Analytics
 // (activates automatically if the site ever moves to a Pro plan).
 function trackJobClick(jobId, placement) {
+  // Production only — Vercel preview deploys (*.vercel.app) and localhost
+  // must not pollute the click stats.
+  if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
   try {
     if (window.goatcounter && window.goatcounter.count) {
       window.goatcounter.count({ path: `job-click/${jobId}/${placement}`, event: true });
@@ -24,12 +27,14 @@ function trackJobClick(jobId, placement) {
 
 function salaryLabel(j) {
   if (j.salaryMin == null && j.salaryMax == null) return null;
-  if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)} RSD neto`;
-  return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)} RSD neto`;
+  const suffix = j.salaryNeto ? " RSD neto" : " RSD";
+  if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)}${suffix}`;
+  return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
 }
 
-export function JobsWidget({ neto, placement = "site" }) {
-  const jobs = neto ? matchJobs(neto) : activeJobs();
+export function JobsWidget({ neto, placement = "site", limit }) {
+  let jobs = neto ? matchJobs(neto) : activeJobs();
+  if (limit && jobs.length > limit) jobs = jobs.slice(0, limit);
 
   if (jobs.length === 0) {
     return (
