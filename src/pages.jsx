@@ -638,6 +638,15 @@ export function StopeDoprinosaPage() {
 
 export function MinimalnaZaradaPage() {
   const m = REFERENCE_DATA.minimalnaZarada2026;
+  // Monthly minimum net = fixed hourly net rate × that month's fond sati.
+  // Derived from the same official inputs (cena časa + radniDani2026); nothing
+  // is invented — this is the "minimalac po mesecima" table merged from the
+  // consolidated blog post.
+  const perMonth = REFERENCE_DATA.radniDani2026.map((r) => ({
+    mesec: r.mesec,
+    sati: r.radniSati,
+    neto: m.cenaRadnogCasaNeto * r.radniSati,
+  }));
   return <ReferencePage cfg={{
     slug: "minimalna-zarada-2026",
     title: "Minimalna zarada 2026 u Srbiji — bruto i neto | PlatniListić",
@@ -655,6 +664,24 @@ export function MinimalnaZaradaPage() {
         </tbody>
       </table>
       <p>Mesečni iznos se razlikuje po mesecima zbog različitog broja radnih dana — najniži je u mesecima sa 160 sati, a najviši sa 184 sata. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a> i izračunajte neto preko <a href="/bruto-neto">bruto u neto kalkulatora</a>. Za poređenje sa prethodnom godinom pogledajte vodič <a href="/blog/minimalna-zarada-2025">minimalna zarada 2025</a>.</p>
+
+      <h2>Minimalac po mesecima 2026 (neto po fondu sati)</h2>
+      <p>Pošto je fiksna samo cena radnog časa ({m.cenaRadnogCasaNeto} RSD neto), mesečni minimalac dobija se množenjem satnice fondom radnih sati u mesecu. Tabela ispod daje minimalni neto po mesecu za 2026:</p>
+      <table className="ref-table" aria-label="Minimalna neto zarada po mesecima 2026">
+        <thead>
+          <tr><th>Mesec 2026.</th><th>Fond sati</th><th>Minimalac (neto)</th></tr>
+        </thead>
+        <tbody>
+          {perMonth.map((r) => (
+            <tr key={r.mesec}>
+              <td>{r.mesec}</td>
+              <td>{r.sati}</td>
+              <td>{r.neto.toLocaleString("sr-RS")} RSD</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>Uz minimalnu zaradu poslodavac plaća i doprinose na svoj teret (15,15%), pa ukupan trošak rada za prosečan fond sati iznosi oko 100.400 RSD mesečno. Isplata ispod minimalca je prekršaj (novčana kazna 800.000–2.000.000 RSD za pravno lice).</p>
     </>),
     faq: [
       { q: "Kolika je minimalna zarada u Srbiji 2026?", a: `Minimalna cena rada je ${m.cenaRadnogCasaNeto} RSD neto po radnom času (od ${m.vaziOd}). Mesečni neto iznos zavisi od fonda sati: od ${m.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m.netoMax.toLocaleString("sr-RS")} RSD (184 h), prosečno oko ${m.netoMesecno.toLocaleString("sr-RS")} RSD.` },

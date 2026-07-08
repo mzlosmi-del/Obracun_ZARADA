@@ -224,7 +224,7 @@ Neto zarada prati isti trend i čini približno 72% bruto iznosa.
 
 ## Prosečna plata vs. minimalac i penzija
 
-Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/blog/minimalna-zarada-2026). Minimalac je tako oko **68% medijalne** i tek oko **53% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata pet puta većih.
+Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/minimalna-zarada-2026). Minimalac je tako oko **68% medijalne** i tek oko **53% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata pet puta većih.
 
 ## Kako se prosečna plata obračunava
 
@@ -1076,7 +1076,7 @@ Drugim rečima, obaveza isplate postoji, ali konkretan iznos zavisi od akta posl
 
 Ovo je ključna stavka koju mnogi previde: **topli obrok i regres ne mogu biti ukalkulisani u minimalnu zaradu**. Zaposleni koji prima minimalac ima pravo na topli obrok i regres **pored** iznosa minimalne zarade, a ne umesto njega.
 
-Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/blog/minimalna-zarada-2026).
+Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/minimalna-zarada-2026).
 
 ## Kako se oporezuju
 
@@ -2127,7 +2127,7 @@ Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi
 
 ## Promena u odnosu na 2025. godinu
 
-Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% („Sl. glasnik RS" 115/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/blog/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
+Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% („Sl. glasnik RS" 115/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
 
 ## Važno napomenuti
 
@@ -2297,7 +2297,7 @@ Ukupan trošak poslodavca za zaposlenog na minimalnoj zarade:
 
 Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomskog saveta, a primenjuje se od 1. januara tekuće godine.
 
-Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/blog/minimalna-zarada-2026) za aktuelne iznose.
+Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/minimalna-zarada-2026) za aktuelne iznose.
 
 Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/bruto-neto), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
 
