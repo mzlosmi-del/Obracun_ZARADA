@@ -4,7 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar, FreshnessStamp } from "./ui.jsx";
 import { useSeo } from "./seo.jsx";
 import { webAppLd } from "./schema.js";
-import { getNonTaxable, DEFAULT_RATES, REFERENCE_DATA } from "./rates.js";
+import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 import { JobsWidget } from "./JobsWidget.jsx";
 import { activeJobs } from "./jobs.js";
 
@@ -1240,7 +1240,7 @@ function HomePage() {
         <table className="ref-table" aria-label="Primeri obračuna zarade 2026">
           <thead><tr><th>Bruto 1 (RSD)</th><th>Doprinosi</th><th>Porez</th><th>Neto ≈</th><th>Bruto 2 ≈</th></tr></thead>
           <tbody>
-            <tr><td>87.207 (minimalac)</td><td>17.354</td><td>5.299</td><td>64.554</td><td>100.428</td></tr>
+            <tr><td>87.207 (minimalac)</td><td>17.354</td><td>5.299</td><td>64.554</td><td>100.419</td></tr>
             <tr><td>100.000</td><td>19.900</td><td>6.578</td><td>73.522</td><td>115.150</td></tr>
             <tr><td>150.000</td><td>29.850</td><td>11.578</td><td>108.572</td><td>172.725</td></tr>
           </tbody>
