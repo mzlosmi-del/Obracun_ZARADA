@@ -311,21 +311,17 @@ function scrollToJobs(navigate) {
   setTimeout(tick, 200);
 }
 
-// Compact sidebar card: live job count + best salary as the hook.
+// Compact sidebar card: question hook + live job count.
 function SidebarJobsTeaser({ onGo }) {
   const navigate = useNavigate();
   const jobs = activeJobs();
   if (jobs.length === 0) return null;
-  const best = Math.max(...jobs.map(j => j.salaryMax ?? j.salaryMin ?? 0));
   return (
     <div className="sidebar-jobs">
-      <div className="sidebar-jobs-eyebrow">Poslovi · partner</div>
-      <div className="sidebar-jobs-title">
-        {jobs.length} {jobs.length % 10 === 1 && jobs.length % 100 !== 11 ? "otvorena pozicija" : [2,3,4].includes(jobs.length % 10) && ![12,13,14].includes(jobs.length % 100) ? "otvorene pozicije" : "otvorenih pozicija"}
+      <div className="sidebar-jobs-title">Tražite bolje plaćen posao?</div>
+      <div className="sidebar-jobs-sub">
+        {jobs.length} {jobs.length % 10 === 1 && jobs.length % 100 !== 11 ? "otvorena pozicija" : [2,3,4].includes(jobs.length % 10) && ![12,13,14].includes(jobs.length % 100) ? "otvorene pozicije" : "otvorenih pozicija"} kod partnerske agencije
       </div>
-      {best > 0 && (
-        <div className="sidebar-jobs-sub">plata do {new Intl.NumberFormat("sr-RS").format(best)} RSD</div>
-      )}
       <button
         type="button"
         className="sidebar-jobs-btn"
@@ -348,7 +344,7 @@ function JobsCTABanner() {
         <div className="jobs-cta-eyebrow">Poslovi · licencirana agencija</div>
         <h2 className="jobs-cta-title">Izračunali ste platu — pogledajte ko nudi više</h2>
         <p className="jobs-cta-body">
-          Proverene ponude sa jasno navedenom platom. Prijava online, besplatno, bez registracije.
+          Proverene ponude licencirane agencije za zapošljavanje. Prijava online, besplatno, bez registracije.
         </p>
       </div>
       <button
