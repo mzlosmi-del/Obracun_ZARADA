@@ -411,11 +411,34 @@ export function BolovanjePage() {
         </tbody>
       </table>
       <h2>Primer obračuna bolovanja</h2>
-      <p>Zaposleni sa prosečnom mesečnom bruto osnovicom od 100.000 RSD (≈ 4.762 RSD dnevno za 21 radni dan) provede 10 radnih dana na bolovanju uz naknadu od 65%. Naknada = 4.762 × 10 × 65% ≈ 30.952 RSD bruto za te dane, dok se za preostale odrađene dane isplaćuje puna zarada.</p></>),
+      <p>Zaposleni sa prosečnom mesečnom bruto osnovicom od 100.000 RSD (≈ 4.762 RSD dnevno za 21 radni dan) provede 10 radnih dana na bolovanju uz naknadu od 65%. Naknada = 4.762 × 10 × 65% ≈ 30.952 RSD bruto za te dane, dok se za preostale odrađene dane isplaćuje puna zarada.</p>
+      <h2>Tabela parametara za obračun bolovanja 2026</h2>
+      <table className="ref-table" aria-label="Parametri za obračun bolovanja 2026">
+        <thead><tr><th>Parametar</th><th>Vrednost</th></tr></thead>
+        <tbody>
+          <tr><td>Minimalni procenat naknade (do 30 dana)</td><td>65% osnovice</td></tr>
+          <tr><td>Procenat naknade za povredu na radu / profesionalno oboljenje</td><td>100% osnovice</td></tr>
+          <tr><td>Period obračunske osnovice</td><td>prosek zarade prethodnih 12 meseci</td></tr>
+          <tr><td>Isplatilac do 30. dana</td><td>poslodavac</td></tr>
+          <tr><td>Isplatilac od 31. dana</td><td>RFZO</td></tr>
+          <tr><td>Porez i doprinosi na naknadu</td><td>obračunavaju se kao na redovnu zaradu (10% porez, 19,90% doprinosi zaposlenog)</td></tr>
+        </tbody>
+      </table>
+      <p>Osnovica za bolovanje nije bruto zarada iz meseca u kom je bolovanje nastupilo, već <strong>prosek isplaćenih zarada (i naknada zarada) zaposlenog u prethodnih 12 meseci</strong> pre meseca u kome je bolovanje počelo. Ako je zaposleni u nekom od tih meseci imao niže primanje (npr. neplaćeno odsustvo ili nepun mesec rada), taj mesec i dalje ulazi u prosek prema pravilima koja primenjuje obračunska služba poslodavca, pa je stvarna osnovica za bolovanje po pravilu nešto drugačija od poslednje isplaćene plate.</p>
+      <h2>Česte greške u obračunu bolovanja</h2>
+      <ul>
+        <li>Računanje 65% naknade na poslednju isplaćenu bruto zaradu umesto na osnovicu — pravilna osnovica je prosek zarade za prethodnih 12 meseci, ne zarada iz tekućeg ili prethodnog meseca.</li>
+        <li>Zanemarivanje granice od 30 dana — poslodavac ostaje obveznik isplate samo do 30. dana bolovanja; ako obračunska služba nastavi da tereti poslodavca i posle tog datuma umesto da uputi zahtev RFZO, dolazi do pogrešnog knjiženja troška.</li>
+        <li>Primena jedinstvenog procenta od 65% i za povredu na radu ili profesionalno oboljenje — u tim slučajevima naknada iznosi 100% osnovice od prvog dana, ne 65%.</li>
+        <li>Neuključivanje minulog rada i drugih redovnih uvećanja zarade u prosek za osnovicu — osnovica se računa na ukupno isplaćenu zaradu, uključujući minuli rad, ne samo na osnovnu zaradu.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Pravo na naknadu zarade za vreme privremene sprečenosti za rad (bolovanje) uređuje Zakon o radu, koji propisuje minimalni procenat naknade (65%, odnosno 100% za povredu na radu ili profesionalno oboljenje) i obavezu poslodavca da naknadu isplaćuje za prvih 30 dana odsustva. Naknadu od 31. dana, kao i postupak i uslove ostvarivanja prava na naknadu preko Republičkog fonda za zdravstveno osiguranje, uređuje Zakon o zdravstvenom osiguranju. Naknada zarade se, kao i redovna zarada, oporezuje porezom na dohodak građana i podleže doprinosima za obavezno socijalno osiguranje.</p></>),
     faq: [
       { q: "Koliki je procenat naknade za bolovanje?", a: "Najmanje 65% osnovice za prvih 30 dana; 100% za povredu na radu ili profesionalno oboljenje. Od 31. dana naknadu isplaćuje RFZO." },
       { q: "Ko plaća bolovanje preko 30 dana?", a: "Od 31. dana naknadu zarade isplaćuje Republički fond za zdravstveno osiguranje (RFZO)." },
       { q: "Kako se određuje osnovica?", a: "Osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci pre meseca bolovanja." },
+      { q: "Kako se računa bolovanje od 65 posto?", a: "Prvo se izračuna dnevna osnovica (prosek bruto zarade prethodnih 12 meseci podeljen brojem radnih dana u mesecu), pa se pomnoži brojem dana bolovanja i sa 65%. Za dnevnu osnovicu od 4.762 RSD i 10 dana bolovanja: 4.762 × 10 × 65% ≈ 30.952 RSD bruto." },
     ],
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
@@ -444,6 +467,9 @@ export function OtpremninaPage() {
     intro: (<p>Ovaj <strong>kalkulator otpremnine</strong> računa pravo na otpremninu po Zakonu o radu: za tehnološki višak (min. 1/3 prosečne zarade po godini staža) i za odlazak u penziju (min. dve prosečne zarade). Unesite prosečnu zaradu i godine staža u kalkulatoru ispod.</p>),
     guide: (<><h2>Kako se obračunava otpremnina</h2>
       <p>Zaposlenom kome prestaje radni odnos zbog tehnološkog viška pripada otpremnina najmanje u visini jedne trećine (1/3) prosečne zarade po godini staža kod poslodavca (čl. 158 Zakona o radu). Za odlazak u penziju otpremnina iznosi najmanje dve prosečne zarade u RS. Poreski tretman: iznos otpremnine neoporeziv do propisanog iznosa — deo koji premašuje neoporezivi prag podleže porezu na dohodak. Detaljan vodič: <a href="/blog/otpremnina-obracun">obračun otpremnine</a>. Za odlazak u penziju pogledajte i vodič <a href="/blog/kako-se-obracunava-penzija">kako se obračunava penzija</a>.</p>
+      <h2>Kada zaposleni ima pravo na otpremninu</h2>
+      <p>Pravo na otpremninu po čl. 158 Zakona o radu vezano je za konkretan osnov prestanka radnog odnosa — otkaz od strane poslodavca zbog tehnološkog, ekonomskog ili organizacionog viška. Zaposleni koji sam daje otkaz, ili kome radni odnos prestaje zbog povrede radne obaveze ili nepoštovanja radne discipline, po ovom osnovu nema pravo na otpremninu. Odlazak u penziju je poseban, odvojen osnov (čl. 119 Zakona o radu), nezavisan od toga da li je poslodavac ikada imao višak zaposlenih — otpremnina za penziju pripada svakom zaposlenom kome radni odnos prestaje zbog ostvarivanja prava na starosnu penziju, bez obzira na razlog eventualnog ranijeg viška kod istog poslodavca.</p>
+      <p>Poslodavac je dužan da pre otkaza zbog tehnološkog viška donese program rešavanja viška zaposlenih (kada broj zaposlenih kojima prestaje radni odnos prelazi zakonski prag), u kome se, između ostalog, utvrđuje i visina otpremnine za svakog zaposlenog pojedinačno. Otpremnina se isplaćuje pre prestanka radnog odnosa, odnosno najkasnije do dana prestanka radnog odnosa — zaposleni ne treba da potpiše sporazum o prestanku radnog odnosa dok mu otpremnina nije isplaćena ili dok mu isplata nije ugovorom jasno garantovana.</p>
       <h2>Primer obračuna otpremnine</h2>
       <p>Primeri su zasnovani na prosečnoj neto zaradi u Srbiji od {REFERENCE_DATA.prosecnaZarada2026.neto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS). Za stvaran obračun koristi se prosek zarade samog zaposlenog.</p>
       <table className="ref-table" aria-label="Primeri obračuna otpremnine 2026">
@@ -462,11 +488,26 @@ export function OtpremninaPage() {
             <td>≈ {(REFERENCE_DATA.prosecnaZarada2026.neto * 2).toLocaleString("sr-RS")}</td>
           </tr>
         </tbody>
-      </table></>),
+      </table>
+      <h2>Dve različite osnovice — pažljivo razlikovati</h2>
+      <p>Najčešći izvor zabune kod otpremnine jeste to što zakon propisuje <strong>dve različite osnovice</strong> za dve različite situacije. Kod tehnološkog viška osnovica je prosečna zarada <em>samog zaposlenog</em> isplaćena u prethodna tri meseca (ili drugi period utvrđen opštim aktom), pa je otpremnina individualna — dva zaposlena sa istim stažem, ali različitom platom, dobijaju različit iznos. Kod odlaska u penziju osnovica je prosečna zarada <em>u Republici Srbiji</em> prema poslednjem objavljenom podatku RZS, pa je otpremnina za penziju ista za sve zaposlene bez obzira na njihovu ličnu platu, sve dok je opštim aktom poslodavca ili ugovorom o radu ne utvrdi u većem iznosu. Mešanje ove dve osnovice je najčešća greška u praksi.</p>
+      <h2>Poreski tretman otpremnine</h2>
+      <p>Otpremnina isplaćena zbog prestanka radnog odnosa po osnovu tehnološkog viška oslobođena je poreza na dohodak građana do iznosa koji ne prelazi zakonski minimum — 1/3 prosečne zarade zaposlenog po godini staža kod poslodavca. Ako poslodavac isplati veći iznos od tog minimuma (npr. na osnovu kolektivnog ugovora ili sopstvene odluke o velikodušnijoj otpremnini), razlika iznad neoporezivog dela oporezuje se porezom na dohodak građana kao drugi prihod, u skladu sa Zakonom o porezu na dohodak građana. Primer: zaposleni sa 10 godina staža i prosečnom bruto zaradom od {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} RSD (nivo prosečne bruto zarade u RS, {REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS) ima zakonski minimum otpremnine od {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} ÷ 3 × 10 ≈ {Math.round(REFERENCE_DATA.prosecnaZarada2026.bruto / 3 * 10).toLocaleString("sr-RS")} RSD (bruto osnovica) — taj deo je neoporeziv. Ako poslodavac isplati dodatnih 200.000 RSD iznad tog minimuma, upravo se ta razlika od 200.000 RSD oporezuje, dok prvobitnih ≈ {Math.round(REFERENCE_DATA.prosecnaZarada2026.bruto / 3 * 10).toLocaleString("sr-RS")} RSD ostaje neoporezivo. Otpremnina za odlazak u penziju prati isti princip — neoporeziva je do zakonskog minimuma (dve prosečne zarade u RS), a eventualni višak se oporezuje.</p>
+      <h2>Česte greške u obračunu otpremnine</h2>
+      <ul>
+        <li>Mešanje osnovice za tehnološki višak (prosečna zarada samog zaposlenog) sa osnovicom za penziju (prosečna zarada u Republici Srbiji) — ove dve osnovice se ne smeju koristiti naizmenično, jer dolaze iz različitih izvora podataka i različitih zakonskih osnova.</li>
+        <li>Zaboravljanje da se porez plaća samo na deo iznad neoporezivog (zakonskog minimalnog) iznosa — cela otpremnina se pogrešno tretira kao oporeziva ili, obrnuto, kao potpuno neoporeziva bez obzira na visinu isplate.</li>
+        <li>Računanje staža kao ukupnog radnog veka zaposlenog umesto staža ostvarenog kod tog konkretnog poslodavca — za obračun otpremnine relevantan je samo staž kod poslodavca koji vrši otkaz.</li>
+        <li>Primena zakonskog minimuma kao da je to i zakonski maksimum — 1/3 prosečne zarade po godini staža (tehnološki višak) i dve prosečne zarade (penzija) su najniži iznosi koje poslodavac mora isplatiti; kolektivnim ugovorom ili odlukom poslodavca otpremnina može biti i veća.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Obavezu isplate otpremnine zaposlenom kome prestaje radni odnos kao tehnološkom, ekonomskom ili organizacionom višku, u minimalnom iznosu od jedne trećine prosečne zarade zaposlenog za svaku navršenu godinu staža kod poslodavca, propisuje čl. 158 Zakona o radu. Otpremninu za odlazak u penziju, u minimalnom iznosu od dve prosečne zarade u Republici Srbiji prema poslednjem objavljenom podatku republičkog organa nadležnog za statistiku, propisuje čl. 119 Zakona o radu. Poreski status isplaćene otpremnine (neoporezivi deo i oporezivanje viška) uređuje Zakon o porezu na dohodak građana.</p></>),
     faq: [
       { q: "Kolika je minimalna otpremnina za tehnološki višak?", a: "Najmanje 1/3 prosečne zarade zaposlenog po godini staža kod tog poslodavca, u skladu sa čl. 158 Zakona o radu." },
       { q: "Da li je otpremnina oporeziva?", a: "Deo otpremnine do propisanog neoporezivog iznosa je oslobođen poreza. Iznos koji premašuje taj prag oporezuje se kao dohodak." },
       { q: "Koja je razlika između otpremnine za tehnološki višak i za odlazak u penziju?", a: "Za tehnološki višak minimum je 1/3 prosečne zarade po godini staža; za odlazak u penziju minimum iznosi dve prosečne zarade u Republici Srbiji." },
+      { q: "Kako radi kalkulator otpremnine za penziju?", a: "Kalkulator otpremnine za penziju množi prosečnu zaradu u Republici Srbiji (ne ličnu zaradu zaposlenog) sa dva — to je zakonski minimum po čl. 119 Zakona o radu. Uz prosečnu neto zaradu od 121.805 RSD (RZS), minimalna otpremnina za penziju je 121.805 × 2 = 243.610 RSD." },
+      { q: "Da li se u staž za otpremninu računa rad kod prethodnog poslodavca?", a: "Ne. Otpremnina za tehnološki višak obračunava se isključivo na osnovu godina staža koje je zaposleni proveo kod poslodavca koji vrši otkaz, a ne na osnovu ukupnog radnog staža zaposlenog." },
     ],
     related: OTPREMNINA_RELATED,
   }} />;
@@ -506,11 +547,33 @@ export function MinuliRadPage() {
         </tbody>
       </table>
       <h2>Kako se minuli rad prikazuje na platnom listiću</h2>
-      <p>Minuli rad nije poseban dodatak van zarade — on je sastavni deo <strong>bruto 1</strong> zarade. Na platnom listiću se iskazuje kao zasebna stavka uvećanja na osnovnu zaradu, u sekciji formiranja bruto 1, pa zajedno sa osnovnom zaradom ulazi u osnovicu za porez i doprinose. U <a href="/bruto-neto">bruto u neto kalkulatoru</a> unosite godine staža, a iznos minulog rada se automatski uračunava u bruto 1.</p></>),
+      <p>Minuli rad nije poseban dodatak van zarade — on je sastavni deo <strong>bruto 1</strong> zarade. Na platnom listiću se iskazuje kao zasebna stavka uvećanja na osnovnu zaradu, u sekciji formiranja bruto 1, pa zajedno sa osnovnom zaradom ulazi u osnovicu za porez i doprinose. U <a href="/bruto-neto">bruto u neto kalkulatoru</a> unosite godine staža, a iznos minulog rada se automatski uračunava u bruto 1.</p>
+      <h2>Tabela parametara za obračun minulog rada 2026</h2>
+      <table className="ref-table" aria-label="Parametri za obračun minulog rada 2026">
+        <thead><tr><th>Parametar</th><th>Vrednost</th></tr></thead>
+        <tbody>
+          <tr><td>Zakonski minimum po godini staža</td><td>0,4% osnovice</td></tr>
+          <tr><td>Relevantan staž</td><td>samo staž kod istog (trenutnog) poslodavca</td></tr>
+          <tr><td>Mesto u strukturi zarade</td><td>sastavni deo bruto 1 (uvećanje osnovne zarade)</td></tr>
+          <tr><td>Osnovica za porez i doprinose</td><td>uključuje i minuli rad — porez 10%, doprinosi zaposlenog 19,90%</td></tr>
+          <tr><td>Mogućnost višeg procenta</td><td>da, kolektivnim ugovorom ili ugovorom o radu</td></tr>
+        </tbody>
+      </table>
+      <h2>Česte greške u obračunu minulog rada</h2>
+      <ul>
+        <li>Uzimanje ukupnog radnog staža zaposlenog (kod svih dosadašnjih poslodavaca) umesto staža kod aktuelnog poslodavca — minuli rad po čl. 108 Zakona o radu priznaje isključivo godine provedene kod poslodavca kod kog je zaposleni trenutno zaposlen.</li>
+        <li>Zaokruživanje godina staža naviše pre navršene godine — pravo na uvećanje nastaje tek za svaku <em>navršenu</em> godinu, ne za započetu.</li>
+        <li>Primena procenta 0,4% na neto zaradu umesto na bruto osnovicu — minuli rad se obračunava na bruto osnovnu zaradu, pre obračuna poreza i doprinosa.</li>
+        <li>Tretiranje minulog rada kao jednokratnog bonusa umesto stalnog mesečnog uvećanja koje ulazi u prosek zarade korišćen za bolovanje, godišnji odmor i druge naknade.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Pravo zaposlenog na uvećanu zaradu po osnovu vremena provedenog na radu (minuli rad), u minimalnom iznosu od 0,4% od osnovice za svaku navršenu godinu rada kod poslodavca kod koga je zaposleni trenutno zaposlen, propisuje čl. 108 Zakona o radu. Poslodavac opštim aktom ili ugovorom o radu može utvrditi i viši procenat, ali ne niži od zakonskog minimuma. Kako je minuli rad sastavni deo zarade, na njega se primenjuju ista pravila oporezivanja i doprinosa kao na ostatak bruto 1 zarade.</p></>),
     faq: [
       { q: "Koliki je procenat minulog rada?", a: "Zakonski minimum je 0,4% po svakoj navršenoj godini staža kod istog poslodavca. Poslodavac može kolektivnim ugovorom utvrditi viši procenat." },
       { q: "Da li se minuli rad računa na ukupni radni staž?", a: "Ne — minuli rad se obračunava isključivo na osnovu godina staža kod trenutnog (istog) poslodavca, a ne ukupnog radnog staža." },
       { q: "Kako se minuli rad prikazuje na platnom listiću?", a: "Minuli rad je sastavni deo bruto 1 zarade i posebno se iskazuje kao uvećanje na osnovnu zaradu, vidljivo na platnom listiću u sekciji formiranja bruto 1." },
+      { q: "Kako se tačno računa minuli rad?", a: "Minuli rad = bruto osnovica × 0,4% × broj navršenih godina staža kod istog poslodavca. Za osnovicu 100.000 RSD i 10 godina staža: 100.000 × 0,4% × 10 = 4.000 RSD mesečno, dodato na osnovnu zaradu u okviru bruto 1." },
+      { q: "Da li se minuli rad računa u naknadu za godišnji odmor?", a: "Da — pošto je minuli rad sastavni deo zarade, ulazi u prosek zarade koji se koristi za obračun naknade za godišnji odmor, kao i za naknadu za bolovanje i druge naknade zasnovane na proseku zarade." },
     ],
     related: MINULI_RAD_RELATED,
   }} />;
