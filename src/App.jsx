@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
 import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
-import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar } from "./ui.jsx";
+import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar, FreshnessStamp } from "./ui.jsx";
 import { useSeo } from "./seo.jsx";
 import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
@@ -24,6 +24,8 @@ const MinuliRadPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.M
 const MinimalnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinimalnaZaradaPage })));
 const DodaciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.DodaciPage })));
 const GodisnjiPorezPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiPorezPage })));
+const GodisnjiOdmorPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiOdmorPage })));
+const JubilarnaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.JubilarnaPage })));
 const UgovorODeluPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.UgovorODeluPage })));
 const RadniDaniPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.RadniDaniPage })));
 const PrazniciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PrazniciPage })));
@@ -225,7 +227,7 @@ ${r.minuliRadAmount > 0 ? trow(`Minuli rad (${inputs.yearsOfService} god. × ${i
 ${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#0a7a45', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.nightH > 0 ? trow('Noćni rad (+26%)', r.nightPay, '#0a7a45', `${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.weekendH > 0 ? trow('Vikend rad (+26%)', r.weekendPay, '#0a7a45', `${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
-${inputs.holidayH > 0 ? trow('Rad na državni praznik (+26%)', r.holidayPay, '#0a7a45', `${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
+${inputs.holidayH > 0 ? trow('Rad na državni praznik (+110%)', r.holidayPay, '#0a7a45', `${inputs.holidayH}h × ${fmt(r.hourRate)} × 2.10`) : ''}
 ${r.bonusAmount > 0 ? trow('Bonusi / nagrade', r.bonusAmount, '#0a7a45') : ''}
 ${trow('BRUTO 1 – Ukupna bruto zarada', r.bruto1, '#1452d6')}
 </table></div>
@@ -743,7 +745,7 @@ export function CalculatorPage({ focusSection } = {}) {
             <SectionTitle icon="📅">Vikend i praznici</SectionTitle>
             <div className="inputs-body">
               <NumberInput label="Sati rada vikendom" sublabel="(min +26%)" value={inputs.weekendH} onChange={set("weekendH")} unit="h" />
-              <NumberInput label="Sati rada na državni praznik" sublabel="(min +26%)" value={inputs.holidayH} onChange={set("holidayH")} unit="h" />
+              <NumberInput label="Sati rada na državni praznik" sublabel="(min +110%)" value={inputs.holidayH} onChange={set("holidayH")} unit="h" />
               <NumberInput label="Državni praznici u mesecu (neradni dani)" sublabel="(plaćeni slobodni dani — puna naknada)" value={inputs.publicHolidayDays} onChange={set("publicHolidayDays")} unit="dana" min={0} />
               {inputs.publicHolidayDays > 0 && (
                 <div className="sick-info">
@@ -967,7 +969,7 @@ export function CalculatorPage({ focusSection } = {}) {
               {r.overtimePay > 0 && <ResultRow label="Prekovremeni rad (+26%)" value={r.overtimePay} type="positive" sub={`${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.nightPay > 0 && <ResultRow label="Noćni rad (+26%)" value={r.nightPay} type="positive" sub={`${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.weekendPay > 0 && <ResultRow label="Vikend rad (+26%)" value={r.weekendPay} type="positive" sub={`${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`} />}
-              {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+26%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`} />}
+              {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+110%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 2.10`} />}
               {r.minuliRadAmount > 0 && <ResultRow label={`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}%)`} value={r.minuliRadAmount} type="positive" sub={`${(r.minuliRadRate*100).toFixed(2)}% od zarade za odrađene dane`} />}
               {r.bonusAmount > 0 && <ResultRow label="Bonusi / nagrade" value={r.bonusAmount} type="positive" />}
               {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(inputs.mealDailyActual || 1490)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}
@@ -1140,11 +1142,23 @@ const HOME_FAQ = [
     q: "Koliko se plaća porez na bonus?",
     a: "Bonus, stimulacija i 13. plata oporezuju se kao deo zarade — porez 10% i doprinosi 19,90%. Bonus se dodaje na bruto osnovicu meseca isplate. Više u članku o porezu na bonus.",
   },
+  {
+    q: "Kako se računa plata iz bruto u neto?",
+    a: "Od bruto 1 zarade oduzmu se doprinosi zaposlenog (19,90%) i porez (10% na deo iznad neoporezivih 34.221 RSD). Primer: bruto 100.000 RSD → doprinosi 19.900, porez 6.578, neto ≈ 73.522 RSD.",
+  },
+  {
+    q: "Koliko iznose porez i doprinosi na zaradu 2026?",
+    a: "Porez na zaradu je 10% (na deo iznad neoporezivih 34.221 RSD). Doprinosi zaposlenog su 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), a poslodavca 15,15% (PIO 10%, zdravstvo 5,15%).",
+  },
+  {
+    q: "Šta je bruto 2?",
+    a: "Bruto 2 je ukupan trošak rada za poslodavca — bruto 1 uvećan za doprinose na teret poslodavca (15,15%). Za bruto 1 od 100.000 RSD, bruto 2 je oko 115.150 RSD.",
+  },
 ];
 
 function HomePage() {
   useSeo({
-    title: "Kalkulator zarade 2026 — bruto u neto Srbija | PlatniListić",
+    title: "Kalkulator zarada 2026 — bruto u neto, Srbija | PlatniListić",
     description: "Besplatan kalkulator zarade za Srbiju 2026 — bruto u neto, porez, doprinosi, minuli rad, bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
     path: "/",
     jsonLd: webAppLd({
@@ -1167,6 +1181,7 @@ function HomePage() {
       </header>
       <section className="home-intro">
         <h1 className="home-intro-title">Kalkulator zarade 2026 — bruto u neto za Srbiju</h1>
+        <FreshnessStamp date="jul 2026." />
         <p>
           Besplatan <strong>kalkulator zarade</strong> za obračun zarade u Srbiji u 2026. godini.
           Pretvorite <strong>bruto u neto</strong> (i neto u bruto) i izračunajte porez na zaradu,
@@ -1200,6 +1215,38 @@ function HomePage() {
           Vrednosti su približne (zaokružene) i ne uključuju dodatna uvećanja ili naknade —
           za precizan obračun unesite svoje podatke u kalkulator iznad.
         </p>
+      </section>
+      <section className="home-seo" aria-label="Kako se obračunava zarada 2026">
+        <h2>Kako se obračunava zarada u Srbiji 2026 — korak po korak</h2>
+        <p>Obračun zarade polazi od <strong>bruto 1</strong> iznosa iz ugovora o radu. Korak 1: na celu bruto 1 zaradu obračunavaju se doprinosi zaposlenog — PIO {DEFAULT_RATES.pioPct_emp}%, zdravstvo {DEFAULT_RATES.health_emp.toLocaleString("sr-RS")}% i nezaposlenost {DEFAULT_RATES.unemp_emp.toLocaleString("sr-RS")}%, ukupno 19,90%. Korak 2: poreska osnovica je bruto 1 umanjen za neoporezivi iznos od {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD. Korak 3: porez na zaradu je {DEFAULT_RATES.taxRate}% te osnovice. Korak 4: neto = bruto 1 − doprinosi − porez. Rezultat je iznos koji zaposleni prima na račun.</p>
+        <h2>Parametri obračuna zarade 2026</h2>
+        <table className="ref-table" aria-label="Parametri obračuna zarade 2026">
+          <thead><tr><th>Parametar</th><th>Vrednost 2026</th></tr></thead>
+          <tbody>
+            <tr><td>Porez na zaradu</td><td>{DEFAULT_RATES.taxRate}% (na deo iznad neoporezivog)</td></tr>
+            <tr><td>Neoporezivi iznos</td><td>{DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD</td></tr>
+            <tr><td>PIO — zaposleni / poslodavac</td><td>{DEFAULT_RATES.pioPct_emp}% / {DEFAULT_RATES.pio_er}%</td></tr>
+            <tr><td>Zdravstvo — zaposleni / poslodavac</td><td>{DEFAULT_RATES.health_emp.toLocaleString("sr-RS")}% / {DEFAULT_RATES.health_er.toLocaleString("sr-RS")}%</td></tr>
+            <tr><td>Nezaposlenost — zaposleni</td><td>{DEFAULT_RATES.unemp_emp.toLocaleString("sr-RS")}%</td></tr>
+            <tr><td>Najniža mesečna osnovica doprinosa</td><td>{DEFAULT_RATES.minBase.toLocaleString("sr-RS")} RSD</td></tr>
+            <tr><td>Najviša mesečna osnovica doprinosa</td><td>{DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD</td></tr>
+          </tbody>
+        </table>
+        <p>Neoporezivi iznos za 2026. utvrđen je izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 115/2025), a stope doprinosa objavljuje CROSO. Doprinosi se obračunavaju u granicama najniže i najviše mesečne osnovice.</p>
+        <h2>Bruto 1, bruto 2 i neto — u čemu je razlika</h2>
+        <p><strong>Bruto 1</strong> je ugovorena zarada i osnovica za porez i doprinose zaposlenog. <strong>Neto</strong> je iznos na račun. <strong>Bruto 2</strong> je bruto 1 uvećan za doprinose na teret poslodavca ({(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}%) i predstavlja stvaran trošak rada. Detaljan obračun u oba smera radite kroz <a href="/bruto-neto">bruto u neto kalkulator</a> i <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>
+        <h2>Primeri obračuna zarade 2026</h2>
+        <p>Tri obračuna po važećoj formuli (neto zaokružen):</p>
+        <table className="ref-table" aria-label="Primeri obračuna zarade 2026">
+          <thead><tr><th>Bruto 1 (RSD)</th><th>Doprinosi</th><th>Porez</th><th>Neto ≈</th><th>Bruto 2 ≈</th></tr></thead>
+          <tbody>
+            <tr><td>87.207 (minimalac)</td><td>17.354</td><td>5.299</td><td>64.554</td><td>100.419</td></tr>
+            <tr><td>100.000</td><td>19.900</td><td>6.578</td><td>73.522</td><td>115.150</td></tr>
+            <tr><td>150.000</td><td>29.850</td><td>11.578</td><td>108.572</td><td>172.725</td></tr>
+          </tbody>
+        </table>
+        <h2>Uvećana zarada — dodaci i minuli rad</h2>
+        <p>Na osnovnu zaradu dodaju se zakonska uvećanja (čl. 108 Zakona o radu): prekovremeni rad, noćni rad, rad vikendom i praznikom, kao i minuli rad — najmanje 0,4% po godini staža kod istog poslodavca. Sva uvećanja ulaze u bruto 1 i podležu porezu i doprinosima. Vidite <a href="/dodaci-na-zaradu">kalkulator dodataka na zaradu</a> i <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
       </section>
       <CalculatorPage />
       <div className="disclaimer">
@@ -1270,6 +1317,29 @@ function HomePage() {
             <a href="/blog/porez-na-bonus"> porezu na bonus</a>.
           </p>
         </div>
+        <div className="home-faq-item">
+          <h3>Kako se računa plata iz bruto u neto?</h3>
+          <p>
+            Od bruto 1 zarade oduzmu se doprinosi zaposlenog (19,90%) i porez (10% na deo iznad
+            neoporezivih 34.221 RSD). Primer: bruto 100.000 RSD → doprinosi 19.900, porez 6.578,
+            neto ≈ 73.522 RSD.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Koliko iznose porez i doprinosi na zaradu 2026?</h3>
+          <p>
+            Porez na zaradu je 10% (na deo iznad neoporezivih 34.221 RSD). Doprinosi zaposlenog su
+            19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), a poslodavca 15,15% (PIO 10%,
+            zdravstvo 5,15%).
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Šta je bruto 2?</h3>
+          <p>
+            Bruto 2 je ukupan trošak rada za poslodavca — bruto 1 uvećan za doprinose na teret
+            poslodavca (15,15%). Za bruto 1 od 100.000 RSD, bruto 2 je oko 115.150 RSD.
+          </p>
+        </div>
       </section>
       <nav className="home-guides" aria-label="Popularni vodiči o zaradi">
         <h2 className="home-guides-title">Popularni vodiči</h2>
@@ -1292,14 +1362,21 @@ function HomePage() {
       <nav className="home-tools" aria-label="Kalkulatori i alati">
         <h2 className="home-tools-title">Kalkulatori i alati</h2>
         <ul>
-          <li><a href="/bruto-neto">Bruto u neto kalkulator</a></li>
+          <li><a href="/bruto-neto">Bruto neto kalkulator</a></li>
           <li><a href="/neto-bruto">Neto u bruto kalkulator</a></li>
           <li><a href="/pausal">Paušal kalkulator</a></li>
           <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
           <li><a href="/otpremnina">Kalkulator otpremnine</a></li>
           <li><a href="/minuli-rad">Kalkulator minulog rada</a></li>
+          <li><a href="/dodaci-na-zaradu">Dodaci na zaradu — prekovremeni, noćni</a></li>
           <li><a href="/ugovor-o-delu">Ugovor o delu kalkulator</a></li>
+          <li><a href="/godisnji-porez">Godišnji porez kalkulator</a></li>
+          <li><a href="/godisnji-odmor">Kalkulator godišnjeg odmora</a></li>
+          <li><a href="/jubilarna-nagrada">Kalkulator jubilarne nagrade</a></li>
+          <li><a href="/neoporezivi-iznos-2026">Neoporezivi iznos 2026</a></li>
+          <li><a href="/stope-doprinosa-2026">Stope doprinosa 2026</a></li>
           <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/prosecna-zarada">Prosečna zarada u Srbiji</a></li>
           <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
           <li><a href="/praznici-2026">Praznici 2026</a></li>
         </ul>
@@ -1385,6 +1462,8 @@ export default function App() {
             <Route path="/minuli-rad" element={<Suspense fallback={<RouteLoader />}><MinuliRadPage /></Suspense>} />
             <Route path="/dodaci-na-zaradu" element={<Suspense fallback={<RouteLoader />}><DodaciPage /></Suspense>} />
             <Route path="/godisnji-porez" element={<Suspense fallback={<RouteLoader />}><GodisnjiPorezPage /></Suspense>} />
+            <Route path="/godisnji-odmor" element={<Suspense fallback={<RouteLoader />}><GodisnjiOdmorPage /></Suspense>} />
+            <Route path="/jubilarna-nagrada" element={<Suspense fallback={<RouteLoader />}><JubilarnaPage /></Suspense>} />
             <Route path="/ugovor-o-delu" element={<Suspense fallback={<RouteLoader />}><UgovorODeluPage /></Suspense>} />
             <Route path="/minimalna-zarada-2026" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
             <Route path="/radni-dani-2026" element={<Suspense fallback={<RouteLoader />}><RadniDaniPage /></Suspense>} />

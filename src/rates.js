@@ -21,12 +21,16 @@ export const DEFAULT_RATES = {
   overtimeCoef: 26,
   nightCoef: 26,
   weekendCoef: 26,
-  holidayCoef: 26,
+  // Rad na dan praznika (neradni dan): min. +110% od osnovice (čl. 108 Zakona o radu) —
+  // premija povrh redovne satnice, pa je ukupno 210% (100% + 110%). VERIFIKOVANO 8.7.2026
+  // uz Paragraf (tekst čl. 108) i Propisi.net (primer 100%+110%=210%). Ranije je greškom
+  // stajalo 26% (kao za prekovremeni/noćni/vikend), što je ispravljeno.
+  holidayCoef: 110,
   minBase: 51297,
   maxBase: 732820,
   mealDaily: 1490,
   transportMax: 5782,
-  minWage: 88265,
+  minWage: 87207,
 };
 
 // Paušal regime — porez 10% + doprinosi on the Tax-Authority-assigned base.
