@@ -6,6 +6,7 @@ import { useSeo } from "./seo.jsx";
 import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 import { JobsWidget } from "./JobsWidget.jsx";
+import { activeJobs } from "./jobs.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -277,7 +278,90 @@ function printPayslip(inputs, r, info, rates) {
   win.onload = () => { win.focus(); win.print(); };
 }
 
+// ── JOBS TEASERS (affiliate funnel) ──────────────────────────────────────────
+// Both signup forms (newsletter + lead) are commented out below — every CTA
+// slot now funnels to the partner job listings (JobsWidget) to maximize
+// affiliate conversion. Re-enable the forms by uncommenting their usages.
+
+// GoatCounter + Vercel Analytics event for teaser clicks (production only).
+function trackJobsTeaser(placement) {
+  if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: `jobs-teaser/${placement}`, event: true });
+    }
+  } catch { /* no-op */ }
+}
+
+// Smooth-scrolls to the first JobsWidget on the page; if the current page has
+// none, navigates home (which always renders one) and scrolls after mount.
+function scrollToJobs(navigate) {
+  const el = document.querySelector(".jobs-widget");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+  navigate("/");
+  let tries = 0;
+  const tick = () => {
+    const t = document.querySelector(".jobs-widget");
+    if (t) t.scrollIntoView({ behavior: "smooth", block: "center" });
+    else if (++tries < 10) setTimeout(tick, 200);
+  };
+  setTimeout(tick, 200);
+}
+
+// Compact sidebar card: question hook + live job count.
+function SidebarJobsTeaser({ onGo }) {
+  const navigate = useNavigate();
+  const jobs = activeJobs();
+  if (jobs.length === 0) return null;
+  return (
+    <div className="sidebar-jobs">
+      <div className="sidebar-jobs-title">Tražite bolje plaćen posao?</div>
+      <div className="sidebar-jobs-sub">
+        {jobs.length} {jobs.length % 10 === 1 && jobs.length % 100 !== 11 ? "otvorena pozicija" : [2,3,4].includes(jobs.length % 10) && ![12,13,14].includes(jobs.length % 100) ? "otvorene pozicije" : "otvorenih pozicija"} kod partnerske agencije
+      </div>
+      <button
+        type="button"
+        className="sidebar-jobs-btn"
+        onClick={() => { trackJobsTeaser("sidebar"); onGo?.(); scrollToJobs(navigate); }}
+      >
+        Pogledaj poslove →
+      </button>
+    </div>
+  );
+}
+
+// Full-width banner replacing the old lead-form section on the homepage.
+function JobsCTABanner() {
+  const navigate = useNavigate();
+  const jobs = activeJobs();
+  if (jobs.length === 0) return null;
+  return (
+    <section className="jobs-cta" aria-label="Otvorene pozicije partnera">
+      <div className="jobs-cta-text">
+        <div className="jobs-cta-eyebrow">Poslovi · licencirana agencija</div>
+        <h2 className="jobs-cta-title">Izračunali ste platu — pogledajte ko nudi više</h2>
+        <p className="jobs-cta-body">
+          Proverene ponude licencirane agencije za zapošljavanje. Prijava online, besplatno, bez registracije.
+        </p>
+      </div>
+      <button
+        type="button"
+        className="jobs-cta-btn"
+        onClick={() => { trackJobsTeaser("home-banner"); scrollToJobs(navigate); }}
+      >
+        Pogledaj otvorene pozicije →
+      </button>
+    </section>
+  );
+}
+
 // ── BREVO SIGNUP ─────────────────────────────────────────────────────────────
+// NOTE: currently unused — commented out in the sidebar in favor of the jobs
+// teaser. Kept intact so it can be re-enabled by uncommenting <BrevoSignup />.
+// eslint-disable-next-line no-unused-vars
 function BrevoSignup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("idle");
@@ -392,6 +476,9 @@ function LeadFormContent({ onSubmit, form, setForm, status }) {
   );
 }
 
+// NOTE: currently unused — commented out on the homepage in favor of the jobs
+// CTA banner. Kept intact so it can be re-enabled by uncommenting <LeadForm />.
+// eslint-disable-next-line no-unused-vars
 function LeadForm() {
   const [form, setForm] = useState({ ime: "", email: "", opis: "" });
   const [status, setStatus] = useState("idle");
@@ -494,9 +581,15 @@ function ProCTA({ variant }) {
         <div className="pro-cta-eyebrow">Za firme i knjigovođe</div>
         <p>{PRO_CTA_COPY[variant] || PRO_CTA_COPY.results}</p>
       </div>
-      <button type="button" className="pro-cta-btn" onClick={() => window.dispatchEvent(new Event("open-lead-modal"))}>
+      {/* The lead form/modal is disabled, so the "open-lead-modal" event has no
+          listener — link straight to email instead so the pro funnel stays alive
+          without a form. Restore the button when <LeadForm /> is re-enabled. */}
+      <a
+        className="pro-cta-btn"
+        href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Upit za softver po meri — PlatniListić")}`}
+      >
         Besplatne konsultacije →
-      </button>
+      </a>
     </aside>
   );
 }
@@ -1211,7 +1304,9 @@ function HomePage() {
           <li><a href="/praznici-2026">Praznici 2026</a></li>
         </ul>
       </nav>
-      <LeadForm />
+      {/* Lead form ("softver po meri") disabled in favor of the jobs CTA
+          (affiliate funnel). Re-enable by uncommenting: <LeadForm /> */}
+      <JobsCTABanner />
     </>
   );
 }
@@ -1259,7 +1354,9 @@ export default function App() {
             </button>
           ))}
         </nav>
-        <BrevoSignup />
+        {/* Newsletter form disabled in favor of the jobs teaser (affiliate
+            funnel). Re-enable by uncommenting: <BrevoSignup /> */}
+        <SidebarJobsTeaser onGo={() => setSidebarOpen(false)} />
         <div className="sidebar-footer">
           <div className="sidebar-footer-site">platnilistic.rs</div>
           <div className="sidebar-footer-links">
