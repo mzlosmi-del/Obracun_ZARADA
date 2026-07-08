@@ -164,6 +164,9 @@ export function BlogPostRoute() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const post = POSTS.find(p => p.id === slug);
+  // `updated` (optional) bumps dateModified / article:modified_time without
+  // touching the original publish date; falls back to the publish date.
+  const modified = post ? isoDate(post.updated || post.date) : undefined;
 
   useSeo({
     title: post ? `${post.title} | PlatniListić` : "Članak nije pronađen | PlatniListić",
@@ -172,14 +175,14 @@ export function BlogPostRoute() {
     image: post ? post.ogImage : undefined,
     ogType: post ? "article" : "website",
     articlePublished: post ? isoDate(post.date) : undefined,
-    articleModified: post ? isoDate(post.date) : undefined,
+    articleModified: modified,
     jsonLd: post ? [{
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": post.title,
       "description": post.summary,
       "datePublished": isoDate(post.date),
-      "dateModified": isoDate(post.date),
+      "dateModified": modified,
       "author": { "@type": "Organization", "name": "PlatniListić", "url": SITE_URL },
       "publisher": {
         "@type": "Organization",

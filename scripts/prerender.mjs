@@ -12,7 +12,13 @@ const DIST = join(ROOT, "dist");
 const SITE_URL = "https://www.platnilistic.rs";
 
 const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/bruto-neto", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/ugovor-o-delu", "/minimalna-zarada-2026", "/radni-dani-2026", "/praznici-2026", "/prosecna-zarada", "/neoporezivi-iznos-2026", "/stope-doprinosa-2026"];
-const ROUTES = [...STATIC_ROUTES, ...POSTS.map((p) => `/blog/${p.id}`)];
+
+// Blog posts that 301-redirect to a canonical page (see vercel.json). They must
+// NOT be prerendered or listed in the sitemap — a redirected URL in the sitemap
+// is a soft error and dilutes crawl budget. Content is merged into the target.
+const REDIRECTED = new Set(["neoporezivi-2026", "minimalna-zarada-2026"]);
+const INDEXABLE_POSTS = POSTS.filter((p) => !REDIRECTED.has(p.id));
+const ROUTES = [...STATIC_ROUTES, ...INDEXABLE_POSTS.map((p) => `/blog/${p.id}`)];
 
 const MONTHS = {
   januar: "01", februar: "02", mart: "03", april: "04", maj: "05", jun: "06",
@@ -59,8 +65,8 @@ function sitemapXml() {
     const m = meta[r];
     entries.push({ loc: r, lastmod: m.lastmod, changefreq: m.changefreq, priority: m.priority });
   }
-  for (const p of POSTS) {
-    entries.push({ loc: `/blog/${p.id}`, lastmod: isoDate(p.date), changefreq: "yearly", priority: "0.8" });
+  for (const p of INDEXABLE_POSTS) {
+    entries.push({ loc: `/blog/${p.id}`, lastmod: isoDate(p.updated || p.date), changefreq: "yearly", priority: "0.8" });
   }
   const urls = entries
     .map(

@@ -116,14 +116,15 @@ Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otka
   {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
+    updated: "8. jul 2026",
     tag: "Zarada",
-    title: "Prosečna plata u Srbiji 2026: 121.805 din neto (RZS)",
-    summary: "Prosečna neto plata u Srbiji je 121.805 din (≈1.038 €), bruto 168.008 (RZS, april 2026). Pregled po mesecima, sektorima i gradovima + medijalna zarada.",
+    title: "Prosečna plata u Srbiji 2026: 121.805 din (1.038 €), april",
+    summary: "Prosečna neto plata u Srbiji za april 2026. je 121.805 din (≈1.038 €), bruto 168.008, medijalna 94.585 (RZS). Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     body: `
 ![Prosečna plata u Srbiji 2026 — neto 121.650 dinara (≈1.036 €), bruto 167.263, medijalna 91.399, IT 311.370, minimalac 64.554.](/media/prosecna-plata-2026.png)
 
-> **Provereno i ažurirano: jul 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za april 2026 (objavljen 25. juna). Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
+> **Provereno i ažurirano: 8. jul 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za april 2026 (objavljen 25. juna). Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
 
 Prosečna plata u Srbiji iznosi **121.805 dinara neto (≈ 1.038 €)**, odnosno **168.008 dinara bruto** — najnoviji zvaničan podatak RZS-a, za april 2026. Medijalna neto zarada je **94.585 dinara**: polovina zaposlenih prima manje od tog iznosa, pa medijalna plata bolje opisuje „tipičnu" zaradu od proseka. U nastavku: pregled po mesecima, sektorima i gradovima, u dinarima i evrima.
 
@@ -153,9 +154,13 @@ Prosečna zarada varira iz meseca u mesec, zavisno od isplata bonusa, broja radn
 
 U periodu januar–april 2026, u odnosu na isti period prethodne godine, prosečna neto zarada nominalno je veća za **11,6%**, a realno (nakon inflacije) za **8,6%** — plate i dalje rastu brže od cena. Razliku između bruto i neto iznosa objašnjavamo u vodiču [bruto-neto razlika](/blog/bruto-neto-razlika), a sastav doprinosa u tekstu [doprinosi u Srbiji](/blog/doprinosi-srbija).
 
-## Zašto je medijalna zarada važnija od proseka
+## Medijalna plata u Srbiji 2026
 
-Prosečnu platu „naviše vuku" visoke zarade malog broja ljudi (rukovodioci, IT). Realniju sliku daje **medijalna zarada** — iznos koji deli zaposlene na dve jednake polovine. Za april 2026. medijalna neto zarada iznosi **94.585 din (≈ 806 €)**: polovina zaposlenih primila je do tog iznosa, a polovina više. Drugim rečima, tipičan zaposleni u Srbiji zarađuje oko **27.000 din manje** od „prosečne" plate od 121.805 din.
+**Medijalna neto plata u Srbiji za april 2026. iznosi 94.585 din (≈ 806 €)** — polovina zaposlenih zarađuje manje od tog iznosa, a polovina više. Prosečnu platu „naviše vuku" visoke zarade malog broja ljudi (rukovodioci, IT), pa **medijalna zarada** realnije opisuje tipičnu platu: iznos koji deli zaposlene na dve jednake polovine. Drugim rečima, tipičan zaposleni u Srbiji zarađuje oko **27.000 din manje** od „prosečne" plate od 121.805 din.
+
+## Prosečna plata u Beogradu 2026
+
+**Prosečna neto plata u Beogradu za 2026. iznosi oko 144.028 din (≈ 1.227 €)** — osetno iznad državnog proseka. U najbogatijim beogradskim opštinama (Stari grad 200.666 din, Vračar 192.878 din, Savski venac, Novi Beograd) prelazi 190.000 din neto. Detaljan pregled po opštinama i regionima je u tabeli niže.
 
 ## Prosečna plata po sektorima
 
@@ -241,7 +246,9 @@ Cela slika prosečne plate u Srbiji 2026. na jednom mestu — slobodno sačuvajt
     faq: [
       { q: "Kolika je prosečna plata u Srbiji 2026?", a: "Prosečna neto plata za april 2026. iznosi 121.805 dinara (oko 1.038 evra), a bruto 168.008 dinara, prema podacima RZS-a. Tokom prvih meseci 2026. neto prosek se kretao između 116.000 i 122.000 dinara." },
       { q: "Kolika je prosečna plata u Srbiji u evrima?", a: "Po srednjem kursu NBS (117,40 dinara za 1 evro), prosečna neto plata od 121.805 dinara iznosi približno 1.038 evra mesečno, a bruto zarada oko 1.431 evro." },
+      { q: "Kolika je prosečna bruto zarada 2026?", a: "Prosečna bruto zarada u Srbiji za april 2026. iznosi 168.008 dinara (oko 1.431 evro), prema RZS-u. Bruto zarada je iznos pre poreza i doprinosa; neto (na ruke) je 121.805 dinara." },
       { q: "Kolika je medijalna plata u Srbiji?", a: "Medijalna neto zarada za april 2026. iznosi 94.585 dinara (oko 806 evra). To znači da polovina zaposlenih zarađuje manje od tog iznosa, pa je medijalna plata realnija slika od proseka." },
+      { q: "Kolika je prosečna plata u Beogradu 2026?", a: "Prosečna neto plata u Beogradu za 2026. iznosi oko 144.028 dinara (≈ 1.227 evra) — iznad državnog proseka. U opštinama Stari grad i Vračar prelazi 190.000 dinara neto." },
       { q: "Da li većina ljudi zarađuje prosečnu platu?", a: "Ne. Većina zaposlenih zarađuje ispod proseka. Tipičnu zaradu bolje opisuje medijalna plata (oko 94.500 dinara) nego prosek (oko 122.000 dinara), jer prosek podižu visoke plate u IT-u i menadžmentu." },
       { q: "Koji sektor ima najveću platu u Srbiji?", a: "Najviše zarađuje IT sektor — prosečna neto plata u računarskom programiranju premašuje 311.000 dinara, više od tri puta iznad državnog proseka. Najmanje se zarađuje u ugostiteljstvu." },
       { q: "Koji grad ima najveću prosečnu platu?", a: "Beograd, sa prosečnom neto zaradom od oko 144.000 dinara. Najviše plate su u opštinama Stari grad i Vračar, preko 190.000 dinara neto." },
