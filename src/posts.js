@@ -2461,7 +2461,7 @@ Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Za
 
 Svaki zaposleni koji je zasnovao radni odnos stiče pravo na godišnji odmor. Minimalni godišnji odmor iznosi **20 radnih dana** godišnje. Kolektivnim ugovorom ili ugovorom o radu može se utvrditi duži odmor.
 
-Pravo na puni godišnji odmor stiče se **nakon 6 meseci** neprekidnog rada kod istog poslodavca.
+Pravo na godišnji odmor stiče se **nakon mesec dana** neprekidnog rada kod istog poslodavca (čl. 68 Zakona o radu).
 
 ## Kako se obračunava naknada za godišnji odmor?
 
@@ -2513,7 +2513,7 @@ Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zara
     faq: [
       { q: "Kako se računa godišnji odmor?", a: "Naknada za godišnji odmor računa se kao prosečna bruto zarada zaposlenog u prethodnih 12 meseci, podeljena brojem radnih dana u mesecu i pomnožena brojem dana odmora. Ne može biti niža od tog proseka (čl. 104 Zakona o radu)." },
       { q: "Kako se plaća godišnji odmor po novom zakonu o radu?", a: "Po važećem Zakonu o radu, za dane godišnjeg odmora isplaćuje se naknada u visini prosečne zarade iz prethodnih 12 meseci, sa svim doprinosima (19,90% zaposleni) i porezom (10%) kao i kod redovne zarade." },
-      { q: "Koliko dana godišnjeg odmora pripada zaposlenom?", a: "Zakonski minimum je 20 radnih dana godišnje. Pravo na puni godišnji odmor stiče se nakon 6 meseci neprekidnog rada kod istog poslodavca, a kolektivnim ugovorom može se utvrditi i duži odmor." },
+      { q: "Koliko dana godišnjeg odmora pripada zaposlenom?", a: "Zakonski minimum je 20 radnih dana godišnje. Pravo na godišnji odmor stiče se nakon mesec dana neprekidnog rada kod istog poslodavca (čl. 68 Zakona o radu), a kolektivnim ugovorom može se utvrditi i duži odmor." },
     ],
   },
   {
