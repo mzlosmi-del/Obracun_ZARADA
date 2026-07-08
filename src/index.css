@@ -491,7 +491,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .ref-table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 14px; }
 .ref-table th, .ref-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); }
 .ref-table th:first-child, .ref-table td:first-child { text-align: left; color: var(--text2); font-weight: 500; }
-.ref-table td { font-family: var(--mono); color: var(--text); }
+/* Body sans (Inter) for all reference-table cells. These "Parametri" tables mix
+   numeric values with descriptive phrases (e.g. "min. 65% osnovice", "prosek
+   zarade prethodnih 12 meseci"), so monospace made the prose cells clash with
+   the surrounding guide text. Cells stay right-aligned for numeric readability. */
+.ref-table td { font-family: var(--sans); color: var(--text); }
 .ref-table thead th { font-weight: 600; color: var(--text); border-bottom: 2px solid var(--surface3); text-align: right; }
 .ref-table thead th:first-child { text-align: left; }
 .ref-table tbody tr:last-child td { border-bottom: none; }
