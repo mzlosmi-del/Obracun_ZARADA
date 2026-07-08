@@ -227,7 +227,7 @@ ${r.minuliRadAmount > 0 ? trow(`Minuli rad (${inputs.yearsOfService} god. × ${i
 ${inputs.overtimeH > 0 ? trow('Prekovremeni rad (+26%)', r.overtimePay, '#0a7a45', `${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.nightH > 0 ? trow('Noćni rad (+26%)', r.nightPay, '#0a7a45', `${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
 ${inputs.weekendH > 0 ? trow('Vikend rad (+26%)', r.weekendPay, '#0a7a45', `${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
-${inputs.holidayH > 0 ? trow('Rad na državni praznik (+26%)', r.holidayPay, '#0a7a45', `${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`) : ''}
+${inputs.holidayH > 0 ? trow('Rad na državni praznik (+110%)', r.holidayPay, '#0a7a45', `${inputs.holidayH}h × ${fmt(r.hourRate)} × 2.10`) : ''}
 ${r.bonusAmount > 0 ? trow('Bonusi / nagrade', r.bonusAmount, '#0a7a45') : ''}
 ${trow('BRUTO 1 – Ukupna bruto zarada', r.bruto1, '#1452d6')}
 </table></div>
@@ -745,7 +745,7 @@ export function CalculatorPage({ focusSection } = {}) {
             <SectionTitle icon="📅">Vikend i praznici</SectionTitle>
             <div className="inputs-body">
               <NumberInput label="Sati rada vikendom" sublabel="(min +26%)" value={inputs.weekendH} onChange={set("weekendH")} unit="h" />
-              <NumberInput label="Sati rada na državni praznik" sublabel="(min +26%)" value={inputs.holidayH} onChange={set("holidayH")} unit="h" />
+              <NumberInput label="Sati rada na državni praznik" sublabel="(min +110%)" value={inputs.holidayH} onChange={set("holidayH")} unit="h" />
               <NumberInput label="Državni praznici u mesecu (neradni dani)" sublabel="(plaćeni slobodni dani — puna naknada)" value={inputs.publicHolidayDays} onChange={set("publicHolidayDays")} unit="dana" min={0} />
               {inputs.publicHolidayDays > 0 && (
                 <div className="sick-info">
@@ -969,7 +969,7 @@ export function CalculatorPage({ focusSection } = {}) {
               {r.overtimePay > 0 && <ResultRow label="Prekovremeni rad (+26%)" value={r.overtimePay} type="positive" sub={`${inputs.overtimeH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.nightPay > 0 && <ResultRow label="Noćni rad (+26%)" value={r.nightPay} type="positive" sub={`${inputs.nightH}h × ${fmt(r.hourRate)} × 1.26`} />}
               {r.weekendPay > 0 && <ResultRow label="Vikend rad (+26%)" value={r.weekendPay} type="positive" sub={`${inputs.weekendH}h × ${fmt(r.hourRate)} × 1.26`} />}
-              {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+26%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 1.26`} />}
+              {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+110%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 2.10`} />}
               {r.minuliRadAmount > 0 && <ResultRow label={`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}%)`} value={r.minuliRadAmount} type="positive" sub={`${(r.minuliRadRate*100).toFixed(2)}% od zarade za odrađene dane`} />}
               {r.bonusAmount > 0 && <ResultRow label="Bonusi / nagrade" value={r.bonusAmount} type="positive" />}
               {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(inputs.mealDailyActual || 1490)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}

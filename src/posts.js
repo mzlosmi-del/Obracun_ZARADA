@@ -1915,7 +1915,7 @@ Neoporeziva u slučaju:
 - Teške bolesti
 - Elementarne nepogode
 
-Iznos: do **dvostruke prosečne zarade** (oko 280.000 RSD u 2026).
+Iznos: do **dvostruke prosečne zarade** (oko 336.016 RSD, uz prosek od 168.008 RSD).
 
 ### Pokloni za decu zaposlenih
 
@@ -1985,7 +1985,7 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
 
 **Jubilarna nagrada** je jednokratna isplata zaposlenom povodom navršenih „okruglih" godina rada kod istog poslodavca. U Srbiji je ova vrsta nagrade poreski povlašćena — deo iznosa je **u potpunosti neoporeziv**.
 
-**Kratak odgovor:** za 2026. godinu, uz prosečnu zaradu od oko 140.000 RSD, jubilarna nagrada neoporezivo iznosi do **140.000 RSD za 10 godina**, do **280.000 RSD za 20 godina**, do **350.000 RSD za 30 godina** i do **420.000 RSD za 40 godina** rada kod istog poslodavca.
+**Kratak odgovor:** za 2026. godinu, uz poslednju objavljenu prosečnu bruto zaradu od 168.008 RSD (RZS), jubilarna nagrada neoporezivo iznosi do **168.008 RSD za 10 godina**, do **336.016 RSD za 20 godina**, do **420.020 RSD za 30 godina** i do **504.024 RSD za 40 godina** rada kod istog poslodavca.
 
 > 🧮 Brzo izračunajte neoporezivi iznos: [kalkulator jubilarne nagrade](/jubilarna-nagrada).
 
@@ -2009,36 +2009,36 @@ Najčešća praksa u Srbiji je da se jubilarna nagrada isplaćuje za:
 | 30 godina rada | 2,5× prosečna mesečna zarada u RS |
 | 40 godina rada | 3× prosečna mesečna zarada u RS |
 
-**Prosečna mesečna zarada u Republici Srbiji** koja se uzima u obzir je ona koju je poslednju objavio Republički zavod za statistiku — krajem 2025. godine ova prosečna zarada iznosila je oko **140.000 RSD bruto**.
+**Prosečna mesečna zarada u Republici Srbiji** koja se uzima u obzir je ona koju je poslednju objavio Republički zavod za statistiku — prema poslednjem podatku prosečna bruto zarada iznosi **168.008 RSD** (RZS). Ovaj iznos se povremeno menja, pa se za konkretnu isplatu koristi poslednji zvanično objavljen podatak.
 
 ## Koliko iznosi jubilarna nagrada za 10, 20, 30 i 40 godina?
 
-Za 2026. godinu, ako je zvanična prosečna zarada 140.000 RSD bruto, jubilarna nagrada (neoporezivi maksimum) iznosi:
+Uz prosečnu bruto zaradu od 168.008 RSD, jubilarna nagrada (neoporezivi maksimum) iznosi:
 
-- **Jubilarna nagrada za 10 godina:** do 140.000 RSD neoporezivo
-- **Jubilarna nagrada za 20 godina:** do 280.000 RSD neoporezivo
-- **Jubilarna nagrada za 30 godina:** do 350.000 RSD neoporezivo
-- **Jubilarna nagrada za 40 godina staža:** do 420.000 RSD neoporezivo
+- **Jubilarna nagrada za 10 godina:** do 168.008 RSD neoporezivo (1×)
+- **Jubilarna nagrada za 20 godina:** do 336.016 RSD neoporezivo (2×)
+- **Jubilarna nagrada za 30 godina:** do 420.020 RSD neoporezivo (2,5×)
+- **Jubilarna nagrada za 40 godina staža:** do 504.024 RSD neoporezivo (3×)
 
 Ako poslodavac isplati **veći iznos** od neoporezivog limita, razlika podleže porezu na zaradu (10%) i punim doprinosima (35,05%) — kao i bilo koji drugi bonus. Detaljan vodič za [porez na bonus](/blog/porez-na-bonus) objašnjava ovaj princip.
 
 ## Primer obračuna
 
-**Scenario A:** Zaposleni navršio 20 godina rada, poslodavac isplaćuje 250.000 RSD.
+**Scenario A:** Zaposleni navršio 20 godina rada, poslodavac isplaćuje 300.000 RSD.
 
-- Limit neoporezivo (2× prosečna): 280.000 RSD
-- Iznos isplate: 250.000 RSD
-- **Iznos je u potpunosti neoporeziv** → zaposleni prima **250.000 RSD na račun**.
+- Limit neoporezivo (2× prosečna): 336.016 RSD
+- Iznos isplate: 300.000 RSD
+- **Iznos je u potpunosti neoporeziv** → zaposleni prima **300.000 RSD na račun**.
 
 **Scenario B:** Zaposleni navršio 20 godina rada, poslodavac isplaćuje 400.000 RSD.
 
-- Neoporezivi deo: 280.000 RSD
-- Oporezivi deo: 120.000 RSD
-- Doprinosi zaposlenog (19,90% × 120.000): 23.880 RSD
-- Porez (10% × 120.000): 12.000 RSD
-- **Neto na račun: 364.120 RSD** (umesto 400.000)
+- Neoporezivi deo (2× prosečna): 336.016 RSD
+- Oporezivi deo: 63.984 RSD
+- Doprinosi zaposlenog (19,90% × 63.984): 12.733 RSD
+- Porez (10% × 63.984): 6.398 RSD
+- **Neto na račun: 380.869 RSD** (umesto 400.000)
 
-Dodatno, poslodavac plaća svoj deo doprinosa (15,15% × 120.000 = 18.180 RSD).
+Dodatno, poslodavac plaća svoj deo doprinosa (15,15% × 63.984 = 9.694 RSD).
 
 ## Šta se računa kao staž za jubilej?
 
@@ -2088,11 +2088,11 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
 - [Sindikat samostalnih sindikata Srbije](http://www.sindikat.rs/)
     `,
     faq: [
-      { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Za 20 godina rada kod istog poslodavca jubilarna nagrada je neoporeziva do dvostruke prosečne zarade u Srbiji — u 2026. godini to je oko 280.000 RSD. Poslodavac može isplatiti i više, ali se razlika iznad limita oporezuje kao zarada." },
-      { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Za 10 godina rada jubilarna nagrada je neoporeziva do jedne prosečne mesečne zarade u Republici Srbiji — oko 140.000 RSD u 2026. godini." },
-      { q: "Koliko iznosi jubilarna nagrada za 30 godina?", a: "Za 30 godina rada jubilarna nagrada je neoporeziva do 2,5 prosečne zarade — oko 350.000 RSD u 2026. godini." },
-      { q: "Koliko iznosi jubilarna nagrada za 40 godina staža?", a: "Za 40 godina rada jubilarna nagrada je neoporeziva do tri prosečne zarade — oko 420.000 RSD u 2026. godini." },
-      { q: "Kako izgleda primer obračuna jubilarne nagrade?", a: "Ako poslodavac za 20 godina isplati 250.000 RSD, a neoporezivi limit je 280.000 RSD, ceo iznos je neoporeziv i zaposleni dobija 250.000 RSD na račun. Ako isplati 400.000 RSD, oporezuje se samo 120.000 RSD iznad limita." },
+      { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Za 20 godina rada kod istog poslodavca jubilarna nagrada je neoporeziva do dvostruke prosečne zarade u Srbiji — uz prosek od 168.008 RSD to je oko 336.016 RSD. Poslodavac može isplatiti i više, ali se razlika iznad limita oporezuje kao zarada." },
+      { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Za 10 godina rada jubilarna nagrada je neoporeziva do jedne prosečne mesečne zarade u Republici Srbiji — oko 168.008 RSD." },
+      { q: "Koliko iznosi jubilarna nagrada za 30 godina?", a: "Za 30 godina rada jubilarna nagrada je neoporeziva do 2,5 prosečne zarade — oko 420.020 RSD." },
+      { q: "Koliko iznosi jubilarna nagrada za 40 godina staža?", a: "Za 40 godina rada jubilarna nagrada je neoporeziva do tri prosečne zarade — oko 504.024 RSD." },
+      { q: "Kako izgleda primer obračuna jubilarne nagrade?", a: "Ako poslodavac za 20 godina isplati 300.000 RSD, a neoporezivi limit je 336.016 RSD, ceo iznos je neoporeziv i zaposleni dobija 300.000 RSD na račun. Ako isplati 400.000 RSD, oporezuje se samo 63.984 RSD iznad limita." },
     ],
   },
   {
@@ -2221,17 +2221,17 @@ Za precizan obračun koristite naš [bruto u neto kalkulator](/bruto-neto) kada 
 
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 
-**Kratak odgovor:** prema **Zakonu o radu Srbije, član 108**, za prekovremeni rad pripada **uvećana zarada od najmanje 26%** u odnosu na redovnu satnicu. Isto uvećanje (minimum 26%) važi i za noćni rad, rad nedeljom i rad na praznik.
+**Kratak odgovor:** prema **Zakonu o radu Srbije, član 108**, za prekovremeni rad pripada **uvećana zarada od najmanje 26%** u odnosu na redovnu satnicu. Isto uvećanje (minimum 26%) važi i za noćni rad i rad nedeljom, dok je za **rad na dan državnog praznika** uvećanje veće — **najmanje 110%** od osnovice.
 
-## Minimalni koeficijent uvećanja (najmanje 26%, član 108)
+## Minimalni koeficijent uvećanja (član 108)
 
 Za prekovremeni rad, poslodavac je obavezan da plati zaradu uvećanu za **najmanje 26%** u odnosu na redovnu satnicu. Ovo je zakonski minimum — kolektivnim ugovorom ili ugovorom o radu može se utvrditi i veći koeficijent.
 
 Isto uvećanje od minimum 26% važi za:
-- Noćni rad (između 22:00 i 06:00 sati)
-- Rad vikendom (subota i nedelja)
-- **Rad nedeljom** — uvećanje najmanje 26%
-- **Rad na praznik** (državni praznik) — uvećanje najmanje 26%
+- Noćni rad (između 22:00 i 06:00 sati), ako nije već vrednovan u osnovnoj zaradi
+- Rad nedeljom
+
+**Rad na dan državnog praznika** koji je neradni dan poseban je slučaj — uvećanje iznosi **najmanje 110%** od osnovice (član 108). To je premija povrh redovne zarade za taj dan, pa zaposleni koji radi na praznik ukupno ostvaruje oko 210% dnevne zarade (100% redovno + 110% uvećanje).
 
 ## Kako se računa satnica za prekovremeni?
 
@@ -2263,7 +2263,7 @@ Koristite naš [PlatniListić kalkulator](/) da proverite da li vam je prekovrem
     faq: [
       { q: "Koliko se plaća prekovremeni rad po Zakonu o radu?", a: "Prema članu 108. Zakona o radu Srbije, za prekovremeni rad pripada uvećana zarada od najmanje 26% u odnosu na redovnu satnicu. Kolektivnim ugovorom može se utvrditi i veći procenat." },
       { q: "Koliko se plaća rad nedeljom?", a: "Za rad nedeljom pripada uvećanje od najmanje 26% u odnosu na redovnu satnicu — isto kao i za prekovremeni i noćni rad, prema članu 108. Zakona o radu." },
-      { q: "Koliko se plaća rad na praznik?", a: "Za rad na državni praznik pripada uvećana zarada od najmanje 26%. Mnogi kolektivni ugovori predviđaju i veće uvećanje za rad na praznik." },
+      { q: "Koliko se plaća rad na praznik?", a: "Za rad na dan državnog praznika koji je neradni dan pripada uvećanje od najmanje 110% od osnovice (član 108 Zakona o radu) — znatno više nego za prekovremeni ili noćni rad (26%). Reč je o premiji povrh redovne zarade, pa zaposleni ukupno ostvaruje oko 210% dnevne zarade. Mnogi kolektivni ugovori predviđaju i veće uvećanje." },
     ],
   },
   {
