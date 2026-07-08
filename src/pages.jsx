@@ -669,8 +669,8 @@ export function RadniDaniPage() {
   const ukupnoBezPraznika = dana.reduce((s, r) => s + r.bezPraznika, 0);
   return <ReferencePage cfg={{
     slug: "radni-dani-2026",
-    title: "Radni dani i radni sati 2026 — po mesecima | PlatniListić",
-    description: "Broj radnih dana i fond radnih sati po mesecima 2026: jun 176 h, jul 184 h… Ukupno 261 dan / 2.088 sati. Tabela sa praznicima, za obračun zarade.",
+    title: "Radni dani i sati 2026 po mesecima — jul 184 h | PlatniListić",
+    description: "Fond radnih sati po mesecima 2026: jul 184 h (23 dana), jun 176 h, avgust 168 h. Ukupno 261 dan / 2.088 sati. Tabela sa praznicima, za obračun zarade.",
     h1: "Radni dani i radni sati u 2026. godini (Srbija)",
     breadcrumbName: "Radni dani 2026",
     body: (<>
@@ -696,6 +696,21 @@ export function RadniDaniPage() {
         </tfoot>
       </table>
       <p><strong>„Radni dani (fond)"</strong> su svi dani ponedeljak–petak — to je zvanični mogući fond koji se koristi za obračun <a href="/minimalna-zarada-2026">minimalne zarade</a> (cena radnog časa × fond sati) i satnice. <strong>„Dani bez praznika"</strong> su fond umanjen za državne praznike koji padaju na radni dan — toliko se dana stvarno radi. Napomena za februar: pošto Sretenje (15. februar) pada u nedelju, neradan je i utorak 17. februar. Tačne datume proverite u <a href="/praznici-2026">spisku praznika za 2026</a>.</p>
+
+      <p><strong>Minimalac po mesecima zavisi od fonda sati</strong> — mesečna minimalna zarada = cena radnog časa × broj radnih sati u tom mesecu, pa se razlikuje od meseca do meseca (vidi <a href="/minimalna-zarada-2026">minimalnu zaradu 2026</a>).</p>
+
+      <h2>Fond sati po mesecima 2026 (detaljno)</h2>
+      {dana.map((r) => (
+        <div key={r.mesec} className="month-block">
+          <h3>Radni sati u mesecu {r.mesec.toLowerCase()} 2026: {r.radniSati} ({r.radniDani} radnih dana)</h3>
+          <p>
+            {r.mesec} 2026. ima <strong>{r.radniDani} radnih dana</strong> (fond od <strong>{r.radniSati} radnih sati</strong>, 8 h dnevno).{" "}
+            {r.praznici === "—"
+              ? "U ovom mesecu nema državnih praznika na radni dan, pa je efektivan broj radnih dana isti kao mogući fond."
+              : <>Praznici na radni dan: {r.praznici} — efektivno se radi <strong>{r.bezPraznika} dana</strong>.</>}
+          </p>
+        </div>
+      ))}
     </>),
     faq: [
       { q: "Koliko radnih dana ima u 2026. godini u Srbiji?", a: `Mogući fond je ${ukupnoDana} radnih dana (${ukupnoSati.toLocaleString("sr-RS")} sati). Kada se odbiju praznici koji padaju na radni dan, efektivno se radi ${ukupnoBezPraznika} dana.` },
