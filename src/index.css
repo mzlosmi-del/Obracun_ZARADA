@@ -337,7 +337,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .pro-cta { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 18px; background: var(--accent-light); border: 1px solid #c8d8ff; border-radius: 14px; padding: 18px 22px; }
 .pro-cta-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
 .pro-cta-text p { font-size: 14px; line-height: 1.55; color: var(--text); margin: 0; }
-.pro-cta-btn { flex-shrink: 0; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 20px; font-family: var(--sans); font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 3px 12px rgba(20,82,214,0.22); }
+.pro-cta-btn { flex-shrink: 0; display: inline-block; text-align: center; text-decoration: none; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 20px; font-family: var(--sans); font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 3px 12px rgba(20,82,214,0.22); }
 .pro-cta-btn:hover { background: #0e3aa8; transform: translateY(-1px); }
 @media (max-width: 700px) { .pro-cta { flex-direction: column; align-items: stretch; text-align: left; padding: 16px 18px; } .pro-cta-btn { width: 100%; } }
 
@@ -401,6 +401,23 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .brevo-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 .brevo-success { background: var(--green-light); color: var(--green); border-radius: 7px; padding: 9px 12px; font-size: 12px; font-weight: 600; text-align: center; }
 .brevo-error { font-size: 11px; color: var(--red); text-align: center; }
+
+/* ── SIDEBAR JOBS TEASER (replaces newsletter form) ── */
+.sidebar-jobs { padding: 14px 14px 16px; border-top: 1px solid var(--border); }
+.sidebar-jobs-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+.sidebar-jobs-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.sidebar-jobs-sub { font-size: 11px; font-weight: 700; color: var(--green); font-family: var(--mono); margin-bottom: 10px; }
+.sidebar-jobs-btn { width: 100%; background: var(--green); color: #fff; border: none; border-radius: 7px; padding: 9px; font-family: var(--sans); font-size: 12px; font-weight: 700; cursor: pointer; transition: background-color 0.15s, box-shadow 0.15s; box-shadow: 0 2px 8px rgba(10,122,69,0.2); }
+.sidebar-jobs-btn:hover { background: #086b3c; }
+
+/* ── JOBS CTA BANNER (replaces lead-form section on homepage) ── */
+.jobs-cta { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--green-light); border: 1px solid #bfe4cd; border-radius: 16px; padding: 26px 30px; }
+.jobs-cta-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.jobs-cta-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); margin: 0 0 6px; line-height: 1.25; }
+.jobs-cta-body { font-size: 14px; line-height: 1.55; color: var(--text2); margin: 0; }
+.jobs-cta-btn { flex-shrink: 0; background: var(--green); color: #fff; border: none; border-radius: 10px; padding: 14px 22px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 3px 12px rgba(10,122,69,0.22); }
+.jobs-cta-btn:hover { background: #086b3c; transform: translateY(-1px); }
+@media (max-width: 700px) { .jobs-cta { flex-direction: column; align-items: stretch; text-align: left; padding: 20px; } .jobs-cta-btn { width: 100%; } }
 
 /* ── ROUTE LOADER ── */
 .route-loader { display: flex; align-items: center; justify-content: center; padding: 60px 20px; min-height: 200px; color: var(--text3); font-size: 13px; }
