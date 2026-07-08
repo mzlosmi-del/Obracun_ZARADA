@@ -2426,7 +2426,7 @@ Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji 
 
 ## Neoporezivi iznos i minimalna zarada
 
-Od 1. januara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/blog/neoporezivi-2026).
+Od 1. januara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/neoporezivi-iznos-2026).
 
 Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake druge zarade.
 
