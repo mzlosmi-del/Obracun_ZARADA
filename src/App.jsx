@@ -335,6 +335,27 @@ function SidebarJobsTeaser({ onGo }) {
   );
 }
 
+// Mobile-only sticky footer (affiliate funnel), mounted once at the App root so
+// it appears on every page. Reuses scrollToJobs: scrolls to the on-page
+// JobsWidget, or navigates home and scrolls there. Hidden when no active jobs.
+function JobsStickyFooter() {
+  const navigate = useNavigate();
+  const jobs = activeJobs();
+  if (jobs.length === 0) return null;
+  return (
+    <button
+      type="button"
+      className="jobs-sticky"
+      onClick={() => { trackJobsTeaser("sticky"); scrollToJobs(navigate); }}
+      aria-label="Pogledajte otvorene pozicije partnerske agencije"
+    >
+      <span className="jobs-sticky-check" aria-hidden="true">✓</span>
+      <span className="jobs-sticky-text">Izračunali ste platu — pogledajte ko nudi više</span>
+      <span className="jobs-sticky-cta" aria-hidden="true">Poslovi →</span>
+    </button>
+  );
+}
+
 // Full-width banner replacing the old lead-form section on the homepage.
 function JobsCTABanner() {
   const navigate = useNavigate();
@@ -1479,6 +1500,7 @@ export default function App() {
           </Routes>
         </div>
       </main>
+      <JobsStickyFooter />
       <Analytics />
     </div>
   );
