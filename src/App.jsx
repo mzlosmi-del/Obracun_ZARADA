@@ -24,6 +24,7 @@ const MinuliRadPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.M
 const MinimalnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinimalnaZaradaPage })));
 const DodaciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.DodaciPage })));
 const GodisnjiPorezPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiPorezPage })));
+const GodisnjiOdmorPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiOdmorPage })));
 const UgovorODeluPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.UgovorODeluPage })));
 const RadniDaniPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.RadniDaniPage })));
 const PrazniciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PrazniciPage })));
@@ -1385,6 +1386,7 @@ export default function App() {
             <Route path="/minuli-rad" element={<Suspense fallback={<RouteLoader />}><MinuliRadPage /></Suspense>} />
             <Route path="/dodaci-na-zaradu" element={<Suspense fallback={<RouteLoader />}><DodaciPage /></Suspense>} />
             <Route path="/godisnji-porez" element={<Suspense fallback={<RouteLoader />}><GodisnjiPorezPage /></Suspense>} />
+            <Route path="/godisnji-odmor" element={<Suspense fallback={<RouteLoader />}><GodisnjiOdmorPage /></Suspense>} />
             <Route path="/ugovor-o-delu" element={<Suspense fallback={<RouteLoader />}><UgovorODeluPage /></Suspense>} />
             <Route path="/minimalna-zarada-2026" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
             <Route path="/radni-dani-2026" element={<Suspense fallback={<RouteLoader />}><RadniDaniPage /></Suspense>} />

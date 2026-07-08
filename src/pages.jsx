@@ -31,6 +31,7 @@ export function ToolPage({ cfg }) {
       <div className="tool-intro">{cfg.intro}</div>
       {cfg.calc === "pausal" ? <PausalCalculator />
         : cfg.calc === "otpremnina" ? <OtpremninaCalculator />
+        : cfg.calc === "godisnji-odmor" ? <GodisnjiOdmorCalculator />
         : <CalculatorPage focusSection={cfg.focusSection} />}
       <div className="disclaimer">{DISCLAIMER}</div>
       <section className="tool-guide">{cfg.guide}</section>
@@ -151,6 +152,38 @@ export function OtpremninaCalculator() {
         )}
       </div>
       <p className="pausal-note">Napomena: prikazani su zakonski minimumi (čl. 158 i čl. 119 Zakona o radu). Poslodavac kolektivnim ugovorom može utvrditi veći iznos. Deo otpremnine iznad neoporezivog praga podleže porezu. Izvor proseka: RZS.</p>
+    </div>
+  );
+}
+
+// Godišnji odmor — naknada zarade (čl. 104) i naknada za neiskorišćeni odmor (čl. 114 ZOR).
+// Presentation-only: osnovica = prosečna bruto zarada zaposlenog u prethodnih 12 meseci.
+export function GodisnjiOdmorCalculator() {
+  const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  const [mode, setMode] = useState("odmor"); // "odmor" | "neiskorisceni"
+  const [prosek, setProsek] = useState(prosBruto);
+  const [radniDani, setRadniDani] = useState(21);
+  const [dani, setDani] = useState(20);
+  const dnevna = radniDani > 0 ? prosek / radniDani : 0;
+  const naknada = dnevna * (dani || 0);
+  return (
+    <div className="pausal-calc">
+      <div className="mode-toggle" role="tablist" aria-label="Vrsta naknade" style={{ marginBottom: 12 }}>
+        <button className={`mode-btn ${mode === "odmor" ? "active" : ""}`} onClick={() => setMode("odmor")} role="tab" aria-selected={mode === "odmor"}>
+          Naknada za odmor
+        </button>
+        <button className={`mode-btn ${mode === "neiskorisceni" ? "active" : ""}`} onClick={() => setMode("neiskorisceni")} role="tab" aria-selected={mode === "neiskorisceni"}>
+          Neiskorišćeni dani
+        </button>
+      </div>
+      <NumberInput label="Prosečna bruto zarada (prethodnih 12 meseci)" sublabel="(podrazumevano prosečna bruto zarada u RS)" value={prosek} onChange={setProsek} step={1000} />
+      <NumberInput label="Radnih dana u mesecu" value={radniDani} onChange={setRadniDani} unit="dana" min={1} step={1} />
+      <NumberInput label={mode === "odmor" ? "Dana godišnjeg odmora" : "Neiskorišćenih dana odmora"} value={dani} onChange={setDani} unit="dana" min={0} step={1} />
+      <div className="pausal-results results-body">
+        <ResultRow label="Dnevna osnova (prosek ÷ radni dani)" value={dnevna} />
+        <ResultRow label={mode === "odmor" ? `Naknada za ${dani} dana odmora (bruto)` : `Naknada za ${dani} neiskorišćenih dana (bruto)`} value={naknada} type="positive" />
+      </div>
+      <p className="pausal-note">Napomena: osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci (čl. 104 Zakona o radu), ne prosek u RS — podrazumevana vrednost je informativna. Naknada je bruto i podleže porezu i doprinosima kao zarada. Naknada za neiskorišćeni odmor isplaćuje se pri prestanku radnog odnosa (čl. 114). Izvor proseka: RZS.</p>
     </div>
   );
 }
@@ -499,6 +532,60 @@ export function GodisnjiPorezPage() {
       { q: "Do kada se podnosi poreska prijava za godišnji porez?", a: "Poreska prijava za godišnji porez na dohodak građana podnosi se Poreskoj upravi do 15. maja naredne kalendarske godine (npr. za 2026. godinu — do 15. maja 2027)." },
     ],
     related: GODISNJI_POREZ_RELATED,
+  }} />;
+}
+
+export function GodisnjiOdmorPage() {
+  const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  return <ToolPage cfg={{
+    slug: "godisnji-odmor",
+    title: "Kalkulator godišnjeg odmora 2026 — naknada | PlatniListić",
+    description: "Kalkulator naknade za godišnji odmor i za neiskorišćeni odmor (čl. 104 i 114 Zakona o radu). Osnovica je prosek zarade u prethodnih 12 meseci. Besplatno, 2026.",
+    h1: "Kalkulator godišnjeg odmora i naknade (2026)",
+    breadcrumbName: "Godišnji odmor",
+    calc: "godisnji-odmor",
+    intro: (<p>Ovaj <strong>kalkulator godišnjeg odmora</strong> računa naknadu zarade za dane odmora i naknadu za <strong>neiskorišćeni godišnji odmor</strong> pri prestanku radnog odnosa. Osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci (čl. 104 Zakona o radu). Za pravila i uslove pogledajte vodič <a href="/blog/godisnji-odmor-naknada">kako se računa naknada za godišnji odmor</a>.</p>),
+    guide: (<>
+      <h2>Kako se obračunava naknada za godišnji odmor</h2>
+      <p>Za dane godišnjeg odmora zaposleni prima naknadu zarade koja <strong>ne može biti niža od prosečne zarade u prethodnih 12 meseci</strong> (čl. 104 Zakona o radu). U prosek ulaze osnovna zarada, minuli rad i redovna uvećanja (npr. za rad noću, prekovremeni i rad na dan praznika, ukoliko su deo redovnih primanja zaposlenog u posmatranom periodu). Postupak: (1) saberu se bruto zarade za 12 meseci koji prethode mesecu korišćenja odmora, (2) podele sa 12 (prosečna mesečna bruto zarada), (3) podeli sa brojem radnih dana u mesecu u kome se odmor koristi radi dnevne osnove, (4) pomnoži brojem dana odmora koje zaposleni koristi. Ovaj redosled — prosek pa dnevna osnova pa množenje danima — jednak je za obe vrste naknade opisane u nastavku, uz jednu razliku: kod redovnog korišćenja odmora broj radnih dana uzima se iz meseca korišćenja, dok se kod isplate pri prestanku radnog odnosa po pravilu uzima prosečan broj radnih dana.</p>
+      <h2>Parametri obračuna 2026</h2>
+      <table className="ref-table" aria-label="Parametri naknade za godišnji odmor 2026">
+        <thead><tr><th>Stavka</th><th>Vrednost</th></tr></thead>
+        <tbody>
+          <tr><td>Zakonski minimum odmora</td><td>20 radnih dana</td></tr>
+          <tr><td>Osnovica naknade</td><td>prosek zarade — prethodnih 12 meseci</td></tr>
+          <tr><td>Prosečna bruto zarada u RS ({REFERENCE_DATA.prosecnaZarada2026.mesec})</td><td>{prosBruto.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><td>Porez i doprinosi na naknadu</td><td>kao na zaradu (10% + 19,90%)</td></tr>
+        </tbody>
+      </table>
+      <h2>Radni primer</h2>
+      <p>Zaposleni sa prosečnom bruto zaradom od 100.000 RSD i 21 radnim danom u mesecu ima dnevnu osnovu 100.000 ÷ 21 ≈ 4.762 RSD. Za 20 radnih dana odmora naknada iznosi 4.762 × 20 ≈ 95.238 RSD bruto. Na taj iznos obračunavaju se doprinosi (19,90%) i porez (10% iznad neoporezivog dela) kao na redovnu zaradu. Ako isti zaposleni koristi odmor u mesecu sa manje radnih dana (npr. zbog praznika), dnevna osnova raste jer se isti prosek deli manjim brojem radnih dana — zato je broj radnih dana u mesecu korišćenja odmora bitan parametar, a ne samo prosečna zarada.</p>
+      <h2>Broj dana godišnjeg odmora i srazmeran deo</h2>
+      <p>Zakonski minimum je 20 radnih dana godišnjeg odmora u kalendarskoj godini, a ugovorom o radu, kolektivnim ugovorom ili pravilnikom o radu poslodavac može utvrditi i duže trajanje, zavisno od doprinosa na radu, uslova rada, radnog iskustva, stručne spreme i drugih kriterijuma (čl. 69 Zakona o radu). Zaposleni koji nije radio celu kalendarsku godinu kod poslodavca (npr. zbog zasnivanja ili prestanka radnog odnosa u toku godine) ima pravo na srazmeran deo godišnjeg odmora — jedna dvanaestina godišnjeg odmora za svaki mesec dana rada u toj kalendarskoj godini (čl. 73). Ovaj kalkulator ne računa srazmeran deo automatski — broj dana koji se unosi u polje treba da odražava već utvrđeno pravo (puni ili srazmerni deo), a naknada se potom obračunava po istoj formuli dnevne osnove.</p>
+      <h2>Naknada za neiskorišćeni godišnji odmor</h2>
+      <p>Ako zaposlenom prestane radni odnos pre nego što je iskoristio pun godišnji odmor, poslodavac je dužan da mu isplati <strong>naknadu za neiskorišćene dane</strong> (čl. 114 Zakona o radu), u visini prosečne zarade po istoj formuli. Za 8 neiskorišćenih dana i dnevnu osnovu 4.762 RSD naknada je ≈ 38.096 RSD bruto. Ova naknada isplaćuje se umesto korišćenja odmora u naturi i ne može se ugovoriti njeno isključenje ili unapred se od nje odreći — pravo na naknadu nastaje samim prestankom radnog odnosa sa neiskorišćenim dobrima. Poslodavac je dužan da zaposlenom omogući korišćenje odmora do kraja tekuće, odnosno do 30. juna naredne kalendarske godine za neiskorišćeni deo iz prethodne godine (čl. 72); tek ako to nije bilo moguće do prestanka radnog odnosa, sledi novčana naknada.</p>
+      <h2>Česte greške</h2>
+      <ul>
+        <li>Obračun naknade po tekućoj, a ne po prosečnoj zaradi iz prethodnih 12 meseci.</li>
+        <li>Izostavljanje minulog rada i redovnih uvećanja iz proseka.</li>
+        <li>Isplata neiskorišćenog odmora „na ruke" bez poreza i doprinosa — naknada je zarada.</li>
+        <li>Zamena obračuna brojem kalendarskih umesto brojem radnih dana u mesecu korišćenja odmora.</li>
+        <li>Nepriznavanje srazmernog dela odmora zaposlenom koji nije proveo celu godinu kod poslodavca.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Godišnji odmor uređuju čl. 68–76 Zakona o radu, naknadu zarade čl. 104, a naknadu za neiskorišćeni odmor čl. 114 (Zakon o radu, „Sl. glasnik RS", prečišćen tekst). Minimum je 20 radnih dana; pravo na pun odmor stiče se posle 6 meseci neprekidnog rada kod poslodavca (čl. 68), a do tada zaposleni ima pravo na srazmeran deo odmora, jednu dvanaestinu za svaki mesec rada. Raspored korišćenja odmora utvrđuje poslodavac rešenjem, uz obavezu da zaposlenog obavesti najkasnije 15 dana pre početka korišćenja (čl. 75). Zabranjeno je isplatiti naknadu umesto korišćenja odmora dok traje radni odnos — naknada za neiskorišćeni odmor moguća je isključivo pri prestanku radnog odnosa (čl. 114 stav 2).</p>
+    </>),
+    faq: [
+      { q: "Kako se računa godišnji odmor?", a: "Naknada za godišnji odmor računa se kao prosečna bruto zarada zaposlenog u prethodnih 12 meseci, podeljena brojem radnih dana u mesecu i pomnožena brojem dana odmora. Ne može biti niža od tog proseka (čl. 104 Zakona o radu)." },
+      { q: "Kako se računa naknada za neiskorišćeni godišnji odmor?", a: "Pri prestanku radnog odnosa poslodavac isplaćuje naknadu za neiskorišćene dane odmora (čl. 114 Zakona o radu), po istoj formuli — dnevna osnova (prosek ÷ radni dani) pomnožena brojem neiskorišćenih dana. Naknada je bruto i podleže porezu i doprinosima." },
+      { q: "Da li se na naknadu za godišnji odmor plaćaju porez i doprinosi?", a: "Da. Naknada za godišnji odmor tretira se kao zarada — plaćaju se doprinosi zaposlenog (19,90%), porez (10% iznad neoporezivog iznosa) i doprinosi poslodavca (15,15%)." },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/bolovanje", label: "Kalkulator bolovanja" },
+      { href: "/radni-dani-2026", label: "Radni dani 2026" },
+      { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
+    ],
   }} />;
 }
 
