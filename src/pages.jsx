@@ -273,11 +273,29 @@ export function PausalPage() {
           })}
         </tbody>
       </table>
-      <p className="home-examples-note">Obaveze = osnovica × (porez {PAUSAL_RATES.porez}% + PIO {PAUSAL_RATES.pio}% + zdravstveno {PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}% + nezaposlenost {PAUSAL_RATES.nezaposlenost.toLocaleString("sr-RS")}%). Tačnu osnovicu utvrđuje rešenje Poreske uprave.</p></>),
+      <p className="home-examples-note">Obaveze = osnovica × (porez {PAUSAL_RATES.porez}% + PIO {PAUSAL_RATES.pio}% + zdravstveno {PAUSAL_RATES.zdravstveno.toLocaleString("sr-RS")}% + nezaposlenost {PAUSAL_RATES.nezaposlenost.toLocaleString("sr-RS")}%). Tačnu osnovicu utvrđuje rešenje Poreske uprave.</p>
+      <h2>Kako Poreska uprava utvrđuje paušalnu osnovicu</h2>
+      <p>Paušalna osnovica nije prosta procena — utvrđuje se rešenjem nadležne organizacione jedinice Poreske uprave, na osnovu šifre pretežne delatnosti, mesta obavljanja delatnosti (opština i zona), poslovnog prostora, broja zaposlenih i drugih elemenata koje propisuje uredba Vlade o bližim uslovima za paušalno oporezivanje. Zato dva preduzetnika sa istim mesečnim prihodom, ali različitom delatnošću ili opštinom, mogu imati različitu osnovicu i različitu mesečnu obavezu. Rešenje se donosi za kalendarsku godinu i preduzetnik ga prima pre početka obavljanja delatnosti (za novoosnovane) ili po zahtevu za ulazak u paušalni sistem. Na rešenje je moguće uložiti žalbu u zakonskom roku ako se preduzetnik ne slaže sa utvrđenom osnovicom.</p>
+      <h2>Kada se paušalcu isplati prelazak na knjige</h2>
+      <p>Paušalno oporezivanje najviše odgovara delatnostima sa niskim stvarnim troškovima poslovanja (IT usluge, konsalting, zanatske i intelektualne usluge), jer se porez i doprinosi plaćaju na osnovicu koju utvrđuje Poreska uprava, a ne na stvarno ostvarenu dobit. Ako preduzetnik ima visoke priznate troškove (nabavka opreme, zakup, materijal), vođenje poslovnih knjiga sa oporezivanjem stvarnog prihoda umanjenog za troškove može biti povoljnije. Prelazak na knjige razmatra se i kada prihod preduzetnika trajno prevazilazi iznos na kom je paušalna osnovica realno postavljena, jer u tom slučaju paušalac efektivno plaća manju stopu od stvarno ostvarenog prihoda — što Poreska uprava po pravilu koriguje kroz reviziju osnovice ili prelazak u obavezni sistem knjigovodstva.</p>
+      <h2>Ko može biti paušalac</h2>
+      <p>Pravo na paušalno oporezivanje po pravilu ostvaruju preduzetnici čija delatnost nije izričito isključena propisima (na primer određene regulisane profesije i delatnosti koje zahtevaju vođenje posebne evidencije), čiji godišnji promet ne prelazi zakonski limit i koji nisu obveznici PDV po osnovu obima prometa. Preduzetnik može ući u paušalni sistem prilikom osnivanja radnje (podnošenjem zahteva uz registracionu prijavu Agenciji za privredne registre) ili naknadno, prelaskom sa vođenja poslovnih knjiga, pod uslovima koje propisuje Zakon o porezu na dohodak građana i prateća uredba. Status paušalca preduzetnik gubi ako tokom godine promet pređe {PAUSAL_RATES.limitGodisnji.toLocaleString("sr-RS")} RSD ili ako naknadno postane obveznik PDV — u tom slučaju prelazak na knjige je obavezan od naredne godine, a u pojedinim slučajevima i tokom tekuće godine.</p>
+      <h2>Česte greške u obračunu paušala</h2>
+      <ul>
+        <li>Korišćenje zastarele stope PIO doprinosa od 25,5% — od 1.1.2023. važeća stopa je {PAUSAL_RATES.pio}% (ZDOSO čl. 44), pa obračuni sa starom stopom precenjuju mesečnu obavezu.</li>
+        <li>Poistovećivanje paušalne osnovice sa stvarnim mesečnim prihodom — obaveze se računaju na osnovicu iz rešenja Poreske uprave, ne na fakturisani iznos, pa promena prihoda tokom godine sama po sebi ne menja mesečnu uplatu dok se rešenje ne izmeni.</li>
+        <li>Zaboravljanje doprinosa za nezaposlenost (0,75%) — preduzetnici su obveznici ovog doprinosa (ZDOSO čl. 9 tač. 6), pa ukupna stopa nije samo porez + PIO + zdravstveno već i taj dodatni deo.</li>
+        <li>Ignorisanje godišnjeg limita prometa od {PAUSAL_RATES.limitGodisnji.toLocaleString("sr-RS")} RSD — prekoračenje limita povlači obavezan prelazak na vođenje poslovnih knjiga i oporezivanje stvarnog prihoda od naredne godine.</li>
+      </ul>
+      <h2>Pravni okvir za paušalno oporezivanje</h2>
+      <p>Doprinose paušalno oporezovanih preduzetnika uređuje Zakon o doprinosima za obavezno socijalno osiguranje (ZDOSO) — čl. 44 propisuje stope za PIO, zdravstveno osiguranje i osiguranje za slučaj nezaposlenosti, dok čl. 9 tač. 6 utvrđuje da su preduzetnici obveznici doprinosa za nezaposlenost. Porez na prihod od samostalne delatnosti uređuje Zakon o porezu na dohodak građana. Visinu paušalne osnovice, uslove za paušalno oporezivanje i godišnji limit prometa bliže propisuje Vlada uredbom, a rešenja o osnovici donosi Poreska uprava.</p>
+      <p>Budući da su paušalna osnovica, koeficijenti po delatnosti i granični iznosi predmet povremenih izmena propisa, preduzetnici koji planiraju prelazak u paušalni sistem ili promenu delatnosti treba da proveravaju važeće rešenje i uredbu pre nego što se osloni na okvirne iznose iz ranijih godina. Mesečna obaveza prikazana u kalkulatoru iznad je informativan obračun po važećim stopama za 2026 — konačan iznos i rok uplate uvek određuje rešenje nadležne Poreske uprave.</p></>),
     faq: [
       { q: "Koliko paušalac plaća mesečno u 2026?", a: "Najčešće okvirno 30.000–45.000 RSD, u zavisnosti od šifre delatnosti i opštine. Tačan iznos je u rešenju Poreske uprave." },
       { q: "Šta čini mesečnu obavezu paušalca?", a: "Porez 10% i doprinosi — PIO 24%, zdravstveno 10,3% i nezaposlenost 0,75% — na paušalnu osnovicu. Ukupno 45,05%." },
       { q: "Koji je limit za paušal?", a: "Paušalni status važi dok godišnji promet ne pređe 6.000.000 RSD." },
+      { q: "Da li je stopa PIO za paušalce 24% ili 25,5%?", a: "Važeća stopa od 1.1.2023. je 24% (ZDOSO čl. 44). Stopa od 25,5% je zastarela i više se ne primenjuje — ako obračun ili tekst i dalje navodi 25,5%, koristi neažurne podatke." },
+      { q: "Ko utvrđuje paušalnu osnovicu i može li se osporiti?", a: "Osnovicu rešenjem utvrđuje nadležna organizaciona jedinica Poreske uprave, prema šifri delatnosti, opštini i drugim elementima. Na rešenje se može uložiti žalba u zakonskom roku ukoliko preduzetnik smatra da osnovica nije pravilno utvrđena." },
     ],
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
@@ -342,13 +360,24 @@ export function BrutoNetoPage() {
           <tr><td>200.000</td><td>≈ 143.622</td><td>≈ 230.300</td></tr>
         </tbody>
       </table>
-      <p className="home-examples-note">Iznosi su informativni i zaokruženi; za tačan obračun za vašu zaradu unesite bruto u kalkulator iznad.</p></>),
+      <p className="home-examples-note">Iznosi su informativni i zaokruženi; za tačan obračun za vašu zaradu unesite bruto u kalkulator iznad.</p>
+      <h2>Česte greške u obračunu bruto u neto</h2>
+      <ul>
+        <li>Primena poreza na celu bruto zaradu umesto samo na deo iznad neoporezivih {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD — porez se plaća samo na poresku osnovicu (bruto 1 − neoporezivi iznos), nikad na ceo bruto 1.</li>
+        <li>Mešanje bruto 1 i bruto 2 — doprinosi zaposlenog i porez obračunavaju se na bruto 1 (ugovorenu zaradu), dok je bruto 2 već uvećan za doprinose poslodavca i ne sme se ponovo koristiti kao osnovica za porez.</li>
+        <li>Primena stope doprinosa (19,90%) na ceo bruto bez uvažavanja najniže osnovice — ako je bruto 1 ispod {DEFAULT_RATES.minBase.toLocaleString("sr-RS")} RSD, doprinosi se svejedno obračunavaju na najnižu mesečnu osnovicu, ne na stvarno niži bruto.</li>
+        <li>Zanemarivanje najviše mesečne osnovice ({DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD) kod visokih zarada — iznad tog praga doprinosi se dalje ne uvećavaju srazmerno bruto zaradi.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Porez na zaradu uređuje Zakon o porezu na dohodak građana (stopa 10%, neoporezivi iznos usklađen „Sl. glasnik RS" br. 115/2025), a doprinose za obavezno socijalno osiguranje Zakon o doprinosima za obavezno socijalno osiguranje, koji propisuje stope za PIO, zdravstveno osiguranje i osiguranje za slučaj nezaposlenosti, kao i najnižu i najvišu mesečnu osnovicu doprinosa. Iznose osnovica za tekuću godinu objavljuje CROSO, dok neoporezivi iznos zarade usklađuje Ministarstvo finansija godišnjim indeksiranjem.</p></>),
     faq: [
       { q: "Kako izračunati neto iz bruto u Srbiji?", a: "Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez 10% na deo iznad neoporezivog iznosa (34.221 RSD za 2026). Kalkulator radi obračun u oba smera." },
       { q: "Ako je bruto plata 50.000 dinara, koliki je neto?", a: "Za bruto 1 od 50.000 RSD neto iznosi ≈ 38.472 RSD: doprinosi zaposlenog su 9.950 RSD (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD)." },
       { q: "Koliki su doprinosi zaposlenog?", a: "19,90% — PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%." },
       { q: "Kako se računa bruto 2 u neto?", a: "Bruto 2 je ukupan trošak poslodavca (bruto 1 + 15,15% doprinosa poslodavca). Da biste iz bruto 2 dobili neto, prvo se izdvoji bruto 1 (bruto 2 ÷ 1,1515), pa se iz njega oduzmu doprinosi zaposlenog (19,90%) i porez (10% na deo iznad 34.221 RSD)." },
       { q: "Da li je obračun besplatan?", a: "Da, kalkulator je besplatan i ne zahteva registraciju. Rezultat preuzimate kao PDF i PPP-PD XML." },
+      { q: "Da li se porez plaća na ceo bruto iznos zarade?", a: "Ne. Porez od 10% plaća se samo na deo bruto 1 zarade iznad neoporezivog iznosa (34.221 RSD za 2026). Doprinosi zaposlenog (19,90%), za razliku od poreza, obračunavaju se na celu bruto 1 zaradu." },
+      { q: "Da li bruto zarada uključuje doprinose poslodavca?", a: "Ne, bruto 1 (ugovorena zarada) ne uključuje doprinose poslodavca. Oni se dodaju posebno (15,15%) i formiraju bruto 2 — stvaran trošak rada za poslodavca, koji je uvek veći od bruto 1." },
     ],
     related: TOOL_RELATED,
   }} />;
@@ -516,12 +545,23 @@ export function NetoBrutoPage() {
           <tr><td>108.570</td><td>≈ 150.000</td><td>≈ 172.725</td></tr>
           <tr><td>143.620</td><td>≈ 200.000</td><td>≈ 230.300</td></tr>
         </tbody>
-      </table></>),
+      </table>
+      <h2>Česte greške pri obrnutom obračunu</h2>
+      <ul>
+        <li>Deljenje neto iznosa jednom fiksnom stopom (npr. neto ÷ 0,7) — obračun nije linearan zbog neoporezivog iznosa, pa takva prečica sistematski greši, naročito kod nižih i viših zarada gde je udeo neoporezivog dela u bruto zaradi različit.</li>
+        <li>Mešanje bruto 1 i bruto 2 kao ciljanog iznosa — ako poslodavac navede da je "bruto" zapravo bruto 2 (ukupan trošak), a obračun se sprovede kao da je bruto 1, rezultujući neto će biti manji od stvarno dogovorenog.</li>
+        <li>Zanemarivanje najniže mesečne osnovice doprinosa ({DEFAULT_RATES.minBase.toLocaleString("sr-RS")} RSD) — kod vrlo niskih ciljanih neto iznosa, izračunati bruto 1 može ispasti ispod praga na koji se doprinosi svejedno moraju obračunati na najnižu osnovicu, što obrnuti obračun mora uzeti u obzir.</li>
+        <li>Zaokruživanje u međukoracima — ručno rekonstruisanje bruto 1 iz neto zaokruživanjem posle svakog koraka (doprinosi, pa porez) uvodi grešku od nekoliko desetina dinara; kalkulator radi iterativno na punu preciznost pre zaokruživanja konačnog rezultata.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Obrnut obračun se oslanja na iste propise kao i direktan: Zakon o porezu na dohodak građana određuje stopu poreza (10%) i neoporezivi iznos (usklađen „Sl. glasnik RS" br. 115/2025), dok Zakon o doprinosima za obavezno socijalno osiguranje propisuje stope doprinosa zaposlenog i poslodavca, kao i najnižu i najvišu mesečnu osnovicu. Budući da propisi definišu obračun samo u smeru bruto → neto, rekonstrukcija bruto 1 iz zadatog neto iznosa je matematički (iterativni) postupak, a ne zaseban zakonski definisan obrazac — zato se rezultat u praksi iskazuje kao zaokružena aproksimacija. Osnovice objavljuje CROSO.</p></>),
     faq: [
       { q: "Kako izračunati bruto iz neto zarade u Srbiji?", a: "Kalkulator iterativno pronalazi bruto 1 tako da posle doprinosa zaposlenog (19,90%) i poreza (10% na deo iznad 34.221 RSD) dobijete željeni neto iznos. Unesite ciljani neto u polje 'Unesite Neto' i kalkulator prikazuje odgovarajući bruto 1." },
       { q: "Ako mi treba neto plata od 100.000 dinara, koliki je bruto?", a: "Za neto od 100.000 RSD bruto 1 iznosi ≈ 137.772 RSD, a ukupan trošak poslodavca (bruto 2) ≈ 158.644 RSD." },
       { q: "Koliki je ukupan trošak poslodavca za dati neto?", a: "Ukupan trošak = Bruto 1 + doprinosi poslodavca (15,15% — PIO 10% i zdravstvo 5,15%). Za neto 73.522 RSD, bruto 1 je 100.000 RSD, a ukupan trošak oko 115.150 RSD." },
       { q: "Da li je neto u bruto kalkulator besplatan?", a: "Da, kalkulator je besplatan i ne zahteva registraciju. Obračun radite u oba smera — bruto u neto i neto u bruto. Rezultat preuzimate kao PDF i PPP-PD XML." },
+      { q: "Koliki je bruto za neto platu od 80.000 dinara?", a: "Za neto od 80.000 RSD bruto 1 iznosi ≈ 109.241 RSD, a ukupan trošak poslodavca (bruto 2) ≈ 125.791 RSD, uz doprinose zaposlenog 19,90% i porez 10% na deo iznad neoporezivih 34.221 RSD." },
+      { q: "Zašto se neto ne može dobiti prostim deljenjem bruto zarade sa fiksnim procentom?", a: "Zato što porez od 10% važi samo na deo bruto zarade iznad neoporezivog iznosa (34.221 RSD), dok se doprinosi od 19,90% obračunavaju na ceo bruto 1. Odnos neto/bruto zato nije konstantan, već raste sa visinom zarade, pa je za tačan obrnuti obračun potreban iterativni postupak, ne fiksni koeficijent." },
     ],
     related: NETO_BRUTO_RELATED,
   }} />;
