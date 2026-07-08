@@ -1987,6 +1987,8 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
 
 **Kratak odgovor:** za 2026. godinu, uz prosečnu zaradu od oko 140.000 RSD, jubilarna nagrada neoporezivo iznosi do **140.000 RSD za 10 godina**, do **280.000 RSD za 20 godina**, do **350.000 RSD za 30 godina** i do **420.000 RSD za 40 godina** rada kod istog poslodavca.
 
+> 🧮 Brzo izračunajte neoporezivi iznos: [kalkulator jubilarne nagrade](/jubilarna-nagrada).
+
 ## Pravni okvir
 
 Jubilarna nagrada je regulisana na dva nivoa:
@@ -2452,6 +2454,8 @@ Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake dr
 Godišnji odmor je jedno od osnovnih prava zaposlenih u Srbiji, garantovano **Zakonom o radu (čl. 68–76)**. Za vreme korišćenja godišnjeg odmora, zaposleni ima pravo na naknadu zarade — ali kako se ona tačno obračunava?
 
 **Kratak odgovor:** naknada za godišnji odmor računa se kao **prosečna zarada zaposlenog u prethodnih 12 meseci** (čl. 104 Zakona o radu) i ne može biti niža od tog proseka. Po novom zakonu, u prosek ulaze osnovna zarada, minuli rad i sva redovna uvećanja.
+
+> 🧮 Brzo izračunajte iznos: [kalkulator godišnjeg odmora](/godisnji-odmor) — naknada za odmor i za neiskorišćene dane.
 
 ## Pravo na godišnji odmor
 
