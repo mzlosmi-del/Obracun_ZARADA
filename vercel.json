@@ -12,7 +12,12 @@
     },
     {
       "source": "/blog/neoporezivi-2025",
-      "destination": "/blog/neoporezivi-2026",
+      "destination": "/neoporezivi-iznos-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/neoporezivi-2026",
+      "destination": "/neoporezivi-iznos-2026",
       "permanent": true
     }
   ],

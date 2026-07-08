@@ -4,7 +4,7 @@ import chromium from "@sparticuz/chromium";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { mkdir, writeFile, readFile, readdir } from "node:fs/promises";
-import { POSTS } from "../src/posts.js";
+import { POSTS, REDIRECTED_POST_IDS } from "../src/posts.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -16,8 +16,8 @@ const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/brut
 // Blog posts that 301-redirect to a canonical page (see vercel.json). They must
 // NOT be prerendered or listed in the sitemap — a redirected URL in the sitemap
 // is a soft error and dilutes crawl budget. Content is merged into the target.
-const REDIRECTED = new Set(["neoporezivi-2026", "minimalna-zarada-2026"]);
-const INDEXABLE_POSTS = POSTS.filter((p) => !REDIRECTED.has(p.id));
+// Source of truth: REDIRECTED_POST_IDS in src/posts.js.
+const INDEXABLE_POSTS = POSTS.filter((p) => !REDIRECTED_POST_IDS.has(p.id));
 const ROUTES = [...STATIC_ROUTES, ...INDEXABLE_POSTS.map((p) => `/blog/${p.id}`)];
 
 const MONTHS = {

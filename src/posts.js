@@ -2173,7 +2173,7 @@ Iz bruto 1 zarade se oduzimaju dve vrste obaveza:
 - Osiguranje za slučaj nezaposlenosti: 0,75%
 
 **2. Porez na dohodak (10%)**
-- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/blog/neoporezivi-2026) od **34.221 RSD** (od 1.1.2026; ranije 28.423 RSD)
+- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/neoporezivi-iznos-2026) od **34.221 RSD** (od 1.1.2026; ranije 28.423 RSD)
 
 ## Neto zarada
 
@@ -2592,3 +2592,13 @@ Pogledajte i [jubilarnu nagradu](/blog/jubilarna-nagrada) — koju neki poslodav
     ],
   },
 ];
+
+// Posts that 301-redirect to a canonical page (see vercel.json). They are kept
+// in POSTS so their merged content stays in version history, but they must be
+// hidden from the blog list, related-post rails, prerender, and the sitemap so
+// users and crawlers are never sent to a URL that only redirects.
+// Keep this in sync with the REDIRECTED set in scripts/prerender.mjs.
+export const REDIRECTED_POST_IDS = new Set(["neoporezivi-2026", "minimalna-zarada-2026"]);
+
+// POSTS minus redirected ones — use this for any user-facing listing.
+export const LIVE_POSTS = POSTS.filter((p) => !REDIRECTED_POST_IDS.has(p.id));

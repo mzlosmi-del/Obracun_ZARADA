@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { POSTS } from "./posts.js";
+import { POSTS, LIVE_POSTS } from "./posts.js";
 import { useSeo } from "./seo.jsx";
 import { JobsWidget } from "./JobsWidget.jsx";
 
@@ -48,8 +48,9 @@ function isoDate(dateStr) {
 }
 
 function relatedPosts(currentId, tag, limit = 3) {
-  const sameTag = POSTS.filter(p => p.id !== currentId && p.tag === tag);
-  const others = POSTS.filter(p => p.id !== currentId && p.tag !== tag);
+  // Never surface redirected posts in the related rail.
+  const sameTag = LIVE_POSTS.filter(p => p.id !== currentId && p.tag === tag);
+  const others = LIVE_POSTS.filter(p => p.id !== currentId && p.tag !== tag);
   return [...sameTag, ...others].slice(0, limit);
 }
 
@@ -64,7 +65,7 @@ export function BlogList() {
       "name": "PlatniListić Blog",
       "url": `${SITE_URL}/blog`,
       "description": "Vodiči i analize o obračunu zarade u Srbiji.",
-      "blogPost": POSTS.map(p => ({
+      "blogPost": LIVE_POSTS.map(p => ({
         "@type": "BlogPosting",
         "headline": p.title,
         "url": `${SITE_URL}/blog/${p.id}`,
@@ -82,7 +83,7 @@ export function BlogList() {
         <p className="page-sub">Aktuelne informacije o zaradama, doprinosima i poreskim promenama u Srbiji.</p>
       </div>
       <div className="post-list">
-        {POSTS.map(post => (
+        {LIVE_POSTS.map(post => (
           <Link key={post.id} className="post-card" to={`/blog/${post.id}`} style={{textDecoration:"none", color:"inherit", display:"block"}}>
             <article>
               <div className="post-meta">
