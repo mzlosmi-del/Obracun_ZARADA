@@ -1227,7 +1227,7 @@ function HomePage() {
           <p>
             Minimalna cena rada je 371 RSD neto po radnom času (od 1. januara 2026). Mesečni neto
             iznos varira sa fondom sati — od 59.360 do 68.264 RSD, prosečno oko 64.554 RSD. Više u
-            vodiču o <a href="/blog/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
+            vodiču o <a href="/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
           </p>
         </div>
         <div className="home-faq-item">
@@ -1279,13 +1279,13 @@ function HomePage() {
           <li><a href="/blog/minuli-rad-obracun">Minuli rad — kako se računa 0,4% po godini staža</a></li>
           <li><a href="/blog/godisnji-odmor-naknada">Naknada za godišnji odmor</a></li>
           <li><a href="/blog/jubilarna-nagrada">Jubilarna nagrada — iznosi i obračun</a></li>
-          <li><a href="/blog/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
           <li><a href="/blog/pausalno-oporezivanje">Paušalno oporezivanje 2026</a></li>
           <li><a href="/blog/porez-za-frilensere">Porez za frilensere 2026</a></li>
           <li><a href="/blog/ugovor-o-delu">Ugovor o delu — porez i doprinosi</a></li>
           <li><a href="/blog/kako-se-obracunava-bolovanje">Kako se obračunava bolovanje</a></li>
           <li><a href="/blog/kako-se-obracunava-penzija">Kako se obračunava penzija</a></li>
-          <li><a href="/blog/neoporezivi-2026">Neoporezivi iznos zarade 2026</a></li>
+          <li><a href="/neoporezivi-iznos-2026">Neoporezivi iznos zarade 2026</a></li>
           <li><a href="/blog/minimalna-zarada-2025">Minimalna zarada 2025 — poređenje sa 2026</a></li>
         </ul>
       </nav>

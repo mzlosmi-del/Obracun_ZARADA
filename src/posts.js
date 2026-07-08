@@ -116,14 +116,15 @@ Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otka
   {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
+    updated: "8. jul 2026",
     tag: "Zarada",
-    title: "Prosečna plata u Srbiji 2026: 121.805 din neto (RZS)",
-    summary: "Prosečna neto plata u Srbiji je 121.805 din (≈1.038 €), bruto 168.008 (RZS, april 2026). Pregled po mesecima, sektorima i gradovima + medijalna zarada.",
+    title: "Prosečna plata u Srbiji 2026: 121.805 din (1.038 €), april",
+    summary: "Prosečna neto plata u Srbiji za april 2026. je 121.805 din (≈1.038 €), bruto 168.008, medijalna 94.585 (RZS). Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     body: `
 ![Prosečna plata u Srbiji 2026 — neto 121.650 dinara (≈1.036 €), bruto 167.263, medijalna 91.399, IT 311.370, minimalac 64.554.](/media/prosecna-plata-2026.png)
 
-> **Provereno i ažurirano: jul 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za april 2026 (objavljen 25. juna). Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
+> **Provereno i ažurirano: 8. jul 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za april 2026 (objavljen 25. juna). Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
 
 Prosečna plata u Srbiji iznosi **121.805 dinara neto (≈ 1.038 €)**, odnosno **168.008 dinara bruto** — najnoviji zvaničan podatak RZS-a, za april 2026. Medijalna neto zarada je **94.585 dinara**: polovina zaposlenih prima manje od tog iznosa, pa medijalna plata bolje opisuje „tipičnu" zaradu od proseka. U nastavku: pregled po mesecima, sektorima i gradovima, u dinarima i evrima.
 
@@ -153,9 +154,13 @@ Prosečna zarada varira iz meseca u mesec, zavisno od isplata bonusa, broja radn
 
 U periodu januar–april 2026, u odnosu na isti period prethodne godine, prosečna neto zarada nominalno je veća za **11,6%**, a realno (nakon inflacije) za **8,6%** — plate i dalje rastu brže od cena. Razliku između bruto i neto iznosa objašnjavamo u vodiču [bruto-neto razlika](/blog/bruto-neto-razlika), a sastav doprinosa u tekstu [doprinosi u Srbiji](/blog/doprinosi-srbija).
 
-## Zašto je medijalna zarada važnija od proseka
+## Medijalna plata u Srbiji 2026
 
-Prosečnu platu „naviše vuku" visoke zarade malog broja ljudi (rukovodioci, IT). Realniju sliku daje **medijalna zarada** — iznos koji deli zaposlene na dve jednake polovine. Za april 2026. medijalna neto zarada iznosi **94.585 din (≈ 806 €)**: polovina zaposlenih primila je do tog iznosa, a polovina više. Drugim rečima, tipičan zaposleni u Srbiji zarađuje oko **27.000 din manje** od „prosečne" plate od 121.805 din.
+**Medijalna neto plata u Srbiji za april 2026. iznosi 94.585 din (≈ 806 €)** — polovina zaposlenih zarađuje manje od tog iznosa, a polovina više. Prosečnu platu „naviše vuku" visoke zarade malog broja ljudi (rukovodioci, IT), pa **medijalna zarada** realnije opisuje tipičnu platu: iznos koji deli zaposlene na dve jednake polovine. Drugim rečima, tipičan zaposleni u Srbiji zarađuje oko **27.000 din manje** od „prosečne" plate od 121.805 din.
+
+## Prosečna plata u Beogradu 2026
+
+**Prosečna neto plata u Beogradu za 2026. iznosi oko 144.028 din (≈ 1.227 €)** — osetno iznad državnog proseka. U najbogatijim beogradskim opštinama (Stari grad 200.666 din, Vračar 192.878 din, Savski venac, Novi Beograd) prelazi 190.000 din neto. Detaljan pregled po opštinama i regionima je u tabeli niže.
 
 ## Prosečna plata po sektorima
 
@@ -219,7 +224,7 @@ Neto zarada prati isti trend i čini približno 72% bruto iznosa.
 
 ## Prosečna plata vs. minimalac i penzija
 
-Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/blog/minimalna-zarada-2026). Minimalac je tako oko **68% medijalne** i tek oko **53% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata pet puta većih.
+Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/minimalna-zarada-2026). Minimalac je tako oko **68% medijalne** i tek oko **53% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata pet puta većih.
 
 ## Kako se prosečna plata obračunava
 
@@ -241,7 +246,9 @@ Cela slika prosečne plate u Srbiji 2026. na jednom mestu — slobodno sačuvajt
     faq: [
       { q: "Kolika je prosečna plata u Srbiji 2026?", a: "Prosečna neto plata za april 2026. iznosi 121.805 dinara (oko 1.038 evra), a bruto 168.008 dinara, prema podacima RZS-a. Tokom prvih meseci 2026. neto prosek se kretao između 116.000 i 122.000 dinara." },
       { q: "Kolika je prosečna plata u Srbiji u evrima?", a: "Po srednjem kursu NBS (117,40 dinara za 1 evro), prosečna neto plata od 121.805 dinara iznosi približno 1.038 evra mesečno, a bruto zarada oko 1.431 evro." },
+      { q: "Kolika je prosečna bruto zarada 2026?", a: "Prosečna bruto zarada u Srbiji za april 2026. iznosi 168.008 dinara (oko 1.431 evro), prema RZS-u. Bruto zarada je iznos pre poreza i doprinosa; neto (na ruke) je 121.805 dinara." },
       { q: "Kolika je medijalna plata u Srbiji?", a: "Medijalna neto zarada za april 2026. iznosi 94.585 dinara (oko 806 evra). To znači da polovina zaposlenih zarađuje manje od tog iznosa, pa je medijalna plata realnija slika od proseka." },
+      { q: "Kolika je prosečna plata u Beogradu 2026?", a: "Prosečna neto plata u Beogradu za 2026. iznosi oko 144.028 dinara (≈ 1.227 evra) — iznad državnog proseka. U opštinama Stari grad i Vračar prelazi 190.000 dinara neto." },
       { q: "Da li većina ljudi zarađuje prosečnu platu?", a: "Ne. Većina zaposlenih zarađuje ispod proseka. Tipičnu zaradu bolje opisuje medijalna plata (oko 94.500 dinara) nego prosek (oko 122.000 dinara), jer prosek podižu visoke plate u IT-u i menadžmentu." },
       { q: "Koji sektor ima najveću platu u Srbiji?", a: "Najviše zarađuje IT sektor — prosečna neto plata u računarskom programiranju premašuje 311.000 dinara, više od tri puta iznad državnog proseka. Najmanje se zarađuje u ugostiteljstvu." },
       { q: "Koji grad ima najveću prosečnu platu?", a: "Beograd, sa prosečnom neto zaradom od oko 144.000 dinara. Najviše plate su u opštinama Stari grad i Vračar, preko 190.000 dinara neto." },
@@ -1040,13 +1047,14 @@ Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdrav
   {
     id: "topli-obrok-i-regres",
     date: "11. jun 2026",
+    updated: "8. jul 2026",
     tag: "Zarada",
-    title: "Topli obrok i regres 2026 — da li su obavezni i kako se obračunavaju?",
-    summary: "Topli obrok i regres 2026: da li su obavezni, da li ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade. Pravila po Zakonu o radu.",
+    title: "Topli obrok i regres 2026: da li su obavezni i ko ima pravo",
+    summary: "Da, topli obrok i regres su obavezan deo zarade po Zakonu o radu — ali zakon ne propisuje iznos, već ga određuje poslodavac. Ne ulaze u minimalac i oporezuju se kao zarada.",
     body: `
 ![Topli obrok i regres u Srbiji](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 8. jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Topli obrok** i **regres za godišnji odmor** česta su tema nesporazuma između zaposlenih i poslodavaca. Mnogi misle da su to dodatne, dobrovoljne isplate — ali prema **Zakonu o radu**, oni su **sastavni deo zarade**. U ovom vodiču objašnjavamo šta zakon propisuje u **2026. godini**, da li ova primanja ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade.
 
@@ -1068,7 +1076,7 @@ Drugim rečima, obaveza isplate postoji, ali konkretan iznos zavisi od akta posl
 
 Ovo je ključna stavka koju mnogi previde: **topli obrok i regres ne mogu biti ukalkulisani u minimalnu zaradu**. Zaposleni koji prima minimalac ima pravo na topli obrok i regres **pored** iznosa minimalne zarade, a ne umesto njega.
 
-Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/blog/minimalna-zarada-2026).
+Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/minimalna-zarada-2026).
 
 ## Kako se oporezuju
 
@@ -2119,7 +2127,7 @@ Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi
 
 ## Promena u odnosu na 2025. godinu
 
-Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% („Sl. glasnik RS" 115/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/blog/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
+Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% („Sl. glasnik RS" 115/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
 
 ## Važno napomenuti
 
@@ -2137,11 +2145,14 @@ Za precizan obračun poreza na vašu zaradu, koristite naš [besplatni kalkulato
   {
     id: "bruto-neto-razlika",
     date: "15. januar 2025",
+    updated: "8. jul 2026",
     tag: "Osnove",
     title: "Razlika između bruto i neto zarade — jednostavno objašnjenje",
-    summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja.",
+    summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja za 2026.",
     body: `
 ![Računanje zarade na laptopu](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80)
+
+> **Provereno i ažurirano: 8. jul 2026.** Stope, doprinosi i neoporezivi iznos usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu (neoporezivi iznos 34.221 RSD od 1.1.2026).
 
 Kada potpisujete ugovor o radu, zarada je obično izražena u bruto iznosu. Ali šta zapravo dobijate na račun? I zašto je razlika toliko velika?
 
@@ -2165,7 +2176,7 @@ Iz bruto 1 zarade se oduzimaju dve vrste obaveza:
 - Osiguranje za slučaj nezaposlenosti: 0,75%
 
 **2. Porez na dohodak (10%)**
-- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/blog/neoporezivi-2026) od **34.221 RSD** (od 1.1.2026; ranije 28.423 RSD)
+- Primenjuje se na bruto zaradu umanjenu za [neoporezivi iznos](/neoporezivi-iznos-2026) od **34.221 RSD** (od 1.1.2026; ranije 28.423 RSD)
 
 ## Neto zarada
 
@@ -2197,13 +2208,14 @@ Za precizan obračun koristite naš [bruto u neto kalkulator](/bruto-neto) kada 
   {
     id: "prekovremeni-rad",
     date: "10. januar 2025",
+    updated: "8. jul 2026",
     tag: "Zakon o radu",
     title: "Prekovremeni rad u Srbiji: prava i obračun po Zakonu o radu",
     summary: "Zakon o radu propisuje minimum od +26% za prekovremeni rad. Kako se obračunava, koliko može trajati i šta su vaša prava kao zaposlenog?",
     body: `
 ![Prekovremeni rad u kancelariji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 8. jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 
@@ -2289,7 +2301,7 @@ Ukupan trošak poslodavca za zaposlenog na minimalnoj zarade:
 
 Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomskog saveta, a primenjuje se od 1. januara tekuće godine.
 
-Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/blog/minimalna-zarada-2026) za aktuelne iznose.
+Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/minimalna-zarada-2026) za aktuelne iznose.
 
 Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/bruto-neto), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
 
@@ -2414,7 +2426,7 @@ Prema podacima Republičkog zavoda za statistiku, oko 8-10% zaposlenih u Srbiji 
 
 ## Neoporezivi iznos i minimalna zarada
 
-Od 1. januara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/blog/neoporezivi-2026).
+Od 1. januara 2026. neoporezivi iznos je **34.221 RSD**. Pošto se porez (10%) plaća samo na deo bruto zarade iznad neoporezivog iznosa, efektivno poresko opterećenje minimalca je relativno nisko, a tačan iznos zavisi od fonda sati u mesecu. Više detalja u članku o [neoporezivom iznosu](/neoporezivi-iznos-2026).
 
 Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake druge zarade.
 
@@ -2584,3 +2596,13 @@ Pogledajte i [jubilarnu nagradu](/blog/jubilarna-nagrada) — koju neki poslodav
     ],
   },
 ];
+
+// Posts that 301-redirect to a canonical page (see vercel.json). They are kept
+// in POSTS so their merged content stays in version history, but they must be
+// hidden from the blog list, related-post rails, prerender, and the sitemap so
+// users and crawlers are never sent to a URL that only redirects.
+// Keep this in sync with the REDIRECTED set in scripts/prerender.mjs.
+export const REDIRECTED_POST_IDS = new Set(["neoporezivi-2026", "minimalna-zarada-2026"]);
+
+// POSTS minus redirected ones — use this for any user-facing listing.
+export const LIVE_POSTS = POSTS.filter((p) => !REDIRECTED_POST_IDS.has(p.id));
