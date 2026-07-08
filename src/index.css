@@ -45,7 +45,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .sidebar-logo img { width: 44px; height: 44px; flex-shrink: 0; }
 .sidebar-logo-name { font-size: 15px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); line-height: 1.2; }
 .sidebar-logo-name span { color: var(--accent); }
-.sidebar-logo-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
+.sidebar-logo-sub { font-family: var(--sans); font-size: 9px; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-top: 2px; }
 .sidebar-nav { padding: 12px 10px; flex: 1; }
 .sidebar-section-label { font-size: 9px; font-weight: 700; color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 8px 4px; }
 .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; cursor: pointer; transition: background-color 0.12s, color 0.12s; font-size: 13px; font-weight: 500; color: var(--text2); border: none; background: none; width: 100%; text-align: left; }
@@ -74,10 +74,10 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── PAGE HEADER ── */
 .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; gap: 16px; flex-wrap: wrap; }
-.page-eyebrow { display: inline-flex; align-items: center; background: var(--accent-light); color: var(--accent); font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; padding: 3px 9px; border-radius: 100px; margin-bottom: 8px; text-transform: uppercase; }
+.page-eyebrow { display: inline-flex; align-items: center; background: var(--accent-light); color: var(--accent); font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; padding: 3px 9px; border-radius: 100px; margin-bottom: 8px; text-transform: uppercase; }
 .page-title { font-size: clamp(20px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; color: var(--text); }
 .page-title span { color: var(--accent); }
-.page-sub { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-top: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
+.page-sub { font-family: var(--sans); font-size: 10px; color: var(--text3); margin-top: 6px; letter-spacing: 0.5px; text-transform: uppercase; }
 
 /* ── PDF BUTTON ── */
 .btn-pdf { display: flex; align-items: center; gap: 7px; background: var(--accent); border: none; color: #fff; border-radius: 9px; padding: 10px 20px; font-family: var(--sans); font-size: 13px; font-weight: 600; cursor: pointer; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; white-space: nowrap; box-shadow: 0 3px 12px rgba(20,82,214,0.22); }
@@ -97,7 +97,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .hero-card.neto .hero-card-value { color: var(--green); }
 .hero-card.bruto .hero-card-value { color: var(--accent); }
 .hero-card.cost .hero-card-value { color: var(--amber); }
-.hero-card-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-top: 4px; }
+.hero-card-sub { font-family: var(--sans); font-size: 9px; color: var(--text3); margin-top: 4px; }
 
 /* ── RATIO BAR ── */
 .ratio-bar-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 20px; margin-bottom: 20px; }
@@ -140,7 +140,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .inputs-body { padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; }
 .input-field { display: flex; flex-direction: column; gap: 4px; }
 .input-field label { font-size: 11px; font-weight: 600; color: var(--text2); }
-.sublabel { font-family: var(--mono); font-size: 9px; color: var(--text3); margin-left: 5px; font-weight: 400; }
+.sublabel { font-family: var(--sans); font-size: 9px; color: var(--text3); margin-left: 5px; font-weight: 400; }
 .input-wrap { display: flex; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; transition: border-color 0.15s, box-shadow 0.15s; }
 .input-wrap:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(20,82,214,0.1); }
 .input-wrap input { flex: 1; background: transparent; border: none; outline: none; color: var(--text); font-family: var(--mono); font-size: 13px; font-weight: 500; padding: 9px 11px; width: 100%; }
@@ -158,7 +158,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .result-row:hover { background: var(--surface2); }
 .result-row:last-child { border-bottom: none; }
 .result-label { font-size: 12px; color: var(--text2); display: flex; flex-direction: column; gap: 2px; font-weight: 400; }
-.result-sub { font-family: var(--mono); font-size: 9px; color: var(--text3); }
+.result-sub { font-family: var(--sans); font-size: 9px; color: var(--text3); }
 .result-value { font-family: var(--mono); font-size: 12px; font-weight: 500; white-space: nowrap; color: var(--text); }
 .rsd { font-size: 9px; color: var(--text3); margin-left: 2px; }
 .result-row.positive .result-value { color: var(--green); }
@@ -227,7 +227,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .post-card:hover { border-color: var(--accent); box-shadow: 0 4px 16px rgba(20,82,214,0.08); transform: translateY(-1px); }
 .post-meta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .post-tag { background: var(--accent-light); color: var(--accent); font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 100px; letter-spacing: 0.5px; }
-.post-date { font-family: var(--mono); font-size: 10px; color: var(--text3); }
+.post-date { font-family: var(--sans); font-size: 10px; color: var(--text3); }
 .post-title { font-size: 16px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; color: var(--text); }
 .post-summary { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 12px; }
 .post-read { font-size: 12px; font-weight: 600; color: var(--accent); }
@@ -270,7 +270,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .post-related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
 .post-related-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; text-decoration: none; color: inherit; transition: border-color 0.15s, transform 0.15s; display: block; }
 .post-related-card:hover { border-color: var(--accent); transform: translateY(-1px); }
-.post-related-tag { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.post-related-tag { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
 .post-related-heading { font-size: 13px; font-weight: 600; color: var(--text); line-height: 1.4; }
 
 /* ── DISCLAIMER ── */
@@ -293,7 +293,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .lead-section { margin-top: 32px; background: linear-gradient(135deg, #0e3aa8 0%, #1452d6 100%); border-radius: 16px; overflow: hidden; }
 .lead-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; align-items: start; }
 @media (max-width: 700px) { .lead-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; } }
-.lead-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+.lead-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
 .lead-title { font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 14px; }
 .lead-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.65; }
 .lead-form { display: flex; flex-direction: column; gap: 10px; }
@@ -320,6 +320,20 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
   .lead-sticky-cta { font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 100px; white-space: nowrap; }
 }
 
+/* ── JOBS STICKY FOOTER (mobile only, affiliate funnel) ── */
+/* Pinned bottom bar shown on all pages; scrolls to the on-page JobsWidget
+   (or navigates home and scrolls there). Green to match the jobs identity. */
+.jobs-sticky { display: none; }
+@media (max-width: 760px) {
+  .jobs-sticky { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: fixed; bottom: 0; left: 0; right: 0; z-index: 200; background: linear-gradient(90deg, #086b3c, #0a7a45); padding: 12px 16px; cursor: pointer; box-shadow: 0 -4px 20px rgba(10,122,69,0.32); border: none; width: 100%; text-align: left; }
+  .jobs-sticky-check { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #fff; color: var(--green); font-size: 14px; font-weight: 800; line-height: 1; }
+  .jobs-sticky-text { flex: 1; font-size: 13px; font-weight: 600; color: #fff; line-height: 1.35; }
+  .jobs-sticky-cta { flex-shrink: 0; font-size: 13px; font-weight: 700; color: #fff; background: rgba(255,255,255,0.22); padding: 7px 14px; border-radius: 100px; white-space: nowrap; }
+  /* Reserve space so page content clears the fixed bar. */
+  .main-inner { padding-bottom: 72px; }
+}
+@media (min-width: 761px) { .jobs-sticky { display: none !important; } }
+
 /* Modal */
 .lead-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 300; display: flex; align-items: flex-end; }
 .lead-modal { background: linear-gradient(135deg, #0e3aa8, #1452d6); border-radius: 20px 20px 0 0; padding: 28px 24px 36px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; }
@@ -335,7 +349,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── PRO CTA (contextual, inside professional tabs) ── */
 .pro-cta { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 18px; background: var(--accent-light); border: 1px solid #c8d8ff; border-radius: 14px; padding: 18px 22px; }
-.pro-cta-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+.pro-cta-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
 .pro-cta-text p { font-size: 14px; line-height: 1.55; color: var(--text); margin: 0; }
 .pro-cta-btn { flex-shrink: 0; display: inline-block; text-align: center; text-decoration: none; background: var(--accent); color: #fff; border: none; border-radius: 10px; padding: 12px 20px; font-family: var(--sans); font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 3px 12px rgba(20,82,214,0.22); }
 .pro-cta-btn:hover { background: #0e3aa8; transform: translateY(-1px); }
@@ -343,10 +357,10 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── JOBS WIDGET (partner affiliate) ── */
 .jobs-widget { margin-top: 16px; background: var(--green-light); border: 1px solid #bfe4cd; border-radius: 14px; padding: 16px 20px; }
-.jobs-widget-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
+.jobs-widget-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 4px; }
 .jobs-widget-head { margin-bottom: 12px; }
 .jobs-widget-title { font-size: 16px; font-weight: 800; letter-spacing: -0.4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-.jobs-widget-count { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: var(--green); background: #fff; border: 1px solid #bfe4cd; border-radius: 100px; padding: 3px 10px; white-space: nowrap; }
+.jobs-widget-count { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.5px; color: var(--green); background: #fff; border: 1px solid #bfe4cd; border-radius: 100px; padding: 3px 10px; white-space: nowrap; }
 .jobs-widget-list { display: flex; flex-direction: column; gap: 10px; }
 .jobs-widget-list-scroll { max-height: 340px; overflow-y: auto; padding-right: 6px; scrollbar-width: thin; scrollbar-color: var(--green) transparent; }
 .jobs-widget-list-scroll::-webkit-scrollbar { width: 6px; }
@@ -356,9 +370,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .jobs-widget-card:hover { border-color: var(--green); box-shadow: 0 6px 20px rgba(10,122,69,0.16); transform: translateY(-2px); }
 .jobs-widget-card:hover .jobs-widget-cta-btn { background: #086b3c; box-shadow: 0 3px 12px rgba(10,122,69,0.3); }
 .jobs-widget-card-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.jobs-widget-badge { font-family: var(--mono); font-size: 9px; font-weight: 700; letter-spacing: 1.2px; color: #fff; background: var(--green); border-radius: 100px; padding: 3px 9px; }
-.jobs-widget-location { font-size: 12px; color: var(--text3); font-family: var(--mono); }
-.jobs-widget-salary { font-size: 12px; font-weight: 700; color: var(--green); font-family: var(--mono); margin-left: auto; }
+.jobs-widget-badge { font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 1.2px; color: #fff; background: var(--green); border-radius: 100px; padding: 3px 9px; }
+.jobs-widget-location { font-size: 12px; color: var(--text3); font-family: var(--sans); }
+.jobs-widget-salary { font-size: 12px; font-weight: 700; color: var(--green); font-family: var(--sans); margin-left: auto; }
 .jobs-widget-card-title { font-size: 16px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.3; }
 .jobs-widget-hook { font-size: 13.5px; line-height: 1.55; color: var(--text2); }
 .jobs-widget-perks { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -368,14 +382,14 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .jobs-widget-cta-sub { font-size: 11.5px; color: var(--text3); }
 .jobs-widget-disclosure { margin-top: 10px; font-size: 11px; line-height: 1.5; color: var(--text3); }
 .jobs-widget-soon-row { display: flex; align-items: center; gap: 12px; }
-.jobs-widget-soon-badge { flex-shrink: 0; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--green); border: 1px dashed var(--green); border-radius: 100px; padding: 4px 10px; }
+.jobs-widget-soon-badge { flex-shrink: 0; font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 1.2px; color: var(--green); border: 1px dashed var(--green); border-radius: 100px; padding: 4px 10px; }
 .jobs-widget-soon-row p { font-size: 13px; line-height: 1.5; color: var(--text); margin: 0; }
 @media (max-width: 700px) { .jobs-widget { padding: 14px 16px; } .jobs-widget-card { padding: 14px 16px; } .jobs-widget-salary { margin-left: 0; width: 100%; } .jobs-widget-cta-btn { width: 100%; text-align: center; } .jobs-widget-cta-sub { width: 100%; text-align: center; } .jobs-widget-soon-row { flex-direction: column; align-items: flex-start; gap: 8px; } }
 
 /* ── LEGAL PAGES ── */
 .legal-page { max-width: 680px; }
 .legal-title { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.8px; margin-bottom: 6px; }
-.legal-date { font-family: var(--mono); font-size: 10px; color: var(--text3); margin-bottom: 28px; }
+.legal-date { font-family: var(--sans); font-size: 10px; color: var(--text3); margin-bottom: 28px; }
 .legal-body { font-size: 14px; line-height: 1.75; color: var(--text2); }
 .legal-body h2 { font-size: 16px; font-weight: 700; color: var(--text); margin: 28px 0 10px; letter-spacing: -0.3px; }
 .legal-body p { margin-bottom: 12px; }
@@ -385,7 +399,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── SIDEBAR FOOTER ── */
 .sidebar-footer { padding: 12px 14px; border-top: 1px solid var(--border); }
-.sidebar-footer-site { font-family: var(--mono); font-size: 9px; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 8px; }
+.sidebar-footer-site { font-family: var(--sans); font-size: 9px; color: var(--text3); letter-spacing: 0.5px; margin-bottom: 8px; }
 .sidebar-footer-links { display: flex; gap: 10px; flex-wrap: wrap; }
 .sidebar-footer-link { font-size: 11px; color: var(--text3); background: none; border: none; cursor: pointer; padding: 0; font-family: var(--sans); transition: color 0.12s; text-decoration: underline; text-underline-offset: 2px; }
 .sidebar-footer-link:hover { color: var(--accent); }
@@ -411,7 +425,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── JOBS CTA BANNER (replaces lead-form section on homepage) ── */
 .jobs-cta { margin-top: 28px; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: var(--green-light); border: 1px solid #bfe4cd; border-radius: 16px; padding: 26px 30px; }
-.jobs-cta-eyebrow { font-family: var(--mono); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
+.jobs-cta-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
 .jobs-cta-title { font-size: 20px; font-weight: 800; letter-spacing: -0.5px; color: var(--text); margin: 0 0 6px; line-height: 1.25; }
 .jobs-cta-body { font-size: 14px; line-height: 1.55; color: var(--text2); margin: 0; }
 .jobs-cta-btn { flex-shrink: 0; background: var(--green); color: #fff; border: none; border-radius: 10px; padding: 14px 22px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s; box-shadow: 0 3px 12px rgba(10,122,69,0.22); }
