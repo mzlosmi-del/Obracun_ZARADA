@@ -32,6 +32,7 @@ export function ToolPage({ cfg }) {
       {cfg.calc === "pausal" ? <PausalCalculator />
         : cfg.calc === "otpremnina" ? <OtpremninaCalculator />
         : cfg.calc === "godisnji-odmor" ? <GodisnjiOdmorCalculator />
+        : cfg.calc === "jubilarna" ? <JubilarnaCalculator />
         : <CalculatorPage focusSection={cfg.focusSection} />}
       <div className="disclaimer">{DISCLAIMER}</div>
       <section className="tool-guide">{cfg.guide}</section>
@@ -152,6 +153,51 @@ export function OtpremninaCalculator() {
         )}
       </div>
       <p className="pausal-note">Napomena: prikazani su zakonski minimumi (čl. 158 i čl. 119 Zakona o radu). Poslodavac kolektivnim ugovorom može utvrditi veći iznos. Deo otpremnine iznad neoporezivog praga podleže porezu. Izvor proseka: RZS.</p>
+    </div>
+  );
+}
+
+// Jubilarna nagrada — neoporezivi maksimum = koeficijent × prosečna bruto zarada u RS
+// (ZPDG čl. 18 tač. 9). Koeficijenti: 10 god. 1×, 20 god. 2×, 30 god. 2,5×, 40 god. 3×.
+// Deo iznad neoporezivog max-a oporezuje se kao bonus (porez 10% + doprinosi 19,90%).
+const JUBILEJI = [
+  { god: 10, koef: 1 },
+  { god: 20, koef: 2 },
+  { god: 30, koef: 2.5 },
+  { god: 40, koef: 3 },
+];
+export function JubilarnaCalculator() {
+  const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  const [god, setGod] = useState(20);
+  const [isplata, setIsplata] = useState(0);
+  const koef = (JUBILEJI.find((j) => j.god === god) || JUBILEJI[1]).koef;
+  const neoporeziviMax = prosBruto * koef;
+  const oporezivi = Math.max((isplata || 0) - neoporeziviMax, 0);
+  const doprinosi = oporezivi * (DEFAULT_RATES.pioPct_emp + DEFAULT_RATES.health_emp + DEFAULT_RATES.unemp_emp) / 100;
+  const porez = oporezivi * DEFAULT_RATES.taxRate / 100;
+  const neto = (isplata || 0) - doprinosi - porez;
+  return (
+    <div className="pausal-calc">
+      <div className="mode-toggle" role="tablist" aria-label="Godine staža" style={{ marginBottom: 12, flexWrap: "wrap" }}>
+        {JUBILEJI.map((j) => (
+          <button key={j.god} className={`mode-btn ${god === j.god ? "active" : ""}`} onClick={() => setGod(j.god)} role="tab" aria-selected={god === j.god}>
+            {j.god} god.
+          </button>
+        ))}
+      </div>
+      <div className="pausal-results results-body">
+        <ResultRow label={`Neoporezivi maksimum (${koef.toLocaleString("sr-RS")}× prosek)`} value={neoporeziviMax} type="positive" />
+      </div>
+      <NumberInput label="Iznos koji poslodavac isplaćuje (opciono)" sublabel="(unesite ako je veći od neoporezivog maksimuma)" value={isplata} onChange={setIsplata} step={10000} />
+      {oporezivi > 0 && (
+        <div className="pausal-results results-body">
+          <ResultRow label="Oporezivi deo (iznad maksimuma)" value={oporezivi} />
+          <ResultRow label="Doprinosi zaposlenog (19,90%)" value={doprinosi} type="negative" />
+          <ResultRow label={`Porez (${DEFAULT_RATES.taxRate}%)`} value={porez} type="negative" />
+          <ResultRow label="Neto na račun" value={neto} type="positive" />
+        </div>
+      )}
+      <p className="pausal-note">Neoporezivi maksimum = koeficijent × prosečna bruto zarada u RS ({prosBruto.toLocaleString("sr-RS")} RSD, {REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS), prema čl. 18 tač. 9 Zakona o porezu na dohodak građana. Deo iznad maksimuma oporezuje se kao bonus. Poslodavac isplatu jubilarne nagrade obavezuje kolektivnim ugovorom ili ugovorom o radu.</p>
     </div>
   );
 }
@@ -585,6 +631,64 @@ export function GodisnjiOdmorPage() {
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
       { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
+    ],
+  }} />;
+}
+
+export function JubilarnaPage() {
+  const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  return <ToolPage cfg={{
+    slug: "jubilarna-nagrada",
+    title: "Kalkulator jubilarne nagrade 2026 | PlatniListić",
+    description: "Kalkulator jubilarne nagrade za 10, 20, 30 i 40 godina staža — neoporezivi maksimum (čl. 18 ZPDG) i porez na deo iznad. Za Srbiju 2026. Besplatno.",
+    h1: "Kalkulator jubilarne nagrade (2026)",
+    breadcrumbName: "Jubilarna nagrada",
+    calc: "jubilarna",
+    intro: (<p>Ovaj <strong>kalkulator jubilarne nagrade</strong> računa neoporezivi maksimum za 10, 20, 30 i 40 godina rada kod istog poslodavca i porez na deo iznad tog maksimuma. Detaljna pravila i primeri: vodič <a href="/blog/jubilarna-nagrada">jubilarna nagrada 2026 — iznos i obračun</a>.</p>),
+    guide: (<>
+      <h2>Kako se obračunava jubilarna nagrada</h2>
+      <p>Jubilarna nagrada je jednokratna isplata povodom navršenih „okruglih" godina rada kod istog poslodavca. Deo iznosa je <strong>neoporeziv</strong> — do koeficijenta prosečne bruto zarade u Republici Srbiji, prema čl. 18 tač. 9 Zakona o porezu na dohodak građana. Ako poslodavac isplati više od tog maksimuma, razlika se oporezuje kao bonus: porez 10% i doprinosi zaposlenog 19,90%.</p>
+      <h2>Neoporezivi iznos jubilarne nagrade 2026</h2>
+      <p>Osnovica je poslednja objavljena prosečna bruto zarada u RS — {prosBruto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS). Neoporezivi maksimumi po jubileju:</p>
+      <table className="ref-table" aria-label="Neoporezivi iznos jubilarne nagrade 2026">
+        <thead><tr><th>Jubilej</th><th>Koeficijent</th><th>Neoporezivo do ≈ (RSD)</th></tr></thead>
+        <tbody>
+          {JUBILEJI.map((j) => (
+            <tr key={j.god}>
+              <td>{j.god} godina</td>
+              <td>{j.koef.toLocaleString("sr-RS")}× prosek</td>
+              <td>≈ {Math.round(prosBruto * j.koef).toLocaleString("sr-RS")}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <h2>Radni primer</h2>
+      <p>Zaposleni navršava 20 godina rada; neoporezivi maksimum je 2 × {prosBruto.toLocaleString("sr-RS")} = {(prosBruto * 2).toLocaleString("sr-RS")} RSD. Ako poslodavac isplati tačno taj iznos ili manje, cela nagrada je neoporeziva. Ako isplati 50.000 RSD više od maksimuma, na tih 50.000 RSD plaćaju se doprinosi (19,90% = 9.950 RSD) i porez (10% = 5.000 RSD), pa je neto na taj deo 35.050 RSD.</p>
+      <p>Isti princip važi i za druge jubileje, samo se menja koeficijent. Kod 30 godina staža neoporezivi maksimum je 2,5 × {prosBruto.toLocaleString("sr-RS")} = {(prosBruto * 2.5).toLocaleString("sr-RS")} RSD. Ako poslodavac isplati 100.000 RSD iznad tog maksimuma, doprinosi zaposlenog na taj deo iznose 19,90% = 19.900 RSD, porez 10% = 10.000 RSD, pa je neto od oporezivog dela 70.100 RSD. Kod 40 godina staža koeficijent je najviši — 3 × {prosBruto.toLocaleString("sr-RS")} = {(prosBruto * 3).toLocaleString("sr-RS")} RSD neoporezivo — pa je kod najdužeg staža i prostor za neoporezivu isplatu najveći.</p>
+      <p>Kalkulator na ovoj stranici automatski primenjuje ovaj obrazac: izaberete jubilej (10, 20, 30 ili 40 godina), po potrebi unesete stvarni iznos isplate, a alat prikazuje neoporezivi maksimum, oporezivi deo, doprinose, porez i neto iznos koji zaposleni dobija na račun.</p>
+      <h2>Šta se računa kao staž za jubilej</h2>
+      <p>Kao i kod minulog rada, broji se <strong>samo staž kod istog poslodavca</strong>, ne ukupan staž osiguranja. Statusne promene poslodavca (spajanje, pripajanje) prenose i staž za jubilej. Više: <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
+      <h2>Jubilarna nagrada i minuli rad — u čemu je razlika</h2>
+      <p>Jubilarna nagrada i minuli rad su dva odvojena instituta i lako se mešaju. Minuli rad je <strong>redovan mesečni dodatak na zaradu</strong> koji raste sa svakom godinom staža i isplaćuje se svakog meseca uz platu. Jubilarna nagrada je, nasuprot tome, <strong>jednokratna isplata</strong> koja se dešava samo kada zaposleni navrši tačno određen broj „okruglih" godina staža kod istog poslodavca — najčešće 10, 20, 30 ili 40. Za obračun minulog rada koristi se poseban kalkulator, dostupan na stranici <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
+      <h2>Zašto poslodavci isplaćuju jubilarnu nagradu</h2>
+      <p>Jubilarna nagrada u praksi služi kao priznanje dugogodišnje lojalnosti zaposlenog i alat za zadržavanje kadra. Iznos, jubileji za koje se isplaćuje i eventualni dodatni uslovi (npr. minimalna ocena rada) razlikuju se od poslodavca do poslodavca, zavisno od toga šta je predviđeno kolektivnim ugovorom, opštim aktom ili pojedinačnim ugovorom o radu. Zato dva zaposlena sa istim stažem kod različitih poslodavaca mogu dobiti različit iznos nagrade — ili je uopšte ne dobiti, ako poslodavac nema takvu obavezu ugovorenu.</p>
+      <h2>Trošak za poslodavca na oporezivi deo</h2>
+      <p>Iznad neoporezivog maksimuma poslodavac, pored poreza (10%) i doprinosa zaposlenog (19,90%) koje obustavlja iz bruto iznosa, plaća i doprinose na teret poslodavca — PIO 10% i zdravstveno 5,15%, ukupno 15,15% na oporezivi deo. To znači da isplata od 100.000 RSD iznad neoporezivog maksimuma stvarno košta poslodavca 115.150 RSD, dok zaposleni od tih 100.000 RSD na račun dobija 70.100 RSD neto (posle poreza i doprinosa zaposlenog). Ova razlika između bruto troška i neto primanja je razlog zašto poslodavci često planiraju jubilarne nagrade tako da ne prelaze neoporezivi maksimum — isplata u okviru maksimuma je i jeftinija za poslodavca i povoljnija za zaposlenog.</p>
+      <h2>Kako koristiti kalkulator</h2>
+      <p>Prvi korak je izbor jubileja — dugme za 10, 20, 30 ili 40 godina staža — čime kalkulator odmah prikazuje neoporezivi maksimum za taj jubilej, izračunat na osnovu prosečne bruto zarade u RS. Ako je planirana isplata u okviru tog maksimuma, dovoljno je pogledati prvi red rezultata — cela nagrada je neoporeziva i zaposleni je prima u punom iznosu. Ako poslodavac planira da isplati više, u polje za iznos treba uneti ukupnu planiranu isplatu; kalkulator tada sam izračunava oporezivi deo, doprinose, porez i konačan neto iznos koji zaposleni prima na račun.</p>
+      <h2>Pravni okvir</h2>
+      <p>Neoporezive iznose propisuje čl. 18 tač. 9 Zakona o porezu na dohodak građana. Obavezu isplate utvrđuje kolektivni ugovor ili ugovor o radu (Zakon o radu) — jubilarna nagrada nije zakonska obaveza, ali ako je poslodavac ugovorio, mora je isplatiti. Nagrada (i neoporezivi i oporezivi deo) priznaje se kao trošak poslovanja poslodavca.</p>
+    </>),
+    faq: [
+      { q: "Kako se obračunava jubilarna nagrada?", a: `Neoporezivi maksimum jednak je koeficijentu prosečne bruto zarade u RS: 1× za 10 godina, 2× za 20, 2,5× za 30 i 3× za 40 godina rada kod istog poslodavca (čl. 18 ZPDG). Uz prosek od ${prosBruto.toLocaleString("sr-RS")} RSD to je do ${Math.round(prosBruto).toLocaleString("sr-RS")}–${(prosBruto * 3).toLocaleString("sr-RS")} RSD neoporezivo.` },
+      { q: "Da li se plaća porez na jubilarnu nagradu?", a: "Deo do neoporezivog maksimuma je oslobođen poreza i doprinosa. Iznos iznad maksimuma oporezuje se kao bonus — porez 10% i doprinosi zaposlenog 19,90% (plus doprinosi poslodavca 15,15%)." },
+      { q: "Za koliko godina staža se isplaćuje jubilarna nagrada?", a: "Najčešće za 10, 20, 30 i 40 godina rada kod istog poslodavca. Tačne jubileje i iznose utvrđuje kolektivni ugovor ili ugovor o radu — poslodavac nije zakonski obavezan, osim ako se sam obavezao." },
+    ],
+    related: [
+      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/minuli-rad", label: "Kalkulator minulog rada" },
+      { href: "/otpremnina", label: "Kalkulator otpremnine" },
+      { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
     ],
   }} />;
 }
