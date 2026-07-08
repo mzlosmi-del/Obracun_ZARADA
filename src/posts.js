@@ -2145,11 +2145,14 @@ Za precizan obračun poreza na vašu zaradu, koristite naš [besplatni kalkulato
   {
     id: "bruto-neto-razlika",
     date: "15. januar 2025",
+    updated: "8. jul 2026",
     tag: "Osnove",
     title: "Razlika između bruto i neto zarade — jednostavno objašnjenje",
-    summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja.",
+    summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja za 2026.",
     body: `
 ![Računanje zarade na laptopu](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80)
+
+> **Provereno i ažurirano: 8. jul 2026.** Stope, doprinosi i neoporezivi iznos usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu (neoporezivi iznos 34.221 RSD od 1.1.2026).
 
 Kada potpisujete ugovor o radu, zarada je obično izražena u bruto iznosu. Ali šta zapravo dobijate na račun? I zašto je razlika toliko velika?
 
@@ -2205,13 +2208,14 @@ Za precizan obračun koristite naš [bruto u neto kalkulator](/bruto-neto) kada 
   {
     id: "prekovremeni-rad",
     date: "10. januar 2025",
+    updated: "8. jul 2026",
     tag: "Zakon o radu",
     title: "Prekovremeni rad u Srbiji: prava i obračun po Zakonu o radu",
     summary: "Zakon o radu propisuje minimum od +26% za prekovremeni rad. Kako se obračunava, koliko može trajati i šta su vaša prava kao zaposlenog?",
     body: `
 ![Prekovremeni rad u kancelariji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 8. jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 
