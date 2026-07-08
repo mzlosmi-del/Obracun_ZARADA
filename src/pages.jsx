@@ -648,7 +648,7 @@ export function DodaciPage() {
     intro: (<p>Ovaj kalkulator obračunava <strong>dodatke na zaradu</strong> za 2026. godinu — uvećanja za prekovremeni rad, noćni rad, rad vikendom i rad na državni praznik, kao i dodatak za minuli rad. Unesite sate rada i osnovu u kalkulator ispod za tačan obračun.</p>),
     guide: (<>
       <h2>Kako se obračunavaju dodaci na zaradu</h2>
-      <p>Zakon o radu (čl. 108) propisuje jedinstven zakonski minimum uvećanja od <strong>najmanje 26%</strong> po satu za četiri vrste rada: prekovremeni rad, noćni rad (22h–06h), rad vikendom (subota i nedelja) i rad na dan državnog praznika. Minuli rad je zaseban dodatak i iznosi najmanje <strong>0,4% po navršenoj godini staža</strong> kod istog poslodavca. Ovo su zakonski minimumi — kolektivni ugovor, pravilnik o radu ili ugovor o radu kod konkretnog poslodavca mogu ugovoriti i veće procente uvećanja. Obračun ide u dva koraka: prvo se izračuna redovna <strong>satnica</strong> (mesečna osnovna zarada podeljena brojem radnih sati u mesecu), a zatim se satnica množi brojem sati rada u posebnom režimu i odgovarajućim koeficijentom uvećanja (1 + procenat/100). Svi dodaci ulaze u <strong>bruto 1 zaradu</strong> i podležu istom porezu i doprinosima kao osnovna zarada — nema posebnog poreskog tretmana za uvećanja. Detaljan vodič: <a href="/blog/prekovremeni-rad">prekovremeni rad 2026</a>.</p>
+      <p>Zakon o radu (čl. 108) propisuje minimalna uvećanja zarade po satu: za prekovremeni rad, noćni rad (22h–06h) i rad vikendom (subota i nedelja) najmanje <strong>26%</strong>, a za rad na dan državnog praznika koji je neradni dan najmanje <strong>110%</strong> od osnovice. Minuli rad je zaseban dodatak i iznosi najmanje <strong>0,4% po navršenoj godini staža</strong> kod istog poslodavca. Ovo su zakonski minimumi — kolektivni ugovor, pravilnik o radu ili ugovor o radu kod konkretnog poslodavca mogu ugovoriti i veće procente uvećanja. Obračun ide u dva koraka: prvo se izračuna redovna <strong>satnica</strong> (mesečna osnovna zarada podeljena brojem radnih sati u mesecu), a zatim se satnica množi brojem sati rada u posebnom režimu i odgovarajućim koeficijentom uvećanja (1 + procenat/100). Svi dodaci ulaze u <strong>bruto 1 zaradu</strong> i podležu istom porezu i doprinosima kao osnovna zarada — nema posebnog poreskog tretmana za uvećanja. Detaljan vodič: <a href="/blog/prekovremeni-rad">prekovremeni rad 2026</a>.</p>
       <h2>Tabela uvećanja 2026 (čl. 108 Zakona o radu)</h2>
       <table className="ref-table" aria-label="Minimalna uvećanja zarade 2026">
         <thead><tr><th>Vrsta rada</th><th>Minimalno uvećanje</th></tr></thead>
@@ -656,7 +656,7 @@ export function DodaciPage() {
           <tr><td>Prekovremeni rad</td><td>+26%</td></tr>
           <tr><td>Noćni rad (22h–06h)</td><td>+26%</td></tr>
           <tr><td>Rad vikendom (subota, nedelja)</td><td>+26%</td></tr>
-          <tr><td>Rad na državni praznik</td><td>+26%</td></tr>
+          <tr><td>Rad na državni praznik (neradni dan)</td><td>+110%</td></tr>
           <tr><td>Minuli rad</td><td>+0,4% po godini staža kod istog poslodavca</td></tr>
         </tbody>
       </table>
@@ -670,11 +670,12 @@ export function DodaciPage() {
         <li>Mešanje bruto i neto satnice — satnica za obračun uvećanja računa se iz bruto osnovice, jer se čitav bruto 1 (osnovna zarada + sva uvećanja) potom oporezuje po istim pravilima kao redovna zarada.</li>
       </ul>
       <h2>Pravni okvir</h2>
-      <p>Minimalna uvećanja zarade propisuje čl. 108 Zakona o radu Republike Srbije, koji utvrđuje jedinstvenu stopu od najmanje 26% za prekovremeni rad, noćni rad, rad vikendom i rad na dan praznika, kao i minimum od 0,4% po godini staža za minuli rad. Ovo su zakonski minimumi zaštite zaposlenog — poslodavac ih ne sme umanjiti, ali kolektivnim ugovorom, pravilnikom o radu ili pojedinačnim ugovorom o radu može ugovoriti povoljnije (veće) procente uvećanja za zaposlene.</p>
+      <p>Minimalna uvećanja zarade propisuje čl. 108 Zakona o radu Republike Srbije: najmanje 26% za prekovremeni rad, noćni rad i rad vikendom, a najmanje 110% za rad na dan državnog praznika koji je neradni dan (uz redovnu naknadu zarade za taj dan), kao i minimum od 0,4% po godini staža za minuli rad. Ovo su zakonski minimumi zaštite zaposlenog — poslodavac ih ne sme umanjiti, ali kolektivnim ugovorom, pravilnikom o radu ili pojedinačnim ugovorom o radu može ugovoriti povoljnije (veće) procente uvećanja za zaposlene. Kada se za isti sat steknu uslovi po više osnova (npr. prekovremeni i noćni rad), procenti se sabiraju.</p>
     </>),
     faq: [
       { q: "Koliko iznosi uvećanje za prekovremeni rad?", a: "Zakonski minimum je +26% po satu prekovremenog rada (čl. 108 Zakona o radu). Poslodavac može kolektivnim ugovorom utvrditi veće uvećanje." },
-      { q: "Koliko se plaća noćni rad?", a: "Za rad između 22h i 06h pripada uvećanje od najmanje +26% u odnosu na redovnu satnicu (čl. 108 Zakona o radu) — isto kao za prekovremeni rad, rad vikendom i rad na praznik. Za satnicu od 568 RSD i 8 odrađenih noćnih sati, uvećanje iznosi 568 × 8 × 0,26 ≈ 1.182 RSD, pored redovne zarade za te sate." },
+      { q: "Koliko se plaća noćni rad?", a: "Za rad između 22h i 06h pripada uvećanje od najmanje +26% u odnosu na redovnu satnicu (čl. 108 Zakona o radu) — isto kao za prekovremeni rad i rad vikendom. Za satnicu od 568 RSD i 8 odrađenih noćnih sati, uvećanje iznosi 568 × 8 × 0,26 ≈ 1.182 RSD, pored redovne zarade za te sate." },
+      { q: "Koliko se plaća rad na državni praznik?", a: "Za rad na dan državnog praznika koji je neradni dan pripada uvećanje od najmanje +110% od osnovice po satu (čl. 108 Zakona o radu) — znatno više nego za prekovremeni ili noćni rad (26%). Uz to, zaposleni za taj dan ima i pravo na redovnu naknadu zarade." },
       { q: "Da li se dodaci na zaradu međusobno sabiraju?", a: "Da — ako zaposleni radi prekovremeno u noćnoj smeni, oba uvećanja od po 26% se primenjuju kumulativno na iste sate. Kalkulator ispod sabira sve unete sate i uvećanja u jednom obračunu." },
     ],
     related: DODACI_RELATED,
