@@ -593,8 +593,8 @@ export function StopeDoprinosaPage() {
   const poslodavacUkupno = R.pio_er + R.health_er;
   return <ReferencePage cfg={{
     slug: "stope-doprinosa-2026",
-    title: "Stope doprinosa 2026 — PIO, zdravstvo | PlatniListić",
-    description: "Stope doprinosa za 2026: PIO 14%+10%, zdravstveno 5,15%+5,15%, nezaposlenost 0,75%. Na teret zaposlenog i poslodavca. Za Srbiju.",
+    title: "Stope doprinosa 2026: PIO 14%, zdravstvo 5,15% | PlatniListić",
+    description: "Stope doprinosa 2026 u Srbiji: zaposleni 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), poslodavac 15,15% (PIO 10%, zdravstvo 5,15%).",
     h1: "Stope doprinosa za socijalno osiguranje 2026.",
     breadcrumbName: "Stope doprinosa 2026",
     body: (<>
