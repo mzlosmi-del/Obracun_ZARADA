@@ -646,12 +646,36 @@ export function DodaciPage() {
     breadcrumbName: "Dodaci na zaradu",
     calc: "full",
     intro: (<p>Ovaj kalkulator obračunava <strong>dodatke na zaradu</strong> za 2026. godinu — uvećanja za prekovremeni rad, noćni rad, rad vikendom i rad na državni praznik, kao i dodatak za minuli rad. Unesite sate rada i osnovu u kalkulator ispod za tačan obračun.</p>),
-    guide: (<><h2>Kako se obračunavaju dodaci na zaradu</h2>
-      <p>Zakon o radu (čl. 108) propisuje minimalna uvećanja: prekovremeni rad najmanje +26%, noćni rad (22h–06h) najmanje +26%, rad vikendom najmanje +26%, rad na državni praznik najmanje +110%, a minuli rad najmanje 0,4% po navršenoj godini staža kod istog poslodavca. Dodaci se obračunavaju na osnovu hourly stope i ulaze u bruto 1 zaradu — podležu porezu i doprinosima. Detaljan vodič: <a href="/blog/prekovremeni-rad">prekovremeni rad 2026</a>.</p></>),
+    guide: (<>
+      <h2>Kako se obračunavaju dodaci na zaradu</h2>
+      <p>Zakon o radu (čl. 108) propisuje jedinstven zakonski minimum uvećanja od <strong>najmanje 26%</strong> po satu za četiri vrste rada: prekovremeni rad, noćni rad (22h–06h), rad vikendom (subota i nedelja) i rad na dan državnog praznika. Minuli rad je zaseban dodatak i iznosi najmanje <strong>0,4% po navršenoj godini staža</strong> kod istog poslodavca. Ovo su zakonski minimumi — kolektivni ugovor, pravilnik o radu ili ugovor o radu kod konkretnog poslodavca mogu ugovoriti i veće procente uvećanja. Obračun ide u dva koraka: prvo se izračuna redovna <strong>satnica</strong> (mesečna osnovna zarada podeljena brojem radnih sati u mesecu), a zatim se satnica množi brojem sati rada u posebnom režimu i odgovarajućim koeficijentom uvećanja (1 + procenat/100). Svi dodaci ulaze u <strong>bruto 1 zaradu</strong> i podležu istom porezu i doprinosima kao osnovna zarada — nema posebnog poreskog tretmana za uvećanja. Detaljan vodič: <a href="/blog/prekovremeni-rad">prekovremeni rad 2026</a>.</p>
+      <h2>Tabela uvećanja 2026 (čl. 108 Zakona o radu)</h2>
+      <table className="ref-table" aria-label="Minimalna uvećanja zarade 2026">
+        <thead><tr><th>Vrsta rada</th><th>Minimalno uvećanje</th></tr></thead>
+        <tbody>
+          <tr><td>Prekovremeni rad</td><td>+26%</td></tr>
+          <tr><td>Noćni rad (22h–06h)</td><td>+26%</td></tr>
+          <tr><td>Rad vikendom (subota, nedelja)</td><td>+26%</td></tr>
+          <tr><td>Rad na državni praznik</td><td>+26%</td></tr>
+          <tr><td>Minuli rad</td><td>+0,4% po godini staža kod istog poslodavca</td></tr>
+        </tbody>
+      </table>
+      <h2>Radni primer</h2>
+      <p>Zaposleni ima mesečnu osnovicu 100.000 RSD i mesečni fond od 176 radnih sati (22 radna dana × 8h). Satnica = 100.000 ÷ 176 ≈ <strong>568 RSD</strong>. Ako zaposleni odradi 10 sati prekovremenog rada, uvećanje se računa kao satnica × sati × 1,26: 568 × 10 × 1,26 ≈ <strong>7.157 RSD</strong> bruto za tih 10 sati (od čega je osnovna satnica 5.680 RSD, a čisto uvećanje 1.477 RSD). Ako je deo tih sati istovremeno i noćni rad (npr. 5 od 10 sati odrađeno je između 22h i 06h), na te sate se dodaje i noćno uvećanje: 568 × 5 × 0,26 ≈ 738 RSD dodatnog uvećanja za noćni rad, pored uvećanja za prekovremeni rad na istih 5 sati. Uvećanja se tako <strong>sabiraju za svaki sat</strong> po broju režima u kojima je taj sat odrađen — kalkulator ispod obračunava svaku kategoriju sati posebno i sabira ih u ukupan bruto 1.</p>
+      <h2>Česte greške</h2>
+      <ul>
+        <li>Neprimenjivanje oba uvećanja kada se prekovremeni i noćni rad poklapaju — ako je sat istovremeno i prekovremen i noćni, oba uvećanja od po 26% se sabiraju za taj sat, a ne primenjuje se samo jedno (obično veće).</li>
+        <li>Primena uvećanja za rad na praznik na dane koji nisu stvarno odrađeni — uvećanje pripada samo za sate <strong>stvarno odrađene</strong> na dan praznika; ako je praznik neradni dan i zaposleni ne radi, pripada mu naknada zarade za taj dan (redovna osnovica), ne uvećanje po čl. 108.</li>
+        <li>Zaboravljanje da minuli rad ulazi u osnovicu za obračun uvećanja kod nekih poslodavaca ako je tako ugovoreno kolektivnim ugovorom — bez izričite odredbe, uvećanja se po zakonskom minimumu računaju na osnovnu zaradu.</li>
+        <li>Mešanje bruto i neto satnice — satnica za obračun uvećanja računa se iz bruto osnovice, jer se čitav bruto 1 (osnovna zarada + sva uvećanja) potom oporezuje po istim pravilima kao redovna zarada.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Minimalna uvećanja zarade propisuje čl. 108 Zakona o radu Republike Srbije, koji utvrđuje jedinstvenu stopu od najmanje 26% za prekovremeni rad, noćni rad, rad vikendom i rad na dan praznika, kao i minimum od 0,4% po godini staža za minuli rad. Ovo su zakonski minimumi zaštite zaposlenog — poslodavac ih ne sme umanjiti, ali kolektivnim ugovorom, pravilnikom o radu ili pojedinačnim ugovorom o radu može ugovoriti povoljnije (veće) procente uvećanja za zaposlene.</p>
+    </>),
     faq: [
       { q: "Koliko iznosi uvećanje za prekovremeni rad?", a: "Zakonski minimum je +26% po satu prekovremenog rada (čl. 108 Zakona o radu). Poslodavac može kolektivnim ugovorom utvrditi veće uvećanje." },
-      { q: "Koliko se plaća rad na državni praznik?", a: "Uvećanje za rad na državni praznik iznosi najmanje +110% po satu rada na taj dan, u skladu sa čl. 108 Zakona o radu." },
-      { q: "Da li se dodaci na zaradu međusobno sabiraju?", a: "Da — ako zaposleni radi prekovremeno u noćnoj smeni, oba uvećanja se primenjuju kumulativno. Kalkulator ispod sabira sve unete sate i uvećanja u jednom obračunu." },
+      { q: "Koliko se plaća noćni rad?", a: "Za rad između 22h i 06h pripada uvećanje od najmanje +26% u odnosu na redovnu satnicu (čl. 108 Zakona o radu) — isto kao za prekovremeni rad, rad vikendom i rad na praznik. Za satnicu od 568 RSD i 8 odrađenih noćnih sati, uvećanje iznosi 568 × 8 × 0,26 ≈ 1.182 RSD, pored redovne zarade za te sate." },
+      { q: "Da li se dodaci na zaradu međusobno sabiraju?", a: "Da — ako zaposleni radi prekovremeno u noćnoj smeni, oba uvećanja od po 26% se primenjuju kumulativno na iste sate. Kalkulator ispod sabira sve unete sate i uvećanja u jednom obračunu." },
     ],
     related: DODACI_RELATED,
   }} />;
@@ -673,10 +697,35 @@ export function GodisnjiPorezPage() {
     breadcrumbName: "Godišnji porez",
     calc: "full",
     intro: (<p>Ovaj kalkulator procenjuje <strong>godišnji porez na dohodak</strong> građana za 2026. godinu. Godišnji porez plaćaju fizička lica čiji godišnji prihod prelazi neoporezivi cenzus, uz primenu progresivnih stopa od 10% i 15%. Unesite podatke o prihodima u kalkulator ispod.</p>),
-    guide: (<><h2>Kako se obračunava godišnji porez na dohodak</h2>
-      <p>Godišnji porez na dohodak građana plaćaju lica čiji ukupni godišnji dohodak prelazi neoporezivi cenzus, koji iznosi tri prosečne godišnje zarade u Republici Srbiji. Na deo dohotka iznad jednog cenzusa primenjuje se stopa 10%, a na deo iznad dva cenzusa stopa 15%. Poreska prijava podnosi se Poreskoj upravi do 15. maja naredne kalendarske godine. Detaljnije o doprinosima i poreskom sistemu: <a href="/blog/doprinosi-srbija">doprinosi u Srbiji 2026</a>.</p></>),
+    guide: (<>
+      <h2>Kako se obračunava godišnji porez na dohodak</h2>
+      <p>Godišnji porez na dohodak građana je poseban, jednom godišnje utvrđen porez — različit od mesečnog poreza na zaradu koji poslodavac obustavlja iz svake plate. Obveznik je fizičko lice rezident Srbije čiji <strong>ukupan godišnji dohodak iz svih izvora</strong> (zarade, prihodi od samostalne delatnosti, autorski honorari, prihodi od izdavanja nepokretnosti i drugi oporezivi prihodi) pređe zakonski cenzus. Neoporezivi cenzus iznosi <strong>tri prosečne godišnje zarade</strong> isplaćene u Republici Srbiji u toj godini (godišnja zarada = 12 × prosečna mesečna bruto zarada). Na deo dohotka koji prelazi jedan cenzus, do visine dvostrukog cenzusa, primenjuje se stopa <strong>10%</strong>; na deo iznad dvostrukog cenzusa primenjuje se stopa <strong>15%</strong>. Pošto je porez po odbitku (mesečni porez na zaradu, porez na honorare i sl.) već plaćen tokom godine, godišnji porez efektivno predstavlja dodatnu obavezu samo za deo dohotka iznad cenzusa — nije reč o ponovnom oporezivanju celog prihoda. Detaljnije o doprinosima i poreskom sistemu: <a href="/blog/doprinosi-srbija">doprinosi u Srbiji 2026</a>.</p>
+      <h2>Parametri obračuna 2026</h2>
+      <table className="ref-table" aria-label="Parametri godišnjeg poreza na dohodak 2026">
+        <thead><tr><th>Stavka</th><th>Vrednost</th></tr></thead>
+        <tbody>
+          <tr><td>Neoporezivi cenzus</td><td>3× prosečna godišnja zarada u RS</td></tr>
+          <tr><td>Prosečna mesečna bruto zarada (osnov za cenzus)</td><td>{REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS)</td></tr>
+          <tr><td>Stopa na deo iznad cenzusa do dvostrukog cenzusa</td><td>10%</td></tr>
+          <tr><td>Stopa na deo iznad dvostrukog cenzusa</td><td>15%</td></tr>
+          <tr><td>Rok za podnošenje prijave</td><td>15. maj naredne godine</td></tr>
+        </tbody>
+      </table>
+      <h2>Radni primer (ilustracija)</h2>
+      <p>Cenzus se računa po formuli 3 × (12 × prosečna mesečna bruto zarada). Uzimajući poslednju objavljenu prosečnu bruto zaradu od {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} RSD, godišnja prosečna zarada iznosi {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} × 12 ≈ {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12).toLocaleString("sr-RS")} RSD, pa bi ilustrativan cenzus (3×) bio oko {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} RSD, a dvostruki cenzus oko {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 6).toLocaleString("sr-RS")} RSD. <em>Napomena: zvanični cenzus za konkretnu poresku godinu objavljuje Poreska uprava na osnovu podatka RZS o prosečnoj godišnjoj zaradi za tu godinu — iznos iz ovog primera je ilustracija formule, ne zvanično objavljena cifra.</em> Pod ovom pretpostavkom, poreski obveznik sa ukupnim godišnjim dohotkom od 8.000.000 RSD imao bi oporezivi višak od 8.000.000 − {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} ≈ 1.951.712 RSD, u celosti u prvom razredu (jer ne prelazi dvostruki cenzus), pa bi godišnji porez iznosio 1.951.712 × 10% ≈ <strong>195.171 RSD</strong>. Da je isti obveznik ostvario dohodak iznad dvostrukog cenzusa, deo preko te granice oporezovao bi se dodatnom stopom od 15%.</p>
+      <h2>Česte greške</h2>
+      <ul>
+        <li>Uverenje da godišnji porez plaćaju svi zaposleni — u stvarnosti ga plaća uzak krug lica čiji ukupan godišnji dohodak iz svih izvora prelazi cenzus od tri prosečne godišnje zarade; velika većina zaposlenih sa jednom prosečnom ili čak natprosečnom platom nikada ne dostigne taj prag.</li>
+        <li>Mešanje godišnjeg poreza sa mesečnim porezom na zaradu — mesečni porez (10% na deo iznad neoporezivog iznosa) obustavlja poslodavac iz svake plate tokom cele godine; godišnji porez je poseban obračun koji sabira sve izvore prihoda za celu godinu i primenjuje se samo na deo iznad cenzusa.</li>
+        <li>Zaboravljanje da se u godišnji dohodak uračunavaju svi oporezivi prihodi (zarade od više poslodavaca, honorari, prihodi od izdavanja nepokretnosti), a ne samo zarada sa glavnog radnog mesta.</li>
+        <li>Propuštanje roka za prijavu (15. maj naredne godine), što povlači zatezne kamate i prekršajnu odgovornost, čak i kada je sam iznos obaveze mali.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Godišnji porez na dohodak građana uređen je Zakonom o porezu na dohodak građana, koji propisuje krug obveznika, način utvrđivanja cenzusa (tri prosečne godišnje zarade u Republici Srbiji), progresivne stope (10% i 15%) i rok za podnošenje poreske prijave. Poreska uprava svake godine objavljuje visinu prosečne godišnje zarade na osnovu koje se cenzus za tu godinu izračunava, pa se konkretan dinarski iznos cenzusa menja iz godine u godinu i objavljuje se zvanično — ne izračunava ga poreski obveznik sam iz proizvoljnog podatka.</p>
+    </>),
     faq: [
-      { q: "Ko je obavezan da plaća godišnji porez na dohodak?", a: "Fizička lica rezidenti čiji ukupni godišnji dohodak premašuje neoporezivi cenzus (tri prosečne godišnje zarade u RS). Ukoliko je porez po odbitku već plaćen, godišnji porez je razlika do konačne obaveze." },
+      { q: "Ko je obavezan da plaća godišnji porez na dohodak?", a: "Fizička lica rezidenti čiji ukupni godišnji dohodak premašuje neoporezivi cenzus (tri prosečne godišnje zarade u RS). Ukoliko je porez po odbitku već plaćen tokom godine, godišnji porez je dodatna obaveza samo na deo dohotka iznad cenzusa." },
+      { q: "Ko plaća godišnji porez 2026?", a: "Plaćaju ga fizička lica čiji ukupan dohodak iz svih izvora u 2026. godini (zarade, honorari, prihodi od izdavanja i drugo) pređe cenzus od tri prosečne godišnje zarade u Srbiji. Većina zaposlenih sa prosečnom platom ovaj prag ne dostiže." },
       { q: "Kolike su stope godišnjeg poreza na dohodak?", a: "Na deo dohotka iznad neoporezivog cenzusa do visine dvostrukog cenzusa primenjuje se stopa 10%; na deo iznad dvostrukog cenzusa stopa je 15%." },
       { q: "Do kada se podnosi poreska prijava za godišnji porez?", a: "Poreska prijava za godišnji porez na dohodak građana podnosi se Poreskoj upravi do 15. maja naredne kalendarske godine (npr. za 2026. godinu — do 15. maja 2027)." },
     ],
@@ -805,11 +854,36 @@ export function UgovorODeluPage() {
     breadcrumbName: "Ugovor o delu",
     calc: "full",
     intro: (<p>Ovaj <strong>kalkulator ugovora o delu</strong> računa porez i doprinose za honorarni angažman u 2026. Za detaljan obračun po vrsti angažmana koristite kalkulator ispod.</p>),
-    guide: (<><h2>Kako se obračunava ugovor o delu</h2>
-      <p>Kod ugovora o delu osnovicu čini bruto naknada umanjena za <strong>20% normiranih troškova</strong> (oporezivo je 80% prihoda). Na tu osnovicu plaća se <strong>porez 20%</strong> i <strong>doprinos za PIO 24%</strong>, a <strong>zdravstveno 10,3%</strong> samo ako lice nije osigurano po drugom osnovu. Detaljan vodič sa primerom: <a href="/blog/ugovor-o-delu">ugovor o delu 2026</a>.</p></>),
+    guide: (<>
+      <h2>Kako se obračunava ugovor o delu</h2>
+      <p>Ugovor o delu je oblik angažovanja van radnog odnosa — naknada se ne oporezuje kao zarada, već kao „drugi prihod" po posebnim pravilima. Obračun uvek kreće od <strong>bruto</strong> iznosa, u tri koraka: (1) od bruto naknade oduzme se <strong>20% normiranih troškova</strong>, čime se dobija osnovica za porez i doprinose (oporezivo je, dakle, 80% bruto naknade); (2) na tu osnovicu obračunava se <strong>porez na dohodak građana 20%</strong> i <strong>doprinos za PIO 24%</strong>; (3) <strong>doprinos za zdravstveno osiguranje 10,3%</strong> obračunava se na istu osnovicu, ali <strong>samo ako izvršilac nije već zdravstveno osiguran po drugom osnovu</strong> — npr. ako je zaposlen kod drugog poslodavca, penzioner ili osiguran kao član porodice. Formula osnovice: osnovica = bruto − (bruto × 0,20) = bruto × 0,8. Ako je naručilac posla firma ili preduzetnik, on obračunava, obustavlja i uplaćuje sve dažbine i podnosi PPP-PD prijavu, pa izvršilac dobija već „očišćen" neto iznos. Ako je naručilac fizičko lice bez zaposlenih, obavezu obračuna i prijave (obrazac PP OPO, u roku od 30 dana od isplate) ima sam izvršilac. Detaljan vodič sa dodatnim primerima: <a href="/blog/ugovor-o-delu">ugovor o delu 2026</a>.</p>
+      <h2>Parametri obračuna 2026</h2>
+      <table className="ref-table" aria-label="Parametri obračuna ugovora o delu 2026">
+        <thead><tr><th>Stavka</th><th>Vrednost</th></tr></thead>
+        <tbody>
+          <tr><td>Normirani troškovi</td><td>20% bruto naknade</td></tr>
+          <tr><td>Osnovica za porez i doprinose</td><td>bruto − 20% = bruto × 0,8</td></tr>
+          <tr><td>Porez na dohodak građana</td><td>20% na osnovicu</td></tr>
+          <tr><td>Doprinos za PIO</td><td>24% na osnovicu</td></tr>
+          <tr><td>Doprinos za zdravstveno osiguranje</td><td>10,3% na osnovicu — samo ako lice nije osigurano po drugom osnovu</td></tr>
+        </tbody>
+      </table>
+      <h2>Radni primer (bruto 100.000 RSD)</h2>
+      <p>Za ugovorenu bruto naknadu od 100.000 RSD: normirani troškovi su 100.000 × 20% = 20.000 RSD, pa je osnovica 100.000 − 20.000 = <strong>80.000 RSD</strong>. Na tu osnovicu: porez 80.000 × 20% = <strong>16.000 RSD</strong>, PIO 80.000 × 24% = <strong>19.200 RSD</strong>, zdravstveno (ako se plaća) 80.000 × 10,3% = <strong>8.240 RSD</strong>. Ako je izvršilac već osiguran po drugom osnovu (npr. zaposlen kod drugog poslodavca ili penzioner), zdravstveno se ne obustavlja, pa je neto = 100.000 − 16.000 − 19.200 = <strong>64.800 RSD</strong>. Ako izvršilac nije osiguran ni po jednom drugom osnovu, obustavlja se i zdravstveno, pa je neto = 100.000 − 16.000 − 19.200 − 8.240 = <strong>56.560 RSD</strong>. Razlika između ova dva scenarija — 7.680 RSD — pokazuje zašto je status zdravstvenog osiguranja izvršioca ključan podatak pre isplate, ne samo administrativna formalnost.</p>
+      <h2>Česte greške</h2>
+      <ul>
+        <li>Zaborav da se 20% normiranih troškova prvo oduzme od bruto iznosa — porez i doprinosi se pogrešno obračunavaju na ceo bruto umesto na osnovicu (bruto × 0,8), što daje precenjen iznos dažbina.</li>
+        <li>Pretpostavka da se zdravstveni doprinos od 10,3% uvek plaća — on se obračunava samo kada izvršilac nije već zdravstveno osiguran po drugom osnovu (zaposlenje, penzija, status člana porodice osiguranika).</li>
+        <li>Mešanje ugovora o delu sa ugovorom o radu ili privremenim i povremenim poslovima — svaki ima drugačiju osnovicu i drugačija prava (ugovor o delu ne donosi pravo na godišnji odmor, bolovanje ni otpremninu).</li>
+        <li>Izostavljanje PPP-PD, odnosno PP OPO prijave kada naručilac posla nije pravno lice — obaveza prijave i uplate tada prelazi na samog izvršioca, u roku od 30 dana od isplate.</li>
+      </ul>
+      <h2>Pravni okvir</h2>
+      <p>Poresku osnovicu, stopu poreza (20%) i normirane troškove (20%) propisuje Zakon o porezu na dohodak građana, koji naknadu po ugovoru o delu tretira kao „prihod od pružanja usluga" odnosno drugi prihod fizičkog lica. Stope doprinosa za PIO (24%) i zdravstveno osiguranje (10,3%) propisuje Zakon o doprinosima za obavezno socijalno osiguranje; zdravstveni doprinos se obustavlja samo ako lice nije osigurano po drugom osnovu, jer se time izbegava dvostruko plaćanje doprinosa za istu vrstu osiguranja. Sâm ugovor o delu kao pravni institut (predmet, prava i obaveze strana) uređen je Zakonom o radu i Zakonom o obligacionim odnosima, ali poreski tretman naknade uređuju isključivo pomenuta dva poreska zakona.</p>
+    </>),
     faq: [
-      { q: "Koliki je porez na ugovor o delu?", a: "Porez je 20% na osnovicu, koju čini bruto naknada umanjena za 20% normiranih troškova (oporezivo je 80% prihoda). Uz porez se plaća doprinos za PIO 24%, a zdravstveno 10,3% samo ako lice nije osigurano po drugom osnovu." },
-      { q: "Da li se plaćaju doprinosi na ugovor o delu?", a: "Da — PIO, a zdravstveno ako lice nije osigurano po drugom osnovu. Detalje vidite u vodiču." },
+      { q: "Koliki je porez na ugovor o delu?", a: "Porez je 20% na osnovicu, koju čini bruto naknada umanjena za 20% normiranih troškova (oporezivo je 80% prihoda). Za bruto 100.000 RSD osnovica je 80.000 RSD, a porez 16.000 RSD." },
+      { q: "Koliko se plaća porez na ugovor o delu — ukupno sa doprinosima?", a: "Uz porez od 20% na osnovicu plaća se doprinos za PIO 24%, a zdravstveno 10,3% samo ako lice nije osigurano po drugom osnovu. Za bruto 100.000 RSD neto je 64.800 RSD (ako je lice već osigurano) ili 56.560 RSD (ako nije)." },
+      { q: "Kalkulator ugovora o delu 2026 — šta unosim?", a: "Unesite ugovorenu bruto naknadu i označite da li je izvršilac zdravstveno osiguran po drugom osnovu (zaposlenje, penzija). Kalkulator prikazuje osnovicu, porez, doprinose za PIO i zdravstvo (ako se plaća) i konačan neto iznos." },
     ],
     related: [
       { href: "/pausal", label: "Paušal kalkulator" },
