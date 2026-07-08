@@ -156,7 +156,7 @@ export function OtpremninaCalculator() {
   );
 }
 
-// Godišnji odmor — naknada zarade (čl. 104) i naknada za neiskorišćeni odmor (čl. 114 ZOR).
+// Godišnji odmor — naknada zarade (čl. 104) i naknada za neiskorišćeni odmor (čl. 76 ZOR).
 // Presentation-only: osnovica = prosečna bruto zarada zaposlenog u prethodnih 12 meseci.
 export function GodisnjiOdmorCalculator() {
   const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
@@ -183,7 +183,7 @@ export function GodisnjiOdmorCalculator() {
         <ResultRow label="Dnevna osnova (prosek ÷ radni dani)" value={dnevna} />
         <ResultRow label={mode === "odmor" ? `Naknada za ${dani} dana odmora (bruto)` : `Naknada za ${dani} neiskorišćenih dana (bruto)`} value={naknada} type="positive" />
       </div>
-      <p className="pausal-note">Napomena: osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci (čl. 104 Zakona o radu), ne prosek u RS — podrazumevana vrednost je informativna. Naknada je bruto i podleže porezu i doprinosima kao zarada. Naknada za neiskorišćeni odmor isplaćuje se pri prestanku radnog odnosa (čl. 114). Izvor proseka: RZS.</p>
+      <p className="pausal-note">Napomena: osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci (čl. 104 Zakona o radu), ne prosek u RS — podrazumevana vrednost je informativna. Naknada je bruto i podleže porezu i doprinosima kao zarada. Naknada za neiskorišćeni odmor isplaćuje se pri prestanku radnog odnosa (čl. 76). Izvor proseka: RZS.</p>
     </div>
   );
 }
