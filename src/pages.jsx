@@ -896,6 +896,7 @@ export function UgovorODeluPage() {
 
 export function ProsecnaZaradaPage() {
   const p = REFERENCE_DATA.prosecnaZarada2026;
+  const min = REFERENCE_DATA.minimalnaZarada2026;
   return <ReferencePage cfg={{
     slug: "prosecna-zarada",
     title: "Prosečna zarada u Srbiji 2026 — neto i bruto | PlatniListić",
@@ -911,10 +912,37 @@ export function ProsecnaZaradaPage() {
         </tbody>
       </table>
       <p>Podaci su za {p.mesec} (RZS). Medijalna zarada (polovina zaposlenih zarađuje manje) realnije opisuje tipičnu platu od proseka. Detaljan pregled po sektorima i gradovima: <a href="/blog/prosecna-plata-srbija">prosečna plata u Srbiji 2026</a>.</p>
+
+      <h2>Kako i kada RZS objavljuje podatak o prosečnoj zaradi</h2>
+      <p>Republički zavod za statistiku (RZS) objavljuje podatak o prosečnoj mesečnoj zaradi u redovnom mesečnom statističkom saopštenju, sa uobičajenim zaostatkom od oko dva meseca — podatak za {p.mesec} objavljen je krajem juna 2026. Zaostatak postoji zato što je za obračun proseka potrebno prikupiti i obraditi izveštaje o isplaćenim zaradama od velikog broja poslodavaca u zemlji, pa je reč o konačnom, a ne procenjenom broju. Zbog ovog zaostatka, iznos koji važi „danas" u praksi je uvek podatak za jedan od prethodnih meseci — to je i razlog zašto se u zakonskim obračunima (otpremnina, jubilarna nagrada, cenzus) izričito koristi formulacija „poslednji objavljeni podatak", a ne podatak za tekući mesec, koji u trenutku obračuna još nije objavljen.</p>
+
+      <h2>Prosečna zarada i minimalac</h2>
+      <p>Poređenje sa minimalnom zaradom pokazuje raspon zarada u Srbiji. Prosečna neto zarada od {p.neto.toLocaleString("sr-RS")} RSD je oko {(p.neto / min.netoMesecno).toLocaleString("sr-RS", { maximumFractionDigits: 1 })} puta veća od reprezentativnog neto iznosa minimalne zarade od {min.netoMesecno.toLocaleString("sr-RS")} RSD (za prosečan fond od 174 radna časa). Ipak, budući da je medijalna zarada ({p.medijalnaNeto.toLocaleString("sr-RS")} RSD) znatno bliža minimalcu nego prosečnoj zaradi, veliki broj zaposlenih u Srbiji prima platu koja je bliža minimalnoj nego prosečnoj zaradi — što je dodatna potvrda da prosek precenjuje tipičnu platu. Detalji o minimalnoj zaradi: <a href="/minimalna-zarada-2026">minimalna zarada 2026</a>.</p>
+
+      <h2>Prosečna vs medijalna zarada</h2>
+      <p>Prosečna (aritmetička sredina) i medijalna zarada mere dve različite stvari, pa razlika između njih od {(p.neto - p.medijalnaNeto).toLocaleString("sr-RS")} RSD ({p.neto.toLocaleString("sr-RS")} − {p.medijalnaNeto.toLocaleString("sr-RS")} RSD) nije greška u podacima, nego posledica same statistike. Prosečna zarada se dobija tako što se saberu sve isplaćene zarade u zemlji i podele brojem zaposlenih — svaka zarada, koliko god bila visoka, ulazi u zbir punom težinom. Medijalna zarada je, nasuprot tome, ona vrednost koja deli sve zaposlene na dve jednake polovine: tačno polovina zarađuje manje od {p.medijalnaNeto.toLocaleString("sr-RS")} RSD, a polovina više. Zato mali broj vrlo visokih zarada (npr. u IT sektoru, menadžmentu ili pojedinim visokoplaćenim strukama) povlači prosek naviše, dok medijalna zarada na to gotovo uopšte ne reaguje. Kada je prosek osetno viši od medijale — kao što je slučaj u Srbiji — to je znak da raspodela zarada nije simetrična, odnosno da manjina zaposlenih sa visokim primanjima diže aritmetičku sredinu iznad onoga što tipičan zaposleni stvarno prima na račun. Za procenu „tipične" plate medijalna zarada je zato pouzdaniji orijentir; prosečna zarada ostaje standardna referentna veličina u zakonskim obračunima (otpremnina, jubilarna nagrada, cenzus za godišnji porez), jer je to podatak koji RZS zvanično objavljuje i na koji se propisi pozivaju.</p>
+
+      <h2>Prosečna zarada u evrima</h2>
+      <p>Po srednjem kursu NBS od {p.kursEur.toLocaleString("sr-RS")} RSD za 1 €, prosečna neto zarada od {p.neto.toLocaleString("sr-RS")} RSD iznosi približno {(p.neto / p.kursEur).toLocaleString("sr-RS", { maximumFractionDigits: 0 })} € mesečno. Prosečna bruto zarada od {p.bruto.toLocaleString("sr-RS")} RSD u evrima je oko {(p.bruto / p.kursEur).toLocaleString("sr-RS", { maximumFractionDigits: 0 })} €. Ovo poređenje je korisno za orijentaciju (npr. pri poređenju sa regionom), ali treba imati u vidu da je reč o preračunu po tekućem kursu, a ne o zvaničnom pokazatelju kupovne moći — kurs dinara prema evru je u Srbiji dugo relativno stabilan, pa se iznos u evrima ne menja mnogo iz meseca u mesec, za razliku od dinarskog iznosa koji prati rast nominalnih zarada.</p>
+
+      <h2>Gde se koristi prosečna zarada u obračunima</h2>
+      <p>Prosečna zarada u Republici Srbiji nije samo statistički pokazatelj — ona je i zakonska osnovica u nekoliko konkretnih obračuna na zaradi:</p>
+      <ul>
+        <li><strong>Otpremnina za odlazak u penziju</strong> — zakonski minimum iznosi dve prosečne (neto) zarade u Republici Srbiji, bez obzira na visinu lične plate zaposlenog. Detaljno: <a href="/otpremnina">kalkulator otpremnine</a>.</li>
+        <li><strong>Jubilarna nagrada</strong> — neoporezivi maksimum se računa kao koeficijent (1×, 2×, 2,5× ili 3×, zavisno od jubileja) pomnožen prosečnom bruto zaradom u RS. Detaljno: <a href="/jubilarna-nagrada">kalkulator jubilarne nagrade</a>.</li>
+        <li><strong>Cenzus za godišnji porez na dohodak</strong> — neoporezivi prag za obavezu podnošenja godišnje poreske prijave iznosi tri prosečne godišnje zarade u RS (godišnja zarada = 12 × prosečna mesečna bruto zarada). Detaljno: <a href="/godisnji-porez">kalkulator godišnjeg poreza</a>.</li>
+      </ul>
+      <p>U sva tri slučaja koristi se poslednji objavljeni podatak RZS o prosečnoj zaradi u Republici Srbiji — ne prosek unutar konkretne firme ili sektora. Za poređenje sa minimalnom zaradom pogledajte <a href="/minimalna-zarada-2026">minimalnu zaradu 2026</a>.</p>
+
+      <h2>Bruto vs neto prosečna zarada</h2>
+      <p>Razlika između prosečne bruto zarade ({p.bruto.toLocaleString("sr-RS")} RSD) i prosečne neto zarade ({p.neto.toLocaleString("sr-RS")} RSD) — {(p.bruto - p.neto).toLocaleString("sr-RS")} RSD — čine porez na zaradu i doprinosi za obavezno socijalno osiguranje na teret zaposlenog, koji se obustavljaju iz bruto iznosa pre isplate na račun. Pregled svih stopa doprinosa (PIO, zdravstveno, nezaposlenost) dat je na stranici <a href="/stope-doprinosa-2026">stope doprinosa 2026</a>. Ako želite da izračunate koliko bi neto iznosila neka druga bruto (ili obrnuto, neto u bruto) zarada, koristite <a href="/bruto-neto">bruto u neto kalkulator</a>.</p>
+      <p>Ova razlika između bruto i neto proseka je i razlog zašto je bitno obratiti pažnju na to koja se od dve osnovice koristi u konkretnom obračunu. Otpremnina za odlazak u penziju, na primer, računa se od <em>neto</em> proseka, dok se neoporezivi maksimum jubilarne nagrade i cenzus za godišnji porez računaju od <em>bruto</em> proseka — zamena jedne osnovice drugom u obračunu dovodi do pogrešnog rezultata, jer je bruto iznos uvek veći od neto za otprilike jednu trećinu.</p>
     </>),
     faq: [
       { q: "Kolika je prosečna plata u Srbiji 2026?", a: `Prosečna neto plata za ${p.mesec} iznosi ${p.neto.toLocaleString("sr-RS")} RSD, a bruto ${p.bruto.toLocaleString("sr-RS")} RSD (RZS).` },
       { q: "Kolika je medijalna plata?", a: `Medijalna neto zarada iznosi oko ${p.medijalnaNeto.toLocaleString("sr-RS")} RSD — polovina zaposlenih zarađuje manje od tog iznosa.` },
+      { q: "Kolika je prosečna plata u Beogradu?", a: `Podatak od ${p.neto.toLocaleString("sr-RS")} RSD neto (${p.mesec}) je republički prosek koji RZS objavljuje za celu Srbiju, ne posebno za Beograd. Pregled proseka po gradovima i sektorima potražite u vodiču "prosečna plata u Srbiji" na blogu.` },
+      { q: "Šta je medijalna zarada i zašto se razlikuje od prosečne?", a: `Medijalna zarada je vrednost koja deli sve zaposlene na dve jednake polovine — polovina zarađuje manje, polovina više. Za razliku od proseka, na nju ne utiče mali broj vrlo visokih primanja, pa je bliža onome što tipičan zaposleni stvarno prima. U ${p.mesec} medijalna neto zarada (${p.medijalnaNeto.toLocaleString("sr-RS")} RSD) je za ${(p.neto - p.medijalnaNeto).toLocaleString("sr-RS")} RSD niža od prosečne (${p.neto.toLocaleString("sr-RS")} RSD).` },
     ],
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
