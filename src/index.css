@@ -497,7 +497,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 
 .tool-guide { margin-top: 24px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 .tool-guide h2 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 10px; }
-.tool-guide p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+.tool-guide p { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 12px; }
+.tool-guide ul { padding-left: 20px; margin-bottom: 12px; }
+.tool-guide li { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 6px; }
+.tool-guide strong { color: var(--text); font-weight: 600; }
 .tool-guide a { color: var(--accent); text-decoration: none; }
 .tool-guide a:hover { text-decoration: underline; }
 
