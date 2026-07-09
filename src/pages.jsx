@@ -867,8 +867,8 @@ export function JubilarnaPage() {
 export function UgovorODeluPage() {
   return <ToolPage cfg={{
     slug: "ugovor-o-delu",
-    title: "Ugovor o delu kalkulator 2026 — porez i doprinosi | PlatniListić",
-    description: "Obračun ugovora o delu za 2026: osnovica je bruto − 20% normiranih troškova, porez 20%, PIO 24% i zdravstveno 10,3%. Bruto, neto i trošak. Besplatno.",
+    title: "Ugovor o delu kalkulator 2026 — bruto u neto | PlatniListić",
+    description: "Izračunajte neto od ugovorene naknade po ugovoru o delu: unesite bruto iznos i dobijete osnovicu, porez, doprinose i neto na ruke. Besplatno, za 2026.",
     h1: "Kalkulator ugovora o delu (2026)",
     breadcrumbName: "Ugovor o delu",
     calc: "full",
@@ -901,7 +901,7 @@ export function UgovorODeluPage() {
     </>),
     faq: [
       { q: "Koliki je porez na ugovor o delu?", a: "Porez je 20% na osnovicu, koju čini bruto naknada umanjena za 20% normiranih troškova (oporezivo je 80% prihoda). Za bruto 100.000 RSD osnovica je 80.000 RSD, a porez 16.000 RSD." },
-      { q: "Koliko se plaća porez na ugovor o delu — ukupno sa doprinosima?", a: "Uz porez od 20% na osnovicu plaća se doprinos za PIO 24%, a zdravstveno 10,3% samo ako lice nije osigurano po drugom osnovu. Za bruto 100.000 RSD neto je 64.800 RSD (ako je lice već osigurano) ili 56.560 RSD (ako nije)." },
+      { q: "Zašto mi kalkulator daje dva različita neto iznosa?", a: "Zato što zdravstveni doprinos od 10,3% zavisi od statusa izvršioca: plaća se samo ako lice nije osigurano po drugom osnovu (zaposlenje, penzija). Za bruto 100.000 RSD neto je 64.800 RSD kada je lice već osigurano, odnosno 56.560 RSD kada nije — zato u kalkulatoru označite ispravan status." },
       { q: "Kalkulator ugovora o delu 2026 — šta unosim?", a: "Unesite ugovorenu bruto naknadu i označite da li je izvršilac zdravstveno osiguran po drugom osnovu (zaposlenje, penzija). Kalkulator prikazuje osnovicu, porez, doprinose za PIO i zdravstvo (ako se plaća) i konačan neto iznos." },
     ],
     related: [
