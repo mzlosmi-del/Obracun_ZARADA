@@ -2284,12 +2284,14 @@ Koristite naš [PlatniListić kalkulator](/) da proverite da li vam je prekovrem
     id: "minimalna-zarada-2025",
     date: "2. januar 2025",
     tag: "Novosti",
-    title: "Minimalna zarada u Srbiji za 2025. godinu: 73.274 RSD bruto",
-    summary: "Vlada Srbije je utvrdila minimalnu zaradu za 2025. godinu. Koliko iznosi, ko ima pravo na nju i kako je obračunati?",
+    title: "Minimalna zarada 2025: 73.274 RSD bruto (arhiva)",
+    summary: "Arhiva: minimalna zarada za 2025. godinu iznosila je 73.274 RSD bruto. Za aktuelne iznose pogledajte minimalnu zaradu za 2026.",
     body: `
+> 📌 **Ovaj tekst se odnosi na 2025. godinu.** Aktuelni iznosi: [minimalna zarada 2026](/minimalna-zarada-2026).
+
 ![Minimalna zarada i novac](https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80)
 
-Za 2025. godinu, minimalna zarada u Srbiji iznosi **73.274 RSD bruto mesečno** za puno radno vreme (mesec sa 168 radnih sati).
+Za 2025. godinu, minimalna zarada u Srbiji iznosila je **73.274 RSD bruto mesečno** za puno radno vreme (mesec sa 168 radnih sati).
 
 ## Minimalna satnica
 
@@ -2317,7 +2319,7 @@ Ukupan trošak poslodavca za zaposlenog na minimalnoj zarade:
 
 Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomskog saveta, a primenjuje se od 1. januara tekuće godine.
 
-Sledeća revizija stupila je na snagu u februaru 2026. godine — pogledajte [minimalna zarada za 2026.](/minimalna-zarada-2026) za aktuelne iznose.
+Sledeća revizija stupila je na snagu 1. januara 2026. godine („Sl. glasnik RS" br. 78/2025) — pogledajte [minimalna zarada za 2026.](/minimalna-zarada-2026) za aktuelne iznose.
 
 Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/bruto-neto), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
 
