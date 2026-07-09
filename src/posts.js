@@ -567,7 +567,7 @@ Pre nego što se registrujete, procenite mesečnu obavezu za svoju delatnost i o
 ## Izvori i korisni linkovi
 
 - [Poreska uprava Srbije](https://www.purs.gov.rs/)
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
     `,
     faq: [
@@ -1042,7 +1042,7 @@ Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdrav
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Poreska uprava Srbije](https://www.purs.gov.rs/)
 - [Zakon o radu (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
@@ -1128,7 +1128,7 @@ Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-n
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o radu Republike Srbije](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Ministarstvo za rad, zapošljavanje, boračka i socijalna pitanja](https://www.minrzs.gov.rs/)
     `,
@@ -1201,7 +1201,7 @@ Na utvrđenu osnovicu obračunavaju se:
 
 Ukupno opterećenje je **45,05%** paušalne osnovice.
 
-> ⚠️ **Oprez sa zastarelim ciframa:** pojedini kalkulatori i blogovi i dalje prikazuju PIO stopu od **25,5%** (i ukupno „46,55%") — ta stopa ne važi od 2023. godine. Važeća stopa PIO je **24%** (Zakon o doprinosima za obavezno socijalno osiguranje, čl. 44; izvor: [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)).
+> ⚠️ **Oprez sa zastarelim ciframa:** pojedini kalkulatori i blogovi i dalje prikazuju PIO stopu od **25,5%** (i ukupno „46,55%") — ta stopa ne važi od 2023. godine. Važeća stopa PIO je **24%** (izvor: [Zakon o doprinosima za obavezno socijalno osiguranje, čl. 44](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)).
 
 Zbir ovih obaveza čini fiksni mesečni iznos iz rešenja. U praksi, mesečni trošak se kreće od **nekoliko hiljada do nekoliko desetina hiljada dinara**, u zavisnosti od delatnosti i opštine — tačan iznos uvek piše u rešenju Poreske uprave.
 
@@ -1238,7 +1238,7 @@ Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [u
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Agencija za privredne registre (APR)](https://www.apr.gov.rs/)
 - [Poreska uprava Republike Srbije](https://www.purs.gov.rs/)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
@@ -1359,7 +1359,7 @@ Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [raz
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Poreska uprava — portal Frilenseri](https://frilenseri.purs.gov.rs/)
 - [Kalkulator poreza i doprinosa (PURS)](https://frilenseri.purs.gov.rs/kalkulator-poreza.html)
 - [Zakon o porezu na dohodak građana](https://www.paragraf.rs/propisi/zakon-o-porezu-na-dohodak-gradjana.html)
@@ -1752,7 +1752,7 @@ Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i n
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o zdravstvenom osiguranju (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon-o-zdravstvenom-osiguranju.html)
 - [Zakon o radu — čl. 115 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [RFZO — naknada zarade za vreme bolovanja](https://www.rfzo.rs/index.php/osiguranici-s/naknada-zarade)
@@ -1863,7 +1863,7 @@ Zaposleni može pokrenuti tužbu za isplatu zaostatka uz zakonsku zateznu kamatu
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o radu — čl. 108 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Inspekcija rada Srbije](https://www.minrzs.gov.rs/sr/inspekcija-rada)
 - [Sindikat samostalnih sindikata Srbije — minuli rad](http://www.sindikat.rs/)
@@ -1979,7 +1979,7 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o porezu na dohodak građana — čl. 18 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
 - [Pravilnik o uslovima za neoporezive iznose](https://www.paragraf.rs/propisi/pravilnik-uslovi-neoporezivi-iznosi.html)
 - [Poreska uprava — porezi na zaradu](https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html)
@@ -2383,7 +2383,7 @@ Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarad
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o doprinosima za obavezno socijalno osiguranje — Paragraf.rs](https://www.paragraf.rs/propisi/zakon_o_doprinosima_za_obavezno_socijalno_osiguranje.html)
 - [Fond PIO Srbije — pravo na penziju](https://www.pio.rs/sr/osiguranici/pravo-na-penziju.html)
 - [RFZO — prava iz zdravstvenog osiguranja](https://www.rfzo.rs/index.php/osiguranici-s/prava-iz-zo)
@@ -2601,7 +2601,7 @@ Pogledajte i [jubilarnu nagradu](/blog/jubilarna-nagrada) — koju neki poslodav
 
 ## Izvori i korisni linkovi
 
-- [CROSO — Stope doprinosa](https://www.croso.gov.rs/lat/Statistika/Stope_doprinosa/)
+- [Zakon o doprinosima za obavezno socijalno osiguranje (čl. 44)](https://www.paragraf.rs/propisi/zakon-o-doprinosima-za-obavezno-socijalno-osiguranje.html)
 - [Zakon o radu — čl. 158–160 (otpremnina)](https://www.paragraf.rs/propisi/zakon_o_radu.html)
 - [Nacionalna služba za zapošljavanje — prava pri gubitku posla](https://www.nsz.gov.rs/live/digitalAssets/10/10017_pravo_na_novcanu_naknadu.pdf)
 - [Poreska uprava — porez na otpremninu](https://www.purs.gov.rs/)
