@@ -693,7 +693,7 @@ export function DodaciPage() {
     faq: [
       { q: "Koliko iznosi uvećanje za prekovremeni rad?", a: "Zakonski minimum je +26% po satu prekovremenog rada (čl. 108 Zakona o radu). Poslodavac može kolektivnim ugovorom utvrditi veće uvećanje." },
       { q: "Koliko se plaća noćni rad?", a: "Za rad između 22h i 06h pripada uvećanje od najmanje +26% u odnosu na redovnu satnicu (čl. 108 Zakona o radu) — isto kao za prekovremeni rad i rad vikendom. Za satnicu od 568 RSD i 8 odrađenih noćnih sati, uvećanje iznosi 568 × 8 × 0,26 ≈ 1.182 RSD, pored redovne zarade za te sate." },
-      { q: "Koliko se plaća rad na državni praznik?", a: "Za rad na dan državnog praznika koji je neradni dan pripada uvećanje od najmanje +110% od osnovice po satu (čl. 108 Zakona o radu) — znatno više nego za prekovremeni ili noćni rad (26%). Uz to, zaposleni za taj dan ima i pravo na redovnu naknadu zarade." },
+      { q: "Kako se u kalkulatoru obračunava uvećanje za rad na praznik?", a: "Unesite sate odrađene na dan praznika koji je neradni dan — kalkulator na osnovicu po satu primenjuje uvećanje od +110% (čl. 108 Zakona o radu), znatno više nego za prekovremeni ili noćni rad (26%). Uz to uvećanje, zaposleni za taj dan ima i pravo na redovnu naknadu zarade." },
       { q: "Da li se dodaci na zaradu međusobno sabiraju?", a: "Da — ako zaposleni radi prekovremeno u noćnoj smeni, oba uvećanja od po 26% se primenjuju kumulativno na iste sate. Kalkulator ispod sabira sve unete sate i uvećanja u jednom obračunu." },
     ],
     related: DODACI_RELATED,
@@ -793,7 +793,7 @@ export function GodisnjiOdmorPage() {
       <p>Godišnji odmor uređuju čl. 68–76 Zakona o radu, naknadu zarade čl. 104, a naknadu za neiskorišćeni odmor čl. 76 (Zakon o radu, „Sl. glasnik RS", prečišćen tekst). Minimum je 20 radnih dana; pravo na pun odmor stiče se posle mesec dana neprekidnog rada kod poslodavca (čl. 68), a do tada zaposleni ima pravo na srazmeran deo odmora, jednu dvanaestinu za svaki mesec rada. Raspored korišćenja odmora utvrđuje poslodavac rešenjem, uz obavezu da zaposlenog obavesti najkasnije 15 dana pre početka korišćenja (čl. 75). Zabranjeno je isplatiti naknadu umesto korišćenja odmora dok traje radni odnos — naknada za neiskorišćeni odmor moguća je isključivo pri prestanku radnog odnosa (čl. 76 stav 2).</p>
     </>),
     faq: [
-      { q: "Kako se računa godišnji odmor?", a: "Naknada za godišnji odmor računa se kao prosečna bruto zarada zaposlenog u prethodnih 12 meseci, podeljena brojem radnih dana u mesecu i pomnožena brojem dana odmora. Ne može biti niža od tog proseka (čl. 104 Zakona o radu)." },
+      { q: "Koje podatke unosim u kalkulator godišnjeg odmora?", a: "Potrebna su dva podatka: prosečna bruto zarada zaposlenog u prethodnih 12 meseci i broj dana odmora koji se obračunava. Kalkulator sam deli prosek brojem radnih dana u mesecu i množi ga brojem dana odmora, po formuli iz čl. 104 Zakona o radu." },
       { q: "Kako se računa naknada za neiskorišćeni godišnji odmor?", a: "Pri prestanku radnog odnosa poslodavac isplaćuje naknadu za neiskorišćene dane odmora (čl. 76 Zakona o radu), po istoj formuli — dnevna osnova (prosek ÷ radni dani) pomnožena brojem neiskorišćenih dana. Naknada je bruto i podleže porezu i doprinosima." },
       { q: "Da li se na naknadu za godišnji odmor plaćaju porez i doprinosi?", a: "Da. Naknada za godišnji odmor tretira se kao zarada — plaćaju se doprinosi zaposlenog (19,90%), porez (10% iznad neoporezivog iznosa) i doprinosi poslodavca (15,15%)." },
     ],

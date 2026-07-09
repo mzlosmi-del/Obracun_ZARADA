@@ -488,7 +488,7 @@ Ne birajte po tome „šta zvuči bolje", već po odgovornosti, ukupnom porezu n
 - [Zakon o privrednim društvima (Paragraf)](https://www.paragraf.rs/propisi/zakon_o_privrednim_drustvima.html)
     `,
     faq: [
-      { q: "Šta je bolje, paušal ili DOO?", a: "Za samostalan rad niskog rizika sa stabilnim prihodima ispod 6 miliona RSD godišnje paušal je obično jeftiniji i jednostavniji (fiksni porez, bez knjigovođe), ali odgovarate celom ličnom imovinom. DOO se isplati kod partnerstva, većeg rasta, potrebe za zaštitom imovine i ozbiljnih B2B ugovora." },
+      { q: "Da li paušalac mesečno plaća manje od DOO?", a: "Po pravilu da, za samostalan rad niskog rizika sa prihodima ispod 6 miliona RSD godišnje: paušalac ima fiksnu mesečnu obavezu (okvirno 30.000–45.000 RSD) i nije mu potreban knjigovođa. DOO uz porez na dobit i doprinose za direktora nosi i obavezno knjigovodstvo, pa je mesečni trošak veći — ali DOO štiti ličnu imovinu, dok paušalac odgovara celom svojom imovinom." },
       { q: "Koliko se plaća porez kod DOO u Srbiji 2026?", a: "DOO plaća 15% poreza na dobit, a pri isplati dobiti vlasniku (fizičkom licu) dodatnih 15% poreza na dividendu — efektivno oko 27,75% na izvučenu dobit. Uz to se plaćaju i doprinosi za direktora. Paušalac, za razliku, plaća samo fiksni mesečni paušalni porez i doprinose." },
       { q: "Koliki je limit za paušalca?", a: "Promet za ostanak u paušalu ne sme da pređe 6.000.000 RSD godišnje. Prelazak limita znači izlazak iz paušalnog režima, pa je važno planirati prelazak na vreme (npr. na DOO)." },
       { q: "Da li mogu da pređem sa paušala na DOO?", a: "Da. Forma nije doživotna — mnogi krenu kao paušalci dok je posao mali, pa pređu na DOO kada porastu prihodi, dođe partner ili zatreba zaštita lične imovine." },
@@ -931,7 +931,7 @@ Izbor zavisi od visine i stabilnosti prihoda, potrebe za fakturama i tolerancije
     faq: [
       { q: "Kada frilenser treba da pređe na paušal?", a: "Kada prihodi postanu redovni i veći, kada klijenti traže fakture (koje fizičko lice ne može da izda) ili kada fiksni mesečni paušal (okvirno 30.000–45.000 RSD) postane povoljniji od procentualnog samooporezivanja. Za male i neredovne prihode samooporezivanje je obično jeftinije." },
       { q: "Da li frilenser može da izdaje fakture?", a: "Ne. Kao fizičko lice u sistemu samooporezivanja frilenser ne može da izdaje fakture. Ako klijenti zahtevaju fakturu, potrebno je registrovati preduzetničku radnju (paušal) ili osnovati firmu (DOO)." },
-      { q: "Koliko paušalac plaća mesečno u 2026. godini?", a: "Okvirno 30.000–45.000 RSD mesečno, u zavisnosti od šifre delatnosti i opštine. Tačan iznos određuje rešenje Poreske uprave. Limit prometa za ostanak u paušalu je 6.000.000 RSD godišnje." },
+      { q: "Koliko frilenser plaća kada pređe na paušal?", a: "Umesto procentualnog samooporezivanja, obaveza postaje fiksna: okvirno 30.000–45.000 RSD mesečno, u zavisnosti od šifre delatnosti i opštine. Tačan iznos određuje rešenje Poreske uprave. Limit prometa za ostanak u paušalu je 6.000.000 RSD godišnje." },
       { q: "Paušal ili DOO — šta je bolje za početak?", a: "Za samostalan rad sa malim rashodima paušal je jednostavniji i jeftiniji, ali nosi ličnu odgovornost. DOO se bira kada je potrebna ograničena odgovornost, kod više osnivača, većeg prometa ili ozbiljnijih B2B i inostranih ugovora, uz obavezno knjigovodstvo." },
     ],
   },
