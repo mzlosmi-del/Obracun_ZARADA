@@ -394,6 +394,8 @@ export function BrutoNetoPage() {
       { q: "Da li je obračun besplatan?", a: "Da, kalkulator je besplatan i ne zahteva registraciju. Rezultat preuzimate kao PDF i PPP-PD XML." },
       { q: "Da li se porez plaća na ceo bruto iznos zarade?", a: "Ne. Porez od 10% plaća se samo na deo bruto 1 zarade iznad neoporezivog iznosa (34.221 RSD za 2026). Doprinosi zaposlenog (19,90%), za razliku od poreza, obračunavaju se na celu bruto 1 zaradu." },
       { q: "Da li bruto zarada uključuje doprinose poslodavca?", a: "Ne, bruto 1 (ugovorena zarada) ne uključuje doprinose poslodavca. Oni se dodaju posebno (15,15%) i formiraju bruto 2 — stvaran trošak rada za poslodavca, koji je uvek veći od bruto 1." },
+      { q: "Kako se računa plata iz bruto u neto?", a: "Od bruto 1 zarade oduzmu se doprinosi zaposlenog (19,90%) i porez (10% na deo iznad neoporezivih 34.221 RSD). Primer: bruto 100.000 RSD → doprinosi 19.900 RSD, porez 6.578 RSD, neto ≈ 73.522 RSD." },
+      { q: "Kako izračunati neto zaradu iz bruto u Srbiji?", a: "Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos iznad neoporezivog). Za 2026. neoporezivi iznos je 34.221 RSD. Primer: bruto 100.000 RSD daje neto oko 73.522 RSD. Kalkulator radi obračun u oba smera." },
     ],
     related: TOOL_RELATED,
   }} />;

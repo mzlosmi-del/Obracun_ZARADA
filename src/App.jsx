@@ -1132,12 +1132,8 @@ const RouteLoader = () => <div className="route-loader" role="status">Učitavam�
 // FAQPage JSON-LD source — answers must match the visible .home-faq text below.
 const HOME_FAQ = [
   {
-    q: "Kako izračunati neto zaradu iz bruto u Srbiji?",
-    a: "Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto 100.000 RSD daje neto oko 73.522 RSD. Naš kalkulator radi obračun u oba smera.",
-  },
-  {
-    q: "Ako je bruto plata 50.000 dinara, koliki je neto?",
-    a: "Za bruto 1 od 50.000 RSD neto je oko 38.472 RSD: doprinosi zaposlenog iznose 9.950 RSD (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD).",
+    q: "Kako se obračunava zarada u Srbiji 2026?",
+    a: "Od bruto 1 zarade iz ugovora o radu oduzmu se doprinosi zaposlenog (19,90%) i porez na zaradu (10% na deo iznad neoporezivih 34.221 RSD za 2026). Rezultat je neto zarada — iznos koji zaposleni prima na račun. Kalkulator radi obračun u oba smera.",
   },
   {
     q: "Kolika je minimalna zarada u Srbiji u 2026. godini?",
@@ -1164,10 +1160,6 @@ const HOME_FAQ = [
     a: "Bonus, stimulacija i 13. plata oporezuju se kao deo zarade — porez 10% i doprinosi 19,90%. Bonus se dodaje na bruto osnovicu meseca isplate. Više u članku o porezu na bonus.",
   },
   {
-    q: "Kako se računa plata iz bruto u neto?",
-    a: "Od bruto 1 zarade oduzmu se doprinosi zaposlenog (19,90%) i porez (10% na deo iznad neoporezivih 34.221 RSD). Primer: bruto 100.000 RSD → doprinosi 19.900, porez 6.578, neto ≈ 73.522 RSD.",
-  },
-  {
     q: "Koliko iznose porez i doprinosi na zaradu 2026?",
     a: "Porez na zaradu je 10% (na deo iznad neoporezivih 34.221 RSD). Doprinosi zaposlenog su 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), a poslodavca 15,15% (PIO 10%, zdravstvo 5,15%).",
   },
@@ -1179,12 +1171,12 @@ const HOME_FAQ = [
 
 function HomePage() {
   useSeo({
-    title: "Kalkulator zarada 2026 — bruto u neto, Srbija | PlatniListić",
-    description: "Besplatan kalkulator zarade za Srbiju 2026 — bruto u neto, porez, doprinosi, minuli rad, bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
+    title: "Kalkulator zarade 2026 — obračun plate za Srbiju | PlatniListić",
+    description: "Besplatan kalkulator zarade za Srbiju 2026 — obračun plate, porez, doprinosi, minuli rad i bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
     path: "/",
     jsonLd: webAppLd({
       name: "PlatniListić — Kalkulator zarade Srbija 2026",
-      description: "Besplatan online kalkulator za obračun zarade u Srbiji: bruto u neto, porez, doprinosi, prekovremeni i minuli rad, bolovanje, otpremnina i PDF platni listić.",
+      description: "Besplatan online kalkulator za obračun zarade u Srbiji: obračun plate, porez, doprinosi, prekovremeni i minuli rad, bolovanje, otpremnina i PDF platni listić.",
       path: "/",
     }),
     faq: HOME_FAQ,
@@ -1201,40 +1193,23 @@ function HomePage() {
         </div>
       </header>
       <section className="home-intro">
-        <h1 className="home-intro-title">Kalkulator zarade 2026 — bruto u neto za Srbiju</h1>
+        <h1 className="home-intro-title">Kalkulator zarade 2026 — obračun plate za Srbiju</h1>
         <FreshnessStamp date="jul 2026." />
         <p>
-          Besplatan <strong>kalkulator zarade</strong> za obračun zarade u Srbiji u 2026. godini.
-          Pretvorite <strong>bruto u neto</strong> (i neto u bruto) i izračunajte porez na zaradu,
-          doprinose, prekovremeni i minuli rad, bolovanje, otpremninu i regres. Rezultat preuzimate
-          kao PDF platni listić i PPP-PD XML datoteku.
+          Besplatan <strong>kalkulator zarade</strong> za obračun plate u Srbiji u 2026. godini.
+          Izračunajte porez na zaradu, doprinose, prekovremeni i minuli rad, bolovanje, otpremninu
+          i regres — u oba smera obračuna. Rezultat preuzimate kao PDF platni listić i PPP-PD XML
+          datoteku.
         </p>
         <p>
           Obračun zarade u Srbiji polazi od <strong>bruto 1</strong> iznosa iz ugovora o radu. Od njega
           se oduzimaju doprinosi zaposlenog (19,90%) i porez na zaradu (10% na deo iznad neoporezivog
           iznosa od 34.221 RSD za 2026), čime se dobija <strong>neto zarada</strong> — iznos koji
-          zaposleni prima na račun. Ispod su okvirni primeri obračuna; za tačan iznos sa svim
-          uvećanjima i odbicima koristite kalkulator.
+          zaposleni prima na račun. Za tačan iznos sa svim uvećanjima i odbicima koristite
+          kalkulator ispod.
         </p>
-        <h2 className="home-examples-title">Tabela: bruto u neto za 2026</h2>
-        <table className="home-examples" aria-label="Tabela bruto u neto za 2026 — primeri obračuna">
-          <thead>
-            <tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>50.000</td><td>≈ 38.472</td><td>≈ 57.575</td></tr>
-            <tr><td>60.000</td><td>≈ 45.482</td><td>≈ 69.090</td></tr>
-            <tr><td>70.000</td><td>≈ 52.492</td><td>≈ 80.605</td></tr>
-            <tr><td>80.000</td><td>≈ 59.502</td><td>≈ 92.120</td></tr>
-            <tr><td>100.000</td><td>≈ 73.522</td><td>≈ 115.150</td></tr>
-            <tr><td>120.000</td><td>≈ 87.542</td><td>≈ 138.180</td></tr>
-            <tr><td>150.000</td><td>≈ 108.572</td><td>≈ 172.725</td></tr>
-            <tr><td>200.000</td><td>≈ 143.622</td><td>≈ 230.300</td></tr>
-          </tbody>
-        </table>
         <p className="home-examples-note">
-          Vrednosti su približne (zaokružene) i ne uključuju dodatna uvećanja ili naknade —
-          za precizan obračun unesite svoje podatke u kalkulator iznad.
+          Za brzu tabelu i smerni obračun: <a href="/bruto-neto">bruto u neto kalkulator</a>.
         </p>
       </section>
       <section className="home-seo" aria-label="Kako se obračunava zarada 2026">
@@ -1274,20 +1249,13 @@ function HomePage() {
         ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
       </div>
       <section className="home-faq" aria-label="Česta pitanja o obračunu zarade">
-        <h2 className="home-faq-title">Česta pitanja — obračun zarade i bruto u neto</h2>
+        <h2 className="home-faq-title">Česta pitanja — obračun zarade</h2>
         <div className="home-faq-item">
-          <h3>Kako izračunati neto zaradu iz bruto u Srbiji?</h3>
+          <h3>Kako se obračunava zarada u Srbiji 2026?</h3>
           <p>
-            Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos
-            iznad neoporezivog). Za 2026. godinu neoporezivi iznos je 34.221 RSD. Primer: bruto
-            100.000 RSD daje neto oko 73.522 RSD. Naš kalkulator radi obračun u oba smera.
-          </p>
-        </div>
-        <div className="home-faq-item">
-          <h3>Ako je bruto plata 50.000 dinara, koliki je neto?</h3>
-          <p>
-            Za bruto 1 od 50.000 RSD neto je oko 38.472 RSD: doprinosi zaposlenog iznose 9.950 RSD
-            (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD).
+            Od bruto 1 zarade iz ugovora o radu oduzmu se doprinosi zaposlenog (19,90%) i porez na
+            zaradu (10% na deo iznad neoporezivih 34.221 RSD za 2026). Rezultat je neto zarada —
+            iznos koji zaposleni prima na račun. Kalkulator radi obračun u oba smera.
           </p>
         </div>
         <div className="home-faq-item">
@@ -1336,14 +1304,6 @@ function HomePage() {
             Bonus, stimulacija i 13. plata oporezuju se kao deo zarade — porez 10% i doprinosi 19,90%.
             Bonus se dodaje na bruto osnovicu meseca isplate. Više u članku o
             <a href="/blog/porez-na-bonus"> porezu na bonus</a>.
-          </p>
-        </div>
-        <div className="home-faq-item">
-          <h3>Kako se računa plata iz bruto u neto?</h3>
-          <p>
-            Od bruto 1 zarade oduzmu se doprinosi zaposlenog (19,90%) i porez (10% na deo iznad
-            neoporezivih 34.221 RSD). Primer: bruto 100.000 RSD → doprinosi 19.900, porez 6.578,
-            neto ≈ 73.522 RSD.
           </p>
         </div>
         <div className="home-faq-item">
