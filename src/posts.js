@@ -122,7 +122,7 @@ Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otka
     summary: "Prosečna neto plata u Srbiji za april 2026. je 121.805 din (≈1.038 €), bruto 168.008, medijalna 94.585 (RZS). Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     body: `
-![Prosečna plata u Srbiji 2026 — neto 121.650 dinara (≈1.036 €), bruto 167.263, medijalna 91.399, IT 311.370, minimalac 64.554.](/media/prosecna-plata-2026.png)
+![Prosečna plata u Srbiji, mart 2026 — neto 121.650 dinara (≈1.036 €), bruto 167.263, medijalna (februar) 91.399, IT 311.370, minimalac 64.554. Najnoviji podatak za april 2026. dat je u tekstu.](/media/prosecna-plata-2026.png)
 
 > **Provereno i ažurirano: 8. jul 2026.** Iznosi su usklađeni sa zvaničnim saopštenjima Republičkog zavoda za statistiku (RZS). Statistika se objavljuje oko 55 dana po isteku meseca, pa je najsvežiji zvaničan podatak za april 2026 (objavljen 25. juna). Konverzija u evre po srednjem kursu NBS (1 € = 117,40 din).
 
@@ -166,7 +166,7 @@ U periodu januar–april 2026, u odnosu na isti period prethodne godine, proseč
 
 Razlike među granama su ogromne — najplaćeniji i najmanje plaćeni sektor deli više od 170.000 din mesečno:
 
-![Raspon neto primanja u Srbiji 2026 — IT 311.370, Beograd Stari grad 200.666, državni prosek 121.650, medijalna 91.399, minimalac 64.554 din.](/media/raspon-neto-primanja-srbija-2026.svg)
+![Raspon neto primanja u Srbiji — IT 311.370, Beograd Stari grad 200.666, državni prosek (mart 2026) 121.650, medijalna (februar 2026) 91.399, minimalac 64.554 din.](/media/raspon-neto-primanja-srbija-2026.svg)
 
 | Sektor | Prosečna neto zarada (2026.) |
 |---|---|
@@ -183,7 +183,7 @@ Najviše zarađuje **informaciono-komunikacioni sektor** — prosečna neto plat
 
 Geografske razlike su jednako velike:
 
-![Prosečna neto plata po gradovima 2026 — Stari grad 200.666, Vračar 192.878, Beogradski region 144.028, državni prosek 121.650, Šumadija i Zapadna Srbija 90.705 din.](/media/prosecna-plata-po-gradovima-2026.svg)
+![Prosečna neto plata po gradovima 2026 — Stari grad 200.666, Vračar 192.878, Beogradski region 144.028, državni prosek (mart 2026) 121.650, Šumadija i Zapadna Srbija 90.705 din.](/media/prosecna-plata-po-gradovima-2026.svg)
 
 | Region / opština | Bruto zarada | Neto zarada |
 |---|---|---|
@@ -234,7 +234,7 @@ RZS prosečnu zaradu računa na osnovu poreske prijave PPP-PD koju podnose svi p
 
 Cela slika prosečne plate u Srbiji 2026. na jednom mestu — slobodno sačuvajte ili podelite infografiku (uz link ka izvoru):
 
-![Infografika: prosečna plata u Srbiji 2026 — neto 121.650 din (≈1.036 €), bruto 167.263, medijalna 91.399, minimalac 64.554 i raspon neto primanja od minimalca do IT sektora. Izvor: RZS.](/media/infografik-prosecna-plata-2026.png)
+![Infografika: prosečna plata u Srbiji, mart 2026 — neto 121.650 din (≈1.036 €), bruto 167.263, medijalna (februar) 91.399, minimalac 64.554 i raspon neto primanja od minimalca do IT sektora. Izvor: RZS.](/media/infografik-prosecna-plata-2026.png)
 
 ## Izvori i korisni linkovi
 
