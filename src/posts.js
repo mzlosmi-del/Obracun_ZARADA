@@ -273,6 +273,8 @@ Registracija firme u Srbiji je danas potpuno digitalizovana i među jeftinijima 
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Pre podnošenja prijave proverite aktuelne podatke na APR-u i Poreskoj upravi ili se obratite knjigovođi i advokatu.
 
+Pre nego što izaberete oblik, procenite mesečne obaveze paušalne radnje u [paušal kalkulatoru](/pausal) — to je najčešće presudan broj u odluci.
+
 ## Koji oblik firme izabrati — paušal, preduzetnik ili DOO
 
 Za većinu novih osnivača izbor se svodi na dve forme: **preduzetnik** (najčešće paušalac) i **DOO**. Ključna razlika je u **odgovornosti** i **administraciji**.
@@ -398,6 +400,8 @@ Pre registracije uporedite forme i izračunajte **ukupan mesečni trošak**, ne 
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Za procenu konkretne situacije konsultujte knjigovođu.
 
+Poređenje počinje od cifre: koliko biste mesečno plaćali kao paušalac možete proveriti u [paušal kalkulatoru](/pausal), pa taj iznos uporediti sa porezom na dobit i dividendu kod DOO.
+
 ## Osnovna razlika: odgovornost
 
 - **Paušalac (preduzetnik)** je **fizičko lice**. Za sve obaveze iz poslovanja odgovara **celokupnom ličnom imovinom** — stanom, kolima, štednjom.
@@ -508,6 +512,8 @@ Najveća prednost paušalca je predvidljivost: plaćate **isti fiksni iznos svak
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski savet. Tačan iznos zavisi od rešenja Poreske uprave; za procenu se obratite knjigovođi.
 
+Ako već znate paušalnu osnovicu iz svog rešenja, tačan mesečni iznos izračunajte u [paušal kalkulatoru](/pausal).
+
 ## Od čega zavisi mesečni iznos
 
 Paušalac ne plaća porez na stvarni prihod, već na **paušalno utvrđen prihod (osnovicu)** koji određuje Poreska uprava. Ta osnovica se računa od **polazne osnovice** (vezane za prosečnu zaradu) koja se množi koeficijentima, najvažniji su:
@@ -588,6 +594,8 @@ Registracija paušalca je najjednostavniji način da legalno pokrenete biznis u 
 **Ukratko:** paušalca registrujete **elektronski u APR-u** (uz kvalifikovani e-potpis), **bez osnivačkog akta i notara**; naknada je okvirno **2.500–2.900 RSD**, a rešenje stiže za nekoliko radnih dana. Paušalni status se zatim **posebno traži** zahtevom preko portala ePorezi.
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Pre podnošenja prijave proverite aktuelne podatke na APR-u i Poreskoj upravi ili se obratite knjigovođi.
+
+Pre podnošenja prijave korisno je znati koliko ćete plaćati: okvirne mesečne obaveze izračunajte u [paušal kalkulatoru](/pausal).
 
 ## Pre registracije: tri stvari koje treba pripremiti
 
@@ -751,6 +759,8 @@ Otvaranje firme u Srbiji je među jeftinijim u regionu, ali „koliko košta" za
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni ni poreski savet. Iznosi naknada se menjaju uredbom — pre podnošenja prijave proverite aktuelne podatke na APR-u ili se obratite knjigovođi.
 
+Jednokratna APR naknada je samo početak — trajni trošak su mesečne obaveze, koje za paušalnu radnju možete izračunati u [paušal kalkulatoru](/pausal).
+
 ## Od čega zavisi trošak
 
 Glavni faktor je **pravna forma**. Paušalac (preduzetnik) ima najnižu naknadu i nema notarske troškove; DOO je nešto skuplji jer zahteva osnivački akt i (po pravilu) notarsku overu. Koju formu izabrati objasnili smo u vodičima [frilenser, paušalac ili firma](/blog/frilenser-pausalac-firma) i [paušalno oporezivanje](/blog/pausalno-oporezivanje).
@@ -831,6 +841,8 @@ Pre osnivanja, uporedite forme i izračunajte ukupan mesečni trošak, ne samo n
 Sve više ljudi u Srbiji radi samostalno — za klijente iz inostranstva ili iz zemlje. Na početku je najlakše raditi kao **frilenser** (fizičko lice koje se samooporezuje), ali kako prihodi rastu, postavlja se pitanje: **da li i kada preći na paušal ili otvoriti firmu?** U ovom vodiču poredimo tri statusa — frilenser, paušalac (preduzetnik) i DOO — i objašnjavamo po kojim signalima prepoznajete da je vreme za prelazak.
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski ni pravni savet. Za procenu konkretne situacije konsultujte knjigovođu ili Poresku upravu.
+
+Najbrži način da uporedite statuse jeste da izračunate šta biste plaćali kao paušalac — unesite osnovicu u [paušal kalkulator](/pausal) i uporedite sa kvartalnim samooporezivanjem.
 
 ## Tri načina da legalno radite kao samostalac
 
@@ -1253,6 +1265,8 @@ Pogledajte i naš vodič o [porezu za frilensere](/blog/porez-za-frilensere), [u
 Sve veći broj ljudi u Srbiji ostvaruje prihode kao **frilenseri** — radom za klijente iz inostranstva ili iz zemlje, bez osnivanja firme ili paušalne radnje. Takvi prihodi se oporezuju, a frilenseri porez i doprinose obračunavaju i plaćaju **sami, kvartalno**, kroz sistem **samooporezivanja**. U ovom vodiču objašnjavamo dva modela oporezivanja koja su na raspolaganju u **2026. godini**, sa konkretnim primerima, rokovima i čestim greškama.
 
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja poreski savet. Za zvaničan obračun koristite kalkulator na portalu Poreske uprave ili se obratite knjigovođi.
+
+Ako razmišljate o prelasku na paušalnu radnju, uporedite obaveze iz oba režima — mesečni iznos za paušalca dobijate u [paušal kalkulatoru](/pausal).
 
 ## Ko se smatra frilenserom u poreskom smislu
 
