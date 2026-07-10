@@ -46,6 +46,17 @@ export const JOBS = [
     active: true,
   },
   {
+    id: "glavni-knjigovodja-ns",
+    title: "Glavni knjigovođa (Novi Sad)",
+    hook: "Iskusan si knjigovođa (4+ godine) i želiš da zarada prati rezultate? Računovodstvena agencija u Novom Sadu nudi fiksni + varijabilni deo (procenat od fakturisanja) i radno vreme 7–15h.",
+    perks: ["🕖 Radno vreme 7–15h", "💰 Fiks + procenat", "🏢 Različiti klijenti", "📚 Usavršavanje"],
+    badge: null,
+    location: "Novi Sad",
+    salaryMin: null, salaryMax: null, salaryNeto: false,
+    link: "https://poslovi.friendlyhr.rs/jobs/7211882-glavni-knjigovoda?promotion=2095203-trackable-share-link-platnilistic",
+    active: true,
+  },
+  {
     id: "sef-gradilista",
     title: "Šef gradilišta",
     hook: "Znaš kako gradilište treba da „diše“? Kompanija specijalizovana za fasadne sisteme i stolariju traži iskusnog šefa gradilišta (3+ godine) za značajne projekte u Beogradu.",
