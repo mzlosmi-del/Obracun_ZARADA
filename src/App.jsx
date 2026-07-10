@@ -70,7 +70,11 @@ function calculate(inputs, rates) {
   const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
 
-  const mealDailyRate = mealDailyActual || R.mealDaily;
+  // The per-day amount entered on Unos wins over the Stope default whenever it
+  // is actually set — including when it is 0. `||` treated 0 as "unset" and
+  // silently fell back to the Stope rate, so zeroing the obrok on Unos still
+  // paid it out at 1.490/day. Only a genuinely absent value defers to Stope.
+  const mealDailyRate = Number.isFinite(mealDailyActual) ? mealDailyActual : R.mealDaily;
   const mealAmount = mealDays * mealDailyRate;
   const regresAmount = regres || 0;
 
@@ -104,7 +108,7 @@ function calculate(inputs, rates) {
     unpaidDaysActual, unpaidDeduction,
     minuliRadAmount, minuliRadRate,
     overtimePay, nightPay, weekendPay, holidayPay, bonusAmount,
-    mealAmount, regresAmount,
+    mealAmount, mealDailyRate, regresAmount,
     transportActual,
     bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib,
     taxBase, tax, netoFromWork,
@@ -285,7 +289,7 @@ ${trow('PIO – doprinos poslodavca (10%)', r.pio_er, '#f59e0b')}
 ${trow('Zdravstvo – doprinos poslodavca (5,15%)', r.health_er, '#f59e0b')}
 ${trow('UKUPNO doprinosi poslodavca (15,15%)', r.totalErContrib, '#f59e0b')}
 ${trow('BRUTO 2 (Bruto1 + doprinosi poslodavca)', r.bruto2, '#1452d6')}
-${r.mealAmount > 0 ? trow(`Topli obrok (${inputs.mealDays} × ${fmt(inputs.mealDailyActual || 1490)} RSD)`, r.mealAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
+${r.mealAmount > 0 ? trow(`Topli obrok (${inputs.mealDays} × ${fmt(r.mealDailyRate)} RSD)`, r.mealAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${r.regresAmount > 0 ? trow('Regres za godišnji odmor', r.regresAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${trow('UKUPAN TROŠAK POSLODAVCA', r.totalCost, '#f59e0b')}
 </table></div>
@@ -1002,7 +1006,10 @@ export function CalculatorPage({ focusSection } = {}) {
             <div className="inputs-body">
               <NumberInput label="Prevoz (mesečno)" sublabel="(neopor. do 5.630 RSD — čl. 18 ZPDG)" value={inputs.transport} onChange={set("transport")} step={100} />
               <NumberInput label="Radnih dana (topli obrok)" sublabel="(u novcu — u celosti oporezivo)" value={inputs.mealDays} onChange={set("mealDays")} unit="dana" min={0} />
-              <NumberInput label="Dnevni iznos toplog obroka" value={inputs.mealDailyActual || 1490} onChange={set("mealDailyActual")} step={10} min={0} unit="RSD" />
+              {/* Show what is actually set, not `|| 1490` — that snapped a deliberate 0
+                  back to 1.490 on re-render. Falls back to the Stope default only when
+                  genuinely unset, and to the Stope value rather than a hardcoded literal. */}
+              <NumberInput label="Dnevni iznos toplog obroka" sublabel="(ima prednost nad iznosom sa kartice Stope)" value={Number.isFinite(inputs.mealDailyActual) ? inputs.mealDailyActual : rates.mealDaily} onChange={set("mealDailyActual")} step={10} min={0} unit="RSD" />
               <NumberInput label="Regres za godišnji odmor" sublabel="(u celosti oporezivo)" value={inputs.regres} onChange={set("regres")} step={1000} />
               {(r.mealAmount > 0 || r.regresAmount > 0) && (
                 <div className="sick-info" style={{background:"#fff8e6", borderColor:"#f59e0b"}}>
@@ -1129,7 +1136,7 @@ export function CalculatorPage({ focusSection } = {}) {
               {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+110%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 2.10`} />}
               {r.minuliRadAmount > 0 && <ResultRow label={`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}%)`} value={r.minuliRadAmount} type="positive" sub={`${(r.minuliRadRate*100).toFixed(2)}% od zarade za odrađene dane`} />}
               {r.bonusAmount > 0 && <ResultRow label="Bonusi / nagrade" value={r.bonusAmount} type="positive" />}
-              {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(inputs.mealDailyActual || 1490)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}
+              {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(r.mealDailyRate)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}
               {r.regresAmount > 0 && <ResultRow label="Regres za godišnji odmor" value={r.regresAmount} type="positive" sub="u celosti oporezivo" />}
               <ResultRow label="BRUTO 1 (ukupna bruto zarada)" value={r.bruto1} type="total" />
             </div>
@@ -1243,7 +1250,7 @@ export function CalculatorPage({ focusSection } = {}) {
             </div>
             <SectionTitle icon="🍽️">Neoporezivi dodaci</SectionTitle>
             <div className="inputs-body">
-              <NumberInput label="Topli obrok — podrazumevani iznos" sublabel="(u novcu — u celosti oporezivo)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
+              <NumberInput label="Topli obrok — podrazumevani iznos" sublabel="(koristi se samo ako iznos nije unet na kartici Unos)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
               <NumberInput label="Prevoz (mesečno max neopor.)" sublabel="(čl. 18 ZPDG)" value={rates.transportMax} onChange={setR("transportMax")} step={10} min={0} />
             </div>
           </div>
