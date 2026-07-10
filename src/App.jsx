@@ -7,7 +7,7 @@ import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
-import { activeJobs } from "./jobs.js";
+import { activeJobs, scrollToJobs } from "./jobs.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -326,24 +326,6 @@ function trackJobsTeaser(placement) {
       window.goatcounter.count({ path: `jobs-teaser/${placement}`, event: true });
     }
   } catch { /* no-op */ }
-}
-
-// Smooth-scrolls to the first JobsWidget on the page; if the current page has
-// none, navigates home (which always renders one) and scrolls after mount.
-function scrollToJobs(navigate) {
-  const el = document.querySelector(".jobs-widget");
-  if (el) {
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
-    return;
-  }
-  navigate("/");
-  let tries = 0;
-  const tick = () => {
-    const t = document.querySelector(".jobs-widget");
-    if (t) t.scrollIntoView({ behavior: "smooth", block: "center" });
-    else if (++tries < 10) setTimeout(tick, 200);
-  };
-  setTimeout(tick, 200);
 }
 
 // Compact sidebar card: question hook + live job count.

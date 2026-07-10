@@ -615,41 +615,26 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
   padding-right: 28px; /* clear the × */
 }
 
-.job-slidein-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-.job-slidein-salary { font-size: 12px; font-weight: 700; color: var(--green); font-family: var(--sans); }
-.job-slidein-location { font-size: 12px; color: var(--text3); font-family: var(--sans); }
-
-.job-slidein-uplift {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--green);
-  background: var(--green-light);
-  border: 1px solid #bfe4cd;
-  border-radius: 100px;
-  padding: 3px 10px;
-  align-self: flex-start;
-}
-
-/* Hook is the first thing sacrificed when space is tight — clamp to 2 lines. */
 .job-slidein-hook {
   font-size: 13px;
   line-height: 1.5;
   color: var(--text2);
   margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
 }
 
+/* A <button>, not a link: the CTA scrolls to the on-page list rather than
+   navigating, so reset the UA button styling to match the widget's CTA. */
 .job-slidein-cta {
   display: block;
+  width: 100%;
   text-align: center;
   background: var(--green);
   color: #fff;
+  font-family: var(--sans);
   font-size: 13.5px;
   font-weight: 700;
-  text-decoration: none;
+  border: none;
+  cursor: pointer;
   border-radius: 10px;
   padding: 11px 20px;
   margin-top: 2px;
@@ -710,7 +695,6 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
   }
 
   .job-slidein-close { top: 4px; right: 6px; }
-  .job-slidein-hook { -webkit-line-clamp: 2; }
 }
 
 /* Motion is decoration here, not meaning: honour the OS setting. */

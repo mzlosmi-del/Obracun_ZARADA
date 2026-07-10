@@ -1,9 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-import { bestSlideInJob, topPayingJob, salaryLabel, upliftPct, withTracking, trackJobEvent } from "./jobs.js";
+import { useNavigate } from "react-router-dom";
+import { activeJobs, scrollToJobs, trackJobEvent } from "./jobs.js";
 
 // ── JOB SLIDE-IN (affiliate) ──────────────────────────────────────────────────
-// Promotes ONE job at the moment of highest intent: just after the visitor sees
-// what they actually earn (calculator), or as they leave a guide (blog).
+// A generic nudge toward the partner listings at the moment of highest intent:
+// just after the visitor sees what they actually earn (calculator), or as they
+// leave a guide (blog). It deliberately names NO job and quotes NO salary — the
+// pitch is "there may be something better for you", and the on-page JobsWidget
+// does the actual selling once they scroll to it.
+//
+// The CTA stays on-site rather than linking out: every affiliate URL in jobs.js
+// is a per-job deep link carrying the agency's ?promotion=... attribution, and
+// there is no generic landing page that would still pay commission. Scrolling to
+// the widget hands the visitor the full list with every tracked link intact.
 //
 // Deliberately NOT an interstitial. Google demotes mobile pages that cover the
 // content on load, so on phones this is a short bottom sheet (≤35vh) with no
@@ -19,6 +28,10 @@ const DELAY_MS = 4000;          // after the result settles
 const SETTLE_MS = 1200;         // typing must stop this long to count as "done"
 const DESKTOP_MIN_W = 761;      // must match the CSS breakpoint (and .jobs-sticky's)
 const SWIPE_CLOSE_PX = 60;      // drag distance that dismisses the sheet
+
+// Tracking subid. The old slide-in reported which job it showed; a generic one
+// has none, so use a stable sentinel to keep the event path well-formed.
+const TRACK_ID = "generic";
 
 // Every localStorage touch is wrapped: Safari private mode throws on write, and
 // a storage error must never take the calculator down with it.
@@ -41,22 +54,42 @@ function rememberDismissal() {
 const isDesktop = () =>
   typeof window !== "undefined" && window.innerWidth >= DESKTOP_MIN_W;
 
-export function JobSlideIn({ neto, trigger = "calc", placement }) {
-  const [job, setJob] = useState(null);   // non-null ⇒ visible
+// Serbian plural: 1 pozicija, 2-4 pozicije, 5+ pozicija
+function pozicijaLabel(n) {
+  if (n % 10 === 1 && n % 100 !== 11) return "otvorena pozicija";
+  if ([2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100)) return "otvorene pozicije";
+  return "otvorenih pozicija";
+}
+
+export function JobSlideIn({ trigger = "calc", placement, neto }) {
+  const [open, setOpen] = useState(false);
   const shownRef = useRef(false);         // once per session, per mount
   const cardRef = useRef(null);
   const showTimer = useRef(null);         // the pending 4s reveal, if any
+  const navigate = useNavigate();
 
-  // Reveal, but only if nothing has claimed the slot yet this session.
-  const reveal = (candidate) => {
-    if (shownRef.current || !candidate || dismissedRecently()) return;
+  const jobCount = activeJobs().length;
+
+  // Reveal, but only if nothing has claimed the slot yet this session, and only
+  // when there is actually something to send the visitor to.
+  const reveal = () => {
+    if (shownRef.current || jobCount === 0 || dismissedRecently()) return;
     shownRef.current = true;
-    setJob(candidate);
+    setOpen(true);
   };
 
   const close = () => {
     rememberDismissal();
-    setJob(null);
+    setOpen(false);
+  };
+
+  // Clicking through is not a dismissal in spirit, but it is in effect: the
+  // visitor has been handed the list, so don't nag them again this week.
+  const goToJobs = () => {
+    trackJobEvent({ gcPath: "job-slidein-click", vercelEvent: "job_slidein_click" }, TRACK_ID, placement);
+    rememberDismissal();
+    setOpen(false);
+    scrollToJobs(navigate);
   };
 
   // ── Trigger: calculator ────────────────────────────────────────────────────
@@ -76,13 +109,10 @@ export function JobSlideIn({ neto, trigger = "calc", placement }) {
     if (neto === baselineNeto.current) return;
 
     // Each keystroke restarts the settle timer; only a pause actually arms the
-    // reveal. Once armed, the 4s countdown is left alone — further edits don't
-    // keep pushing it back, they just refresh which job it will show.
+    // reveal. Once armed, the 4s countdown is left alone.
     const settle = setTimeout(() => {
-      const candidate = bestSlideInJob(neto);
-      if (!candidate) return;        // no salaried match → show nothing at all
       clearTimeout(showTimer.current);
-      showTimer.current = setTimeout(() => reveal(candidate), DELAY_MS);
+      showTimer.current = setTimeout(reveal, DELAY_MS);
     }, SETTLE_MS);
 
     return () => clearTimeout(settle);
@@ -101,7 +131,7 @@ export function JobSlideIn({ neto, trigger = "calc", placement }) {
 
     const onLeave = (e) => {
       if (e.clientY > 0 || e.relatedTarget) return;   // not the top edge
-      reveal(topPayingJob());
+      reveal();
     };
     document.addEventListener("mouseout", onLeave);
     return () => document.removeEventListener("mouseout", onLeave);
@@ -109,28 +139,27 @@ export function JobSlideIn({ neto, trigger = "calc", placement }) {
 
   // ── Escape closes; focus is never taken from the page ──────────────────────
   useEffect(() => {
-    if (!job) return;
+    if (!open) return;
     const onKey = (e) => { if (e.key === "Escape") close(); };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [job]);
+  }, [open]);
 
   // ── Impression ─────────────────────────────────────────────────────────────
   useEffect(() => {
-    if (!job) return;
-    trackJobEvent({ gcPath: "job-slidein-view", vercelEvent: "job_slidein_view" }, job.id, placement);
-  }, [job, placement]);
+    if (!open) return;
+    trackJobEvent({ gcPath: "job-slidein-view", vercelEvent: "job_slidein_view" }, TRACK_ID, placement);
+  }, [open, placement]);
 
   // The mobile sticky footer (.jobs-sticky) is also pinned to the bottom edge,
   // at a higher z-index, and funnels to the same partner. Two stacked affiliate
-  // bars is worse than either alone, so the sheet — which names an actual job
-  // and its salary — takes the slot while it is open. Flagged via a body class
-  // so neither component has to know the other exists.
+  // bars is worse than either alone, so the sheet takes the slot while it is
+  // open. Flagged via a body class so neither component knows the other exists.
   useEffect(() => {
-    if (!job) return;
+    if (!open) return;
     document.body.classList.add("has-job-slidein");
     return () => document.body.classList.remove("has-job-slidein");
-  }, [job]);
+  }, [open]);
 
   // ── Swipe-down to dismiss (mobile) ─────────────────────────────────────────
   const dragStartY = useRef(null);
@@ -148,16 +177,13 @@ export function JobSlideIn({ neto, trigger = "calc", placement }) {
     if (cardRef.current) cardRef.current.style.transform = "";  // snap back
   };
 
-  if (!job) return null;
-
-  const pay = salaryLabel(job);
-  const uplift = upliftPct(job, neto);
+  if (!open) return null;
 
   return (
     <aside
       className="job-slidein"
       role="dialog"
-      aria-label={`Preporučen posao: ${job.title}`}
+      aria-label="Otvorene pozicije partnerske agencije"
       ref={cardRef}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
@@ -167,31 +193,19 @@ export function JobSlideIn({ neto, trigger = "calc", placement }) {
       <button className="job-slidein-close" onClick={close} aria-label="Zatvori">×</button>
 
       <div className="job-slidein-eyebrow">Posao · partner</div>
-      <div className="job-slidein-title">{job.title}</div>
+      <div className="job-slidein-title">Ima li posla koji plaća bolje?</div>
 
-      <div className="job-slidein-meta">
-        {pay && <span className="job-slidein-salary">{pay}</span>}
-        <span className="job-slidein-location">📍 {job.location}</span>
-      </div>
+      <p className="job-slidein-hook">
+        Pogledajte {jobCount} {pozicijaLabel(jobCount)} kod partnerske agencije — proverene
+        ponude, mnoge sa jasno navedenom platom.
+      </p>
 
-      {uplift !== null && (
-        <div className="job-slidein-uplift">≈ {uplift}% više od tvoje plate</div>
-      )}
-
-      {job.hook && <p className="job-slidein-hook">{job.hook}</p>}
-
-      <a
-        className="job-slidein-cta"
-        href={withTracking(job.link, placement, job.id)}
-        target="_blank"
-        rel="sponsored noopener noreferrer"
-        onClick={() => trackJobEvent({ gcPath: "job-slidein-click", vercelEvent: "job_slidein_click" }, job.id, placement)}
-      >
-        Pogledaj oglas →
-      </a>
+      <button type="button" className="job-slidein-cta" onClick={goToJobs}>
+        Pogledaj oglase →
+      </button>
 
       <div className="job-slidein-disclosure">
-        Oglas partnera — ako se zaposlite preko ovog linka, ostvarujemo proviziju.
+        Oglasi partnera — ako se zaposlite preko njih, ostvarujemo proviziju.
       </div>
     </aside>
   );
