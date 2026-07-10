@@ -1,3 +1,5 @@
+import { track } from "@vercel/analytics";
+
 // ── AFFILIATE JOB LISTINGS ────────────────────────────────────────────────────
 // Single source of truth for partner (job agency) affiliate links.
 // One entry = one landing page = one job. Links rotate: when a job closes,
@@ -107,6 +109,60 @@ export function matchJobs(neto) {
   });
   // Never show an empty widget if there ARE open jobs — fall back to all.
   return matched.length > 0 ? matched : open;
+}
+
+// Smooth-scrolls to the first JobsWidget on the page; if the current page has
+// none, navigates home (which always renders one) and scrolls after mount.
+// Shared by the sticky footer, the sidebar teaser and the slide-in. All three
+// funnel to that same on-page list rather than linking out, because every
+// affiliate URL here is a per-job deep link carrying the agency's own
+// ?promotion=... param — there is no generic landing page that would still
+// attribute the click, so a "see all jobs" button must stay on-site.
+export function scrollToJobs(navigate) {
+  const el = document.querySelector(".jobs-widget");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    return;
+  }
+  navigate("/");
+  let tries = 0;
+  const tick = () => {
+    const t = document.querySelector(".jobs-widget");
+    if (t) t.scrollIntoView({ behavior: "smooth", block: "center" });
+    else if (++tries < 10) setTimeout(tick, 200);
+  };
+  setTimeout(tick, 200);
+}
+
+const fmtRsd = (n) => new Intl.NumberFormat("sr-RS").format(n);
+
+// Human-readable pay range, e.g. "120.000 – 140.000 RSD neto".
+// Never appends "neto" unless the ad said so explicitly.
+export function salaryLabel(j) {
+  if (j.salaryMin == null && j.salaryMax == null) return null;
+  const suffix = j.salaryNeto ? " RSD neto" : " RSD";
+  if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)}${suffix}`;
+  return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
+}
+
+// Count an affiliate event in GoatCounter (free, cookieless) AND Vercel
+// Analytics (activates automatically if the site ever moves to a Pro plan).
+// Production only — Vercel preview deploys (*.vercel.app) and localhost must
+// not pollute the stats.
+//
+// The two sinks take DIFFERENT names by convention and always have: GoatCounter
+// buckets by URL-ish path ("job-click/…"), Vercel by snake_case event name
+// ("job_click"). Passing one string to both would silently rename the existing
+// Vercel `job_click` metric, so callers pass an explicit pair.
+export function trackJobEvent({ gcPath, vercelEvent }, jobId, placement) {
+  if (typeof window === "undefined") return;
+  if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: `${gcPath}/${jobId}/${placement}`, event: true });
+    }
+  } catch { /* no-op */ }
+  try { track(vercelEvent, { job: jobId, placement }); } catch { /* no-op */ }
 }
 
 // Append placement tracking without clobbering the agency's own params

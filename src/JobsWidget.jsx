@@ -1,5 +1,4 @@
-import { track } from "@vercel/analytics";
-import { matchJobs, activeJobs, withTracking } from "./jobs.js";
+import { matchJobs, activeJobs, withTracking, salaryLabel, trackJobEvent } from "./jobs.js";
 
 // ── JOBS WIDGET (affiliate) ───────────────────────────────────────────────────
 // Renders partner job offers, or an "uskoro" teaser while there are none.
@@ -9,28 +8,10 @@ import { matchJobs, activeJobs, withTracking } from "./jobs.js";
 // Every affiliate link carries rel="sponsored" (Google link-scheme safety) and
 // a visible partner disclosure (trust + legal).
 
-const fmtRsd = (n) => new Intl.NumberFormat("sr-RS").format(n);
-
-// Count the click in GoatCounter (free, cookieless) AND Vercel Analytics
-// (activates automatically if the site ever moves to a Pro plan).
-function trackJobClick(jobId, placement) {
-  // Production only — Vercel preview deploys (*.vercel.app) and localhost
-  // must not pollute the click stats.
-  if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
-  try {
-    if (window.goatcounter && window.goatcounter.count) {
-      window.goatcounter.count({ path: `job-click/${jobId}/${placement}`, event: true });
-    }
-  } catch { /* no-op */ }
-  try { track("job_click", { job: jobId, placement }); } catch { /* no-op */ }
-}
-
-function salaryLabel(j) {
-  if (j.salaryMin == null && j.salaryMax == null) return null;
-  const suffix = j.salaryNeto ? " RSD neto" : " RSD";
-  if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)}${suffix}`;
-  return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
-}
+// Names are load-bearing: both metrics predate this widget's refactor and
+// renaming either would split its history. Keep them exactly as they were.
+const trackJobClick = (jobId, placement) =>
+  trackJobEvent({ gcPath: "job-click", vercelEvent: "job_click" }, jobId, placement);
 
 // Serbian plural: 1 pozicija, 2-4 pozicije, 5+ pozicija
 function pozicijaLabel(n) {
