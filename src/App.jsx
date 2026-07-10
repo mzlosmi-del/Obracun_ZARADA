@@ -740,7 +740,33 @@ export function CalculatorPage({ focusSection } = {}) {
               </div>
             ) : (
               <div className="neto-derived">
-                Odgovara bruto zaradi od: <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
+                {/* Lead with Bruto 1, not basicBruto. Topli obrok and regres sit inside
+                    Bruto 1 but never pass through the basic salary, so with the default
+                    obrok basicBruto lands BELOW the requested neto for anything under
+                    ~95.000 (neto 25.000 → basicBruto 4.028) — which reads as a bug even
+                    though it is right. Bruto 1 is above the neto in every reachable case.
+                    basicBruto keeps the name the rest of the app gives it: "Osnovna
+                    bruto zarada". */}
+                Odgovara <strong>Bruto 1</strong> zaradi od:{" "}
+                <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(r.bruto1)} RSD</strong>
+                {/* Only worth breaking out when something (naknade, minuli rad, uvećanja)
+                    actually sits between the two — otherwise we'd print the same number twice. */}
+                {Math.round(r.bruto1) !== Math.round(effectiveInputs.basicBruto) && (
+                  <div className="neto-derived-row">
+                    od toga osnovna bruto zarada:{" "}
+                    <strong style={{fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
+                  </div>
+                )}
+                {r.mealAmount + r.regresAmount > 0 && (
+                  <div className="neto-derived-note">
+                    Traženi neto uključuje i{" "}
+                    {r.mealAmount > 0 && r.regresAmount > 0
+                      ? "topli obrok i regres"
+                      : r.mealAmount > 0 ? "topli obrok" : "regres"}{" "}
+                    ({fmt(r.mealAmount + r.regresAmount)} RSD) — u celosti oporezivo i
+                    uračunato u Bruto 1.
+                  </div>
+                )}
               </div>
             )}
           </div>
