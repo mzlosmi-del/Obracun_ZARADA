@@ -206,6 +206,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .mode-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
 .neto-input-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; max-width: 360px; border-top: 3px solid var(--green); }
 .neto-derived { font-size: 12px; color: var(--text2); line-height: 1.5; }
+/* Shown when the requested neto is below anything the current inputs can produce. */
+.neto-derived-warn { background: var(--amber-light); border: 1px solid #f5d98a; border-radius: 8px; padding: 9px 11px; color: var(--text); }
+.neto-derived-warn strong { color: var(--text); }
 
 /* ── SICK LEAVE INFO ── */
 .sick-info { background: #f0f7ff; border: 1px solid #c8dff2; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }

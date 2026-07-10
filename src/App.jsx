@@ -116,22 +116,50 @@ function calculate(inputs, rates) {
   };
 }
 
-function netoToBruto(targetNeto, rates) {
-  let lo = targetNeto, hi = targetNeto * 2.5;
-  for (let i = 0; i < 60; i++) {
-    const mid = (lo + hi) / 2;
-    const testInputs = {
-      basicBruto: mid, standardHours: 168, overtimeH: 0, nightH: 0,
-      weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
-      yearsOfService: 0, minuliRadPct: 0.4,
-      transport: 0, mealDays: 0, sickDays: 0, sickPct: 65, publicHolidayDays: 0, vacationHolidayDays: 0,
-      unpaidDays: 0, syndikat: 0, syndikatPct: 0, kredit: 0, adminZabrana: 0, ostaliOdbici: 0,
-    };
-    const r = calculate(testInputs, rates);
-    if (Math.abs(r.neto - targetNeto) < 0.01) return mid;
-    if (r.neto < targetNeto) lo = mid; else hi = mid;
+// Invert `calculate()` for basicBruto: find the Bruto 1 whose *displayed* neto
+// equals targetNeto. Two rules make this correct:
+//
+//  1. Solve against the SAME inputs the UI renders. The old version hard-coded
+//     mealDays: 0 while the page displayed the user's real topli obrok, which
+//     is taxable and sits inside Bruto 1 — so the answer came back inflated by
+//     the meal amount net of tax and contributions (~21.934 RSD at 21×1.490).
+//     `neto` here means the full amount on the račun, obrok included.
+//
+//  2. Bracket by searching, not guessing, and detect targets that no Bruto 1 can
+//     reach. neto has a floor: allowances land in Bruto 1 (so with the default
+//     21×1.490 obrok the smallest possible neto is already ~21.082), and below
+//     that, contributions charged on the minimum base swallow the whole salary
+//     and `neto = max(…, 0)` pins the curve flat at 0. A fixed `hi = target*2.5`
+//     can sit entirely under the floor (target 1.000 → hi 2.500), and bisection
+//     then just walks lo up to hi and hands back a bruto that yields nothing —
+//     which is why bruto climbed while neto stayed 0.
+//
+// Returns { bruto, reachable, minNeto }. `reachable: false` means no Bruto 1
+// yields this neto — the caller must say so rather than show a bogus number.
+// `minNeto` is the smallest neto these inputs can produce (neto at Bruto 1 = 0).
+function netoToBruto(targetNeto, rates, baseInputs) {
+  const netoAt = (bruto) => calculate({ ...baseInputs, basicBruto: bruto }, rates).neto;
+
+  // Bruto 1 = 0 still carries the meal/regres allowances, so the floor is
+  // whatever neto they alone produce — not necessarily zero.
+  const minNeto = netoAt(0);
+  if (!(targetNeto > minNeto)) {
+    return { bruto: 0, reachable: targetNeto === minNeto, minNeto };
   }
-  return (lo + hi) / 2;
+
+  // Grow the upper bound until it actually overshoots the target.
+  let hi = Math.max(targetNeto, 1000);
+  for (let i = 0; i < 40 && netoAt(hi) < targetNeto; i++) hi *= 2;
+  if (netoAt(hi) < targetNeto) return { bruto: hi, reachable: false, minNeto };
+
+  let lo = 0;
+  for (let i = 0; i < 80; i++) {
+    const mid = (lo + hi) / 2;
+    const n = netoAt(mid);
+    if (Math.abs(n - targetNeto) < 0.005) return { bruto: mid, reachable: true, minNeto };
+    if (n < targetNeto) lo = mid; else hi = mid;
+  }
+  return { bruto: (lo + hi) / 2, reachable: true, minNeto };
 }
 
 // ── PAYSLIP PDF ───────────────────────────────────────────────────────────────
@@ -658,8 +686,12 @@ export function CalculatorPage({ focusSection } = {}) {
   const [rates, setRates] = useState({ ...DEFAULT_RATES });
   const [activeTab, setActiveTab] = useState("inputs");
 
-  const effectiveInputs = calcMode === "neto"
-    ? { ...inputs, basicBruto: netoToBruto(targetNeto, rates) }
+  // In neto mode the solver must see the very inputs we are about to render,
+  // otherwise the bruto it returns and the neto we display describe different
+  // payslips (this is what made topli obrok appear to be added on top).
+  const netoSolution = calcMode === "neto" ? netoToBruto(targetNeto, rates, inputs) : null;
+  const effectiveInputs = netoSolution
+    ? { ...inputs, basicBruto: netoSolution.bruto }
     : inputs;
 
   const r = calculate(effectiveInputs, rates);
@@ -687,9 +719,30 @@ export function CalculatorPage({ focusSection } = {}) {
               onChange={setTargetNeto}
               step={1000}
             />
-            <div className="neto-derived">
-              Odgovara bruto zaradi od: <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
-            </div>
+            {netoSolution && !netoSolution.reachable ? (
+              <div className="neto-derived neto-derived-warn" role="status">
+                <strong>Ovaj neto nije dostižan.</strong>{" "}
+                {r.mealAmount + r.regresAmount > 0 ? (
+                  <>
+                    Topli obrok i regres ({fmt(r.mealAmount + r.regresAmount)} RSD) ulaze u
+                    Bruto 1, pa i uz Bruto 1 od nule neto iznosi{" "}
+                    <strong style={{fontFamily:"var(--mono)"}}>{fmt(netoSolution.minNeto)} RSD</strong>.
+                    Unesite veći neto ili smanjite naknade.
+                  </>
+                ) : (
+                  <>
+                    Doprinosi se obračunavaju na najnižu mesečnu osnovicu
+                    ({fmt(rates.minBase)} RSD), pa pri vrlo niskoj zaradi premaše celu
+                    zaradu. Najniži neto koji ovaj obračun daje jeste{" "}
+                    <strong style={{fontFamily:"var(--mono)"}}>{fmt(netoSolution.minNeto)} RSD</strong>.
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className="neto-derived">
+                Odgovara bruto zaradi od: <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
+              </div>
+            )}
           </div>
         )}
       </div>
