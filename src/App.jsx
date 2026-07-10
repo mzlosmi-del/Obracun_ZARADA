@@ -695,6 +695,32 @@ export function CalculatorPage({ focusSection } = {}) {
     : inputs;
 
   const r = calculate(effectiveInputs, rates);
+
+  // How the typed "Osnovna bruto zarada" becomes Bruto 1. The hero card shows
+  // Bruto 1 (131.290 by default), not the 100.000 the user typed — obrok alone
+  // accounts for 31.290, and minuli rad / bonusi / uvećanja widen the gap
+  // further. Itemise it so the jump is never unexplained.
+  //
+  // Bruto 1 is built from workedBruto, NOT basicBruto (see calculate()), so
+  // bolovanje and neplaćeno odsustvo make the bridge SUBTRACT. That adjustment
+  // is folded into one signed row; the rows always sum exactly to Bruto 1.
+  const brutoBridge = (() => {
+    const base = effectiveInputs.basicBruto;
+    const leaveAdj = (r.workedBruto + r.publicHolidayBasePay + r.vacationHolidayPay) - base;
+    const rows = [
+      { label: "Odsustva (bolovanje, neplaćeno, godišnji)", value: leaveAdj },
+      { label: "Minuli rad", value: r.minuliRadAmount },
+      { label: "Prekovremeni rad", value: r.overtimePay },
+      { label: "Noćni rad", value: r.nightPay },
+      { label: "Rad vikendom", value: r.weekendPay },
+      { label: "Rad praznikom", value: r.holidayPay },
+      { label: "Bonus", value: r.bonusAmount },
+      { label: "Topli obrok", value: r.mealAmount },
+      { label: "Regres", value: r.regresAmount },
+    ].filter((x) => Math.abs(x.value) >= 0.005);
+    return { base, rows };
+  })();
+
   const set = (key) => (val) => setInputs((p) => ({ ...p, [key]: val }));
   const setI = (key) => (val) => setInfo((p) => ({ ...p, [key]: val }));
   const setR = (key) => (val) => setRates((p) => ({ ...p, [key]: val }));
@@ -711,6 +737,37 @@ export function CalculatorPage({ focusSection } = {}) {
             Unesite Neto
           </button>
         </div>
+        {calcMode === "bruto" && brutoBridge.rows.length > 0 && (
+          <div className="neto-input-wrap bruto-bridge-wrap">
+            <div className="bruto-bridge-head">Kako se dobija Bruto 1</div>
+            <div className="bruto-bridge">
+              <div className="bruto-bridge-line">
+                <span>Osnovna bruto zarada</span>
+                <strong>{fmt(brutoBridge.base)}</strong>
+              </div>
+              {brutoBridge.rows.map((row) => (
+                <div className="bruto-bridge-line" key={row.label}>
+                  <span>{row.value < 0 ? "−" : "+"} {row.label}</span>
+                  <strong>{fmt(Math.abs(row.value))}</strong>
+                </div>
+              ))}
+              <div className="bruto-bridge-line bruto-bridge-total">
+                <span>= Bruto 1</span>
+                <strong>{fmt(r.bruto1)}</strong>
+              </div>
+            </div>
+            {r.mealAmount + r.regresAmount > 0 && (
+              <div className="neto-derived-note">
+                Bruto 1 i neto uključuju i{" "}
+                {r.mealAmount > 0 && r.regresAmount > 0
+                  ? "topli obrok i regres"
+                  : r.mealAmount > 0 ? "topli obrok" : "regres"}{" "}
+                ({fmt(r.mealAmount + r.regresAmount)} RSD) — u celosti oporezivo i
+                uračunato u Bruto 1.
+              </div>
+            )}
+          </div>
+        )}
         {calcMode === "neto" && (
           <div className="neto-input-wrap">
             <NumberInput
