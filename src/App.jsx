@@ -70,7 +70,11 @@ function calculate(inputs, rates) {
   const holidayPay = holidayH * hourRate * holidayCoef;
   const bonusAmount = fixedBonus + basicBruto * (bonusPct / 100);
 
-  const mealDailyRate = mealDailyActual || R.mealDaily;
+  // The per-day amount entered on Unos wins over the Stope default whenever it
+  // is actually set — including when it is 0. `||` treated 0 as "unset" and
+  // silently fell back to the Stope rate, so zeroing the obrok on Unos still
+  // paid it out at 1.490/day. Only a genuinely absent value defers to Stope.
+  const mealDailyRate = Number.isFinite(mealDailyActual) ? mealDailyActual : R.mealDaily;
   const mealAmount = mealDays * mealDailyRate;
   const regresAmount = regres || 0;
 
@@ -104,7 +108,7 @@ function calculate(inputs, rates) {
     unpaidDaysActual, unpaidDeduction,
     minuliRadAmount, minuliRadRate,
     overtimePay, nightPay, weekendPay, holidayPay, bonusAmount,
-    mealAmount, regresAmount,
+    mealAmount, mealDailyRate, regresAmount,
     transportActual,
     bruto1, contribBase, pio_emp, health_emp, unemp, totalEmpContrib,
     taxBase, tax, netoFromWork,
@@ -116,22 +120,50 @@ function calculate(inputs, rates) {
   };
 }
 
-function netoToBruto(targetNeto, rates) {
-  let lo = targetNeto, hi = targetNeto * 2.5;
-  for (let i = 0; i < 60; i++) {
-    const mid = (lo + hi) / 2;
-    const testInputs = {
-      basicBruto: mid, standardHours: 168, overtimeH: 0, nightH: 0,
-      weekendH: 0, holidayH: 0, fixedBonus: 0, bonusPct: 0,
-      yearsOfService: 0, minuliRadPct: 0.4,
-      transport: 0, mealDays: 0, sickDays: 0, sickPct: 65, publicHolidayDays: 0, vacationHolidayDays: 0,
-      unpaidDays: 0, syndikat: 0, syndikatPct: 0, kredit: 0, adminZabrana: 0, ostaliOdbici: 0,
-    };
-    const r = calculate(testInputs, rates);
-    if (Math.abs(r.neto - targetNeto) < 0.01) return mid;
-    if (r.neto < targetNeto) lo = mid; else hi = mid;
+// Invert `calculate()` for basicBruto: find the Bruto 1 whose *displayed* neto
+// equals targetNeto. Two rules make this correct:
+//
+//  1. Solve against the SAME inputs the UI renders. The old version hard-coded
+//     mealDays: 0 while the page displayed the user's real topli obrok, which
+//     is taxable and sits inside Bruto 1 — so the answer came back inflated by
+//     the meal amount net of tax and contributions (~21.934 RSD at 21×1.490).
+//     `neto` here means the full amount on the račun, obrok included.
+//
+//  2. Bracket by searching, not guessing, and detect targets that no Bruto 1 can
+//     reach. neto has a floor: allowances land in Bruto 1 (so with the default
+//     21×1.490 obrok the smallest possible neto is already ~21.082), and below
+//     that, contributions charged on the minimum base swallow the whole salary
+//     and `neto = max(…, 0)` pins the curve flat at 0. A fixed `hi = target*2.5`
+//     can sit entirely under the floor (target 1.000 → hi 2.500), and bisection
+//     then just walks lo up to hi and hands back a bruto that yields nothing —
+//     which is why bruto climbed while neto stayed 0.
+//
+// Returns { bruto, reachable, minNeto }. `reachable: false` means no Bruto 1
+// yields this neto — the caller must say so rather than show a bogus number.
+// `minNeto` is the smallest neto these inputs can produce (neto at Bruto 1 = 0).
+function netoToBruto(targetNeto, rates, baseInputs) {
+  const netoAt = (bruto) => calculate({ ...baseInputs, basicBruto: bruto }, rates).neto;
+
+  // Bruto 1 = 0 still carries the meal/regres allowances, so the floor is
+  // whatever neto they alone produce — not necessarily zero.
+  const minNeto = netoAt(0);
+  if (!(targetNeto > minNeto)) {
+    return { bruto: 0, reachable: targetNeto === minNeto, minNeto };
   }
-  return (lo + hi) / 2;
+
+  // Grow the upper bound until it actually overshoots the target.
+  let hi = Math.max(targetNeto, 1000);
+  for (let i = 0; i < 40 && netoAt(hi) < targetNeto; i++) hi *= 2;
+  if (netoAt(hi) < targetNeto) return { bruto: hi, reachable: false, minNeto };
+
+  let lo = 0;
+  for (let i = 0; i < 80; i++) {
+    const mid = (lo + hi) / 2;
+    const n = netoAt(mid);
+    if (Math.abs(n - targetNeto) < 0.005) return { bruto: mid, reachable: true, minNeto };
+    if (n < targetNeto) lo = mid; else hi = mid;
+  }
+  return { bruto: (lo + hi) / 2, reachable: true, minNeto };
 }
 
 // ── PAYSLIP PDF ───────────────────────────────────────────────────────────────
@@ -257,7 +289,7 @@ ${trow('PIO – doprinos poslodavca (10%)', r.pio_er, '#f59e0b')}
 ${trow('Zdravstvo – doprinos poslodavca (5,15%)', r.health_er, '#f59e0b')}
 ${trow('UKUPNO doprinosi poslodavca (15,15%)', r.totalErContrib, '#f59e0b')}
 ${trow('BRUTO 2 (Bruto1 + doprinosi poslodavca)', r.bruto2, '#1452d6')}
-${r.mealAmount > 0 ? trow(`Topli obrok (${inputs.mealDays} × ${fmt(inputs.mealDailyActual || 1490)} RSD)`, r.mealAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
+${r.mealAmount > 0 ? trow(`Topli obrok (${inputs.mealDays} × ${fmt(r.mealDailyRate)} RSD)`, r.mealAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${r.regresAmount > 0 ? trow('Regres za godišnji odmor', r.regresAmount, '#4b5563', 'oporezivo — uključeno u Bruto 1') : ''}
 ${trow('UKUPAN TROŠAK POSLODAVCA', r.totalCost, '#f59e0b')}
 </table></div>
@@ -658,11 +690,41 @@ export function CalculatorPage({ focusSection } = {}) {
   const [rates, setRates] = useState({ ...DEFAULT_RATES });
   const [activeTab, setActiveTab] = useState("inputs");
 
-  const effectiveInputs = calcMode === "neto"
-    ? { ...inputs, basicBruto: netoToBruto(targetNeto, rates) }
+  // In neto mode the solver must see the very inputs we are about to render,
+  // otherwise the bruto it returns and the neto we display describe different
+  // payslips (this is what made topli obrok appear to be added on top).
+  const netoSolution = calcMode === "neto" ? netoToBruto(targetNeto, rates, inputs) : null;
+  const effectiveInputs = netoSolution
+    ? { ...inputs, basicBruto: netoSolution.bruto }
     : inputs;
 
   const r = calculate(effectiveInputs, rates);
+
+  // How the typed "Osnovna bruto zarada" becomes Bruto 1. The hero card shows
+  // Bruto 1 (131.290 by default), not the 100.000 the user typed — obrok alone
+  // accounts for 31.290, and minuli rad / bonusi / uvećanja widen the gap
+  // further. Itemise it so the jump is never unexplained.
+  //
+  // Bruto 1 is built from workedBruto, NOT basicBruto (see calculate()), so
+  // bolovanje and neplaćeno odsustvo make the bridge SUBTRACT. That adjustment
+  // is folded into one signed row; the rows always sum exactly to Bruto 1.
+  const brutoBridge = (() => {
+    const base = effectiveInputs.basicBruto;
+    const leaveAdj = (r.workedBruto + r.publicHolidayBasePay + r.vacationHolidayPay) - base;
+    const rows = [
+      { label: "Odsustva (bolovanje, neplaćeno, godišnji)", value: leaveAdj },
+      { label: "Minuli rad", value: r.minuliRadAmount },
+      { label: "Prekovremeni rad", value: r.overtimePay },
+      { label: "Noćni rad", value: r.nightPay },
+      { label: "Rad vikendom", value: r.weekendPay },
+      { label: "Rad praznikom", value: r.holidayPay },
+      { label: "Bonus", value: r.bonusAmount },
+      { label: "Topli obrok", value: r.mealAmount },
+      { label: "Regres", value: r.regresAmount },
+    ].filter((x) => Math.abs(x.value) >= 0.005);
+    return { base, rows };
+  })();
+
   const set = (key) => (val) => setInputs((p) => ({ ...p, [key]: val }));
   const setI = (key) => (val) => setInfo((p) => ({ ...p, [key]: val }));
   const setR = (key) => (val) => setRates((p) => ({ ...p, [key]: val }));
@@ -679,6 +741,37 @@ export function CalculatorPage({ focusSection } = {}) {
             Unesite Neto
           </button>
         </div>
+        {calcMode === "bruto" && brutoBridge.rows.length > 0 && (
+          <div className="neto-input-wrap bruto-bridge-wrap">
+            <div className="bruto-bridge-head">Kako se dobija Bruto 1</div>
+            <div className="bruto-bridge">
+              <div className="bruto-bridge-line">
+                <span>Osnovna bruto zarada</span>
+                <strong>{fmt(brutoBridge.base)}</strong>
+              </div>
+              {brutoBridge.rows.map((row) => (
+                <div className="bruto-bridge-line" key={row.label}>
+                  <span>{row.value < 0 ? "−" : "+"} {row.label}</span>
+                  <strong>{fmt(Math.abs(row.value))}</strong>
+                </div>
+              ))}
+              <div className="bruto-bridge-line bruto-bridge-total">
+                <span>= Bruto 1</span>
+                <strong>{fmt(r.bruto1)}</strong>
+              </div>
+            </div>
+            {r.mealAmount + r.regresAmount > 0 && (
+              <div className="neto-derived-note">
+                Bruto 1 i neto uključuju i{" "}
+                {r.mealAmount > 0 && r.regresAmount > 0
+                  ? "topli obrok i regres"
+                  : r.mealAmount > 0 ? "topli obrok" : "regres"}{" "}
+                ({fmt(r.mealAmount + r.regresAmount)} RSD) — u celosti oporezivo i
+                uračunato u Bruto 1.
+              </div>
+            )}
+          </div>
+        )}
         {calcMode === "neto" && (
           <div className="neto-input-wrap">
             <NumberInput
@@ -687,9 +780,56 @@ export function CalculatorPage({ focusSection } = {}) {
               onChange={setTargetNeto}
               step={1000}
             />
-            <div className="neto-derived">
-              Odgovara bruto zaradi od: <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
-            </div>
+            {netoSolution && !netoSolution.reachable ? (
+              <div className="neto-derived neto-derived-warn" role="status">
+                <strong>Ovaj neto nije dostižan.</strong>{" "}
+                {r.mealAmount + r.regresAmount > 0 ? (
+                  <>
+                    Topli obrok i regres ({fmt(r.mealAmount + r.regresAmount)} RSD) ulaze u
+                    Bruto 1, pa i uz Bruto 1 od nule neto iznosi{" "}
+                    <strong style={{fontFamily:"var(--mono)"}}>{fmt(netoSolution.minNeto)} RSD</strong>.
+                    Unesite veći neto ili smanjite naknade.
+                  </>
+                ) : (
+                  <>
+                    Doprinosi se obračunavaju na najnižu mesečnu osnovicu
+                    ({fmt(rates.minBase)} RSD), pa pri vrlo niskoj zaradi premaše celu
+                    zaradu. Najniži neto koji ovaj obračun daje jeste{" "}
+                    <strong style={{fontFamily:"var(--mono)"}}>{fmt(netoSolution.minNeto)} RSD</strong>.
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className="neto-derived">
+                {/* Lead with Bruto 1, not basicBruto. Topli obrok and regres sit inside
+                    Bruto 1 but never pass through the basic salary, so with the default
+                    obrok basicBruto lands BELOW the requested neto for anything under
+                    ~95.000 (neto 25.000 → basicBruto 4.028) — which reads as a bug even
+                    though it is right. Bruto 1 is above the neto in every reachable case.
+                    basicBruto keeps the name the rest of the app gives it: "Osnovna
+                    bruto zarada". */}
+                Odgovara <strong>Bruto 1</strong> zaradi od:{" "}
+                <strong style={{color:"var(--accent)", fontFamily:"var(--mono)"}}>{fmt(r.bruto1)} RSD</strong>
+                {/* Only worth breaking out when something (naknade, minuli rad, uvećanja)
+                    actually sits between the two — otherwise we'd print the same number twice. */}
+                {Math.round(r.bruto1) !== Math.round(effectiveInputs.basicBruto) && (
+                  <div className="neto-derived-row">
+                    od toga osnovna bruto zarada:{" "}
+                    <strong style={{fontFamily:"var(--mono)"}}>{fmt(effectiveInputs.basicBruto)} RSD</strong>
+                  </div>
+                )}
+                {r.mealAmount + r.regresAmount > 0 && (
+                  <div className="neto-derived-note">
+                    Traženi neto uključuje i{" "}
+                    {r.mealAmount > 0 && r.regresAmount > 0
+                      ? "topli obrok i regres"
+                      : r.mealAmount > 0 ? "topli obrok" : "regres"}{" "}
+                    ({fmt(r.mealAmount + r.regresAmount)} RSD) — u celosti oporezivo i
+                    uračunato u Bruto 1.
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -866,7 +1006,10 @@ export function CalculatorPage({ focusSection } = {}) {
             <div className="inputs-body">
               <NumberInput label="Prevoz (mesečno)" sublabel="(neopor. do 5.630 RSD — čl. 18 ZPDG)" value={inputs.transport} onChange={set("transport")} step={100} />
               <NumberInput label="Radnih dana (topli obrok)" sublabel="(u novcu — u celosti oporezivo)" value={inputs.mealDays} onChange={set("mealDays")} unit="dana" min={0} />
-              <NumberInput label="Dnevni iznos toplog obroka" value={inputs.mealDailyActual || 1490} onChange={set("mealDailyActual")} step={10} min={0} unit="RSD" />
+              {/* Show what is actually set, not `|| 1490` — that snapped a deliberate 0
+                  back to 1.490 on re-render. Falls back to the Stope default only when
+                  genuinely unset, and to the Stope value rather than a hardcoded literal. */}
+              <NumberInput label="Dnevni iznos toplog obroka" sublabel="(ima prednost nad iznosom sa kartice Stope)" value={Number.isFinite(inputs.mealDailyActual) ? inputs.mealDailyActual : rates.mealDaily} onChange={set("mealDailyActual")} step={10} min={0} unit="RSD" />
               <NumberInput label="Regres za godišnji odmor" sublabel="(u celosti oporezivo)" value={inputs.regres} onChange={set("regres")} step={1000} />
               {(r.mealAmount > 0 || r.regresAmount > 0) && (
                 <div className="sick-info" style={{background:"#fff8e6", borderColor:"#f59e0b"}}>
@@ -993,7 +1136,7 @@ export function CalculatorPage({ focusSection } = {}) {
               {r.holidayPay > 0 && <ResultRow label="Rad na praznike (+110%)" value={r.holidayPay} type="positive" sub={`${inputs.holidayH}h × ${fmt(r.hourRate)} × 2.10`} />}
               {r.minuliRadAmount > 0 && <ResultRow label={`Minuli rad (${inputs.yearsOfService} god. × ${inputs.minuliRadPct}%)`} value={r.minuliRadAmount} type="positive" sub={`${(r.minuliRadRate*100).toFixed(2)}% od zarade za odrađene dane`} />}
               {r.bonusAmount > 0 && <ResultRow label="Bonusi / nagrade" value={r.bonusAmount} type="positive" />}
-              {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(inputs.mealDailyActual || 1490)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}
+              {r.mealAmount > 0 && <ResultRow label={`Topli obrok (${inputs.mealDays} dana × ${fmt(r.mealDailyRate)} RSD)`} value={r.mealAmount} type="positive" sub="u celosti oporezivo" />}
               {r.regresAmount > 0 && <ResultRow label="Regres za godišnji odmor" value={r.regresAmount} type="positive" sub="u celosti oporezivo" />}
               <ResultRow label="BRUTO 1 (ukupna bruto zarada)" value={r.bruto1} type="total" />
             </div>
@@ -1107,7 +1250,7 @@ export function CalculatorPage({ focusSection } = {}) {
             </div>
             <SectionTitle icon="🍽️">Neoporezivi dodaci</SectionTitle>
             <div className="inputs-body">
-              <NumberInput label="Topli obrok — podrazumevani iznos" sublabel="(u novcu — u celosti oporezivo)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
+              <NumberInput label="Topli obrok — podrazumevani iznos" sublabel="(koristi se samo ako iznos nije unet na kartici Unos)" value={rates.mealDaily} onChange={setR("mealDaily")} step={10} min={0} />
               <NumberInput label="Prevoz (mesečno max neopor.)" sublabel="(čl. 18 ZPDG)" value={rates.transportMax} onChange={setR("transportMax")} step={10} min={0} />
             </div>
           </div>

@@ -206,6 +206,26 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .mode-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
 .neto-input-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; max-width: 360px; border-top: 3px solid var(--green); }
 .neto-derived { font-size: 12px; color: var(--text2); line-height: 1.5; }
+/* Secondary figure (the contract salary) — subordinate to the Bruto 1 above it. */
+.neto-derived-row { margin-top: 3px; color: var(--text3); }
+.neto-derived-row strong { color: var(--text2); font-weight: 600; }
+/* Reminder that allowances are part of the requested neto. */
+.neto-derived-note { margin-top: 7px; padding-top: 7px; border-top: 1px dashed var(--border); font-size: 11.5px; color: var(--text3); line-height: 1.45; }
+/* Shown when the requested neto is below anything the current inputs can produce. */
+.neto-derived-warn { background: var(--amber-light); border: 1px solid #f5d98a; border-radius: 8px; padding: 9px 11px; color: var(--text); }
+.neto-derived-warn strong { color: var(--text); }
+
+/* ── BRUTO → BRUTO 1 BRIDGE (bruto mode) ──
+   The hero card shows Bruto 1, not the basic salary the user typed. This little
+   ledger reconciles the two: rows always sum exactly to the Bruto 1 shown. */
+.bruto-bridge-wrap { border-top-color: var(--accent); max-width: 380px; }
+.bruto-bridge-head { font-size: 10px; font-weight: 600; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; }
+.bruto-bridge { display: flex; flex-direction: column; gap: 5px; }
+.bruto-bridge-line { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-size: 12px; color: var(--text2); }
+.bruto-bridge-line span { min-width: 0; }
+.bruto-bridge-line strong { font-family: var(--mono); font-weight: 500; color: var(--text2); white-space: nowrap; }
+.bruto-bridge-total { margin-top: 3px; padding-top: 6px; border-top: 1px solid var(--border); color: var(--text); font-weight: 600; }
+.bruto-bridge-total strong { color: var(--accent); font-weight: 700; }
 
 /* ── SICK LEAVE INFO ── */
 .sick-info { background: #f0f7ff; border: 1px solid #c8dff2; border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; }
