@@ -1,3 +1,5 @@
+import { track } from "@vercel/analytics";
+
 // ── AFFILIATE JOB LISTINGS ────────────────────────────────────────────────────
 // Single source of truth for partner (job agency) affiliate links.
 // One entry = one landing page = one job. Links rotate: when a job closes,
@@ -107,6 +109,78 @@ export function matchJobs(neto) {
   });
   // Never show an empty widget if there ARE open jobs — fall back to all.
   return matched.length > 0 ? matched : open;
+}
+
+// Jobs that state a salary range — the only ones the slide-in may promote,
+// since its whole pitch is comparing the job's pay to the visitor's own.
+export const salariedJobs = () =>
+  activeJobs().filter(j => j.salaryMin != null || j.salaryMax != null);
+
+// Midpoint of a job's stated range (a one-sided range is its own midpoint).
+const midpoint = (j) => ((j.salaryMin ?? j.salaryMax) + (j.salaryMax ?? j.salaryMin)) / 2;
+
+// The single job to promote in the slide-in for a visitor earning `neto`.
+// Upsell angle: prefer the closest job that pays ABOVE what they earn today;
+// if every match pays less, fall back to the closest one by midpoint.
+// Returns null when nothing matches — the caller must then render nothing.
+export function bestSlideInJob(neto) {
+  const pool = matchJobs(neto).filter(j => j.salaryMin != null || j.salaryMax != null);
+  if (pool.length === 0) return null;
+  const closest = (list) =>
+    [...list].sort((a, b) => Math.abs(midpoint(a) - neto) - Math.abs(midpoint(b) - neto))[0];
+  const above = pool.filter(j => midpoint(j) > neto);
+  return above.length > 0 ? closest(above) : closest(pool);
+}
+
+// Blog exit-intent has no calculated neto to match against, so promote the
+// best-paying open job instead. Same "must state a salary" rule as above.
+export function topPayingJob() {
+  const pool = salariedJobs();
+  if (pool.length === 0) return null;
+  return [...pool].sort((a, b) => midpoint(b) - midpoint(a))[0];
+}
+
+// How much more the job's floor pays than the visitor's neto, as a percentage.
+// Only meaningful when the ad explicitly states its range is NETO — otherwise
+// we would be comparing a bruto range to a neto figure and overstating the gap.
+// Rounds DOWN, and returns null below +5% so we never dress up a rounding error
+// as a raise. Accuracy is the brand: understate or say nothing.
+export function upliftPct(job, neto) {
+  if (!job?.salaryNeto || job.salaryMin == null) return null;
+  if (!neto || neto <= 0 || neto >= job.salaryMin) return null;
+  const pct = Math.floor(((job.salaryMin - neto) / neto) * 100);
+  return pct >= 5 ? pct : null;
+}
+
+const fmtRsd = (n) => new Intl.NumberFormat("sr-RS").format(n);
+
+// Human-readable pay range, e.g. "120.000 – 140.000 RSD neto".
+// Never appends "neto" unless the ad said so explicitly.
+export function salaryLabel(j) {
+  if (j.salaryMin == null && j.salaryMax == null) return null;
+  const suffix = j.salaryNeto ? " RSD neto" : " RSD";
+  if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)}${suffix}`;
+  return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
+}
+
+// Count an affiliate event in GoatCounter (free, cookieless) AND Vercel
+// Analytics (activates automatically if the site ever moves to a Pro plan).
+// Production only — Vercel preview deploys (*.vercel.app) and localhost must
+// not pollute the stats.
+//
+// The two sinks take DIFFERENT names by convention and always have: GoatCounter
+// buckets by URL-ish path ("job-click/…"), Vercel by snake_case event name
+// ("job_click"). Passing one string to both would silently rename the existing
+// Vercel `job_click` metric, so callers pass an explicit pair.
+export function trackJobEvent({ gcPath, vercelEvent }, jobId, placement) {
+  if (typeof window === "undefined") return;
+  if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
+  try {
+    if (window.goatcounter && window.goatcounter.count) {
+      window.goatcounter.count({ path: `${gcPath}/${jobId}/${placement}`, event: true });
+    }
+  } catch { /* no-op */ }
+  try { track(vercelEvent, { job: jobId, placement }); } catch { /* no-op */ }
 }
 
 // Append placement tracking without clobbering the agency's own params

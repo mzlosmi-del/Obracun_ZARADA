@@ -6,6 +6,7 @@ import { useSeo } from "./seo.jsx";
 import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 import { JobsWidget } from "./JobsWidget.jsx";
+import { JobSlideIn } from "./JobSlideIn.jsx";
 import { activeJobs } from "./jobs.js";
 
 // Lazy-loaded routes — keep main bundle small
@@ -870,6 +871,7 @@ export function CalculatorPage({ focusSection } = {}) {
       </div>
 
       <JobsWidget neto={r.neto} placement="kalkulator" />
+      <JobSlideIn neto={r.neto} trigger="calc" placement="kalkulator-slidein" />
 
       <div className="tabs" role="tablist" aria-label="Sekcije kalkulatora">
         {["inputs","payslip","results","rates","ppppd"].map((t) => (

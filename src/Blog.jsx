@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { POSTS, LIVE_POSTS } from "./posts.js";
 import { useSeo } from "./seo.jsx";
 import { JobsWidget } from "./JobsWidget.jsx";
+import { JobSlideIn } from "./JobSlideIn.jsx";
 
 const SITE_URL = "https://www.platnilistic.rs";
 
@@ -135,6 +136,7 @@ function BlogPost({ post, navigate }) {
       )}
 
       <JobsWidget placement="blog" />
+      <JobSlideIn trigger="exit" placement="blog-exit" />
 
       <div className="post-cta">
         <p>Proverite tačan obračun vaše zarade koristeći naš besplatni kalkulator — bruto u neto, doprinosi, porez i PDF platni listić u nekoliko sekundi.</p>
