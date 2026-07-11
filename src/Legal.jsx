@@ -3,7 +3,7 @@ import { useSeo } from "./seo.jsx";
 export function PolitikaPrivatnosti({ onBack }) {
   useSeo({
     title: "Politika privatnosti | PlatniListić",
-    description: "Politika privatnosti sajta PlatniListić. Saznajte koje podatke prikupljamo, kako koristimo Vercel Analytics bez kolačića i kako se rukuje email adresama prijavljenim na newsletter.",
+    description: "Politika privatnosti sajta PlatniListić: koje podatke prikupljamo, analitika bez kolačića, Google AdSense oglasi i kolačići, saglasnost i rukovanje email adresama.",
     path: "/privatnost",
   });
 
@@ -11,7 +11,7 @@ export function PolitikaPrivatnosti({ onBack }) {
     <div className="legal-page">
       <button className="back-btn" onClick={onBack} aria-label="Nazad na kalkulator">← Nazad</button>
       <h1 className="legal-title">Politika privatnosti</h1>
-      <p className="legal-date">Poslednje ažuriranje: februar 2025.</p>
+      <p className="legal-date">Poslednje ažuriranje: jul 2026.</p>
 
       <div className="legal-body">
         <h2>Ko smo mi</h2>
@@ -33,6 +33,18 @@ export function PolitikaPrivatnosti({ onBack }) {
           <li>Usklađen je sa GDPR regulativom bez potrebe za pristankom</li>
         </ul>
         <p>Prikupljamo isključivo anonimne agregatne podatke: broj poseta, posećene stranice i geografsku regiju (na nivou države).</p>
+
+        <h2>Oglasi (Google AdSense) i kolačići</h2>
+        <p>Sajt prikazuje oglase putem servisa <strong>Google AdSense</strong> (Google Ireland Ltd.). Google i njegovi partneri mogu koristiti <strong>kolačiće i slične tehnologije</strong> za prikazivanje oglasa, merenje njihovog učinka i, uz vašu saglasnost, za personalizaciju oglasa na osnovu prethodnih poseta ovom i drugim sajtovima.</p>
+        <ul>
+          <li>Google koristi oglašivačke kolačiće (npr. za ograničavanje broja prikazivanja i merenje učinka oglasa).</li>
+          <li>Posetiocima iz Evropskog ekonomskog prostora, Ujedinjenog Kraljevstva i Švajcarske pre učitavanja oglasa prikazuje se <strong>poruka za saglasnost</strong> (Google-ova sertifikovana CMP platforma), gde možete prihvatiti, odbiti ili detaljno podesiti obradu podataka. Izbor možete promeniti u bilo kom trenutku.</li>
+          <li>Personalizaciju oglasa možete isključiti i u <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer">Google podešavanjima oglasa</a>, a više o tome kako Google koristi podatke: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">policies.google.com/technologies/partner-sites</a>.</li>
+          <li>Kolačiće možete obrisati ili blokirati i u podešavanjima svog pregledača; sajt i kalkulator rade i bez oglašivačkih kolačića.</li>
+        </ul>
+
+        <h2>Partnerski (affiliate) linkovi</h2>
+        <p>Pojedini linkovi ka oglasima za posao partnerske agencije su partnerski linkovi — ako se preko njih prijavite i zaposlite, ostvarujemo proviziju. To ne utiče na uslove posla niti na vašu zaradu, a takvi blokovi su na sajtu jasno označeni kao „oglasi partnera".</p>
 
         <h2>Newsletter</h2>
         <p>Ako se prijavite na newsletter, vaša email adresa se šalje servisu Brevo (SAS, Francuska), koji je usklađen sa GDPR regulativom. Možete se odjaviti u bilo kom trenutku klikom na link u svakom emailu koji primite.</p>
