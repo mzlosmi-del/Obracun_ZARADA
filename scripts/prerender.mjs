@@ -112,6 +112,20 @@ async function run() {
   for (const route of ROUTES) {
     const page = await browser.newPage();
     try {
+      // Block ad-network requests during prerender. The AdSense <script> tag in
+      // index.html must stay in the prerendered HTML (site verification), but the
+      // script must NOT execute at build time — otherwise it bakes doubleclick
+      // iframes with localhost URLs into the static HTML that crawlers see.
+      // Live visitors still get ads: the tag executes normally in their browser.
+      await page.setRequestInterception(true);
+      page.on("request", (req) => {
+        const u = req.url();
+        if (u.includes("googlesyndication.com") || u.includes("doubleclick.net") || u.includes("adtrafficquality.google") || u.includes("google.com/recaptcha")) {
+          req.abort();
+        } else {
+          req.continue();
+        }
+      });
       await page.goto(base + route, { waitUntil: "networkidle0", timeout: 30000 });
       await page.waitForFunction(() => document.getElementById("root")?.children.length > 0, { timeout: 15000 });
       // Confirm useSeo ran for THIS route (canonical reflects the path).
