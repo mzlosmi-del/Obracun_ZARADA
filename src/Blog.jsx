@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { POSTS, LIVE_POSTS } from "./posts.js";
 import { useSeo } from "./seo.jsx";
@@ -5,6 +6,16 @@ import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
 
 const SITE_URL = "https://www.platnilistic.rs";
+
+// Each post's body + FAQ is its own module, so Vite emits one chunk per article
+// and a reader downloads only the one they opened. Previously every body shipped
+// in the Blog chunk (~150KB of unread articles) on the LCP critical path.
+const POST_MODULES = import.meta.glob("./posts/*.js");
+
+function loadPostBody(id) {
+  const load = POST_MODULES[`./posts/${id}.js`];
+  return load ? load() : Promise.resolve(null);
+}
 
 function renderMd(text) {
   let imgN = 0;
@@ -175,7 +186,20 @@ function BlogPost({ post, navigate }) {
 export function BlogPostRoute() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const post = POSTS.find(p => p.id === slug);
+  const meta = POSTS.find(p => p.id === slug);
+  // The body/FAQ arrive from the per-article chunk. Hold the whole render until
+  // they land: the FAQ feeds JSON-LD via useSeo, and the prerenderer snapshots
+  // the page once .post-body exists — emitting markup before the content would
+  // bake an empty article and a missing FAQ schema into the static HTML.
+  const [content, setContent] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    if (!meta) { setContent(null); return; }
+    loadPostBody(meta.id).then(m => { if (alive && m) setContent({ body: m.body, faq: m.faq ?? null }); });
+    return () => { alive = false; };
+  }, [meta?.id]);
+
+  const post = meta && content ? { ...meta, body: content.body, faq: content.faq } : null;
   // `updated` (optional) bumps dateModified / article:modified_time without
   // touching the original publish date; falls back to the publish date.
   const modified = post ? isoDate(post.updated || post.date) : undefined;
@@ -218,11 +242,15 @@ export function BlogPostRoute() {
     faq: post && post.faq ? post.faq : null,
   });
 
-  if (!post) return (
+  // Unknown slug: no such article. Distinct from "known article, body still in
+  // flight" (meta set, content null) — rendering the not-found page for that
+  // second case would let the prerenderer capture a 404 for a real article.
+  if (!meta) return (
     <div className="blog-page">
       <button className="back-btn" onClick={() => navigate("/blog")}>← Svi članci</button>
       <h1 style={{marginTop:32}}>Članak nije pronađen</h1>
     </div>
   );
+  if (!post) return <div className="blog-page" />;
   return <BlogPost post={post} navigate={navigate} />;
 }
