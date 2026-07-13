@@ -3,7 +3,7 @@
 export const body = `
 ![Koliko košta otvaranje firme u Srbiji 2026 — paušal i DOO](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** APR naknade su **povećane od 1. januara 2026.** (nova Odluka o naknadama, „Službeni glasnik RS" br. 94/2025). Iznosi u nastavku su okvirni i mogu se razlikovati po proceduri (online/klasično) — **pre uplate proverite tačan iznos na zvaničnom sajtu APR.**
+> **Provereno i ažurirano: jul 2026.** APR naknade su **povećane od 1. januara 2026.** (nova Odluka o naknadama, „Službeni glasnik RS" br. 94/2025). Iznosi u nastavku su okvirni i mogu se razlikovati po proceduri (online/klasično) — **pre uplate proverite tačan iznos na zvaničnom sajtu APR.**
 
 Otvaranje firme u Srbiji je među jeftinijim u regionu, ali „koliko košta" zavisi od toga da li otvarate **paušalnu radnju (preduzetnik)** ili **DOO**, i da li uključite notara, knjigovođu i pravnu pomoć. U ovom vodiču razdvajamo **zvanične APR naknade** od **realnog ukupnog troška**, sa tabelom za 2026. godinu.
 

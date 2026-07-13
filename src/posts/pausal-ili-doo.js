@@ -3,7 +3,7 @@
 export const body = `
 ![Paušal ili DOO 2026 — poređenje pravne forme za firmu u Srbiji](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jun 2026.** Stope i pragovi usklađeni su sa zvaničnim izvorima (Poreska uprava, APR, Zakon o privrednim društvima i Zakon o porezu na dobit) za 2026. godinu. Poreski parametri se menjaju — pre odluke proverite aktuelne podatke ili se obratite knjigovođi.
+> **Provereno i ažurirano: jul 2026.** Stope i pragovi usklađeni su sa zvaničnim izvorima (Poreska uprava, APR, Zakon o privrednim društvima i Zakon o porezu na dobit) za 2026. godinu. Poreski parametri se menjaju — pre odluke proverite aktuelne podatke ili se obratite knjigovođi.
 
 „Paušal ili DOO?" je prva velika dilema pri pokretanju biznisa u Srbiji. Mnogi biraju DOO „jer zvuči ozbiljnije", a onda plaćaju višak poreza i knjigovodstva. Odluka se zapravo svodi na tri stvari: **odgovornost**, **koliko vam ostaje kad novac izvučete iz firme**, i **administraciju**. U ovom vodiču poredimo obe forme po tim kriterijumima, sa primerima.
 

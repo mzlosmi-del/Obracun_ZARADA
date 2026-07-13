@@ -48,25 +48,28 @@ export const POSTS = [
   {
     id: "pausal-ili-doo",
     date: "17. jun 2026",
+    updated: "13. jul 2026",
     tag: "Biznis",
-    title: "Paušal ili DOO 2026 — šta se više isplati?",
-    summary: "Paušal ili DOO 2026: razlika u odgovornosti, porezima i tome koliko vam ostaje kad izvučete dobit. Vodič za izbor pravne forme sa primerima.",
+    title: "Paušal ili DOO 2026 — poređenje i šta se više isplati",
+    summary: "Paušal ili DOO 2026: paušalac plaća fiksno ≈30–45.000 RSD/mes, kod DOO na izvučenu dobit ode ~27,75%. Tabela poređenja, odgovornost i kada se šta isplati.",
     hasFaq: true,
   },
   {
     id: "koliko-pausalac-placa-mesecno",
     date: "17. jun 2026",
+    updated: "13. jul 2026",
     tag: "Paušal",
-    title: "Koliko paušalac plaća mesečno u Srbiji 2026?",
-    summary: "Koliko paušalac plaća mesečno u 2026? Od čega zavisi iznos (delatnost, opština), šta čine porez i doprinosi i kako saznati tačnu sumu iz rešenja PU.",
+    title: "Koliko paušalac plaća mesečno 2026? Okvirno 30–45.000 RSD",
+    summary: "Koliko paušalac plaća mesečno u 2026: okvirno 30.000–45.000 RSD, zavisno od šifre delatnosti i opštine. Šta čine porez i doprinosi (45,05%) i gde je tačna cifra.",
     hasFaq: true,
   },
   {
     id: "registracija-pausalca",
     date: "17. jun 2026",
+    updated: "13. jul 2026",
     tag: "Biznis",
     title: "Kako registrovati paušalca korak po korak (APR) 2026",
-    summary: "Kako registrovati paušalca u Srbiji 2026: izbor šifre delatnosti, e-registracija u APR-u, zahtev za paušal i prve obaveze — vodič korak po korak.",
+    summary: "Kako registrovati paušalca u Srbiji 2026: izbor šifre delatnosti, e-registracija u APR-u za ≈2.500 RSD, zahtev za paušal i prve obaveze — korak po korak.",
     hasFaq: true,
   },
   {
@@ -80,9 +83,10 @@ export const POSTS = [
   {
     id: "kosta-otvaranje-firme",
     date: "17. jun 2026",
+    updated: "13. jul 2026",
     tag: "Biznis",
-    title: "Koliko košta otvaranje firme u Srbiji 2026?",
-    summary: "Koliko košta otvaranje firme u Srbiji 2026? APR naknade za paušal i DOO, notar, minimalni kapital i ukupan realan trošak — uz tabelu i česte greške.",
+    title: "Koliko košta otvaranje firme 2026? Paušal od 2.500 RSD",
+    summary: "Koliko košta otvaranje firme u Srbiji 2026: APR naknada za paušal ≈2.500–2.900 RSD, DOO ≈5.900 RSD online. Notar, minimalni kapital 100 RSD i realan ukupan trošak.",
     hasFaq: true,
   },
   {
@@ -113,9 +117,10 @@ export const POSTS = [
   {
     id: "pausalno-oporezivanje",
     date: "8. jun 2026",
+    updated: "13. jul 2026",
     tag: "Paušal",
     title: "Paušalno oporezivanje 2026 — ko može i koliko plaća?",
-    summary: "Paušalno oporezivanje 2026: ko može da bude paušalac, limit od 6 miliona, koje delatnosti ne mogu i koliko se plaća mesečno. Jednostavan vodič za preduzetnike.",
+    summary: "Paušalno oporezivanje 2026: limit 6 miliona RSD, mesečno okvirno 30–45.000 RSD (porez + doprinosi), koje delatnosti ne mogu u paušal. Vodič za preduzetnike.",
     hasFaq: true,
   },
   {
