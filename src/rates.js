@@ -61,6 +61,27 @@ export const REFERENCE_DATA = {
     vaziOd: "1. januar 2026",
     izvor: "Sl. glasnik RS 78/2025",
   },
+  // Godišnji porez na dohodak građana — dohodak ostvaren u 2025 (prijava do 15.5.2026).
+  // VERIFIKOVANO 13.7.2026 uz Poreski informator PU (april 2026) i Objašnjenje MF od
+  // 30.3.2026: prosečna godišnja zarada 2025 (RZS) 1.813.032; cenzus = 3× = 5.439.096;
+  // prag za stopu 15% = 6× = 10.878.192; odbici 40%/15% prosečne godišnje zarade
+  // (cap 50% dohotka za oporezivanje); umanjenje za mlađe od 40 = 3× = 5.439.096;
+  // najviša godišnja osnovica doprinosa 2025 = 7.877.100. Cifre za dohodak iz 2026.
+  // objavljuje PU početkom 2027 — ažurirati tada.
+  godisnjiPorez2025: {
+    prosecnaGodisnjaZarada: 1813032, // RZS, za 2025
+    cenzus: 5439096,                 // 3× prosečna godišnja zarada
+    prag15: 10878192,                // 6× — preko ovoga stopa 15%
+    stopaNiza: 10,
+    stopaVisa: 15,
+    odbitakObveznik: 725213,         // 40% prosečne godišnje zarade
+    odbitakClan: 271955,             // 15% po izdržavanom članu
+    umanjenjeMladji40: 5439096,      // dodatno, samo zarada+samostalna+autorski
+    maxGodisnjaOsnovicaDoprinosa: 7877100,
+    rokPrijave: "15. maj 2026",
+    obrazac: "PP GPDG",
+    izvor: "Poreska uprava — Poreski informator, april 2026",
+  },
   // Prosečna zarada — RZS, april 2026 (saopštenje 170/2026, objavljeno 25.6.2026).
   prosecnaZarada2026: {
     neto: 121805,
