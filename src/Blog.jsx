@@ -16,11 +16,20 @@ function renderMd(text) {
       // First image = hero (LCP): load eagerly + high priority; rest stay lazy.
       const isHero = imgN++ === 0;
       const loadAttr = isHero ? 'fetchpriority="high"' : 'loading="lazy"';
-      // Serve responsive WebP for Unsplash images (much smaller on mobile).
+      // Hero photos are self-hosted (public/media/blog) rather than fetched from
+      // images.unsplash.com: the cross-origin DNS + TLS + transfer sat directly in
+      // front of LCP on throttled mobile. Same responsive WebP widths, served from
+      // our own origin. Posts still author these as Unsplash URLs; the photo id is
+      // mapped to the local file here.
       if (/images\.unsplash\.com/.test(src)) {
+        const id = (src.match(/photo-([a-zA-Z0-9_-]+)/) || [])[1];
+        const mk = (w) => `/media/blog/photo-${id}-${w}.webp`;
+        if (id) {
+          return `<img src="${mk(800)}" srcset="${mk(480)} 480w, ${mk(800)} 800w, ${mk(1200)} 1200w" sizes="(max-width: 700px) 100vw, 680px" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
+        }
         const u = src.split('?')[0];
-        const mk = (w) => `${u}?w=${w}&fm=webp&q=70`;
-        return `<img src="${mk(800)}" srcset="${mk(480)} 480w, ${mk(800)} 800w, ${mk(1200)} 1200w" sizes="(max-width: 700px) 100vw, 680px" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
+        const rmk = (w) => `${u}?w=${w}&fm=webp&q=70`;
+        return `<img src="${rmk(800)}" srcset="${rmk(480)} 480w, ${rmk(800)} 800w, ${rmk(1200)} 1200w" sizes="(max-width: 700px) 100vw, 680px" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
       }
       // Local images (charts, infographics) render full-size, not cropped to a 300px banner.
       return `<img src="${src}" alt="${alt}" class="post-chart" ${loadAttr} decoding="async" />`;

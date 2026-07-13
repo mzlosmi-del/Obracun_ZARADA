@@ -151,6 +151,40 @@ async function run() {
           `<style>${inlineCss}</style>`
         );
       }
+      // The deferred AdSense loader in index.html runs during prerendering, so
+      // Puppeteer serializes the <script> it injects into the static HTML. That
+      // puts the ad script back in the markup as a parser-discoverable resource,
+      // defeating the deferral. Strip it: the loader re-injects it after load for
+      // real visitors.
+      html = html.replace(
+        /<script[^>]*src="https:\/\/pagead2\.googlesyndication\.com[^"]*"[^>]*>\s*<\/script>/gi,
+        ""
+      );
+      // Preload the hero image on article pages. It is the LCP element, but the
+      // browser only discovers it after parsing the body; preloading starts the
+      // fetch during head parse. Pulled from the rendered <img> (rather than
+      // recomputed) so src/srcset/sizes always match what the browser picks.
+      //
+      // This MUST be injected at the TOP of <head>, before the inlined stylesheet.
+      // That <style> block is ~86KB and declares every @font-face; appending the
+      // preload after it means the parser reaches the preload only once the fonts
+      // are already queued and saturating the connection, and the hero fetch does
+      // not start until they drain (measured: 2.8s in, on throttled mobile).
+      if (route.startsWith("/blog/")) {
+        const hero = html.match(/<img\b[^>]*class="post-img"[^>]*>/i)?.[0];
+        const attr = (name) => hero?.match(new RegExp(`${name}="([^"]*)"`, "i"))?.[1];
+        const src = attr("src");
+        if (src) {
+          const srcset = attr("srcset");
+          const sizes = attr("sizes");
+          const preload =
+            `<link rel="preload" as="image" href="${src}"` +
+            (srcset ? ` imagesrcset="${srcset}"` : "") +
+            (sizes ? ` imagesizes="${sizes}"` : "") +
+            ` fetchpriority="high">`;
+          html = html.replace(/<head(\s[^>]*)?>/i, (m) => `${m}${preload}`);
+        }
+      }
       const out = outPathFor(route);
       await mkdir(dirname(out), { recursive: true });
       await writeFile(out, html, "utf8");

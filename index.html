@@ -11,12 +11,32 @@
     <meta name="theme-color" content="#1452d6" />
     <meta name="color-scheme" content="light" />
 
-    <!-- Preconnect for blog hero images (faster LCP on article pages) -->
-    <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 
-    <!-- Google AdSense (site verification + ad serving) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1379076293464423"
-      crossorigin="anonymous"></script>
+    <!-- Google AdSense (site verification + ad serving).
+         Injected after load/idle rather than requested from <head>: even with
+         async, fetching it in the critical window costs bandwidth on throttled
+         mobile and pushes out FCP/LCP. Deferring keeps ad serving intact while
+         leaving the first paint to the page's own CSS and hero image. -->
+    <script>
+      (function () {
+        var loaded = false;
+        function loadAds() {
+          if (loaded) return;
+          loaded = true;
+          var s = document.createElement('script');
+          s.async = true;
+          s.crossOrigin = 'anonymous';
+          s.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1379076293464423';
+          document.head.appendChild(s);
+        }
+        function schedule() {
+          if ('requestIdleCallback' in window) requestIdleCallback(loadAds, { timeout: 3000 });
+          else setTimeout(loadAds, 1500);
+        }
+        if (document.readyState === 'complete') schedule();
+        else window.addEventListener('load', schedule, { once: true });
+      })();
+    </script>
     <!-- Fonts (Inter + JetBrains Mono) are self-hosted via @fontsource, imported
          in src/main.jsx and bundled into the app CSS — no third-party request. -->
 
@@ -99,6 +119,6 @@
          Free, cookieless, no consent banner needed. Used for affiliate click counts. -->
     <script data-goatcounter="https://platnilistic.goatcounter.com/count"
             data-goatcounter-settings='{"no_onload": true}'
-            async src="//gc.zgo.at/count.js"></script>
+            defer src="https://gc.zgo.at/count.js"></script>
   </body>
 </html>
