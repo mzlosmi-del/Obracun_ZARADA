@@ -16,7 +16,7 @@ Pre podnošenja prijave korisno je znati koliko ćete plaćati: okvirne mesečne
 ## Pre registracije: tri stvari koje treba pripremiti
 
 1. **Naziv** preduzetničke radnje — proverite dostupnost u APR pretrazi privrednih subjekata.
-2. **Šifra pretežne delatnosti** — birajte pažljivo: neke delatnosti (trgovina, ugostiteljstvo, finansije) **ne mogu** u paušal, a šifra utiče i na visinu paušalnog poreza.
+2. **Šifra pretežne delatnosti** — birajte pažljivo: neke delatnosti (trgovina, ugostiteljstvo, finansije) **ne mogu** u paušal, a šifra utiče i na visinu paušalnog poreza. Koeficijente po šiframa i zabranjene oblasti pogledajte u vodiču [šifre delatnosti za paušalce](/blog/sifre-delatnosti-pausal).
 3. **Sedište** — adresa u Srbiji (može i kućna adresa ili virtuelna kancelarija).
 
 ## Korak po korak: e-registracija u APR-u

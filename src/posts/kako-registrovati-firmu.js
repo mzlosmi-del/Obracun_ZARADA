@@ -49,13 +49,13 @@ Od maja 2023. godine registracija je **isključivo elektronska** — papirne pri
 Naziv mora biti jedinstven u registru i sadržati oznaku pravne forme (npr. „d.o.o."). Dostupnost proverite u APR pretrazi privrednih subjekata pre podnošenja.
 
 ### 2. Pretežna delatnost (šifra)
-Odaberite šifru pretežne delatnosti. Pažljivo — neke šifre ne mogu u paušal, a izbor utiče i na visinu paušalnog poreza.
+Odaberite šifru pretežne delatnosti. Pažljivo — neke šifre ne mogu u paušal, a izbor utiče i na visinu paušalnog poreza: koeficijente i zabranjene oblasti razradili smo u vodiču [šifre delatnosti za paušalce](/blog/sifre-delatnosti-pausal).
 
 ### 3. Sedište firme
 Firma mora imati registrovanu adresu u Srbiji. To može biti fizički prostor ili **virtuelna kancelarija** (legalno i dovoljno za registraciju).
 
 ### 4. Osnivački akt (za DOO)
-Za jednočlano DOO izrađuje se **Odluka o osnivanju**, za višečlano **Ugovor o osnivanju**. Akt se potpisuje elektronski; potpis se po pravilu overava kod javnog beležnika. Preduzetnik ne sastavlja osnivački akt — podnosi registracionu prijavu.
+Za jednočlano DOO izrađuje se **Odluka o osnivanju**, za višečlano **Ugovor o osnivanju**. Akt se potpisuje elektronski; potpis se po pravilu overava kod javnog beležnika. Preduzetnik ne sastavlja osnivački akt — podnosi registracionu prijavu. Ceo DOO postupak, dokument po dokument, razradili smo u vodiču [registracija DOO korak po korak](/blog/registracija-doo).
 
 ### 5. Elektronska prijava u APR
 Prijava se podnosi kroz APR aplikaciju, uz elektronski potpis i dokaz o uplati naknade. Uz prijavu idu identifikacioni dokumenti osnivača i (za DOO) osnivački akt.
@@ -85,7 +85,7 @@ Registracija je tek početak — odmah nastaju zakonske obaveze:
 - **Prva (akontaciona) poreska prijava — rok 15 dana.** U roku od 15 dana od registracije podnosi se prva poreska prijava. Kašnjenje povlači **automatske penale** — najčešća skupa greška novih osnivača.
 - **Evidencija stvarnih vlasnika (za DOO).** Upis u Centralnu evidenciju u roku od 15 dana.
 - **Knjigovodstvo.** DOO mora da vodi dvojno knjigovodstvo od početka; paušalcu nije obavezno.
-- **PDV.** Obaveza nastaje pri prometu od **8.000.000 RSD** godišnje (moguća je i dobrovoljna registracija ranije).
+- **PDV.** Obaveza nastaje pri prometu od **8.000.000 RSD u prethodnih 12 meseci** — prag se meri u kontinuitetu, ne po kalendarskoj godini. Moguća je i dobrovoljna registracija (vezuje najmanje dve godine) — detalji u vodiču [PDV za preduzetnike](/blog/pdv-prag-preduzetnik).
 
 ## Paušal vs DOO — šta se više isplati
 

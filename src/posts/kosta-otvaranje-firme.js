@@ -38,7 +38,7 @@ Zvanične naknade Agencije za privredne registre (okvirno, online procedura):
 ## Ukupan realan trošak
 
 - **Paušalna radnja:** sama registracija je vrlo jeftina — uz APR naknadu i eventualni pečat, start je često ispod **10.000 RSD**.
-- **DOO:** samo formalno osnivanje (APR online + notar) kreće se okvirno **8.000–11.000 RSD**; sa pravnom pomoći i pripremom dokumentacije, ukupan realan trošak standardnog slučaja ide od **500 do 1.500 EUR**.
+- **DOO:** samo formalno osnivanje (APR online + notar) kreće se okvirno **8.000–11.000 RSD**; sa pravnom pomoći i pripremom dokumentacije, ukupan realan trošak standardnog slučaja ide od **500 do 1.500 EUR**. Postupak korak po korak: [registracija DOO 2026](/blog/registracija-doo).
 
 ## Mesečni troškovi posle osnivanja
 

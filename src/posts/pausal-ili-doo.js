@@ -64,6 +64,8 @@ Uslove za paušal detaljno objašnjavamo u vodiču o [paušalnom oporezivanju](/
 - imate **ozbiljne B2B ili inostrane ugovore** gde je pravno lice uslov ili znak kredibiliteta;
 - planirate **zapošljavanje, rast i reinvestiranje** dobiti.
 
+Ako je izbor pao na DOO, postupak smo razradili u vodiču [registracija DOO — koraci, rokovi i troškovi](/blog/registracija-doo).
+
 ## Paušal vs DOO — kratak pregled
 
 | Karakteristika | Paušalac | DOO |

@@ -3,6 +3,30 @@
 // all 28 articles (~150KB) into the chunk every reader downloads.
 export const POSTS = [
   {
+    id: "pdv-prag-preduzetnik",
+    date: "13. jul 2026",
+    tag: "Porez",
+    title: "PDV za preduzetnike 2026 — prag 8 miliona i kada u sistem",
+    summary: "PDV prag je 8.000.000 RSD u prethodnih 12 meseci, ne po kalendarskoj godini. Rok za EPPDV, stope 20% i 10%, ino usluge i dobrovoljni ulazak (min. 2 godine).",
+    hasFaq: true,
+  },
+  {
+    id: "registracija-doo",
+    date: "13. jul 2026",
+    tag: "Biznis",
+    title: "Registracija DOO u Srbiji 2026 — koraci, rokovi i troškovi",
+    summary: "Registracija DOO 2026: e-prijava u APR ≈5.900 RSD, osnivački akt i notar, rešenje za 3–5 radnih dana, kapital 100 RSD i obaveze u prvih 15 dana (PDP, CEV).",
+    hasFaq: true,
+  },
+  {
+    id: "sifre-delatnosti-pausal",
+    date: "13. jul 2026",
+    tag: "Paušal",
+    title: "Šifre delatnosti za paušalce 2026 — koje mogu, a koje ne",
+    summary: "Šifre delatnosti za paušalce 2026: koje ne mogu u paušal, koeficijenti po šiframa (6201 → 4,025), 15 šifri sa republičkom osnovicom i zamka promene šifre.",
+    hasFaq: true,
+  },
+  {
     id: "limit-za-pausalce",
     date: "13. jul 2026",
     tag: "Paušal",

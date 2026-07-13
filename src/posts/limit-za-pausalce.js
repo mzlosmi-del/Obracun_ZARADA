@@ -62,7 +62,7 @@ Po sili zakona prelazite na **samooporezivanje** — porez 10% na stvarnu dobit 
 
 Treća opcija je preskok u **DOO** — kada se to isplati razradili smo u poređenju [paušal ili DOO](/blog/pausal-ili-doo), a kompletan postupak u vodiču [kako registrovati firmu](/blog/kako-registrovati-firmu).
 
-**Povratak u paušal** je moguć: zahtev se podnosi elektronski **do 31. oktobra tekuće za narednu godinu**, a uslov je da promet u godini koja prethodi nije bio veći od 6 miliona. Ako ste izašli zbog PDV-a, zahtev možete podneti u roku od 15 dana od potvrde brisanja iz PDV evidencije.
+**Povratak u paušal** je moguć: zahtev se podnosi elektronski **do 31. oktobra tekuće za narednu godinu**, a uslov je da promet u godini koja prethodi nije bio veći od 6 miliona. Ako ste izašli zbog PDV-a, zahtev možete podneti u roku od 15 dana od potvrde brisanja iz PDV evidencije. Kako ceo PDV sistem funkcioniše za preduzetnike — šta ulazi u prag, EPPDV, stope i dobrovoljni ulazak — razradili smo u vodiču [PDV za preduzetnike](/blog/pdv-prag-preduzetnik).
 
 ## Najčešće greške
 
