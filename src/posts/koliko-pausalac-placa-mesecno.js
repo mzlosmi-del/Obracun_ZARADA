@@ -57,7 +57,7 @@ Ukupne troškove osnivanja i poslovanja razrađujemo u vodiču [koliko košta ot
 
 ## Limit i kada se iznos menja
 
-Paušalni status važi dok **promet ne pređe 6.000.000 RSD** godišnje. Iznos iz rešenja se može menjati kada se promene parametri (npr. nova polazna osnovica za godinu, promena opštine ili delatnosti). Prelazak limita znači izlazak iz paušala.
+Paušalni status važi dok **promet ne pređe 6.000.000 RSD** godišnje. Iznos iz rešenja se može menjati kada se promene parametri (npr. nova polazna osnovica za godinu, promena opštine ili delatnosti). Prelazak limita znači izlazak iz paušala — od kog tačno datuma kreću poslovne knjige i kako se limit pravilno računa objasnili smo u vodiču [limit za paušalce](/blog/limit-za-pausalce).
 
 ## Savet
 

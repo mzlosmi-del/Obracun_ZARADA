@@ -3,6 +3,14 @@
 // all 28 articles (~150KB) into the chunk every reader downloads.
 export const POSTS = [
   {
+    id: "limit-za-pausalce",
+    date: "13. jul 2026",
+    tag: "Paušal",
+    title: "Limit za paušalce 2026 — 6 i 8 miliona: šta kad se pređe",
+    summary: "Limit za paušalce: 6.000.000 RSD u kalendarskoj godini, PDV prag 8.000.000 u 365 dana. Kada knjige kreću od 1. jula, a kada od 1. januara — vodič sa rokovima.",
+    hasFaq: true,
+  },
+  {
     id: "godisnji-porez-na-dohodak",
     date: "13. jul 2026",
     tag: "Porez",

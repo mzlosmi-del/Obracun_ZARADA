@@ -85,6 +85,8 @@ Pošto prelomna tačka zavisi od konkretnih iznosa, najbolje je uporediti obe op
 - Kada promet pređe **6 miliona dinara**, paušalac gubi taj status i prelazi na **vođenje poslovnih knjiga** (oporezivanje na stvarni prihod).
 - Kada promet pređe **8 miliona dinara** u 365 dana, obavezan je ulazak u **sistem PDV-a**.
 
+Tačne rokove (knjige od 1. jula ili od 1. januara), šta ulazi u promet i kako izgleda povratak u paušal razradili smo u posebnom vodiču: [limit za paušalce — šta kad se pređe](/blog/limit-za-pausalce).
+
 ## Savet
 
 Pre registracije proverite da li je vaša šifra delatnosti dozvoljena za paušal i zatražite okvirnu procenu mesečne obaveze za vašu opštinu. Za precizan obračun i poređenje sa samooporezivanjem konsultujte knjigovođu.
