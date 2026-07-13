@@ -235,6 +235,7 @@ Zahtev za naknadu zarade podnosi se **nadležnom organu jedinice lokalne samoupr
   {
     id: "otkaz-ugovora-o-radu",
     date: "25. jun 2026",
+    updated: "13. jul 2026",
     tag: "Zakon o radu",
     title: "Otkaz ugovora o radu 2026 — otkazni rok, otpremnina i prava",
     summary: "Otkaz ugovora o radu 2026: razlozi za otkaz po Zakonu o radu, otkazni rok (8–30 dana), otpremnina za tehnološki višak i prava zaposlenog. Obračun sa primerom.",
@@ -308,7 +309,7 @@ Zaposleni proglašen tehnološkim viškom, sa **10 navršenih godina** rada kod 
 
 Minimalna zakonska otpremnina je **300.000 dinara**; poslodavac sme isplatiti više, ali ne manje. **Primer za penziju:** uz poslednju prosečnu neto zaradu u Srbiji od 121.805 din ([prosečna plata u Srbiji](/blog/prosecna-plata-srbija)), minimalna otpremnina pri penzionisanju je 2 × 121.805 = **243.610 dinara**.
 
-## Kada zaposleni daje otkaz
+## Otkaz ugovora o radu od strane zaposlenog
 
 Zaposleni može otkazati ugovor u svakom trenutku, bez navođenja razloga:
 
@@ -316,6 +317,27 @@ Zaposleni može otkazati ugovor u svakom trenutku, bez navođenja razloga:
 - Poštuje se otkazni rok od najmanje 15 dana (najviše 30 ako je tako ugovoreno).
 - Ako ne ispoštuje rok, poslodavac ima pravo na naknadu štete za neostvareni deo roka.
 - Zaposleni koji sam da otkaz **nema pravo na otpremninu** ni na novčanu naknadu za nezaposlene.
+
+### Primer izjave o otkazu (od strane zaposlenog)
+
+Zakon ne propisuje obrazac — dovoljna je kratka pisana izjava sa jasnim datumom prestanka, predata u dva primerka (jedan primerak zadržite, sa potvrdom prijema):
+
+> [Ime i prezime], [radno mesto]
+> [Naziv i sedište poslodavca]
+>
+> Na osnovu člana 178. Zakona o radu, otkazujem ugovor o radu br. [broj] od [datum]. Radni odnos prestaje mi dana [datum — najmanje 15 dana od dana dostavljanja].
+>
+> U [mesto], [datum] — potpis zaposlenog
+
+Otkaz ne mora da se obrazlaže i poslodavac ne može da ga „odbije" — dovoljno je da je uredno dostavljen u pisanoj formi.
+
+## Otkaz zbog nedolaska na posao
+
+Neopravdani izostanak sa posla je nepoštovanje radne discipline, odnosno povreda radne obaveze (član 179 st. 2 i 3). Poslodavac i tada mora da sprovede postupak: pisano upozorenje sa rokom za izjašnjenje od najmanje 8 dana, pa tek onda rešenje o otkazu — radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka i bez otpremnine. Pojedinačan izostanak po pravilu nije dovoljan osnov ako opštim aktom nije predviđen kao teža povreda — sudska praksa traži srazmernost između povrede i otkaza.
+
+## Otkaz ugovora na određeno i na neodređeno — ima li razlike
+
+Pravila otkaza su ista za ugovor na određeno i na neodređeno vreme: isti razlozi (član 179), isti postupak i ista sudska zaštita. Razlika je u tome što ugovor na određeno može prestati i **istekom roka** na koji je zaključen — tada nema otkaza, rešenja ni otpremnine. Pre isteka roka poslodavac ga može otkazati samo iz zakonskih razloga, potpuno isto kao ugovor na neodređeno.
 
 ## Sporazumni raskid ugovora o radu
 
@@ -343,9 +365,11 @@ Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otka
       { q: "Koliki je rok za žalbu na otkaz?", a: "Tužba sudu podnosi se u roku od 60 dana od dana dostavljanja rešenja o otkazu." },
       { q: "Da li poslodavac može da me otkaže bez razloga?", a: "Ne. Poslodavac može otkazati ugovor samo iz razloga propisanih članom 179 Zakona o radu i uz propisan postupak. Otkaz bez opravdanog razloga je nezakonit." },
       { q: "Gubim li pravo na naknadu ako potpišem sporazumni raskid?", a: "Po pravilu da — kod sporazumnog raskida zaposleni obično nema pravo na novčanu naknadu kod Nacionalne službe za zapošljavanje. Zato uslove (npr. otpremninu) treba dogovoriti pre potpisivanja." },
+      { q: "Kako se piše otkaz ugovora o radu od strane zaposlenog?", a: "Dovoljna je kratka pisana izjava: pozovete se na član 178. Zakona o radu, navedete broj i datum ugovora i datum prestanka radnog odnosa (najmanje 15 dana od dostavljanja). Obrazloženje nije obavezno, a poslodavac otkaz ne može da odbije." },
+      { q: "Da li mogu da dobijem otkaz zbog nedolaska na posao?", a: "Da — neopravdani izostanak je povreda radne discipline (član 179). Poslodavac prethodno mora da dostavi pisano upozorenje i ostavi najmanje 8 dana za izjašnjenje; radni odnos tada prestaje danom dostavljanja rešenja, bez otkaznog roka i bez otpremnine." },
+      { q: "Da li se otkaz razlikuje kod ugovora na određeno i na neodređeno?", a: "Ne — razlozi, postupak i zaštita su isti. Ugovor na određeno dodatno može prestati istekom roka na koji je zaključen, bez otkaza i otpremnine." },
     ],
   },
-
   {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
@@ -488,7 +512,6 @@ Cela slika prosečne plate u Srbiji 2026. na jednom mestu — slobodno sačuvajt
       { q: "Da li je prosečna plata bruto ili neto?", a: "Statistika objavljuje oba iznosa. Na ruke se dobija neto plata, dok je bruto iznos pre poreza i doprinosa." },
     ],
   },
-
   {
     id: "kako-registrovati-firmu",
     date: "17. jun 2026",
@@ -615,7 +638,6 @@ Pre registracije uporedite forme i izračunajte **ukupan mesečni trošak**, ne 
       { q: "Da li je paušalcu potreban knjigovođa?", a: "Zakonski nije obavezan — paušalac ne vodi dvojno knjigovodstvo. Mnogi ipak angažuju knjigovođu radi rokova, prijava i evidencije. DOO, za razliku od paušalca, mora da vodi knjige od početka." },
     ],
   },
-
   {
     id: "pausal-ili-doo",
     date: "17. jun 2026",
@@ -727,7 +749,6 @@ Ne birajte po tome „šta zvuči bolje", već po odgovornosti, ukupnom porezu n
       { q: "Da li mogu da pređem sa paušala na DOO?", a: "Da. Forma nije doživotna — mnogi krenu kao paušalci dok je posao mali, pa pređu na DOO kada porastu prihodi, dođe partner ili zatreba zaštita lične imovine." },
     ],
   },
-
   {
     id: "koliko-pausalac-placa-mesecno",
     date: "17. jun 2026",
@@ -810,7 +831,6 @@ Pre nego što se registrujete, procenite mesečnu obavezu za svoju delatnost i o
       { q: "Gde vidim tačan iznos koji treba da platim?", a: "U rešenju Poreske uprave o paušalnom oporezivanju, koje sa nalozima za plaćanje vidite preko portala ePorezi. Dok rešenje ne stigne, iznos je samo procena." },
     ],
   },
-
   {
     id: "registracija-pausalca",
     date: "17. jun 2026",
@@ -890,7 +910,6 @@ Ako vam je posao samostalan i niskog rizika, paušalna radnja je obično najbolj
       { q: "Koliko traje registracija preduzetnika?", a: "APR donosi rešenje o registraciji preduzetnika po pravilu u roku od nekoliko radnih dana od uredne elektronske prijave, nakon čega dobijate PIB i matični broj." },
     ],
   },
-
   {
     id: "uplate-iz-inostranstva",
     date: "17. jun 2026",
@@ -976,7 +995,6 @@ Izaberite servis po tome **kako vaši klijenti najlakše plaćaju** i po ukupnom
       { q: "Da li se uplate preko Wise-a i Payoneer-a prijavljuju za porez?", a: "Da. Svaki priliv iz inostranstva — bez obzira na to da li stigne na banku, Wise ili Payoneer — predstavlja oporeziv prihod. Prijavljuje se po srednjem kursu NBS na dan priliva, uz čuvanje faktura i izvoda kao dokaza." },
     ],
   },
-
   {
     id: "kosta-otvaranje-firme",
     date: "17. jun 2026",
@@ -1059,7 +1077,6 @@ Pre osnivanja, uporedite forme i izračunajte ukupan mesečni trošak, ne samo n
       { q: "Koliko traje osnivanje firme u Srbiji?", a: "APR donosi rešenje o registraciji u roku od 3 do 5 radnih dana od uredne dokumentacije. Ceo proces, uključujući pripremu dokumentacije i otvaranje bankovnog računa, traje najčešće 10 do 15 radnih dana." },
     ],
   },
-
   {
     id: "frilenser-pausalac-firma",
     date: "17. jun 2026",
@@ -1168,7 +1185,6 @@ Izbor zavisi od visine i stabilnosti prihoda, potrebe za fakturama i tolerancije
       { q: "Paušal ili DOO — šta je bolje za početak?", a: "Za samostalan rad sa malim rashodima paušal je jednostavniji i jeftiniji, ali nosi ličnu odgovornost. DOO se bira kada je potrebna ograničena odgovornost, kod više osnivača, većeg prometa ili ozbiljnijih B2B i inostranih ugovora, uz obavezno knjigovodstvo." },
     ],
   },
-
   {
     id: "ugovor-o-delu",
     date: "14. jun 2026",
@@ -1288,7 +1304,6 @@ Za veće i redovne iznose, ukupna obaveza po ugovoru o delu (porez + PIO + zdrav
       { q: "Koja je razlika između ugovora o delu i ugovora o radu?", a: "Ugovor o delu je angažovanje van radnog odnosa za konkretan rezultat, bez prava na godišnji odmor, bolovanje, topli obrok i regres. Ugovor o radu zasniva radni odnos sa punim pravima i standardnim obračunom zarade." },
     ],
   },
-
   {
     id: "topli-obrok-i-regres",
     date: "11. jun 2026",
@@ -2109,13 +2124,14 @@ Zaposleni može pokrenuti tužbu za isplatu zaostatka uz zakonsku zateznu kamatu
   {
     id: "porez-na-bonus",
     date: "1. mart 2026",
+    updated: "13. jul 2026",
     tag: "Porez",
     title: "Porez na bonus i nagradu zaposlenima — koliko se zaista oporezuje?",
     summary: "Bonus, godišnja nagrada, 13. plata i jubilarna nagrada — sve što treba znati o porezima i doprinosima na nestandardna primanja zaposlenih u Srbiji.",
     body: `
 ![Bonus i nagrada zaposlenom](https://images.unsplash.com/photo-1579621970795-87facc2f976d?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: jul 2026.** Neoporezivi iznosi usklađeni sa „Sl. glasnikom RS" 6/2026 (važe 1.2.2026–31.1.2027); stope doprinosa prema ZDOSO. Poreski parametri se mogu menjati tokom godine.
 
 Bonus i nagrade zaposlenima su odlične motivacione alatke, ali često iznenade kada zaposleni vidi da na **100.000 RSD bonusa** dobije manje od 65.000 RSD na račun. Evo zašto i kako se to računa.
 
@@ -2148,25 +2164,20 @@ Zakon o porezu na dohodak građana (čl. 18) propisuje **ograničene neoporezive
 
 ### Jubilarna nagrada (čl. 18, tačka 9)
 
-Neoporezivo do **prosečne mesečne zarade u Republici Srbiji** prema poslednjem objavljenom podatku — uplaćuje se za:
-- 10 godina rada kod poslodavca: 1× prosečna zarada
-- 20 godina: 2× prosečna zarada
-- 30 godina: 3× prosečna zarada
+Poreski najpovoljnije primanje: neoporezivo do **28.912 RSD godišnje** (za isplate 1.2.2026–31.1.2027), a na deo iznad plaća se **samo porez 10%, bez doprinosa** — jubilarna nagrada nema karakter zarade. Visina isplate (uobičajeno 1–3 prosečne zarade, zavisno od jubileja) određuje se kolektivnim ugovorom.
 
 Pogledajte detaljan vodič za [jubilarnu nagradu i obračun](/blog/jubilarna-nagrada).
 
-### Solidarna pomoć (čl. 18, tačka 7)
+### Solidarna pomoć (čl. 18, tačka 7 i 9a)
 
-Neoporeziva u slučaju:
-- Smrti zaposlenog ili člana porodice
-- Teške bolesti
-- Elementarne nepogode
-
-Iznos: do **dvostruke prosečne zarade** (oko 336.016 RSD, uz prosek od 168.008 RSD).
+Neoporezivi iznosi za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026):
+- Bolest, zdravstvena rehabilitacija ili invalidnost zaposlenog ili člana porodice: do **57.827 RSD**
+- Smrt člana porodice zaposlenog: do **101.194 RSD**
+- Pomoć porodici u slučaju smrti zaposlenog ili penzionisanog zaposlenog (čl. 9 st. 1 tač. 9): do **101.194 RSD**
 
 ### Pokloni za decu zaposlenih
 
-Neoporezivo do **11.766 RSD po detetu godišnje** (za decu do 15 godina, povodom Nove godine).
+Neoporezivo do **14.457 RSD po detetu godišnje** (za decu do 15 godina, povodom Nove godine i Božića; za isplate od 1.2.2026).
 
 ### Otpremnina pri penzionisanju ili tehnološkom višku
 
@@ -2198,8 +2209,8 @@ Ako želite da zaposleni dobije više neto, razmotrite:
 
 1. **Jubilarne nagrade** — neoporezive do propisanog iznosa
 2. **Pokloni u prirodi** (npr. roba) — kompleksniji režim, konsultujte računovođu
-3. **Privatno penzijsko osiguranje** — neoporezivo do 6.971 RSD mesečno
-4. **Zdravstveno osiguranje za zaposlene** — neoporezivo do 6.971 RSD mesečno
+3. **Privatno penzijsko osiguranje** — neoporezivo do 8.677 RSD mesečno (od 1.2.2026)
+4. **Dobrovoljno zdravstveno osiguranje za zaposlene** — neoporezivo do 8.677 RSD mesečno (od 1.2.2026)
 5. **Naknade za rekreaciju** — pod određenim uslovima neoporezive do 70.000 RSD godišnje
 
 ## Obračun bonusa u kalkulatoru
@@ -2222,70 +2233,60 @@ Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinos
   {
     id: "jubilarna-nagrada",
     date: "15. februar 2026",
+    updated: "13. jul 2026",
     tag: "Porez",
-    title: "Jubilarna nagrada 2026 — iznos i neoporeziva isplata",
-    summary: "Za 10, 20 i 30 godina rada kod istog poslodavca zaposleni ima pravo na jubilarnu nagradu. Kolika je, kako se obračunava i zašto je deo neoporeziv?",
+    title: "Jubilarna nagrada 2026 — iznos, porez i neoporezivih 28.912",
+    summary: "Jubilarna nagrada 2026: visina je stvar kolektivnog ugovora (obično 1–3 prosečne zarade), neoporezivo je 28.912 RSD godišnje, a iznad se plaća samo porez 10% — bez doprinosa.",
     body: `
 ![Jubilarna nagrada za godine staža](https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: jul 2026.** Neoporezivi iznos od **28.912 RSD** važi za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Poreski tretman proveren uz Zakon o radu (čl. 105 st. 3, čl. 120 tač. 1) i Zakon o porezu na dohodak građana. Prosečna bruto zarada: 168.008 RSD (RZS, april 2026).
 
-**Jubilarna nagrada** je jednokratna isplata zaposlenom povodom navršenih „okruglih" godina rada kod istog poslodavca. U Srbiji je ova vrsta nagrade poreski povlašćena — deo iznosa je **u potpunosti neoporeziv**.
+**Jubilarna nagrada** je jednokratna isplata zaposlenom povodom navršenih „okruglih" godina rada kod istog poslodavca. Poreski je povlašćena — ali drugačije nego što većina tekstova na internetu tvrdi: neoporeziv je fiksan godišnji iznos, a na ostatak se plaća samo porez, bez doprinosa.
 
-**Kratak odgovor:** za 2026. godinu, uz poslednju objavljenu prosečnu bruto zaradu od 168.008 RSD (RZS), jubilarna nagrada neoporezivo iznosi do **168.008 RSD za 10 godina**, do **336.016 RSD za 20 godina**, do **420.020 RSD za 30 godina** i do **504.024 RSD za 40 godina** rada kod istog poslodavca.
+**Ukratko:** visinu jubilarne nagrade određuje kolektivni ugovor ili ugovor o radu — uobičajeno **1 prosečna zarada za 10 godina, 2 za 20, 2,5 za 30 i 3 za 40 godina** staža. Poreski neoporezivo je **28.912 RSD godišnje** (2026), a na deo iznad plaća se **samo porez na zarade od 10%** — doprinosi se ne plaćaju uopšte.
 
-> 🧮 Brzo izračunajte neoporezivi iznos: [kalkulator jubilarne nagrade](/jubilarna-nagrada).
+> 🧮 Brzo izračunajte porez i neto: [kalkulator jubilarne nagrade](/jubilarna-nagrada).
 
 ## Pravni okvir
 
 Jubilarna nagrada je regulisana na dva nivoa:
 
-1. **Zakon o radu** — kao mogućnost (ne obaveza), regulisana kolektivnim ugovorom ili ugovorom o radu
-2. **Zakon o porezu na dohodak građana, čl. 18 tačka 9** — definiše neoporezive iznose
+1. **Zakon o radu (čl. 120 tač. 1)** — kao mogućnost (ne obaveza), koja se utvrđuje kolektivnim ugovorom, opštim aktom ili ugovorom o radu
+2. **Zakon o porezu na dohodak građana (čl. 18 tač. 9)** — definiše neoporezivi iznos, koji se usklađuje svakog februara
 
 To znači da poslodavac **nije obavezan** da isplati jubilarnu nagradu, ali ako se obaveže kolektivnim ugovorom, mora je isplatiti.
 
-## Standardni jubileji
+## Najčešća greška: visina nagrade nije neoporezivi limit
 
-Najčešća praksa u Srbiji je da se jubilarna nagrada isplaćuje za:
+Po internetu (pa i u ponekim stručnim tabelama) skala „1×, 2×, 2,5×, 3× prosečne zarade" prikazuje se kao *neoporezivi maksimum* jubilarne nagrade. **To je netačno.** Ta skala je uobičajena **visina isplate** iz kolektivnih ugovora (naročito u javnom sektoru — prosveta, zdravstvo, državni organi). Poreski neoporezivi iznos je nešto sasvim drugo: **fiksnih 28.912 RSD godišnje** (ZPDG čl. 18 tač. 9, za isplate 1.2.2026–31.1.2027), isti za sve jubileje i sve zaposlene.
 
-| Jubilej | Iznos (zakonski max neoporezivo) |
-|---|---|
-| 10 godina rada | 1× prosečna mesečna zarada u RS |
-| 20 godina rada | 2× prosečna mesečna zarada u RS |
-| 30 godina rada | 2,5× prosečna mesečna zarada u RS |
-| 40 godina rada | 3× prosečna mesečna zarada u RS |
-
-**Prosečna mesečna zarada u Republici Srbiji** koja se uzima u obzir je ona koju je poslednju objavio Republički zavod za statistiku — prema poslednjem podatku prosečna bruto zarada iznosi **168.008 RSD** (RZS). Ovaj iznos se povremeno menja, pa se za konkretnu isplatu koristi poslednji zvanično objavljen podatak.
+Druga stvar koju vodiči često pogreše: deo iznad neoporezivog iznosa **ne tereti se doprinosima** kao bonus, već samo porezom na zarade od 10%. Jubilarna nagrada, naime, nema karakter zarade (čl. 105 st. 3 u vezi sa čl. 120 tač. 1 Zakona o radu), pa osnovica za doprinose ne postoji.
 
 ## Koliko iznosi jubilarna nagrada za 10, 20, 30 i 40 godina?
 
-Uz prosečnu bruto zaradu od 168.008 RSD, jubilarna nagrada (neoporezivi maksimum) iznosi:
+Visinu određuje kolektivni ugovor ili ugovor o radu kod vašeg poslodavca. Uobičajena praksa, uz prosečnu bruto zaradu od 168.008 RSD (RZS, april 2026):
 
-- **Jubilarna nagrada za 10 godina:** do 168.008 RSD neoporezivo (1×)
-- **Jubilarna nagrada za 20 godina:** do 336.016 RSD neoporezivo (2×)
-- **Jubilarna nagrada za 30 godina:** do 420.020 RSD neoporezivo (2,5×)
-- **Jubilarna nagrada za 40 godina staža:** do 504.024 RSD neoporezivo (3×)
+| Jubilej | Uobičajena visina isplate | Neoporezivo (fiksno) |
+|---|---|---|
+| 10 godina rada | 1× prosek ≈ 168.008 RSD | 28.912 RSD |
+| 20 godina rada | 2× prosek ≈ 336.016 RSD | 28.912 RSD |
+| 30 godina rada | 2,5× prosek ≈ 420.020 RSD | 28.912 RSD |
+| 40 godina rada | 3× prosek ≈ 504.024 RSD | 28.912 RSD |
 
-Ako poslodavac isplati **veći iznos** od neoporezivog limita, razlika podleže porezu na zaradu (10%) i punim doprinosima (35,05%) — kao i bilo koji drugi bonus. Detaljan vodič za [porez na bonus](/blog/porez-na-bonus) objašnjava ovaj princip.
+Kod privatnih poslodavaca visina može biti bilo koja — od simbolične do više prosečnih zarada; presudan je akt koji je poslodavac doneo ili potpisao. Kako se kreće prosečna zarada koja služi kao orijentir, pratite u pregledu [prosečne plate u Srbiji](/blog/prosecna-plata-srbija).
 
 ## Primer obračuna
 
 **Scenario A:** Zaposleni navršio 20 godina rada, poslodavac isplaćuje 300.000 RSD.
 
-- Limit neoporezivo (2× prosečna): 336.016 RSD
-- Iznos isplate: 300.000 RSD
-- **Iznos je u potpunosti neoporeziv** → zaposleni prima **300.000 RSD na račun**.
+- Neoporezivo: 28.912 RSD
+- Oporezivi deo: 300.000 − 28.912 = 271.088 RSD
+- Porez (10% × 271.088): 27.109 RSD
+- Doprinosi: **0 RSD** (jubilarna nagrada nema karakter zarade)
+- **Neto na račun: 272.891 RSD**
 
-**Scenario B:** Zaposleni navršio 20 godina rada, poslodavac isplaćuje 400.000 RSD.
-
-- Neoporezivi deo (2× prosečna): 336.016 RSD
-- Oporezivi deo: 63.984 RSD
-- Doprinosi zaposlenog (19,90% × 63.984): 12.733 RSD
-- Porez (10% × 63.984): 6.398 RSD
-- **Neto na račun: 380.869 RSD** (umesto 400.000)
-
-Dodatno, poslodavac plaća svoj deo doprinosa (15,15% × 63.984 = 9.694 RSD).
+**Scenario B:** isti iznos isplaćen kao običan bonus (poređenja radi) bio bi oporezovan porezom i punim doprinosima kao [bonus uz zaradu](/blog/porez-na-bonus) — zaposleni bi primio znatno manje. Zato je jubilarna nagrada za poslodavca najjeftiniji zakonit način da nagradi dugogodišnji staž.
 
 ## Šta se računa kao staž za jubilej?
 
@@ -2306,19 +2307,19 @@ Rok isplate nije zakonski definisan, već zavisi od ugovora ili kolektivnog ugov
 
 ## Da li se jubilarna nagrada može odbiti od poreskog osnova poslodavca?
 
-Da. Jubilarna nagrada (i neoporezivi i oporezivi deo) je **trošak poslovanja** koji se priznaje za poreski osnov u smislu zakona o porezu na dobit pravnih lica. To znači da poslodavac smanjuje poreski osnov za pun iznos isplaćene jubilarne nagrade plus pripadajuće doprinose na svoj teret.
+Da. Jubilarna nagrada (i neoporezivi i oporezivi deo) je **trošak poslovanja** koji se priznaje za poreski osnov u smislu zakona o porezu na dobit pravnih lica. Pošto se doprinosi ne plaćaju, ukupan trošak poslodavca jednak je isplaćenom iznosu — što jubilarnu nagradu čini jeftinijom od bonusa iste visine.
 
 ## Kako se obračunava jubilarna nagrada u kalkulatoru?
 
-U našem [kalkulatoru zarade](/) jubilarnu nagradu možete uneti kao **fiksni bonus**:
+Za obračun koristite [namenski kalkulator jubilarne nagrade](/jubilarna-nagrada):
 
-1. Otvorite kalkulator
-2. U sekciji „Bonusi i nagrade", unesite iznos jubilarne nagrade kao Fiksni bonus
-3. Kalkulator će izračunati bruto i neto sa porezima
+1. Izaberite jubilej (10, 20, 30 ili 40 godina) — kalkulator predlaže uobičajenu visinu nagrade
+2. Po potrebi unesite stvarni iznos koji poslodavac isplaćuje
+3. Kalkulator prikazuje neoporezivi deo (28.912 RSD), porez od 10% na ostatak i neto na račun
 
-**Napomena:** Kalkulator ne razdvaja automatski neoporezivi i oporezivi deo jubilarne nagrade — to morate uraditi ručno tako što ćete uneti samo oporezivi deo kao bonus, a neoporezivi deo evidentirati posebno (jer ne podleže porezu).
+**Napomena:** jubilarnu nagradu nemojte unositi u [kalkulator zarade](/) kao bonus — bonus se tereti punim doprinosima kao zarada, a jubilarna nagrada se doprinosima ne tereti, pa bi rezultat bio pogrešan.
 
-Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina-obracun), koja takođe ima delove koji su neoporezivi.
+Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina-obracun), koja takođe ima neoporezivi deo.
 
 ## Saveti za zaposlene
 
@@ -2330,16 +2331,17 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
 ## Izvori i korisni linkovi
 
 - [Zakon o porezu na dohodak građana — čl. 18 (Paragraf.rs)](https://www.paragraf.rs/propisi/zakon_o_porezu_na_dohodak_gradjana.html)
-- [Pravilnik o ostvarivanju neoporezivih primanja](https://www.paragraf.rs/propisi/pravilnik-uslovi-neoporezivi-iznosi.html)
+- [Paragraf — Pregled usklađenih neoporezivih iznosa (1.2.2026–31.1.2027)](https://www.paragraf.rs/statistika/pregled_uskladjenih_neoporezivih_iznosa_po_zakonu_o_porezu_na_dohodak_gradjana.html)
+- Zakon o radu — čl. 105 st. 3 i čl. 120 tač. 1 (primanja koja nemaju karakter zarade)
 - [Republički zavod za statistiku — prosečne zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade/)
-- [Sindikat samostalnih sindikata Srbije](http://www.sindikat.rs/)
     `,
     faq: [
-      { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Za 20 godina rada kod istog poslodavca jubilarna nagrada je neoporeziva do dvostruke prosečne zarade u Srbiji — uz prosek od 168.008 RSD to je oko 336.016 RSD. Poslodavac može isplatiti i više, ali se razlika iznad limita oporezuje kao zarada." },
-      { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Za 10 godina rada jubilarna nagrada je neoporeziva do jedne prosečne mesečne zarade u Republici Srbiji — oko 168.008 RSD." },
-      { q: "Koliko iznosi jubilarna nagrada za 30 godina?", a: "Za 30 godina rada jubilarna nagrada je neoporeziva do 2,5 prosečne zarade — oko 420.020 RSD." },
-      { q: "Koliko iznosi jubilarna nagrada za 40 godina staža?", a: "Za 40 godina rada jubilarna nagrada je neoporeziva do tri prosečne zarade — oko 504.024 RSD." },
-      { q: "Kako izgleda primer obračuna jubilarne nagrade?", a: "Ako poslodavac za 20 godina isplati 300.000 RSD, a neoporezivi limit je 336.016 RSD, ceo iznos je neoporeziv i zaposleni dobija 300.000 RSD na račun. Ako isplati 400.000 RSD, oporezuje se samo 63.984 RSD iznad limita." },
+      { q: "Koliki je neoporezivi iznos jubilarne nagrade u 2026?", a: "28.912 RSD godišnje, za isplate od 1. februara 2026. do 31. januara 2027. (ZPDG čl. 18 tač. 9, „Sl. glasnik RS” 6/2026). Iznos je fiksan — isti za sve jubileje i ne zavisi od prosečne zarade." },
+      { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Visinu određuje kolektivni ugovor ili ugovor o radu; uobičajeno je dve prosečne bruto zarade — uz prosek od 168.008 RSD oko 336.016 RSD. Od toga je neoporezivo 28.912 RSD, a na ostatak se plaća samo porez od 10%, bez doprinosa." },
+      { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Uobičajeno jedna prosečna bruto zarada u RS — oko 168.008 RSD — ali visina zavisi isključivo od kolektivnog ugovora ili ugovora o radu kod poslodavca." },
+      { q: "Koliko iznosi jubilarna nagrada za 30 i 40 godina staža?", a: "Uobičajeno 2,5 prosečne zarade za 30 godina (≈ 420.020 RSD) i 3 prosečne za 40 godina (≈ 504.024 RSD). To je visina isplate iz kolektivnih ugovora, a ne poreski limit — neoporezivo je uvek 28.912 RSD." },
+      { q: "Da li se na jubilarnu nagradu plaćaju doprinosi?", a: "Ne. Jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu), pa se doprinosi ne plaćaju ni na jedan deo. Na deo iznad 28.912 RSD plaća se samo porez na zarade od 10%." },
+      { q: "Kako izgleda primer obračuna jubilarne nagrade?", a: "Poslodavac za 20 godina staža isplaćuje 300.000 RSD: neoporezivo je 28.912 RSD, oporezivi deo je 271.088 RSD, porez 10% iznosi 27.109 RSD, doprinosa nema — zaposleni na račun prima 272.891 RSD." },
     ],
   },
   {
@@ -2376,7 +2378,7 @@ Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi
 
 ## Promena u odnosu na 2025. godinu
 
-Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% („Sl. glasnik RS" 115/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
+Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% (izmene zakona, „Sl. glasnik RS" 109/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/minimalna-zarada-2026) i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika).
 
 ## Važno napomenuti
 
@@ -2692,6 +2694,7 @@ Koristite naš [besplatni kalkulator](/) za tačan obračun minimalne i svake dr
   {
     id: "godisnji-odmor-naknada",
     date: "15. januar 2026",
+    updated: "13. jul 2026",
     tag: "Zakon o radu",
     title: "Kako se računa naknada za godišnji odmor 2026",
     summary: "Kako se računa i plaća godišnji odmor po Zakonu o radu? Naknada ne može biti niža od proseka zarade u prethodnih 12 meseci — formula, primer i prava.",
@@ -2751,6 +2754,10 @@ Ako zaposleni za vreme godišnjeg odmora padne na bolovanje, odmor se prekida. N
 
 Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako nije iskorišćeno krivicom zaposlenog. Ako nije iskorišćen krivicom poslodavca, zaposleni ima pravo na naknadu štete.
 
+## Godišnji odmor i prestanak radnog odnosa
+
+Ako radni odnos prestaje, a zaposleni nije iskoristio godišnji odmor krivicom poslodavca, poslodavac je dužan da isplati **naknadu štete za neiskorišćene dane** (čl. 76 Zakona o radu) — u visini prosečne zarade u prethodnih 12 meseci, srazmerno broju neiskorišćenih dana. Ovo pravo važi bez obzira na to ko je i zašto dao otkaz; rokove i postupak prestanka radnog odnosa objašnjava vodič [otkaz ugovora o radu](/blog/otkaz-ugovora-o-radu).
+
 Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zarade](/) i unesite broj dana godišnjeg odmora u sekciji „Vikend i praznici".
 
 ## Izvori i korisni linkovi
@@ -2768,6 +2775,7 @@ Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zara
   {
     id: "otpremnina-obracun",
     date: "5. januar 2026",
+    updated: "13. jul 2026",
     tag: "Zakon o radu",
     title: "Otpremnina u Srbiji — minimalni iznos, obračun i porez",
     summary: "Otpremnina u Srbiji: ko ima pravo, kolika je minimalna otpremnina po Zakonu o radu i kako se plaća porez na otpremninu. Obračun za tehnološki višak i odlazak u penziju.",
@@ -2793,6 +2801,8 @@ Pravo na otpremninu ima zaposleni kome prestaje radni odnos:
 - Zbog otkaza iz razloga na strani zaposlenog (disciplinski, nepoštovanje obaveza)
 - Istekom ugovora o radu na određeno vreme
 - Na lični zahtev (ostavka)
+
+Kada otpremnina sleduje, a kada ne — zavisi od osnova prestanka radnog odnosa; sve razloge, rokove i postupak objašnjava vodič [otkaz ugovora o radu](/blog/otkaz-ugovora-o-radu).
 
 ## Koliko iznosi otpremnina?
 
@@ -2849,12 +2859,6 @@ Pogledajte i [jubilarnu nagradu](/blog/jubilarna-nagrada) — koju neki poslodav
     ],
   },
 ];
-
-// Posts that 301-redirect to a canonical page (see vercel.json). They are kept
-// in POSTS so their merged content stays in version history, but they must be
-// hidden from the blog list, related-post rails, prerender, and the sitemap so
-// users and crawlers are never sent to a URL that only redirects.
-// Keep this in sync with the REDIRECTED set in scripts/prerender.mjs.
 export const REDIRECTED_POST_IDS = new Set(["neoporezivi-2026", "minimalna-zarada-2026"]);
 
 // POSTS minus redirected ones — use this for any user-facing listing.

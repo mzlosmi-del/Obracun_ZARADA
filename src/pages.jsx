@@ -157,9 +157,15 @@ export function OtpremninaCalculator() {
   );
 }
 
-// Jubilarna nagrada — neoporezivi maksimum = koeficijent × prosečna bruto zarada u RS
-// (ZPDG čl. 18 tač. 9). Koeficijenti: 10 god. 1×, 20 god. 2×, 30 god. 2,5×, 40 god. 3×.
-// Deo iznad neoporezivog max-a oporezuje se kao bonus (porez 10% + doprinosi 19,90%).
+// Jubilarna nagrada — poreski tretman (ZPDG čl. 18 st. 1 tač. 9): neoporezivo do FIKSNOG
+// usklađenog iznosa GODIŠNJE (28.912 RSD za isplate 1.2.2026–31.1.2027, Sl. glasnik RS 6/2026
+// — REFERENCE_DATA.neoporeziviOstali2026.jubilarnaNagrada). Iznad toga plaća se SAMO porez
+// na zarade 10%, BEZ doprinosa — jubilarna nagrada nema karakter zarade (čl. 105 st. 3 u vezi
+// sa čl. 120 tač. 1 Zakona o radu). VERIFIKOVANO 13.7.2026 (Paragraf — Pregled usklađenih
+// neoporezivih iznosa). NAPOMENA: ranija verzija kalkulatora pogrešno je koristila
+// koeficijent × prosečna zarada kao PORESKI limit — to je skala visine ISPLATE iz kolektivnih
+// ugovora (javni sektor), ne poreska granica.
+// Koeficijenti visine isplate (uobičajeno u praksi/PKU): 10 god. 1×, 20 god. 2×, 30 god. 2,5×, 40 god. 3×.
 const JUBILEJI = [
   { god: 10, koef: 1 },
   { god: 20, koef: 2 },
@@ -168,14 +174,15 @@ const JUBILEJI = [
 ];
 export function JubilarnaCalculator() {
   const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  const neoporezivo = REFERENCE_DATA.neoporeziviOstali2026.jubilarnaNagrada;
   const [god, setGod] = useState(20);
   const [isplata, setIsplata] = useState(0);
   const koef = (JUBILEJI.find((j) => j.god === god) || JUBILEJI[1]).koef;
-  const neoporeziviMax = prosBruto * koef;
-  const oporezivi = Math.max((isplata || 0) - neoporeziviMax, 0);
-  const doprinosi = oporezivi * (DEFAULT_RATES.pioPct_emp + DEFAULT_RATES.health_emp + DEFAULT_RATES.unemp_emp) / 100;
+  const uobicajenaIsplata = Math.round(prosBruto * koef);
+  const osnovica = isplata || uobicajenaIsplata;
+  const oporezivi = Math.max(osnovica - neoporezivo, 0);
   const porez = oporezivi * DEFAULT_RATES.taxRate / 100;
-  const neto = (isplata || 0) - doprinosi - porez;
+  const neto = osnovica - porez;
   return (
     <div className="pausal-calc">
       <div className="mode-toggle" role="tablist" aria-label="Godine staža" style={{ marginBottom: 12, flexWrap: "wrap" }}>
@@ -186,18 +193,16 @@ export function JubilarnaCalculator() {
         ))}
       </div>
       <div className="pausal-results results-body">
-        <ResultRow label={`Neoporezivi maksimum (${koef.toLocaleString("sr-RS")}× prosek)`} value={neoporeziviMax} type="positive" />
+        <ResultRow label={`Uobičajena visina nagrade (${koef.toLocaleString("sr-RS")}× prosečna bruto zarada)`} value={uobicajenaIsplata} />
+        <ResultRow label="Neoporezivo (ZPDG čl. 18 tač. 9, godišnje)" value={neoporezivo} type="positive" />
       </div>
-      <NumberInput label="Iznos koji poslodavac isplaćuje (opciono)" sublabel="(unesite ako je veći od neoporezivog maksimuma)" value={isplata} onChange={setIsplata} step={10000} />
-      {oporezivi > 0 && (
-        <div className="pausal-results results-body">
-          <ResultRow label="Oporezivi deo (iznad maksimuma)" value={oporezivi} />
-          <ResultRow label="Doprinosi zaposlenog (19,90%)" value={doprinosi} type="negative" />
-          <ResultRow label={`Porez (${DEFAULT_RATES.taxRate}%)`} value={porez} type="negative" />
-          <ResultRow label="Neto na račun" value={neto} type="positive" />
-        </div>
-      )}
-      <p className="pausal-note">Neoporezivi maksimum = koeficijent × prosečna bruto zarada u RS ({prosBruto.toLocaleString("sr-RS")} RSD, {REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS), prema čl. 18 tač. 9 Zakona o porezu na dohodak građana. Deo iznad maksimuma oporezuje se kao bonus. Poslodavac isplatu jubilarne nagrade obavezuje kolektivnim ugovorom ili ugovorom o radu.</p>
+      <NumberInput label="Iznos koji poslodavac isplaćuje (opciono)" sublabel="(ako se ne unese, računa se uobičajena visina za izabrani jubilej)" value={isplata} onChange={setIsplata} step={10000} />
+      <div className="pausal-results results-body">
+        <ResultRow label="Oporezivi deo (iznad neoporezivog)" value={oporezivi} />
+        <ResultRow label={`Porez na zarade (${DEFAULT_RATES.taxRate}%) — bez doprinosa`} value={porez} type="negative" />
+        <ResultRow label="Neto na račun" value={neto} type="positive" />
+      </div>
+      <p className="pausal-note">Neoporezivi iznos jubilarne nagrade je fiksan: {neoporezivo.toLocaleString("sr-RS")} RSD godišnje za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Na deo iznad plaća se samo porez na zarade 10% — doprinosi se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu). Visina nagrade (npr. 1–3 prosečne zarade) stvar je kolektivnog ugovora ili ugovora o radu, a koeficijenti u kalkulatoru odražavaju uobičajenu praksu. Prosek: {prosBruto.toLocaleString("sr-RS")} RSD bruto ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS).</p>
     </div>
   );
 }
@@ -385,7 +390,7 @@ export function BrutoNetoPage() {
         <li>Zanemarivanje najviše mesečne osnovice ({DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD) kod visokih zarada — iznad tog praga doprinosi se dalje ne uvećavaju srazmerno bruto zaradi.</li>
       </ul>
       <h2>Pravni okvir</h2>
-      <p>Porez na zaradu uređuje Zakon o porezu na dohodak građana (stopa 10%, neoporezivi iznos usklađen „Sl. glasnik RS" br. 115/2025), a doprinose za obavezno socijalno osiguranje Zakon o doprinosima za obavezno socijalno osiguranje, koji propisuje stope za PIO, zdravstveno osiguranje i osiguranje za slučaj nezaposlenosti, kao i najnižu i najvišu mesečnu osnovicu doprinosa. Iznose osnovica za tekuću godinu objavljuje CROSO, dok neoporezivi iznos zarade usklađuje Ministarstvo finansija godišnjim indeksiranjem.</p></>),
+      <p>Porez na zaradu uređuje Zakon o porezu na dohodak građana (stopa 10%, neoporezivi iznos utvrđen izmenama zakona, „Sl. glasnik RS" br. 109/2025), a doprinose za obavezno socijalno osiguranje Zakon o doprinosima za obavezno socijalno osiguranje, koji propisuje stope za PIO, zdravstveno osiguranje i osiguranje za slučaj nezaposlenosti, kao i najnižu i najvišu mesečnu osnovicu doprinosa. Iznose osnovica za tekuću godinu objavljuje CROSO, dok neoporezivi iznos zarade usklađuje Ministarstvo finansija godišnjim indeksiranjem.</p></>),
     faq: [
       { q: "Kako izračunati neto iz bruto u Srbiji?", a: "Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez 10% na deo iznad neoporezivog iznosa (34.221 RSD za 2026). Kalkulator radi obračun u oba smera." },
       { q: "Ako je bruto plata 50.000 dinara, koliki je neto?", a: "Za bruto 1 od 50.000 RSD neto iznosi ≈ 38.472 RSD: doprinosi zaposlenog su 9.950 RSD (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD)." },
@@ -635,7 +640,7 @@ export function NetoBrutoPage() {
         <li>Zaokruživanje u međukoracima — ručno rekonstruisanje bruto 1 iz neto zaokruživanjem posle svakog koraka (doprinosi, pa porez) uvodi grešku od nekoliko desetina dinara; kalkulator radi iterativno na punu preciznost pre zaokruživanja konačnog rezultata.</li>
       </ul>
       <h2>Pravni okvir</h2>
-      <p>Obrnut obračun se oslanja na iste propise kao i direktan: Zakon o porezu na dohodak građana određuje stopu poreza (10%) i neoporezivi iznos (usklađen „Sl. glasnik RS" br. 115/2025), dok Zakon o doprinosima za obavezno socijalno osiguranje propisuje stope doprinosa zaposlenog i poslodavca, kao i najnižu i najvišu mesečnu osnovicu. Budući da propisi definišu obračun samo u smeru bruto → neto, rekonstrukcija bruto 1 iz zadatog neto iznosa je matematički (iterativni) postupak, a ne zaseban zakonski definisan obrazac — zato se rezultat u praksi iskazuje kao zaokružena aproksimacija. Osnovice objavljuje CROSO.</p></>),
+      <p>Obrnut obračun se oslanja na iste propise kao i direktan: Zakon o porezu na dohodak građana određuje stopu poreza (10%) i neoporezivi iznos (utvrđen izmenama zakona, „Sl. glasnik RS" br. 109/2025), dok Zakon o doprinosima za obavezno socijalno osiguranje propisuje stope doprinosa zaposlenog i poslodavca, kao i najnižu i najvišu mesečnu osnovicu. Budući da propisi definišu obračun samo u smeru bruto → neto, rekonstrukcija bruto 1 iz zadatog neto iznosa je matematički (iterativni) postupak, a ne zaseban zakonski definisan obrazac — zato se rezultat u praksi iskazuje kao zaokružena aproksimacija. Osnovice objavljuje CROSO.</p></>),
     faq: [
       { q: "Kako izračunati bruto iz neto zarade u Srbiji?", a: "Kalkulator iterativno pronalazi bruto 1 tako da posle doprinosa zaposlenog (19,90%) i poreza (10% na deo iznad 34.221 RSD) dobijete željeni neto iznos. Unesite ciljani neto u polje 'Unesite Neto' i kalkulator prikazuje odgovarajući bruto 1." },
       { q: "Ako mi treba neto plata od 100.000 dinara, koliki je bruto?", a: "Za neto od 100.000 RSD bruto 1 iznosi ≈ 137.772 RSD, a ukupan trošak poslodavca (bruto 2) ≈ 158.644 RSD." },
@@ -811,48 +816,48 @@ export function JubilarnaPage() {
   return <ToolPage cfg={{
     slug: "jubilarna-nagrada",
     title: "Kalkulator jubilarne nagrade 2026 | PlatniListić",
-    description: "Kalkulator jubilarne nagrade za 10, 20, 30 i 40 godina staža — neoporezivi maksimum (čl. 18 ZPDG) i porez na deo iznad. Za Srbiju 2026. Besplatno.",
+    description: "Kalkulator jubilarne nagrade za 10, 20, 30 i 40 godina staža — neoporezivo 28.912 RSD (čl. 18 ZPDG), porez 10% bez doprinosa. Za Srbiju 2026. Besplatno.",
     h1: "Kalkulator jubilarne nagrade (2026)",
     breadcrumbName: "Jubilarna nagrada",
     calc: "jubilarna",
-    intro: (<p>Ovaj <strong>kalkulator jubilarne nagrade</strong> računa neoporezivi maksimum za 10, 20, 30 i 40 godina rada kod istog poslodavca i porez na deo iznad tog maksimuma. Detaljna pravila i primeri: vodič <a href="/blog/jubilarna-nagrada">jubilarna nagrada 2026 — iznos i obračun</a>.</p>),
+    intro: (<p>Ovaj <strong>kalkulator jubilarne nagrade</strong> računa porez za 10, 20, 30 i 40 godina rada kod istog poslodavca: neoporezivo je fiksnih <strong>28.912 RSD godišnje</strong> (ZPDG čl. 18 tač. 9), a na deo iznad plaća se samo porez 10% — bez doprinosa. Detaljna pravila i primeri: vodič <a href="/blog/jubilarna-nagrada">jubilarna nagrada 2026 — iznos i obračun</a>.</p>),
     guide: (<>
       <h2>Kako se obračunava jubilarna nagrada</h2>
-      <p>Jubilarna nagrada je jednokratna isplata povodom navršenih „okruglih" godina rada kod istog poslodavca. Deo iznosa je <strong>neoporeziv</strong> — do koeficijenta prosečne bruto zarade u Republici Srbiji, prema čl. 18 tač. 9 Zakona o porezu na dohodak građana. Ako poslodavac isplati više od tog maksimuma, razlika se oporezuje kao bonus: porez 10% i doprinosi zaposlenog 19,90%.</p>
-      <h2>Neoporezivi iznos jubilarne nagrade 2026</h2>
-      <p>Osnovica je poslednja objavljena prosečna bruto zarada u RS — {prosBruto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS). Neoporezivi maksimumi po jubileju:</p>
-      <table className="ref-table" aria-label="Neoporezivi iznos jubilarne nagrade 2026">
-        <thead><tr><th>Jubilej</th><th>Koeficijent</th><th>Neoporezivo do ≈ (RSD)</th></tr></thead>
+      <p>Jubilarna nagrada je jednokratna isplata povodom navršenih „okruglih" godina rada kod istog poslodavca. Poreski tretman je jednostavan, ali ga mnogi izvori pogrešno prikazuju: neoporeziv je <strong>fiksan iznos od 28.912 RSD godišnje</strong> (za isplate od 1.2.2026. do 31.1.2027, „Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Na deo iznad tog iznosa plaća se <strong>samo porez na zarade od 10%</strong> — doprinosi za socijalno osiguranje se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 u vezi sa čl. 120 tač. 1 Zakona o radu).</p>
+      <h2>Neoporezivi iznos i visina nagrade — dve različite stvari</h2>
+      <p><strong>Najčešća greška</strong> u tekstovima o jubilarnoj nagradi je mešanje visine isplate sa poreskim limitom. Skala „1 prosečna zarada za 10 godina, 2 za 20, 2,5 za 30, 3 za 40" jeste uobičajena visina nagrade iz kolektivnih ugovora (posebno u javnom sektoru) — ali to <em>nije</em> neoporezivi iznos. Poreski neoporezivo je uvek samo 28.912 RSD godišnje, bez obzira na jubilej. Uobičajene visine isplate uz prosečnu bruto zaradu od {prosBruto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS):</p>
+      <table className="ref-table" aria-label="Uobičajena visina jubilarne nagrade 2026 i poreski tretman">
+        <thead><tr><th>Jubilej</th><th>Uobičajena visina (koef. × prosek)</th><th>Neoporezivo (fiksno)</th></tr></thead>
         <tbody>
           {JUBILEJI.map((j) => (
             <tr key={j.god}>
               <td>{j.god} godina</td>
-              <td>{j.koef.toLocaleString("sr-RS")}× prosek</td>
-              <td>≈ {Math.round(prosBruto * j.koef).toLocaleString("sr-RS")}</td>
+              <td>≈ {Math.round(prosBruto * j.koef).toLocaleString("sr-RS")} RSD</td>
+              <td>28.912 RSD</td>
             </tr>
           ))}
         </tbody>
       </table>
       <h2>Radni primer</h2>
-      <p>Zaposleni navršava 20 godina rada; neoporezivi maksimum je 2 × {prosBruto.toLocaleString("sr-RS")} = {(prosBruto * 2).toLocaleString("sr-RS")} RSD. Ako poslodavac isplati tačno taj iznos ili manje, cela nagrada je neoporeziva. Ako isplati 50.000 RSD više od maksimuma, na tih 50.000 RSD plaćaju se doprinosi (19,90% = 9.950 RSD) i porez (10% = 5.000 RSD), pa je neto na taj deo 35.050 RSD.</p>
-      <p>Isti princip važi i za druge jubileje, samo se menja koeficijent. Kod 30 godina staža neoporezivi maksimum je 2,5 × {prosBruto.toLocaleString("sr-RS")} = {(prosBruto * 2.5).toLocaleString("sr-RS")} RSD. Ako poslodavac isplati 100.000 RSD iznad tog maksimuma, doprinosi zaposlenog na taj deo iznose 19,90% = 19.900 RSD, porez 10% = 10.000 RSD, pa je neto od oporezivog dela 70.100 RSD. Kod 40 godina staža koeficijent je najviši — 3 × {prosBruto.toLocaleString("sr-RS")} = {(prosBruto * 3).toLocaleString("sr-RS")} RSD neoporezivo — pa je kod najdužeg staža i prostor za neoporezivu isplatu najveći.</p>
-      <p>Kalkulator na ovoj stranici automatski primenjuje ovaj obrazac: izaberete jubilej (10, 20, 30 ili 40 godina), po potrebi unesete stvarni iznos isplate, a alat prikazuje neoporezivi maksimum, oporezivi deo, doprinose, porez i neto iznos koji zaposleni dobija na račun.</p>
+      <p>Zaposleni navršava 20 godina rada i poslodavac mu, po kolektivnom ugovoru, isplaćuje dve prosečne zarade — {(prosBruto * 2).toLocaleString("sr-RS")} RSD. Neoporezivo je 28.912 RSD; oporezivi deo je {(prosBruto * 2 - 28912).toLocaleString("sr-RS")} RSD, porez 10% iznosi {Math.round((prosBruto * 2 - 28912) * 0.1).toLocaleString("sr-RS")} RSD, a zaposleni na račun prima {Math.round(prosBruto * 2 - (prosBruto * 2 - 28912) * 0.1).toLocaleString("sr-RS")} RSD. Doprinosi se ne obračunavaju ni na jedan deo isplate.</p>
+      <p>Kalkulator na ovoj stranici automatski primenjuje ovaj obrazac: izaberete jubilej (10, 20, 30 ili 40 godina), po potrebi unesete stvarni iznos isplate, a alat prikazuje neoporezivi iznos, oporezivi deo, porez i neto iznos koji zaposleni dobija na račun.</p>
       <h2>Šta se računa kao staž za jubilej</h2>
       <p>Kao i kod minulog rada, broji se <strong>samo staž kod istog poslodavca</strong>, ne ukupan staž osiguranja. Statusne promene poslodavca (spajanje, pripajanje) prenose i staž za jubilej. Više: <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
       <h2>Jubilarna nagrada i minuli rad — u čemu je razlika</h2>
       <p>Jubilarna nagrada i minuli rad su dva odvojena instituta i lako se mešaju. Minuli rad je <strong>redovan mesečni dodatak na zaradu</strong> koji raste sa svakom godinom staža i isplaćuje se svakog meseca uz platu. Jubilarna nagrada je, nasuprot tome, <strong>jednokratna isplata</strong> koja se dešava samo kada zaposleni navrši tačno određen broj „okruglih" godina staža kod istog poslodavca — najčešće 10, 20, 30 ili 40. Za obračun minulog rada koristi se poseban kalkulator, dostupan na stranici <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
       <h2>Zašto poslodavci isplaćuju jubilarnu nagradu</h2>
       <p>Jubilarna nagrada u praksi služi kao priznanje dugogodišnje lojalnosti zaposlenog i alat za zadržavanje kadra. Iznos, jubileji za koje se isplaćuje i eventualni dodatni uslovi (npr. minimalna ocena rada) razlikuju se od poslodavca do poslodavca, zavisno od toga šta je predviđeno kolektivnim ugovorom, opštim aktom ili pojedinačnim ugovorom o radu. Zato dva zaposlena sa istim stažem kod različitih poslodavaca mogu dobiti različit iznos nagrade — ili je uopšte ne dobiti, ako poslodavac nema takvu obavezu ugovorenu.</p>
-      <h2>Trošak za poslodavca na oporezivi deo</h2>
-      <p>Iznad neoporezivog maksimuma poslodavac, pored poreza (10%) i doprinosa zaposlenog (19,90%) koje obustavlja iz bruto iznosa, plaća i doprinose na teret poslodavca — PIO 10% i zdravstveno 5,15%, ukupno 15,15% na oporezivi deo. To znači da isplata od 100.000 RSD iznad neoporezivog maksimuma stvarno košta poslodavca 115.150 RSD, dok zaposleni od tih 100.000 RSD na račun dobija 70.100 RSD neto (posle poreza i doprinosa zaposlenog). Ova razlika između bruto troška i neto primanja je razlog zašto poslodavci često planiraju jubilarne nagrade tako da ne prelaze neoporezivi maksimum — isplata u okviru maksimuma je i jeftinija za poslodavca i povoljnija za zaposlenog.</p>
+      <h2>Trošak za poslodavca</h2>
+      <p>Za poslodavca je jubilarna nagrada povoljnija od bonusa: pošto nema karakter zarade, na nju se <strong>ne plaćaju doprinosi</strong> — ni na teret zaposlenog ni na teret poslodavca. Trošak poslodavca jednak je isplaćenom iznosu, a iz njega se obustavlja samo porez od 10% na deo iznad 28.912 RSD. Za poređenje: isti iznos isplaćen kao običan bonus tereti se punim doprinosima i porezom kao zarada — vidi <a href="/blog/porez-na-bonus">porez na bonus</a>. Cela nagrada (i neoporezivi i oporezivi deo) priznaje se kao trošak poslovanja.</p>
       <h2>Kako koristiti kalkulator</h2>
-      <p>Prvi korak je izbor jubileja — dugme za 10, 20, 30 ili 40 godina staža — čime kalkulator odmah prikazuje neoporezivi maksimum za taj jubilej, izračunat na osnovu prosečne bruto zarade u RS. Ako je planirana isplata u okviru tog maksimuma, dovoljno je pogledati prvi red rezultata — cela nagrada je neoporeziva i zaposleni je prima u punom iznosu. Ako poslodavac planira da isplati više, u polje za iznos treba uneti ukupnu planiranu isplatu; kalkulator tada sam izračunava oporezivi deo, doprinose, porez i konačan neto iznos koji zaposleni prima na račun.</p>
+      <p>Prvi korak je izbor jubileja — dugme za 10, 20, 30 ili 40 godina staža — čime kalkulator prikazuje uobičajenu visinu nagrade za taj jubilej (koeficijent × prosečna bruto zarada u RS) i odmah računa porez na nju. Ako vaš poslodavac isplaćuje drugačiji iznos, unesite ga u polje za iznos; kalkulator prikazuje neoporezivi deo (28.912 RSD), oporezivi deo, porez od 10% i konačan neto koji zaposleni prima na račun.</p>
       <h2>Pravni okvir</h2>
-      <p>Neoporezive iznose propisuje čl. 18 tač. 9 Zakona o porezu na dohodak građana. Obavezu isplate utvrđuje kolektivni ugovor ili ugovor o radu (Zakon o radu) — jubilarna nagrada nije zakonska obaveza, ali ako je poslodavac ugovorio, mora je isplatiti. Nagrada (i neoporezivi i oporezivi deo) priznaje se kao trošak poslovanja poslodavca.</p>
+      <p>Neoporezivi iznos propisuje čl. 18 tač. 9 Zakona o porezu na dohodak građana (usklađuje se svakog februara — 28.912 RSD važi za isplate od 1.2.2026. do 31.1.2027, „Sl. glasnik RS" 6/2026). Obavezu isplate i visinu utvrđuje kolektivni ugovor ili ugovor o radu (Zakon o radu, čl. 120 tač. 1) — jubilarna nagrada nije zakonska obaveza, ali ako je poslodavac ugovorio, mora je isplatiti.</p>
     </>),
     faq: [
-      { q: "Kako se obračunava jubilarna nagrada?", a: `Neoporezivi maksimum jednak je koeficijentu prosečne bruto zarade u RS: 1× za 10 godina, 2× za 20, 2,5× za 30 i 3× za 40 godina rada kod istog poslodavca (čl. 18 ZPDG). Uz prosek od ${prosBruto.toLocaleString("sr-RS")} RSD to je do ${Math.round(prosBruto).toLocaleString("sr-RS")}–${(prosBruto * 3).toLocaleString("sr-RS")} RSD neoporezivo.` },
-      { q: "Da li se plaća porez na jubilarnu nagradu?", a: "Deo do neoporezivog maksimuma je oslobođen poreza i doprinosa. Iznos iznad maksimuma oporezuje se kao bonus — porez 10% i doprinosi zaposlenog 19,90% (plus doprinosi poslodavca 15,15%)." },
+      { q: "Koliki je neoporezivi iznos jubilarne nagrade u 2026?", a: "28.912 RSD godišnje, za isplate od 1. februara 2026. do 31. januara 2027. (ZPDG čl. 18 tač. 9, „Sl. glasnik RS” 6/2026). Neoporezivi iznos je fiksan i isti za sve jubileje — ne zavisi od broja godina staža ni od prosečne zarade." },
+      { q: "Da li se plaća porez na jubilarnu nagradu?", a: "Na deo do 28.912 RSD godišnje ne plaća se ništa. Na deo iznad plaća se samo porez na zarade od 10% — doprinosi se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu)." },
+      { q: "Koliko iznosi jubilarna nagrada za 10, 20, 30 ili 40 godina?", a: `Visinu određuje kolektivni ugovor ili ugovor o radu. Uobičajena praksa (naročito u javnom sektoru) je 1 prosečna zarada za 10 godina, 2 za 20, 2,5 za 30 i 3 za 40 godina — uz prosek od ${prosBruto.toLocaleString("sr-RS")} RSD bruto to je približno ${Math.round(prosBruto).toLocaleString("sr-RS")} do ${(prosBruto * 3).toLocaleString("sr-RS")} RSD. To je visina isplate, a ne poreski limit.` },
       { q: "Za koliko godina staža se isplaćuje jubilarna nagrada?", a: "Najčešće za 10, 20, 30 i 40 godina rada kod istog poslodavca. Tačne jubileje i iznose utvrđuje kolektivni ugovor ili ugovor o radu — poslodavac nije zakonski obavezan, osim ako se sam obavezao." },
     ],
     related: [
@@ -947,14 +952,14 @@ export function ProsecnaZaradaPage() {
       <p>Prosečna zarada u Republici Srbiji nije samo statistički pokazatelj — ona je i zakonska osnovica u nekoliko konkretnih obračuna na zaradi:</p>
       <ul>
         <li><strong>Otpremnina za odlazak u penziju</strong> — zakonski minimum iznosi dve prosečne (neto) zarade u Republici Srbiji, bez obzira na visinu lične plate zaposlenog. Detaljno: <a href="/otpremnina">kalkulator otpremnine</a>.</li>
-        <li><strong>Jubilarna nagrada</strong> — neoporezivi maksimum se računa kao koeficijent (1×, 2×, 2,5× ili 3×, zavisno od jubileja) pomnožen prosečnom bruto zaradom u RS. Detaljno: <a href="/jubilarna-nagrada">kalkulator jubilarne nagrade</a>.</li>
+        <li><strong>Jubilarna nagrada</strong> — visina isplate se u kolektivnim ugovorima najčešće određuje kao koeficijent (1×, 2×, 2,5× ili 3×, zavisno od jubileja) pomnožen prosečnom bruto zaradom u RS; poreski neoporezivo je fiksnih 28.912 RSD godišnje. Detaljno: <a href="/jubilarna-nagrada">kalkulator jubilarne nagrade</a>.</li>
         <li><strong>Cenzus za godišnji porez na dohodak</strong> — neoporezivi prag za obavezu podnošenja godišnje poreske prijave iznosi tri prosečne godišnje zarade u RS (godišnja zarada = 12 × prosečna mesečna bruto zarada). Detaljno: <a href="/godisnji-porez">kalkulator godišnjeg poreza</a>.</li>
       </ul>
       <p>U sva tri slučaja koristi se poslednji objavljeni podatak RZS o prosečnoj zaradi u Republici Srbiji — ne prosek unutar konkretne firme ili sektora. Za poređenje sa minimalnom zaradom pogledajte <a href="/minimalna-zarada-2026">minimalnu zaradu 2026</a>.</p>
 
       <h2>Bruto vs neto prosečna zarada</h2>
       <p>Razlika između prosečne bruto zarade ({p.bruto.toLocaleString("sr-RS")} RSD) i prosečne neto zarade ({p.neto.toLocaleString("sr-RS")} RSD) — {(p.bruto - p.neto).toLocaleString("sr-RS")} RSD — čine porez na zaradu i doprinosi za obavezno socijalno osiguranje na teret zaposlenog, koji se obustavljaju iz bruto iznosa pre isplate na račun. Pregled svih stopa doprinosa (PIO, zdravstveno, nezaposlenost) dat je na stranici <a href="/stope-doprinosa-2026">stope doprinosa 2026</a>. Ako želite da izračunate koliko bi neto iznosila neka druga bruto (ili obrnuto, neto u bruto) zarada, koristite <a href="/bruto-neto">bruto u neto kalkulator</a>.</p>
-      <p>Ova razlika između bruto i neto proseka je i razlog zašto je bitno obratiti pažnju na to koja se od dve osnovice koristi u konkretnom obračunu. Otpremnina za odlazak u penziju, na primer, računa se od <em>neto</em> proseka, dok se neoporezivi maksimum jubilarne nagrade i cenzus za godišnji porez računaju od <em>bruto</em> proseka — zamena jedne osnovice drugom u obračunu dovodi do pogrešnog rezultata, jer je bruto iznos uvek veći od neto za otprilike jednu trećinu.</p>
+      <p>Ova razlika između bruto i neto proseka je i razlog zašto je bitno obratiti pažnju na to koja se od dve osnovice koristi u konkretnom obračunu. Otpremnina za odlazak u penziju, na primer, računa se od <em>neto</em> proseka, dok se uobičajena visina jubilarne nagrade (po kolektivnim ugovorima) i cenzus za godišnji porez računaju od <em>bruto</em> proseka — zamena jedne osnovice drugom u obračunu dovodi do pogrešnog rezultata, jer je bruto iznos uvek veći od neto za otprilike jednu trećinu.</p>
     </>),
     faq: [
       { q: "Za koji mesec važi poslednji zvanični podatak RZS?", a: `Tabela prikazuje poslednji objavljeni podatak Republičkog zavoda za statistiku — za ${p.mesec}: neto ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")} RSD. RZS objavljuje zaradu za prethodni mesec sa oko dva meseca zadrške, pa se tabela ažurira po svakom saopštenju.` },
@@ -991,22 +996,46 @@ export function NeoporeziviPage() {
       <p>Neoporezivi iznos se primenjuje mesečno, po zaposlenom. Znači da se porez na zaradu plaća samo na onaj deo bruto zarade koji prelazi {nonTaxable.toLocaleString("sr-RS")} RSD. Ovo direktno povećava neto iznos koji zaposleni prima na račun. Vidite kako neoporezivi iznos utiče na vaš obračun: <a href="/bruto-neto">bruto u neto kalkulator</a>. Saznajte više o razlici između bruto i neto zarade: <a href="/blog/bruto-neto-razlika">bruto neto razlika</a>.</p>
 
       <h2>Neoporezivi iznos zarade 2026 — zvanični izvor</h2>
-      <p>Neoporezivi deo zarade za 2026. iznosi <strong>{nonTaxable.toLocaleString("sr-RS")} RSD</strong> i primenjuje se na isplate zarada <strong>od 1. januara 2026</strong>. Iznos je utvrđen izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 115/2025), a ne februarskim usklađivanjem ostalih neoporezivih primanja. Zvanične podatke objavljuju <a href="https://www.mfin.gov.rs/" target="_blank" rel="noopener noreferrer">Ministarstvo finansija</a> i <a href="https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html" target="_blank" rel="noopener noreferrer">Poreska uprava Srbije</a>. Prvo naredno usklađivanje je 1. januara 2027.</p>
+      <p>Neoporezivi deo zarade za 2026. iznosi <strong>{nonTaxable.toLocaleString("sr-RS")} RSD</strong> i primenjuje se na isplate zarada <strong>od 1. januara 2026</strong>. Iznos je utvrđen izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 109/2025), a ne februarskim usklađivanjem ostalih neoporezivih primanja. Zvanične podatke objavljuju <a href="https://www.mfin.gov.rs/" target="_blank" rel="noopener noreferrer">Ministarstvo finansija</a> i <a href="https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html" target="_blank" rel="noopener noreferrer">Poreska uprava Srbije</a>. Prvo naredno usklađivanje je 1. januara 2027.</p>
 
       <h2>Primer obračuna sa neoporezivim iznosom</h2>
       <p>Za zaposlenog sa bruto zaradom od 100.000 RSD, poreska osnovica je 100.000 − {nonTaxable.toLocaleString("sr-RS")} = {(100000 - nonTaxable).toLocaleString("sr-RS")} RSD, a porez (10%) iznosi {Math.round((100000 - nonTaxable) * 0.1).toLocaleString("sr-RS")} RSD. Bez neoporezivog iznosa porez bi bio 10.000 RSD, pa je mesečna ušteda {(10000 - Math.round((100000 - nonTaxable) * 0.1)).toLocaleString("sr-RS")} RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a>.</p>
+
+      <h2>Ostali neoporezivi iznosi 2026 — prevoz, dnevnica, solidarna pomoć</h2>
+      <p>Pored neoporezivog dela zarade, Zakon o porezu na dohodak građana (čl. 9, 18 i 21a) propisuje neoporezive iznose i za naknade troškova i druga primanja zaposlenih. Ovi iznosi su usklađeni indeksom potrošačkih cena i važe <strong>od 1. februara 2026. do 31. januara 2027.</strong> („Sl. glasnik RS" br. 6/2026):</p>
+      <table className="ref-table" aria-label="Neoporezivi iznosi 2026 — naknade troškova i druga primanja">
+        <thead><tr><th>Primanje</th><th>Neoporezivo do (RSD)</th></tr></thead>
+        <tbody>
+          <tr><td>Naknada troškova prevoza za dolazak i odlazak sa rada (čl. 18 t. 1)</td><td>5.782 mesečno</td></tr>
+          <tr><td>Dnevnica za službeno putovanje u zemlji (t. 2)</td><td>3.471</td></tr>
+          <tr><td>Dnevnica za službeno putovanje u inostranstvo (t. 3)</td><td>90 € dnevno</td></tr>
+          <tr><td>Naknada prevoza na službenom putovanju (t. 5)</td><td>10.121</td></tr>
+          <tr><td>Solidarna pomoć — bolest, rehabilitacija, invalidnost (t. 7)</td><td>57.827</td></tr>
+          <tr><td>Poklon deci zaposlenih do 15 godina (Nova godina i Božić) (t. 8)</td><td>14.457 godišnje</td></tr>
+          <tr><td>Jubilarna nagrada (t. 9)</td><td>28.912 godišnje</td></tr>
+          <tr><td>Pomoć u slučaju smrti člana porodice zaposlenog (t. 9a)</td><td>101.194</td></tr>
+          <tr><td>Pomoć porodici u slučaju smrti zaposlenog/penzionera (čl. 9 t. 9)</td><td>101.194</td></tr>
+          <tr><td>Stipendije i krediti učenika i studenata (čl. 9 t. 12)</td><td>44.325 mesečno</td></tr>
+          <tr><td>Premija dobrovoljnog zdravstvenog osiguranja / penzijski fond (čl. 21a)</td><td>8.677 mesečno</td></tr>
+        </tbody>
+      </table>
+      <p>Za razliku od neoporezivog dela zarade (koji važi od 1. januara), ovi iznosi se menjaju svakog <strong>1. februara</strong>. Obračun jubilarne nagrade sa neoporezivim delom radi <a href="/jubilarna-nagrada">kalkulator jubilarne nagrade</a>, a poreski tretman bonusa i nagrada objašnjava vodič <a href="/blog/porez-na-bonus">porez na bonus</a>. Pravila za topli obrok i regres (koji se oporezuju kao zarada, bez posebnog neoporezivog iznosa) su u vodiču <a href="/blog/topli-obrok-i-regres">topli obrok i regres</a>.</p>
     </>),
     faq: [
-      { q: "Koliki je neoporezivi iznos zarade u 2026?", a: `Neoporezivi iznos zarade za 2026. iznosi ${nonTaxable.toLocaleString("sr-RS")} RSD mesečno. Na deo zarade iznad ovog iznosa primenjuje se porez od 10%.` },
+      { q: "Koliki je neoporezivi iznos zarade u 2026?", a: `Neoporezivi iznos zarade za 2026. iznosi ${nonTaxable.toLocaleString("sr-RS")} RSD mesečno i primenjuje se od 1. januara 2026. Na deo zarade iznad ovog iznosa primenjuje se porez od 10%.` },
       { q: "Kako se primenjuje neoporezivi iznos?", a: "Neoporezivi iznos se oduzima od bruto 1 zarade, a porez od 10% plaća se samo na razliku. Na primer, za bruto zaradu od 100.000 RSD, poreska osnovica je 100.000 − " + nonTaxable.toLocaleString("sr-RS") + " = " + (100000 - nonTaxable).toLocaleString("sr-RS") + " RSD, a porez iznosi 10% od toga." },
       { q: "Da li se neoporezivi iznos odnosi na svaki mesec?", a: "Da, neoporezivi iznos se primenjuje mesečno, posebno za svakog zaposlenog. Ne kumulira se — svaki mesec se iznova oduzima od bruto zarade pre obračuna poreza." },
+      { q: "Koliki je neoporezivi iznos za prevoz u 2026?", a: "Naknada dokumentovanih troškova prevoza za dolazak i odlazak sa rada neoporeziva je do 5.782 RSD mesečno, za isplate od 1. februara 2026. do 31. januara 2027. („Sl. glasnik RS” 6/2026)." },
+      { q: "Kolika je neoporeziva dnevnica za službeni put u 2026?", a: "Za službeno putovanje u zemlji neoporezivo je do 3.471 RSD po dnevnici, a za put u inostranstvo do 90 evra dnevno (od 1.2.2026)." },
+      { q: "Kada se usklađuju neoporezivi iznosi?", a: "Neoporezivi iznos zarade usklađuje se od 1. januara (34.221 RSD za 2026, izmene ZPDG „Sl. glasnik RS” 109/2025), a ostali neoporezivi iznosi — prevoz, dnevnice, solidarna pomoć, jubilarna nagrada — od 1. februara svake godine („Sl. glasnik RS” 6/2026)." },
     ],
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
       { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/jubilarna-nagrada", label: "Kalkulator jubilarne nagrade" },
     ],
-    sourceNote: <>Izvor: Zakon o porezu na dohodak građana, „Sl. glasnik RS" br. 115/2025 (od 1.1.2026); Ministarstvo finansija i Poreska uprava.</>,
+    sourceNote: <>Izvor: Zakon o porezu na dohodak građana — izmene „Sl. glasnik RS" br. 109/2025 (neoporezivi deo zarade od 1.1.2026) i usklađeni iznosi „Sl. glasnik RS" br. 6/2026 (od 1.2.2026); Ministarstvo finansija i Poreska uprava.</>,
   }} />;
 }
 

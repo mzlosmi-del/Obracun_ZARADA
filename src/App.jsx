@@ -1355,7 +1355,7 @@ function HomePage() {
             <tr><td>Najviša mesečna osnovica doprinosa</td><td>{DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD</td></tr>
           </tbody>
         </table>
-        <p>Neoporezivi iznos za 2026. utvrđen je izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 115/2025), a stope doprinosa objavljuje CROSO. Doprinosi se obračunavaju u granicama najniže i najviše mesečne osnovice.</p>
+        <p>Neoporezivi iznos za 2026. utvrđen je izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 109/2025), a stope doprinosa objavljuje CROSO. Doprinosi se obračunavaju u granicama najniže i najviše mesečne osnovice.</p>
         <h2>Bruto 1, bruto 2 i neto — u čemu je razlika</h2>
         <p><strong>Bruto 1</strong> je ugovorena zarada i osnovica za porez i doprinose zaposlenog. <strong>Neto</strong> je iznos na račun. <strong>Bruto 2</strong> je bruto 1 uvećan za doprinose na teret poslodavca ({(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}%) i predstavlja stvaran trošak rada. Detaljan obračun u oba smera radite kroz <a href="/bruto-neto">bruto u neto kalkulator</a> i <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>
         <h2>Primeri obračuna zarade 2026</h2>

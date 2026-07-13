@@ -2,9 +2,11 @@
 // Cite sources in page footnotes. Do not hardcode these values anywhere else.
 
 export function getNonTaxable() {
-  // 34.221 RSD važi za isplate zarada od 1. JANUARA 2026 (izmene ZPDG, Sl. glasnik RS 115/2025;
-  // potvrda: KPMG Poreske vesti 9.12.2025, Paragraf). Od 1. februara važe samo OSTALI usklađeni
-  // neoporezivi iznosi (dnevnice, pomoći — Sl. glasnik 86/2025), ne neoporezivi deo zarade.
+  // 34.221 RSD važi za isplate zarada od 1. JANUARA 2026 — izmene ZPDG, Sl. glasnik RS 109/2025
+  // (ISPRAVKA 13.7.2026: ranije pogrešno citirano 115/2025 — to je publikacija usklađenih din.
+  // iznosa; lista glasnika ZPDG na Paragrafu potvrđuje: "...19/2025, 109/2025, 115/2025 - usklađeni
+  // din. izn. i 6/2026 - usklađeni din. izn."). Od 1. februara 2026. važe samo OSTALI usklađeni
+  // neoporezivi iznosi (dnevnice, pomoći, prevoz — Sl. glasnik 6/2026), ne neoporezivi deo zarade.
   const yr = new Date().getFullYear();
   if (yr >= 2026) return 34221;
   return 28423;
@@ -120,4 +122,22 @@ export const REFERENCE_DATA = {
     { mesec: "Novembar", radniDani: 21, radniSati: 168, praznici: "11. novembar", bezPraznika: 20 },
     { mesec: "Decembar", radniDani: 23, radniSati: 184, praznici: "—", bezPraznika: 23 },
   ],
+  // Usklađeni neoporezivi iznosi (ZPDG čl. 9, 18, 21a) — VERIFIKOVANO 13.7.2026 uz
+  // Paragraf "Pregled usklađenih neoporezivih iznosa": objavljeni u Sl. glasniku RS 6/2026,
+  // važe 1.2.2026–31.1.2027. IZUZETAK: neoporezivi iznos ZARADE (34.221, čl. 15a) primenjuje
+  // se od 1.1.2026 (izmene ZPDG, Sl. glasnik RS 109/2025) — vidi getNonTaxable().
+  neoporeziviOstali2026: {
+    prevozDolazakOdlazak: 5782,     // naknada dokumentovanih troškova prevoza (čl. 18 t. 1)
+    dnevnicaZemlja: 3471,           // dnevnica za službeni put u zemlji (t. 2)
+    dnevnicaInostranstvoEur: 90,    // dnevnica za službeni put u inostranstvo (t. 3), u EUR
+    prevozSluzbeniPut: 10121,       // naknada prevoza na službenom putovanju (t. 5)
+    solidarnaPomoc: 57827,          // bolest/rehabilitacija/invalidnost (t. 7)
+    poklonDeci: 14457,              // deci do 15 god, Nova godina i Božić (t. 8)
+    jubilarnaNagrada: 28912,        // jubilarna nagrada (t. 9)
+    pomocSmrtClanaPorodice: 101194, // pomoć u slučaju smrti člana porodice (t. 9a)
+    dzoIPenzijskiFond: 8677,        // premija DZO / dobrovoljni penzijski doprinos (čl. 21a)
+    vaziOd: "1. februar 2026",
+    vaziDo: "31. januar 2027",
+    izvor: "Sl. glasnik RS 6/2026; Paragraf — Pregled usklađenih neoporezivih iznosa",
+  },
 };
