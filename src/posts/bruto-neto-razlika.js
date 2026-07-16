@@ -3,7 +3,7 @@
 export const body = `
 ![Računanje zarade na laptopu](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80)
 
-> **Provereno i ažurirano: 8. jul 2026.** Stope, doprinosi i neoporezivi iznos usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu (neoporezivi iznos 34.221 RSD od 1.1.2026).
+> **Provereno i ažurirano: 16. jul 2026.** Stope, doprinosi i neoporezivi iznos usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu (neoporezivi iznos 34.221 RSD od 1.1.2026).
 
 Kada potpisujete ugovor o radu, zarada je obično izražena u bruto iznosu. Ali šta zapravo dobijate na račun? I zašto je razlika toliko velika?
 
@@ -33,7 +33,7 @@ Iz bruto 1 zarade se oduzimaju dve vrste obaveza:
 
 Neto zarada = Bruto 1 − Doprinosi zaposlenog − Porez
 
-Za prosečnu zaradu u Srbiji (~100.000 RSD bruto), neto iznosi oko **72.000–74.000 RSD**.
+Konkretan obračun za **100.000 RSD bruto 1** (2026): doprinosi zaposlenog 19,90% = 19.900 RSD; poreska osnovica = 100.000 − 34.221 (neoporezivi iznos) = 65.779 RSD; porez 10% = 6.578 RSD. **Neto = 100.000 − 19.900 − 6.578 ≈ 73.522 RSD** — zaposleni prima oko 73,5% ugovorenog bruto iznosa.
 
 ## Bruto 2 — trošak poslodavca
 

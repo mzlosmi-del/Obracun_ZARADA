@@ -1,7 +1,7 @@
 // Body + FAQ for "otkaz-ugovora-o-radu". Split out of posts.js so a reader
 // downloads only the article they open — see loadPostBody() in Blog.jsx.
 export const body = `
-![Otkaz ugovora o radu 2026 — otkazni rok, otpremnina i prava zaposlenog](https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&fm=webp&q=70)
+![Otkaz ugovora o radu 2026 — razlozi, postupak i otpremnina](https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&fm=webp&q=70)
 
 > **Provereno i ažurirano: jul 2026.** Rokovi i pravila usklađeni su sa važećim **Zakonom o radu** („Sl. glasnik RS", sa izmenama). Iznosi otpremnine vezani za prosečnu zaradu računati su prema poslednjem zvaničnom podatku RZS-a (prosečna neto zarada za april 2026: 121.805 din).
 
@@ -120,8 +120,7 @@ Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otka
     `;
 
 export const faq = [
-  { q: "Koliki je otkazni rok kada zaposleni da otkaz?", a: "Najmanje 15 dana. Ugovorom o radu može se odrediti duži otkazni rok, ali ne duži od 30 dana." },
-  { q: "Koliki je otkazni rok kada poslodavac otkaže ugovor?", a: "Kod otkaza zbog neostvarenih rezultata rada ili nedostatka znanja, otkazni rok iznosi od 8 do 30 dana, zavisno od staža. Kod otkaza zbog povrede radne obaveze radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka." },
+  { q: "Da li kod otkaza uvek postoji otkazni rok?", a: "Ne. Rok postoji kada zaposleni daje otkaz (najmanje 15 dana) i kada poslodavac otkazuje zbog neostvarenih rezultata rada (8–30 dana po stažu). Kod otkaza zbog povrede radne obaveze ili discipline radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka." },
   { q: "Da li imam pravo na otpremninu ako dobijem otkaz?", a: "Otpremnina sledi kod otkaza zbog tehnološkog viška (najmanje 1/3 prosečne zarade po godini staža kod poslodavca) i pri odlasku u penziju (najmanje 2 prosečne zarade u Srbiji). Kod otkaza zbog ponašanja ili neostvarenih rezultata otpremnina se ne isplaćuje." },
   { q: "Kako se računa otpremnina za tehnološki višak?", a: "Otpremnina = 1/3 prosečne zarade zaposlenog (prosek poslednja tri meseca) pomnožena brojem navršenih godina rada kod tog poslodavca. Za 10 godina staža i prosek od 90.000 dinara, otpremnina iznosi 300.000 dinara." },
   { q: "Koliki je rok za žalbu na otkaz?", a: "Tužba sudu podnosi se u roku od 60 dana od dana dostavljanja rešenja o otkazu." },

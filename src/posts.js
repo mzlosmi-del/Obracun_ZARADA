@@ -63,7 +63,7 @@ export const POSTS = [
     date: "25. jun 2026",
     updated: "13. jul 2026",
     tag: "Zakon o radu",
-    title: "Otkaz ugovora o radu 2026 — otkazni rok, otpremnina i prava",
+    title: "Otkaz ugovora o radu 2026 — razlozi, postupak i otpremnina",
     summary: "Otkaz ugovora o radu 2026: razlozi za otkaz po Zakonu o radu, otkazni rok (8–30 dana), otpremnina za tehnološki višak i prava zaposlenog. Obračun sa primerom.",
     hasFaq: true,
   },
@@ -224,10 +224,10 @@ export const POSTS = [
   {
     id: "bruto-neto-razlika",
     date: "15. januar 2025",
-    updated: "8. jul 2026",
+    updated: "16. jul 2026",
     tag: "Osnove",
-    title: "Razlika između bruto i neto zarade — jednostavno objašnjenje",
-    summary: "Bruto zarada i neto zarada — dva pojma koja svaki zaposleni čuje, ali malo ko zapravo razume šta ih razlikuje. Evo jasnog objašnjenja za 2026.",
+    title: "Razlika bruto i neto zarade 2026 — od 100.000 ostaje 73.522",
+    summary: "Razlika između bruto i neto zarade 2026: od bruto 1 se odbija 19,90% doprinosa + 10% poreza, pa od 100.000 RSD bruto ostaje ≈73.522 neto. Primeri i formula.",
     hasFaq: false,
   },
   {
