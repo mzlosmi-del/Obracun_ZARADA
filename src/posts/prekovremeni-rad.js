@@ -3,7 +3,7 @@
 export const body = `
 ![Prekovremeni rad u kancelariji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
 
-> **Provereno i ažurirano: 8. jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 16. jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Prekovremeni rad je regulisan **članom 108. Zakona o radu** Republike Srbije. Evo svega što trebate znati.
 

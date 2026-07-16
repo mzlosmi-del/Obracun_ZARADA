@@ -981,7 +981,7 @@ export function NeoporeziviPage() {
   return <ReferencePage cfg={{
     slug: "neoporezivi-iznos-2026",
     title: "Neoporezivi iznos zarade 2026 — 34.221 RSD | PlatniListić",
-    description: "Neoporezivi iznos zarade za 2026. iznosi 34.221 RSD mesečno. Kako utiče na obračun poreza na zaradu i neto iznos. Za Srbiju.",
+    description: "Neoporezivi iznos zarade za 2026. je 34.221 RSD mesečno — ušteda na porezu 3.422 RSD mesečno (41.064 RSD godišnje). Primer obračuna i zvanični izvor.",
     h1: "Neoporezivi iznos zarade za 2026.",
     breadcrumbName: "Neoporezivi iznos 2026",
     body: (<>
@@ -1148,7 +1148,7 @@ export function RadniDaniPage() {
   const ukupnoBezPraznika = dana.reduce((s, r) => s + r.bezPraznika, 0);
   return <ReferencePage cfg={{
     slug: "radni-dani-2026",
-    title: "Radni dani i sati 2026 po mesecima — jul 184 h | PlatniListić",
+    title: "Radni dani i broj radnih sati po mesecima 2026 — jul 184 h | PlatniListić",
     description: "Fond radnih sati po mesecima 2026: jul 184 h (23 dana), jun 176 h, avgust 168 h. Ukupno 261 dan / 2.088 sati. Tabela sa praznicima, za obračun zarade.",
     h1: "Radni dani i radni sati u 2026. godini (Srbija)",
     breadcrumbName: "Radni dani 2026",

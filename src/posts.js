@@ -225,10 +225,10 @@ export const POSTS = [
   {
     id: "prekovremeni-rad",
     date: "10. januar 2025",
-    updated: "8. jul 2026",
+    updated: "16. jul 2026",
     tag: "Zakon o radu",
-    title: "Prekovremeni rad u Srbiji: prava i obračun po Zakonu o radu",
-    summary: "Zakon o radu propisuje minimum od +26% za prekovremeni rad. Kako se obračunava, koliko može trajati i šta su vaša prava kao zaposlenog?",
+    title: "Prekovremeni rad 2026 — najmanje +26% po satu (čl. 108)",
+    summary: "Prekovremeni rad se plaća najmanje +26% na satnicu, rad na praznik +110% (čl. 108 Zakona o radu). Limit: 8 h nedeljno. Obračun sa primerom za 2026.",
     hasFaq: true,
   },
   {
