@@ -3,6 +3,14 @@
 // all 28 articles (~150KB) into the chunk every reader downloads.
 export const POSTS = [
   {
+    id: "otkazni-rok",
+    date: "16. jul 2026",
+    tag: "Zakon o radu",
+    title: "Otkazni rok 2026 — 15, 8–30 ili 5 dana: svi slučajevi",
+    summary: "Otkazni rok: 15 dana kad zaposleni da otkaz (max 30), 8–30 dana kod otkaza zbog rezultata rada, 5 radnih dana na probnom radu. Od kog dana teče + primer.",
+    hasFaq: true,
+  },
+  {
     id: "pdv-prag-preduzetnik",
     date: "13. jul 2026",
     tag: "Porez",

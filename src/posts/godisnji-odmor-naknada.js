@@ -58,7 +58,7 @@ Pravo na godišnji odmor ne može se preneti u sledeću kalendarsku godinu ako n
 
 ## Godišnji odmor i prestanak radnog odnosa
 
-Ako radni odnos prestaje, a zaposleni nije iskoristio godišnji odmor krivicom poslodavca, poslodavac je dužan da isplati **naknadu štete za neiskorišćene dane** (čl. 76 Zakona o radu) — u visini prosečne zarade u prethodnih 12 meseci, srazmerno broju neiskorišćenih dana. Ovo pravo važi bez obzira na to ko je i zašto dao otkaz; rokove i postupak prestanka radnog odnosa objašnjava vodič [otkaz ugovora o radu](/blog/otkaz-ugovora-o-radu).
+Ako radni odnos prestaje, a zaposleni nije iskoristio godišnji odmor krivicom poslodavca, poslodavac je dužan da isplati **naknadu štete za neiskorišćene dane** (čl. 76 Zakona o radu) — u visini prosečne zarade u prethodnih 12 meseci, srazmerno broju neiskorišćenih dana. Ovo pravo važi bez obzira na to ko je i zašto dao otkaz; rokove i postupak prestanka radnog odnosa objašnjavaju vodiči [otkaz ugovora o radu](/blog/otkaz-ugovora-o-radu) i [otkazni rok](/blog/otkazni-rok) — preostali dani odmora mogu se po dogovoru iskoristiti i tokom otkaznog roka.
 
 Za precizan obračun naknade za godišnji odmor, koristite naš [kalkulator zarade](/) i unesite broj dana godišnjeg odmora u sekciji „Vikend i praznici".
 

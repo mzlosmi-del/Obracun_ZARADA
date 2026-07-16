@@ -43,7 +43,7 @@ Najvažnija razlika za zaposlenog: **otpremnina sledi samo kod tehnološkog viš
 - **Otkaz zbog povrede radne obaveze:** radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka.
 - **Tehnološki višak:** radni odnos prestaje po isteku otkaznog roka, a otpremnina se isplaćuje **pre prestanka** radnog odnosa.
 
-Tokom otkaznog roka prava i obaveze iz ugovora (zarada, [godišnji odmor](/blog/godisnji-odmor-naknada) i druga primanja) i dalje teku normalno.
+Tokom otkaznog roka prava i obaveze iz ugovora (zarada, [godišnji odmor](/blog/godisnji-odmor-naknada) i druga primanja) i dalje teku normalno. Svi slučajevi, od kog dana rok teče i naknada umesto roka — u detaljnom vodiču o [otkaznom roku](/blog/otkazni-rok).
 
 ## Postupak otkaza (korak po korak)
 

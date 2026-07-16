@@ -1093,7 +1093,7 @@ export function MinimalnaZaradaPage() {
   }));
   return <ReferencePage cfg={{
     slug: "minimalna-zarada-2026",
-    title: "Minimalna zarada 2026 u Srbiji — bruto i neto | PlatniListić",
+    title: `Minimalna zarada 2026 — ${m.cenaRadnogCasaNeto} RSD/h, neto ~${m.netoMesecno.toLocaleString("sr-RS")} RSD | PlatniListić`,
     description: `Minimalna cena rada u Srbiji 2026: ${m.cenaRadnogCasaNeto} RSD neto po satu (od ${m.vaziOd}). Mesečni neto ${m.netoMin.toLocaleString("sr-RS")}–${m.netoMax.toLocaleString("sr-RS")} RSD, prosek ~${m.netoMesecno.toLocaleString("sr-RS")} RSD.`,
     h1: "Minimalna zarada u Srbiji za 2026.",
     breadcrumbName: "Minimalna zarada 2026",
