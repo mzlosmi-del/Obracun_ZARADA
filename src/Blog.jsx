@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { POSTS, LIVE_POSTS } from "./posts.js";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { POSTS, LIVE_POSTS, REDIRECT_MAP } from "./posts.js";
 import { useSeo } from "./seo.jsx";
 import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
@@ -185,6 +185,17 @@ function BlogPost({ post, navigate }) {
 
 export function BlogPostRoute() {
   const { slug } = useParams();
+
+  // Consolidated slug → canonical page. Return before any other hook so a
+  // redirected post never renders its old article (which would keep the stale
+  // /blog/ URL alive and split rankings). `replace` mirrors a 301 in the SPA:
+  // the redirect is deterministic per slug, so hook order stays stable across
+  // renders (a redirected slug always takes this branch and never reaches the
+  // hooks below). Belt-and-suspenders with the platform 301 in vercel.json —
+  // this one covers client-side navigation and JS-rendered crawls.
+  const redirectTo = slug ? REDIRECT_MAP[slug] : undefined;
+  if (redirectTo) return <Navigate to={redirectTo} replace />;
+
   const navigate = useNavigate();
   const meta = POSTS.find(p => p.id === slug);
   // The body/FAQ arrive from the per-article chunk. Hold the whole render until

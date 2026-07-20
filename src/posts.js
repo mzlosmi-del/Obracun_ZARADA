@@ -282,7 +282,19 @@ export const POSTS = [
     hasFaq: true,
   },
 ];
-export const REDIRECTED_POST_IDS = new Set(["neoporezivi-2026", "minimalna-zarada-2026"]);
+// Old blog slugs that have been consolidated into a canonical page. Single
+// source of truth for BOTH the client-side redirect (Blog.jsx / BlogPostRoute)
+// and the exclusion from user-facing listings. Keep in sync with the
+// platform-level 301s in vercel.json — these must map to the same destinations.
+// The client-side redirect matters because the SPA router (React Router) can
+// render /blog/:slug before the Vercel redirect ever fires (client navigation
+// and the index.html rewrite both hand control to the app); without it, the
+// old URL keeps serving a full article and Google never consolidates rankings.
+export const REDIRECT_MAP = {
+  "neoporezivi-2026": "/neoporezivi-iznos-2026",
+  "minimalna-zarada-2026": "/minimalna-zarada-2026",
+};
+export const REDIRECTED_POST_IDS = new Set(Object.keys(REDIRECT_MAP));
 
 // POSTS minus redirected ones — use this for any user-facing listing.
 export const LIVE_POSTS = POSTS.filter((p) => !REDIRECTED_POST_IDS.has(p.id));
