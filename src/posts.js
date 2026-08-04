@@ -3,6 +3,15 @@
 // all 28 articles (~150KB) into the chunk every reader downloads.
 export const POSTS = [
   {
+    id: "kupovna-moc-plate-2016-2026",
+    date: "4. avgust 2026",
+    tag: "Data studija",
+    title: "Kupovna moć plate u Srbiji 2016–2026: realno +53%",
+    summary: "Data studija: realna kupovna moć prosečne zarade porasla je 53% od 2016. do 2025. (RZS, očišćeno od inflacije), ali je 2022. stagnirala. Medijana, korpa dobara i metodologija.",
+    ogImage: "https://www.platnilistic.rs/media/kupovna-moc-2016-2026.png",
+    hasFaq: true,
+  },
+  {
     id: "sporazumni-raskid",
     date: "4. avgust 2026",
     tag: "Zakon o radu",
