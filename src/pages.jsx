@@ -1093,12 +1093,12 @@ export function MinimalnaZaradaPage() {
   }));
   return <ReferencePage cfg={{
     slug: "minimalna-zarada-2026",
-    title: `Minimalna zarada 2026 — ${m.cenaRadnogCasaNeto} RSD/h, neto ~${m.netoMesecno.toLocaleString("sr-RS")} RSD | PlatniListić`,
-    description: `Minimalna cena rada u Srbiji 2026: ${m.cenaRadnogCasaNeto} RSD neto po satu (od ${m.vaziOd}). Mesečni neto ${m.netoMin.toLocaleString("sr-RS")}–${m.netoMax.toLocaleString("sr-RS")} RSD, prosek ~${m.netoMesecno.toLocaleString("sr-RS")} RSD.`,
-    h1: "Minimalna zarada u Srbiji za 2026.",
+    title: `Minimalac 2026 — minimalna zarada po mesecima, ${m.cenaRadnogCasaNeto} RSD/h | PlatniListić`,
+    description: `Koliki je minimalac u Srbiji 2026? Minimalna cena rada: ${m.cenaRadnogCasaNeto} RSD neto po satu (od ${m.vaziOd}). Mesečni neto ${m.netoMin.toLocaleString("sr-RS")}–${m.netoMax.toLocaleString("sr-RS")} RSD — tabela po mesecima i obračun.`,
+    h1: "Minimalac 2026 — minimalna zarada u Srbiji",
     breadcrumbName: "Minimalna zarada 2026",
     body: (<>
-      <p>Minimalna cena rada u Srbiji za 2026. godinu iznosi <strong>{m.cenaRadnogCasaNeto} RSD neto po radnom času</strong> (važi od {m.vaziOd}). To je jedini fiksan iznos — mesečna minimalna zarada nije fiksna, već se dobija množenjem satnice fondom radnih sati u mesecu (160–184 sata), pa varira iz meseca u mesec.</p>
+      <p><strong>Minimalac</strong> (minimalna zarada) u Srbiji za 2026. godinu iznosi <strong>{m.cenaRadnogCasaNeto} RSD neto po radnom času</strong> (važi od {m.vaziOd}). To je jedini fiksan iznos — mesečni minimalac nije fiksan, već se dobija množenjem satnice fondom radnih sati u mesecu (160–184 sata), pa varira iz meseca u mesec.</p>
       <table className="ref-table">
         <tbody>
           <tr><th>Cena radnog časa (neto)</th><td>{m.cenaRadnogCasaNeto.toLocaleString("sr-RS")} RSD</td></tr>
@@ -1128,9 +1128,9 @@ export function MinimalnaZaradaPage() {
       <p>Uz minimalnu zaradu poslodavac plaća i doprinose na svoj teret (15,15%), pa ukupan trošak rada za prosečan fond sati iznosi oko 100.400 RSD mesečno. Isplata ispod minimalca je prekršaj (novčana kazna 800.000–2.000.000 RSD za pravno lice).</p>
     </>),
     faq: [
-      { q: "Kolika je minimalna zarada u Srbiji 2026?", a: `Minimalna cena rada je ${m.cenaRadnogCasaNeto} RSD neto po radnom času (od ${m.vaziOd}). Mesečni neto iznos zavisi od fonda sati: od ${m.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m.netoMax.toLocaleString("sr-RS")} RSD (184 h), prosečno oko ${m.netoMesecno.toLocaleString("sr-RS")} RSD.` },
-      { q: "Kako se obračunava minimalna zarada?", a: `Cena radnog časa (${m.cenaRadnogCasaNeto} RSD neto) množi se brojem radnih sati u mesecu. Zato mesečni iznos varira — meseci sa više radnih dana donose veću minimalnu zaradu.` },
-      { q: "Ko ima pravo na minimalnu zaradu?", a: "Svi zaposleni u Srbiji imaju pravo na zaradu koja ne može biti niža od propisanog minimuma. Minimalna zarada se primenjuje i na zaposlene sa nepunim radnim vremenom, srazmerno satima rada." },
+      { q: "Koliko je minimalac u Srbiji 2026?", a: `Minimalac (minimalna cena rada) je ${m.cenaRadnogCasaNeto} RSD neto po radnom času (od ${m.vaziOd}). Mesečni neto iznos zavisi od fonda sati: od ${m.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m.netoMax.toLocaleString("sr-RS")} RSD (184 h), prosečno oko ${m.netoMesecno.toLocaleString("sr-RS")} RSD.` },
+      { q: "Kako se obračunava minimalac po mesecima?", a: `Cena radnog časa (${m.cenaRadnogCasaNeto} RSD neto) množi se brojem radnih sati u tom mesecu. Zato mesečni minimalac varira — meseci sa više radnih dana donose veći iznos. Tabela minimalca za svaki mesec 2026. je iznad.` },
+      { q: "Ko ima pravo na minimalac?", a: "Svi zaposleni u Srbiji imaju pravo na zaradu koja ne može biti niža od propisanog minimalca. Minimalac se primenjuje i na zaposlene sa nepunim radnim vremenom, srazmerno satima rada." },
     ],
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
