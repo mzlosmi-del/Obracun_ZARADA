@@ -3,7 +3,7 @@
 export const body = `
 ![Otkaz ugovora o radu 2026 — razlozi, postupak i otpremnina](https://images.unsplash.com/photo-1521791136064-7986c2920216?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jul 2026.** Rokovi i pravila usklađeni su sa važećim **Zakonom o radu** („Sl. glasnik RS", sa izmenama). Iznosi otpremnine vezani za prosečnu zaradu računati su prema poslednjem zvaničnom podatku RZS-a (prosečna neto zarada za april 2026: 121.805 din).
+> **Provereno i ažurirano: 4. avgust 2026.** Rokovi i pravila usklađeni su sa važećim **Zakonom o radu** („Sl. glasnik RS", sa izmenama). Iznosi otpremnine vezani za prosečnu zaradu računati su prema poslednjem zvaničnom podatku RZS-a (prosečna neto zarada za maj 2026: 118.398 din).
 
 Otkaz ugovora o radu je prestanak radnog odnosa voljom jedne strane — poslodavca ili zaposlenog. Poslodavac može otkazati ugovor **samo iz zakonom propisanog razloga** i uz propisan postupak, dok zaposleni daje otkaz slobodno, uz otkazni rok. U ovom vodiču su tačni razlozi, rokovi, prava i obračun otpremnine — sa konkretnim brojčanim primerom.
 
@@ -68,7 +68,7 @@ Zaposleni proglašen tehnološkim viškom, sa **10 navršenih godina** rada kod 
 > Otpremnina = 1/3 × prosečna zarada × broj godina staža
 > Otpremnina = (1/3 × 90.000) × 10 = **300.000 dinara**
 
-Minimalna zakonska otpremnina je **300.000 dinara**; poslodavac sme isplatiti više, ali ne manje. **Primer za penziju:** uz poslednju prosečnu neto zaradu u Srbiji od 121.805 din ([prosečna plata u Srbiji](/blog/prosecna-plata-srbija)), minimalna otpremnina pri penzionisanju je 2 × 121.805 = **243.610 dinara**.
+Minimalna zakonska otpremnina je **300.000 dinara**; poslodavac sme isplatiti više, ali ne manje. **Primer za penziju:** uz poslednju prosečnu neto zaradu u Srbiji od 118.398 din ([prosečna plata u Srbiji](/blog/prosecna-plata-srbija)), minimalna otpremnina pri penzionisanju je 2 × 118.398 = **236.796 dinara**.
 
 ## Otkaz ugovora o radu od strane zaposlenog
 

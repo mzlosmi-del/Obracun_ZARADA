@@ -53,6 +53,7 @@ export const POSTS = [
   {
     id: "porodiljsko-odsustvo",
     date: "11. jul 2026",
+    updated: "4. avgust 2026",
     tag: "Zakon o radu",
     title: "Porodiljsko odsustvo 2026 — naknada, obračun i isplata",
     summary: "Porodiljsko odsustvo 2026: naknada je prosek osnovica za 18 meseci, najviše 5 prosečnih zarada, tokom prva 3 meseca najmanje minimalac. Obračun sa primerima.",
@@ -61,7 +62,7 @@ export const POSTS = [
   {
     id: "otkaz-ugovora-o-radu",
     date: "25. jun 2026",
-    updated: "13. jul 2026",
+    updated: "4. avgust 2026",
     tag: "Zakon o radu",
     title: "Otkaz ugovora o radu 2026 — razlozi, postupak i otpremnina",
     summary: "Otkaz ugovora o radu 2026: razlozi za otkaz po Zakonu o radu, otkazni rok (8–30 dana), otpremnina za tehnološki višak i prava zaposlenog. Obračun sa primerom.",
@@ -70,10 +71,10 @@ export const POSTS = [
   {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
-    updated: "8. jul 2026",
+    updated: "4. avgust 2026",
     tag: "Zarada",
-    title: "Prosečna plata u Srbiji 2026: 121.805 din (1.038 €), april",
-    summary: "Prosečna neto plata u Srbiji za april 2026. je 121.805 din (≈1.038 €), bruto 168.008, medijalna 94.585 (RZS). Pregled po mesecima, sektorima i gradovima.",
+    title: "Prosečna plata u Srbiji 2026: 118.398 din (1.009 €), maj",
+    summary: "Prosečna neto plata u Srbiji za maj 2026. je 118.398 din (≈1.009 €), bruto 163.470, medijalna 93.277 (RZS). Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     hasFaq: true,
   },
@@ -207,7 +208,7 @@ export const POSTS = [
   {
     id: "jubilarna-nagrada",
     date: "15. februar 2026",
-    updated: "13. jul 2026",
+    updated: "4. avgust 2026",
     tag: "Porez",
     title: "Jubilarna nagrada 2026 — iznos, porez i neoporezivih 28.912",
     summary: "Jubilarna nagrada 2026: visina je stvar kolektivnog ugovora (obično 1–3 prosečne zarade), neoporezivo je 28.912 RSD godišnje, a iznad se plaća samo porez 10% — bez doprinosa.",
