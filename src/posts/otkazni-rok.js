@@ -29,8 +29,8 @@ export const body = `
 | Poslodavac | ne ostvaruje rezultate / nema znanja i sposobnosti | 8–30 dana po stažu | čl. 189 |
 | Poslodavac | povreda radne obaveze ili discipline | nema roka — danom dostavljanja | čl. 185 |
 | Poslodavac | tehnološki višak | prestanak uz otpremninu pre prestanka | čl. 179 st. 5 |
-| Bilo koja strana | probni rad | najmanje 5 radnih dana | čl. 36 |
-| Obe strane | sporazumni raskid | nema zakonskog roka — datum se dogovara | čl. 177 |
+| Bilo koja strana | [probni rad](/blog/probni-rad) | najmanje 5 radnih dana | čl. 36 |
+| Obe strane | [sporazumni raskid](/blog/sporazumni-raskid) | nema zakonskog roka — datum se dogovara | čl. 177 |
 
 ## Otkazni rok kada zaposleni daje otkaz (čl. 178)
 
@@ -52,7 +52,7 @@ Otkazni rok kod otkaza od strane poslodavca postoji **samo u jednom slučaju**: 
 
 **Naknada umesto otkaznog roka:** zaposleni može, u sporazumu sa poslodavcem, da prestane sa radom i **pre isteka otkaznog roka** — ali mu za to vreme pripada **naknada zarade** u visini utvrđenoj opštim aktom i ugovorom o radu (čl. 189 st. 3). Ne morate „odraditi" rok ako se dogovorite — ali ne gubite zaradu za te dane.
 
-Kod otkaza **zbog povrede radne obaveze ili nepoštovanja discipline** (čl. 179 st. 2 i 3) otkaznog roka nema — radni odnos prestaje **danom dostavljanja rešenja** (čl. 185). Kod **tehnološkog viška** ključna zaštita nije rok već [otpremnina](/otpremnina), koja mora biti isplaćena **pre prestanka** radnog odnosa.
+Kod otkaza **zbog povrede radne obaveze ili nepoštovanja discipline** (čl. 179 st. 2 i 3) otkaznog roka nema — radni odnos prestaje **danom dostavljanja rešenja** (čl. 185). Pun postupak, obavezno upozorenje i rokovi za takav otkaz — u vodiču o [disciplinskom postupku](/blog/disciplinski-postupak). Kod **tehnološkog viška** ključna zaštita nije rok već [otpremnina](/otpremnina), koja mora biti isplaćena **pre prestanka** radnog odnosa.
 
 ## Primer računanja: od kog dana teče rok
 
@@ -79,7 +79,7 @@ Otkazni rok nije „otkaz unapred" — radni odnos **traje do poslednjeg dana**:
 
 ## Otkazni rok i nova NSZ naknada
 
-Za pravo na novčanu naknadu kod Nacionalne službe za zapošljavanje ključan je **osnov prestanka**, ne otkazni rok: kod otkaza koji daje zaposleni i kod sporazumnog raskida naknade po pravilu **nema** (zato čl. 177 obavezuje poslodavca da vas pre potpisa pisano upozori na posledice), dok kod tehnološkog viška i otkaza zbog rezultata rada zaposleni po pravilu **ima** pravo na naknadu. Pre nego što potpišete bilo šta, proverite posledice — više u vodiču [otkaz ugovora o radu](/blog/otkaz-ugovora-o-radu).
+Za pravo na novčanu naknadu kod Nacionalne službe za zapošljavanje ključan je **osnov prestanka**, ne otkazni rok: kod otkaza koji daje zaposleni i kod [sporazumnog raskida](/blog/sporazumni-raskid) naknade po pravilu **nema** (zato čl. 177 obavezuje poslodavca da vas pre potpisa pisano upozori na posledice), dok kod tehnološkog viška i otkaza zbog rezultata rada zaposleni po pravilu **ima** pravo na naknadu. Pre nego što potpišete bilo šta, proverite posledice — više u vodiču [otkaz ugovora o radu](/blog/otkaz-ugovora-o-radu).
 
 ## Izvori
 

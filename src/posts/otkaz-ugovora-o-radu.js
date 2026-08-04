@@ -94,7 +94,7 @@ Otkaz ne mora da se obrazlaže i poslodavac ne može da ga „odbije" — dovolj
 
 ## Otkaz zbog nedolaska na posao
 
-Neopravdani izostanak sa posla je nepoštovanje radne discipline, odnosno povreda radne obaveze (član 179 st. 2 i 3). Poslodavac i tada mora da sprovede postupak: pisano upozorenje sa rokom za izjašnjenje od najmanje 8 dana, pa tek onda rešenje o otkazu — radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka i bez otpremnine. Pojedinačan izostanak po pravilu nije dovoljan osnov ako opštim aktom nije predviđen kao teža povreda — sudska praksa traži srazmernost između povrede i otkaza.
+Neopravdani izostanak sa posla je nepoštovanje radne discipline, odnosno povreda radne obaveze (član 179 st. 2 i 3). Poslodavac i tada mora da sprovede postupak: pisano upozorenje sa rokom za izjašnjenje od najmanje 8 dana, pa tek onda rešenje o otkazu — radni odnos prestaje danom dostavljanja rešenja, bez otkaznog roka i bez otpremnine. Pojedinačan izostanak po pravilu nije dovoljan osnov ako opštim aktom nije predviđen kao teža povreda — sudska praksa traži srazmernost između povrede i otkaza. Ceo tok postupka — rokovi, sadržina upozorenja i blaže mere koje poslodavac može izreći umesto otkaza — u vodiču o [disciplinskom postupku](/blog/disciplinski-postupak).
 
 ## Otkaz ugovora na određeno i na neodređeno — ima li razlike
 
@@ -102,15 +102,23 @@ Pravila otkaza su ista za ugovor na određeno i na neodređeno vreme: isti razlo
 
 ## Sporazumni raskid ugovora o radu
 
-Radni odnos može prestati i **sporazumno** — pisanim dogovorom. Pre potpisivanja, poslodavac je dužan da pisano obavesti zaposlenog o posledicama, pre svega da po osnovu sporazumnog raskida zaposleni **po pravilu gubi pravo na novčanu naknadu** kod Nacionalne službe za zapošljavanje. Zato uslove (npr. stimulativnu otpremninu) treba definisati pre potpisa.
+Radni odnos može prestati i **sporazumno** — pisanim dogovorom. Pre potpisivanja, poslodavac je dužan da pisano obavesti zaposlenog o posledicama, pre svega da po osnovu sporazumnog raskida zaposleni **po pravilu gubi pravo na novčanu naknadu** kod Nacionalne službe za zapošljavanje (dok ponovo ne navrši 12 meseci osiguranja u poslednjih 18). Zato uslove (npr. stimulativnu otpremninu) treba definisati pre potpisa. Puna pravila, primer i najčešće zamke — u vodiču o [sporazumnom raskidu](/blog/sporazumni-raskid).
 
 ## Prava zaposlenog i zaštita od nezakonitog otkaza
 
-- **Rok za tužbu:** 60 dana od dostavljanja rešenja o otkazu, pred nadležnim sudom.
-- **Posledice nezakonitog otkaza:** sud može poništiti rešenje, vratiti zaposlenog na rad i dosuditi naknadu izgubljene zarade sa [doprinosima](/blog/doprinosi-srbija).
-- **Zabrana otkaza:** poslodavac ne sme otkazati ugovor za vreme trudnoće, porodiljskog odsustva, nege deteta i propisanog bolovanja.
+Kada dobijete otkaz — bilo koji od gore navedenih osnova — imate nekoliko konkretnih prava koja vredi znati pre nego što nešto potpišete ili propustite rok.
 
-Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otkazu, obračune zarade za poslednja tri meseca i eventualna upozorenja.
+**Pre otkaza (kod ponašanja/discipline):** poslodavac vam je za osnove iz člana 179 stav 2–3 (povreda radne obaveze, nepoštovanje discipline) **dužan da prvo dostavi pisano upozorenje**, sa navedenim pravnim osnovom, činjenicama i dokazima, i da vam ostavi **najmanje 8 dana** da se izjasnite — pisano ili usmeno, uz mogućnost prisustva sindikalnog predstavnika. Otkaz bez ovog koraka je procesno manjkav, čak i kad je sama povreda nesporna. Pun pregled ovog postupka, uključujući blaže mere koje poslodavac može izreći umesto otkaza (privremeno udaljenje, novčana kazna do 20% zarade, opomena sa najavom otkaza), u vodiču o [disciplinskom postupku](/blog/disciplinski-postupak).
+
+**Rok za tužbu:** **60 dana** od dostavljanja rešenja o otkazu, pred nadležnim sudom — ovo je **prekluzivan rok** koji se ne produžava, i interna žalba poslodavcu nije obavezan uslov pre tužbe.
+
+**Šta možete dobiti ako sud utvrdi da je otkaz nezakonit:** ako tražite povratak na posao, sud nalaže vraćanje na rad i isplatu izgubljene zarade sa [doprinosima](/blog/doprinosi-srbija). Ako povratak ne tražite, sud dosuđuje novčanu naknadu **do 18 vaših zarada** (do 36 ako poslodavac dokaže da je povratak objektivno nemoguć), zavisno od staža, godina i broja izdržavanih članova porodice — umanjenu za prihod koji ste u međuvremenu zaradili kod drugog poslodavca. Ako je osnov za otkaz postojao ali je postupak prekršen, naknada je niža, do 6 zarada. U praksi, **poslodavac mora da dokaže** da je razlog osnovan i postupak pravilno sproveden — sam tekst rešenja nije dokaz.
+
+**Zabrana otkaza u zaštićenim periodima:** poslodavac ne sme otkazati ugovor za vreme trudnoće, porodiljskog odsustva, odsustva radi nege deteta ili propisanog bolovanja vezanog za te periode. Otkaz dat u tim okolnostima je **ništav** ako je poslodavac znao za trudnoću, ili ako ga zaposlena obavesti u roku od 30 dana od otkaza uz lekarsko uverenje.
+
+**Ako je otkaz zapravo odmazda:** otkaz koji sledi nakon što ste prijavili mobing ili tražili neko zakonsko pravo (npr. neplaćeno odsustvo) sam po sebi ne postaje zakonit samo zato što formalno navodi drugi razlog — motiv je nešto što sud uzima u obzir.
+
+Pun postupak osporavanja, sve varijante naknade i praktični koraci — u vodiču o [nezakonitom otkazu](/blog/nezakonit-otkaz). Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otkazu, obračune zarade za poslednja tri meseca i eventualna upozorenja.
 
 ## Izvori i korisni linkovi
 
@@ -129,4 +137,6 @@ export const faq = [
   { q: "Kako se piše otkaz ugovora o radu od strane zaposlenog?", a: "Dovoljna je kratka pisana izjava: pozovete se na član 178. Zakona o radu, navedete broj i datum ugovora i datum prestanka radnog odnosa (najmanje 15 dana od dostavljanja). Obrazloženje nije obavezno, a poslodavac otkaz ne može da odbije." },
   { q: "Da li mogu da dobijem otkaz zbog nedolaska na posao?", a: "Da — neopravdani izostanak je povreda radne discipline (član 179). Poslodavac prethodno mora da dostavi pisano upozorenje i ostavi najmanje 8 dana za izjašnjenje; radni odnos tada prestaje danom dostavljanja rešenja, bez otkaznog roka i bez otpremnine." },
   { q: "Da li se otkaz razlikuje kod ugovora na određeno i na neodređeno?", a: "Ne — razlozi, postupak i zaštita su isti. Ugovor na određeno dodatno može prestati istekom roka na koji je zaključen, bez otkaza i otpremnine." },
+  { q: "Šta dobijam ako sud utvrdi da je moj otkaz bio nezakonit?", a: "Ako tražite povratak na posao, sud nalaže vraćanje na rad i isplatu izgubljene zarade sa doprinosima. Ako povratak ne tražite, sud dosuđuje naknadu do 18 vaših zarada (do 36 ako je povratak objektivno nemoguć), umanjenu za prihod ostvaren u međuvremenu kod drugog poslodavca (član 191 Zakona o radu)." },
+  { q: "Mora li poslodavac da me upozori pre otkaza zbog povrede radne obaveze?", a: "Da — za otkaz zbog povrede radne obaveze ili nepoštovanja discipline (član 179 st. 2–3), poslodavac mora prvo dostaviti pisano upozorenje sa najmanje 8 dana roka za vaše izjašnjenje (član 180). Otkaz bez ovog koraka je procesno manjkav." },
 ];
