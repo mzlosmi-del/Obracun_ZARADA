@@ -7,7 +7,7 @@ export const body = `
 
 Prosečna neto zarada u Srbiji je od 2016. do 2025. nominalno **više nego udvostručena** — sa 46.097 na 109.462 dinara. Ali dinar iz 2016. i dinar iz 2025. ne kupuju isto. Kada se taj rast očisti od inflacije, **realna kupovna moć prosečne zarade porasla je 53%** — i to neravnomerno, sa pravom pauzom baš u godini kada je inflacija dostigla 15,1%. U ovom tekstu: realan rast po godinama, zašto je medijalna zarada bolji pokazatelj "tipičnog" radnika od proseka, i šta plata doslovno kupuje danas u odnosu na 2016.
 
-**Ukratko:** realna kupovna moć prosečne zarade porasla je **+53%** od 2016. do 2025. (prosečno **4,8% godišnje**). Rast nije bio linearan — u 2021–2022, kada je inflacija skočila na 15,1%, realna zarada je **stagnirala** uprkos nominalnom rastu. Medijalna zarada — realniji pokazatelj od proseka — takođe je realno porasla (**+55%**, 2018–2025), ali nešto sporije od proseka, što znači da se jaz između "tipičnog" i prosečnog radnika **proširio**. U fizičkim jedinicama: prosečna plata danas kupuje **82% više hleba** i zahteva **44% manje meseci zarade** za kvadrat stana u Beogradu nego 2016.
+**Ukratko:** realna kupovna moć prosečne zarade porasla je **+53%** od 2016. do 2025. (prosečno **4,8% godišnje**). Rast nije bio linearan — u 2021–2022, kada je inflacija skočila na 15,1%, realna zarada je **stagnirala** uprkos nominalnom rastu. Medijalna zarada — realniji pokazatelj od proseka — takođe je realno porasla (**+55%**, 2018–2025), ali nešto sporije od proseka, što znači da se jaz između "tipičnog" i prosečnog radnika **proširio**. Podela po decilima otkriva iznenađujuću sliku: realan rast je bio **najbrži baš kod najnižih 10% zarada (+64%)**, verovatno zbog rasta minimalca, dok je prag za ulazak u najviših 10% rastao **najsporije (+45%)** — jaz proseka i medijane, dakle, ne dolazi od šireg "gornjeg srednjeg" sloja, već izgleda da je koncentrisan tek na samom vrhu raspodele. U fizičkim jedinicama: prosečna plata danas kupuje **82% više hleba** i zahteva **44% manje meseci zarade** za kvadrat stana u Beogradu nego 2016.
 
 > **Napomena:** Tekst je informativnog karaktera. Sve cifre i metodologija objašnjeni su transparentno ispod — proverite izvore pre citiranja u medijima.
 
@@ -15,8 +15,11 @@ Prosečna neto zarada u Srbiji je od 2016. do 2025. nominalno **više nego udvos
 
 - **Realna kupovna moć prosečne zarade: +53%, 2016–2025.** Prosečno 4,8% godišnje, ali neravnomerno raspoređeno.
 - **2021–2022 je "izgubljena godina" za kupovnu moć.** Inflacija od 15,1% u 2022. skoro je u potpunosti pojela nominalni rast zarade te godine — realan indeks je čak blago pao (122,1 → 120,7).
-- **Medijalna zarada je 26,8% niža od prosečne** (decembar 2025), naspram 24,3% u 2018. — jaz se proširio, najviše u 2021. (28,5%), što ukazuje na rast neujednačenosti (verovatno vezano za nagli rast IT sektora, koji povlači prosek naviše bez da podiže medijanu srazmerno).
+- **Medijalna zarada je 26,8% niža od prosečne** (decembar 2025), naspram 24,3% u 2018. — jaz se proširio, najviše u 2021. (28,5%), a potom se delimično stabilizovao.
 - **Medijalna zarada je takođe realno porasla — +55% (2018–2025)** — ali sporije od proseka (+60% u istom periodu).
+- **Najniža desetina zarada (D1) je realno porasla najviše od svih posmatranih grupa — +64% (2018–2025)**, verovatno zbog rasta minimalca — brže i od medijane i od proseka.
+- **Prag za ulazak u najviših 10% zarada (D9) je realno porastao najsporije — samo +45%** — sporije od D1, medijane I proseka, što znači da širi "gornji srednji" sloj nije glavni pokretač jaza proseka i medijane; taj jaz izgleda da dolazi tek sa samog vrha raspodele, iznad 90. percentila.
+- **Nejednakost unutar D1–D9 opsega se zapravo smanjila** — odnos D9/D1 pao je sa 3,29 (2018) na 2,91 (2025), uprkos vrhuncu od 3,48 u 2023.
 - **Hleb:** prosečna plata je 2016. kupovala oko 1.002 vekne mesečno; danas kupuje oko 1.822 — **+82%**.
 - **Stan u Beogradu:** 2016. je trebalo **4,8 meseci** prosečne zarade za kvadrat; danas **2,7 meseci** — kvadrat je, relativno prema platama, **44% "pristupačniji"**, uprkos tome što je nominalna cena po m² porasla za 48% u evrima.
 
@@ -71,7 +74,37 @@ Prosečna zarada je osetljiva na visoke zarade na vrhu raspodele (pre svega IT s
 | 2024 | 79.624 | 108.312 | 73,5% |
 | 2025 | 90.819 | 124.089 | 73,2% |
 
-Jaz između medijane i proseka **rastao je od 2018. (24,3%) do 2021. (28,5%)** — verovatno u vreme najbržeg rasta IT i visokoplaćenih sektora — a potom se delimično stabilizovao oko 26–27%. Poruka za čitaoca: kada vidite naslov "prosečna zarada je X dinara", vaša realna plata je verovatnije bliža **medijani** nego prikazanom proseku — trenutno oko 73% te cifre. I medijalna zarada je realno rasla (+55% od 2018. do 2025.), samo nešto sporije od proseka (+60% u istom periodu) — kupovna moć tipičnog radnika je dakle stvarno porasla, ali malo manje nego što prosek sugeriše.
+Jaz između medijane i proseka **rastao je od 2018. (24,3%) do 2021. (28,5%)**, a potom se delimično stabilizovao oko 26–27%. Poruka za čitaoca: kada vidite naslov "prosečna zarada je X dinara", vaša realna plata je verovatnije bliža **medijani** nego prikazanom proseku — trenutno oko 73% te cifre. I medijalna zarada je realno rasla (+55% od 2018. do 2025.), samo nešto sporije od proseka (+60% u istom periodu) — kupovna moć tipičnog radnika je dakle stvarno porasla, ali malo manje nego što prosek sugeriše. Ko je tačno "zaslužan" za taj jaz — donji, srednji ili gornji slojevi — pokazuje sledeći odeljak.
+
+## Kupovna moć po nivoima zarade — ko je najviše dobio?
+
+Prosek i medijana su samo dve tačke na celoj raspodeli zarada. RZS objavljuje i **decile** — granice koje dele zaposlene na 10 jednakih grupa. U ovom odeljku poredimo tri tačke: **D1** (granica ispod koje spada najniže plaćenih 10% zaposlenih), **D5** (medijana, već prikazana gore) i **D9** (granica iznad koje spada najbolje plaćenih 10%). Podaci su dostupni od **2018.** (isto ograničenje kao kod medijane).
+
+| Godina | D1 — donjih 10% (RSD) | D5 — medijana (RSD) | D9 — gornjih 10%, prag (RSD) | D9/D1 odnos |
+|---|---|---|---|---|
+| 2018 | 26.190 | 39.623 | 86.175 | 3,29 |
+| 2019 | 29.520 | 44.530 | 97.040 | 3,29 |
+| 2020 | 32.723 | 48.676 | 106.897 | 3,27 |
+| 2021 | 35.090 | 53.349 | 116.329 | 3,32 |
+| 2022 | 38.000 | 60.413 | 128.991 | 3,39 |
+| 2023 | 42.812 | 69.842 | 149.031 | 3,48 |
+| 2024 | 50.285 | 79.624 | 166.200 | 3,31 |
+| 2025 | 63.483 | 90.819 | 185.000 | 2,91 |
+
+**Realan (inflaciono očišćen) rast, 2018–2025, po grupi:**
+
+| Grupa | Realan rast 2018–2025 |
+|---|---|
+| D1 (donjih 10%) | **+64%** |
+| Prosek | +60% |
+| D5 (medijana) | +55% |
+| D9 (prag za gornjih 10%) | **+45%** |
+
+Ovo je iznenađujući nalaz koji dosta objašnjava: **kupovna moć je rasla najbrže baš kod najniže plaćenih**, sporije kod medijane, i najsporije kod praga za ulazak u najviših 10%. Odnos D9/D1 — koliko puta prag za gornjih 10% premašuje prag za donjih 10% — pao je sa 3,29 (2018) na 2,91 (2025), sa vrhuncem od 3,48 u 2023. Drugim rečima: **nejednakost unutar širokog opsega od 10. do 90. percentila zarada se u ovom periodu smanjila**, ne povećala. Najveći skok D1 desio se baš u 2025. (50.285 → 63.483, +26% nominalno u jednoj godini) — vremenski se poklapa sa periodom značajnog rasta minimalne cene rada, što je verovatno objašnjenje, iako ova analiza ne izoluje uzročnost.
+
+Ovo naizgled protivreči nalazu da je jaz proseka i medijane rastao (prethodni odeljak). Rešenje: **obe stvari su tačne istovremeno**. Prosek raste brže od D9 (praga za gornjih 10%) što znači da rast koji podiže prosek dolazi **iznad** 90. percentila — od uskog sloja najplaćenijih pojedinaca (vrh IT sektora, top menadžment), ne od šireg "gornjeg srednjeg" sloja zaposlenih koji čini masu D5–D9 opsega. Taj uski vrh statistički "vuče" prosek naviše, a da pritom i ne uđe u podatke koje D9 meri (D9 je granica, ne prosek iznad nje).
+
+**Ograda:** D1 i D9 su granice decila (10. i 90. percentil), ne "najsiromašniji" i "najbogatiji" pojedinačni zaposleni — stvarna raspodela iznad D9 i ispod D1 nije ovde prikazana. Podaci su na decembarskoj bazi, isto kao medijana gore.
 
 ## Šta plata kupuje danas — poređenje sa 2016.
 
@@ -97,15 +130,18 @@ Ovo je namerno kontraintuitivan nalaz — nominalne cene su svuda vidljivo poras
 - **Cena mleka za 2016.** je procena iz medijske retrospektive, ne zvaničan RZS podatak — tretirajte tu jednu stavku sa dozom opreza.
 - **Cena goriva za 2016.** korišćena je kao najniža zabeležena vrednost te godine (februar 2016.), ne godišnji prosek — stvarni prosek 2016. je verovatno bio nešto viši, što bi blago smanjilo izračunati rast kupovne moći za gorivo.
 - **Realan indeks za 2026.** nije izračunat jer godina još nije završena i CPI podaci za celu godinu ne postoje — maj 2026. je prikazan samo kao referentna nominalna tačka.
+- **Decili (D1/D5/D9)** su dostupni samo od 2018. (isto ograničenje kao medijana) i predstavljaju granice, ne proseke unutar grupe — ne govore ništa o rasponu ispod D1 ili iznad D9.
 
 ## Izvori
 
 - [RZS — Zarade](https://www.stat.gov.rs/sr-latn/oblasti/trziste-rada/zarade)
+- [RZS — Zarade prema decilima zaposlenih](https://data.stat.gov.rs/Home/Result/2403040507?languageCode=sr-Latn)
 - [RZS — Indeksi potrošačkih cena (arhiva, Paragraf)](https://www.paragraf.rs/statistika/arhiva-indeksi_potrosackih_cena_u_republici_srbiji.html)
 - [PIO — Prosečne godišnje zarade od 1970. godine (RZS podaci)](https://www.pio.rs/images/dokumenta/statistike/2019/GODISNJE%20ZARADE%20OD%201970.G-2018%20lat.pdf)
 - [N1 Info — Međugodišnja inflacija na kraju 2024. godine 4,3 odsto](https://n1info.rs/biznis/medjugodisnja-inflacija-na-kraju-2024-godine-43-odsto/)
 - [N1 Info — Inflacija u 2025: međugodišnja 2,7 odsto](https://n1info.rs/biznis/inflacija-u-2025-medjugodisnja-27-odsto-prosecna-godisnja-38-odsto/)
 - [CEKOS — Medijalna zarada po godinama](https://www.cekos.rs/medijalna-zarada-u-2025-godini)
+- [Nova Ekonomija — RZS decili, decembar 2025](https://novaekonomija.rs/price-i-analize/srbija-uz-crnu-goru-najsiromasnija-zemlja-evrope-20-odsto-radnika-prima-manje-od-68-755-dinara-u-top-10-odsto-se-ulazi-s-platom-od-185-000)
 - [Gradnja.rs — Istorijska analiza cene kvadrata u Beogradu](https://www.gradnja.rs/prosecna-cena-kvadrata-beograd-istorija/)
 - [GlobalPetrolPrices — Serbia gasoline/diesel prices](https://www.globalpetrolprices.com/Serbia/gasoline_prices/)
     `;
@@ -116,4 +152,6 @@ export const faq = [
   { q: "Da li je bolje gledati prosečnu ili medijalnu zaradu?", a: "Medijalna zarada bolje pokazuje šta zarađuje 'tipičan' zaposleni, jer prosek podižu visoke zarade manjine (najviše IT sektor). Medijalna zarada je krajem 2025. iznosila 73,2% prosečne — dakle tipičan zaposleni zarađuje znatno manje od često citiranog proseka." },
   { q: "Da li je jaz između prosečne i medijalne zarade veći nego ranije?", a: "Da — medijana je 2018. bila 75,7% proseka, a krajem 2025. 73,2%. Jaz je najviše porastao do 2021. (medijana 71,5% proseka), pa se delimično stabilizovao." },
   { q: "Da li je stan u Beogradu postao skuplji ili pristupačniji u odnosu na platu?", a: "U odnosu na platu, pristupačniji — iako je cena kvadrata u evrima porasla 48% (2016–2026), prosečna zarada je u istom periodu porasla još brže, pa je za kvadratni metar 2016. trebalo 4,8 meseci prosečne zarade, a danas 2,7 meseci." },
+  { q: "Da li su najniže ili najviše zarade više porasle u kupovnoj moći?", a: "Najniže. Donjih 10% zarada (D1) realno je poraslo 64% od 2018. do 2025 — brže od medijane (+55%) i brže od praga za ulazak u najviših 10% zarada, D9 (+45%). Prag D9 je, iznenađujuće, realno rastao najsporije od sve tri posmatrane tačke." },
+  { q: "Da li se nejednakost u zaradama u Srbiji povećala ili smanjila?", a: "Zavisi koji deo raspodele posmatrate. Unutar opsega od 10. do 90. percentila (D1 do D9), nejednakost se smanjila — odnos D9/D1 pao je sa 3,29 (2018) na 2,91 (2025). Istovremeno, jaz između proseka i medijane je rastao, što ukazuje da rast koji podiže prosek dolazi od uskog sloja iznad 90. percentila, ne od šireg gornjeg sloja zaposlenih." },
 ];
