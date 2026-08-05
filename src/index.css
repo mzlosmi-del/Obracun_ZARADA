@@ -261,12 +261,45 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .post-body h3 { font-size: 15px; font-weight: 700; color: var(--text); margin: 20px 0 8px; }
 .post-body p { margin-bottom: 14px; }
 .post-body strong { color: var(--text); font-weight: 600; }
-.post-body ul { padding-left: 20px; margin-bottom: 14px; }
+.post-body ul, .post-body ol { padding-left: 20px; margin-bottom: 14px; }
 .post-body li { margin-bottom: 6px; }
+.post-body ol { padding-left: 22px; }
+.post-body ol li { padding-left: 3px; margin-bottom: 9px; }
+.post-body ol li::marker { font-weight: 700; color: var(--accent); }
+/* Wrapper lets a wide data table scroll sideways on a phone instead of squashing
+   its columns into unreadable slivers. */
+.post-table-wrap { margin: 18px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--border); border-radius: 8px; }
+.post-body .post-table-wrap table { margin: 0; border: none; border-radius: 0; min-width: 100%; }
 .post-body table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
-.post-body td { padding: 9px 14px; border-bottom: 1px solid var(--border); font-family: var(--mono); }
-.post-body tr:last-child td { border-bottom: none; }
-.post-body tr:nth-child(even) td { background: var(--surface2); }
+/* Header row: solid accent, so the reader instantly sees where a table starts and
+   what each column holds. */
+.post-body thead th {
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-align: left;
+  padding: 11px 14px;
+  line-height: 1.35;
+  border-bottom: none;
+}
+.post-body td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-variant-numeric: tabular-nums; }
+/* First column is the row label (year, item, income level) — set it as text rather
+   than figures so the eye can scan down it quickly. */
+.post-body tbody td:first-child { font-family: var(--sans); font-weight: 600; color: var(--text); white-space: nowrap; }
+.post-body tbody tr:last-child td { border-bottom: none; }
+.post-body tbody tr:nth-child(even) td { background: var(--surface2); }
+.post-body tbody tr:hover td { background: var(--accent-light); }
+.post-body td strong { color: var(--accent); font-weight: 700; }
+/* On a phone, tighten the table so more columns fit before the wrapper has to
+   scroll sideways. */
+@media (max-width: 640px) {
+  .post-body table { font-size: 12px; }
+  .post-body thead th { font-size: 11px; padding: 9px 10px; }
+  .post-body td { padding: 8px 10px; }
+}
 .post-body .post-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin: 16px 0; display: block; }
 .post-body .post-chart { width: 100%; height: auto; border-radius: 10px; margin: 18px 0; display: block; border: 1px solid var(--border); background: #fff; }
 .post-body .post-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }

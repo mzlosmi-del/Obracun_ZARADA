@@ -47,14 +47,38 @@ function renderMd(text) {
     })
     .replace(/\[([^\]]+)\]\((\/[^)]*)\)/g, '<a href="$2" class="post-link post-link-internal">$1</a>')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-link">$1</a>')
-    .replace(/^\|(.+)\|$/gm, (m) => {
-      if (m.includes('---')) return '';
-      const cells = m.split('|').filter(Boolean).map(c => `<td>${c.trim()}</td>`).join('');
+    // Drop the markdown separator row (|---|---|) together with its newline, so the
+    // header and body rows stay on contiguous lines for the grouping pass below.
+    // Matching only pipes/dashes/colons/space keeps real data rows (which contain
+    // digits or letters) and em-dash placeholder cells like "| — |" safe.
+    .replace(/^\|[\s|:-]+\|[ \t]*\r?\n/gm, '')
+    .replace(/^\|(.+)\|[ \t]*$/gm, (m) => {
+      // Slice off the leading/trailing pipe rather than filter(Boolean) on the split:
+      // filtering silently DROPS a deliberately empty cell, which shifts every later
+      // cell one column left for that row.
+      const cells = m.trim().replace(/^\|/, '').replace(/\|$/, '').split('|')
+        .map(c => `<td>${c.trim()}</td>`).join('');
       return `<tr>${cells}</tr>`;
     })
-    .replace(/(<tr>.*<\/tr>\n?)+/gs, (m) => `<table>${m}</table>`)
+    // Group ONLY consecutive row lines into a table, and promote the first row to
+    // a real <thead>/<th>. The previous pattern used /s (dot matches newline) with
+    // a greedy .*, so a single match ran from the first <tr> in the article to the
+    // last one — collapsing every table in the post into one and swallowing all the
+    // prose, headings and lists in between. Anchored per line with no /s flag, each
+    // run of adjacent rows becomes its own table.
+    .replace(/(?:^<tr>.*<\/tr>[ \t]*$\r?\n?)+/gm, (block) => {
+      const rows = block.trim().split(/\r?\n/);
+      const head = rows[0].replace(/<td>/g, '<th>').replace(/<\/td>/g, '</th>');
+      return `<div class="post-table-wrap"><table><thead>${head}</thead><tbody>${rows.slice(1).join('')}</tbody></table></div>\n`;
+    })
     .replace(/^- (.+)$/gm, '<li>$1</li>')
-    .replace(/(<li>.*<\/li>\n?)+/gs, (m) => `<ul>${m}</ul>`)
+    .replace(/(?:^<li>.*<\/li>[ \t]*$\r?\n?)+/gm, (block) => `<ul>${block.trim().split(/\r?\n/).join('')}</ul>\n`)
+    // Ordered lists ("1. ", "2. ") — previously unsupported, so a numbered list ran
+    // together into a single paragraph. Tagged with a placeholder element first so
+    // the grouping pass can tell them apart from bullet <li>s.
+    .replace(/^\d+\. (.+)$/gm, '<oli>$1</oli>')
+    .replace(/(?:^<oli>.*<\/oli>[ \t]*$\r?\n?)+/gm, (block) =>
+      `<ol>${block.trim().split(/\r?\n/).join('').replace(/<oli>/g, '<li>').replace(/<\/oli>/g, '</li>')}</ol>\n`)
     .split(/\n\n+/)
     .map(b => b.startsWith('<') ? b : `<p>${b.replace(/\n/g,' ')}</p>`)
     .join('\n');
