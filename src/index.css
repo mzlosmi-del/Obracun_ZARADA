@@ -572,6 +572,15 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .reference-body p:last-child { margin-bottom: 0; }
 .reference-body a { color: var(--accent); text-decoration: none; }
 .reference-body a:hover { text-decoration: underline; }
+/* Long-form reference pages (minimalna-zarada-2026 i sl.) carry h2 sections,
+   lists and bold spans inside .reference-body — without these rules they fell
+   back to browser defaults (24px h2, 16px full-black li), visibly uneven next
+   to the 14px/--text2 paragraphs. Mirrors .tool-guide at the 14px body scale. */
+.reference-body h2 { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin: 22px 0 10px; }
+.reference-body h2:first-child { margin-top: 0; }
+.reference-body ul { padding-left: 20px; margin: 0 0 12px; }
+.reference-body li { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 6px; }
+.reference-body strong { color: var(--text); font-weight: 600; }
 
 .ref-table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 14px; }
 .ref-table th, .ref-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); }
