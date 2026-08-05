@@ -7,7 +7,7 @@ export const POSTS = [
     date: "4. avgust 2026",
     tag: "Data studija",
     title: "Kupovna moć plate u Srbiji 2016–2026: realno +53%",
-    summary: "Data studija: realna kupovna moć prosečne zarade porasla je 53% od 2016. do 2025. (RZS, očišćeno od inflacije), ali je 2022. stagnirala. Medijana, korpa dobara i metodologija.",
+    summary: "Plata iz 2016. vredela je koliko danas vredi 71.558 din — a prosečna je danas 109.462. Realan rast kupovne moći je 53%, uz jedini pad 2022. Ko je zaista najviše dobio (RZS podaci).",
     ogImage: "https://www.platnilistic.rs/media/kupovna-moc-2016-2026.png",
     hasFaq: true,
   },
