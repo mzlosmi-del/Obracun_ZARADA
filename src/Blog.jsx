@@ -14,7 +14,21 @@ const POST_MODULES = import.meta.glob("./posts/*.js");
 
 function loadPostBody(id) {
   const load = POST_MODULES[`./posts/${id}.js`];
-  return load ? load() : Promise.resolve(null);
+  if (!load) return Promise.resolve(null);
+  return load().catch(() => {
+    // A failed article chunk is almost always a stale deploy: the visitor (or
+    // Googlebot's renderer) holds an old index.html whose hashed chunk URLs no
+    // longer exist. One hard reload picks up the fresh build; the sessionStorage
+    // guard prevents a reload loop if the chunk is genuinely unreachable.
+    const key = `chunk-retry-${id}`;
+    try {
+      if (!sessionStorage.getItem(key)) {
+        sessionStorage.setItem(key, "1");
+        window.location.reload();
+      }
+    } catch { /* sessionStorage unavailable — fall through */ }
+    return null;
+  });
 }
 
 function renderMd(text) {
@@ -237,22 +251,30 @@ export function BlogPostRoute() {
   const post = meta && content ? { ...meta, body: content.body, faq: content.faq } : null;
   // `updated` (optional) bumps dateModified / article:modified_time without
   // touching the original publish date; falls back to the publish date.
-  const modified = post ? isoDate(post.updated || post.date) : undefined;
+  const modified = meta ? isoDate(meta.updated || meta.date) : undefined;
 
+  // SEO is driven by `meta` (posts.js), NOT by `post`: meta is available
+  // synchronously, so the correct title/description/JSON-LD are set even while
+  // the body chunk is still loading — or if it never loads. Previously this was
+  // keyed on `post`, so the loading state advertised itself as
+  // "Članak nije pronađen" — Googlebot rendered exactly that during the
+  // 4.8.2026 deploy (stale chunk hash → import failed) and indexed the
+  // porodiljsko-odsustvo article as a soft 404, dropping it from pos ~4 to
+  // page 2. Only the FAQ schema still waits on the chunk, since faq lives there.
   useSeo({
-    title: post ? `${post.title} | PlatniListić` : "Članak nije pronađen | PlatniListić",
-    description: post ? post.summary : "Tražena strana nije pronađena.",
-    path: post ? `/blog/${post.id}` : "/blog",
-    image: post ? post.ogImage : undefined,
-    ogType: post ? "article" : "website",
-    articlePublished: post ? isoDate(post.date) : undefined,
+    title: meta ? `${meta.title} | PlatniListić` : "Članak nije pronađen | PlatniListić",
+    description: meta ? meta.summary : "Tražena strana nije pronađena.",
+    path: meta ? `/blog/${meta.id}` : "/blog",
+    image: meta ? meta.ogImage : undefined,
+    ogType: meta ? "article" : "website",
+    articlePublished: meta ? isoDate(meta.date) : undefined,
     articleModified: modified,
-    jsonLd: post ? [{
+    jsonLd: meta ? [{
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": post.title,
-      "description": post.summary,
-      "datePublished": isoDate(post.date),
+      "headline": meta.title,
+      "description": meta.summary,
+      "datePublished": isoDate(meta.date),
       "dateModified": modified,
       "author": { "@type": "Organization", "name": "PlatniListić", "url": SITE_URL },
       "publisher": {
@@ -261,17 +283,17 @@ export function BlogPostRoute() {
         "url": SITE_URL,
         "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.svg` }
       },
-      "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/blog/${post.id}` },
-      "articleSection": post.tag,
+      "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/blog/${meta.id}` },
+      "articleSection": meta.tag,
       "inLanguage": "sr-RS",
-      "url": `${SITE_URL}/blog/${post.id}`,
+      "url": `${SITE_URL}/blog/${meta.id}`,
     }, {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
         { "@type": "ListItem", "position": 1, "name": "Početna", "item": `${SITE_URL}/` },
         { "@type": "ListItem", "position": 2, "name": "Blog", "item": `${SITE_URL}/blog` },
-        { "@type": "ListItem", "position": 3, "name": post.title, "item": `${SITE_URL}/blog/${post.id}` },
+        { "@type": "ListItem", "position": 3, "name": meta.title, "item": `${SITE_URL}/blog/${meta.id}` },
       ],
     }] : null,
     faq: post && post.faq ? post.faq : null,
