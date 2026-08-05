@@ -15,6 +15,8 @@ Zakonski minimum je **0,4% od osnovne zarade po godini rada** kod istog poslodav
 
 **Važno:** Minuli rad se računa samo za godine kod **trenutnog poslodavca**, ne za ukupan staž osiguranja.
 
+Pravo na minuli rad imaju i zaposleni koji primaju [minimalnu zaradu](/minimalna-zarada-2026) — uvećanje se obračunava **povrh minimalca**, jer minimalac pokriva samo osnovnu zaradu za standardni učinak i puno radno vreme.
+
 ## Formula za obračun
 
 **Iznos minulog rada = Osnovna bruto zarada × Godine staža × Stopa po godini**
