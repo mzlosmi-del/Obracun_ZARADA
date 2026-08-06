@@ -3,7 +3,7 @@
 export const body = `
 ![Šifre delatnosti za paušalce 2026 — izbor šifre i koeficijenti](https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jul 2026.** Podaci su usklađeni sa Zakonom o porezu na dohodak građana (čl. 40–41) i Uredbom o bližim uslovima, kriterijumima i elementima za paušalno oporezivanje (sa izmenama zaključno sa „Sl. glasnikom RS" 109/25), uključujući koeficijente iz Priloga 1 koji važe od 2023. nadalje.
+> **Provereno i ažurirano: 6. avgust 2026.** Podaci su usklađeni sa Zakonom o porezu na dohodak građana (čl. 40–41) i Uredbom o bližim uslovima, kriterijumima i elementima za paušalno oporezivanje (sa izmenama zaključno sa „Sl. glasnikom RS" 109/25), uključujući koeficijente iz Priloga 1 koji važe od 2023. nadalje.
 
 Izbor **šifre delatnosti** je najvažnija pojedinačna odluka pri registraciji paušalca: od nje zavisi (1) da li paušal uopšte možete da koristite i (2) koliki će vam biti mesečni porez, jer svaka šifra nosi svoj **koeficijent delatnosti**. U ovom vodiču: koje delatnosti ne mogu u paušal, koeficijenti za najčešće šifre i dve zamke koje koštaju.
 

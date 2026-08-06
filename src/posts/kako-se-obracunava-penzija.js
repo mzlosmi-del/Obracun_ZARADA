@@ -3,7 +3,7 @@
 export const body = `
 ![Kako se obračunava penzija u Srbiji](https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Pitanje **„kako se obračunava penzija u Srbiji"** najčešće je pitanje koje Fond PIO dobija od budućih penzionera. Sistem deluje komplikovano jer se sastoji iz više elemenata — **ličnog koeficijenta**, **penzijskog staža**, **ličnih bodova** i **vrednosti opšteg boda**. U ovom vodiču objašnjavamo formulu korak po korak, sa konkretnim primerima obračuna prema **Zakonu o penzijskom i invalidskom osiguranju** (ZPIO).
 

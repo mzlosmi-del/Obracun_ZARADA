@@ -3,7 +3,7 @@
 export const body = `
 ![Računanje zarade na laptopu](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80)
 
-> **Provereno i ažurirano: 16. jul 2026.** Stope, doprinosi i neoporezivi iznos usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu (neoporezivi iznos 34.221 RSD od 1.1.2026).
+> **Provereno i ažurirano: 6. avgust 2026.** Stope, doprinosi i neoporezivi iznos usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu (neoporezivi iznos 34.221 RSD od 1.1.2026).
 
 Kada potpisujete ugovor o radu, zarada je obično izražena u bruto iznosu. Ali šta zapravo dobijate na račun? I zašto je razlika toliko velika?
 

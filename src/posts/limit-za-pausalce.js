@@ -3,7 +3,7 @@
 export const body = `
 ![Limit za paušalce 2026 — 6 i 8 miliona dinara, praćenje prometa](https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jul 2026.** Pravila su usklađena sa Zakonom o porezu na dohodak građana (čl. 40–42) i Zakonom o PDV-u (čl. 33 i 38), prema prečišćenim tekstovima dostupnim u julu 2026. Propisi se menjaju — pre odluke proverite aktuelni tekst zakona ili se obratite knjigovođi.
+> **Provereno i ažurirano: 6. avgust 2026.** Pravila su usklađena sa Zakonom o porezu na dohodak građana (čl. 40–42) i Zakonom o PDV-u (čl. 33 i 38), prema prečišćenim tekstovima dostupnim u avgustu 2026. Propisi se menjaju — pre odluke proverite aktuelni tekst zakona ili se obratite knjigovođi.
 
 **Limit za paušalce** je tema oko koje se pravi najviše skupih grešaka: postoje **dva različita limita**, mere se na **dva različita načina**, i posledice prelaska su potpuno drugačije. U ovom vodiču razdvajamo 6 i 8 miliona, objašnjavamo od kog tačno datuma kreću poslovne knjige i šta uopšte ulazi u promet.
 

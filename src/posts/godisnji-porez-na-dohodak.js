@@ -3,7 +3,7 @@
 export const body = `
 ![Godišnji porez na dohodak građana 2026 — obračun, cenzus i prijava PP GPDG](https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jul 2026.** Sve cifre su usklađene sa zvaničnim Poreskim informatorom Poreske uprave (april 2026), Objašnjenjem Ministarstva finansija od 30. marta 2026. i Zakonom o porezu na dohodak građana (čl. 87–89). Prosečna godišnja zarada za 2025. prema podatku RZS: **1.813.032 RSD**.
+> **Provereno i ažurirano: 6. avgust 2026.** Sve cifre su usklađene sa zvaničnim Poreskim informatorom Poreske uprave (april 2026), Objašnjenjem Ministarstva finansija od 30. marta 2026. i Zakonom o porezu na dohodak građana (čl. 87–89). Prosečna godišnja zarada za 2025. prema podatku RZS: **1.813.032 RSD**.
 
 Godišnji porez na dohodak građana je poseban porez koji plaća mali broj najplaćenijih ljudi u Srbiji — samo oni čiji ukupan godišnji prihod pređe zakonski cenzus. U ovom vodiču je tačan obračun **godišnjeg poreza na dohodak građana** sa zvaničnim ciframa, olakšicom za mlađe od 40 godina, ličnim odbicima i primerima u dinarima, plus procedura prijave PP GPDG korak po korak.
 

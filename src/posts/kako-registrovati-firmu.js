@@ -3,7 +3,7 @@
 export const body = `
 ![Kako registrovati firmu u Srbiji 2026 — paušal, preduzetnik ili DOO](https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jun 2026.** Podaci su usklađeni sa zvaničnim izvorima (APR, Poreska uprava, Zakon o privrednim društvima) za 2026. godinu. APR naknade su povećane od 1. januara 2026. — pre uplate proverite tačan iznos na zvaničnom sajtu APR.
+> **Provereno i ažurirano: 6. avgust 2026.** Podaci su usklađeni sa zvaničnim izvorima (APR, Poreska uprava, Zakon o privrednim društvima) za 2026. godinu. APR naknade su povećane od 1. januara 2026. — pre uplate proverite tačan iznos na zvaničnom sajtu APR.
 
 Registracija firme u Srbiji je danas potpuno digitalizovana i među jeftinijima u regionu. Ipak, najvažnija odluka se donosi **pre** registracije: koji oblik izabrati — **paušalnu radnju (preduzetnik)** ili **DOO**. U ovom vodiču vodimo vas korak po korak kroz ceo postupak: izbor forme, registraciju u APR-u, troškove, i obaveze koje nastaju odmah posle osnivanja.
 

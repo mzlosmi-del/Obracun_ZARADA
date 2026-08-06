@@ -3,7 +3,7 @@
 export const body = `
 ![Ugovor o delu u Srbiji — porez, doprinosi i obračun](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Ugovor o delu** je jedan od najčešćih oblika angažovanja van radnog odnosa u Srbiji — koristi se za konkretan, samostalan posao sa jasnim rezultatom. Ali upravo zbog posebnog poreskog tretmana, mnogi ne znaju **koliko se zaista plaća poreza i doprinosa** i koliko ostaje „na ruke". U ovom vodiču objašnjavamo obračun za **2026. godinu** korak po korak, sa konkretnim primerom i poređenjem sa ugovorom o radu.
 

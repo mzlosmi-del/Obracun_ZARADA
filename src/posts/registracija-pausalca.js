@@ -3,7 +3,7 @@
 export const body = `
 ![Kako registrovati paušalca korak po korak u APR-u 2026](https://images.unsplash.com/photo-1664575602554-2087b04935a5?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jul 2026.** Postupak i naknade usklađeni su sa zvaničnim izvorima (APR, Poreska uprava) za 2026. godinu. APR naknade su povećane od 1. januara 2026. — pre uplate proverite tačan iznos na sajtu APR.
+> **Provereno i ažurirano: 6. avgust 2026.** Postupak i naknade usklađeni su sa zvaničnim izvorima (APR, Poreska uprava) za 2026. godinu. APR naknade su povećane od 1. januara 2026. — pre uplate proverite tačan iznos na sajtu APR.
 
 Registracija paušalca je najjednostavniji način da legalno pokrenete biznis u Srbiji — jeftinije i brže od DOO, bez osnivačkog akta i notara. Ceo postupak je elektronski. U ovom vodiču prolazimo kroz registraciju **korak po korak**, od izbora šifre delatnosti do prvog rešenja Poreske uprave.
 

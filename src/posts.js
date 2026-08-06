@@ -62,7 +62,7 @@ export const POSTS = [
   {
     id: "otkazni-rok",
     date: "16. jul 2026",
-    updated: "4. avgust 2026",
+    updated: "6. avgust 2026",
     tag: "Zakon o radu",
     title: "Otkazni rok 2026 — 15, 8–30 ili 5 dana: svi slučajevi",
     summary: "Otkazni rok: 15 dana kad zaposleni da otkaz (max 30), 8–30 dana kod otkaza zbog rezultata rada, 5 radnih dana na probnom radu. Od kog dana teče + primer.",
@@ -71,6 +71,7 @@ export const POSTS = [
   {
     id: "pdv-prag-preduzetnik",
     date: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Porez",
     title: "PDV za preduzetnike 2026 — prag 8 miliona i kada u sistem",
     summary: "PDV prag je 8.000.000 RSD u prethodnih 12 meseci, ne po kalendarskoj godini. Rok za EPPDV, stope 20% i 10%, ino usluge i dobrovoljni ulazak (min. 2 godine).",
@@ -79,6 +80,7 @@ export const POSTS = [
   {
     id: "registracija-doo",
     date: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Biznis",
     title: "Registracija DOO u Srbiji 2026 — koraci, rokovi i troškovi",
     summary: "Registracija DOO 2026: e-prijava u APR ≈5.900 RSD, osnivački akt i notar, rešenje za 3–5 radnih dana, kapital 100 RSD i obaveze u prvih 15 dana (PDP, CEV).",
@@ -87,6 +89,7 @@ export const POSTS = [
   {
     id: "sifre-delatnosti-pausal",
     date: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Paušal",
     title: "Šifre delatnosti za paušalce 2026 — koje mogu, a koje ne",
     summary: "Šifre delatnosti za paušalce 2026: koje ne mogu u paušal, koeficijenti po šiframa (6201 → 4,025), 15 šifri sa republičkom osnovicom i zamka promene šifre.",
@@ -95,6 +98,7 @@ export const POSTS = [
   {
     id: "limit-za-pausalce",
     date: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Paušal",
     title: "Limit za paušalce 2026 — 6 i 8 miliona: šta kad se pređe",
     summary: "Limit za paušalce: 6.000.000 RSD u kalendarskoj godini, PDV prag 8.000.000 u 365 dana. Kada knjige kreću od 1. jula, a kada od 1. januara — vodič sa rokovima.",
@@ -103,6 +107,7 @@ export const POSTS = [
   {
     id: "godisnji-porez-na-dohodak",
     date: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Porez",
     title: "Godišnji porez na dohodak građana 2026 — ko plaća i koliko",
     summary: "Godišnji porez na dohodak građana: cenzus za 2025. je 5.439.096 RSD, stope 10% i 15%, prijava PP GPDG do 15. maja. Obračun, olakšica do 40 godina i primeri.",
@@ -139,6 +144,7 @@ export const POSTS = [
   {
     id: "kako-registrovati-firmu",
     date: "17. jun 2026",
+    updated: "6. avgust 2026",
     tag: "Biznis",
     title: "Kako registrovati firmu u Srbiji 2026 — paušal ili DOO",
     summary: "Kako registrovati firmu u Srbiji 2026: paušal, preduzetnik ili DOO — koraci u APR-u, troškovi, porezi i koju formu izabrati. Vodič korak po korak.",
@@ -147,7 +153,7 @@ export const POSTS = [
   {
     id: "pausal-ili-doo",
     date: "17. jun 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Biznis",
     title: "Paušal ili DOO 2026 — poređenje i šta se više isplati",
     summary: "Paušal ili DOO 2026: paušalac plaća fiksno ≈30–45.000 RSD/mes, kod DOO na izvučenu dobit ode ~27,75%. Tabela poređenja, odgovornost i kada se šta isplati.",
@@ -156,7 +162,7 @@ export const POSTS = [
   {
     id: "koliko-pausalac-placa-mesecno",
     date: "17. jun 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Paušal",
     title: "Koliko paušalac plaća mesečno 2026? Okvirno 30–45.000 RSD",
     summary: "Koliko paušalac plaća mesečno u 2026: okvirno 30.000–45.000 RSD, zavisno od šifre delatnosti i opštine. Šta čine porez i doprinosi (45,05%) i gde je tačna cifra.",
@@ -165,7 +171,7 @@ export const POSTS = [
   {
     id: "registracija-pausalca",
     date: "17. jun 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Biznis",
     title: "Kako registrovati paušalca korak po korak (APR) 2026",
     summary: "Kako registrovati paušalca u Srbiji 2026: izbor šifre delatnosti, e-registracija u APR-u za ≈2.500 RSD, zahtev za paušal i prve obaveze — korak po korak.",
@@ -174,6 +180,7 @@ export const POSTS = [
   {
     id: "uplate-iz-inostranstva",
     date: "17. jun 2026",
+    updated: "6. avgust 2026",
     tag: "Frilenseri",
     title: "Uplate iz inostranstva 2026 — Wise, Payoneer ili devizni račun",
     summary: "Kako primati uplate iz inostranstva u Srbiji 2026: Wise, Payoneer i devizni račun — naknade, kurs i prijava poreza. I zašto Revolut još ne radi za rezidente.",
@@ -182,7 +189,7 @@ export const POSTS = [
   {
     id: "kosta-otvaranje-firme",
     date: "17. jun 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Biznis",
     title: "Koliko košta otvaranje firme 2026? Paušal od 2.500 RSD",
     summary: "Koliko košta otvaranje firme u Srbiji 2026: APR naknada za paušal ≈2.500–2.900 RSD, DOO ≈5.900 RSD online. Notar, minimalni kapital 100 RSD i realan ukupan trošak.",
@@ -191,6 +198,7 @@ export const POSTS = [
   {
     id: "frilenser-pausalac-firma",
     date: "17. jun 2026",
+    updated: "6. avgust 2026",
     tag: "Frilenseri",
     title: "Frilenser, paušalac ili firma — kada preći na radnju?",
     summary: "Kada se frilenseru isplati prelazak na paušal ili otvaranje firme? Poredimo poreze, troškove, fakturisanje i odgovornost — i kada je pravi trenutak.",
@@ -199,6 +207,7 @@ export const POSTS = [
   {
     id: "ugovor-o-delu",
     date: "14. jun 2026",
+    updated: "6. avgust 2026",
     tag: "Ugovori",
     title: "Ugovor o delu 2026 — porez, doprinosi i obračun (sa primerom)",
     summary: "Ugovor o delu u Srbiji 2026: porez 20%, PIO 24% i zdravstvo 10,3%, normirani troškovi 20% i primer obračuna bruto u neto — koliko zaista ostaje na ruke.",
@@ -207,7 +216,7 @@ export const POSTS = [
   {
     id: "topli-obrok-i-regres",
     date: "11. jun 2026",
-    updated: "8. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Zarada",
     title: "Topli obrok i regres 2026: da li su obavezni i ko ima pravo",
     summary: "Da, topli obrok i regres su obavezan deo zarade po Zakonu o radu — ali zakon ne propisuje iznos, već ga određuje poslodavac. Ne ulaze u minimalac i oporezuju se kao zarada.",
@@ -216,7 +225,7 @@ export const POSTS = [
   {
     id: "pausalno-oporezivanje",
     date: "8. jun 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Paušal",
     title: "Paušalno oporezivanje 2026 — ko može i koliko plaća?",
     summary: "Paušalno oporezivanje 2026: limit 6 miliona RSD, mesečno okvirno 30–45.000 RSD (porez + doprinosi), koje delatnosti ne mogu u paušal. Vodič za preduzetnike.",
@@ -225,6 +234,7 @@ export const POSTS = [
   {
     id: "porez-za-frilensere",
     date: "5. jun 2026",
+    updated: "6. avgust 2026",
     tag: "Frilenseri",
     title: "Porez za frilensere 2026 — Model A ili B (šta se isplati)",
     summary: "Frilenseri u Srbiji 2026 sami plaćaju porez kvartalno, biranjem Modela A ili B. Objašnjavamo normirane troškove, stope, doprinose, rokove i primer obračuna.",
@@ -233,6 +243,7 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-penzija",
     date: "12. maj 2026",
+    updated: "6. avgust 2026",
     tag: "Penzija",
     title: "Kako se obračunava penzija u Srbiji — formula i primeri",
     summary: "Kako se obračunava penzija u Srbiji 2026: bodovni sistem, lični bodovi i koeficijent, uslovi za starosnu, prevremenu i invalidsku penziju — uz primere.",
@@ -241,6 +252,7 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-bolovanje",
     date: "1. maj 2026",
+    updated: "6. avgust 2026",
     tag: "Bolovanje",
     title: "Kako se obračunava bolovanje do 30 dana — naknada 65%",
     summary: "Obračun bolovanja do 30 dana: naknada je minimum 65% prosečne zarade, a od 31. dana na teret RFZO. Kalkulator sa primerima i PDF platni listić.",
@@ -249,6 +261,7 @@ export const POSTS = [
   {
     id: "minuli-rad-obracun",
     date: "15. april 2026",
+    updated: "6. avgust 2026",
     tag: "Zakon o radu",
     title: "Minuli rad — kako se obračunava i koliko iznosi po godini staža?",
     summary: "Minuli rad je obavezno uvećanje zarade od 0,4% za svaku godinu rada kod istog poslodavca. Detaljan vodič sa primerima obračuna prema članu 108. Zakona o radu.",
@@ -257,7 +270,7 @@ export const POSTS = [
   {
     id: "porez-na-bonus",
     date: "1. mart 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Porez",
     title: "Porez na bonus i nagradu zaposlenima — koliko se zaista oporezuje?",
     summary: "Bonus, godišnja nagrada, 13. plata i jubilarna nagrada — sve što treba znati o porezima i doprinosima na nestandardna primanja zaposlenih u Srbiji.",
@@ -275,6 +288,7 @@ export const POSTS = [
   {
     id: "neoporezivi-2026",
     date: "1. februar 2026",
+    updated: "6. avgust 2026",
     tag: "Porez",
     title: "Neoporezivi iznos zarade u 2026. godini: 34.221 RSD",
     summary: "Od 1. januara 2026. godine, neoporezivi iznos zarade iznosi 34.221 RSD mesečno. Šta to znači za obračun poreza na zaradu i koliko štedite?",
@@ -283,7 +297,7 @@ export const POSTS = [
   {
     id: "bruto-neto-razlika",
     date: "15. januar 2025",
-    updated: "16. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Osnove",
     title: "Razlika bruto i neto zarade 2026 — od 100.000 ostaje 73.522",
     summary: "Razlika između bruto i neto zarade 2026: od bruto 1 se odbija 19,90% doprinosa + 10% poreza, pa od 100.000 RSD bruto ostaje ≈73.522 neto. Primeri i formula.",
@@ -292,7 +306,7 @@ export const POSTS = [
   {
     id: "prekovremeni-rad",
     date: "10. januar 2025",
-    updated: "16. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Zakon o radu",
     title: "Prekovremeni rad 2026 — najmanje +26% po satu (čl. 108)",
     summary: "Prekovremeni rad se plaća najmanje +26% na satnicu, rad na praznik +110% (čl. 108 Zakona o radu). Limit: 8 h nedeljno. Obračun sa primerom za 2026.",
@@ -309,6 +323,7 @@ export const POSTS = [
   {
     id: "doprinosi-srbija",
     date: "20. decembar 2024",
+    updated: "6. avgust 2026",
     tag: "Doprinosi",
     title: "Doprinosi za socijalno osiguranje u Srbiji (vodič)",
     summary: "Ko plaća doprinose, koliko iznose i na šta imate pravo? Kompletan pregled sistema socijalnog osiguranja za zaposlene u Srbiji.",
@@ -317,6 +332,7 @@ export const POSTS = [
   {
     id: "minimalna-zarada-2026",
     date: "1. februar 2026",
+    updated: "6. avgust 2026",
     tag: "Novosti",
     title: "Minimalna zarada u Srbiji za 2026. godinu",
     summary: "Minimalna cena rada za 2026. iznosi 371 RSD neto po radnom času (od 1. januara), tj. mesečno oko 59.360–68.264 RSD neto. Šta se promenilo i kako utiče na poslodavce?",
@@ -325,7 +341,7 @@ export const POSTS = [
   {
     id: "godisnji-odmor-naknada",
     date: "15. januar 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Zakon o radu",
     title: "Kako se računa naknada za godišnji odmor 2026",
     summary: "Kako se računa i plaća godišnji odmor po Zakonu o radu? Naknada ne može biti niža od proseka zarade u prethodnih 12 meseci — formula, primer i prava.",
@@ -334,7 +350,7 @@ export const POSTS = [
   {
     id: "otpremnina-obracun",
     date: "5. januar 2026",
-    updated: "13. jul 2026",
+    updated: "6. avgust 2026",
     tag: "Zakon o radu",
     title: "Otpremnina u Srbiji — minimalni iznos, obračun i porez",
     summary: "Otpremnina u Srbiji: ko ima pravo, kolika je minimalna otpremnina po Zakonu o radu i kako se plaća porez na otpremninu. Obračun za tehnološki višak i odlazak u penziju.",

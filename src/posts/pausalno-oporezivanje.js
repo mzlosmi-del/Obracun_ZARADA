@@ -3,7 +3,7 @@
 export const body = `
 ![Paušalno oporezivanje u Srbiji](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
-> **Provereno i ažurirano: jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Paušalno oporezivanje** je najjednostavniji poreski režim za preduzetnike u Srbiji. Paušalac plaća **fiksan mesečni iznos** poreza i doprinosa, bez obzira na to koliko je tačno zaradio, i **ne vodi poslovne knjige** (osim jednostavne KPO knjige). Zbog toga je paušal veoma popularan kod programera, konsultanata, dizajnera i drugih koji pružaju usluge. U ovom vodiču objašnjavamo ko može da bude paušalac u **2026. godini**, koliko to košta i kada se više isplati od samooporezivanja.
 

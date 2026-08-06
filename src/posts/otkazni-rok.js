@@ -3,7 +3,7 @@
 export const body = `
 ![Otkazni rok 2026 — kalendar i računanje rokova po Zakonu o radu](https://images.unsplash.com/photo-1506784983877-45594efa4cbe?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: 16. jul 2026.** Svi rokovi u ovom vodiču provereni su u važećem prečišćenom tekstu **Zakona o radu** („Sl. glasnik RS", br. 24/2005 … 109/2025) — čl. 36, 178, 185, 186, 187 i 189 — na dan objave.
+> **Provereno i ažurirano: 6. avgust 2026.** Svi rokovi u ovom vodiču provereni su u važećem prečišćenom tekstu **Zakona o radu** („Sl. glasnik RS", br. 24/2005 … 109/2025) — čl. 36, 178, 185, 186, 187 i 189 — na dan objave.
 
 **Otkazni rok** je period između trenutka kada jedna strana saopšti da raskida ugovor o radu i dana kada radni odnos stvarno prestaje. Koliko traje zavisi od toga **ko otkazuje i iz kog razloga** — a upravo tu nastaje najviše zabuna. U ovom vodiču su svi slučajevi, tačni članovi zakona, od kog dana rok teče i šta imate pravo da naplatite.
 

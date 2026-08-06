@@ -3,7 +3,7 @@
 export const body = `
 ![Registracija DOO u Srbiji 2026 — e-registracija u APR-u korak po korak](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: jul 2026.** Postupak i naknade usklađeni su sa pravilima APR-a i Zakonom o privrednim društvima; APR naknade su **povećane od 1. januara 2026.** („Sl. glasnik RS" 94/2025). Iznosi su okvirni — pre uplate proverite tačan iznos na zvaničnom sajtu APR.
+> **Provereno i ažurirano: 6. avgust 2026.** Postupak i naknade usklađeni su sa pravilima APR-a i Zakonom o privrednim društvima; APR naknade su **povećane od 1. januara 2026.** („Sl. glasnik RS" 94/2025). Iznosi su okvirni — pre uplate proverite tačan iznos na zvaničnom sajtu APR.
 
 **Registracija DOO** u Srbiji je od maja 2023. isključivo **elektronska** — bez odlaska na šalter, ali uz nekoliko koraka koje treba pripremiti unapred: osnivački akt, kvalifikovani elektronski potpis i overe. U ovom vodiču prolazimo ceo postupak, dokumentaciju, rokove i obaveze koje nastaju odmah po registraciji — tu se prave najskuplje greške.
 

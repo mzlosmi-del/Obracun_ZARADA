@@ -3,7 +3,7 @@
 export const body = `
 ![Obračun poreza na zaradu](https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80)
 
-> **Provereno i ažurirano: jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Od 1. januara 2026. godine, neoporezivi iznos zarade u Srbiji iznosi **34.221 RSD** mesečno (povećan sa ranijih 28.423 RSD). Ovo je iznos koji se oduzima od bruto zarade pre obračuna poreza na dohodak od 10%. Za razliku od ostalih usklađenih neoporezivih iznosa (dnevnice, pomoći i sl.) koji važe od 1. februara, **neoporezivi deo zarade primenjuje se već od 1. januara 2026** — utvrđen je izmenama Zakona o porezu na dohodak građana, a ne februarskim usklađivanjem.
 

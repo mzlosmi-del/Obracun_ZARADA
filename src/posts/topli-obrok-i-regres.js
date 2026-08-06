@@ -3,7 +3,7 @@
 export const body = `
 ![Topli obrok i regres u Srbiji](https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80)
 
-> **Provereno i ažurirano: 8. jul 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Topli obrok** i **regres za godišnji odmor** česta su tema nesporazuma između zaposlenih i poslodavaca. Mnogi misle da su to dodatne, dobrovoljne isplate — ali prema **Zakonu o radu**, oni su **sastavni deo zarade**. U ovom vodiču objašnjavamo šta zakon propisuje u **2026. godini**, da li ova primanja ulaze u minimalnu zaradu, kako se oporezuju i kako utiču na naknadu zarade.
 

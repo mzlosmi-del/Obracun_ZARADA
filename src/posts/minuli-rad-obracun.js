@@ -3,7 +3,7 @@
 export const body = `
 ![Minuli rad i godine staža](https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&q=80)
 
-> **Provereno i ažurirano: jun 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 **Minuli rad** je zakonsko uvećanje zarade koje pripada zaposlenom za svaku godinu rada provedenu kod istog poslodavca. Regulisan je **članom 108. tačka 4. Zakona o radu** Republike Srbije.
 
