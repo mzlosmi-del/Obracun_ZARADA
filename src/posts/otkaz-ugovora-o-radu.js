@@ -116,7 +116,7 @@ Kada dobijete otkaz — bilo koji od gore navedenih osnova — imate nekoliko ko
 
 **Zabrana otkaza u zaštićenim periodima:** poslodavac ne sme otkazati ugovor za vreme trudnoće, porodiljskog odsustva, odsustva radi nege deteta ili propisanog bolovanja vezanog za te periode. Otkaz dat u tim okolnostima je **ništav** ako je poslodavac znao za trudnoću, ili ako ga zaposlena obavesti u roku od 30 dana od otkaza uz lekarsko uverenje.
 
-**Ako je otkaz zapravo odmazda:** otkaz koji sledi nakon što ste prijavili mobing ili tražili neko zakonsko pravo (npr. neplaćeno odsustvo) sam po sebi ne postaje zakonit samo zato što formalno navodi drugi razlog — motiv je nešto što sud uzima u obzir.
+**Ako je otkaz zapravo odmazda:** otkaz koji sledi nakon što ste prijavili [mobing](/blog/mobing) ili tražili neko zakonsko pravo (npr. [neplaćeno odsustvo](/blog/neplaceno-odsustvo)) sam po sebi ne postaje zakonit samo zato što formalno navodi drugi razlog — motiv je nešto što sud uzima u obzir.
 
 Pun postupak osporavanja, sve varijante naknade i praktični koraci — u vodiču o [nezakonitom otkazu](/blog/nezakonit-otkaz). Pre spora korisno je pribaviti svu dokumentaciju: ugovor o radu, rešenje o otkazu, obračune zarade za poslednja tri meseca i eventualna upozorenja.
 

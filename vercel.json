@@ -24,6 +24,11 @@
       "source": "/blog/minimalna-zarada-2026",
       "destination": "/minimalna-zarada-2026",
       "permanent": true
+    },
+    {
+      "source": "/blog/minimalna-zarada-2025",
+      "destination": "/minimalna-zarada-2026",
+      "permanent": true
     }
   ],
   "rewrites": [

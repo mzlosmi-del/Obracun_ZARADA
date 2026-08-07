@@ -243,7 +243,7 @@ export function PausalPage() {
   return <ToolPage cfg={{
     slug: "pausal",
     title: "Paušal kalkulator 2026 — porez i doprinosi | PlatniListić",
-    description: "Izračunajte mesečne obaveze paušalca: porez 10%, PIO 24%, zdravstveno 10,3%, nezaposlenost 0,75%. Neto nakon obaveza i efektivna stopa za 2026.",
+    description: "Paušalac plaća okvirno 30.000–45.000 RSD mesečno (porez 10% + PIO 24% + zdravstveno 10,3% + nezaposlenost 0,75% na osnovicu). Izračunajte tačan iznos za 2026.",
     h1: "Paušal kalkulator za preduzetnike (2026)",
     breadcrumbName: "Paušal",
     calc: "pausal",
@@ -343,7 +343,7 @@ export function BrutoNetoPage() {
     calc: "full",
     intro: (<p>Ovaj <strong>bruto u neto kalkulator</strong> za 2026. pretvara bruto 1 zaradu u neto iznos na račun, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa zaposlenog (19,90%). Rezultat preuzimate kao PDF platni listić i PPP-PD XML. Za obrnuti smer koristite <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>),
     guide: (<><h2>Kako se računa bruto u neto</h2>
-      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade</a>.</p>
+      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Detaljan vodič: <a href="/blog/bruto-neto-razlika">razlika između bruto i neto zarade</a> i <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade</a>. Koliko ta neto plata realno vredi kroz vreme pokazuje naša analiza <a href="/blog/kupovna-moc-plate-2016-2026">kupovne moći plate 2016–2026</a>.</p>
       <h2>Bruto 1 vs Bruto 2 — koja je razlika</h2>
       <p><strong>Bruto 1</strong> je ugovorena zarada — osnovica na koju se obračunavaju porez i doprinosi zaposlenog. <strong>Bruto 2</strong> je Bruto 1 uvećan za doprinose na teret poslodavca (15,15%) i predstavlja stvaran trošak rada za poslodavca. Zaposleni „na ruke" prima neto, dok poslodavac plaća bruto 2.</p>
       <table className="ref-table" aria-label="Bruto 1 vs Bruto 2">
@@ -480,11 +480,12 @@ const OTPREMNINA_RELATED = [
 ];
 
 export function OtpremninaPage() {
+  const pz = REFERENCE_DATA.prosecnaZarada2026;
   return <ToolPage cfg={{
     slug: "otpremnina",
-    title: "Kalkulator otpremnine 2026 — Srbija | PlatniListić",
-    description: "Obračun otpremnine za tehnološki višak i odlazak u penziju, sa poreskim tretmanom, po Zakonu o radu. Besplatno, za Srbiju 2026.",
-    h1: "Kalkulator otpremnine (2026)",
+    title: "Kalkulator otpremnine 2026 — penzija i tehnološki višak | PlatniListić",
+    description: `Otpremnina za odlazak u penziju: najmanje ${(pz.neto * 2).toLocaleString("sr-RS")} RSD (2× prosečna zarada RS). Za tehnološki višak: min. 1/3 zarade po godini staža. Obračun sa poreskim tretmanom, 2026.`,
+    h1: "Kalkulator otpremnine — tehnološki višak i odlazak u penziju (2026)",
     breadcrumbName: "Otpremnina",
     calc: "otpremnina",
     intro: (<p>Ovaj <strong>kalkulator otpremnine</strong> računa pravo na otpremninu po Zakonu o radu: za tehnološki višak (min. 1/3 prosečne zarade po godini staža) i za odlazak u penziju (min. dve prosečne zarade). Unesite prosečnu zaradu i godine staža u kalkulatoru ispod.</p>),
@@ -872,8 +873,8 @@ export function JubilarnaPage() {
 export function UgovorODeluPage() {
   return <ToolPage cfg={{
     slug: "ugovor-o-delu",
-    title: "Ugovor o delu kalkulator 2026 — bruto u neto | PlatniListić",
-    description: "Izračunajte neto od ugovorene naknade po ugovoru o delu: unesite bruto iznos i dobijete osnovicu, porez, doprinose i neto na ruke. Besplatno, za 2026.",
+    title: "Kalkulator ugovora o delu 2026 — bruto u neto | PlatniListić",
+    description: "Za bruto 100.000 RSD po ugovoru o delu neto je 64.800 RSD (56.560 ako se plaća i zdravstveno). Porez 20%, PIO 24%, normirani troškovi 20%. Obračun za 2026.",
     h1: "Kalkulator ugovora o delu (2026)",
     breadcrumbName: "Ugovor o delu",
     calc: "full",
@@ -922,8 +923,8 @@ export function ProsecnaZaradaPage() {
   const min = REFERENCE_DATA.minimalnaZarada2026;
   return <ReferencePage cfg={{
     slug: "prosecna-zarada",
-    title: "Prosečna zarada — tabela po mesecima (RZS) | PlatniListić",
-    description: `Tabela prosečnih zarada po mesecima i godinama — zvanični podaci RZS. Poslednji podatak (${p.mesec}): neto ${p.neto.toLocaleString("sr-RS")}, bruto ${p.bruto.toLocaleString("sr-RS")}, medijalna ${p.medijalnaNeto.toLocaleString("sr-RS")} RSD.`,
+    title: `Prosečna zarada ${p.mesec} — neto ${p.neto.toLocaleString("sr-RS")} RSD (RZS) | PlatniListić`,
+    description: `Neto ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")}, medijalna ${p.medijalnaNeto.toLocaleString("sr-RS")} RSD (${p.mesec}, RZS). Tabela prosečnih zarada po mesecima i godinama.`,
     h1: "Prosečna zarada u Srbiji — zvanična tabela RZS",
     breadcrumbName: "Prosečna zarada",
     body: (<>
@@ -1045,8 +1046,8 @@ export function StopeDoprinosaPage() {
   const poslodavacUkupno = R.pio_er + R.health_er;
   return <ReferencePage cfg={{
     slug: "stope-doprinosa-2026",
-    title: "Stope doprinosa 2026: PIO 14%, zdravstvo 5,15% | PlatniListić",
-    description: "Stope doprinosa 2026 u Srbiji: zaposleni 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%), poslodavac 15,15% (PIO 10%, zdravstvo 5,15%).",
+    title: "Stope doprinosa 2026 — ukupno 35,05% na zaradu | PlatniListić",
+    description: "Doprinosi 2026: zaposleni 19,90% + poslodavac 15,15% = ukupno 35,05% na bruto zaradu. Tabela svih stopa i osnovica — izračunajte koliko ide sa vaše plate.",
     h1: "Stope doprinosa za socijalno osiguranje 2026.",
     breadcrumbName: "Stope doprinosa 2026",
     body: (<>
@@ -1205,7 +1206,7 @@ export function MinimalnaZaradaPage() {
       <p>Od 2019. do 2026. minimalna satnica je porasla sa 155,30 na 371 RSD — više nego udvostručena (+139%). Jedina vanredna korekcija usred godine desila se 1. oktobra 2025, kada je satnica sa 308 podignuta na 337 RSD.</p>
 
       <h2>Minimalac u odnosu na prosečnu zaradu</h2>
-      <p>Prosečan mesečni neto minimalac ({m.netoMesecno.toLocaleString("sr-RS")} RSD) čini oko <strong>55% prosečne</strong> neto zarade u Srbiji ({pz.neto.toLocaleString("sr-RS")} RSD za {pz.mesec}, RZS) i oko <strong>69% medijalne</strong> ({pz.medijalnaNeto.toLocaleString("sr-RS")} RSD). U evrima, mesečni minimalac se kreće od ≈506 do ≈582 €, u proseku oko 550 €. Kretanje prosečnih zarada pratimo na strani <a href="/prosecna-zarada">prosečna zarada u Srbiji</a> i u analizi <a href="/blog/prosecna-plata-srbija">prosečne plate po sektorima i gradovima</a>.</p>
+      <p>Prosečan mesečni neto minimalac ({m.netoMesecno.toLocaleString("sr-RS")} RSD) čini oko <strong>55% prosečne</strong> neto zarade u Srbiji ({pz.neto.toLocaleString("sr-RS")} RSD za {pz.mesec}, RZS) i oko <strong>69% medijalne</strong> ({pz.medijalnaNeto.toLocaleString("sr-RS")} RSD). U evrima, mesečni minimalac se kreće od ≈506 do ≈582 €, u proseku oko 550 €. Kretanje prosečnih zarada pratimo na strani <a href="/prosecna-zarada">prosečna zarada u Srbiji</a> i u analizi <a href="/blog/prosecna-plata-srbija">prosečne plate po sektorima i gradovima</a>, a koliko su plate realno porasle od 2016. — u studiji <a href="/blog/kupovna-moc-plate-2016-2026">kupovna moć plate 2016–2026</a>.</p>
 
       <h2>Najčešće greške pri obračunu minimalca</h2>
       <ul>
@@ -1240,11 +1241,18 @@ export function RadniDaniPage() {
   const ukupnoDana = dana.reduce((s, r) => s + r.radniDani, 0);
   const ukupnoSati = dana.reduce((s, r) => s + r.radniSati, 0);
   const ukupnoBezPraznika = dana.reduce((s, r) => s + r.bezPraznika, 0);
+  // Tekući mesec u title/meta se izvodi iz datuma — ranije je bio hardkodovan
+  // ("jul 184 h") pa je SERP snippet zastarevao svakog 1. u mesecu.
+  const now = new Date();
+  const mIdx = now.getFullYear() > 2026 ? 11 : now.getFullYear() < 2026 ? 0 : now.getMonth();
+  const tekuci = dana[mIdx];
+  const sledeci = dana[Math.min(mIdx + 1, 11)];
+  const mesecLc = tekuci.mesec.toLowerCase();
   return <ReferencePage cfg={{
     slug: "radni-dani-2026",
-    title: "Radni dani i broj radnih sati po mesecima 2026 — jul 184 h | PlatniListić",
-    description: "Fond radnih sati po mesecima 2026: jul 184 h (23 dana), jun 176 h, avgust 168 h. Ukupno 261 dan / 2.088 sati. Tabela sa praznicima, za obračun zarade.",
-    h1: "Radni dani i radni sati u 2026. godini (Srbija)",
+    title: `Radni dani i broj radnih sati po mesecima 2026 — ${mesecLc} ${tekuci.radniSati} h | PlatniListić`,
+    description: `Fond radnih sati po mesecima 2026: ${mesecLc} ${tekuci.radniSati} h (${tekuci.radniDani} dana)${sledeci !== tekuci ? `, ${sledeci.mesec.toLowerCase()} ${sledeci.radniSati} h` : ""}. Ukupno ${ukupnoDana} dana / ${ukupnoSati.toLocaleString("sr-RS")} sati. Tabela sa praznicima, za obračun zarade.`,
+    h1: "Radni dani i broj radnih sati po mesecima 2026 (Srbija)",
     breadcrumbName: "Radni dani 2026",
     body: (<>
       <p>U 2026. godini ima ukupno <strong>{ukupnoDana} mogućih radnih dana</strong>, odnosno <strong>{ukupnoSati.toLocaleString("sr-RS")} radnih sati</strong> (fond od 8 sati dnevno, ponedeljak–petak). Kada se odbiju državni praznici koji padaju na radni dan, ostaje <strong>{ukupnoBezPraznika} efektivnih radnih dana</strong>. Fond sati je osnova za obračun minimalne zarade, bolovanja i satnice.</p>

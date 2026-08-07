@@ -5,7 +5,7 @@ export const body = `
 
 > **Provereno i ažurirano: 6. avgust 2026.** Neoporezivi iznosi usklađeni sa „Sl. glasnikom RS" 6/2026 (važe 1.2.2026–31.1.2027); stope doprinosa prema ZDOSO. Poreski parametri se mogu menjati tokom godine.
 
-Bonus i nagrade zaposlenima su odlične motivacione alatke, ali često iznenade kada zaposleni vidi da na **100.000 RSD bonusa** dobije manje od 65.000 RSD na račun. Evo zašto i kako se to računa.
+Bonus i nagrade zaposlenima su odlične motivacione alatke, ali često iznenade kada zaposleni vidi da na **100.000 RSD bonusa** dobije oko 70.000 RSD na račun (70.100 RSD u primeru ispod). Evo zašto i kako se to računa.
 
 ## Pravni status bonusa
 

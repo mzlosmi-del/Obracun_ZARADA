@@ -137,7 +137,7 @@ export const POSTS = [
     updated: "4. avgust 2026",
     tag: "Zarada",
     title: "Prosečna plata u Srbiji 2026: 118.398 din (1.009 €), maj",
-    summary: "Prosečna neto plata u Srbiji za maj 2026. je 118.398 din (≈1.009 €), bruto 163.470, medijalna 93.277 (RZS). Pregled po mesecima, sektorima i gradovima.",
+    summary: "118.398 din (≈1.009 €) — prosečna neto plata u Srbiji, maj 2026 (RZS). Bruto 163.470, medijalna 93.277 din. Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     hasFaq: true,
   },
@@ -352,8 +352,8 @@ export const POSTS = [
     date: "5. januar 2026",
     updated: "6. avgust 2026",
     tag: "Zakon o radu",
-    title: "Otpremnina u Srbiji — minimalni iznos, obračun i porez",
-    summary: "Otpremnina u Srbiji: ko ima pravo, kolika je minimalna otpremnina po Zakonu o radu i kako se plaća porez na otpremninu. Obračun za tehnološki višak i odlazak u penziju.",
+    title: "Otpremnina za penziju i tehnološki višak — iznos, obračun i porez",
+    summary: "Otpremnina za odlazak u penziju: najmanje 2 prosečne zarade RS (236.796 RSD, maj 2026). Za tehnološki višak: min. 1/3 zarade po godini staža. Obračun i porez.",
     hasFaq: true,
   },
 ];
@@ -368,6 +368,7 @@ export const POSTS = [
 export const REDIRECT_MAP = {
   "neoporezivi-2026": "/neoporezivi-iznos-2026",
   "minimalna-zarada-2026": "/minimalna-zarada-2026",
+  "minimalna-zarada-2025": "/minimalna-zarada-2026",
 };
 export const REDIRECTED_POST_IDS = new Set(Object.keys(REDIRECT_MAP));
 

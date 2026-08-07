@@ -87,7 +87,7 @@ Da. Naknada za [godišnji odmor](/blog/godisnji-odmor-naknada) računa se na osn
 
 ## Kalkulator minulog rada
 
-U našem [kalkulatoru zarade](/) možete uneti broj godina staža kod trenutnog poslodavca i stopu po godini — minuli rad se automatski obračunava i prikazuje kao zasebna stavka u Bruto 1. Pogledajte i kako se obračunava [prekovremeni rad](/blog/prekovremeni-rad), koji se često kombinuje sa minulim radom.
+U našem [kalkulatoru minulog rada](/minuli-rad) možete uneti broj godina staža kod trenutnog poslodavca i stopu po godini — minuli rad se automatski obračunava i prikazuje kao zasebna stavka u Bruto 1. Pogledajte i kako se obračunava [prekovremeni rad](/blog/prekovremeni-rad), koji se često kombinuje sa minulim radom.
 
 ## Kazne za poslodavce
 

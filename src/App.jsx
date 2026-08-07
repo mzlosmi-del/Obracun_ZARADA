@@ -1464,7 +1464,10 @@ function HomePage() {
           <li><a href="/blog/kako-se-obracunava-bolovanje">Kako se obračunava bolovanje</a></li>
           <li><a href="/blog/kako-se-obracunava-penzija">Kako se obračunava penzija</a></li>
           <li><a href="/neoporezivi-iznos-2026">Neoporezivi iznos zarade 2026</a></li>
-          <li><a href="/blog/minimalna-zarada-2025">Minimalna zarada 2025 — poređenje sa 2026</a></li>
+          <li><a href="/blog/otkaz-ugovora-o-radu">Otkaz ugovora o radu — razlozi, rok i prava</a></li>
+          <li><a href="/blog/nezakonit-otkaz">Nezakonit otkaz — tužba u roku od 60 dana</a></li>
+          <li><a href="/blog/otkazni-rok">Otkazni rok — 15, 8–30 ili 5 dana (svi slučajevi)</a></li>
+          <li><a href="/blog/kupovna-moc-plate-2016-2026">Kupovna moć plate 2016–2026: realno +53%</a></li>
         </ul>
       </nav>
       <nav className="home-tools" aria-label="Kalkulatori i alati">
