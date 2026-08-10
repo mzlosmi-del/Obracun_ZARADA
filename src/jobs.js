@@ -78,7 +78,7 @@ export const JOBS = [
     location: "Beograd",
     salaryMin: null, salaryMax: null, salaryNeto: false,
     link: "https://poslovi.friendlyhr.rs/jobs/7870034-specijalista-za-led-i-digitalnu-oglasnu-opremu?promotion=2090623-trackable-share-link-platnilistic",
-    active: true,
+    active: false,
   },
   {
     id: "menadzer-javne-nabavke",
