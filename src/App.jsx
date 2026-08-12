@@ -1298,8 +1298,8 @@ const HOME_FAQ = [
 
 function HomePage() {
   useSeo({
-    title: "Kalkulator zarade 2026 — obračun plate za Srbiju | PlatniListić",
-    description: "Besplatan kalkulator zarade za Srbiju 2026 — obračun plate, porez, doprinosi, minuli rad i bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
+    title: "Kalkulator zarade 2026 — bruto u neto obračun plate | PlatniListić",
+    description: "Besplatan kalkulator zarade za Srbiju 2026 — bruto u neto obračun plate, porez, doprinosi, minuli rad i bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
     path: "/",
     jsonLd: webAppLd({
       name: "PlatniListić — Kalkulator zarade Srbija 2026",
@@ -1321,7 +1321,7 @@ function HomePage() {
       </header>
       <section className="home-intro">
         <h1 className="home-intro-title">Kalkulator zarade 2026 — obračun plate za Srbiju</h1>
-        <FreshnessStamp date="jul 2026." />
+        <FreshnessStamp date="avgust 2026." />
         <p>
           Besplatan <strong>kalkulator zarade</strong> za obračun plate u Srbiji u 2026. godini.
           Izračunajte porez na zaradu, doprinose, prekovremeni i minuli rad, bolovanje, otpremninu
@@ -1339,6 +1339,29 @@ function HomePage() {
           Za brzu tabelu i smerni obračun: <a href="/bruto-neto">bruto u neto kalkulator</a>.
         </p>
       </section>
+      <CalculatorPage />
+      <nav className="home-tools" aria-label="Kalkulatori i alati">
+        <h2 className="home-tools-title">Kalkulatori i alati</h2>
+        <ul>
+          <li><a href="/bruto-neto">Bruto neto kalkulator</a></li>
+          <li><a href="/neto-bruto">Neto u bruto kalkulator</a></li>
+          <li><a href="/pausal">Paušal kalkulator</a></li>
+          <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
+          <li><a href="/otpremnina">Kalkulator otpremnine</a></li>
+          <li><a href="/minuli-rad">Kalkulator minulog rada</a></li>
+          <li><a href="/dodaci-na-zaradu">Dodaci na zaradu — prekovremeni, noćni</a></li>
+          <li><a href="/ugovor-o-delu">Ugovor o delu kalkulator</a></li>
+          <li><a href="/godisnji-porez">Godišnji porez kalkulator</a></li>
+          <li><a href="/godisnji-odmor">Kalkulator godišnjeg odmora</a></li>
+          <li><a href="/jubilarna-nagrada">Kalkulator jubilarne nagrade</a></li>
+          <li><a href="/neoporezivi-iznos-2026">Neoporezivi iznos 2026</a></li>
+          <li><a href="/stope-doprinosa-2026">Stope doprinosa 2026</a></li>
+          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/prosecna-zarada">Prosečna zarada u Srbiji</a></li>
+          <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
+          <li><a href="/praznici-2026">Praznici 2026</a></li>
+        </ul>
+      </nav>
       <section className="home-seo" aria-label="Kako se obračunava zarada 2026">
         <h2>Kako se obračunava zarada u Srbiji 2026 — korak po korak</h2>
         <p>Obračun zarade polazi od <strong>bruto 1</strong> iznosa iz ugovora o radu. Korak 1: na celu bruto 1 zaradu obračunavaju se doprinosi zaposlenog — PIO {DEFAULT_RATES.pioPct_emp}%, zdravstvo {DEFAULT_RATES.health_emp.toLocaleString("sr-RS")}% i nezaposlenost {DEFAULT_RATES.unemp_emp.toLocaleString("sr-RS")}%, ukupno 19,90%. Korak 2: poreska osnovica je bruto 1 umanjen za neoporezivi iznos od {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD. Korak 3: porez na zaradu je {DEFAULT_RATES.taxRate}% te osnovice. Korak 4: neto = bruto 1 − doprinosi − porez. Rezultat je iznos koji zaposleni prima na račun.</p>
@@ -1371,7 +1394,6 @@ function HomePage() {
         <h2>Uvećana zarada — dodaci i minuli rad</h2>
         <p>Na osnovnu zaradu dodaju se zakonska uvećanja (čl. 108 Zakona o radu): prekovremeni rad, noćni rad, rad vikendom i praznikom, kao i minuli rad — najmanje 0,4% po godini staža kod istog poslodavca. Sva uvećanja ulaze u bruto 1 i podležu porezu i doprinosima. Vidite <a href="/dodaci-na-zaradu">kalkulator dodataka na zaradu</a> i <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
       </section>
-      <CalculatorPage />
       <div className="disclaimer">
         ⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.
       </div>
@@ -1468,28 +1490,6 @@ function HomePage() {
           <li><a href="/blog/nezakonit-otkaz">Nezakonit otkaz — tužba u roku od 60 dana</a></li>
           <li><a href="/blog/otkazni-rok">Otkazni rok — 15, 8–30 ili 5 dana (svi slučajevi)</a></li>
           <li><a href="/blog/kupovna-moc-plate-2016-2026">Kupovna moć plate 2016–2026: realno +53%</a></li>
-        </ul>
-      </nav>
-      <nav className="home-tools" aria-label="Kalkulatori i alati">
-        <h2 className="home-tools-title">Kalkulatori i alati</h2>
-        <ul>
-          <li><a href="/bruto-neto">Bruto neto kalkulator</a></li>
-          <li><a href="/neto-bruto">Neto u bruto kalkulator</a></li>
-          <li><a href="/pausal">Paušal kalkulator</a></li>
-          <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
-          <li><a href="/otpremnina">Kalkulator otpremnine</a></li>
-          <li><a href="/minuli-rad">Kalkulator minulog rada</a></li>
-          <li><a href="/dodaci-na-zaradu">Dodaci na zaradu — prekovremeni, noćni</a></li>
-          <li><a href="/ugovor-o-delu">Ugovor o delu kalkulator</a></li>
-          <li><a href="/godisnji-porez">Godišnji porez kalkulator</a></li>
-          <li><a href="/godisnji-odmor">Kalkulator godišnjeg odmora</a></li>
-          <li><a href="/jubilarna-nagrada">Kalkulator jubilarne nagrade</a></li>
-          <li><a href="/neoporezivi-iznos-2026">Neoporezivi iznos 2026</a></li>
-          <li><a href="/stope-doprinosa-2026">Stope doprinosa 2026</a></li>
-          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
-          <li><a href="/prosecna-zarada">Prosečna zarada u Srbiji</a></li>
-          <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
-          <li><a href="/praznici-2026">Praznici 2026</a></li>
         </ul>
       </nav>
       {/* Lead form ("softver po meri") disabled in favor of the jobs CTA

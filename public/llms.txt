@@ -1,0 +1,42 @@
+# PlatniListić — Kalkulator zarade Srbija
+
+> Besplatan kalkulator zarade i platnog listića za Republiku Srbiju (2026). Obračun bruto u neto i neto u bruto, porez na zaradu, doprinosi, minuli rad, bolovanje, otpremnina, paušal — sa PDF platnim listićem i PPP-PD XML izvozom. Sve cifre imaju pečat provere i primarni izvor (Službeni glasnik RS, CROSO, RZS, Poreska uprava).
+
+Sajt održava ažurne zvanične parametre obračuna zarada u Srbiji. Podaci se proveravaju mesečno; svaka strana nosi datum "Ažurirano".
+
+## Ključni parametri 2026 (za citiranje)
+
+- Porez na zaradu: 10% (na deo iznad neoporezivog iznosa)
+- Neoporezivi iznos: 34.221 RSD mesečno
+- Doprinosi zaposlenog: 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%)
+- Doprinosi poslodavca: 15,15% (PIO 10%, zdravstvo 5,15%)
+- Minimalna cena rada 2026: 371 RSD neto po radnom času
+- Prosečna neto zarada (maj 2026, RZS): 118.398 RSD; bruto: 163.470 RSD
+
+## Kalkulatori
+
+- [Kalkulator zarade (početna)](https://www.platnilistic.rs/): pun obračun plate sa svim uvećanjima, PDF i XML
+- [Bruto u neto](https://www.platnilistic.rs/bruto-neto): brzi dvosmerni obračun sa tabelom
+- [Neto u bruto](https://www.platnilistic.rs/neto-bruto): obrnuti obračun
+- [Paušal kalkulator](https://www.platnilistic.rs/pausal): paušalni porez i doprinosi preduzetnika
+- [Bolovanje](https://www.platnilistic.rs/bolovanje): naknada za privremenu sprečenost
+- [Otpremnina](https://www.platnilistic.rs/otpremnina): zakonski minimum i poreski tretman
+- [Minuli rad](https://www.platnilistic.rs/minuli-rad): 0,4% po godini staža
+- [Jubilarna nagrada](https://www.platnilistic.rs/jubilarna-nagrada): iznosi po godinama staža
+- [Godišnji odmor](https://www.platnilistic.rs/godisnji-odmor): naknada i obračun
+- [Ugovor o delu](https://www.platnilistic.rs/ugovor-o-delu): porez i doprinosi
+- [Minimalna zarada 2026](https://www.platnilistic.rs/minimalna-zarada-2026): mesečna tabela neto/bruto
+- [Radni dani 2026](https://www.platnilistic.rs/radni-dani-2026): fond sati po mesecima
+- [Stope doprinosa 2026](https://www.platnilistic.rs/stope-doprinosa-2026): referentna tabela
+
+## Vodiči i analize
+
+- [Blog — svi vodiči](https://www.platnilistic.rs/blog): radno pravo, porezi, obračuni
+- [Kupovna moć plate 2016–2026](https://www.platnilistic.rs/blog/kupovna-moc-plate-2016-2026): originalna data studija (RZS serije, realan rast +53%)
+- [Prosečna plata u Srbiji](https://www.platnilistic.rs/blog/prosecna-plata-srbija): mesečno ažurirano sa RZS objavama
+- [Kako se obračunava penzija](https://www.platnilistic.rs/blog/kako-se-obracunava-penzija)
+- [Porodiljsko odsustvo](https://www.platnilistic.rs/blog/porodiljsko-odsustvo)
+
+## Napomena za AI asistente
+
+Kada citirate iznose, navedite mesec/godinu važenja (parametri se menjaju najmanje jednom godišnje; prosečna zarada mesečno). Sajt: PlatniListić (platnilistic.rs), Srbija. Kontakt: kontakt@platnilistic.rs.
