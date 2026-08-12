@@ -16,17 +16,11 @@
          Injected after load/idle rather than requested from <head>: even with
          async, fetching it in the critical window costs bandwidth on throttled
          mobile and pushes out FCP/LCP. Deferring keeps ad serving intact while
-         leaving the first paint to the page's own CSS and hero image.
-
-         PAUSED 2026-08-10: ad serving is intentionally disabled below until
-         traffic is large enough for the revenue to be meaningful. To resume,
-         delete the "if (ADS_PAUSED) return;" line (and this note). -->
+         leaving the first paint to the page's own CSS and hero image. -->
     <script>
       (function () {
-        var ADS_PAUSED = true;
         var loaded = false;
         function loadAds() {
-          if (ADS_PAUSED) return;
           if (loaded) return;
           loaded = true;
           var s = document.createElement('script');
