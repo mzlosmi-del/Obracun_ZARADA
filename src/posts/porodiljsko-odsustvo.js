@@ -54,7 +54,7 @@ Ovo je detalj koji mnogi vodiči preskaču: **zakonski minimalac važi samo za v
 
 ## Minimalna i maksimalna naknada u 2026
 
-- **Minimum (prva 3 meseca):** minimalna cena rada na dan početka prava × 184 sata, uvećano za poreze i doprinose. Za 2026: 371 RSD × 184 = **68.264 RSD neto** (≈ 92.499 RSD bruto). Više o minimalcu: [minimalna zarada 2026](/minimalna-zarada-2026).
+- **Minimum (prva 3 meseca):** minimalna cena rada na dan početka prava × 184 sata, uvećano za poreze i doprinose. Za 2026: 371 RSD × 184 = **68.264 RSD neto** (≈ 92.499 RSD bruto). Više o minimalcu: [minimalna zarada 2026](/minimalna-zarada).
 - **Maksimum:** mesečna osnovica ne može biti veća od **5 prosečnih mesečnih zarada** u RS prema poslednjem objavljenom RZS podatku na dan početka prava. Sa prosekom za maj 2026 (163.470 RSD bruto) to je **817.350 RSD bruto** mesečne osnovice. Do 2022. limit je bio 3 prosečne zarade — podatak „tri prosečne" koji se još sreće po tekstovima je zastareo.
 
 ## Kako i kada se isplaćuje naknada

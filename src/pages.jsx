@@ -941,7 +941,7 @@ export function ProsecnaZaradaPage() {
       <p>Republički zavod za statistiku (RZS) objavljuje podatak o prosečnoj mesečnoj zaradi u redovnom mesečnom statističkom saopštenju, sa uobičajenim zaostatkom od oko 55 dana po isteku meseca — podatak za {p.mesec} objavljen je {p.objavljeno}. Zaostatak postoji zato što je za obračun proseka potrebno prikupiti i obraditi izveštaje o isplaćenim zaradama od velikog broja poslodavaca u zemlji, pa je reč o konačnom, a ne procenjenom broju. Zbog ovog zaostatka, iznos koji važi „danas" u praksi je uvek podatak za jedan od prethodnih meseci — to je i razlog zašto se u zakonskim obračunima (otpremnina, jubilarna nagrada, cenzus) izričito koristi formulacija „poslednji objavljeni podatak", a ne podatak za tekući mesec, koji u trenutku obračuna još nije objavljen.</p>
 
       <h2>Prosečna zarada i minimalac</h2>
-      <p>Poređenje sa minimalnom zaradom pokazuje raspon zarada u Srbiji. Prosečna neto zarada od {p.neto.toLocaleString("sr-RS")} RSD je oko {(p.neto / min.netoMesecno).toLocaleString("sr-RS", { maximumFractionDigits: 1 })} puta veća od reprezentativnog neto iznosa minimalne zarade od {min.netoMesecno.toLocaleString("sr-RS")} RSD (za prosečan fond od 174 radna časa). Ipak, budući da je medijalna zarada ({p.medijalnaNeto.toLocaleString("sr-RS")} RSD) znatno bliža minimalcu nego prosečnoj zaradi, veliki broj zaposlenih u Srbiji prima platu koja je bliža minimalnoj nego prosečnoj zaradi — što je dodatna potvrda da prosek precenjuje tipičnu platu. Detalji o minimalnoj zaradi: <a href="/minimalna-zarada-2026">minimalna zarada 2026</a>.</p>
+      <p>Poređenje sa minimalnom zaradom pokazuje raspon zarada u Srbiji. Prosečna neto zarada od {p.neto.toLocaleString("sr-RS")} RSD je oko {(p.neto / min.netoMesecno).toLocaleString("sr-RS", { maximumFractionDigits: 1 })} puta veća od reprezentativnog neto iznosa minimalne zarade od {min.netoMesecno.toLocaleString("sr-RS")} RSD (za prosečan fond od 174 radna časa). Ipak, budući da je medijalna zarada ({p.medijalnaNeto.toLocaleString("sr-RS")} RSD) znatno bliža minimalcu nego prosečnoj zaradi, veliki broj zaposlenih u Srbiji prima platu koja je bliža minimalnoj nego prosečnoj zaradi — što je dodatna potvrda da prosek precenjuje tipičnu platu. Detalji o minimalnoj zaradi: <a href="/minimalna-zarada">minimalna zarada 2026</a>.</p>
 
       <h2>Prosečna vs medijalna zarada</h2>
       <p>Prosečna (aritmetička sredina) i medijalna zarada mere dve različite stvari, pa razlika između njih od {(p.neto - p.medijalnaNeto).toLocaleString("sr-RS")} RSD ({p.neto.toLocaleString("sr-RS")} − {p.medijalnaNeto.toLocaleString("sr-RS")} RSD) nije greška u podacima, nego posledica same statistike. Prosečna zarada se dobija tako što se saberu sve isplaćene zarade u zemlji i podele brojem zaposlenih — svaka zarada, koliko god bila visoka, ulazi u zbir punom težinom. Medijalna zarada je, nasuprot tome, ona vrednost koja deli sve zaposlene na dve jednake polovine: tačno polovina zarađuje manje od {p.medijalnaNeto.toLocaleString("sr-RS")} RSD, a polovina više. Zato mali broj vrlo visokih zarada (npr. u IT sektoru, menadžmentu ili pojedinim visokoplaćenim strukama) povlači prosek naviše, dok medijalna zarada na to gotovo uopšte ne reaguje. Kada je prosek osetno viši od medijale — kao što je slučaj u Srbiji — to je znak da raspodela zarada nije simetrična, odnosno da manjina zaposlenih sa visokim primanjima diže aritmetičku sredinu iznad onoga što tipičan zaposleni stvarno prima na račun. Za procenu „tipične" plate medijalna zarada je zato pouzdaniji orijentir; prosečna zarada ostaje standardna referentna veličina u zakonskim obračunima (otpremnina, jubilarna nagrada, cenzus za godišnji porez), jer je to podatak koji RZS zvanično objavljuje i na koji se propisi pozivaju.</p>
@@ -956,7 +956,7 @@ export function ProsecnaZaradaPage() {
         <li><strong>Jubilarna nagrada</strong> — visina isplate se u kolektivnim ugovorima najčešće određuje kao koeficijent (1×, 2×, 2,5× ili 3×, zavisno od jubileja) pomnožen prosečnom bruto zaradom u RS; poreski neoporezivo je fiksnih 28.912 RSD godišnje. Detaljno: <a href="/jubilarna-nagrada">kalkulator jubilarne nagrade</a>.</li>
         <li><strong>Cenzus za godišnji porez na dohodak</strong> — neoporezivi prag za obavezu podnošenja godišnje poreske prijave iznosi tri prosečne godišnje zarade u RS (godišnja zarada = 12 × prosečna mesečna bruto zarada). Detaljno: <a href="/godisnji-porez">kalkulator godišnjeg poreza</a>.</li>
       </ul>
-      <p>U sva tri slučaja koristi se poslednji objavljeni podatak RZS o prosečnoj zaradi u Republici Srbiji — ne prosek unutar konkretne firme ili sektora. Za poređenje sa minimalnom zaradom pogledajte <a href="/minimalna-zarada-2026">minimalnu zaradu 2026</a>.</p>
+      <p>U sva tri slučaja koristi se poslednji objavljeni podatak RZS o prosečnoj zaradi u Republici Srbiji — ne prosek unutar konkretne firme ili sektora. Za poređenje sa minimalnom zaradom pogledajte <a href="/minimalna-zarada">minimalnu zaradu 2026</a>.</p>
 
       <h2>Bruto vs neto prosečna zarada</h2>
       <p>Razlika između prosečne bruto zarade ({p.bruto.toLocaleString("sr-RS")} RSD) i prosečne neto zarade ({p.neto.toLocaleString("sr-RS")} RSD) — {(p.bruto - p.neto).toLocaleString("sr-RS")} RSD — čine porez na zaradu i doprinosi za obavezno socijalno osiguranje na teret zaposlenog, koji se obustavljaju iz bruto iznosa pre isplate na račun. Pregled svih stopa doprinosa (PIO, zdravstveno, nezaposlenost) dat je na stranici <a href="/stope-doprinosa-2026">stope doprinosa 2026</a>. Ako želite da izračunate koliko bi neto iznosila neka druga bruto (ili obrnuto, neto u bruto) zarada, koristite <a href="/bruto-neto">bruto u neto kalkulator</a>.</p>
@@ -970,7 +970,7 @@ export function ProsecnaZaradaPage() {
     ],
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
-      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/minimalna-zarada", label: "Minimalna zarada 2026" },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
     ],
     sourceNote: (<>Izvor: {p.izvor}, {p.mesec}. Kurs: 1 € = {p.kursEur} RSD (NBS).</>),
@@ -1033,7 +1033,7 @@ export function NeoporeziviPage() {
     related: [
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
-      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/minimalna-zarada", label: "Minimalna zarada 2026" },
       { href: "/jubilarna-nagrada", label: "Kalkulator jubilarne nagrade" },
     ],
     sourceNote: <>Izvor: Zakon o porezu na dohodak građana — izmene „Sl. glasnik RS" br. 109/2025 (neoporezivi deo zarade od 1.1.2026) i usklađeni iznosi „Sl. glasnik RS" br. 6/2026 (od 1.2.2026); Ministarstvo finansija i Poreska uprava.</>,
@@ -1097,13 +1097,19 @@ export function MinimalnaZaradaPage() {
   const fmt0 = (n) => Math.round(n).toLocaleString("sr-RS");
   const perMonth = REFERENCE_DATA.radniDani2026.map((r) => {
     const neto = m.cenaRadnogCasaNeto * r.radniSati;
-    return { mesec: r.mesec, dani: r.radniDani, sati: r.radniSati, neto, bruto: netoUBruto(neto) };
+    return { mesec: r.mesec, dani: r.radniDani, sati: r.radniSati, praznici: r.praznici, neto, bruto: netoUBruto(neto) };
   });
   const ukupnoSati = REFERENCE_DATA.radniDani2026.reduce((s, r) => s + r.radniSati, 0); // 2.088 h
   const godisnjeNeto = m.cenaRadnogCasaNeto * ukupnoSati; // 774.648 RSD
   const godisnjeBruto = perMonth.reduce((s, r) => s + r.bruto, 0);
-  // Primer obračuna: avgust 2026 (21 radni dan, 168 h)
-  const ex = perMonth[7];
+  // Primer obračuna prati TEKUĆI mesec — bake-uje se pri svakom deploy-u (isti
+  // obrazac kao title na /radni-dani-2026); van 2026. se drži januar/decembar.
+  const now = new Date();
+  const mIdx = now.getFullYear() > 2026 ? 11 : now.getFullYear() < 2026 ? 0 : now.getMonth();
+  const ex = perMonth[mIdx];
+  const exMesecLc = ex.mesec.toLowerCase();
+  // "21 radni dan" / "22 radna dana" / "20 radnih dana" — slaganje broja i imenice.
+  const dLabel = (n) => { const j = n % 10, k = n % 100; if (j === 1 && k !== 11) return "radni dan"; if (j >= 2 && j <= 4 && (k < 12 || k > 14)) return "radna dana"; return "radnih dana"; };
   const exDoprinosi = ex.bruto * dopZap;
   const exPorez = (ex.bruto - R.nonTaxable) * tax;
   const exPoslodavac = ex.bruto * dopPosl;
@@ -1122,13 +1128,15 @@ export function MinimalnaZaradaPage() {
     { god: "2026 (od 1. januara)", cena: "371,00" },
   ];
   return <ReferencePage cfg={{
-    slug: "minimalna-zarada-2026",
-    title: `Minimalac 2026 — minimalna zarada po mesecima, ${m.cenaRadnogCasaNeto} RSD/h | PlatniListić`,
-    description: `Koliki je minimalac u Srbiji 2026? Minimalna cena rada: ${m.cenaRadnogCasaNeto} RSD neto po satu. Neto ${m.netoMin.toLocaleString("sr-RS")}–${m.netoMax.toLocaleString("sr-RS")}, bruto do 92.499 RSD — tabela po mesecima i obračun.`,
-    h1: "Minimalac 2026 — minimalna zarada u Srbiji",
-    breadcrumbName: "Minimalna zarada 2026",
+    // Evergreen slug (bez godine) — glavna poluga za head term "minimalna zarada":
+    // URL se NE menja sa godinom, sadržaj se osvežava u mestu (audit 13.8.2026).
+    slug: "minimalna-zarada",
+    title: `Minimalna zarada 2026 — minimalac po mesecima, ${m.cenaRadnogCasaNeto} RSD/h | PlatniListić`,
+    description: `Minimalna zarada (minimalac) u Srbiji 2026: ${m.cenaRadnogCasaNeto} RSD neto po satu. Neto ${m.netoMin.toLocaleString("sr-RS")}–${m.netoMax.toLocaleString("sr-RS")}, bruto do 92.499 RSD — tabela po mesecima i obračun.`,
+    h1: `Minimalna zarada u Srbiji 2026 — minimalac ${m.cenaRadnogCasaNeto} RSD po satu`,
+    breadcrumbName: "Minimalna zarada",
     body: (<>
-      <p><strong>Minimalac</strong> (minimalna zarada) u Srbiji za 2026. godinu iznosi <strong>{m.cenaRadnogCasaNeto} RSD neto po radnom času</strong> (važi od {m.vaziOd}, „Sl. glasnik RS“ br. 78/2025). To je jedini fiksan iznos — mesečni minimalac nije fiksan, već se dobija množenjem satnice fondom radnih sati u mesecu (160–184 sata), pa varira iz meseca u mesec: neto od {m.netoMin.toLocaleString("sr-RS")} do {m.netoMax.toLocaleString("sr-RS")} RSD. Satnica je za <strong>10,1%</strong> viša od one koja je važila od oktobra 2025. (337 RSD), a za <strong>20,5%</strong> viša nego početkom 2025. (308 RSD).</p>
+      <p><strong>Minimalna zarada</strong> (minimalac) u Srbiji za 2026. godinu iznosi <strong>{m.cenaRadnogCasaNeto} RSD neto po radnom času</strong> (važi od {m.vaziOd}, „Sl. glasnik RS“ br. 78/2025). To je jedini fiksan iznos — mesečni minimalac nije fiksan, već se dobija množenjem satnice fondom radnih sati u mesecu (160–184 sata), pa varira iz meseca u mesec: neto od {m.netoMin.toLocaleString("sr-RS")} do {m.netoMax.toLocaleString("sr-RS")} RSD. Satnica je za <strong>10,1%</strong> viša od one koja je važila od oktobra 2025. (337 RSD), a za <strong>20,5%</strong> viša nego početkom 2025. (308 RSD).</p>
       <table className="ref-table">
         <tbody>
           <tr><th>Cena radnog časa (neto)</th><td>{m.cenaRadnogCasaNeto.toLocaleString("sr-RS")} RSD</td></tr>
@@ -1139,13 +1147,13 @@ export function MinimalnaZaradaPage() {
           <tr><th>Ukupan neto minimalac za 2026.</th><td>{godisnjeNeto.toLocaleString("sr-RS")} RSD (≈ {fmt0(godisnjeBruto)} RSD bruto)</td></tr>
         </tbody>
       </table>
-      <p>Mesečni iznos se razlikuje po mesecima zbog različitog broja radnih dana — najniži je u mesecima sa 160 sati, a najviši u mesecima sa 184 sata. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a> i izračunajte neto preko <a href="/bruto-neto">bruto u neto kalkulatora</a>. Za poređenje sa prethodnom godinom pogledajte vodič <a href="/blog/minimalna-zarada-2025">minimalna zarada 2025</a>.</p>
+      <p>Mesečni iznos se razlikuje po mesecima zbog različitog broja radnih dana — najniži je u mesecima sa 160 sati, a najviši u mesecima sa 184 sata. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a> i izračunajte neto preko <a href="/bruto-neto">bruto u neto kalkulatora</a>. Za poređenje sa prethodnim godinama pogledajte <a href="#istorija">istoriju minimalne cene rada</a> niže na strani.</p>
 
       <h2>Minimalac po mesecima 2026 — neto i bruto tabela</h2>
       <p>Pošto je fiksna samo cena radnog časa ({m.cenaRadnogCasaNeto} RSD neto), mesečni minimalac se dobija množenjem satnice fondom radnih sati u mesecu. Tabela daje minimalni neto i pripadajući bruto (bruto 1) za svaki mesec 2026:</p>
       <table className="ref-table" aria-label="Minimalna neto i bruto zarada po mesecima 2026">
         <thead>
-          <tr><th>Mesec 2026.</th><th>Radni dani</th><th>Fond sati</th><th>Minimalac (neto)</th><th>Minimalac (bruto)</th></tr>
+          <tr><th>Mesec 2026.</th><th>Radni dani</th><th>Fond sati</th><th>Minimalac (neto)</th><th>Minimalac (bruto)</th><th>Praznici</th></tr>
         </thead>
         <tbody>
           {perMonth.map((r) => (
@@ -1155,15 +1163,19 @@ export function MinimalnaZaradaPage() {
               <td>{r.sati}</td>
               <td>{r.neto.toLocaleString("sr-RS")} RSD</td>
               <td>{fmt2(r.bruto)} RSD</td>
+              <td>{r.praznici}</td>
             </tr>
           ))}
         </tbody>
       </table>
       <p>Bruto iznosi su preračunati uz <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade od {R.nonTaxable.toLocaleString("sr-RS")} RSD</a>, koji važi za isplate od 1. januara 2026, i poklapaju se sa zvaničnim tabelama za obračun. Ako se zarada za neki mesec isplaćuje u različitim godinama, primenjuje se minimalna cena rada koja važi na dan isplate.</p>
 
+      <h2>Fond sati i praznici — zašto minimalac ne pada zbog praznika</h2>
+      <p>Fond sati u tabeli obuhvata sve dane ponedeljak–petak, <strong>uključujući i državne praznike</strong> koji padnu na radni dan — tako se fond zvanično utvrđuje za obračun minimalne zarade. Za praznik zaposleni ne radi, ali prima naknadu zarade u visini proseka svoje zarade za prethodnih 12 meseci (čl. 114 Zakona o radu), pa praznik ne umanjuje mesečno primanje. Spisak neradnih dana je u pregledu <a href="/praznici-2026">državnih praznika za 2026</a>, a raspored fonda po mesecima u pregledu <a href="/radni-dani-2026">radnih dana 2026</a>.</p>
+
       <h2>Obračun: od 371 RSD po satu do plate i troška poslodavca</h2>
-      <p>Satnica od {m.cenaRadnogCasaNeto} RSD je <strong>neto</strong> iznos — bez poreza i doprinosa. Kompletan obračun za <strong>avgust 2026.</strong> ({ex.dani} radni dan, {ex.sati} h) izgleda ovako:</p>
-      <table className="ref-table" aria-label="Primer obračuna minimalne zarade za avgust 2026">
+      <p>Satnica od {m.cenaRadnogCasaNeto} RSD je <strong>neto</strong> iznos — bez poreza i doprinosa. Kompletan obračun za <strong>{exMesecLc} 2026.</strong> ({ex.dani} {dLabel(ex.dani)}, {ex.sati} h) izgleda ovako:</p>
+      <table className="ref-table" aria-label={`Primer obračuna minimalne zarade za ${exMesecLc} 2026`}>
         <tbody>
           <tr><th>Neto minimalac ({m.cenaRadnogCasaNeto} × {ex.sati} h)</th><td>{ex.neto.toLocaleString("sr-RS")},00 RSD</td></tr>
           <tr><th>Bruto 1 zarada</th><td>{fmt2(ex.bruto)} RSD</td></tr>
@@ -1192,7 +1204,7 @@ export function MinimalnaZaradaPage() {
       <p>Minimalnu cenu rada utvrđuje <strong>Socijalno-ekonomski savet</strong> (vlada, sindikati i poslodavci) za kalendarsku godinu, najkasnije do <strong>15. septembra</strong> tekuće godine, a primenjuje se od 1. januara naredne (čl. 112). Ako se Savet ne dogovori u roku od 15 dana od početka pregovora, odluku donosi Vlada u narednih 15 dana. Pri odlučivanju se uzimaju u obzir egzistencijalne i socijalne potrebe zaposlenog i porodice, kretanje cena, zaposlenosti, BDP-a, produktivnosti i prosečnih zarada. Odluka se objavljuje u „Službenom glasniku RS“ (čl. 113).</p>
       <p><strong>Minimalac za 2027.</strong> biće poznat najkasnije 15. septembra 2026. Zakon garantuje da ne može biti utvrđen u nižem iznosu od važećeg — dakle, satnica za 2027. ne može biti ispod 371 RSD neto.</p>
 
-      <h2>Minimalna cena rada kroz godine</h2>
+      <h2 id="istorija">Minimalna cena rada kroz godine</h2>
       <table className="ref-table" aria-label="Minimalna cena rada po godinama">
         <thead>
           <tr><th>Godina</th><th>Cena radnog časa (neto)</th></tr>
@@ -1220,6 +1232,7 @@ export function MinimalnaZaradaPage() {
     faq: [
       { q: "Koliko je minimalac u Srbiji 2026?", a: `Minimalac (minimalna cena rada) je ${m.cenaRadnogCasaNeto} RSD neto po radnom času (od ${m.vaziOd}, „Sl. glasnik RS“ 78/2025). Mesečni neto iznos zavisi od fonda sati: od ${m.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m.netoMax.toLocaleString("sr-RS")} RSD (184 h), prosečno oko ${m.netoMesecno.toLocaleString("sr-RS")} RSD.` },
       { q: "Kako se obračunava minimalac po mesecima?", a: `Cena radnog časa (${m.cenaRadnogCasaNeto} RSD neto) množi se brojem radnih sati u tom mesecu. Zato mesečni minimalac varira — meseci sa više radnih dana donose veći iznos. Tabela minimalca za svaki mesec 2026. je iznad.` },
+      { q: `Koliki je minimalac za ${exMesecLc} 2026?`, a: `Minimalac za ${exMesecLc} 2026. iznosi ${ex.neto.toLocaleString("sr-RS")} RSD neto (fond od ${ex.sati} h × ${m.cenaRadnogCasaNeto} RSD po satu), odnosno ${fmt2(ex.bruto)} RSD bruto 1.` },
       { q: "Koliki je bruto minimalac 2026?", a: `Bruto 1 minimalna zarada u 2026. kreće se od 79.797,29 RSD (mesec sa 160 h) do 92.499,14 RSD (184 h). Preračun sa neto na bruto vrši se uz neoporezivi iznos od ${R.nonTaxable.toLocaleString("sr-RS")} RSD, doprinose 19,90% i porez 10%.` },
       { q: "Da li topli obrok, regres i minuli rad ulaze u minimalac?", a: "Ne. Minimalna zarada pokriva samo osnovnu zaradu za standardni učinak i puno radno vreme (čl. 111 Zakona o radu). Minuli rad, uvećanja za prekovremeni, noćni i rad na praznik, topli obrok, regres i naknada prevoza obračunavaju se povrh minimalca." },
       { q: "Ko ima pravo na minimalac?", a: `Svi zaposleni — zarada ne može biti niža od minimalne. Zaposleni sa nepunim radnim vremenom ima pravo na minimalac srazmerno satima rada, jer je satnica od ${m.cenaRadnogCasaNeto} RSD neto zakonska donja granica po radnom času.` },
@@ -1276,9 +1289,9 @@ export function RadniDaniPage() {
           <tr><th>Ukupno 2026.</th><th>{ukupnoDana}</th><th>{ukupnoSati.toLocaleString("sr-RS")}</th><th></th><th>{ukupnoBezPraznika}</th></tr>
         </tfoot>
       </table>
-      <p><strong>„Radni dani (fond)"</strong> su svi dani ponedeljak–petak — to je zvanični mogući fond koji se koristi za obračun <a href="/minimalna-zarada-2026">minimalne zarade</a> (cena radnog časa × fond sati) i satnice. <strong>„Dani bez praznika"</strong> su fond umanjen za državne praznike koji padaju na radni dan — toliko se dana stvarno radi. Napomena za februar: pošto Sretenje (15. februar) pada u nedelju, neradan je i utorak 17. februar. Tačne datume proverite u <a href="/praznici-2026">spisku praznika za 2026</a>.</p>
+      <p><strong>„Radni dani (fond)"</strong> su svi dani ponedeljak–petak — to je zvanični mogući fond koji se koristi za obračun <a href="/minimalna-zarada">minimalne zarade</a> (cena radnog časa × fond sati) i satnice. <strong>„Dani bez praznika"</strong> su fond umanjen za državne praznike koji padaju na radni dan — toliko se dana stvarno radi. Napomena za februar: pošto Sretenje (15. februar) pada u nedelju, neradan je i utorak 17. februar. Tačne datume proverite u <a href="/praznici-2026">spisku praznika za 2026</a>.</p>
 
-      <p><strong>Minimalac po mesecima zavisi od fonda sati</strong> — mesečna minimalna zarada = cena radnog časa × broj radnih sati u tom mesecu, pa se razlikuje od meseca do meseca (vidi <a href="/minimalna-zarada-2026">minimalnu zaradu 2026</a>).</p>
+      <p><strong>Minimalac po mesecima zavisi od fonda sati</strong> — mesečna minimalna zarada = cena radnog časa × broj radnih sati u tom mesecu, pa se razlikuje od meseca do meseca (vidi <a href="/minimalna-zarada">minimalnu zaradu 2026</a>).</p>
 
       <h2>Fond sati po mesecima 2026 (detaljno)</h2>
       {dana.map((r) => (
@@ -1302,7 +1315,7 @@ export function RadniDaniPage() {
     ],
     related: [
       { href: "/praznici-2026", label: "Praznici 2026" },
-      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/minimalna-zarada", label: "Minimalna zarada 2026" },
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
     ],
@@ -1343,7 +1356,7 @@ export function PrazniciPage() {
     ],
     related: [
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
-      { href: "/minimalna-zarada-2026", label: "Minimalna zarada 2026" },
+      { href: "/minimalna-zarada", label: "Minimalna zarada 2026" },
       { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
     ],

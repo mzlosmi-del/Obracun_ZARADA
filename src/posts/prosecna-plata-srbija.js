@@ -107,7 +107,7 @@ Neto zarada prati isti trend i čini približno 72% bruto iznosa. Ovo je nominal
 
 ## Prosečna plata vs. minimalac i penzija
 
-Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/minimalna-zarada-2026). Minimalac je tako oko **69% medijalne** i tek oko **55% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata skoro pet puta većih.
+Minimalna zarada u 2026. iznosi 371 din neto po radnom času, odnosno oko **64.554 din (≈ 550 €)** mesečno za prosečan fond sati — detaljnije u vodiču [minimalna zarada 2026](/minimalna-zarada). Minimalac je tako oko **69% medijalne** i tek oko **55% prosečne** neto zarade. Raspon primanja je izuzetno širok — od zakonskog minimuma do IT plata skoro pet puta većih.
 
 ## Kako se prosečna plata obračunava
 

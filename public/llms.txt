@@ -25,7 +25,7 @@ Sajt održava ažurne zvanične parametre obračuna zarada u Srbiji. Podaci se p
 - [Jubilarna nagrada](https://www.platnilistic.rs/jubilarna-nagrada): iznosi po godinama staža
 - [Godišnji odmor](https://www.platnilistic.rs/godisnji-odmor): naknada i obračun
 - [Ugovor o delu](https://www.platnilistic.rs/ugovor-o-delu): porez i doprinosi
-- [Minimalna zarada 2026](https://www.platnilistic.rs/minimalna-zarada-2026): mesečna tabela neto/bruto
+- [Minimalna zarada 2026](https://www.platnilistic.rs/minimalna-zarada): mesečna tabela neto/bruto
 - [Radni dani 2026](https://www.platnilistic.rs/radni-dani-2026): fond sati po mesecima
 - [Stope doprinosa 2026](https://www.platnilistic.rs/stope-doprinosa-2026): referentna tabela
 

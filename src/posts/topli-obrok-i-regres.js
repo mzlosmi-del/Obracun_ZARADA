@@ -25,7 +25,7 @@ Drugim rečima, obaveza isplate postoji, ali konkretan iznos zavisi od akta posl
 
 Ovo je ključna stavka koju mnogi previde: **topli obrok i regres ne mogu biti ukalkulisani u minimalnu zaradu**. Zaposleni koji prima minimalac ima pravo na topli obrok i regres **pored** iznosa minimalne zarade, a ne umesto njega.
 
-Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/minimalna-zarada-2026).
+Više o samom minimalcu pročitajte u vodiču o [minimalnoj zaradi 2026](/minimalna-zarada).
 
 ## Kako se oporezuju
 

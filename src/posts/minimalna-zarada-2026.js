@@ -38,7 +38,7 @@ Uz minimalnu zaradu, poslodavac plaća i [doprinose na teret poslodavca](/blog/d
 | 2025 (od 1. oktobra) | 337 RSD |
 | 2026 (od 1. januara) | 371 RSD |
 
-Rast cene radnog časa u 2026. godini iznosi oko **10,1%** u odnosu na satnicu s kraja 2025. Pogledajte i [minimalna zarada 2025](/blog/minimalna-zarada-2025) za poređenje.
+Rast cene radnog časa u 2026. godini iznosi oko **10,1%** u odnosu na satnicu s kraja 2025. Pogledajte i [minimalna zarada 2025](/minimalna-zarada) za poređenje.
 
 ## Ko prima minimalnu zaradu?
 

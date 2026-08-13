@@ -367,8 +367,8 @@ export const POSTS = [
 // old URL keeps serving a full article and Google never consolidates rankings.
 export const REDIRECT_MAP = {
   "neoporezivi-2026": "/neoporezivi-iznos-2026",
-  "minimalna-zarada-2026": "/minimalna-zarada-2026",
-  "minimalna-zarada-2025": "/minimalna-zarada-2026",
+  "minimalna-zarada-2026": "/minimalna-zarada",
+  "minimalna-zarada-2025": "/minimalna-zarada",
 };
 export const REDIRECTED_POST_IDS = new Set(Object.keys(REDIRECT_MAP));
 

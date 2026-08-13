@@ -1,7 +1,7 @@
 // Body for "minimalna-zarada-2025". Split out of posts.js so a reader
 // downloads only the article they open — see loadPostBody() in Blog.jsx.
 export const body = `
-> 📌 **Ovaj tekst se odnosi na 2025. godinu.** Aktuelni iznosi: [minimalna zarada 2026](/minimalna-zarada-2026).
+> 📌 **Ovaj tekst se odnosi na 2025. godinu.** Aktuelni iznosi: [minimalna zarada 2026](/minimalna-zarada).
 
 ![Minimalna zarada i novac](https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80)
 
@@ -33,7 +33,7 @@ Ukupan trošak poslodavca za zaposlenog na minimalnoj zarade:
 
 Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomskog saveta, a primenjuje se od 1. januara tekuće godine.
 
-Sledeća revizija stupila je na snagu 1. januara 2026. godine („Sl. glasnik RS" br. 78/2025) — pogledajte [minimalna zarada za 2026.](/minimalna-zarada-2026) za aktuelne iznose.
+Sledeća revizija stupila je na snagu 1. januara 2026. godine („Sl. glasnik RS" br. 78/2025) — pogledajte [minimalna zarada za 2026.](/minimalna-zarada) za aktuelne iznose.
 
 Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/bruto-neto), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
 

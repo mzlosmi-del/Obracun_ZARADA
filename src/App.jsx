@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, lazy, Suspense } from "react";
-import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar, FreshnessStamp } from "./ui.jsx";
 import { useSeo } from "./seo.jsx";
@@ -1356,7 +1356,7 @@ function HomePage() {
           <li><a href="/jubilarna-nagrada">Kalkulator jubilarne nagrade</a></li>
           <li><a href="/neoporezivi-iznos-2026">Neoporezivi iznos 2026</a></li>
           <li><a href="/stope-doprinosa-2026">Stope doprinosa 2026</a></li>
-          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/minimalna-zarada">Minimalna zarada 2026</a></li>
           <li><a href="/prosecna-zarada">Prosečna zarada u Srbiji</a></li>
           <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
           <li><a href="/praznici-2026">Praznici 2026</a></li>
@@ -1412,7 +1412,7 @@ function HomePage() {
           <p>
             Minimalna cena rada je 371 RSD neto po radnom času (od 1. januara 2026). Mesečni neto
             iznos varira sa fondom sati — od 59.360 do 68.264 RSD, prosečno oko 64.554 RSD. Više u
-            vodiču o <a href="/minimalna-zarada-2026">minimalnoj zaradi 2026</a>.
+            vodiču o <a href="/minimalna-zarada">minimalnoj zaradi 2026</a>.
           </p>
         </div>
         <div className="home-faq-item">
@@ -1479,7 +1479,7 @@ function HomePage() {
           <li><a href="/blog/minuli-rad-obracun">Minuli rad — kako se računa 0,4% po godini staža</a></li>
           <li><a href="/blog/godisnji-odmor-naknada">Naknada za godišnji odmor</a></li>
           <li><a href="/blog/jubilarna-nagrada">Jubilarna nagrada — iznosi i obračun</a></li>
-          <li><a href="/minimalna-zarada-2026">Minimalna zarada 2026</a></li>
+          <li><a href="/minimalna-zarada">Minimalna zarada 2026</a></li>
           <li><a href="/blog/pausalno-oporezivanje">Paušalno oporezivanje 2026</a></li>
           <li><a href="/blog/porez-za-frilensere">Porez za frilensere 2026</a></li>
           <li><a href="/blog/ugovor-o-delu">Ugovor o delu — porez i doprinosi</a></li>
@@ -1576,7 +1576,10 @@ export default function App() {
             <Route path="/godisnji-odmor" element={<Suspense fallback={<RouteLoader />}><GodisnjiOdmorPage /></Suspense>} />
             <Route path="/jubilarna-nagrada" element={<Suspense fallback={<RouteLoader />}><JubilarnaPage /></Suspense>} />
             <Route path="/ugovor-o-delu" element={<Suspense fallback={<RouteLoader />}><UgovorODeluPage /></Suspense>} />
-            <Route path="/minimalna-zarada-2026" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
+            <Route path="/minimalna-zarada" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
+            {/* Legacy dated URL — server-side 301 lives in vercel.json; this client-side
+                fallback covers SPA navigation that reaches the router before Vercel. */}
+            <Route path="/minimalna-zarada-2026" element={<Navigate to="/minimalna-zarada" replace />} />
             <Route path="/radni-dani-2026" element={<Suspense fallback={<RouteLoader />}><RadniDaniPage /></Suspense>} />
             <Route path="/praznici-2026" element={<Suspense fallback={<RouteLoader />}><PrazniciPage /></Suspense>} />
             <Route path="/prosecna-zarada" element={<Suspense fallback={<RouteLoader />}><ProsecnaZaradaPage /></Suspense>} />

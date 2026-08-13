@@ -4,7 +4,7 @@ import { join } from "node:path";
 const DIST = join(process.cwd(), "dist");
 const ROUTES = [
   "bruto-neto", "neto-bruto", "pausal", "bolovanje", "otpremnina", "minuli-rad",
-  "minimalna-zarada-2026", "radni-dani-2026", "praznici-2026",
+  "minimalna-zarada", "radni-dani-2026", "praznici-2026",
   "dodaci-na-zaradu", "godisnji-porez", "godisnji-odmor", "jubilarna-nagrada", "ugovor-o-delu",
   "prosecna-zarada", "neoporezivi-iznos-2026", "stope-doprinosa-2026",
 ];
