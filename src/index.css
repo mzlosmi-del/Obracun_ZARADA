@@ -301,7 +301,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
   .post-body td { padding: 8px 10px; }
 }
 .post-body .post-img { width: 100%; max-height: 300px; object-fit: cover; border-radius: 10px; margin: 16px 0; display: block; }
-.post-body .post-chart { width: 100%; height: auto; border-radius: 10px; margin: 18px 0; display: block; border: 1px solid var(--border); background: #fff; }
+.post-body .post-chart { width: 100%; height: auto; aspect-ratio: 1200 / 630; border-radius: 10px; margin: 18px 0; display: block; border: 1px solid var(--border); background: #fff; }
+.post-body blockquote { margin: 18px 0; padding: 12px 16px; border-left: 3px solid var(--accent); background: rgba(0,0,0,0.03); border-radius: 0 8px 8px 0; }
+.post-body blockquote p { margin: 0; }
 .post-body .post-link { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
 .post-body .post-link:hover { color: #0e3aa8; }
 .post-cta { margin-top: 36px; padding: 20px 22px; background: var(--accent-light); border-radius: var(--radius); border: 1px solid #c8d8ff; }

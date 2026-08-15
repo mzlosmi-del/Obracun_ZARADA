@@ -61,7 +61,7 @@ Detaljnije o naknadi za godišnji odmor pišemo u [posebnom vodiču](/blog/godis
 
 Proverite svoj ugovor o radu i opšti akt poslodavca da vidite kako su definisani iznosi toplog obroka i regresa. Ako sumnjate da vam primanja nisu pravilno obračunata, obratite se knjigovođi, pravniku ili sindikatu.
 
-Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika) i o [naknadi za godišnji odmor](/blog/godisnji-odmor-naknada).
+Pogledajte i naše vodiče o [razlici između bruto i neto zarade](/bruto-neto) i o [naknadi za godišnji odmor](/blog/godisnji-odmor-naknada).
 
 ## Izvori i korisni linkovi
 

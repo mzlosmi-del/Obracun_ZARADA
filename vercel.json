@@ -5,34 +5,39 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/(.*)",
-      "has": [{ "type": "host", "value": "platnilistic.rs" }],
-      "destination": "https://www.platnilistic.rs/$1",
+      "source": "/blog/bruto-neto-razlika",
+      "destination": "https://www.platnilistic.rs/bruto-neto",
       "permanent": true
     },
     {
       "source": "/blog/neoporezivi-2025",
-      "destination": "/neoporezivi-iznos-2026",
+      "destination": "https://www.platnilistic.rs/neoporezivi-iznos-2026",
       "permanent": true
     },
     {
       "source": "/blog/neoporezivi-2026",
-      "destination": "/neoporezivi-iznos-2026",
+      "destination": "https://www.platnilistic.rs/neoporezivi-iznos-2026",
       "permanent": true
     },
     {
       "source": "/blog/minimalna-zarada-2026",
-      "destination": "/minimalna-zarada",
+      "destination": "https://www.platnilistic.rs/minimalna-zarada",
       "permanent": true
     },
     {
       "source": "/blog/minimalna-zarada-2025",
-      "destination": "/minimalna-zarada",
+      "destination": "https://www.platnilistic.rs/minimalna-zarada",
       "permanent": true
     },
     {
       "source": "/minimalna-zarada-2026",
-      "destination": "/minimalna-zarada",
+      "destination": "https://www.platnilistic.rs/minimalna-zarada",
+      "permanent": true
+    },
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "platnilistic.rs" }],
+      "destination": "https://www.platnilistic.rs/$1",
       "permanent": true
     }
   ],

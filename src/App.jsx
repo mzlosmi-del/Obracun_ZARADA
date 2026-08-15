@@ -1428,7 +1428,7 @@ function HomePage() {
           <p>
             Bruto 1 je ugovorena zarada, neto je iznos na račun, a bruto 2 je ukupan trošak poslodavca
             (Bruto 1 + doprinosi poslodavca). Pogledajte vodič o
-            <a href="/blog/bruto-neto-razlika"> razlici između bruto i neto zarade</a>.
+            <a href="/bruto-neto"> razlici između bruto i neto zarade</a>.
           </p>
         </div>
         <div className="home-faq-item">

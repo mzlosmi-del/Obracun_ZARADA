@@ -36,6 +36,15 @@ function renderMd(text) {
   return text.trim()
     .replace(/^## (.+)$/gm, '<h2>$1</h2>')
     .replace(/^### (.+)$/gm, '<h3>$1</h3>')
+    // Blockquotes ("> ") were never handled, so the leading "> " leaked into the
+    // paragraph as a literal character - all 40 posts, 89 occurrences, including the
+    // "Provereno i azurirano" freshness stamp and the legal disclaimer, i.e. exactly
+    // the two trust signals. Tagged per line with a placeholder so the grouping pass
+    // can merge consecutive lines into one <blockquote> (5 posts have multi-line
+    // quotes) without the greedy-/s bug that once merged every table in a post.
+    .replace(/^> (.+)$/gm, '<bq>$1</bq>')
+    .replace(/(?:^<bq>.*<\/bq>[ \t]*$\r?\n?)+/gm, (block) =>
+      `<blockquote>${block.trim().split(/\r?\n/).map(l => l.replace(/^<bq>/, '').replace(/<\/bq>$/, '')).join(' ')}</blockquote>\n`)
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, src) => {
       // First image = hero (LCP): load eagerly + high priority; rest stay lazy.
@@ -57,7 +66,7 @@ function renderMd(text) {
         return `<img src="${rmk(800)}" srcset="${rmk(480)} 480w, ${rmk(800)} 800w, ${rmk(1200)} 1200w" sizes="(max-width: 700px) 100vw, 680px" alt="${alt}" class="post-img" ${loadAttr} decoding="async" width="800" height="300" />`;
       }
       // Local images (charts, infographics) render full-size, not cropped to a 300px banner.
-      return `<img src="${src}" alt="${alt}" class="post-chart" ${loadAttr} decoding="async" />`;
+      return `<img src="${src}" alt="${alt}" class="post-chart" ${loadAttr} decoding="async" width="1200" height="630" />`;
     })
     .replace(/\[([^\]]+)\]\((\/[^)]*)\)/g, '<a href="$2" class="post-link post-link-internal">$1</a>')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="post-link">$1</a>')

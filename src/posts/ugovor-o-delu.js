@@ -57,7 +57,7 @@ Pretpostavimo da je ugovorena **bruto naknada 100.000 dinara**.
 
 100.000 − 16.000 − 19.200 − 8.240 = **56.560 dinara**
 
-Isti princip „bruto u neto" možete brzo proveriti i [kalkulatorom zarade](/), a logiku odnosa bruto i neto detaljno objašnjavamo u vodiču o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika).
+Isti princip „bruto u neto" možete brzo proveriti i [kalkulatorom zarade](/), a logiku odnosa bruto i neto detaljno objašnjavamo u vodiču o [razlici između bruto i neto zarade](/bruto-neto).
 
 ## Ko obračunava i plaća porez i doprinose?
 

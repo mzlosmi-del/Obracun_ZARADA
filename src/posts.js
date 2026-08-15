@@ -366,6 +366,8 @@ export const POSTS = [
 // and the index.html rewrite both hand control to the app); without it, the
 // old URL keeps serving a full article and Google never consolidates rankings.
 export const REDIRECT_MAP = {
+  "bruto-neto-razlika": "/bruto-neto",
+  "neoporezivi-2025": "/neoporezivi-iznos-2026",
   "neoporezivi-2026": "/neoporezivi-iznos-2026",
   "minimalna-zarada-2026": "/minimalna-zarada",
   "minimalna-zarada-2025": "/minimalna-zarada",

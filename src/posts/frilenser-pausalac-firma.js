@@ -76,7 +76,7 @@ Pređite na DOO kada:
 
 ## Prihodi iz inostranstva — kratak savet
 
-Ako naplaćujete od stranih klijenata, prihod prijavljujete po **srednjem kursu NBS na dan priliva**. Mnogi frilenseri i preduzetnici za prijem uplata koriste multivalutne račune (npr. Wise ili Revolut) ili devizni račun u banci — uz uredno čuvanje faktura i izvoda. Pravilan obračun bruto u neto za zaradu iz radnog odnosa možete brzo proveriti i [kalkulatorom zarade](/), a osnovne pojmove objašnjavamo u vodiču o [razlici između bruto i neto zarade](/blog/bruto-neto-razlika).
+Ako naplaćujete od stranih klijenata, prihod prijavljujete po **srednjem kursu NBS na dan priliva**. Mnogi frilenseri i preduzetnici za prijem uplata koriste multivalutne račune (npr. Wise ili Revolut) ili devizni račun u banci — uz uredno čuvanje faktura i izvoda. Pravilan obračun bruto u neto za zaradu iz radnog odnosa možete brzo proveriti i [kalkulatorom zarade](/), a osnovne pojmove objašnjavamo u vodiču o [razlici između bruto i neto zarade](/bruto-neto).
 
 ## Česte greške
 

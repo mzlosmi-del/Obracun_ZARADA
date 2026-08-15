@@ -91,7 +91,7 @@ U našem [kalkulatoru zarade](/) imate dve opcije za bonus:
 - **Fiksni bonus** — unos konkretnog iznosa
 - **Procentualni bonus** — kao procenat od osnovne zarade
 
-Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinose. Možete videti tačno koliko zaposleni dobija na račun. Pogledajte i [razliku između bruto i neto zarade](/blog/bruto-neto-razlika) za bolje razumevanje strukture.
+Kalkulator automatski uključuje bonus u Bruto 1 i obračunava poreze i doprinose. Možete videti tačno koliko zaposleni dobija na račun. Pogledajte i [razliku između bruto i neto zarade](/bruto-neto) za bolje razumevanje strukture.
 
 ## Izvori i korisni linkovi
 
