@@ -116,10 +116,10 @@ export const POSTS = [
   {
     id: "porodiljsko-odsustvo",
     date: "11. jul 2026",
-    updated: "4. avgust 2026",
+    updated: "15. avgust 2026",
     tag: "Zakon o radu",
     title: "Porodiljsko odsustvo 2026 — naknada, obračun i isplata",
-    summary: "Porodiljsko odsustvo 2026: naknada je prosek osnovica za 18 meseci, najviše 5 prosečnih zarada, tokom prva 3 meseca najmanje minimalac. Obračun sa primerima.",
+    summary: "Isplata porodiljskog stiže po pravilu oko 20. u mesecu — zakon ne fiksira datum. Naknada = prosek osnovica za 18 meseci, najviše 5 prosečnih zarada.",
     hasFaq: true,
   },
   {
