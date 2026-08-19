@@ -13,6 +13,28 @@ Sajt održava ažurne zvanične parametre obračuna zarada u Srbiji. Podaci se p
 - Minimalna cena rada 2026: 371 RSD neto po radnom času
 - Prosečna neto zarada (maj 2026, RZS): 118.398 RSD; bruto: 163.470 RSD
 
+## Minimalac (minimalna zarada) 2026 po mesecima
+
+Minimalac za 2026. godinu iznosi 371 RSD neto po radnom času (Odluka o visini minimalne cene rada, „Sl. glasnik RS“ br. 78/2025, važi od 1. januara 2026). Fiksna je samo satnica — mesečni iznos je satnica × fond radnih sati u tom mesecu. Bruto 1 je preračunat uz neoporezivi iznos 34.221 RSD, doprinose zaposlenog 19,90% i porez 10%.
+
+- Januar 2026: 22 radna dana, 176 radnih sati — minimalac neto 65.296,00 RSD, bruto 1 88.265,19 RSD
+- Februar 2026: 20 radnih dana, 160 radnih sati — minimalac neto 59.360,00 RSD, bruto 1 79.797,29 RSD
+- Mart 2026: 22 radna dana, 176 radnih sati — minimalac neto 65.296,00 RSD, bruto 1 88.265,19 RSD
+- April 2026: 22 radna dana, 176 radnih sati — minimalac neto 65.296,00 RSD, bruto 1 88.265,19 RSD
+- Maj 2026: 21 radni dan, 168 radnih sati — minimalac neto 62.328,00 RSD, bruto 1 84.031,24 RSD
+- Jun 2026: 22 radna dana, 176 radnih sati — minimalac neto 65.296,00 RSD, bruto 1 88.265,19 RSD
+- Jul 2026: 23 radna dana, 184 radnih sati — minimalac neto 68.264,00 RSD, bruto 1 92.499,14 RSD
+- Avgust 2026: 21 radni dan, 168 radnih sati — minimalac neto 62.328,00 RSD, bruto 1 84.031,24 RSD
+- Septembar 2026: 22 radna dana, 176 radnih sati — minimalac neto 65.296,00 RSD, bruto 1 88.265,19 RSD
+- Oktobar 2026: 22 radna dana, 176 radnih sati — minimalac neto 65.296,00 RSD, bruto 1 88.265,19 RSD
+- Novembar 2026: 21 radni dan, 168 radnih sati — minimalac neto 62.328,00 RSD, bruto 1 84.031,24 RSD
+- Decembar 2026: 23 radna dana, 184 radnih sati — minimalac neto 68.264,00 RSD, bruto 1 92.499,14 RSD
+
+Godišnji fond 2026: 261 radni dan, 2.088 sati — ukupan neto minimalac 774.648,00 RSD.
+Rok isplate: zarada se isplaćuje najmanje jedanput mesečno, a najkasnije do kraja tekućeg meseca za prethodni mesec (čl. 110 Zakona o radu) — zakon ne propisuje tačan dan, samo krajnji rok.
+Povrh minimalca se obračunavaju: minuli rad (min. 0,4% po godini staža), topli obrok, regres, prekovremeni (+26%), noćni rad (+26%) i rad na praznik (+110%) — čl. 108 i 111 Zakona o radu.
+Izvor strane: https://www.platnilistic.rs/minimalna-zarada
+
 ## Kalkulatori
 
 - [Kalkulator zarade (početna)](https://www.platnilistic.rs/): pun obračun plate sa svim uvećanjima, PDF i XML

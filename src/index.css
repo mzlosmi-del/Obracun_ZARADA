@@ -583,6 +583,10 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
 .reference-body ul { padding-left: 20px; margin: 0 0 12px; }
 .reference-body li { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 6px; }
 .reference-body strong { color: var(--text); font-weight: 600; }
+/* "Ukratko" blok — direktan odgovor u prvih 100 reči, izdvojen i za čitaoca i za
+   izvlačenje u AI odgovorima (audit 19.8.2026). Ista vizuelna gramatika kao
+   ostatak .reference-body, samo naglašen levom ivicom u akcentnoj boji. */
+.reference-body .ukratko { border-left: 3px solid var(--accent); background: rgba(110, 168, 254, 0.06); padding: 12px 14px; border-radius: var(--radius); margin: 0 0 14px; }
 
 .ref-table { width: 100%; border-collapse: collapse; margin: 8px 0 12px; font-size: 14px; }
 .ref-table th, .ref-table td { padding: 10px 12px; text-align: right; border-bottom: 1px solid var(--border); }
