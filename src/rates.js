@@ -63,6 +63,46 @@ export const REFERENCE_DATA = {
     vaziOd: "1. januar 2026",
     izvor: "Sl. glasnik RS 78/2025",
   },
+  // Minimalna zarada 2027 — Odluka Vlade RS o visini minimalne cene rada za period
+  // januar–decembar 2027, doneta na sednici 20.8.2026. Socijalno-ekonomski savet
+  // 18.8.2026. nije postigao saglasnost, pa je odluku donela Vlada (čl. 112 Zakona o radu).
+  // VERIFIKOVANO 24.8.2026 uz tri nezavisna izvora koji navode identičan tekst odluke
+  // („405 dinara neto po radnom času“): Tanjug 20.8, N1 20.8, Biznis.rs 21.8.
+  // Rast 371 → 405 = +9,164% (zvanično zaokruženo na 9,2%).
+  // ⚠️ 70.470 RSD NIJE mesečni minimalac — to je 405 × 174 h, a 174 h je samo prosečan
+  // mesečni fond; NIJEDAN mesec 2027. nema 174 sata. Stvarni raspon: 64.800 – 74.520 RSD.
+  minimalnaZarada2027: {
+    cenaRadnogCasaNeto: 405,   // RSD neto po radnom času (fiksno)
+    netoMesecno: 70470,        // 405 × 174 h — iznos koji mediji navode kao „oko 600 €“
+    netoMin: 64800,            // 160 radnih sati (februar 2027)
+    netoMax: 74520,            // 184 radna sata (mart i decembar 2027)
+    rastProcenat: 9.2,
+    vaziOd: "1. januar 2027",
+    izvor: "Odluka Vlade RS od 20.8.2026",
+    // Bruto iznosi za 2027. se NAMERNO ne fiksiraju: zavise od neoporezivog iznosa zarade,
+    // koji za 2027. još nije izglasan. Predlog je 37.369 RSD (sada važi 34.221) i tek ide
+    // u skupštinsku proceduru — do usvajanja se bruto računa uz važećih 34.221.
+    neoporeziviPredlog2027: 37369,
+  },
+  // radniDani2027 — „mogući“ fond (pon–pet), isti metod kao radniDani2026: to je fond koji
+  // se koristi za obračun minimalca (cena radnog časa × fond sati). Izračunato iz kalendara
+  // i provereno 24.8.2026: ukupno 261 radni dan / 2.088 h, prosek tačno 174 h/mes.
+  // Praznici za 2027. se OVDE ne navode dok se datumi ne provere uz Zakon o državnim i
+  // drugim praznicima (datum Vaskrsa + pravilo pomeranja kada praznik padne u nedelju).
+  radniDani2027: [
+    { mesec: "Januar", radniDani: 21, radniSati: 168 },
+    { mesec: "Februar", radniDani: 20, radniSati: 160 },
+    { mesec: "Mart", radniDani: 23, radniSati: 184 },
+    { mesec: "April", radniDani: 22, radniSati: 176 },
+    { mesec: "Maj", radniDani: 21, radniSati: 168 },
+    { mesec: "Jun", radniDani: 22, radniSati: 176 },
+    { mesec: "Jul", radniDani: 22, radniSati: 176 },
+    { mesec: "Avgust", radniDani: 22, radniSati: 176 },
+    { mesec: "Septembar", radniDani: 22, radniSati: 176 },
+    { mesec: "Oktobar", radniDani: 21, radniSati: 168 },
+    { mesec: "Novembar", radniDani: 22, radniSati: 176 },
+    { mesec: "Decembar", radniDani: 23, radniSati: 184 },
+  ],
   // Godišnji porez na dohodak građana — dohodak ostvaren u 2025 (prijava do 15.5.2026).
   // VERIFIKOVANO 13.7.2026 uz Poreski informator PU (april 2026) i Objašnjenje MF od
   // 30.3.2026: prosečna godišnja zarada 2025 (RZS) 1.813.032; cenzus = 3× = 5.439.096;
