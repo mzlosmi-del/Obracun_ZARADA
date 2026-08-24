@@ -17,6 +17,15 @@
          async, fetching it in the critical window costs bandwidth on throttled
          mobile and pushes out FCP/LCP. Deferring keeps ad serving intact while
          leaving the first paint to the page's own CSS and hero image. -->
+    <!-- ======================= ADSENSE PAUZIRAN 24.8.2026 =======================
+         Odluka Milos, 24.8.2026: serviranje oglasa se gasi. Loader ISPOD je samo
+         zakomentarisan, ne obrisan — reaktivacija je uklanjanje omotaca ispod.
+         Ovo je drugi ciklus (pauza 10.8, reaktivacija 12.8), pa kod ostaje na mestu.
+         Razlog NIJE performansa: teren 19.8. je dao CLS 0 / LCP 1,1 s / CWV Passed.
+         public/ads.txt i Politika privatnosti (src/Legal.jsx) ostaju netaknuti -
+         trebace cim se serviranje vrati.
+    ========================================================================== -->
+    <!-- ADSENSE-PAUSED-START
     <script>
       (function () {
         var loaded = false;
@@ -37,6 +46,7 @@
         else window.addEventListener('load', schedule, { once: true });
       })();
     </script>
+    ADSENSE-PAUSED-END -->
     <!-- Fonts (Inter + JetBrains Mono) are self-hosted via @fontsource, imported
          in src/main.jsx and bundled into the app CSS — no third-party request. -->
 
