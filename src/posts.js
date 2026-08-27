@@ -3,8 +3,27 @@
 // all 28 articles (~150KB) into the chunk every reader downloads.
 export const POSTS = [
   {
+    id: "e-bolovanje-poslodavac",
+    date: "27. avgust 2026",
+    tag: "Bolovanje",
+    title: "e-Bolovanje za poslodavce 2026: 6 koraka",
+    summary: "Registracija na eUpravi do 1.1.2026, elektronski zahtevi RFZO-u od 1.4.2026, novi pravilnik od 8.8.2026. Koraci, rokovi 15-21-7 i kazne do 200.000 RSD.",
+    ogImage: "https://www.platnilistic.rs/media/blog/e-bolovanje-poslodavac.png",
+    hasFaq: true,
+  },
+  {
+    id: "e-bolovanje-zaposleni",
+    date: "27. avgust 2026",
+    tag: "Bolovanje",
+    title: "E-bolovanje za zaposlene: šta morate sami",
+    summary: "Doznaku više ne nosite poslodavcu: član 103. Zakona o radu je ukinut. Šta zaposleni mora sam da uradi, rok od tri dana kod lekara i kada stiže naknada.",
+    ogImage: "https://www.platnilistic.rs/media/blog/e-bolovanje-zaposleni.png",
+    hasFaq: true,
+  },
+  {
     id: "kupovna-moc-plate-2016-2026",
     date: "4. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Data studija",
     title: "Kupovna moć plate u Srbiji 2016–2026: realno +53%",
     summary: "Plata iz 2016. vredela je koliko danas vredi 71.558 din — a prosečna je danas 109.462. Realan rast kupovne moći je 53%, uz jedini pad 2022. Ko je zaista najviše dobio (RZS podaci).",
@@ -116,7 +135,7 @@ export const POSTS = [
   {
     id: "porodiljsko-odsustvo",
     date: "11. jul 2026",
-    updated: "15. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Zakon o radu",
     title: "Porodiljsko odsustvo 2026 — naknada, obračun i isplata",
     summary: "Isplata porodiljskog stiže po pravilu oko 20. u mesecu — zakon ne fiksira datum. Naknada = prosek osnovica za 18 meseci, najviše 5 prosečnih zarada.",
@@ -125,7 +144,7 @@ export const POSTS = [
   {
     id: "otkaz-ugovora-o-radu",
     date: "25. jun 2026",
-    updated: "4. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Zakon o radu",
     title: "Otkaz ugovora o radu 2026 — razlozi, postupak i otpremnina",
     summary: "Otkaz ugovora o radu 2026: razlozi za otkaz po Zakonu o radu, otkazni rok (8–30 dana), otpremnina za tehnološki višak i prava zaposlenog. Obračun sa primerom.",
@@ -134,10 +153,10 @@ export const POSTS = [
   {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
-    updated: "4. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Zarada",
-    title: "Prosečna plata u Srbiji 2026: 118.398 din (1.009 €), maj",
-    summary: "118.398 din (≈1.009 €) — prosečna neto plata u Srbiji, maj 2026 (RZS). Bruto 163.470, medijalna 93.277 din. Pregled po mesecima, sektorima i gradovima.",
+    title: "Prosečna plata u Srbiji 2026: 120.401 din (1.026 €), jun",
+    summary: "120.401 din (≈1.026 €) — prosečna neto plata u Srbiji, jun 2026 (RZS). Bruto 166.123, medijalna 94.281 din. Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     hasFaq: true,
   },
@@ -252,7 +271,7 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-bolovanje",
     date: "1. maj 2026",
-    updated: "6. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Bolovanje",
     title: "Kako se obračunava bolovanje do 30 dana — naknada 65%",
     summary: "Obračun bolovanja do 30 dana: naknada je minimum 65% prosečne zarade, a od 31. dana na teret RFZO. Kalkulator sa primerima i PDF platni listić.",
@@ -279,7 +298,7 @@ export const POSTS = [
   {
     id: "jubilarna-nagrada",
     date: "15. februar 2026",
-    updated: "4. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Porez",
     title: "Jubilarna nagrada 2026 — iznos, porez i neoporezivih 28.912",
     summary: "Jubilarna nagrada 2026: visina je stvar kolektivnog ugovora (obično 1–3 prosečne zarade), neoporezivo je 28.912 RSD godišnje, a iznad se plaća samo porez 10% — bez doprinosa.",
@@ -350,10 +369,10 @@ export const POSTS = [
   {
     id: "otpremnina-obracun",
     date: "5. januar 2026",
-    updated: "6. avgust 2026",
+    updated: "27. avgust 2026",
     tag: "Zakon o radu",
     title: "Otpremnina za penziju i tehnološki višak — iznos, obračun i porez",
-    summary: "Otpremnina za odlazak u penziju: najmanje 2 prosečne zarade RS (236.796 RSD, maj 2026). Za tehnološki višak: min. 1/3 zarade po godini staža. Obračun i porez.",
+    summary: "Otpremnina za odlazak u penziju: najmanje 2 prosečne zarade RS (240.802 RSD, jun 2026). Za tehnološki višak: min. 1/3 zarade po godini staža. Obračun i porez.",
     hasFaq: true,
   },
 ];

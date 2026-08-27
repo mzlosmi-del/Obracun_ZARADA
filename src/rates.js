@@ -124,15 +124,16 @@ export const REFERENCE_DATA = {
     obrazac: "PP GPDG",
     izvor: "Poreska uprava — Poreski informator, april 2026",
   },
-  // Prosečna zarada — RZS, maj 2026 (objavljeno 24.7.2026). Ažurirano 4.8.2026.
+  // Prosečna zarada — RZS, jun 2026 (Saopštenje ZR10 br. 228, objavljeno 25.8.2026).
+  // Ažurirano 27.8.2026.
   // NAPOMENA: `objavljeno` se koristi u statičnom tekstu na /prosecna-zarada (pages.jsx,
   // ProsecnaZaradaPage) — ažurirati zajedno sa mesec/neto/bruto svakog refresh-a.
   prosecnaZarada2026: {
-    neto: 118398,
-    bruto: 163470,
-    medijalnaNeto: 93277,
-    mesec: "maj 2026",
-    objavljeno: "24. jula 2026",
+    neto: 120401,
+    bruto: 166123,
+    medijalnaNeto: 94281,
+    mesec: "jun 2026",
+    objavljeno: "25. avgusta 2026",
     kursEur: 117.39,
     izvor: "RZS",
   },

@@ -19,13 +19,13 @@ const GODINA = _danas.getFullYear();
 export const body = `
 ![Porodiljsko odsustvo 2026 — naknada zarade, obračun i isplata](https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: 15. avgust 2026.** Pravila su usklađena sa važećim **Zakonom o finansijskoj podršci porodici sa decom** (čl. 12–20, sa izmenama iz novembra 2024) i **Zakonom o radu** (čl. 94–100). Iznosi vezani za prosečnu zaradu računati su prema poslednjem podatku RZS-a (maj 2026: 163.470 RSD bruto / 118.398 RSD neto), a minimalna zarada prema ceni radnog časa od 371 RSD za 2026.
+> **Provereno i ažurirano: 27. avgust 2026.** Pravila su usklađena sa važećim **Zakonom o finansijskoj podršci porodici sa decom** (čl. 12–20, sa izmenama iz novembra 2024) i **Zakonom o radu** (čl. 94–100). Iznosi vezani za prosečnu zaradu računati su prema poslednjem podatku RZS-a (jun 2026: 166.123 RSD bruto / 120.401 RSD neto), a minimalna zarada prema ceni radnog časa od 371 RSD za 2026.
 
 Porodiljsko odsustvo je pravo zaposlene žene (a u posebnim slučajevima i oca) na plaćeno odsustvo povodom rođenja deteta. Naknadu ne isplaćuje poslodavac, već država — direktno na račun porodilje, **po pravilu oko 20. u mesecu**. U ovom vodiču je tačan obračun naknade po pravilima koja važe u 2026, sa primerima u dinarima, minimumom i maksimumom, i posebnim delom za preduzetnice i paušalke.
 
 **Isplata u ${MESEC_LOK} ${GODINA}:** zakon ne propisuje kalendarski datum isplate. Ciklus je vezan za rokove iz čl. 16 Zakona o finansijskoj podršci porodici sa decom — korisnica promene prijavljuje **do 8.**, nadležni organ ih evidentira **do 15.** — a centralizovana isplata sledi kada Poreska uprava prihvati poresku prijavu koju podnosi ministarstvo (čl. 14 st. 5 i 7). Zato novac po pravilu stiže **oko 20.**, ali tačan dan varira iz meseca u mesec i ne objavljuje se unapred. Ceo ciklus je razložen u nastavku.
 
-**Ukratko:** naknada zarade = zbir osnovica na koje su plaćeni doprinosi u **18 meseci** pre odsustva ÷ 18. Mesečna osnovica ne može biti veća od **5 prosečnih zarada** (≈ 817.350 RSD bruto za prava koja počinju sredinom 2026). Tokom **prva 3 meseca** (porodiljsko odsustvo) pun mesečni iznos ne može biti manji od **minimalne zarade**; tokom nege deteta (od 4. do 12. meseca) taj minimum ne važi.
+**Ukratko:** naknada zarade = zbir osnovica na koje su plaćeni doprinosi u **18 meseci** pre odsustva ÷ 18. Mesečna osnovica ne može biti veća od **5 prosečnih zarada** (≈ 830.615 RSD bruto za prava koja počinju sredinom 2026). Tokom **prva 3 meseca** (porodiljsko odsustvo) pun mesečni iznos ne može biti manji od **minimalne zarade**; tokom nege deteta (od 4. do 12. meseca) taj minimum ne važi.
 
 > **Napomena:** Tekst je informativnog karaktera i ne zamenjuje pravni savet. Pri izmeni propisa tekst se hitno usklađuje.
 
@@ -98,7 +98,7 @@ Ovo je detalj koji mnogi vodiči preskaču: **zakonski minimalac važi samo za v
 ## Minimalna i maksimalna naknada u 2026
 
 - **Minimum (prva 3 meseca):** minimalna cena rada na dan početka prava × 184 sata, uvećano za poreze i doprinose. Za 2026: 371 RSD × 184 = **68.264 RSD neto** (≈ 92.499 RSD bruto). Više o minimalcu: [minimalna zarada 2026](/minimalna-zarada).
-- **Maksimum:** mesečna osnovica ne može biti veća od **5 prosečnih mesečnih zarada** u RS prema poslednjem objavljenom RZS podatku na dan početka prava. Sa prosekom za maj 2026 (163.470 RSD bruto) to je **817.350 RSD bruto** mesečne osnovice. Do 2022. limit je bio 3 prosečne zarade — podatak „tri prosečne" koji se još sreće po tekstovima je zastareo.
+- **Maksimum:** mesečna osnovica ne može biti veća od **5 prosečnih mesečnih zarada** u RS prema poslednjem objavljenom RZS podatku na dan početka prava. Sa prosekom za jun 2026 (166.123 RSD bruto) to je **830.615 RSD bruto** mesečne osnovice. Do 2022. limit je bio 3 prosečne zarade — podatak „tri prosečne" koji se još sreće po tekstovima je zastareo.
 
 ## Preduzetnice, paušalke i frilenserke — „ostale naknade"
 
@@ -127,13 +127,13 @@ Zahtev za naknadu zarade podnosi se **nadležnom organu jedinice lokalne samoupr
 
 - [Zakon o finansijskoj podršci porodici sa decom](https://www.paragraf.rs/propisi/zakon-o-finansijskoj-podrsci-porodici-sa-decom.html) — čl. 12–20 (naknada zarade, ostale naknade, minimum i maksimum), čl. 14 st. 5 i 7 (ko podnosi poresku prijavu i vrši centralizovanu isplatu), čl. 16 st. 2 i 3 (rokovi 8. i 15. u mesecu)
 - Zakon o radu, čl. 94–100 (porodiljsko odsustvo i odsustvo radi nege deteta)
-- RZS — prosečna zarada, maj 2026 (objavljeno 24. jula 2026); [pregled prosečnih zarada](/prosecna-zarada)
+- RZS — prosečna zarada, jun 2026 (objavljeno 25. avgusta 2026); [pregled prosečnih zarada](/prosecna-zarada)
 `;
 
 export const faq = [
   { q: "Koliko traje porodiljsko odsustvo u 2026?", a: "Ukupno 365 dana za prvo i drugo dete — porodiljsko odsustvo (od 28–45 dana pre termina do 3 meseca posle porođaja) plus odsustvo radi nege deteta do godinu dana. Za treće i svako naredno dete ukupno traje 2 godine." },
   { q: "Kako se računa naknada za porodiljsko odsustvo?", a: "Saberu se osnovice na koje su plaćeni doprinosi za poslednjih 18 meseci pre odsustva i podele sa 18 — i kada je rađeno kraće od 18 meseci. Dobijena mesečna osnovica je bruto iznos; na račun stiže neto, kao kod zarade." },
-  { q: "Kolika je maksimalna naknada za porodiljsko u 2026?", a: "Mesečna osnovica ne može biti veća od 5 prosečnih zarada u Srbiji prema poslednjem RZS podatku na dan početka prava — sa prosekom za maj 2026 (163.470 RSD bruto) to je 817.350 RSD bruto. Limit od 3 prosečne zarade ne važi od 2022." },
+  { q: "Kolika je maksimalna naknada za porodiljsko u 2026?", a: "Mesečna osnovica ne može biti veća od 5 prosečnih zarada u Srbiji prema poslednjem RZS podatku na dan početka prava — sa prosekom za jun 2026 (166.123 RSD bruto) to je 830.615 RSD bruto. Limit od 3 prosečne zarade ne važi od 2022." },
   { q: "Kolika je minimalna naknada za porodiljsko?", a: "Tokom porodiljskog odsustva (prva 3 meseca) pun mesečni iznos ne može biti manji od minimalne zarade obračunate na 184 sata — za 2026. oko 68.264 RSD neto. Tokom odsustva radi nege deteta (od 4. meseca) taj minimum ne važi." },
   { q: "Ko isplaćuje porodiljsko i kada?", a: "Ministarstvo nadležno za finansijsku podršku porodici sa decom, iz budžeta RS, direktno na tekući račun korisnice — po pravilu oko 20. u mesecu. Poslodavac ne isplaćuje naknadu za porodiljsko odsustvo." },
   { q: `Kada je isplata porodiljskog za ${MESEC} ${GODINA}?`, a: `Zakon ne propisuje tačan datum. Promene prijavljene do 8. ${MESEC_GEN} i evidentirane do 15. ${MESEC_GEN} (čl. 16) ulaze u obračun, posle čega ministarstvo podnosi poresku prijavu, pa se isplata očekuje oko 20. ${MESEC_GEN} ${GODINA}. Tačan dan varira iz meseca u mesec i ne objavljuje se unapred.` },

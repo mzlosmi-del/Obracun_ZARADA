@@ -3,7 +3,7 @@
 export const body = `
 ![Jubilarna nagrada za godine staža](https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=800&q=80)
 
-> **Provereno i ažurirano: 4. avgust 2026.** Neoporezivi iznos od **28.912 RSD** važi za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Poreski tretman proveren uz Zakon o radu (čl. 105 st. 3, čl. 120 tač. 1) i Zakon o porezu na dohodak građana. Prosečna bruto zarada: 163.470 RSD (RZS, maj 2026).
+> **Provereno i ažurirano: 27. avgust 2026.** Neoporezivi iznos od **28.912 RSD** važi za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Poreski tretman proveren uz Zakon o radu (čl. 105 st. 3, čl. 120 tač. 1) i Zakon o porezu na dohodak građana. Prosečna bruto zarada: 166.123 RSD (RZS, jun 2026).
 
 **Jubilarna nagrada** je jednokratna isplata zaposlenom povodom navršenih „okruglih" godina rada kod istog poslodavca. Poreski je povlašćena — ali drugačije nego što većina tekstova na internetu tvrdi: neoporeziv je fiksan godišnji iznos, a na ostatak se plaća samo porez, bez doprinosa.
 
@@ -28,14 +28,14 @@ Druga stvar koju vodiči često pogreše: deo iznad neoporezivog iznosa **ne ter
 
 ## Koliko iznosi jubilarna nagrada za 10, 20, 30 i 40 godina?
 
-Visinu određuje kolektivni ugovor ili ugovor o radu kod vašeg poslodavca. Uobičajena praksa, uz prosečnu bruto zaradu od 163.470 RSD (RZS, maj 2026):
+Visinu određuje kolektivni ugovor ili ugovor o radu kod vašeg poslodavca. Uobičajena praksa, uz prosečnu bruto zaradu od 166.123 RSD (RZS, jun 2026):
 
 | Jubilej | Uobičajena visina isplate | Neoporezivo (fiksno) |
 |---|---|---|
-| 10 godina rada | 1× prosek ≈ 163.470 RSD | 28.912 RSD |
-| 20 godina rada | 2× prosek ≈ 326.940 RSD | 28.912 RSD |
-| 30 godina rada | 2,5× prosek ≈ 408.675 RSD | 28.912 RSD |
-| 40 godina rada | 3× prosek ≈ 490.410 RSD | 28.912 RSD |
+| 10 godina rada | 1× prosek ≈ 166.123 RSD | 28.912 RSD |
+| 20 godina rada | 2× prosek ≈ 332.246 RSD | 28.912 RSD |
+| 30 godina rada | 2,5× prosek ≈ 415.308 RSD | 28.912 RSD |
+| 40 godina rada | 3× prosek ≈ 498.369 RSD | 28.912 RSD |
 
 Kod privatnih poslodavaca visina može biti bilo koja — od simbolične do više prosečnih zarada; presudan je akt koji je poslodavac doneo ili potpisao. Kako se kreće prosečna zarada koja služi kao orijentir, pratite u pregledu [prosečne plate u Srbiji](/blog/prosecna-plata-srbija).
 
@@ -101,9 +101,9 @@ Pogledajte i kako se obračunava [otpremnina pri penzionisanju](/blog/otpremnina
 
 export const faq = [
   { q: "Koliki je neoporezivi iznos jubilarne nagrade u 2026?", a: "28.912 RSD godišnje, za isplate od 1. februara 2026. do 31. januara 2027. (ZPDG čl. 18 tač. 9, „Sl. glasnik RS” 6/2026). Iznos je fiksan — isti za sve jubileje i ne zavisi od prosečne zarade." },
-  { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Visinu određuje kolektivni ugovor ili ugovor o radu; uobičajeno je dve prosečne bruto zarade — uz prosek od 163.470 RSD oko 326.940 RSD. Od toga je neoporezivo 28.912 RSD, a na ostatak se plaća samo porez od 10%, bez doprinosa." },
-  { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Uobičajeno jedna prosečna bruto zarada u RS — oko 163.470 RSD — ali visina zavisi isključivo od kolektivnog ugovora ili ugovora o radu kod poslodavca." },
-  { q: "Koliko iznosi jubilarna nagrada za 30 i 40 godina staža?", a: "Uobičajeno 2,5 prosečne zarade za 30 godina (≈ 408.675 RSD) i 3 prosečne za 40 godina (≈ 490.410 RSD). To je visina isplate iz kolektivnih ugovora, a ne poreski limit — neoporezivo je uvek 28.912 RSD." },
+  { q: "Koliko iznosi jubilarna nagrada za 20 godina?", a: "Visinu određuje kolektivni ugovor ili ugovor o radu; uobičajeno je dve prosečne bruto zarade — uz prosek od 166.123 RSD oko 332.246 RSD. Od toga je neoporezivo 28.912 RSD, a na ostatak se plaća samo porez od 10%, bez doprinosa." },
+  { q: "Koliko iznosi jubilarna nagrada za 10 godina?", a: "Uobičajeno jedna prosečna bruto zarada u RS — oko 166.123 RSD — ali visina zavisi isključivo od kolektivnog ugovora ili ugovora o radu kod poslodavca." },
+  { q: "Koliko iznosi jubilarna nagrada za 30 i 40 godina staža?", a: "Uobičajeno 2,5 prosečne zarade za 30 godina (≈ 415.308 RSD) i 3 prosečne za 40 godina (≈ 498.369 RSD). To je visina isplate iz kolektivnih ugovora, a ne poreski limit — neoporezivo je uvek 28.912 RSD." },
   { q: "Da li se na jubilarnu nagradu plaćaju doprinosi?", a: "Ne. Jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu), pa se doprinosi ne plaćaju ni na jedan deo. Na deo iznad 28.912 RSD plaća se samo porez na zarade od 10%." },
   { q: "Kako izgleda primer obračuna jubilarne nagrade?", a: "Poslodavac za 20 godina staža isplaćuje 300.000 RSD: neoporezivo je 28.912 RSD, oporezivi deo je 271.088 RSD, porez 10% iznosi 27.109 RSD, doprinosa nema — zaposleni na račun prima 272.891 RSD." },
 ];

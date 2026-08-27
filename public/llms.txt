@@ -11,7 +11,7 @@ Sajt održava ažurne zvanične parametre obračuna zarada u Srbiji. Podaci se p
 - Doprinosi zaposlenog: 19,90% (PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%)
 - Doprinosi poslodavca: 15,15% (PIO 10%, zdravstvo 5,15%)
 - Minimalna cena rada 2026: 371 RSD neto po radnom času
-- Prosečna neto zarada (maj 2026, RZS): 118.398 RSD; bruto: 163.470 RSD
+- Prosečna neto zarada (jun 2026, RZS): 120.401 RSD; bruto: 166.123 RSD
 
 ## Minimalac (minimalna zarada) 2026 po mesecima
 

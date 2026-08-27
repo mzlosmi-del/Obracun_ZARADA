@@ -419,22 +419,25 @@ export function BolovanjePage() {
   return <ToolPage cfg={{
     slug: "bolovanje",
     title: "Kalkulator bolovanja 2026 — naknada zarade | PlatniListić",
-    description: "Obračun naknade za bolovanje do 30 dana (min. 65%) i od 31. dana (RFZO). Primeri i PDF platni listić. Besplatno, za Srbiju 2026.",
+    description: "Obračun naknade za bolovanje do 30 dana (min. 65%) i od 31. dana (sredstva RFZO, isplata preko poslodavca). Primeri i PDF platni listić. Za Srbiju 2026.",
     h1: "Kalkulator bolovanja i naknade zarade (2026)",
     breadcrumbName: "Bolovanje",
     calc: "full",
     focusSection: "bolovanje",
-    intro: (<p>Ovaj <strong>kalkulator bolovanja</strong> računa naknadu zarade za 2026: do 30 dana najmanje 65% osnovice (na teret poslodavca), a od 31. dana na teret RFZO. Unesite broj dana bolovanja u kalkulatoru ispod.</p>),
+    intro: (<p>Ovaj <strong>kalkulator bolovanja</strong> računa naknadu zarade za 2026: do 30 dana najmanje 65% osnovice iz sredstava poslodavca, a od 31. dana sredstva obezbeđuje RFZO — isplatu zaposlenom i dalje vrši poslodavac. Unesite broj dana bolovanja u kalkulatoru ispod.</p>),
     guide: (<><h2>Kako se obračunava naknada za bolovanje</h2>
-      <p>Za prvih 30 dana naknadu plaća poslodavac, najmanje 65% prosečne osnovice (100% za povredu na radu ili profesionalno oboljenje). Od 31. dana naknadu preuzima RFZO. Osnovica je prosek zarade za prethodnih 12 meseci. Detaljan vodič: <a href="/blog/kako-se-obracunava-bolovanje">kako se obračunava bolovanje</a>.</p>
+      <p>Za prvih 30 dana naknadu snosi poslodavac iz svojih sredstava, najmanje 65% prosečne osnovice (100% za povredu na radu ili profesionalno oboljenje). Od 31. dana sredstva obezbeđuje RFZO, ali <strong>isplatu zaposlenom i dalje vrši poslodavac</strong>: filijala obračunava i prenosi sredstva poslodavcu u roku od 21 dan od potpunog zahteva, a poslodavac je dužan da ih isplati zaposlenom u roku od 7 dana od prijema, inače ih vraća sa kamatom (čl. 102 Zakona o zdravstvenom osiguranju). Zahtev se podnosi u roku od 15 dana od dana isplate zarade za mesec na koji se naknada odnosi (rok iz uputstva RFZO-a; sam član 102. ZZO ne propisuje broj dana). Granica od 30 dana je opšte pravilo i ima izuzetke na obe strane — vidi tabelu ispod. Osnovica je prosek zarade za prethodnih 12 meseci. Detaljan vodič: <a href="/blog/kako-se-obracunava-bolovanje">kako se obračunava bolovanje</a>. Procedura, registracija poslodavca i rokovi u sistemu e-Bolovanje: <a href="/blog/e-bolovanje-poslodavac">e-bolovanje za poslodavce</a>.</p>
       <h2>Bolovanje do 30 dana i preko 30 dana</h2>
-      <table className="ref-table" aria-label="Naknada za bolovanje — do 30 dana i od 31. dana">
-        <thead><tr><th>Period</th><th>Procenat naknade</th><th>Isplatilac</th></tr></thead>
+      <table className="ref-table" aria-label="Naknada za bolovanje — iz čijih se sredstava obezbeđuje po periodima">
+        <thead><tr><th>Slučaj</th><th>Procenat naknade</th><th>Iz čijih sredstava</th></tr></thead>
         <tbody>
-          <tr><td>Do 30 dana</td><td>min. 65% osnovice (100% za povredu na radu)</td><td>Poslodavac</td></tr>
-          <tr><td>Od 31. dana</td><td>min. 65% osnovice</td><td>RFZO</td></tr>
+          <tr><td>Opšte pravilo — do 30 dana</td><td>min. 65% osnovice</td><td>Poslodavac, iz svojih sredstava</td></tr>
+          <tr><td>Opšte pravilo — od 31. dana</td><td>min. 65% osnovice</td><td>RFZO obezbeđuje sredstva; naknadu zaposlenom isplaćuje poslodavac</td></tr>
+          <tr><td>Povreda na radu ili profesionalna bolest — ceo period</td><td>100% osnovice</td><td>Poslodavac, iz svojih sredstava od prvog dana, bez prelaza na 31. dan (čl. 101 st. 3 ZZO)</td></tr>
+          <tr><td>Dobrovoljno davanje organa, ćelija i tkiva; nega obolelog deteta mlađeg od tri godine; izolacija kao kliconoša ili zbog zaraznih bolesti u okolini — od prvog dana</td><td>prema osnovu sprečenosti (100% za davanje organa, ćelija i tkiva — čl. 95 ZZO)</td><td>RFZO obezbeđuje sredstva već od prvog dana; naknadu zaposlenom isplaćuje poslodavac</td></tr>
         </tbody>
       </table>
+      <p>U svim slučajevima <strong>poslodavac je taj koji isplaćuje naknadu zaposlenom</strong>. RFZO ne isplaćuje zaposlenog direktno — on obezbeđuje i prenosi sredstva poslodavcu.</p>
       <h2>Primer obračuna bolovanja</h2>
       <p>Zaposleni sa prosečnom mesečnom bruto osnovicom od 100.000 RSD (≈ 4.762 RSD dnevno za 21 radni dan) provede 10 radnih dana na bolovanju uz naknadu od 65%. Naknada = 4.762 × 10 × 65% ≈ 30.952 RSD bruto za te dane, dok se za preostale odrađene dane isplaćuje puna zarada.</p>
       <h2>Tabela parametara za obračun bolovanja 2026</h2>
@@ -444,8 +447,11 @@ export function BolovanjePage() {
           <tr><td>Minimalni procenat naknade (do 30 dana)</td><td>65% osnovice</td></tr>
           <tr><td>Procenat naknade za povredu na radu / profesionalno oboljenje</td><td>100% osnovice</td></tr>
           <tr><td>Period obračunske osnovice</td><td>prosek zarade prethodnih 12 meseci</td></tr>
-          <tr><td>Isplatilac do 30. dana</td><td>poslodavac</td></tr>
-          <tr><td>Isplatilac od 31. dana</td><td>RFZO</td></tr>
+          <tr><td>Sredstva do 30. dana (opšte pravilo)</td><td>poslodavac, iz svojih sredstava</td></tr>
+          <tr><td>Sredstva od 31. dana (opšte pravilo)</td><td>obezbeđuje RFZO</td></tr>
+          <tr><td>Povreda na radu / profesionalna bolest</td><td>poslodavac, iz svojih sredstava za ceo period (čl. 101 st. 3 ZZO)</td></tr>
+          <tr><td>Ko isplaćuje naknadu zaposlenom</td><td>uvek poslodavac, i posle 30. dana</td></tr>
+          <tr><td>Rok poslodavcu za isplatu zaposlenom</td><td>7 dana od prijema sredstava od RFZO-a, inače povraćaj sa kamatom (čl. 102 ZZO)</td></tr>
           <tr><td>Porez i doprinosi na naknadu</td><td>obračunavaju se kao na redovnu zaradu (10% porez, 19,90% doprinosi zaposlenog)</td></tr>
         </tbody>
       </table>
@@ -453,16 +459,17 @@ export function BolovanjePage() {
       <h2>Česte greške u obračunu bolovanja</h2>
       <ul>
         <li>Računanje 65% naknade na poslednju isplaćenu bruto zaradu umesto na osnovicu — pravilna osnovica je prosek zarade za prethodnih 12 meseci, ne zarada iz tekućeg ili prethodnog meseca.</li>
-        <li>Zanemarivanje granice od 30 dana — poslodavac ostaje obveznik isplate samo do 30. dana bolovanja; ako obračunska služba nastavi da tereti poslodavca i posle tog datuma umesto da uputi zahtev RFZO, dolazi do pogrešnog knjiženja troška.</li>
-        <li>Primena jedinstvenog procenta od 65% i za povredu na radu ili profesionalno oboljenje — u tim slučajevima naknada iznosi 100% osnovice od prvog dana, ne 65%.</li>
+        <li>Shvatanje da posle 30. dana poslodavac više nema nikakvu obavezu prema zaposlenom — od 31. dana menja se samo <em>izvor sredstava</em> (obezbeđuje ih RFZO), dok obračun i isplatu zaposlenom i dalje vrši poslodavac. Ako obračunska služba nastavi da tereti sopstvena sredstva poslodavca umesto da podnese zahtev filijali RFZO-a, greška je u knjiženju troška, a ne u tome ko isplaćuje zaposlenog.</li>
+        <li>Primena jedinstvenog procenta od 65% i za povredu na radu ili profesionalno oboljenje — u tim slučajevima naknada iznosi 100% osnovice od prvog dana, ne 65%. Uz to, kod povrede na radu i profesionalne bolesti nema prelaska na teret RFZO-a na 31. dan: poslodavac plaća iz svojih sredstava za ceo period trajanja sprečenosti (čl. 101 st. 3 ZZO).</li>
         <li>Neuključivanje minulog rada i drugih redovnih uvećanja zarade u prosek za osnovicu — osnovica se računa na ukupno isplaćenu zaradu, uključujući minuli rad, ne samo na osnovnu zaradu.</li>
       </ul>
       <h2>Pravni okvir</h2>
-      <p>Pravo na naknadu zarade za vreme privremene sprečenosti za rad (bolovanje) uređuje Zakon o radu, koji propisuje minimalni procenat naknade (65%, odnosno 100% za povredu na radu ili profesionalno oboljenje) i obavezu poslodavca da naknadu isplaćuje za prvih 30 dana odsustva. Naknadu od 31. dana, kao i postupak i uslove ostvarivanja prava na naknadu preko Republičkog fonda za zdravstveno osiguranje, uređuje Zakon o zdravstvenom osiguranju. Naknada zarade se, kao i redovna zarada, oporezuje porezom na dohodak građana i podleže doprinosima za obavezno socijalno osiguranje.</p></>),
+      <p>Pravo na naknadu zarade za vreme privremene sprečenosti za rad (bolovanje) uređuje <strong>Zakon o radu</strong>, čiji čl. 115 propisuje minimalni procenat naknade — najmanje 65% osnovice, odnosno 100% za povredu na radu ili profesionalno oboljenje. <strong>Zakon o radu ne sadrži rok od 30 dana</strong>: granicu od 30 dana, izuzetke od nje i pitanje iz čijih se sredstava naknada obezbeđuje propisuje <strong>Zakon o zdravstvenom osiguranju</strong> (čl. 101, uz izuzetke iz st. 3 za povredu na radu i profesionalnu bolest), a postupak obračuna, prenosa sredstava poslodavcu i rok za isplatu zaposlenom uređuje čl. 102 istog zakona. Naknada zarade se, kao i redovna zarada, oporezuje porezom na dohodak građana i podleže doprinosima za obavezno socijalno osiguranje.</p></>),
     faq: [
-      { q: "Koliki je procenat naknade za bolovanje?", a: "Najmanje 65% osnovice za prvih 30 dana; 100% za povredu na radu ili profesionalno oboljenje. Od 31. dana naknadu isplaćuje RFZO." },
-      { q: "Ko plaća bolovanje preko 30 dana?", a: "Od 31. dana naknadu zarade isplaćuje Republički fond za zdravstveno osiguranje (RFZO)." },
+      { q: "Koliki je procenat naknade za bolovanje?", a: "Najmanje 65% osnovice za prvih 30 dana; 100% za povredu na radu ili profesionalno oboljenje. Od 31. dana naknada je i dalje najmanje 65% osnovice, s tim što sredstva obezbeđuje RFZO, a isplatu zaposlenom vrši poslodavac." },
+      { q: "Ko plaća bolovanje preko 30 dana?", a: "Od 31. dana sredstva za naknadu zarade obezbeđuje Republički fond za zdravstveno osiguranje (RFZO), ali isplatu zaposlenom i dalje vrši poslodavac. Filijala obračunava i prenosi sredstva poslodavcu u roku od 21 dan od potpunog zahteva, a poslodavac je dužan da ih isplati zaposlenom u roku od 7 dana od prijema, inače ih vraća sa kamatom (čl. 102 Zakona o zdravstvenom osiguranju). Kod povrede na radu i profesionalne bolesti nema prelaza na 31. dan — poslodavac plaća iz svojih sredstava za ceo period (čl. 101 st. 3)." },
       { q: "Kako se određuje osnovica?", a: "Osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci pre meseca bolovanja." },
+      { q: "Kada RFZO obezbeđuje sredstva od prvog dana bolovanja?", a: "Za dobrovoljno davanje organa, ćelija i tkiva, za negu obolelog deteta mlađeg od tri godine i za izolaciju kao kliconoša ili zbog pojave zaraznih bolesti u okolini sredstva se obezbeđuju iz sredstava RFZO-a već od prvog dana sprečenosti, a ne tek od 31. dana. To su izuzeci od opšteg pravila o prvih 30 dana; i u tim slučajevima naknadu zaposlenom isplaćuje poslodavac." },
       { q: "Kako se računa bolovanje od 65 posto?", a: "Prvo se izračuna dnevna osnovica (prosek bruto zarade prethodnih 12 meseci podeljen brojem radnih dana u mesecu), pa se pomnoži brojem dana bolovanja i sa 65%. Za dnevnu osnovicu od 4.762 RSD i 10 dana bolovanja: 4.762 × 10 × 65% ≈ 30.952 RSD bruto." },
     ],
     related: [
@@ -532,7 +539,7 @@ export function OtpremninaPage() {
       { q: "Kolika je minimalna otpremnina za tehnološki višak?", a: "Najmanje 1/3 prosečne zarade zaposlenog po godini staža kod tog poslodavca, u skladu sa čl. 158 Zakona o radu." },
       { q: "Da li je otpremnina oporeziva?", a: "Deo otpremnine do propisanog neoporezivog iznosa je oslobođen poreza. Iznos koji premašuje taj prag oporezuje se kao dohodak." },
       { q: "Koja je razlika između otpremnine za tehnološki višak i za odlazak u penziju?", a: "Za tehnološki višak minimum je 1/3 prosečne zarade po godini staža; za odlazak u penziju minimum iznosi dve prosečne zarade u Republici Srbiji." },
-      { q: "Kako radi kalkulator otpremnine za penziju?", a: "Kalkulator otpremnine za penziju množi prosečnu zaradu u Republici Srbiji (ne ličnu zaradu zaposlenog) sa dva — to je zakonski minimum po čl. 119 Zakona o radu. Uz prosečnu neto zaradu od 118.398 RSD (RZS, maj 2026), minimalna otpremnina za penziju je 118.398 × 2 = 236.796 RSD." },
+      { q: "Kako radi kalkulator otpremnine za penziju?", a: `Kalkulator otpremnine za penziju množi prosečnu zaradu u Republici Srbiji (ne ličnu zaradu zaposlenog) sa dva — to je zakonski minimum po čl. 119 Zakona o radu. Uz prosečnu neto zaradu od ${pz.neto.toLocaleString("sr-RS")} RSD (RZS, ${pz.mesec}), minimalna otpremnina za penziju je ${pz.neto.toLocaleString("sr-RS")} × 2 = ${(pz.neto * 2).toLocaleString("sr-RS")} RSD.` },
       { q: "Da li se u staž za otpremninu računa rad kod prethodnog poslodavca?", a: "Ne. Otpremnina za tehnološki višak obračunava se isključivo na osnovu godina staža koje je zaposleni proveo kod poslodavca koji vrši otkaz, a ne na osnovu ukupnog radnog staža zaposlenog." },
     ],
     related: OTPREMNINA_RELATED,
@@ -1279,7 +1286,7 @@ export function MinimalnaZaradaPage() {
       <p>Od 2019. do 2027. minimalna satnica raste sa 155,30 na {m27.cenaRadnogCasaNeto} RSD — <strong>+{Math.round((m27.cenaRadnogCasaNeto / 155.3 - 1) * 100)}%</strong> za osam godina. Jedina vanredna korekcija usred godine desila se 1. oktobra 2025, kada je satnica sa 308 podignuta na 337 RSD.</p>
 
       <h2>Minimalac u odnosu na prosečnu zaradu</h2>
-      <p>Prosečan mesečni neto minimalac ({m.netoMesecno.toLocaleString("sr-RS")} RSD) čini oko <strong>55% prosečne</strong> neto zarade u Srbiji ({pz.neto.toLocaleString("sr-RS")} RSD za {pz.mesec}, RZS) i oko <strong>69% medijalne</strong> ({pz.medijalnaNeto.toLocaleString("sr-RS")} RSD). U evrima, mesečni minimalac se kreće od ≈506 do ≈582 €, u proseku oko 550 €. Kretanje prosečnih zarada pratimo na strani <a href="/prosecna-zarada">prosečna zarada u Srbiji</a> i u analizi <a href="/blog/prosecna-plata-srbija">prosečne plate po sektorima i gradovima</a>, a koliko su plate realno porasle od 2016. — u studiji <a href="/blog/kupovna-moc-plate-2016-2026">kupovna moć plate 2016–2026</a>.</p>
+      <p>Prosečan mesečni neto minimalac ({m.netoMesecno.toLocaleString("sr-RS")} RSD) čini oko <strong>{Math.round(m.netoMesecno / pz.neto * 100)}% prosečne</strong> neto zarade u Srbiji ({pz.neto.toLocaleString("sr-RS")} RSD za {pz.mesec}, RZS) i oko <strong>{Math.round(m.netoMesecno / pz.medijalnaNeto * 100)}% medijalne</strong> ({pz.medijalnaNeto.toLocaleString("sr-RS")} RSD). U evrima, mesečni minimalac se kreće od ≈506 do ≈582 €, u proseku oko 550 €. Kretanje prosečnih zarada pratimo na strani <a href="/prosecna-zarada">prosečna zarada u Srbiji</a> i u analizi <a href="/blog/prosecna-plata-srbija">prosečne plate po sektorima i gradovima</a>, a koliko su plate realno porasle od 2016. — u studiji <a href="/blog/kupovna-moc-plate-2016-2026">kupovna moć plate 2016–2026</a>.</p>
 
       <h2>Najčešće greške pri obračunu minimalca</h2>
       <ul>
@@ -1311,7 +1318,7 @@ export function MinimalnaZaradaPage() {
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
       { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
     ],
-    sourceNote: (<>Izvori: Odluka o visini minimalne cene rada za 2026. („Sl. glasnik RS“ br. 78/2025); Odluka Vlade RS o minimalnoj ceni rada za januar–decembar 2027. (doneta 20. avgusta 2026); Zakon o radu, čl. 108, 111–113 (Paragraf, prečišćen tekst); RZS — prosečna zarada, {pz.mesec}. Provereno i ažurirano: 24. avgust 2026.</>),
+    sourceNote: (<>Izvori: Odluka o visini minimalne cene rada za 2026. („Sl. glasnik RS“ br. 78/2025); Odluka Vlade RS o minimalnoj ceni rada za januar–decembar 2027. (doneta 20. avgusta 2026); Zakon o radu, čl. 108, 111–113 (Paragraf, prečišćen tekst); RZS — prosečna zarada, {pz.mesec}. Provereno i ažurirano: 27. avgusta 2026.</>),
   }} />;
 }
 

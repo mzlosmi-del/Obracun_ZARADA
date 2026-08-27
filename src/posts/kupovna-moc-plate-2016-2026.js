@@ -43,7 +43,7 @@ Kolona "vrednost u današnjim parama" pokazuje koliko bi ta plata vredela danas,
 
 **Šta se vidi iz tabele:** kupovna moć je rasla u osam od devet godina. Jedini pad je 2022. Najbrži rast dogodio se u poslednje dve godine (2024. i 2025.), kada je inflacija pala na 4,3% odnosno 2,7%, pa je gotovo ceo nominalni rast plata ostao zaposlenima.
 
-*(Napomena: maj 2026. donosi prosečnu platu od 118.398 dinara, ali ta cifra nije uporediva sa gornjim nizom — to je jedan mesec, a ne godišnji prosek, i podaci o inflaciji za celu 2026. još ne postoje.)*
+*(Napomena: jun 2026. donosi prosečnu platu od 120.401 dinara, ali ta cifra nije uporediva sa gornjim nizom — to je jedan mesec, a ne godišnji prosek, i podaci o inflaciji za celu 2026. još ne postoje.)*
 
 ## Zašto je 2022. bila jedina loša godina
 

@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="t2 d2" font-family="Inter, Arial, sans-serif">
-  <title id="t2">Raspon neto primanja u Srbiji, maj 2026</title>
-  <desc id="d2">Horizontalni bar grafikon: IT programiranje 295.418, Beograd Stari grad 191.185, državni prosek 118.398, medijalna 93.277, minimalac 64.554 dinara neto.</desc>
+  <title id="t2">Raspon neto primanja u Srbiji, jun 2026</title>
+  <desc id="d2">Horizontalni bar grafikon za jun 2026: računarsko programiranje (IT) 305.372, Beograd – Stari grad 194.499, državni prosek 120.401, medijalna zarada 94.281, minimalac 64.554 dinara neto.</desc>
   <rect width="720" height="380" fill="#ffffff"/>
-  <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Raspon neto primanja u Srbiji (maj 2026)</text>
+  <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Raspon neto primanja u Srbiji (jun 2026)</text>
   <text x="40" y="60" font-size="13" fill="#64748b">Od minimalca do IT sektora · mesečno, neto · Izvor: RZS</text>
 
   <g font-size="13" fill="#0f2742" text-anchor="end" font-weight="600">
@@ -13,18 +13,18 @@
     <text x="190" y="303">Minimalac</text>
   </g>
 
-  <!-- bars (x start 200, max width 480 at value 295418) -->
+  <!-- bars (x start 200, max width 480 at value 305372) -->
   <g>
     <rect x="200" y="80"  width="480"   height="30" rx="4" fill="#1f6feb"/>
-    <text x="688" y="101" font-size="13" font-weight="800" fill="#1f6feb">295.418</text>
-    <rect x="200" y="132" width="310.7" height="30" rx="4" fill="#3b82f6"/>
-    <text x="519" y="153" font-size="13" font-weight="700" fill="#0f2742">191.185</text>
-    <rect x="200" y="184" width="192.4" height="30" rx="4" fill="#16a34a"/>
-    <text x="400" y="205" font-size="13" font-weight="800" fill="#16a34a">118.398</text>
-    <rect x="200" y="236" width="151.5" height="30" rx="4" fill="#94a3b8"/>
-    <text x="360" y="257" font-size="13" font-weight="700" fill="#475569">93.277</text>
-    <rect x="200" y="288" width="104.9" height="30" rx="4" fill="#cbd5e1"/>
-    <text x="313" y="309" font-size="13" font-weight="700" fill="#475569">64.554</text>
+    <text x="688" y="101" font-size="13" font-weight="800" fill="#1f6feb">305.372</text>
+    <rect x="200" y="132" width="305.7" height="30" rx="4" fill="#3b82f6"/>
+    <text x="514" y="153" font-size="13" font-weight="700" fill="#0f2742">194.499</text>
+    <rect x="200" y="184" width="189.3" height="30" rx="4" fill="#16a34a"/>
+    <text x="397" y="205" font-size="13" font-weight="800" fill="#16a34a">120.401</text>
+    <rect x="200" y="236" width="148.2" height="30" rx="4" fill="#94a3b8"/>
+    <text x="356" y="257" font-size="13" font-weight="700" fill="#475569">94.281</text>
+    <rect x="200" y="288" width="101.5" height="30" rx="4" fill="#cbd5e1"/>
+    <text x="309" y="309" font-size="13" font-weight="700" fill="#475569">64.554</text>
   </g>
-  <text x="40" y="360" font-size="12" fill="#94a3b8">platnilistic.rs · IT je više od 2,5× iznad državnog proseka; minimalac je ~55% proseka</text>
+  <text x="40" y="360" font-size="12" fill="#94a3b8">platnilistic.rs · IT je više od 2,5× iznad državnog proseka; minimalac je ~54% proseka</text>
 </svg>

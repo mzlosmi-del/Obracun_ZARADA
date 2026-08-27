@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="t1 d1" font-family="Inter, Arial, sans-serif">
-  <title id="t1">Kretanje prosečne neto zarade u Srbiji, januar – maj 2026</title>
-  <desc id="d1">Linijski grafikon: prosečna neto zarada po mesecima 2026 — januar 118.429, februar 116.127, mart 121.650, april 121.805, maj 118.398 dinara.</desc>
+  <title id="t1">Kretanje prosečne neto zarade u Srbiji, januar – jun 2026</title>
+  <desc id="d1">Linijski grafikon: prosečna neto zarada po mesecima 2026 — januar 118.429, februar 116.127, mart 121.650, april 121.805, maj 118.398, jun 120.401 dinara. Najviša vrednost je u aprilu, a u junu zarada ponovo raste u odnosu na maj.</desc>
   <rect width="720" height="420" fill="#ffffff"/>
   <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Prosečna neto zarada u Srbiji (din)</text>
-  <text x="40" y="60" font-size="13" fill="#64748b">Januar – maj 2026 · Izvor: Republički zavod za statistiku</text>
+  <text x="40" y="60" font-size="13" fill="#64748b">Januar – jun 2026 · Izvor: Republički zavod za statistiku</text>
 
   <!-- gridlines + y labels (110k,120k,130k) -->
   <g stroke="#e2e8f0" stroke-width="1">
@@ -18,27 +18,30 @@
   </g>
 
   <!-- area + line -->
-  <polyline points="100,186 240,206 380,160 520,158 660,187" fill="none" stroke="#1f6feb" stroke-width="3.5" stroke-linejoin="round"/>
+  <polyline points="100,186.6 212,205.8 324,159.7 436,158.4 548,186.9 660,170.2" fill="none" stroke="#1f6feb" stroke-width="3.5" stroke-linejoin="round"/>
   <!-- dots + value labels -->
   <g>
-    <circle cx="100" cy="186" r="5.5" fill="#1f6feb"/>
-    <text x="100" y="204" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.429</text>
-    <circle cx="240" cy="206" r="5.5" fill="#1f6feb"/>
-    <text x="240" y="228" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">116.127</text>
-    <circle cx="380" cy="160" r="5.5" fill="#1f6feb"/>
-    <text x="380" y="146" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.650</text>
-    <circle cx="520" cy="158" r="5.5" fill="#1f6feb"/>
-    <text x="520" y="144" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.805</text>
-    <circle cx="660" cy="187" r="6.5" fill="#16a34a"/>
-    <text x="660" y="209" font-size="13" font-weight="800" fill="#16a34a" text-anchor="middle">118.398</text>
+    <circle cx="100" cy="186.6" r="5.5" fill="#1f6feb"/>
+    <text x="100" y="205" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.429</text>
+    <circle cx="212" cy="205.8" r="5.5" fill="#1f6feb"/>
+    <text x="212" y="228" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">116.127</text>
+    <circle cx="324" cy="159.7" r="5.5" fill="#1f6feb"/>
+    <text x="324" y="146" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.650</text>
+    <circle cx="436" cy="158.4" r="5.5" fill="#1f6feb"/>
+    <text x="436" y="144" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.805</text>
+    <circle cx="548" cy="186.9" r="5.5" fill="#1f6feb"/>
+    <text x="548" y="209" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.398</text>
+    <circle cx="660" cy="170.2" r="6.5" fill="#16a34a"/>
+    <text x="660" y="156" font-size="13" font-weight="800" fill="#16a34a" text-anchor="middle">120.401</text>
   </g>
   <!-- x labels -->
   <g font-size="12.5" fill="#475569" text-anchor="middle">
     <text x="100" y="372">Jan 2026</text>
-    <text x="240" y="372">Feb 2026</text>
-    <text x="380" y="372">Mar 2026</text>
-    <text x="520" y="372">Apr 2026</text>
-    <text x="660" y="372">Maj 2026</text>
+    <text x="212" y="372">Feb 2026</text>
+    <text x="324" y="372">Mar 2026</text>
+    <text x="436" y="372">Apr 2026</text>
+    <text x="548" y="372">Maj 2026</text>
+    <text x="660" y="372">Jun 2026</text>
   </g>
   <text x="40" y="406" font-size="12" fill="#94a3b8">platnilistic.rs · neto (bez poreza i doprinosa)</text>
 </svg>
