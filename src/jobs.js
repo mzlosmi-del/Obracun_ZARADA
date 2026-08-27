@@ -48,6 +48,17 @@ export const JOBS = [
     active: true,
   },
   {
+    id: "office-administrator",
+    title: "Office administrator",
+    hook: "Voliš red u dokumentaciji i komunikaciju sa klijentima? Kompanija iz oblasti bezbednosti i zaštite na radu nudi 90–100.000 RSD neto, radno vreme pon–pet (8h) na Karaburmi.",
+    perks: ["🗓️ Pon–pet, 8h", "📍 Karaburma", "🧾 Fakture i ponude", "🤝 Stabilna firma"],
+    badge: "NOVO",
+    location: "Beograd (Karaburma)",
+    salaryMin: 90000, salaryMax: 100000, salaryNeto: true,
+    link: "https://poslovi.friendlyhr.rs/jobs/8240751-office-administrator?promotion=2163239-trackable-share-link-platnilistic",
+    active: true,
+  },
+  {
     id: "glavni-knjigovodja-ns",
     title: "Glavni knjigovođa (Novi Sad)",
     hook: "Iskusan si knjigovođa (4+ godine) i želiš da zarada prati rezultate? Računovodstvena agencija u Novom Sadu nudi fiksni + varijabilni deo (procenat od fakturisanja) i radno vreme 7–15h.",
@@ -79,17 +90,6 @@ export const JOBS = [
     salaryMin: null, salaryMax: null, salaryNeto: false,
     link: "https://poslovi.friendlyhr.rs/jobs/7870034-specijalista-za-led-i-digitalnu-oglasnu-opremu?promotion=2090623-trackable-share-link-platnilistic",
     active: false,
-  },
-  {
-    id: "menadzer-javne-nabavke",
-    title: "Menadžer za javne nabavke",
-    hook: "Imaš 5+ godina u komercijali i poznaješ tendere? Preuzmi ključnu ulogu u javnim nabavkama u stabilnoj kompaniji prisutnoj na domaćem i međunarodnom tržištu.",
-    perks: ["📑 Ključna pozicija", "🏢 Stabilna kompanija", "🌍 Međunarodno tržište"],
-    badge: null,
-    location: "Beograd",
-    salaryMin: null, salaryMax: null, salaryNeto: false,
-    link: "https://poslovi.friendlyhr.rs/jobs/7059608-menadzer-za-javne-nabavke?promotion=2090528-trackable-share-link-platnilistic",
-    active: true,
   },
 ];
 
