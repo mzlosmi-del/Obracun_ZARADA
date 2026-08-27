@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { SectionTitle, TextInput, ResultRow } from "./ui.jsx";
+import { track } from "./track.js";
 
 function generatePPPPD(inputs, r, info) {
   const pad2 = (n) => String(n).padStart(2, "0");
@@ -82,6 +83,7 @@ export default function PPPPDTab({ inputs, r, info, setI }) {
   const [showXml, setShowXml] = useState(false);
 
   const generate = () => {
+    track("ppppd_generate");
     const generated = generatePPPPD(inputs, r, info);
     setXml(generated);
     setShowXml(true);
@@ -89,6 +91,7 @@ export default function PPPPDTab({ inputs, r, info, setI }) {
   };
 
   const download = () => {
+    track("ppppd_download");
     const pad2 = (n) => String(n).padStart(2, "0");
     const blob = new Blob([xml], { type: "application/xml" });
     const url = URL.createObjectURL(blob);
@@ -101,6 +104,7 @@ export default function PPPPDTab({ inputs, r, info, setI }) {
 
   const copy = () => {
     navigator.clipboard.writeText(xml).then(() => {
+      track("ppppd_copy");
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });

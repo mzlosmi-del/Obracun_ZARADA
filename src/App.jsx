@@ -8,6 +8,7 @@ import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
 import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
 import { activeJobs, scrollToJobs } from "./jobs.js";
+import { track, trackOnce } from "./track.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -709,8 +710,19 @@ export function CalculatorPage({ focusSection } = {}) {
   })();
 
   const set = (key) => (val) => setInputs((p) => ({ ...p, [key]: val }));
-  const setI = (key) => (val) => setInfo((p) => ({ ...p, [key]: val }));
-  const setR = (key) => (val) => setRates((p) => ({ ...p, [key]: val }));
+  const setI = (key) => (val) => {
+    // Employer signal: a complete 9-digit PIB was typed. We send the literal
+    // string "valid" — never the PIB itself. See src/track.js rule 1.
+    if (key === "companyPib" && String(val || "").replace(/\D/g, "").length === 9) {
+      trackOnce("company_pib_entered", "valid");
+    }
+    setInfo((p) => ({ ...p, [key]: val }));
+  };
+  const setR = (key) => (val) => {
+    // Only a professional overrides a statutory rate. Field name only.
+    trackOnce("rates_edited", key);
+    setRates((p) => ({ ...p, [key]: val }));
+  };
   const resetRates = () => setRates({ ...DEFAULT_RATES, nonTaxable: getNonTaxable() });
 
   return (
@@ -1087,7 +1099,7 @@ export function CalculatorPage({ focusSection } = {}) {
             </div>
             <div className="pdf-note">Sva polja su opcionalna. Platni listić se generiše sa unetim podacima.</div>
             <div style={{padding:"14px 16px"}}>
-              <button className="btn-pdf btn-pdf-full" onClick={() => printPayslip(effectiveInputs, r, info, rates)} style={{margin: 0, width: "100%"}}>
+              <button className="btn-pdf btn-pdf-full" onClick={() => { track("payslip_pdf"); printPayslip(effectiveInputs, r, info, rates); }} style={{margin: 0, width: "100%"}}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14,2 14,8 20,8"/>
