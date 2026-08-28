@@ -3,14 +3,15 @@ import { CalculatorPage } from "./App.jsx";
 import { breadcrumbLd, webAppLd } from "./schema.js";
 import { useState } from "react";
 import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori, NumberInput, ResultRow, fmt } from "./ui.jsx";
-import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES } from "./rates.js";
+import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES, UGOVOR_O_DELU_RATES } from "./rates.js";
 
 const FRESHNESS = "avgust 2026.";
 const DISCLAIMER = "⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.";
 
 // cfg shape:
 // { slug, title, description, h1, breadcrumbName, intro (JSX), guide (JSX),
-//   faq: [{q,a}], related: [{href,label}], calc: "full" | "pausal",
+//   faq: [{q,a}], related: [{href,label}],
+//   calc: "full" | "pausal" | "otpremnina" | "godisnji-odmor" | "jubilarna" | "ugovor-o-delu",
 //   sourceNote (JSX, optional) }
 export function ToolPage({ cfg }) {
   useSeo({
@@ -33,6 +34,7 @@ export function ToolPage({ cfg }) {
         : cfg.calc === "otpremnina" ? <OtpremninaCalculator />
         : cfg.calc === "godisnji-odmor" ? <GodisnjiOdmorCalculator />
         : cfg.calc === "jubilarna" ? <JubilarnaCalculator />
+        : cfg.calc === "ugovor-o-delu" ? <UgovorODeluCalculator />
         : <CalculatorPage focusSection={cfg.focusSection} />}
       <div className="disclaimer">{DISCLAIMER}</div>
       <section className="tool-guide">{cfg.guide}</section>
@@ -235,6 +237,75 @@ export function GodisnjiOdmorCalculator() {
         <ResultRow label={mode === "odmor" ? `Naknada za ${dani} dana odmora (bruto)` : `Naknada za ${dani} neiskorišćenih dana (bruto)`} value={naknada} type="positive" />
       </div>
       <p className="pausal-note">Napomena: osnovica je prosečna zarada zaposlenog u prethodnih 12 meseci (čl. 104 Zakona o radu), ne prosek u RS — podrazumevana vrednost je informativna. Naknada je bruto i podleže porezu i doprinosima kao zarada. Naknada za neiskorišćeni odmor isplaćuje se pri prestanku radnog odnosa (čl. 76). Izvor proseka: RZS.</p>
+    </div>
+  );
+}
+
+// Ugovor o delu — the shared full calculator computes EMPLOYMENT dues (doprinosi
+// 19,90% + porez 10% on the part above the neoporezivi iznos) and therefore cannot
+// produce the figure this page teaches. Naknada po ugovoru o delu is taxed as
+// "drugi prihod": osnovica = bruto − 20% normiranih troškova, na nju porez 20% i
+// PIO 24%, a zdravstveno 10,3% SAMO ako izvršilac nije osiguran po drugom osnovu.
+// Sve dažbine se obustavljaju iz bruto naknade, pa je trošak naručioca = bruto.
+// Stope: UGOVOR_O_DELU_RATES (verifikovano 6.8.2026).
+export function UgovorODeluCalculator() {
+  const R = UGOVOR_O_DELU_RATES;
+  const [smer, setSmer] = useState("bruto");
+  const [osiguran, setOsiguran] = useState(true);
+  const [iznos, setIznos] = useState(100000);
+  // neto/bruto koeficijent: 1 − (udeo osnovice) × (zbir stopa na osnovicu)
+  const stopa = (R.porez + R.pio + (osiguran ? 0 : R.zdravstveno)) / 100;
+  const koef = 1 - (1 - R.normiraniTroskovi / 100) * stopa;
+  const bruto = smer === "bruto" ? (iznos || 0) : (koef > 0 ? (iznos || 0) / koef : 0);
+  const troskovi = bruto * R.normiraniTroskovi / 100;
+  const osnovica = bruto - troskovi;
+  const porez = osnovica * R.porez / 100;
+  const pio = osnovica * R.pio / 100;
+  const zdravstveno = osiguran ? 0 : osnovica * R.zdravstveno / 100;
+  const ukupno = porez + pio + zdravstveno;
+  const neto = bruto - ukupno;
+  const efektivna = bruto > 0 ? (ukupno / bruto) * 100 : 0;
+  return (
+    <div className="pausal-calc">
+      <div className="mode-toggle" role="tablist" aria-label="Smer obračuna" style={{ marginBottom: 12 }}>
+        <button className={`mode-btn ${smer === "bruto" ? "active" : ""}`} onClick={() => setSmer("bruto")} role="tab" aria-selected={smer === "bruto"}>
+          Bruto → neto
+        </button>
+        <button className={`mode-btn ${smer === "neto" ? "active" : ""}`} onClick={() => setSmer("neto")} role="tab" aria-selected={smer === "neto"}>
+          Neto → bruto
+        </button>
+      </div>
+      <div className="mode-toggle" role="tablist" aria-label="Status zdravstvenog osiguranja izvršioca" style={{ marginBottom: 12 }}>
+        <button className={`mode-btn ${osiguran ? "active" : ""}`} onClick={() => setOsiguran(true)} role="tab" aria-selected={osiguran}>
+          Osiguran po drugom osnovu
+        </button>
+        <button className={`mode-btn ${!osiguran ? "active" : ""}`} onClick={() => setOsiguran(false)} role="tab" aria-selected={!osiguran}>
+          Nije osiguran
+        </button>
+      </div>
+      <NumberInput
+        label={smer === "bruto" ? "Bruto naknada iz ugovora" : "Željeni neto na račun"}
+        sublabel={osiguran
+          ? "(izvršilac je zaposlen, penzioner ili osiguran kao član porodice — zdravstveno se ne obustavlja)"
+          : "(izvršilac nije osiguran ni po jednom drugom osnovu — obustavlja se i zdravstveno 10,3%)"}
+        value={iznos} onChange={setIznos} step={1000}
+      />
+      <div className="pausal-results results-body">
+        {smer === "neto" && <ResultRow label="Potrebna bruto naknada" value={bruto} type="positive" />}
+        <ResultRow label={`Normirani troškovi (${R.normiraniTroskovi}%)`} value={troskovi} />
+        <ResultRow label="Osnovica za porez i doprinose" value={osnovica} />
+        <ResultRow label={`Porez na dohodak građana (${R.porez}%)`} value={porez} type="negative" />
+        <ResultRow label={`PIO (${R.pio}%)`} value={pio} type="negative" />
+        {!osiguran && <ResultRow label={`Zdravstveno (${R.zdravstveno.toLocaleString("sr-RS")}%)`} value={zdravstveno} type="negative" />}
+        <ResultRow label="Ukupne dažbine" value={ukupno} type="negative" />
+        {smer === "bruto" && <ResultRow label="Neto na račun izvršioca" value={neto} type="positive" />}
+        <ResultRow label="Trošak naručioca posla" value={bruto} sub="sve dažbine se obustavljaju iz bruto naknade" />
+        <div className="result-row">
+          <span className="result-label">Efektivna stopa</span>
+          <span className="result-value">{efektivna.toFixed(2).replace(".", ",")}%</span>
+        </div>
+      </div>
+      <p className="pausal-note">Napomena: obračun važi za naknadu po ugovoru o delu, koja se oporezuje kao drugi prihod — ne kao zarada. Zdravstveni doprinos od {R.zdravstveno.toLocaleString("sr-RS")}% plaća se samo ako izvršilac nije osiguran po drugom osnovu. Ako je naručilac firma ili preduzetnik, on obračunava i uplaćuje dažbine i podnosi PPP-PD; ako je naručilac fizičko lice bez zaposlenih, prijavu (PP OPO) podnosi sam izvršilac u roku od 30 dana od isplate. Stope: Poreska uprava / CROSO / Fond PIO.</p>
     </div>
   );
 }
@@ -801,11 +872,11 @@ export function UgovorODeluPage() {
   return <ToolPage cfg={{
     slug: "ugovor-o-delu",
     title: "Kalkulator ugovora o delu 2026 — bruto u neto | PlatniListić",
-    description: "Za bruto 100.000 RSD po ugovoru o delu neto je 64.800 RSD (56.560 ako se plaća i zdravstveno). Porez 20%, PIO 24%, normirani troškovi 20%. Obračun za 2026.",
+    description: "Unesite bruto naknadu i odmah vidite neto: porez 20%, PIO 24% i zdravstveno 10,3% na osnovicu (bruto − 20% normiranih troškova). Obračun u oba smera, 2026.",
     h1: "Kalkulator ugovora o delu (2026)",
     breadcrumbName: "Ugovor o delu",
-    calc: "full",
-    intro: (<p>Ovaj <strong>kalkulator ugovora o delu</strong> računa porez i doprinose za honorarni angažman u 2026. Za detaljan obračun po vrsti angažmana koristite kalkulator ispod.</p>),
+    calc: "ugovor-o-delu",
+    intro: (<p>Ovaj <strong>kalkulator ugovora o delu</strong> računa porez i doprinose za honorarni angažman u 2026 — u oba smera. Unesite bruto naknadu iz ugovora i dobijate neto na račun, ili unesite željeni neto i dobijate bruto koji treba ugovoriti. Naknada po ugovoru o delu oporezuje se kao <em>drugi prihod</em>, ne kao zarada, pa se razlikuje od <a href="/">obračuna zarade iz radnog odnosa</a>.</p>),
     guide: (<>
       <h2>Kako se obračunava ugovor o delu</h2>
       <p>Ugovor o delu je oblik angažovanja van radnog odnosa — naknada se ne oporezuje kao zarada, već kao „drugi prihod" po posebnim pravilima. Obračun uvek kreće od <strong>bruto</strong> iznosa, u tri koraka: (1) od bruto naknade oduzme se <strong>20% normiranih troškova</strong>, čime se dobija osnovica za porez i doprinose (oporezivo je, dakle, 80% bruto naknade); (2) na tu osnovicu obračunava se <strong>porez na dohodak građana 20%</strong> i <strong>doprinos za PIO 24%</strong>; (3) <strong>doprinos za zdravstveno osiguranje 10,3%</strong> obračunava se na istu osnovicu, ali <strong>samo ako izvršilac nije već zdravstveno osiguran po drugom osnovu</strong> — npr. ako je zaposlen kod drugog poslodavca, penzioner ili osiguran kao član porodice. Formula osnovice: osnovica = bruto − (bruto × 0,20) = bruto × 0,8. Ako je naručilac posla firma ili preduzetnik, on obračunava, obustavlja i uplaćuje sve dažbine i podnosi PPP-PD prijavu, pa izvršilac dobija već „očišćen" neto iznos. Ako je naručilac fizičko lice bez zaposlenih, obavezu obračuna i prijave (obrazac PP OPO, u roku od 30 dana od isplate) ima sam izvršilac. Detaljan vodič sa dodatnim primerima: <a href="/blog/ugovor-o-delu">ugovor o delu 2026</a>.</p>
@@ -820,6 +891,21 @@ export function UgovorODeluPage() {
           <tr><td>Doprinos za zdravstveno osiguranje</td><td>10,3% na osnovicu — samo ako lice nije osigurano po drugom osnovu</td></tr>
         </tbody>
       </table>
+      <h2>Tabela: ugovor o delu bruto u neto (2026)</h2>
+      <p>Neto za najčešće iznose naknade, u oba scenarija zdravstvenog osiguranja izvršioca (zaokruženo):</p>
+      <table className="ref-table" aria-label="Tabela ugovor o delu bruto u neto 2026">
+        <thead><tr><th>Bruto (RSD)</th><th>Osnovica</th><th>Porez 20%</th><th>PIO 24%</th><th>Neto — osiguran</th><th>Neto — nije osiguran</th></tr></thead>
+        <tbody>
+          <tr><td>20.000</td><td>16.000</td><td>3.200</td><td>3.840</td><td>12.960</td><td>11.312</td></tr>
+          <tr><td>30.000</td><td>24.000</td><td>4.800</td><td>5.760</td><td>19.440</td><td>16.968</td></tr>
+          <tr><td>50.000</td><td>40.000</td><td>8.000</td><td>9.600</td><td>32.400</td><td>28.280</td></tr>
+          <tr><td>80.000</td><td>64.000</td><td>12.800</td><td>15.360</td><td>51.840</td><td>45.248</td></tr>
+          <tr><td>100.000</td><td>80.000</td><td>16.000</td><td>19.200</td><td>64.800</td><td>56.560</td></tr>
+          <tr><td>150.000</td><td>120.000</td><td>24.000</td><td>28.800</td><td>97.200</td><td>84.840</td></tr>
+          <tr><td>200.000</td><td>160.000</td><td>32.000</td><td>38.400</td><td>129.600</td><td>113.120</td></tr>
+        </tbody>
+      </table>
+      <p className="home-examples-note">„Osiguran" znači da je izvršilac zdravstveno osiguran po drugom osnovu (zaposlen, penzioner, član porodice osiguranika), pa se zdravstveni doprinos od 10,3% ne obustavlja. Nema gornjeg limita dažbina po isplati — efektivna stopa ostaje 35,2% odnosno 43,44% bez obzira na visinu naknade.</p>
       <h2>Radni primer (bruto 100.000 RSD)</h2>
       <p>Za ugovorenu bruto naknadu od 100.000 RSD: normirani troškovi su 100.000 × 20% = 20.000 RSD, pa je osnovica 100.000 − 20.000 = <strong>80.000 RSD</strong>. Na tu osnovicu: porez 80.000 × 20% = <strong>16.000 RSD</strong>, PIO 80.000 × 24% = <strong>19.200 RSD</strong>, zdravstveno (ako se plaća) 80.000 × 10,3% = <strong>8.240 RSD</strong>. Ako je izvršilac već osiguran po drugom osnovu (npr. zaposlen kod drugog poslodavca ili penzioner), zdravstveno se ne obustavlja, pa je neto = 100.000 − 16.000 − 19.200 = <strong>64.800 RSD</strong>. Ako izvršilac nije osiguran ni po jednom drugom osnovu, obustavlja se i zdravstveno, pa je neto = 100.000 − 16.000 − 19.200 − 8.240 = <strong>56.560 RSD</strong>. Razlika između ova dva scenarija — 7.680 RSD — pokazuje zašto je status zdravstvenog osiguranja izvršioca ključan podatak pre isplate, ne samo administrativna formalnost.</p>
       <h2>Česte greške</h2>
@@ -836,6 +922,8 @@ export function UgovorODeluPage() {
       { q: "Koliki je porez na ugovor o delu?", a: "Porez je 20% na osnovicu, koju čini bruto naknada umanjena za 20% normiranih troškova (oporezivo je 80% prihoda). Za bruto 100.000 RSD osnovica je 80.000 RSD, a porez 16.000 RSD." },
       { q: "Zašto mi kalkulator daje dva različita neto iznosa?", a: "Zato što zdravstveni doprinos od 10,3% zavisi od statusa izvršioca: plaća se samo ako lice nije osigurano po drugom osnovu (zaposlenje, penzija). Za bruto 100.000 RSD neto je 64.800 RSD kada je lice već osigurano, odnosno 56.560 RSD kada nije — zato u kalkulatoru označite ispravan status." },
       { q: "Kalkulator ugovora o delu 2026 — šta unosim?", a: "Unesite ugovorenu bruto naknadu i označite da li je izvršilac zdravstveno osiguran po drugom osnovu (zaposlenje, penzija). Kalkulator prikazuje osnovicu, porez, doprinose za PIO i zdravstvo (ako se plaća) i konačan neto iznos." },
+      { q: "Kako iz neto iznosa da izračunam bruto naknadu po ugovoru o delu?", a: "Podelite željeni neto sa 0,648 ako je izvršilac osiguran po drugom osnovu, odnosno sa 0,5656 ako nije. Za neto od 64.800 RSD potrebna bruto naknada je 100.000 RSD. Kalkulator na ovoj strani radi obračun u oba smera." },
+      { q: "Da li postoji gornji limit dažbina na ugovor o delu?", a: "Ne po pojedinačnoj isplati — porez 20% i PIO 24% obračunavaju se na celu osnovicu bez obzira na visinu naknade. Efektivna stopa zato ostaje 35,20% kada je izvršilac osiguran po drugom osnovu, odnosno 43,44% kada se plaća i zdravstveno." },
     ],
     related: [
       { href: "/pausal", label: "Paušal kalkulator" },

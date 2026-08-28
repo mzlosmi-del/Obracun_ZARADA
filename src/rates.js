@@ -48,6 +48,19 @@ export const PAUSAL_RATES = {
   limitGodisnji: 6000000, // RSD promet limit for paušal status
 };
 
+// Ugovor o delu (naknada oporezovana kao "drugi prihod", ne kao zarada).
+// VERIFIKOVANO 6.8.2026 uz Poresku upravu / CROSO / Fond PIO — iste stope nose i
+// /blog/ugovor-o-delu i vodič na /ugovor-o-delu, sa radnim primerom koji ih potvrđuje:
+// bruto 100.000 → normirani troškovi 20.000 → osnovica 80.000 → porez 16.000,
+// PIO 19.200, zdravstveno 8.240 → neto 64.800 (osiguran po drugom osnovu) /
+// 56.560 (nije osiguran). Nema gornjeg limita dažbina po isplati.
+export const UGOVOR_O_DELU_RATES = {
+  normiraniTroskovi: 20, // % bruto naknade, umanjuju osnovicu (ZPDG — drugi prihodi)
+  porez: 20,             // % na osnovicu
+  pio: 24,               // % na osnovicu (ZDOSO čl. 44 tač. 1)
+  zdravstveno: 10.3,     // % na osnovicu — SAMO ako izvršilac nije osiguran po drugom osnovu (ZDOSO čl. 44 tač. 2)
+};
+
 export const REFERENCE_DATA = {
   // Minimalna zarada 2026 — Odluka o visini minimalne cene rada, "Sl. glasnik RS" br. 78/2025
   // (od 1. januara 2026). Fiksna je SAMO cena radnog časa (371 RSD neto); mesečni iznos
