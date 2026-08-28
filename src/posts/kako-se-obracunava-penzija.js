@@ -3,7 +3,7 @@
 export const body = `
 ![Kako se obračunava penzija u Srbiji](https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&q=80)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 28. avgust 2026.** Vrednost opšteg boda (1.674,67 RSD) i zakonski najniži iznosi penzija provereni su prema podacima Republičkog fonda za PIO nakon usklađivanja od 12,2% u decembru 2025. Ranija verzija ovog vodiča navodila je procenjenu vrednost opšteg boda od ~1.620 RSD — svi primeri obračuna su preračunati. Iznosi se menjaju svakim usklađivanjem, pa ih pre obračuna proverite na sajtu Fonda PIO.
 
 Pitanje **„kako se obračunava penzija u Srbiji"** najčešće je pitanje koje Fond PIO dobija od budućih penzionera. Sistem deluje komplikovano jer se sastoji iz više elemenata — **ličnog koeficijenta**, **penzijskog staža**, **ličnih bodova** i **vrednosti opšteg boda**. U ovom vodiču objašnjavamo formulu korak po korak, sa konkretnim primerima obračuna prema **Zakonu o penzijskom i invalidskom osiguranju** (ZPIO).
 
@@ -51,47 +51,50 @@ Lični koeficijent je **aritmetička sredina** svih godišnjih koeficijenata tok
 
 Vrednost opšteg boda utvrđuje Vlada Srbije i usklađuje se dva puta godišnje (švajcarska formula — kombinacija inflacije i rasta zarada).
 
-| Period | Vrednost opšteg boda |
+| Usklađivanje | Vrednost opšteg boda |
 |---|---|
-| Januar 2025 | ~1.464 RSD |
-| Oktobar 2025 (usklađivanje) | ~1.564 RSD |
-| Januar 2026 (procena) | ~1.620 RSD |
+| +14,8% | 1.345,88 RSD |
+| +10,9% | 1.492,58 RSD |
+| **+12,2% — od decembra 2025.** | **1.674,67 RSD** |
 
-**Napomena:** Aktuelnu vrednost uvek proverite na sajtu Fonda PIO — ovde su približne vrednosti.
+**Aktuelna vrednost opšteg boda je 1.674,67 RSD** i primenjuje se od usklađivanja u decembru 2025. Tokom 2026. nije bilo novog usklađivanja, pa ista vrednost važi i za obračune u 2026. godini.
+
+**Izvor:** Republički fond za PIO — „Проценти усклађивања пензија и вредност општег бода од 1. 4. 2003. године". Vrednost opšteg boda utvrđuje se usklađivanjem (švajcarska formula — kombinacija inflacije i rasta zarada); pre obračuna je uvek proverite na sajtu Fonda PIO jer se menja bez najave u tekstu ovog vodiča.
 
 ## Primer obračuna: prosečan zaposleni
 
 **Scenario:** Marko ide u penziju u 2026. godini sa **40 godina staža** i prosečnim ličnim koeficijentom **1,0** (tokom karijere primao je prosečnu zaradu u RS).
 
 1. Lični bodovi: 1,0 × 40 = **40 LB**
-2. Vrednost opšteg boda: 1.620 RSD
-3. **Penzija = 40 × 1.620 = 64.800 RSD mesečno (bruto)**
+2. Vrednost opšteg boda: 1.674,67 RSD
+3. **Penzija = 40 × 1.674,67 = 66.986,80 RSD mesečno (bruto)**
 
 ## Primer obračuna: zaposleni sa višom zaradom
 
 **Scenario:** Jelena ide u penziju sa **35 godina staža** i ličnim koeficijentom **1,8** (tokom karijere primala je 80% više od prosečne zarade).
 
 1. Lični bodovi: 1,8 × 35 = **63 LB**
-2. Vrednost opšteg boda: 1.620 RSD
-3. **Penzija = 63 × 1.620 = 102.060 RSD mesečno (bruto)**
+2. Vrednost opšteg boda: 1.674,67 RSD
+3. **Penzija = 63 × 1.674,67 = 105.504,21 RSD mesečno (bruto)**
 
 ## Primer obračuna: zaposleni sa nižom zaradom
 
 **Scenario:** Dušan ide u penziju sa **30 godina staža** i ličnim koeficijentom **0,7** (tokom karijere primao je 70% prosečne zarade).
 
 1. Lični bodovi: 0,7 × 30 = **21 LB**
-2. Vrednost opšteg boda: 1.620 RSD
-3. Računska penzija: 21 × 1.620 = **34.020 RSD**
+2. Vrednost opšteg boda: 1.674,67 RSD
+3. Računska penzija: 21 × 1.674,67 = **35.168,07 RSD**
 
-Pošto je iznos niži od **najniže penzije** (oko 30.500 RSD u 2026), Dušan dobija stvarnu penziju u rasponu propisanog minimuma — više o tome niže.
+Iznos je iznad **najniže starosne penzije** (31.092 RSD od decembra 2025), pa Dušan prima svoju računsku penziju — zaštitni minimum se ne primenjuje. Da je imao kraći staž ili niži lični koeficijent, penzija bi bila podignuta na propisani minimum; više o tome niže.
 
 ## Najniža i najviša penzija u Srbiji
 
-**Najniža starosna penzija** ne može biti niža od **27% prosečne zarade bez poreza i doprinosa u prethodnoj kalendarskoj godini**. U 2026. godini procena iznosa:
+**Najniža starosna penzija** ne može biti niža od **27% prosečne zarade bez poreza i doprinosa u prethodnoj kalendarskoj godini**. Posle usklađivanja od 12,2% u decembru 2025. zakonski najniži iznosi su:
 
-- Najniža starosna penzija: **~30.500 RSD**
-- Najniža invalidska penzija (potpuna): **~30.500 RSD**
-- Najniža porodična penzija: **~24.400 RSD**
+- Zaposleni i lica iz samostalnih delatnosti: **31.092 RSD**
+- Poljoprivrednici: **24.443 RSD**
+
+Isti zaštitni minimum primenjuje se i na starosnu i na potpunu invalidsku penziju. Porodična penzija se ne određuje po zasebnom minimumu, već kao procenat penzije preminulog osiguranika — zavisno od broja članova porodice (detaljnije niže). Iznosi po kategorijama objavljeni su u dokumentu Fonda PIO „Законски износи пензија и накнада за све категорије".
 
 **Najviša osnovica** za obračun doprinosa je 5 prosečnih zarada — što ograničava i maksimalnu penziju (oko 5 ličnih koeficijenata po godini). U praksi, najviše penzije u Srbiji su oko **150.000–180.000 RSD** mesečno.
 

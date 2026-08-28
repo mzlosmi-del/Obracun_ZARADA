@@ -262,7 +262,7 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-penzija",
     date: "12. maj 2026",
-    updated: "6. avgust 2026",
+    updated: "28. avgust 2026",
     tag: "Penzija",
     title: "Kako se obračunava penzija u Srbiji — formula i primeri",
     summary: "Kako se obračunava penzija u Srbiji 2026: bodovni sistem, lični bodovi i koeficijent, uslovi za starosnu, prevremenu i invalidsku penziju — uz primere.",
