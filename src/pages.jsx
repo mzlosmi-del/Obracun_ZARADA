@@ -319,97 +319,15 @@ export function PausalPage() {
       { q: "Koje delatnosti ne mogu biti paušalno oporezovane?", a: "Paušal nije dostupan obveznicima PDV, preduzetnicima sa prometom preko 6.000.000 RSD godišnje, kao ni u delatnostima koje su propisima isključene — pre svega trgovina na veliko i malo, ugostiteljstvo sa točenjem pića i delatnosti reklamiranja i istraživanja tržišta. Za većinu uslužnih, zanatskih i IT delatnosti paušal je dostupan." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/ugovor-o-delu", label: "Ugovor o delu kalkulator" },
       { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
     ],
   }} />;
 }
 
-const TOOL_RELATED = [
-  { href: "/neto-bruto", label: "Neto u bruto kalkulator" },
-  { href: "/pausal", label: "Paušal kalkulator" },
-  { href: "/minuli-rad", label: "Kalkulator minulog rada" },
-  { href: "/bolovanje", label: "Kalkulator bolovanja" },
-];
-
-export function BrutoNetoPage() {
-  return <ToolPage cfg={{
-    slug: "bruto-neto",
-    title: "Bruto u neto kalkulator 2026 — Srbija | PlatniListić",
-    description: "Bruto u neto kalkulator za 2026 — pretvorite bruto zaradu u neto uz tačan obračun poreza i doprinosa. Preuzmite PDF platni listić i PPP-PD XML. Besplatno.",
-    h1: "Bruto u neto kalkulator za Srbiju (2026)",
-    breadcrumbName: "Bruto u neto",
-    calc: "full",
-    intro: (<p>Ovaj <strong>bruto u neto kalkulator</strong> za 2026. pretvara bruto 1 zaradu u neto iznos na račun, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa zaposlenog (19,90%). Rezultat preuzimate kao PDF platni listić i PPP-PD XML. Za obrnuti smer koristite <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>),
-    guide: (<><h2>Kako se računa bruto u neto</h2>
-      <p>Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez (10% na deo iznad neoporezivog iznosa). Primer: za bruto 100.000 RSD doprinosi iznose 19.900 RSD, poreska osnovica je 65.779 RSD (100.000 − 34.221), porez 6.578 RSD, pa je neto ≈ 73.522 RSD. Više o neoporezivom delu: <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade</a>, a pun pregled stopa: <a href="/stope-doprinosa-2026">stope doprinosa 2026</a>. Koliko ta neto plata realno vredi kroz vreme pokazuje naša analiza <a href="/blog/kupovna-moc-plate-2016-2026">kupovne moći plate 2016–2026</a>.</p>
-      <h2>Šta sve ulazi u bruto 1</h2>
-      <p>Bruto 1 nije samo osnovna zarada — u nju ulaze i svi dodaci na koje se plaćaju porez i doprinosi: <a href="/blog/prekovremeni-rad">prekovremeni rad</a> (najmanje +26%), noćni rad i rad praznikom (najmanje +26%), <a href="/blog/minuli-rad-obracun">minuli rad</a> (0,4% po godini staža), bonusi i nagrade. Pregled svih uvećanja i njihovih stopa je na strani <a href="/dodaci-na-zaradu">dodaci na zaradu</a>. Zato dva zaposlena sa istom osnovnom zaradom mogu imati različit bruto 1 — a time i različit neto.</p>
-      <h2>Bruto 1 vs Bruto 2 — koja je razlika</h2>
-      <p><strong>Bruto 1</strong> je ugovorena zarada — osnovica na koju se obračunavaju porez i doprinosi zaposlenog. <strong>Bruto 2</strong> je Bruto 1 uvećan za doprinose na teret poslodavca (15,15%) i predstavlja stvaran trošak rada za poslodavca. Zaposleni „na ruke" prima neto, dok poslodavac plaća bruto 2.</p>
-      <table className="ref-table" aria-label="Bruto 1 vs Bruto 2">
-        <thead><tr><th>Pojam</th><th>Šta obuhvata</th></tr></thead>
-        <tbody>
-          <tr><td>Neto</td><td>Iznos koji zaposleni prima na račun</td></tr>
-          <tr><td>Bruto 1</td><td>Neto + doprinosi zaposlenog (19,90%) + porez (10%)</td></tr>
-          <tr><td>Bruto 2</td><td>Bruto 1 + doprinosi poslodavca (15,15%)</td></tr>
-        </tbody>
-      </table>
-      <h2>Neoporezivi iznos i stope doprinosa za 2026</h2>
-      <p>Doprinosi zaposlenog obračunavaju se na celu bruto 1 zaradu, a porez na zaradu (10%) samo na deo iznad neoporezivog iznosa od {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD.</p>
-      <table className="ref-table" aria-label="Stope doprinosa i poreza 2026">
-        <thead><tr><th>Stavka</th><th>Stopa / iznos</th></tr></thead>
-        <tbody>
-          <tr><td>PIO (penzijsko) — zaposleni</td><td>{DEFAULT_RATES.pioPct_emp}%</td></tr>
-          <tr><td>Zdravstvo — zaposleni</td><td>{DEFAULT_RATES.health_emp.toLocaleString("sr-RS")}%</td></tr>
-          <tr><td>Nezaposlenost — zaposleni</td><td>{DEFAULT_RATES.unemp_emp.toLocaleString("sr-RS")}%</td></tr>
-          <tr><td>Neoporezivi iznos</td><td>{DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD</td></tr>
-          <tr><td>Porez na zaradu</td><td>{DEFAULT_RATES.taxRate}% (na deo iznad neoporezivog)</td></tr>
-        </tbody>
-      </table>
-      <h2>Tabela: bruto u neto za 2026 (primeri)</h2>
-      <p>Brza tabela bruto u neto za najčešće iznose zarada u 2026. (neto i ukupan trošak poslodavca, zaokruženo):</p>
-      <table className="ref-table" aria-label="Tabela bruto u neto 2026 — primeri obračuna">
-        <thead><tr><th>Bruto 1 (RSD)</th><th>Neto ≈ (RSD)</th><th>Ukupan trošak ≈ (RSD)</th></tr></thead>
-        <tbody>
-          <tr><td>50.000</td><td>≈ 38.472</td><td>≈ 57.575</td></tr>
-          <tr><td>60.000</td><td>≈ 45.482</td><td>≈ 69.090</td></tr>
-          <tr><td>70.000</td><td>≈ 52.492</td><td>≈ 80.605</td></tr>
-          <tr><td>80.000</td><td>≈ 59.502</td><td>≈ 92.120</td></tr>
-          <tr><td>100.000</td><td>≈ 73.522</td><td>≈ 115.150</td></tr>
-          <tr><td>120.000</td><td>≈ 87.542</td><td>≈ 138.180</td></tr>
-          <tr><td>150.000</td><td>≈ 108.572</td><td>≈ 172.725</td></tr>
-          <tr><td>200.000</td><td>≈ 143.622</td><td>≈ 230.300</td></tr>
-        </tbody>
-      </table>
-      <p className="home-examples-note">Iznosi su informativni i zaokruženi; za tačan obračun za vašu zaradu unesite bruto u kalkulator iznad.</p>
-      <h2>Česte greške u obračunu bruto u neto</h2>
-      <ul>
-        <li>Primena poreza na celu bruto zaradu umesto samo na deo iznad neoporezivih {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD — porez se plaća samo na poresku osnovicu (bruto 1 − neoporezivi iznos), nikad na ceo bruto 1.</li>
-        <li>Mešanje bruto 1 i bruto 2 — doprinosi zaposlenog i porez obračunavaju se na bruto 1 (ugovorenu zaradu), dok je bruto 2 već uvećan za doprinose poslodavca i ne sme se ponovo koristiti kao osnovica za porez.</li>
-        <li>Primena stope doprinosa (19,90%) na ceo bruto bez uvažavanja najniže osnovice — ako je bruto 1 ispod {DEFAULT_RATES.minBase.toLocaleString("sr-RS")} RSD, doprinosi se svejedno obračunavaju na najnižu mesečnu osnovicu, ne na stvarno niži bruto.</li>
-        <li>Zanemarivanje najviše mesečne osnovice ({DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD) kod visokih zarada — iznad tog praga doprinosi se dalje ne uvećavaju srazmerno bruto zaradi.</li>
-      </ul>
-      <h2>Pravni okvir</h2>
-      <p>Porez na zaradu uređuje Zakon o porezu na dohodak građana (stopa 10%, neoporezivi iznos utvrđen izmenama zakona, „Sl. glasnik RS" br. 109/2025), a doprinose za obavezno socijalno osiguranje Zakon o doprinosima za obavezno socijalno osiguranje, koji propisuje stope za PIO, zdravstveno osiguranje i osiguranje za slučaj nezaposlenosti, kao i najnižu i najvišu mesečnu osnovicu doprinosa. Iznose osnovica za tekuću godinu objavljuje CROSO, dok neoporezivi iznos zarade usklađuje Ministarstvo finansija godišnjim indeksiranjem.</p></>),
-    faq: [
-      { q: "Kako izračunati neto iz bruto u Srbiji?", a: "Neto = Bruto 1 − doprinosi zaposlenog (19,90%) − porez 10% na deo iznad neoporezivog iznosa (34.221 RSD za 2026). Kalkulator radi obračun u oba smera." },
-      { q: "Ako je bruto plata 50.000 dinara, koliki je neto?", a: "Za bruto 1 od 50.000 RSD neto iznosi ≈ 38.472 RSD: doprinosi zaposlenog su 9.950 RSD (19,90%), a porez 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD)." },
-      { q: "Koliki su doprinosi zaposlenog?", a: "19,90% — PIO 14%, zdravstvo 5,15%, nezaposlenost 0,75%." },
-      { q: "Kako se računa bruto 2 u neto?", a: "Bruto 2 je ukupan trošak poslodavca (bruto 1 + 15,15% doprinosa poslodavca). Da biste iz bruto 2 dobili neto, prvo se izdvoji bruto 1 (bruto 2 ÷ 1,1515), pa se iz njega oduzmu doprinosi zaposlenog (19,90%) i porez (10% na deo iznad 34.221 RSD)." },
-      { q: "Da li je obračun besplatan?", a: "Da, kalkulator je besplatan i ne zahteva registraciju. Rezultat preuzimate kao PDF i PPP-PD XML." },
-      { q: "Da li se porez plaća na ceo bruto iznos zarade?", a: "Ne. Porez od 10% plaća se samo na deo bruto 1 zarade iznad neoporezivog iznosa (34.221 RSD za 2026). Doprinosi zaposlenog (19,90%), za razliku od poreza, obračunavaju se na celu bruto 1 zaradu." },
-      { q: "Da li bruto zarada uključuje doprinose poslodavca?", a: "Ne, bruto 1 (ugovorena zarada) ne uključuje doprinose poslodavca. Oni se dodaju posebno (15,15%) i formiraju bruto 2 — stvaran trošak rada za poslodavca, koji je uvek veći od bruto 1." },
-      { q: "Kako se računa plata iz bruto u neto?", a: "Od bruto 1 zarade oduzmu se doprinosi zaposlenog (19,90%) i porez (10% na deo iznad neoporezivih 34.221 RSD). Primer: bruto 100.000 RSD → doprinosi 19.900 RSD, porez 6.578 RSD, neto ≈ 73.522 RSD." },
-      { q: "Kako izračunati neto zaradu iz bruto u Srbiji?", a: "Neto zarada = Bruto 1 − doprinosi zaposlenog (19,90%) − porez na zaradu (10% na iznos iznad neoporezivog). Za 2026. neoporezivi iznos je 34.221 RSD. Primer: bruto 100.000 RSD daje neto oko 73.522 RSD. Kalkulator radi obračun u oba smera." },
-    ],
-    related: TOOL_RELATED,
-  }} />;
-}
-
 const NETO_BRUTO_RELATED = [
-  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/", label: "Bruto u neto kalkulator" },
   { href: "/pausal", label: "Paušal kalkulator" },
   { href: "/minuli-rad", label: "Kalkulator minulog rada" },
   { href: "/bolovanje", label: "Kalkulator bolovanja" },
@@ -473,7 +391,7 @@ export function BolovanjePage() {
       { q: "Kako se računa bolovanje od 65 posto?", a: "Prvo se izračuna dnevna osnovica (prosek bruto zarade prethodnih 12 meseci podeljen brojem radnih dana u mesecu), pa se pomnoži brojem dana bolovanja i sa 65%. Za dnevnu osnovicu od 4.762 RSD i 10 dana bolovanja: 4.762 × 10 × 65% ≈ 30.952 RSD bruto." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/minuli-rad", label: "Kalkulator minulog rada" },
       { href: "/otpremnina", label: "Kalkulator otpremnine" },
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
@@ -483,7 +401,7 @@ export function BolovanjePage() {
 
 const OTPREMNINA_RELATED = [
   { href: "/minuli-rad", label: "Kalkulator minulog rada" },
-  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/", label: "Bruto u neto kalkulator" },
   { href: "/bolovanje", label: "Kalkulator bolovanja" },
   { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
 ];
@@ -547,7 +465,7 @@ export function OtpremninaPage() {
 }
 
 const MINULI_RAD_RELATED = [
-  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/", label: "Bruto u neto kalkulator" },
   { href: "/otpremnina", label: "Kalkulator otpremnine" },
   { href: "/bolovanje", label: "Kalkulator bolovanja" },
   { href: "/dodaci-na-zaradu", label: "Dodaci na zaradu" },
@@ -580,7 +498,7 @@ export function MinuliRadPage() {
         </tbody>
       </table>
       <h2>Kako se minuli rad prikazuje na platnom listiću</h2>
-      <p>Minuli rad nije poseban dodatak van zarade — on je sastavni deo <strong>bruto 1</strong> zarade. Na platnom listiću se iskazuje kao zasebna stavka uvećanja na osnovnu zaradu, u sekciji formiranja bruto 1, pa zajedno sa osnovnom zaradom ulazi u osnovicu za porez i doprinose. U <a href="/bruto-neto">bruto u neto kalkulatoru</a> unosite godine staža, a iznos minulog rada se automatski uračunava u bruto 1.</p>
+      <p>Minuli rad nije poseban dodatak van zarade — on je sastavni deo <strong>bruto 1</strong> zarade. Na platnom listiću se iskazuje kao zasebna stavka uvećanja na osnovnu zaradu, u sekciji formiranja bruto 1, pa zajedno sa osnovnom zaradom ulazi u osnovicu za porez i doprinose. U <a href="/">bruto u neto kalkulatoru</a> unosite godine staža, a iznos minulog rada se automatski uračunava u bruto 1.</p>
       <h2>Tabela parametara za obračun minulog rada 2026</h2>
       <table className="ref-table" aria-label="Parametri za obračun minulog rada 2026">
         <thead><tr><th>Parametar</th><th>Vrednost</th></tr></thead>
@@ -622,7 +540,7 @@ export function NetoBrutoPage() {
     calc: "full",
     intro: (<p>Ovaj <strong>neto u bruto kalkulator</strong> za 2026. iz željene neto zarade rekonstruiše bruto 1 iznos i ukupan trošak poslodavca, uz tačan obračun poreza (10% iznad neoporezivih 34.221 RSD) i doprinosa (19,90%). Unesite željeni neto, a kalkulator automatski pronalazi odgovarajući bruto 1. Rezultat preuzimate kao PDF platni listić i PPP-PD XML.</p>),
     guide: (<><h2>Kako se računa neto u bruto</h2>
-      <p>Obrnuti obračun — iz željenog neto iznosa kalkulator iterativno pronalazi bruto 1 tako da posle oduzimanja doprinosa zaposlenog (19,90%) i poreza na zaradu (10% na deo iznad neoporezivog iznosa od 34.221 RSD) dobijete tačno taj neto. Primer: za željeni neto od 73.522 RSD bruto 1 iznosi 100.000 RSD. Ukupan trošak poslodavca (bruto 2) dobija se dodavanjem doprinosa poslodavca (15,15%) na bruto 1. Detaljan vodič: <a href="/bruto-neto">razlika između bruto i neto zarade</a>.</p>
+      <p>Obrnuti obračun — iz željenog neto iznosa kalkulator iterativno pronalazi bruto 1 tako da posle oduzimanja doprinosa zaposlenog (19,90%) i poreza na zaradu (10% na deo iznad neoporezivog iznosa od 34.221 RSD) dobijete tačno taj neto. Primer: za željeni neto od 73.522 RSD bruto 1 iznosi 100.000 RSD. Ukupan trošak poslodavca (bruto 2) dobija se dodavanjem doprinosa poslodavca (15,15%) na bruto 1. Detaljan vodič: <a href="/">razlika između bruto i neto zarade</a>.</p>
       <h2>Trošak poslodavca — doprinosi na teret poslodavca (15,15%)</h2>
       <p>Pored doprinosa koje plaća zaposleni (iz bruto 1), poslodavac na <em>svoj</em> teret plaća dodatne doprinose od {(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}% na istu osnovicu (bruto 1). Zbir bruto 1 i doprinosa poslodavca čini bruto 2 — stvaran trošak rada.</p>
       <table className="ref-table" aria-label="Doprinosi na teret poslodavca 2026">
@@ -665,7 +583,7 @@ export function NetoBrutoPage() {
 
 const DODACI_RELATED = [
   { href: "/minuli-rad", label: "Kalkulator minulog rada" },
-  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/", label: "Bruto u neto kalkulator" },
   { href: "/bolovanje", label: "Kalkulator bolovanja" },
   { href: "/otpremnina", label: "Kalkulator otpremnine" },
 ];
@@ -716,7 +634,7 @@ export function DodaciPage() {
 }
 
 const GODISNJI_POREZ_RELATED = [
-  { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+  { href: "/", label: "Bruto u neto kalkulator" },
   { href: "/pausal", label: "Paušal kalkulator" },
   { href: "/ugovor-o-delu", label: "Ugovor o delu kalkulator" },
   { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
@@ -813,7 +731,7 @@ export function GodisnjiOdmorPage() {
       { q: "Da li se na naknadu za godišnji odmor plaćaju porez i doprinosi?", a: "Da. Naknada za godišnji odmor tretira se kao zarada — plaćaju se doprinosi zaposlenog (19,90%), porez (10% iznad neoporezivog iznosa) i doprinosi poslodavca (15,15%)." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
       { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
@@ -871,7 +789,7 @@ export function JubilarnaPage() {
       { q: "Za koliko godina staža se isplaćuje jubilarna nagrada?", a: "Najčešće za 10, 20, 30 i 40 godina rada kod istog poslodavca. Tačne jubileje i iznose utvrđuje kolektivni ugovor ili ugovor o radu — poslodavac nije zakonski obavezan, osim ako se sam obavezao." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/minuli-rad", label: "Kalkulator minulog rada" },
       { href: "/otpremnina", label: "Kalkulator otpremnine" },
       { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
@@ -921,7 +839,7 @@ export function UgovorODeluPage() {
     ],
     related: [
       { href: "/pausal", label: "Paušal kalkulator" },
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/godisnji-porez", label: "Godišnji porez kalkulator" },
     ],
   }} />;
@@ -968,7 +886,7 @@ export function ProsecnaZaradaPage() {
       <p>U sva tri slučaja koristi se poslednji objavljeni podatak RZS o prosečnoj zaradi u Republici Srbiji — ne prosek unutar konkretne firme ili sektora. Za poređenje sa minimalnom zaradom pogledajte <a href="/minimalna-zarada">minimalnu zaradu 2026</a>.</p>
 
       <h2>Bruto vs neto prosečna zarada</h2>
-      <p>Razlika između prosečne bruto zarade ({p.bruto.toLocaleString("sr-RS")} RSD) i prosečne neto zarade ({p.neto.toLocaleString("sr-RS")} RSD) — {(p.bruto - p.neto).toLocaleString("sr-RS")} RSD — čine porez na zaradu i doprinosi za obavezno socijalno osiguranje na teret zaposlenog, koji se obustavljaju iz bruto iznosa pre isplate na račun. Pregled svih stopa doprinosa (PIO, zdravstveno, nezaposlenost) dat je na stranici <a href="/stope-doprinosa-2026">stope doprinosa 2026</a>. Ako želite da izračunate koliko bi neto iznosila neka druga bruto (ili obrnuto, neto u bruto) zarada, koristite <a href="/bruto-neto">bruto u neto kalkulator</a>.</p>
+      <p>Razlika između prosečne bruto zarade ({p.bruto.toLocaleString("sr-RS")} RSD) i prosečne neto zarade ({p.neto.toLocaleString("sr-RS")} RSD) — {(p.bruto - p.neto).toLocaleString("sr-RS")} RSD — čine porez na zaradu i doprinosi za obavezno socijalno osiguranje na teret zaposlenog, koji se obustavljaju iz bruto iznosa pre isplate na račun. Pregled svih stopa doprinosa (PIO, zdravstveno, nezaposlenost) dat je na stranici <a href="/stope-doprinosa-2026">stope doprinosa 2026</a>. Ako želite da izračunate koliko bi neto iznosila neka druga bruto (ili obrnuto, neto u bruto) zarada, koristite <a href="/">bruto u neto kalkulator</a>.</p>
       <p>Ova razlika između bruto i neto proseka je i razlog zašto je bitno obratiti pažnju na to koja se od dve osnovice koristi u konkretnom obračunu. Otpremnina za odlazak u penziju, na primer, računa se od <em>neto</em> proseka, dok se uobičajena visina jubilarne nagrade (po kolektivnim ugovorima) i cenzus za godišnji porez računaju od <em>bruto</em> proseka — zamena jedne osnovice drugom u obračunu dovodi do pogrešnog rezultata, jer je bruto iznos uvek veći od neto za otprilike jednu trećinu.</p>
     </>),
     faq: [
@@ -978,7 +896,7 @@ export function ProsecnaZaradaPage() {
       { q: "Šta je medijalna zarada i zašto se razlikuje od prosečne?", a: `Medijalna zarada je vrednost koja deli sve zaposlene na dve jednake polovine — polovina zarađuje manje, polovina više. Za razliku od proseka, na nju ne utiče mali broj vrlo visokih primanja, pa je bliža onome što tipičan zaposleni stvarno prima. U ${p.mesec} medijalna neto zarada (${p.medijalnaNeto.toLocaleString("sr-RS")} RSD) je za ${(p.neto - p.medijalnaNeto).toLocaleString("sr-RS")} RSD niža od prosečne (${p.neto.toLocaleString("sr-RS")} RSD).` },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/minimalna-zarada", label: "Minimalna zarada — minimalac 2026. i 2027." },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
     ],
@@ -1003,13 +921,13 @@ export function NeoporeziviPage() {
           <tr><th>Stopa poreza na zaradu</th><td>10%</td></tr>
         </tbody>
       </table>
-      <p>Neoporezivi iznos se primenjuje mesečno, po zaposlenom. Znači da se porez na zaradu plaća samo na onaj deo bruto zarade koji prelazi {nonTaxable.toLocaleString("sr-RS")} RSD. Ovo direktno povećava neto iznos koji zaposleni prima na račun. Vidite kako neoporezivi iznos utiče na vaš obračun: <a href="/bruto-neto">bruto u neto kalkulator</a>. Saznajte više o razlici između bruto i neto zarade: <a href="/bruto-neto">bruto neto razlika</a>.</p>
+      <p>Neoporezivi iznos se primenjuje mesečno, po zaposlenom. Znači da se porez na zaradu plaća samo na onaj deo bruto zarade koji prelazi {nonTaxable.toLocaleString("sr-RS")} RSD. Ovo direktno povećava neto iznos koji zaposleni prima na račun. Vidite kako neoporezivi iznos utiče na vaš obračun: <a href="/">bruto u neto kalkulator</a>. Saznajte više o razlici između bruto i neto zarade: <a href="/">bruto neto razlika</a>.</p>
 
       <h2>Neoporezivi iznos zarade 2026 — zvanični izvor</h2>
       <p>Neoporezivi deo zarade za 2026. iznosi <strong>{nonTaxable.toLocaleString("sr-RS")} RSD</strong> i primenjuje se na isplate zarada <strong>od 1. januara 2026</strong>. Iznos je utvrđen izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 109/2025), a ne februarskim usklađivanjem ostalih neoporezivih primanja. Zvanične podatke objavljuju <a href="https://www.mfin.gov.rs/" target="_blank" rel="noopener noreferrer">Ministarstvo finansija</a> i <a href="https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html" target="_blank" rel="noopener noreferrer">Poreska uprava Srbije</a>. Prvo naredno usklađivanje je 1. januara 2027.</p>
 
       <h2>Primer obračuna sa neoporezivim iznosom</h2>
-      <p>Za zaposlenog sa bruto zaradom od 100.000 RSD, poreska osnovica je 100.000 − {nonTaxable.toLocaleString("sr-RS")} = {(100000 - nonTaxable).toLocaleString("sr-RS")} RSD, a porez (10%) iznosi {Math.round((100000 - nonTaxable) * 0.1).toLocaleString("sr-RS")} RSD. Bez neoporezivog iznosa porez bi bio 10.000 RSD, pa je mesečna ušteda {(10000 - Math.round((100000 - nonTaxable) * 0.1)).toLocaleString("sr-RS")} RSD. Detaljan vodič: <a href="/bruto-neto">razlika između bruto i neto zarade</a>.</p>
+      <p>Za zaposlenog sa bruto zaradom od 100.000 RSD, poreska osnovica je 100.000 − {nonTaxable.toLocaleString("sr-RS")} = {(100000 - nonTaxable).toLocaleString("sr-RS")} RSD, a porez (10%) iznosi {Math.round((100000 - nonTaxable) * 0.1).toLocaleString("sr-RS")} RSD. Bez neoporezivog iznosa porez bi bio 10.000 RSD, pa je mesečna ušteda {(10000 - Math.round((100000 - nonTaxable) * 0.1)).toLocaleString("sr-RS")} RSD. Detaljan vodič: <a href="/">razlika između bruto i neto zarade</a>.</p>
 
       <h2>Ostali neoporezivi iznosi 2026 — prevoz, dnevnica, solidarna pomoć</h2>
       <p>Pored neoporezivog dela zarade, Zakon o porezu na dohodak građana (čl. 9, 18 i 21a) propisuje neoporezive iznose i za naknade troškova i druga primanja zaposlenih. Ovi iznosi su usklađeni indeksom potrošačkih cena i važe <strong>od 1. februara 2026. do 31. januara 2027.</strong> („Sl. glasnik RS" br. 6/2026):</p>
@@ -1040,7 +958,7 @@ export function NeoporeziviPage() {
       { q: "Kada se usklađuju neoporezivi iznosi?", a: "Neoporezivi iznos zarade usklađuje se od 1. januara (34.221 RSD za 2026, izmene ZPDG „Sl. glasnik RS” 109/2025), a ostali neoporezivi iznosi — prevoz, dnevnice, solidarna pomoć, jubilarna nagrada — od 1. februara svake godine („Sl. glasnik RS” 6/2026)." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
       { href: "/minimalna-zarada", label: "Minimalna zarada — minimalac 2026. i 2027." },
       { href: "/jubilarna-nagrada", label: "Kalkulator jubilarne nagrade" },
@@ -1074,7 +992,7 @@ export function StopeDoprinosaPage() {
           <tr><th>Ukupno</th><th>{zaposleniUkupno.toFixed(2).replace(".", ",")}%</th><th>{poslodavacUkupno.toFixed(2).replace(".", ",")}%</th></tr>
         </tfoot>
       </table>
-      <p>Ukupni doprinosi zaposlenog iznose {zaposleniUkupno.toFixed(2).replace(".", ",")}%, a poslodavca {poslodavacUkupno.toFixed(2).replace(".", ",")}% na bruto zaradu. Detaljnu razradu doprinosa i poreza vidite u <a href="/bruto-neto">bruto u neto kalkulatoru</a>.</p>
+      <p>Ukupni doprinosi zaposlenog iznose {zaposleniUkupno.toFixed(2).replace(".", ",")}%, a poslodavca {poslodavacUkupno.toFixed(2).replace(".", ",")}% na bruto zaradu. Detaljnu razradu doprinosa i poreza vidite u <a href="/">bruto u neto kalkulatoru</a>.</p>
     </>),
     faq: [
       { q: "Koliki su ukupni doprinosi na zaradu u 2026?", a: `Zaposleni plaća ${zaposleniUkupno.toFixed(2).replace(".", ",")}% (PIO ${R.pioPct_emp}%, zdravstveno ${R.health_emp}%, nezaposlenost ${R.unemp_emp}%). Poslodavac plaća ${poslodavacUkupno.toFixed(2).replace(".", ",")}% (PIO ${R.pio_er}%, zdravstveno ${R.health_er}%).` },
@@ -1082,7 +1000,7 @@ export function StopeDoprinosaPage() {
       { q: "Na koju osnovicu se obračunavaju doprinosi?", a: "Doprinosi se obračunavaju na bruto 1 zaradu zaposlenog, uz propisane granice — najniža i najviša mesečna osnovica. Izvan tih granica doprinosi se obračunavaju na graničnu vrednost, ne na stvarnu zaradu." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/neoporezivi-iznos-2026", label: "Neoporezivi iznos 2026" },
       { href: "/pausal", label: "Paušal kalkulator" },
     ],
@@ -1186,7 +1104,7 @@ export function MinimalnaZaradaPage() {
           <tr><th>Ukupan neto minimalac za 2026.</th><td>{godisnjeNeto.toLocaleString("sr-RS")} RSD (≈ {fmt0(godisnjeBruto)} RSD bruto)</td></tr>
         </tbody>
       </table>
-      <p>Mesečni iznos se razlikuje po mesecima zbog različitog broja radnih dana — najniži je u mesecima sa 160 sati, a najviši u mesecima sa 184 sata. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a> i izračunajte neto preko <a href="/bruto-neto">bruto u neto kalkulatora</a>. Za poređenje sa prethodnim godinama pogledajte <a href="#istorija">istoriju minimalne cene rada</a> niže na strani.</p>
+      <p>Mesečni iznos se razlikuje po mesecima zbog različitog broja radnih dana — najniži je u mesecima sa 160 sati, a najviši u mesecima sa 184 sata. Pogledajte <a href="/radni-dani-2026">radne dane u 2026</a> i izračunajte neto preko <a href="/">bruto u neto kalkulatora</a>. Za poređenje sa prethodnim godinama pogledajte <a href="#istorija">istoriju minimalne cene rada</a> niže na strani.</p>
 
       {/* Interogativni H2 sa kolokvijalnim terminom i tekućim mesecom — isti obrazac
           kojim ozon.rs osvaja citat u AI pregledu na upit „minimalac za <mesec> 2026". */}
@@ -1215,7 +1133,7 @@ export function MinimalnaZaradaPage() {
         </tbody>
       </table>
       <p><strong>Zašto su bruto iznosi za 2027. još privremeni.</strong> Neto satnica od {m27.cenaRadnogCasaNeto} RSD je konačna — utvrđena je odlukom Vlade. Bruto iznos, međutim, zavisi i od <a href="/neoporezivi-iznos-2026">neoporezivog iznosa zarade</a>, a on za 2027. <strong>još nije izglasan</strong>: predlog je {m27.neoporeziviPredlog2027.toLocaleString("sr-RS")} RSD umesto sadašnjih {R.nonTaxable.toLocaleString("sr-RS")} RSD i tek ulazi u skupštinsku proceduru. Tabela iznad zato računa bruto uz <em>važeći</em> neoporezivi iznos. Ako predlog bude usvojen, svaki bruto iznos iz tabele biće manji za <strong>tačno {fmt2(brutoDelta27)} RSD</strong> — razlika je identična u svakom mesecu, jer se neoporezivi iznos odbija od poreske osnovice, a ne srazmerno fondu sati. Stranicu ažuriramo čim izmene budu objavljene u „Službenom glasniku RS“.</p>
-      <p>Godišnji fond sati u 2027. je isti kao u 2026. ({ukupnoSati27.toLocaleString("sr-RS")} h, 261 radni dan), pa je ukupan neto minimalac za celu godinu {godisnjeNeto27.toLocaleString("sr-RS")} RSD — {(godisnjeNeto27 - godisnjeNeto).toLocaleString("sr-RS")} RSD više nego u 2026. Konkretan iznos za bilo koju platu izračunajte kroz <a href="/bruto-neto">bruto u neto kalkulator</a>.</p>
+      <p>Godišnji fond sati u 2027. je isti kao u 2026. ({ukupnoSati27.toLocaleString("sr-RS")} h, 261 radni dan), pa je ukupan neto minimalac za celu godinu {godisnjeNeto27.toLocaleString("sr-RS")} RSD — {(godisnjeNeto27 - godisnjeNeto).toLocaleString("sr-RS")} RSD više nego u 2026. Konkretan iznos za bilo koju platu izračunajte kroz <a href="/">bruto u neto kalkulator</a>.</p>
 
       <h2>Minimalac po mesecima 2026 — neto i bruto tabela</h2>
       <p>Pošto je fiksna samo cena radnog časa ({m.cenaRadnogCasaNeto} RSD neto), mesečni minimalac se dobija množenjem satnice fondom radnih sati u mesecu. Tabela daje minimalni neto i pripadajući bruto (bruto 1) za svaki mesec 2026:</p>
@@ -1253,7 +1171,7 @@ export function MinimalnaZaradaPage() {
           <tr><th>Ukupan trošak poslodavca (bruto 2)</th><td>{fmt2(ex.bruto + exPoslodavac)} RSD</td></tr>
         </tbody>
       </table>
-      <p>Ukupan trošak poslodavca za zaposlenog na minimalcu kreće se u 2026. od ≈{fmt0(perMonth[1].bruto * (1 + dopPosl))} RSD (mesec sa 160 h) do ≈{fmt0(perMonth[6].bruto * (1 + dopPosl))} RSD (184 h). Detaljne <a href="/stope-doprinosa-2026">stope doprinosa za 2026.</a> i tačan obračun za bilo koji iznos daje <a href="/bruto-neto">bruto u neto kalkulator</a>.</p>
+      <p>Ukupan trošak poslodavca za zaposlenog na minimalcu kreće se u 2026. od ≈{fmt0(perMonth[1].bruto * (1 + dopPosl))} RSD (mesec sa 160 h) do ≈{fmt0(perMonth[6].bruto * (1 + dopPosl))} RSD (184 h). Detaljne <a href="/stope-doprinosa-2026">stope doprinosa za 2026.</a> i tačan obračun za bilo koji iznos daje <a href="/">bruto u neto kalkulator</a>.</p>
 
       <h2>Šta ulazi u minimalac — a šta se plaća povrh njega</h2>
       <p>Po članu 111 Zakona o radu, zaposleni ima pravo na minimalnu zaradu za <strong>standardni učinak i vreme provedeno na radu</strong>. To znači da minimalac pokriva samo osnovnu zaradu za puno radno vreme, a sledeća primanja se obračunavaju <strong>povrh</strong> njega:</p>
@@ -1313,7 +1231,7 @@ export function MinimalnaZaradaPage() {
       { q: "Šta ako poslodavac isplaćuje manje od minimalca?", a: "Isplata ispod minimalne zarade je prekršaj — kazna za pravno lice je 800.000 do 2.000.000 RSD. Zaposleni može da se obrati inspekciji rada, a razliku zarade može da potražuje sudski; novčana potraživanja iz radnog odnosa zastarevaju u roku od 3 godine (čl. 196 Zakona o radu)." },
     ],
     related: [
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
       { href: "/prosecna-zarada", label: "Prosečna zarada u Srbiji" },
@@ -1390,7 +1308,7 @@ export function RadniDaniPage() {
       { href: "/praznici-2026", label: "Praznici 2026" },
       { href: "/minimalna-zarada", label: "Minimalna zarada — minimalac 2026. i 2027." },
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
     ],
     // Verifikovano 6.7.2026: fond potvrđen uz Paragraf tabelu minimalne zarade 2026 (261 dan / 2.088 h).
     sourceNote: <>Izvor: Zakon o državnim i drugim praznicima u RS (Sl. glasnik RS); fond sati usklađen sa zvaničnom tabelom minimalne zarade za 2026.</>,
@@ -1430,7 +1348,7 @@ export function PrazniciPage() {
     related: [
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
       { href: "/minimalna-zarada", label: "Minimalna zarada — minimalac 2026. i 2027." },
-      { href: "/bruto-neto", label: "Bruto u neto kalkulator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
       { href: "/bolovanje", label: "Kalkulator bolovanja" },
     ],
     // VERIFY (owner): confirm praznici2026 dates against the official Vlada RS decision on neradni dani before publishing.

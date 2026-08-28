@@ -266,7 +266,7 @@ II stub (obavezno privatno) — još uvek **nije uveden** u Srbiji, za razliku o
 Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od staža kroz decenije), možete ga koristiti da:
 
 1. Vidite tačno **koliko doprinosa za PIO** se uplaćuje iz vaše zarade (14% na teret zaposlenog + 10% na teret poslodavca)
-2. Razumete [razliku između bruto i neto](/bruto-neto) — penzija se računa iz **bruto** zarade
+2. Razumete [razliku između bruto i neto](/) — penzija se računa iz **bruto** zarade
 3. Optimizujete strukturu zarade za što veće lične bodove
 
 ## Izvori i korisni linkovi

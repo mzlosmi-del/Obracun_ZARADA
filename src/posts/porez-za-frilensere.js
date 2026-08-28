@@ -98,7 +98,7 @@ Porez i doprinosi plaćaju se u istom roku u kojem se podnosi prijava.
 
 Ako imate redovne i veće prihode, razmotrite i **paušalno oporezivanje** kao preduzetnik — u pojedinim slučajevima je ukupna obaveza niža nego kod samooporezivanja. Za **povremene, jednokratne poslove** pogledajte i [ugovor o delu](/blog/ugovor-o-delu). Za procenu konkretne situacije konsultujte knjigovođu.
 
-Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija) i [razlici između bruto i neto zarade](/bruto-neto), a zaradu iz radnog odnosa izračunajte [kalkulatorom zarade](/).
+Pogledajte i naš vodič o [doprinosima u Srbiji](/blog/doprinosi-srbija), a zaradu iz radnog odnosa izračunajte [bruto u neto kalkulatorom](/).
 
 ## Izvori i korisni linkovi
 

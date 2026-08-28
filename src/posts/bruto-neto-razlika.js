@@ -47,7 +47,7 @@ Za zaradu od 100.000 RSD bruto 1, ukupan trošak poslodavca iznosi oko **115.150
 
 ## Probajte sami
 
-Za precizan obračun koristite naš [bruto u neto kalkulator](/bruto-neto) kada iz bruto 1 računate neto, odnosno [neto u bruto kalkulator](/neto-bruto) za obrnuti smer — iz željenog neto iznosa dobijate bruto 1 i ukupan trošak poslodavca. Možete koristiti i [glavni kalkulator zarade](/) koji radi u oba smera.
+Za precizan obračun koristite naš [bruto u neto kalkulator](/) kada iz bruto 1 računate neto, odnosno [neto u bruto kalkulator](/neto-bruto) za obrnuti smer — iz željenog neto iznosa dobijate bruto 1 i ukupan trošak poslodavca. Možete koristiti i [glavni kalkulator zarade](/) koji radi u oba smera.
 
 ## Izvori i korisni linkovi
 

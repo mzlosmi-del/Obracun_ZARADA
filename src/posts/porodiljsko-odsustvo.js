@@ -87,7 +87,7 @@ Posle odluke Ustavnog suda (IUz-60/2021) i izmena zakona, u zbir ulaze i osnovic
 
 ### Primer 1: radila svih 18 meseci
 
-Zaposlena sa bruto 1 zaradom od 100.000 RSD u svih 18 meseci: zbir osnovica = 1.800.000 RSD, mesečna osnovica = **100.000 RSD bruto**. Neto koji stiže na račun ≈ **73.522 RSD** — isto kao neto zarada, što možete proveriti u [bruto u neto kalkulatoru](/bruto-neto).
+Zaposlena sa bruto 1 zaradom od 100.000 RSD u svih 18 meseci: zbir osnovica = 1.800.000 RSD, mesečna osnovica = **100.000 RSD bruto**. Neto koji stiže na račun ≈ **73.522 RSD** — isto kao neto zarada, što možete proveriti u [bruto u neto kalkulatoru](/).
 
 ### Primer 2: radila 9 od 18 meseci
 

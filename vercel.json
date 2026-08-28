@@ -6,7 +6,7 @@
   "redirects": [
     {
       "source": "/blog/bruto-neto-razlika",
-      "destination": "https://www.platnilistic.rs/bruto-neto",
+      "destination": "https://www.platnilistic.rs/",
       "permanent": true
     },
     {
@@ -27,6 +27,11 @@
     {
       "source": "/blog/minimalna-zarada-2025",
       "destination": "https://www.platnilistic.rs/minimalna-zarada",
+      "permanent": true
+    },
+    {
+      "source": "/bruto-neto",
+      "destination": "https://www.platnilistic.rs/",
       "permanent": true
     },
     {

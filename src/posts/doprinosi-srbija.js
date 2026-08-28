@@ -45,7 +45,7 @@ Ako zaposleni prima zaradu ispod najniže osnovice, doprinosi se ipak računaju 
 
 Poslodavac je odgovoran za obračun i uplatu svih doprinosa (i zaposlenih i svojih) zajedno sa isplatom zarade. Rok za uplatu je isti dan kada se isplaćuje zarada.
 
-Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarade](/) — automatski primenjuje aktuelne stope i osnovice. Pogledajte i pregled [razlike između bruto 1 i bruto 2](/bruto-neto) gde su doprinosi stavljeni u kontekst.
+Za precizan obračun doprinosa na vašu zaradu, koristite naš [kalkulator zarade](/) — automatski primenjuje aktuelne stope i osnovice. Isti kalkulator prikazuje i razliku između bruto 1 i bruto 2, gde su doprinosi stavljeni u kontekst.
 
 ## Izvori i korisni linkovi
 

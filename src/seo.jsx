@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 const SITE_URL = "https://www.platnilistic.rs";
-const DEFAULT_TITLE = "Kalkulator zarade 2026 — bruto u neto obračun plate | PlatniListić";
-const DEFAULT_DESCRIPTION = "Besplatni platni listić i kalkulator zarade — bruto u neto obračun plate u Srbiji za 2026. Porez, doprinosi, bolovanje, minuli rad i PDF export.";
+const DEFAULT_TITLE = "Bruto u neto kalkulator 2026 — obračun plate | PlatniListić";
+const DEFAULT_DESCRIPTION = "Unesite bruto i odmah vidite neto — porez, doprinosi i minuli rad za 2026. Obračun u oba smera, PDF platni listić i PPP-PD XML. Besplatno, bez registracije.";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 function setMeta(name, content, attr = "name") {

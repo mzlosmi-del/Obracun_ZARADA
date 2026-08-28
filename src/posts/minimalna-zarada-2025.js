@@ -35,7 +35,7 @@ Minimalnu zaradu utvrđuje Vlada Republike Srbije na predlog Socijalno-ekonomsko
 
 Sledeća revizija stupila je na snagu 1. januara 2026. godine („Sl. glasnik RS" br. 78/2025) — pogledajte [minimalna zarada za 2026.](/minimalna-zarada) za aktuelne iznose.
 
-Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/bruto-neto), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
+Za tačan neto iznos na osnovu bruto zarade koristite [bruto u neto kalkulator](/), a detalje o odbicima pogledajte u vodiču [doprinosi za socijalno osiguranje](/blog/doprinosi-srbija).
 
 ## Izvori i korisni linkovi
 

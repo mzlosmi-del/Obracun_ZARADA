@@ -38,7 +38,6 @@ Izvor strane: https://www.platnilistic.rs/minimalna-zarada
 ## Kalkulatori
 
 - [Kalkulator zarade (početna)](https://www.platnilistic.rs/): pun obračun plate sa svim uvećanjima, PDF i XML
-- [Bruto u neto](https://www.platnilistic.rs/bruto-neto): brzi dvosmerni obračun sa tabelom
 - [Neto u bruto](https://www.platnilistic.rs/neto-bruto): obrnuti obračun
 - [Paušal kalkulator](https://www.platnilistic.rs/pausal): paušalni porez i doprinosi preduzetnika
 - [Bolovanje](https://www.platnilistic.rs/bolovanje): naknada za privremenu sprečenost

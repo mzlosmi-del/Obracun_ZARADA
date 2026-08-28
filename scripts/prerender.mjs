@@ -11,7 +11,7 @@ const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITE_URL = "https://www.platnilistic.rs";
 
-const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/bruto-neto", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/godisnji-odmor", "/jubilarna-nagrada", "/ugovor-o-delu", "/minimalna-zarada", "/radni-dani-2026", "/praznici-2026", "/prosecna-zarada", "/neoporezivi-iznos-2026", "/stope-doprinosa-2026"];
+const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/privatnost", "/uslovi", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/godisnji-odmor", "/jubilarna-nagrada", "/ugovor-o-delu", "/minimalna-zarada", "/radni-dani-2026", "/praznici-2026", "/prosecna-zarada", "/neoporezivi-iznos-2026", "/stope-doprinosa-2026"];
 
 // Blog posts that 301-redirect to a canonical page (see vercel.json). They must
 // NOT be prerendered or listed in the sitemap — a redirected URL in the sitemap
@@ -44,7 +44,6 @@ function sitemapXml() {
     "/o-nama": { changefreq: "monthly", priority: "0.6", lastmod: new Date().toISOString().slice(0, 10) },
     "/privatnost": { changefreq: "yearly", priority: "0.3", lastmod: "2025-02-01" },
     "/uslovi": { changefreq: "yearly", priority: "0.3", lastmod: "2025-02-01" },
-    "/bruto-neto": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/neto-bruto": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/pausal": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/bolovanje": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },

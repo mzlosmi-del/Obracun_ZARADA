@@ -17,7 +17,6 @@ const PolitikaPrivatnosti = lazy(() => import("./Legal.jsx").then(m => ({ defaul
 const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: m.UsloviKoriscenja })));
 const ONama = lazy(() => import("./About.jsx").then(m => ({ default: m.ONama })));
 const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
-const BrutoNetoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BrutoNetoPage })));
 const NetoBrutoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NetoBrutoPage })));
 const PausalPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PausalPage })));
 const BolovanjePage = lazy(() => import("./pages.jsx").then(m => ({ default: m.BolovanjePage })));
@@ -1284,7 +1283,7 @@ const HOME_FAQ = [
   },
   {
     q: "Koja je razlika između bruto 1, bruto 2 i neto zarade?",
-    a: "Bruto 1 je ugovorena zarada, neto je iznos na račun, a bruto 2 je ukupan trošak poslodavca (Bruto 1 + doprinosi poslodavca). Pogledajte vodič o razlici između bruto i neto zarade.",
+    a: "Bruto 1 je ugovorena zarada i osnovica za porez i doprinose zaposlenog, neto je iznos koji stiže na račun, a bruto 2 je bruto 1 uvećan za doprinose poslodavca (15,15%) — ukupan trošak rada. Za bruto 1 od 100.000 RSD: neto ≈ 73.522, bruto 2 ≈ 115.150 RSD.",
   },
   {
     q: "Kako se računa neto u bruto zaradu?",
@@ -1306,16 +1305,32 @@ const HOME_FAQ = [
     q: "Šta je bruto 2?",
     a: "Bruto 2 je ukupan trošak rada za poslodavca — bruto 1 uvećan za doprinose na teret poslodavca (15,15%). Za bruto 1 od 100.000 RSD, bruto 2 je oko 115.150 RSD.",
   },
+  {
+    q: "Ako je bruto plata 50.000 dinara, koliki je neto?",
+    a: "Neto je ≈ 38.214 RSD. Doprinosi se u ovom slučaju ne obračunavaju na 50.000 RSD nego na najnižu mesečnu osnovicu od 51.297 RSD, pa iznose 10.208 RSD, a porez je 1.578 RSD (10% na deo iznad neoporezivih 34.221 RSD).",
+  },
+  {
+    q: "Da li se porez plaća na ceo bruto iznos zarade?",
+    a: "Ne. Porez od 10% plaća se samo na deo bruto 1 zarade iznad neoporezivog iznosa (34.221 RSD za 2026). Doprinosi zaposlenog (19,90%), za razliku od poreza, obračunavaju se na celu bruto 1 zaradu.",
+  },
+  {
+    q: "Da li bruto zarada uključuje doprinose poslodavca?",
+    a: "Ne, bruto 1 (ugovorena zarada) ne uključuje doprinose poslodavca. Oni se dodaju posebno (15,15%) i formiraju bruto 2 — stvaran trošak rada za poslodavca, koji je uvek veći od bruto 1.",
+  },
+  {
+    q: "Da li je obračun besplatan?",
+    a: "Da, kalkulator je besplatan i ne zahteva registraciju. Rezultat preuzimate kao PDF platni listić i PPP-PD XML.",
+  },
 ];
 
 function HomePage() {
   useSeo({
-    title: "Kalkulator zarade 2026 — bruto u neto obračun plate | PlatniListić",
-    description: "Besplatan kalkulator zarade za Srbiju 2026 — bruto u neto obračun plate, porez, doprinosi, minuli rad i bolovanje. PDF platni listić i PPP-PD XML. Izračunajte za 10 sekundi.",
+    title: "Bruto u neto kalkulator 2026 — obračun plate | PlatniListić",
+    description: "Unesite bruto i odmah vidite neto — porez, doprinosi i minuli rad za 2026. Obračun u oba smera, PDF platni listić i PPP-PD XML. Besplatno, bez registracije.",
     path: "/",
     jsonLd: webAppLd({
-      name: "PlatniListić — Kalkulator zarade Srbija 2026",
-      description: "Besplatan online kalkulator za obračun zarade u Srbiji: obračun plate, porez, doprinosi, prekovremeni i minuli rad, bolovanje, otpremnina i PDF platni listić.",
+      name: "PlatniListić — Bruto u neto kalkulator, Srbija 2026",
+      description: "Besplatan online bruto u neto kalkulator za Srbiju: obračun plate u oba smera, porez, doprinosi, prekovremeni i minuli rad, bolovanje, otpremnina i PDF platni listić.",
       path: "/",
     }),
     faq: HOME_FAQ,
@@ -1332,10 +1347,10 @@ function HomePage() {
         </div>
       </header>
       <section className="home-intro">
-        <h1 className="home-intro-title">Kalkulator zarade 2026 — obračun plate za Srbiju</h1>
+        <h1 className="home-intro-title">Bruto u neto kalkulator 2026 — obračun plate za Srbiju</h1>
         <FreshnessStamp date="avgust 2026." />
         <p>
-          Besplatan <strong>kalkulator zarade</strong> za obračun plate u Srbiji u 2026. godini.
+          Besplatan <strong>bruto u neto kalkulator</strong> za obračun plate u Srbiji u 2026. godini.
           Izračunajte porez na zaradu, doprinose, prekovremeni i minuli rad, bolovanje, otpremninu
           i regres — u oba smera obračuna. Rezultat preuzimate kao PDF platni listić i PPP-PD XML
           datoteku.
@@ -1348,14 +1363,13 @@ function HomePage() {
           kalkulator ispod.
         </p>
         <p className="home-examples-note">
-          Za brzu tabelu i smerni obračun: <a href="/bruto-neto">bruto u neto kalkulator</a>.
+          Za obrnuti smer obračuna koristite <a href="/neto-bruto">neto u bruto kalkulator</a>.
         </p>
       </section>
       <CalculatorPage />
       <nav className="home-tools" aria-label="Kalkulatori i alati">
         <h2 className="home-tools-title">Kalkulatori i alati</h2>
         <ul>
-          <li><a href="/bruto-neto">Bruto neto kalkulator</a></li>
           <li><a href="/neto-bruto">Neto u bruto kalkulator</a></li>
           <li><a href="/pausal">Paušal kalkulator</a></li>
           <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
@@ -1390,19 +1404,33 @@ function HomePage() {
             <tr><td>Najviša mesečna osnovica doprinosa</td><td>{DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD</td></tr>
           </tbody>
         </table>
-        <p>Neoporezivi iznos za 2026. utvrđen je izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 109/2025), a stope doprinosa objavljuje CROSO. Doprinosi se obračunavaju u granicama najniže i najviše mesečne osnovice.</p>
+        <p>Porez na zaradu uređuje Zakon o porezu na dohodak građana (stopa {DEFAULT_RATES.taxRate}%, neoporezivi iznos utvrđen izmenama zakona, „Sl. glasnik RS" br. 109/2025), a doprinose za obavezno socijalno osiguranje Zakon o doprinosima za obavezno socijalno osiguranje, koji propisuje stope za PIO, zdravstveno osiguranje i osiguranje za slučaj nezaposlenosti, kao i najnižu i najvišu mesečnu osnovicu doprinosa. Iznose osnovica za tekuću godinu objavljuje CROSO, dok neoporezivi iznos zarade usklađuje Ministarstvo finansija godišnjim indeksiranjem.</p>
         <h2>Bruto 1, bruto 2 i neto — u čemu je razlika</h2>
-        <p><strong>Bruto 1</strong> je ugovorena zarada i osnovica za porez i doprinose zaposlenog. <strong>Neto</strong> je iznos na račun. <strong>Bruto 2</strong> je bruto 1 uvećan za doprinose na teret poslodavca ({(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}%) i predstavlja stvaran trošak rada. Detaljan obračun u oba smera radite kroz <a href="/bruto-neto">bruto u neto kalkulator</a> i <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>
-        <h2>Primeri obračuna zarade 2026</h2>
-        <p>Tri obračuna po važećoj formuli (neto zaokružen):</p>
-        <table className="ref-table" aria-label="Primeri obračuna zarade 2026">
+        <p><strong>Bruto 1</strong> je ugovorena zarada i osnovica za porez i doprinose zaposlenog. <strong>Neto</strong> je iznos na račun. <strong>Bruto 2</strong> je bruto 1 uvećan za doprinose na teret poslodavca ({(DEFAULT_RATES.pio_er + DEFAULT_RATES.health_er).toLocaleString("sr-RS")}%) i predstavlja stvaran trošak rada. Detaljan obračun radite kroz kalkulator na vrhu ove strane, a obrnuti smer kroz <a href="/neto-bruto">neto u bruto kalkulator</a>.</p>
+        <h2>Tabela: bruto u neto za 2026 — primeri obračuna</h2>
+        <p>Obračun po važećoj formuli za najčešće iznose zarada (neto zaokružen):</p>
+        <table className="ref-table" aria-label="Tabela bruto u neto 2026 — primeri obračuna">
           <thead><tr><th>Bruto 1 (RSD)</th><th>Doprinosi</th><th>Porez</th><th>Neto ≈</th><th>Bruto 2 ≈</th></tr></thead>
           <tbody>
+            <tr><td>50.000</td><td>10.208</td><td>1.578</td><td>38.214</td><td>57.575</td></tr>
+            <tr><td>60.000</td><td>11.940</td><td>2.578</td><td>45.482</td><td>69.090</td></tr>
+            <tr><td>70.000</td><td>13.930</td><td>3.578</td><td>52.492</td><td>80.605</td></tr>
+            <tr><td>80.000</td><td>15.920</td><td>4.578</td><td>59.502</td><td>92.120</td></tr>
             <tr><td>87.207 (minimalac)</td><td>17.354</td><td>5.299</td><td>64.554</td><td>100.419</td></tr>
             <tr><td>100.000</td><td>19.900</td><td>6.578</td><td>73.522</td><td>115.150</td></tr>
+            <tr><td>120.000</td><td>23.880</td><td>8.578</td><td>87.542</td><td>138.180</td></tr>
             <tr><td>150.000</td><td>29.850</td><td>11.578</td><td>108.572</td><td>172.725</td></tr>
+            <tr><td>200.000</td><td>39.800</td><td>16.578</td><td>143.622</td><td>230.300</td></tr>
           </tbody>
         </table>
+        <p className="home-examples-note">Kod bruto 1 ispod najniže mesečne osnovice ({DEFAULT_RATES.minBase.toLocaleString("sr-RS")} RSD) doprinosi se obračunavaju na tu osnovicu, a ne na stvarni bruto — zato je kod 50.000 RSD doprinos 10.208, a ne 9.950 RSD. Iznosi su zaokruženi; za tačan obračun unesite svoju zaradu u kalkulator iznad.</p>
+        <h2>Česte greške u obračunu bruto u neto</h2>
+        <ul>
+          <li>Primena poreza na celu bruto zaradu umesto samo na deo iznad neoporezivih {DEFAULT_RATES.nonTaxable.toLocaleString("sr-RS")} RSD — porez se plaća samo na poresku osnovicu (bruto 1 − neoporezivi iznos), nikad na ceo bruto 1.</li>
+          <li>Mešanje bruto 1 i bruto 2 — doprinosi zaposlenog i porez obračunavaju se na bruto 1 (ugovorenu zaradu), dok je bruto 2 već uvećan za doprinose poslodavca i ne sme se ponovo koristiti kao osnovica za porez.</li>
+          <li>Primena stope doprinosa (19,90%) na ceo bruto bez uvažavanja najniže osnovice — ako je bruto 1 ispod {DEFAULT_RATES.minBase.toLocaleString("sr-RS")} RSD, doprinosi se svejedno obračunavaju na najnižu mesečnu osnovicu, ne na stvarno niži bruto.</li>
+          <li>Zanemarivanje najviše mesečne osnovice ({DEFAULT_RATES.maxBase.toLocaleString("sr-RS")} RSD) kod visokih zarada — iznad tog praga doprinosi se dalje ne uvećavaju srazmerno bruto zaradi.</li>
+        </ul>
         <h2>Uvećana zarada — dodaci i minuli rad</h2>
         <p>Na osnovnu zaradu dodaju se zakonska uvećanja (čl. 108 Zakona o radu): prekovremeni rad, noćni rad, rad vikendom i praznikom, kao i minuli rad — najmanje 0,4% po godini staža kod istog poslodavca. Sva uvećanja ulaze u bruto 1 i podležu porezu i doprinosima. Vidite <a href="/dodaci-na-zaradu">kalkulator dodataka na zaradu</a> i <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
       </section>
@@ -1438,9 +1466,9 @@ function HomePage() {
         <div className="home-faq-item">
           <h3>Koja je razlika između bruto 1, bruto 2 i neto zarade?</h3>
           <p>
-            Bruto 1 je ugovorena zarada, neto je iznos na račun, a bruto 2 je ukupan trošak poslodavca
-            (Bruto 1 + doprinosi poslodavca). Pogledajte vodič o
-            <a href="/bruto-neto"> razlici između bruto i neto zarade</a>.
+            Bruto 1 je ugovorena zarada i osnovica za porez i doprinose zaposlenog, neto je iznos
+            koji stiže na račun, a bruto 2 je bruto 1 uvećan za doprinose poslodavca (15,15%) —
+            ukupan trošak rada. Za bruto 1 od 100.000 RSD: neto ≈ 73.522, bruto 2 ≈ 115.150 RSD.
           </p>
         </div>
         <div className="home-faq-item">
@@ -1482,6 +1510,37 @@ function HomePage() {
             poslodavca (15,15%). Za bruto 1 od 100.000 RSD, bruto 2 je oko 115.150 RSD.
           </p>
         </div>
+        <div className="home-faq-item">
+          <h3>Ako je bruto plata 50.000 dinara, koliki je neto?</h3>
+          <p>
+            Neto je ≈ 38.214 RSD. Doprinosi se u ovom slučaju ne obračunavaju na 50.000 RSD nego na
+            najnižu mesečnu osnovicu od 51.297 RSD, pa iznose 10.208 RSD, a porez je 1.578 RSD
+            (10% na deo iznad neoporezivih 34.221 RSD).
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Da li se porez plaća na ceo bruto iznos zarade?</h3>
+          <p>
+            Ne. Porez od 10% plaća se samo na deo bruto 1 zarade iznad neoporezivog iznosa
+            (34.221 RSD za 2026). Doprinosi zaposlenog (19,90%), za razliku od poreza, obračunavaju
+            se na celu bruto 1 zaradu.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Da li bruto zarada uključuje doprinose poslodavca?</h3>
+          <p>
+            Ne, bruto 1 (ugovorena zarada) ne uključuje doprinose poslodavca. Oni se dodaju posebno
+            (15,15%) i formiraju bruto 2 — stvaran trošak rada za poslodavca, koji je uvek veći od
+            bruto 1.
+          </p>
+        </div>
+        <div className="home-faq-item">
+          <h3>Da li je obračun besplatan?</h3>
+          <p>
+            Da, kalkulator je besplatan i ne zahteva registraciju. Rezultat preuzimate kao PDF
+            platni listić i PPP-PD XML.
+          </p>
+        </div>
       </section>
       <nav className="home-guides" aria-label="Popularni vodiči o zaradi">
         <h2 className="home-guides-title">Popularni vodiči</h2>
@@ -1518,8 +1577,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   const navItems = [
-    { path: "/", icon: "⚡", label: "Kalkulator" },
-    { path: "/bruto-neto", icon: "🔁", label: "Bruto u neto" },
+    { path: "/", icon: "⚡", label: "Bruto u neto" },
     { path: "/neto-bruto", icon: "🔁", label: "Neto u bruto" },
     { path: "/pausal", icon: "🧾", label: "Paušal" },
     { path: "/bolovanje", icon: "🏥", label: "Bolovanje" },
@@ -1577,7 +1635,7 @@ export default function App() {
         <div className="main-inner">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/bruto-neto" element={<Suspense fallback={<RouteLoader />}><BrutoNetoPage /></Suspense>} />
+            <Route path="/bruto-neto" element={<Navigate to="/" replace />} />
             <Route path="/neto-bruto" element={<Suspense fallback={<RouteLoader />}><NetoBrutoPage /></Suspense>} />
             <Route path="/pausal" element={<Suspense fallback={<RouteLoader />}><PausalPage /></Suspense>} />
             <Route path="/bolovanje" element={<Suspense fallback={<RouteLoader />}><BolovanjePage /></Suspense>} />

@@ -28,7 +28,7 @@ Da nema neoporezivog iznosa, porez bi bio 10.000 RSD — dakle, **ušteda iznosi
 
 ## Promena u odnosu na 2025. godinu
 
-Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% (izmene zakona, „Sl. glasnik RS" 109/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/minimalna-zarada) i [razliku između bruto i neto zarade](/bruto-neto).
+Tokom 2025. godine neoporezivi iznos je bio **28.423 RSD**. Za isplate zarada od 1. januara 2026. povećan je na **34.221 RSD** — rast od preko 20% (izmene zakona, „Sl. glasnik RS" 109/2025); prvo naredno usklađivanje je 1. januara 2027. Pogledajte i pregled [minimalne zarade za 2026. godinu](/minimalna-zarada) i [razliku između bruto i neto zarade](/).
 
 ## Važno napomenuti
 

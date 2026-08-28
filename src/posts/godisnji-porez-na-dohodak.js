@@ -27,7 +27,7 @@ Obveznik je fizičko lice čiji dohodak u kalendarskoj godini pređe cenzus od t
 - **rezidenti Srbije** prijavljuju svetski dohodak (i ono što su zaradili u inostranstvu),
 - **nerezidenti** samo dohodak ostvaren u Srbiji.
 
-Ključno je da se sa cenzusom poredi **neto dohodak** — zbir prihoda *posle* poreza i doprinosa koji su na njih već plaćeni u toku godine. Za zaposlenog je to praktično zbir neto zarada koje su mu legle na račun (koliki je odnos bruto i neto pokazuje [bruto u neto kalkulator](/bruto-neto)). Cenzus od 5.439.096 RSD za 2025. odgovara proseku od oko **453.258 RSD neto mesečno** — zato velika većina zaposlenih, čak i sa duplo većom platom od [prosečne](/blog/prosecna-plata-srbija), nikada ne postane obveznik.
+Ključno je da se sa cenzusom poredi **neto dohodak** — zbir prihoda *posle* poreza i doprinosa koji su na njih već plaćeni u toku godine. Za zaposlenog je to praktično zbir neto zarada koje su mu legle na račun (koliki je odnos bruto i neto pokazuje [bruto u neto kalkulator](/)). Cenzus od 5.439.096 RSD za 2025. odgovara proseku od oko **453.258 RSD neto mesečno** — zato velika većina zaposlenih, čak i sa duplo većom platom od [prosečne](/blog/prosecna-plata-srbija), nikada ne postane obveznik.
 
 ## Koji prihodi ulaze u dohodak — a koji ne
 

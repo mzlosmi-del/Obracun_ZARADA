@@ -167,7 +167,7 @@ Odštampajte i prođite jednom mesečno:
 8. Nijedan zdravstveni podatak zaposlenog nije unet u kadrovsku evidenciju niti prosleđen rukovodiocu.
 9. Slučajevi u kojima ne važi granica od 30 dana su izdvojeni: povreda na radu i profesionalna bolest (poslodavac plaća od prvog dana do kraja, čl. 101 st. 3 ZZO) i slučajevi u kojima RFZO obezbeđuje sredstva od prvog dana (davanje organa, ćelija i tkiva; nega deteta mlađeg od tri godine; izolacija kao kliconoša ili zbog zaraznih bolesti u okolini).
 
-Za obračun neto iznosa koji ide na platni listić koristite [bruto u neto kalkulator](/bruto-neto), a za odsustva koja se često preklapaju sa bolovanjem pogledajte [naknadu za godišnji odmor](/blog/godisnji-odmor-naknada) i [porodiljsko odsustvo](/blog/porodiljsko-odsustvo). O tome kako se doprinosi ponašaju na sniženu osnovicu naknade pišemo u vodiču o [doprinosima za socijalno osiguranje](/blog/doprinosi-srbija).
+Za obračun neto iznosa koji ide na platni listić koristite [bruto u neto kalkulator](/), a za odsustva koja se često preklapaju sa bolovanjem pogledajte [naknadu za godišnji odmor](/blog/godisnji-odmor-naknada) i [porodiljsko odsustvo](/blog/porodiljsko-odsustvo). O tome kako se doprinosi ponašaju na sniženu osnovicu naknade pišemo u vodiču o [doprinosima za socijalno osiguranje](/blog/doprinosi-srbija).
 
 ## Izvori
 

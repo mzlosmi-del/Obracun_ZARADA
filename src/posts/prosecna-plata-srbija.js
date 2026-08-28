@@ -33,7 +33,7 @@ Prosečna zarada varira iz meseca u mesec, zavisno od isplata bonusa, broja radn
 | Maj | 163.470 din | 118.398 din | 93.277 din |
 | Jun | 166.123 din | 120.401 din | 94.281 din |
 
-U periodu januar–jun 2026, u odnosu na isti period prethodne godine, prosečna neto zarada nominalno je veća za **11,5%**, a realno (nakon inflacije) za **8,4%** — plate i dalje rastu brže od cena. Posmatrano samo za jun 2026. u odnosu na jun 2025, neto zarada je nominalno veća za **12,4%**, a realno za **9,4%**. Kompletna [tabela prosečnih zarada po mesecima](/prosecna-zarada) sa zvaničnim podacima RZS-a dostupna je na posebnoj stranici. Razliku između bruto i neto iznosa objašnjavamo u vodiču [bruto-neto razlika](/bruto-neto), a sastav doprinosa u tekstu [doprinosi u Srbiji](/blog/doprinosi-srbija).
+U periodu januar–jun 2026, u odnosu na isti period prethodne godine, prosečna neto zarada nominalno je veća za **11,5%**, a realno (nakon inflacije) za **8,4%** — plate i dalje rastu brže od cena. Posmatrano samo za jun 2026. u odnosu na jun 2025, neto zarada je nominalno veća za **12,4%**, a realno za **9,4%**. Kompletna [tabela prosečnih zarada po mesecima](/prosecna-zarada) sa zvaničnim podacima RZS-a dostupna je na posebnoj stranici. Razliku između bruto i neto iznosa objašnjavamo u vodiču [bruto-neto razlika](/), a sastav doprinosa u tekstu [doprinosi u Srbiji](/blog/doprinosi-srbija).
 
 ## Medijalna plata u Srbiji 2026
 

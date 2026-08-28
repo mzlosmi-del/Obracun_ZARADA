@@ -115,7 +115,7 @@ Papirna doznaka od **1. januara 2026.** više ne postoji: izabrani lekar izdaje 
 3. **„Sa deset godina staža dobijam 100%."** Visina naknade ne zavisi od dužine staža osiguranja — zavisi isključivo od razloga sprečenosti za rad i od onoga što je ugovoreno kao povoljnije.
 4. **„Posle 30 dana obavezno ide komisija."** Za četiri kategorije osiguranika izabrani lekar sam utvrđuje sprečenost do 60 dana.
 5. **„Kod preduzetnika i dalje važi papirna doznaka do 2027."** Ne. Do 1. januara 2027. produžen je samo rok da se **preduzetnik kao poslodavac** registruje u sistem e-Bolovanje. Obaveza zaposlenog da poslodavcu dostavi doznaku prestala je 1. januara 2026. kod svih poslodavaca.
-6. **Obračun od neto zarade.** Osnov je prosečna **bruto** zarada u prethodnih 12 meseci; naknada podleže porezu i doprinosima kao i redovna zarada. Razliku bruto i neto iznosa objašnjava vodič [bruto i neto zarada — u čemu je razlika](/blog/bruto-neto-razlika).
+6. **Obračun od neto zarade.** Osnov je prosečna **bruto** zarada u prethodnih 12 meseci; naknada podleže porezu i doprinosima kao i redovna zarada. Razliku bruto i neto iznosa razlaže [bruto u neto kalkulator](/).
 
 ## Kalkulator obračuna bolovanja do 30 dana (sa PDF-om)
 
