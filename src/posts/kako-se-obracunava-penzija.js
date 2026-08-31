@@ -1,11 +1,71 @@
-// Body for "kako-se-obracunava-penzija". Split out of posts.js so a reader
+// Body + FAQ for "kako-se-obracunava-penzija". Split out of posts.js so a reader
 // downloads only the article they open — see loadPostBody() in Blog.jsx.
+
+// Tražnja za penzijom ima dva sloja: trajni (kako se obračunava) i mesečni
+// (kada stiže novac). Drugi sloj je dokazano najprofitabilniji obrazac koji
+// sajt ima — vidi AUDIT-2026-08-24-spike i /blog/porodiljsko-odsustvo, gde su
+// upiti sa imenom meseca imali NULA prikaza nedelju pre intervencije, a posle
+// nje CTR 13–24%. Zato strana sama imenuje mesec. Peče se u prerenderu pri
+// svakom deploy-u, a u browseru se računa uživo → sajt mora da se deployuje
+// bar jednom mesečno, u prvih nekoliko dana.
+const MESECI = ["januar", "februar", "mart", "april", "maj", "jun", "jul", "avgust", "septembar", "oktobar", "novembar", "decembar"];
+// Genitiv — obavezan posle rednog broja: „2. septembra", ne „2. septembar".
+const MESECI_GEN = ["januara", "februara", "marta", "aprila", "maja", "juna", "jula", "avgusta", "septembra", "oktobra", "novembra", "decembra"];
+// Lokativ — obavezan posle predloga „u": „u avgustu", ne „u avgusta". Genitiv
+// iznad važi samo posle rednog broja („2. avgusta") i posle „tokom".
+const MESECI_LOK = ["januaru", "februaru", "martu", "aprilu", "maju", "junu", "julu", "avgustu", "septembru", "oktobru", "novembru", "decembru"];
+const _danas = new Date();
+const _m = _danas.getMonth();
+const GODINA = _danas.getFullYear();
+// Penzija za mesec M isplaćuje se tokom meseca M+1. U svakom trenutku teku dva
+// ciklusa, pa strana imenuje oba: isplata za PROŠLI mesec (traje sada) i
+// isplata za TEKUĆI mesec (sledećeg meseca). Bez toga bi strana bila tačna
+// samo prvih deset dana u mesecu.
+const _prev = (_m + 11) % 12;
+const _next = (_m + 1) % 12;
+const ZA_MESEC = MESECI[_prev];
+const ZA_MESEC_GOD = _m === 0 ? GODINA - 1 : GODINA;
+const U_MESECU_GEN = MESECI_GEN[_m];
+const U_MESECU_LOK = MESECI_LOK[_m];
+const SLED_ZA_MESEC = MESECI[_m];
+const SLED_U_MESECU_GEN = MESECI_GEN[_next];
+const SLED_U_MESECU_LOK = MESECI_LOK[_next];
+const SLED_GODINA = _m === 11 ? GODINA + 1 : GODINA;
+
 export const body = `
 ![Kako se obračunava penzija u Srbiji](https://images.unsplash.com/photo-1556742044-3c52d6e88c62?w=800&q=80)
 
 > **Provereno i ažurirano: 28. avgust 2026.** Vrednost opšteg boda (1.674,67 RSD) i zakonski najniži iznosi penzija provereni su prema podacima Republičkog fonda za PIO nakon usklađivanja od 12,2% u decembru 2025. Ranija verzija ovog vodiča navodila je procenjenu vrednost opšteg boda od ~1.620 RSD — svi primeri obračuna su preračunati. Iznosi se menjaju svakim usklađivanjem, pa ih pre obračuna proverite na sajtu Fonda PIO.
 
 Pitanje **„kako se obračunava penzija u Srbiji"** najčešće je pitanje koje Fond PIO dobija od budućih penzionera. Sistem deluje komplikovano jer se sastoji iz više elemenata — **ličnog koeficijenta**, **penzijskog staža**, **ličnih bodova** i **vrednosti opšteg boda**. U ovom vodiču objašnjavamo formulu korak po korak, sa konkretnim primerima obračuna prema **Zakonu o penzijskom i invalidskom osiguranju** (ZPIO).
+
+**Isplata penzija za ${ZA_MESEC} ${ZA_MESEC_GOD}** počinje **2. ${U_MESECU_GEN}** za korisnike iz samostalnih delatnosti, a bivši zaposleni — najbrojnija kategorija — novac dobijaju **oko 9–10. ${U_MESECU_GEN}**. Zakon ne propisuje kalendarski datum isplate; raspored objavljuje Fond PIO svakog meseca. Ceo kalendar po kategorijama je odmah ispod, a formula za obračun iznosa u nastavku teksta.
+
+## Isplata penzija za ${ZA_MESEC} ${ZA_MESEC_GOD} — datumi po kategorijama
+
+Penzija se u Srbiji isplaćuje **unazad**: penzija za jedan mesec stiže tokom **narednog** meseca. Zato se u ${U_MESECU_LOK} ${GODINA}. isplaćuje penzija **za ${ZA_MESEC} ${ZA_MESEC_GOD}**, a penzija za ${SLED_ZA_MESEC} stiže tek u ${SLED_U_MESECU_LOK} ${SLED_GODINA}.
+
+**Ono što se retko negde kaže: zakon ne propisuje datum isplate.** U Zakonu o penzijskom i invalidskom osiguranju ne postoji odredba tipa „penzija se isplaćuje 10. u mesecu" — čl. 84 uređuje od kada se pravo ostvaruje, čl. 80 usklađivanje, ali kalendarski dan isplate nigde nije određen. Raspored utvrđuje i objavljuje **Fond PIO za svaki mesec posebno**, pa se dan može pomeriti za dan-dva, najčešće zbog vikenda i praznika.
+
+### Uobičajeni raspored po kategorijama
+
+| Kategorija | Na tekuće račune | Na kućne adrese i šalterima pošta |
+|---|---|---|
+| Samostalne delatnosti | oko **2.** u narednom mesecu | isti dan |
+| Poljoprivrednici | oko **4–5.** | oko **6–7.** |
+| Vojni penzioneri | oko **4–5.** | oko **6–7.** |
+| **Zaposleni (najbrojnija kategorija)** | oko **9–10.** | isti dan |
+| Korisnici iz bivših republika SFRJ | oko **10.** | — |
+
+Raspored je isti iz meseca u mesec, što se vidi na dva proverena ciklusa: penzija za **jun 2026** isplaćena je 2. jula (samostalne delatnosti), 4. i 6. jula (poljoprivrednici i vojni) i 10. jula (zaposleni); penzija za **avgust 2026** po objavi Fonda PIO ide 2. septembra, 5. i 7. septembra i 9. septembra, uz korisnike iz bivših republika SFRJ 10. septembra.
+
+### Zašto su datumi različiti po kategorijama
+
+Kategorije se ne isplaćuju istog dana zato što su to **odvojeni isplatni tokovi** sa različitim izvorima sredstava i različitim brojem korisnika. Samostalne delatnosti su najmanja grupa i idu prve; bivši zaposleni su daleko najbrojniji i idu poslednji. Datum nije rangiranje po važnosti nego posledica obrade.
+
+### Šta ako penzija ne stigne na vreme
+
+Isplata „počinje" navedenog dana — kod dostave na kućnu adresu preko pošte novac može stići i dan-dva kasnije, što nije kašnjenje nego rok isporuke. Ako novac ne stigne ni nekoliko dana posle objavljenog datuma, proverava se u **filijali Fonda PIO** prema mestu prebivališta, a kod isplate na račun i u banci — najčešći razlog je promena računa koja nije prijavljena Fondu.
 
 ## Pravni okvir
 
@@ -225,29 +285,6 @@ Penzija **nije zarada** i ne podleže porezu na zaradu (10%). Međutim:
 - **Penzioneri sa penzijom iznad zakonskog praga** plaćaju **dodatni porez** od 10% na deo preko praga (godišnji porez na ukupan prihod građana)
 - Doprinosi za zdravstveno osiguranje (5,15%) se zadržavaju iz penzije
 
-## Najčešća pitanja
-
-### Da li se penzija isplaćuje doživotno?
-Da. Starosna i invalidska penzija isplaćuju se doživotno. Porodična penzija isplaćuje se dok traju zakonski uslovi (godine deteta, status roditelja).
-
-### Mogu li raditi posle penzionisanja?
-Da. Penzioner može da radi po ugovoru o radu, ugovoru o delu ili kao preduzetnik. **Penzija se NE obustavlja** zbog rada — zarada i penzija se primaju paralelno. Ali ako se ponovo zasniva staž preko 12 meseci, može se zahtevati **ponovni obračun** penzije.
-
-### Kako se podnosi zahtev za penziju?
-Zahtev se podnosi u filijali Fonda PIO prema mestu prebivališta, uz dokumentaciju:
-- Lična karta i izvod iz matične knjige rođenih
-- Radne knjižice / M4 obrasci / potvrde o uplaćenim doprinosima
-- Izvod iz matične knjige venčanih (za bračnog druga)
-- Potvrda o prestanku radnog odnosa
-
-Postupak traje **30–60 dana**. Penzija se isplaćuje retroaktivno od dana stečenih uslova.
-
-### Šta ako sam radio i u inostranstvu?
-Srbija ima **bilateralne sporazume o socijalnom osiguranju** sa preko 30 zemalja (Nemačka, Austrija, Švajcarska, BiH, Hrvatska, Severna Makedonija, Italija itd.). Staž iz tih zemalja se **sabira sa srpskim** za ispunjavanje uslova, a svaka zemlja isplaćuje srazmeran deo penzije.
-
-### Mogu li da kupim nedostajući staž?
-Da. Postoji opcija **dobrovoljne uplate doprinosa za staž osiguranja** — možete uplatiti doprinose unazad za vreme kada niste bili osigurani (do 5 godina unazad, uz uslove).
-
 ## Kako proveriti svoj očekivani iznos penzije?
 
 Fond PIO omogućava da svaki osiguranik dobije **uvid u svoj staž i očekivanu penziju**:
@@ -281,3 +318,20 @@ Iako naš [kalkulator zarade](/) ne računa direktno penziju (jer to zavisi od s
 - [eUprava — usluge Fonda PIO](https://euprava.gov.rs/)
 - [Ministarstvo za rad, zapošljavanje, boračka i socijalna pitanja](https://www.minrzs.gov.rs/)
     `;
+
+// FAQ živi SAMO ovde, nikad i u telu teksta — Blog.jsx renderuje sopstvenu
+// „Često postavljana pitanja" sekciju iz ovog niza, a seo.jsx od njega pravi
+// FAQPage JSON-LD. Do 31.8.2026. ova strana nije imala `faq` export, pa je
+// treća strana sajta po saobraćaju bila bez FAQPage šeme.
+export const faq = [
+  { q: `Kada je isplata penzija za ${ZA_MESEC} ${ZA_MESEC_GOD}?`, a: `Penzija za ${ZA_MESEC} isplaćuje se tokom ${U_MESECU_GEN} ${GODINA}. Korisnici iz samostalnih delatnosti dobijaju novac oko 2. ${U_MESECU_GEN}, poljoprivrednici i vojni penzioneri oko 4–5. na račune i 6–7. na kućne adrese, a bivši zaposleni — najbrojnija kategorija — oko 9–10. ${U_MESECU_GEN}. Tačan raspored Fond PIO objavljuje svakog meseca posebno.` },
+  { q: "Da li zakon propisuje datum isplate penzije?", a: "Ne. Zakon o penzijskom i invalidskom osiguranju ne sadrži odredbu o kalendarskom danu isplate — čl. 84 uređuje od kada se pravo ostvaruje, čl. 80 usklađivanje. Raspored isplate utvrđuje i objavljuje Fond PIO za svaki mesec posebno, pa se dan može pomeriti zbog vikenda i praznika." },
+  { q: "Za koji mesec je penzija koja stiže ovog meseca?", a: `Penzija se isplaćuje unazad — novac koji stiže u ${U_MESECU_LOK} je penzija za ${ZA_MESEC}. Penzija za ${SLED_ZA_MESEC} stiže tokom ${SLED_U_MESECU_GEN} ${SLED_GODINA}.` },
+  { q: "Zašto penzioneri ne dobijaju penziju istog dana?", a: "Zato što su kategorije odvojeni isplatni tokovi sa različitim izvorima sredstava i različitim brojem korisnika. Samostalne delatnosti su najmanja grupa i idu prve, bivši zaposleni su najbrojniji i idu poslednji. Redosled nije rangiranje nego posledica obrade." },
+  { q: "Šta da radim ako penzija ne stigne na objavljeni datum?", a: "Isplata tog dana počinje, a kod dostave na kućnu adresu preko pošte novac može stići dan-dva kasnije — to je rok isporuke, ne kašnjenje. Ako ni posle nekoliko dana nema uplate, proverite u filijali Fonda PIO prema mestu prebivališta, a kod isplate na račun i u banci. Najčešći razlog je promena tekućeg računa koja nije prijavljena Fondu." },
+  { q: "Da li se penzija isplaćuje doživotno?", a: "Da. Starosna i invalidska penzija isplaćuju se doživotno. Porodična penzija isplaćuje se dok traju zakonski uslovi (godine deteta, status roditelja)." },
+  { q: "Mogu li raditi posle penzionisanja?", a: "Da. Penzioner može da radi po ugovoru o radu, ugovoru o delu ili kao preduzetnik, i penzija se ne obustavlja zbog rada — zarada i penzija se primaju paralelno. Ako se ponovo zasnuje staž preko 12 meseci, može se zahtevati ponovni obračun penzije." },
+  { q: "Kako se podnosi zahtev za penziju?", a: "Zahtev se podnosi u filijali Fonda PIO prema mestu prebivališta, uz ličnu kartu i izvod iz matične knjige rođenih, radne knjižice odnosno M4 obrasce ili potvrde o uplaćenim doprinosima, izvod iz matične knjige venčanih za bračnog druga i potvrdu o prestanku radnog odnosa. Postupak traje 30–60 dana, a penzija se isplaćuje retroaktivno od dana stečenih uslova." },
+  { q: "Šta ako sam radio i u inostranstvu?", a: "Srbija ima bilateralne sporazume o socijalnom osiguranju sa preko 30 zemalja (Nemačka, Austrija, Švajcarska, BiH, Hrvatska, Severna Makedonija, Italija i druge). Staž iz tih zemalja sabira se sa srpskim za ispunjavanje uslova, a svaka zemlja isplaćuje srazmeran deo penzije." },
+  { q: "Mogu li da kupim nedostajući staž?", a: "Da. Postoji dobrovoljna uplata doprinosa za staž osiguranja — doprinosi se mogu uplatiti unazad za period kada niste bili osigurani, do 5 godina unazad i uz propisane uslove." },
+];

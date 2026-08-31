@@ -262,11 +262,11 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-penzija",
     date: "12. maj 2026",
-    updated: "28. avgust 2026",
+    updated: "1. septembar 2026",
     tag: "Penzija",
-    title: "Kako se obračunava penzija u Srbiji — formula i primeri",
-    summary: "Kako se obračunava penzija u Srbiji 2026: bodovni sistem, lični bodovi i koeficijent, uslovi za starosnu, prevremenu i invalidsku penziju — uz primere.",
-    hasFaq: false,
+    title: "Obračun i isplata penzije u Srbiji 2026",
+    summary: "Isplata penzija ide unazad: samostalne delatnosti oko 2, poljoprivrednici 4–7, zaposleni 9–10. u narednom mesecu. Zakon ne fiksira datum. Formula i primeri.",
+    hasFaq: true,
   },
   {
     id: "kako-se-obracunava-bolovanje",
