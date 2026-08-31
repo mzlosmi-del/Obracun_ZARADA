@@ -3,7 +3,7 @@
 export const body = `
 ![Frilenser, paušalac ili firma — kada preći na radnju u Srbiji](https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, APR, CROSO) za 2026. godinu. Parametri se mogu menjati tokom godine — pre odluke proverite aktuelne podatke ili se obratite knjigovođi.
+> **Provereno i ažurirano: 1. septembar 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, APR, CROSO) za 2026. godinu. Parametri se mogu menjati tokom godine — pre odluke proverite aktuelne podatke ili se obratite knjigovođi.
 
 Sve više ljudi u Srbiji radi samostalno — za klijente iz inostranstva ili iz zemlje. Na početku je najlakše raditi kao **frilenser** (fizičko lice koje se samooporezuje), ali kako prihodi rastu, postavlja se pitanje: **da li i kada preći na paušal ili otvoriti firmu?** U ovom vodiču poredimo tri statusa — frilenser, paušalac (preduzetnik) i DOO — i objašnjavamo po kojim signalima prepoznajete da je vreme za prelazak.
 

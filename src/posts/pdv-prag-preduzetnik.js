@@ -3,7 +3,7 @@
 export const body = `
 ![PDV prag za preduzetnike 2026 — 8 miliona dinara i evidentiranje](https://images.unsplash.com/photo-1586486855514-8c633cc6fd38?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Pravila su usklađena sa Zakonom o porezu na dodatu vrednost (čl. 33, 38 i 38a) prema prečišćenom tekstu dostupnom u avgustu 2026. Propisi se menjaju — pre odluke proverite aktuelni tekst zakona ili se obratite knjigovođi.
+> **Provereno i ažurirano: 1. septembar 2026.** Pravila su usklađena sa Zakonom o porezu na dodatu vrednost (čl. 33, 38 i 38a) prema prečišćenom tekstu dostupnom u avgustu 2026. Propisi se menjaju — pre odluke proverite aktuelni tekst zakona ili se obratite knjigovođi.
 
 **PDV prag za preduzetnike** je 8.000.000 dinara — ali način na koji se meri i šta uopšte ulazi u njega zbunjuje i iskusne. U ovom vodiču: kako se prag računa, šta se dešava kada ga pređete, kome se isplati dobrovoljni ulazak u PDV i šta se u poslovanju konkretno menja.
 

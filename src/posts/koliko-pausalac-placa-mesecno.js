@@ -3,7 +3,7 @@
 export const body = `
 ![Koliko paušalac plaća mesečno u Srbiji 2026 — porez i doprinosi](https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Stope i pravila usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Zakon o doprinosima čl. 44) za 2026. godinu. Tačan mesečni iznos određuje rešenje Poreske uprave — pre planiranja proverite svoj konkretan iznos.
+> **Provereno i ažurirano: 1. septembar 2026.** Stope i pravila usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Zakon o doprinosima čl. 44) za 2026. godinu. Tačan mesečni iznos određuje rešenje Poreske uprave — pre planiranja proverite svoj konkretan iznos.
 
 Najveća prednost paušalca je predvidljivost: plaćate **isti fiksni iznos svakog meseca**, bez obzira na to koliko ste zaradili. Ali „koliko tačno" zavisi od nekoliko faktora i razlikuje se od preduzetnika do preduzetnika. U ovom vodiču objašnjavamo od čega zavisi mesečna obaveza, šta je sve uključeno i kako da saznate svoj tačan iznos.
 

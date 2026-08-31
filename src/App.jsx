@@ -1348,7 +1348,7 @@ function HomePage() {
       </header>
       <section className="home-intro">
         <h1 className="home-intro-title">Bruto u neto kalkulator 2026 — obračun plate za Srbiju</h1>
-        <FreshnessStamp date="avgust 2026." />
+        <FreshnessStamp date="septembar 2026." />
         <p>
           Besplatan <strong>bruto u neto kalkulator</strong> za obračun plate u Srbiji u 2026. godini.
           Izračunajte porez na zaradu, doprinose, prekovremeni i minuli rad, bolovanje, otpremninu

@@ -3,7 +3,7 @@
 export const body = `
 ![Primanje uplata iz inostranstva u Srbiji — Wise, Payoneer i devizni račun](https://images.unsplash.com/photo-1580048915913-4f8f5cb481c4?w=800&fm=webp&q=70)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Dostupnost servisa i naknade proverene su prema zvaničnim izvorima (Narodna banka Srbije, Wise, Revolut, Payoneer) u avgustu 2026. Uslovi i naknade se menjaju — pre korišćenja proverite aktuelno stanje kod samog pružaoca usluge.
+> **Provereno i ažurirano: 1. septembar 2026.** Dostupnost servisa i naknade proverene su prema zvaničnim izvorima (Narodna banka Srbije, Wise, Revolut, Payoneer) u avgustu 2026. Uslovi i naknade se menjaju — pre korišćenja proverite aktuelno stanje kod samog pružaoca usluge.
 
 Ako radite za klijente iz inostranstva, novac stiže u evrima ili dolarima — a vama treba način da ga **legalno primite, konvertujete u dinare i prijavite**. U Srbiji to praktično znači tri opcije: **devizni račun u banci, Wise i Payoneer**. U ovom vodiču poredimo ih po naknadama, kursu i jednostavnosti — i objašnjavamo zašto Revolut (još) nije rešenje za rezidente Srbije.
 

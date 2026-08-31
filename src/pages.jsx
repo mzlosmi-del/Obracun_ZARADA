@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori, NumberInput, ResultRow, fmt } from "./ui.jsx";
 import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES, UGOVOR_O_DELU_RATES } from "./rates.js";
 
-const FRESHNESS = "avgust 2026.";
+const FRESHNESS = "septembar 2026.";
 const DISCLAIMER = "⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.";
 
 // cfg shape:

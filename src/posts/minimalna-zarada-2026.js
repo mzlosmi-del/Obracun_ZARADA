@@ -3,7 +3,7 @@
 export const body = `
 ![Minimalna zarada rast 2026](https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 1. septembar 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Od **1. januara 2026. godine** u Srbiji važi nova minimalna cena rada, usklađena sa rastom troškova života i preporukama Socijalno-ekonomskog saveta.
 

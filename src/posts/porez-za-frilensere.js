@@ -3,7 +3,7 @@
 export const body = `
 ![Porez za frilensere u Srbiji](https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800&q=80)
 
-> **Provereno i ažurirano: 6. avgust 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
+> **Provereno i ažurirano: 1. septembar 2026.** Iznosi, stope i osnovice u ovom vodiču usklađeni su sa zvaničnim izvorima (Poreska uprava, CROSO, Fond PIO) za 2026. godinu. Poreski parametri se mogu menjati tokom godine.
 
 Sve veći broj ljudi u Srbiji ostvaruje prihode kao **frilenseri** — radom za klijente iz inostranstva ili iz zemlje, bez osnivanja firme ili paušalne radnje. Takvi prihodi se oporezuju, a frilenseri porez i doprinose obračunavaju i plaćaju **sami, kvartalno**, kroz sistem **samooporezivanja**. U ovom vodiču objašnjavamo dva modela oporezivanja koja su na raspolaganju u **2026. godini**, sa konkretnim primerima, rokovima i čestim greškama.
 
