@@ -45,6 +45,7 @@ export function PolitikaPrivatnosti({ onBack }) {
 
         <h2>Partnerski (affiliate) linkovi</h2>
         <p>Pojedini linkovi ka oglasima za posao partnerske agencije su partnerski linkovi — ako se preko njih prijavite i zaposlite, ostvarujemo proviziju. To ne utiče na uslove posla niti na vašu zaradu, a takvi blokovi su na sajtu jasno označeni kao „oglasi partnera".</p>
+        <p>Na pojedinim člancima prikazujemo i partnerske ponude drugih usluga (na primer <strong>eSIM kartice za internet u inostranstvu</strong>), preko affiliate mreže <strong>Impact.com</strong>. Ako kupite preko takvog linka, ostvarujemo proviziju — <strong>cena za vas je ista</strong>. Klikom na partnerski link napuštate ovaj sajt; prodavac tada može postaviti sopstvene kolačiće radi evidentiranja porudžbine, u skladu sa svojom politikom privatnosti. Sami linkovi ne prenose nikakve podatke koje ste uneli u kalkulator — obračun je i dalje u celosti na vašem uređaju.</p>
 
         <h2>Newsletter</h2>
         <p>Ako se prijavite na newsletter, vaša email adresa se šalje servisu Brevo (SAS, Francuska), koji je usklađen sa GDPR regulativom. Možete se odjaviti u bilo kom trenutku klikom na link u svakom emailu koji primite.</p>

@@ -4,6 +4,8 @@ import { POSTS, LIVE_POSTS, REDIRECT_MAP } from "./posts.js";
 import { useSeo } from "./seo.jsx";
 import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
+import { EsimWidget } from "./EsimWidget.jsx";
+import { showsEsim } from "./esim.js";
 
 const SITE_URL = "https://www.platnilistic.rs";
 
@@ -201,6 +203,12 @@ function BlogPost({ post, navigate }) {
           ))}
         </section>
       )}
+
+      {/* Contextual affiliate, allowlisted per post (src/esim.js). Sits ABOVE
+          the jobs widget on the few travel-intent articles that carry it: on
+          those pages the eSIM is the relevant offer, and it is the one the
+          reader's next action ("kad krenem na put…") actually matches. */}
+      {showsEsim(post.id) && <EsimWidget placement={`blog-${post.id}`} />}
 
       <JobsWidget placement="blog" />
       <JobSlideIn trigger="exit" placement="blog-exit" />
