@@ -1488,13 +1488,13 @@ export default function App() {
       <div className={`sidebar-overlay ${sidebarOpen ? 'open' : ''}`} onClick={() => setSidebarOpen(false)} aria-hidden={!sidebarOpen} />
 
       <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`} aria-label="Glavna navigacija">
-        <div className="sidebar-logo">
-          <img src="/logo.svg" alt="PlatniListić" width="44" height="44" decoding="async" />
+        <Link className="sidebar-logo" to="/" onClick={() => setSidebarOpen(false)} aria-label="PlatniListić — početna strana">
+          <img src="/logo.svg" alt="" width="44" height="44" decoding="async" />
           <div className="sidebar-logo-text">
             <div className="sidebar-logo-name">Platni<span>Listić</span></div>
             <div className="sidebar-logo-sub">Srbija</div>
           </div>
-        </div>
+        </Link>
         <nav className="sidebar-nav">
           <div className="sidebar-section-label">Alati</div>
           {navItems.map(item => (
@@ -1525,8 +1525,10 @@ export default function App() {
 
       <main className="main">
         <div className="topbar">
-          <img src="/logo.svg" alt="PlatniListić" width="32" height="32" decoding="async" />
-          <div className="topbar-title">Platni<span>Listić</span></div>
+          <Link className="topbar-brand" to="/" aria-label="PlatniListić — početna strana">
+            <img src="/logo.svg" alt="" width="32" height="32" decoding="async" />
+            <div className="topbar-title">Platni<span>Listić</span></div>
+          </Link>
           <button className="menu-btn" onClick={() => setSidebarOpen(true)} aria-label="Otvori meni" aria-expanded={sidebarOpen}>☰</button>
         </div>
 
