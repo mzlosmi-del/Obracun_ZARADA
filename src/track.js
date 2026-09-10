@@ -32,6 +32,20 @@ const EVENTS = {
   payslip_pdf:         [],           // generated a PDF payslip — an employer act
   company_pib_entered: ["valid"],    // a complete 9-digit PIB was typed. Value NEVER sent
   rates_edited:        RATE_FIELDS,  // overrode a statutory rate — only a professional
+  // Custom-software lead funnel (src/lead.jsx). Details are FIXED surface
+  // labels, never anything the visitor typed.
+  lead_form_open:      ["payslip", "results", "rates", "ppppd", "hero"],
+  lead_submit:         ["modal", "page"],
+  // Clicked through to the /softver-po-meri case study. The blog details are
+  // the allowlisted post ids from src/software.js — fixed slugs, never a typed
+  // value. `lead_page_click` measures the top of the funnel, `lead_submit` the
+  // bottom; the ratio is what says whether the story or the offer is failing.
+  lead_page_click:     [
+    "payslip", "results", "rates", "ppppd",
+    "blog", // BlogSoftwareCTA's fallback when no placement is passed
+    "blog-limit-za-pausalce", "blog-pdv-prag-preduzetnik", "blog-pausal-ili-doo",
+    "blog-frilenser-pausalac-firma", "blog-porez-na-bonus", "blog-registracija-doo",
+  ],
 };
 
 // Returns the path suffix, or null if this call is not permitted.

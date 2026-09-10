@@ -11,7 +11,7 @@ export function PolitikaPrivatnosti({ onBack }) {
     <div className="legal-page">
       <button className="back-btn" onClick={onBack} aria-label="Nazad na kalkulator">← Nazad</button>
       <h1 className="legal-title">Politika privatnosti</h1>
-      <p className="legal-date">Poslednje ažuriranje: jul 2026.</p>
+      <p className="legal-date">Poslednje ažuriranje: septembar 2026.</p>
 
       <div className="legal-body">
         <h2>Ko smo mi</h2>
@@ -21,7 +21,9 @@ export function PolitikaPrivatnosti({ onBack }) {
         <p>Prikupljamo isključivo podatke koje nam vi dobrovoljno date:</p>
         <ul>
           <li><strong>Email adresa</strong> — samo ako se prijavite na newsletter putem forme u bočnom meniju. Ova adresa se čuva u sistemu Brevo (brevo.com) i koristi se samo za slanje informacija o promenama poreskih parametara i novostima vezanim za obračun zarada.</li>
+          <li><strong>Ime, email adresa i opis koji sami napišete</strong> — samo ako pošaljete upit preko forme za <a href="/softver-po-meri">softver po meri</a>. Ove podatke šaljete dobrovoljno, uz izričitu saglasnost koju potvrđujete pre slanja, i koriste se <strong>isključivo</strong> radi kontakta i odgovora na vaš upit. Ne koriste se za newsletter, ne prodaju se i ne prosleđuju trećim licima radi oglašavanja. Podaci se čuvaju u sistemu Brevo (Brevo SAS, Francuska), u posebnoj listi odvojenoj od newsletter liste.</li>
         </ul>
+        <p><strong>Pravni osnov i rok čuvanja.</strong> Obrada se vrši na osnovu vaše saglasnosti (čl. 12 st. 1 tač. 1 Zakona o zaštiti podataka o ličnosti, odnosno čl. 6(1)(a) GDPR). Saglasnost možete povući u bilo kom trenutku, bez obrazloženja, pisanjem na <strong>kontakt@platnilistic.rs</strong> — povlačenje ne utiče na zakonitost obrade pre povlačenja. Podatke iz upita čuvamo dok traje komunikacija i najduže <strong>24 meseca</strong> od poslednjeg kontakta, nakon čega se brišu.</p>
         <p>Podaci koje unosite u kalkulator (iznosi zarada, sati rada, bonusi) <strong>se ne čuvaju</strong> ni na kakvom serveru — obračun se vrši isključivo u vašem pregledaču i nigde se ne prenosi.</p>
 
         <h2>Analitika i praćenje</h2>
@@ -51,7 +53,8 @@ export function PolitikaPrivatnosti({ onBack }) {
         <p>Ako se prijavite na newsletter, vaša email adresa se šalje servisu Brevo (SAS, Francuska), koji je usklađen sa GDPR regulativom. Možete se odjaviti u bilo kom trenutku klikom na link u svakom emailu koji primite.</p>
 
         <h2>Vaša prava</h2>
-        <p>Imate pravo da zatražite uvid u podatke koje smo prikupili, ispravku ili brisanje iste. Pišite nam na: <strong>kontakt@platnilistic.rs</strong></p>
+        <p>Imate pravo na pristup podacima, ispravku, brisanje, ograničenje obrade, prenosivost podataka i pravo na prigovor, kao i pravo da povučete datu saglasnost. Zahtev pošaljite na: <strong>kontakt@platnilistic.rs</strong> — odgovaramo u zakonskom roku.</p>
+        <p>Ako smatrate da su vaša prava povređena, možete podneti pritužbu Povereniku za informacije od javnog značaja i zaštitu podataka o ličnosti Republike Srbije (<a href="https://www.poverenik.rs" target="_blank" rel="noopener noreferrer">poverenik.rs</a>).</p>
 
         <h2>Izmene politike</h2>
         <p>Zadržavamo pravo izmene ove politike. Svaka izmena biće objavljena na ovoj stranici sa datumom poslednjeg ažuriranja.</p>

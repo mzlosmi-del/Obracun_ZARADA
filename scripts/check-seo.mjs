@@ -7,6 +7,7 @@ const ROUTES = [
   "minimalna-zarada", "radni-dani-2026", "praznici-2026",
   "dodaci-na-zaradu", "godisnji-porez", "godisnji-odmor", "jubilarna-nagrada", "ugovor-o-delu",
   "prosecna-zarada", "neoporezivi-iznos-2026", "stope-doprinosa-2026",
+  "softver-po-meri",
 ];
 
 let failures = 0;

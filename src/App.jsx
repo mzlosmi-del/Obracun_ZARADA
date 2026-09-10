@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import { Routes, Route, Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar, FreshnessStamp } from "./ui.jsx";
@@ -9,6 +9,8 @@ import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
 import { activeJobs, scrollToJobs } from "./jobs.js";
 import { track, trackOnce } from "./track.js";
+import { LeadModalHost, LEAD_PATH } from "./lead.jsx";
+import { showsSoftwareCTA } from "./software.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -16,6 +18,7 @@ const BlogPostRoute = lazy(() => import("./Blog.jsx").then(m => ({ default: m.Bl
 const PolitikaPrivatnosti = lazy(() => import("./Legal.jsx").then(m => ({ default: m.PolitikaPrivatnosti })));
 const UsloviKoriscenja = lazy(() => import("./Legal.jsx").then(m => ({ default: m.UsloviKoriscenja })));
 const ONama = lazy(() => import("./About.jsx").then(m => ({ default: m.ONama })));
+const SoftverPoMeriPage = lazy(() => import("./SoftverPoMeri.jsx").then(m => ({ default: m.SoftverPoMeriPage })));
 const PPPPDTab = lazy(() => import("./PPPPDTab.jsx"));
 const NetoBrutoPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NetoBrutoPage })));
 const PausalPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PausalPage })));
@@ -355,7 +358,13 @@ function SidebarJobsTeaser({ onGo }) {
 // JobsWidget, or navigates home and scrolls there. Hidden when no active jobs.
 function JobsStickyFooter() {
   const navigate = useNavigate();
+  const location = useLocation();
   const jobs = activeJobs();
+  // Split by audience, exactly like the in-article slot: no jobs bar on the
+  // lead page or on the business-owner posts that carry the software CTA.
+  // A vlasnik firme reading about the PDV threshold is doing the hiring.
+  const postId = location.pathname.startsWith("/blog/") ? location.pathname.slice(6) : null;
+  if (location.pathname === LEAD_PATH || (postId && showsSoftwareCTA(postId))) return null;
   if (jobs.length === 0) return null;
   return (
     <button
@@ -464,144 +473,9 @@ function BrevoSignup() {
   );
 }
 
-// Direct-contact channels for the "custom software" lead funnel.
-// To enable the Viber + WhatsApp quick-contact buttons, set CONTACT_PHONE
-// in international format WITHOUT the leading "+" (e.g. "381641234567").
-// Leave it as "" to hide them — only the email button shows.
-const CONTACT_EMAIL = "kontakt@platnilistic.rs";
-const CONTACT_PHONE = "";
-
-function LeadQuickContacts() {
-  const subject = encodeURIComponent("Upit za softver po meri — PlatniListić");
-  return (
-    <div className="lead-alt">
-      <div className="lead-alt-label">ili odmah pišite direktno</div>
-      <div className="lead-alt-row">
-        <a className="lead-alt-btn" href={`mailto:${CONTACT_EMAIL}?subject=${subject}`}>✉️ Email</a>
-        {CONTACT_PHONE && (
-          <>
-            <a className="lead-alt-btn" href={`https://wa.me/${CONTACT_PHONE}`} target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
-            <a className="lead-alt-btn" href={`viber://chat?number=%2B${CONTACT_PHONE}`}>🟣 Viber</a>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function LeadFormContent({ onSubmit, form, setForm, status }) {
-  if (status === "success") return (
-    <div className="lead-success" role="status">
-      <div className="lead-success-icon" aria-hidden="true">✓</div>
-      <div className="lead-success-title">Upit primljen!</div>
-      <div className="lead-success-sub">Javljam se u roku od 24 sata — bez obaveze.</div>
-    </div>
-  );
-  return (
-    <form className="lead-form" onSubmit={onSubmit}>
-      <label htmlFor="lead-ime" className="visually-hidden">Ime i prezime</label>
-      <input id="lead-ime" className="lead-input" type="text" placeholder="Ime i prezime" autoComplete="name" value={form.ime} onChange={e => setForm(f => ({...f, ime: e.target.value}))} disabled={status === "loading"} required />
-      <label htmlFor="lead-email" className="visually-hidden">Email adresa</label>
-      <input id="lead-email" className="lead-input" type="email" placeholder="Email adresa" autoComplete="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} disabled={status === "loading"} required />
-      <label htmlFor="lead-opis" className="visually-hidden">Opis projekta (opciono)</label>
-      <textarea id="lead-opis" className="lead-input lead-textarea" placeholder="Ukratko: čime se firma bavi i šta bi vam pomoglo? (opciono)" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} />
-      <button className="lead-btn" type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Šaljem..." : "Zakažite besplatne konsultacije →"}
-      </button>
-      {status === "error" && <div className="brevo-error" role="alert">Greška. Pokušajte ponovo.</div>}
-      <LeadQuickContacts />
-    </form>
-  );
-}
-
-// NOTE: currently unused — commented out on the homepage in favor of the jobs
-// CTA banner. Kept intact so it can be re-enabled by uncommenting <LeadForm />.
-// eslint-disable-next-line no-unused-vars
-function LeadForm() {
-  const [form, setForm] = useState({ ime: "", email: "", opis: "" });
-  const [status, setStatus] = useState("idle");
-  const [modalOpen, setModalOpen] = useState(false);
-  const sectionRef = useRef(null);
-
-  // Contextual CTAs inside the calculator tabs dispatch "open-lead-modal".
-  // On mobile we open the modal; on desktop the inline form is visible, so
-  // we smooth-scroll to it and focus the first field.
-  useEffect(() => {
-    const handler = () => {
-      if (window.matchMedia("(max-width: 760px)").matches) {
-        setModalOpen(true);
-      } else {
-        sectionRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
-        setTimeout(() => sectionRef.current?.querySelector("input")?.focus(), 500);
-      }
-    };
-    window.addEventListener("open-lead-modal", handler);
-    return () => window.removeEventListener("open-lead-modal", handler);
-  }, []);
-
-  const submit = async (e) => {
-    e.preventDefault();
-    if (!form.email.includes("@") || !form.ime) return;
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/subscribe", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          type: "lead",
-          email: form.email.trim().toLowerCase(),
-          ime: form.ime,
-          opis: form.opis,
-        }),
-      });
-      if (res.ok || res.status === 400) {
-        setStatus("success");
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  return (
-    <>
-      <section className="lead-section lead-desktop" aria-labelledby="lead-section-title" ref={sectionRef}>
-        <div className="lead-inner">
-          <div className="lead-text">
-            <div className="lead-eyebrow">Za firme i knjigovođe · softver po meri</div>
-            <h2 id="lead-section-title" className="lead-title">Vašoj firmi treba softver po meri?</h2>
-            <p className="lead-body">
-              Vodite firmu ili knjigovodstvenu agenciju? Pravim web aplikacije i interne alate — kalkulatore, sisteme za obračun i evidenciju, kompletna rešenja. Ovaj kalkulator je primer; vaš alat pravim prema vašem procesu i radi posao umesto vas.
-            </p>
-            <p className="lead-body" style={{marginTop:12, fontWeight:600}}>
-              Besplatne konsultacije, bez obaveze — javljam se u roku od 24 sata.
-            </p>
-          </div>
-          <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
-        </div>
-      </section>
-
-      {status !== "success" && (
-        <button className="lead-sticky" type="button" onClick={() => setModalOpen(true)} aria-label="Otvori formu za besplatne konsultacije">
-          <span className="lead-sticky-text">Vašoj firmi treba softver po meri?</span>
-          <span className="lead-sticky-cta" aria-hidden="true">Konsultacije →</span>
-        </button>
-      )}
-
-      {modalOpen && (
-        <div className="lead-modal-overlay" onClick={() => setModalOpen(false)} role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
-          <div className="lead-modal" onClick={e => e.stopPropagation()}>
-            <button className="lead-modal-close" onClick={() => setModalOpen(false)} aria-label="Zatvori">✕</button>
-            <div className="lead-eyebrow" style={{color:"rgba(255,255,255,0.7)"}}>Za firme i knjigovođe · softver po meri</div>
-            <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:16}}>Vašoj firmi treba softver po meri?</h2>
-            <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
+// The lead funnel (form, modal, /softver-po-meri landing page) lives in
+// src/lead.jsx. ProCTA below opens it via the "open-lead-modal" event, which
+// <LeadModalHost /> at the app root listens for.
 
 // Contextual lead CTA shown inside the "professional" tabs (payslip, results,
 // rates, PPP-PD) — these users are accountants / business owners, the slice
@@ -613,21 +487,33 @@ const PRO_CTA_COPY = {
   ppppd: "Generišete PPP-PD za više firmi? Mogu da vam automatizujem obračun i izvoz XML-a kroz alat po meri.",
 };
 function ProCTA({ variant }) {
+  const v = variant || "results";
   return (
     <aside className="pro-cta" aria-label="Ponuda za firme i knjigovođe">
       <div className="pro-cta-text">
         <div className="pro-cta-eyebrow">Za firme i knjigovođe</div>
-        <p>{PRO_CTA_COPY[variant] || PRO_CTA_COPY.results}</p>
+        <p>{PRO_CTA_COPY[v] || PRO_CTA_COPY.results}</p>
       </div>
-      {/* The lead form/modal is disabled, so the "open-lead-modal" event has no
-          listener — link straight to email instead so the pro funnel stays alive
-          without a form. Restore the button when <LeadForm /> is re-enabled. */}
-      <a
-        className="pro-cta-btn"
-        href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Upit za softver po meri — PlatniListić")}`}
-      >
-        Besplatne konsultacije →
-      </a>
+      {/* Primary action goes to the case study, not to the form. This reader is
+          cold — asking for a name and email before they know who I am is the ask
+          before the argument. The form stays one click away below for anyone
+          already convinced. */}
+      <div className="pro-cta-actions">
+        <Link
+          className="pro-cta-btn"
+          to={LEAD_PATH}
+          onClick={() => track("lead_page_click", v)}
+        >
+          Kako to izgleda u praksi →
+        </Link>
+        <button
+          type="button"
+          className="pro-cta-link"
+          onClick={() => { track("lead_form_open", v); window.dispatchEvent(new Event("open-lead-modal")); }}
+        >
+          ili odmah zakažite besplatan razgovor
+        </button>
+      </div>
     </aside>
   );
 }
@@ -1386,6 +1272,7 @@ function HomePage() {
           <li><a href="/prosecna-zarada">Prosečna zarada u Srbiji</a></li>
           <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
           <li><a href="/praznici-2026">Praznici 2026</a></li>
+          <li><a href="/softver-po-meri">Softver po meri za male firme</a></li>
         </ul>
       </nav>
       <section className="home-seo" aria-label="Kako se obračunava zarada 2026">
@@ -1563,8 +1450,10 @@ function HomePage() {
           <li><a href="/blog/kupovna-moc-plate-2016-2026">Kupovna moć plate 2016–2026: realno +53%</a></li>
         </ul>
       </nav>
-      {/* Lead form ("softver po meri") disabled in favor of the jobs CTA
-          (affiliate funnel). Re-enable by uncommenting: <LeadForm /> */}
+      {/* Homepage keeps the jobs affiliate banner: homepage traffic is
+          employees checking their net salary, not software buyers. The
+          custom-software funnel lives on the professional tabs (ProCTA) and on
+          /softver-po-meri — see src/lead.jsx. */}
       <JobsCTABanner />
     </>
   );
@@ -1618,9 +1507,10 @@ export default function App() {
         <div className="sidebar-footer">
           <div className="sidebar-footer-site">platnilistic.rs</div>
           <div className="sidebar-footer-links">
-            <button className="sidebar-footer-link" onClick={() => { navigate("/o-nama"); setSidebarOpen(false); }}>O nama</button>
-            <button className="sidebar-footer-link" onClick={() => { navigate("/privatnost"); setSidebarOpen(false); }}>Privatnost</button>
-            <button className="sidebar-footer-link" onClick={() => { navigate("/uslovi"); setSidebarOpen(false); }}>Uslovi</button>
+            <Link className="sidebar-footer-link" to={LEAD_PATH} onClick={() => setSidebarOpen(false)}>Softver po meri</Link>
+            <Link className="sidebar-footer-link" to="/o-nama" onClick={() => setSidebarOpen(false)}>O nama</Link>
+            <Link className="sidebar-footer-link" to="/privatnost" onClick={() => setSidebarOpen(false)}>Privatnost</Link>
+            <Link className="sidebar-footer-link" to="/uslovi" onClick={() => setSidebarOpen(false)}>Uslovi</Link>
           </div>
         </div>
       </aside>
@@ -1657,10 +1547,12 @@ export default function App() {
             <Route path="/stope-doprinosa-2026" element={<Suspense fallback={<RouteLoader />}><StopeDoprinosaPage /></Suspense>} />
             <Route path="/blog" element={<Suspense fallback={<RouteLoader />}><BlogList /></Suspense>} />
             <Route path="/blog/:slug" element={<Suspense fallback={<RouteLoader />}><BlogPostRoute /></Suspense>} />
+            <Route path="/softver-po-meri" element={<Suspense fallback={<RouteLoader />}><SoftverPoMeriPage /></Suspense>} />
             <Route path="/o-nama" element={<Suspense fallback={<RouteLoader />}><ONama onBack={() => navigate("/")} /></Suspense>} />
             <Route path="/privatnost" element={<Suspense fallback={<RouteLoader />}><PolitikaPrivatnosti onBack={() => navigate("/")} /></Suspense>} />
             <Route path="/uslovi" element={<Suspense fallback={<RouteLoader />}><UsloviKoriscenja onBack={() => navigate("/")} /></Suspense>} />
           </Routes>
+          <LeadModalHost />
         </div>
       </main>
       <JobsStickyFooter />

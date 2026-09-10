@@ -6,6 +6,8 @@ import { JobsWidget } from "./JobsWidget.jsx";
 import { JobSlideIn } from "./JobSlideIn.jsx";
 import { EsimWidget } from "./EsimWidget.jsx";
 import { showsEsim } from "./esim.js";
+import { showsSoftwareCTA } from "./software.js";
+import { BlogSoftwareCTA } from "./lead.jsx";
 
 const SITE_URL = "https://www.platnilistic.rs";
 
@@ -210,8 +212,19 @@ function BlogPost({ post, navigate }) {
           reader's next action ("kad krenem na put…") actually matches. */}
       {showsEsim(post.id) && <EsimWidget placement={`blog-${post.id}`} />}
 
-      <JobsWidget placement="blog" />
-      <JobSlideIn trigger="exit" placement="blog-exit" />
+      {/* One offer per post, matched to who reads it. On the allowlisted
+          business-owner posts (src/software.js) the software CTA takes the slot
+          and BOTH jobs surfaces stand down — a vlasnik firme reading about the
+          PDV threshold is not looking for a job, and stacking two CTAs means
+          neither gets clicked. Everywhere else the jobs affiliate is unchanged. */}
+      {showsSoftwareCTA(post.id) ? (
+        <BlogSoftwareCTA placement={`blog-${post.id}`} />
+      ) : (
+        <>
+          <JobsWidget placement="blog" />
+          <JobSlideIn trigger="exit" placement="blog-exit" />
+        </>
+      )}
 
       <div className="post-cta">
         <p>Proverite tačan obračun vaše zarade koristeći naš besplatni kalkulator — bruto u neto, doprinosi, porez i PDF platni listić u nekoliko sekundi.</p>

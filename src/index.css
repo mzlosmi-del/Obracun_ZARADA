@@ -363,21 +363,21 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .lead-section { margin-top: 32px; background: linear-gradient(135deg, #0e3aa8 0%, #1452d6 100%); border-radius: 16px; overflow: hidden; }
 .lead-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 40px; align-items: start; }
 @media (max-width: 700px) { .lead-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 20px; } }
-.lead-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+.lead-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
 .lead-title { font-size: clamp(18px, 2.5vw, 26px); font-weight: 800; color: #fff; letter-spacing: -0.5px; line-height: 1.2; margin-bottom: 14px; }
 .lead-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.65; }
 .lead-form { display: flex; flex-direction: column; gap: 10px; }
-.lead-input { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 10px; padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: #fff; outline: none; transition: border-color 0.2s, background-color 0.2s; }
-.lead-input::placeholder { color: rgba(255,255,255,0.5); }
-.lead-input:focus { border-color: rgba(255,255,255,0.7); background: rgba(255,255,255,0.18); }
+.lead-input { background: rgba(0,0,0,0.18); border: 1px solid rgba(255,255,255,0.32); border-radius: 10px; padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: #fff; outline: none; transition: border-color 0.2s, background-color 0.2s; }
+.lead-input::placeholder { color: rgba(255,255,255,0.78); }
+.lead-input:focus { border-color: rgba(255,255,255,0.75); background: rgba(0,0,0,0.28); }
 .lead-textarea { resize: vertical; min-height: 80px; }
 .lead-btn { background: #fff; color: var(--accent); border: none; border-radius: 10px; padding: 13px 20px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; transition: background-color 0.2s, transform 0.2s; margin-top: 4px; }
 .lead-btn:hover { background: #f0f4ff; transform: translateY(-1px); }
-.lead-btn:disabled { opacity: 0.6; cursor: default; transform: none; }
+.lead-btn:disabled { opacity: 0.75; cursor: not-allowed; transform: none; }
 .lead-success { text-align: center; padding: 48px 32px; }
 .lead-success-icon { font-size: 40px; color: #fff; margin-bottom: 12px; }
 .lead-success-title { font-size: 22px; font-weight: 800; color: #fff; margin-bottom: 6px; }
-.lead-success-sub { font-size: 14px; color: rgba(255,255,255,0.8); }
+.lead-success-sub { font-size: 14px; color: rgba(255,255,255,0.9); }
 
 /* Desktop: show inline, hide sticky */
 .lead-desktop { display: block; }
@@ -412,7 +412,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 
 /* ── LEAD: QUICK CONTACT (email / WhatsApp / Viber) ── */
 .lead-alt { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.18); }
-.lead-alt-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 8px; text-align: center; }
+.lead-alt-label { font-size: 11px; color: rgba(255,255,255,0.88); margin-bottom: 8px; text-align: center; }
 .lead-alt-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .lead-alt-btn { flex: 1 1 auto; min-width: 90px; text-align: center; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); color: #fff; text-decoration: none; border-radius: 10px; padding: 10px 12px; font-size: 13px; font-weight: 600; transition: background-color 0.2s, border-color 0.2s; }
 .lead-alt-btn:hover { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.5); }
@@ -777,3 +777,91 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
    footer stands down — it funnels to the same partner, and stacking two
    affiliate bars is the intrusive pattern this component exists to avoid. */
 body.has-job-slidein .jobs-sticky { display: none !important; }
+
+/* ── SOFTVER PO MERI — lead funnel landing page + form additions ────────────
+   The funnel lives on the professional surfaces and on /softver-po-meri, never
+   on the homepage. See src/lead.jsx. */
+
+/* Consent checkbox — ZZPL/GDPR requires it unticked and separate. */
+.lead-consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 4px; font-size: 12px; line-height: 1.5; color: rgba(255,255,255,0.9); cursor: pointer; }
+.lead-consent input { flex-shrink: 0; margin-top: 2px; width: 16px; height: 16px; accent-color: #fff; cursor: pointer; }
+.lead-consent-link { color: #fff; text-decoration: underline; }
+
+/* The shared .brevo-error is --red on the blue panel — 1,6:1, unreadable, and it
+   is the one message that tells someone their enquiry did NOT send. Scope a
+   legible variant to the lead form: white on a dark red pill. */
+.lead-form .brevo-error { font-size: 13px; line-height: 1.5; color: #fff; text-align: left;
+  background: rgba(127,29,29,0.85); border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 10px; padding: 10px 14px; margin-top: 2px; }
+
+/* The modal is desktop-suppressed by the legacy mobile rule; this variant is
+   the one ProCTA opens, and it must work at every width. */
+.lead-modal-overlay--any { align-items: center; justify-content: center; padding: 20px; }
+@media (min-width: 761px) {
+  .lead-modal-overlay--any { display: flex !important; }
+  .lead-modal-overlay--any .lead-modal { border-radius: 20px; max-width: 560px; padding: 32px 32px 36px; }
+}
+@media (max-width: 760px) { .lead-modal-overlay--any { align-items: flex-end; padding: 0; } }
+
+.pro-cta-proof { margin-top: 8px !important; font-size: 13px !important; }
+.pro-cta-proof a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid #c8d8ff; }
+.pro-cta-proof a:hover { border-bottom-color: var(--accent); }
+
+.sw-page { max-width: 780px; margin: 0 auto; }
+.sw-hero { background: linear-gradient(135deg, #0e3aa8 0%, #1452d6 100%); border-radius: 16px; padding: 40px; color: #fff; }
+@media (max-width: 700px) { .sw-hero { padding: 28px 20px; } }
+.sw-h1 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; letter-spacing: -0.8px; line-height: 1.15; color: #fff; margin: 0 0 14px; }
+.sw-lede { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.88); margin: 0 0 22px; max-width: 60ch; }
+.sw-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.sw-btn-primary { background: #fff; color: var(--accent); border: none; border-radius: 10px; padding: 13px 22px; font-family: var(--sans); font-size: 14px; font-weight: 700; cursor: pointer; transition: transform 0.2s, background-color 0.2s; }
+.sw-btn-primary:hover { background: #f0f4ff; transform: translateY(-1px); }
+.sw-btn-ghost { color: rgba(255,255,255,0.92); font-size: 13px; font-weight: 600; text-decoration: none; padding: 13px 6px; }
+.sw-btn-ghost:hover { color: #fff; }
+
+.sw-story, .sw-signs, .sw-steps, .sw-who, .sw-faq, .sw-scope { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 32px 36px; margin-top: 20px; }
+@media (max-width: 700px) { .sw-story, .sw-signs, .sw-steps, .sw-who, .sw-faq, .sw-scope { padding: 24px 20px; } }
+.sw-tag { font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+.sw-page h2 { font-size: clamp(18px, 2.4vw, 23px); font-weight: 800; letter-spacing: -0.4px; line-height: 1.25; color: var(--text); margin: 30px 0 12px; }
+.sw-story > h2:first-of-type, .sw-signs h2, .sw-steps h2, .sw-who h2, .sw-faq h2, .sw-scope h2 { margin-top: 0; }
+/* Scope the grey prose colour to the WHITE cards. Do not widen this back to
+   `.sw-page p` — it outranks .sw-lede/.lead-body and paints them grey on blue. */
+.sw-story p, .sw-signs p, .sw-steps p, .sw-who p, .sw-faq p, .sw-scope p { font-size: 15px; line-height: 1.75; color: var(--text2); margin: 0 0 14px; }
+.sw-pull { font-size: 18px !important; font-weight: 700; color: var(--text) !important; border-left: 3px solid var(--accent); padding-left: 16px; margin: 20px 0 !important; line-height: 1.5 !important; }
+.sw-note { font-size: 13px !important; color: var(--text3) !important; background: var(--surface2); border-radius: 10px; padding: 14px 16px; margin-top: 20px !important; }
+.sw-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.sw-list li { font-size: 15px; line-height: 1.7; color: var(--text2); background: var(--accent-light); border-radius: 12px; padding: 16px 18px; }
+.sw-list strong { color: var(--text); }
+.sw-check { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 10px; }
+.sw-check li { position: relative; padding-left: 30px; font-size: 15px; line-height: 1.65; color: var(--text2); }
+.sw-check li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 800; }
+.sw-signs-foot { font-weight: 600; color: var(--text) !important; }
+.sw-scope a { color: var(--accent); font-weight: 600; text-decoration: none; border-bottom: 1px solid #c8d8ff; }
+.sw-scope a:hover { border-bottom-color: var(--accent); }
+.sw-scope .sw-check { margin-bottom: 16px; }
+.sw-steplist { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; counter-reset: sw; }
+.sw-steplist li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; line-height: 1.7; color: var(--text2); }
+.sw-step-n { flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center; }
+.sw-steplist strong { color: var(--text); }
+.sw-faq-item { border-top: 1px solid var(--border); padding: 14px 0; }
+.sw-faq-item:first-of-type { border-top: none; padding-top: 0; }
+.sw-faq-item summary { font-size: 15px; font-weight: 700; color: var(--text); cursor: pointer; list-style: none; padding-right: 24px; position: relative; }
+.sw-faq-item summary::-webkit-details-marker { display: none; }
+.sw-faq-item summary::after { content: "+"; position: absolute; right: 0; top: -2px; font-size: 20px; font-weight: 400; color: var(--accent); }
+.sw-faq-item[open] summary::after { content: "–"; }
+.sw-faq-item p { margin: 10px 0 0; font-size: 14px; }
+.sw-page .lead-section { margin-top: 20px; }
+
+/* ── PRO CTA actions + blog software CTA ───────────────────────────────────
+   The page is the primary action (the story sells); the form is secondary. */
+.pro-cta-actions { flex-shrink: 0; display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+.pro-cta-link { background: none; border: none; padding: 0; cursor: pointer; font-family: var(--sans); font-size: 12px; color: var(--accent); text-decoration: underline; text-underline-offset: 2px; text-align: center; }
+.pro-cta-link:hover { color: #0e3aa8; }
+@media (max-width: 700px) { .pro-cta-actions { width: 100%; } }
+
+.blog-swcta { margin: 28px 0; background: linear-gradient(135deg, #0e3aa8 0%, #1452d6 100%); border-radius: 16px; padding: 26px 28px; }
+@media (max-width: 700px) { .blog-swcta { padding: 22px 18px; } }
+.blog-swcta-eyebrow { font-family: var(--sans); font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 10px; }
+.blog-swcta-title { font-size: clamp(17px, 2.2vw, 21px); font-weight: 800; letter-spacing: -0.4px; line-height: 1.25; color: #fff; margin: 0 0 10px; }
+.blog-swcta-body { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.9); margin: 0 0 16px; }
+.blog-swcta-btn { display: inline-block; background: #fff; color: var(--accent); border-radius: 10px; padding: 12px 20px; font-size: 14px; font-weight: 700; text-decoration: none; transition: background-color 0.2s, transform 0.2s; }
+.blog-swcta-btn:hover { background: #f0f4ff; transform: translateY(-1px); }
