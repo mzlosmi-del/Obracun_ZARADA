@@ -350,6 +350,8 @@ body { background: var(--bg); color: var(--text); font-family: var(--sans); min-
 .home-seo strong { color: var(--text); font-weight: 600; }
 .home-seo a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
 .home-seo a:hover { color: #0e3aa8; }
+.home-seo ul, .home-seo ol { padding-left: 20px; margin: 0 0 12px; }
+.home-seo li { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 6px; }
 .home-faq { margin-top: 24px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
 .home-faq-title { font-size: clamp(16px, 2.2vw, 20px); font-weight: 800; color: var(--text); letter-spacing: -0.3px; margin-bottom: 14px; }
 .home-faq-item { padding: 12px 0; border-top: 1px solid var(--border); }
@@ -777,6 +779,11 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outlin
    footer stands down — it funnels to the same partner, and stacking two
    affiliate bars is the intrusive pattern this component exists to avoid. */
 body.has-job-slidein .jobs-sticky { display: none !important; }
+
+/* The open mobile drawer also claims the bottom edge. The sticky bar is fixed
+   at z-index 200 and the sidebar is 100, so without this it sits ON TOP of the
+   sidebar footer and hides Softver po meri, O nama, Privatnost and Uslovi. */
+body.sidebar-open .jobs-sticky { display: none !important; }
 
 /* ── SOFTVER PO MERI — lead funnel landing page + form additions ────────────
    The funnel lives on the professional surfaces and on /softver-po-meri, never

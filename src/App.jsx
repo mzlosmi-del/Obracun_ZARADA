@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Routes, Route, Link, Navigate, useNavigate, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum, GaugeBar, FreshnessStamp } from "./ui.jsx";
@@ -1464,6 +1464,14 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  // While the mobile drawer is open it owns the screen, so the sticky jobs bar
+  // stands down — it is fixed at z-index 200 and was covering the sidebar
+  // footer links. Mirrors `body.has-job-slidein` in JobSlideIn.jsx.
+  useEffect(() => {
+    document.body.classList.toggle("sidebar-open", sidebarOpen);
+    return () => document.body.classList.remove("sidebar-open");
+  }, [sidebarOpen]);
 
   const navItems = [
     { path: "/", icon: "⚡", label: "Bruto u neto" },
