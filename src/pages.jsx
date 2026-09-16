@@ -12,6 +12,9 @@ const DISCLAIMER = "⚠️ PlatniListić pruža informativne obračune. Rezultat
 // { slug, title, description, h1, breadcrumbName, intro (JSX), guide (JSX),
 //   faq: [{q,a}], related: [{href,label}],
 //   calc: "full" | "pausal" | "otpremnina" | "godisnji-odmor" | "jubilarna" | "ugovor-o-delu",
+//   initialTab (calc:"full" only — opens the calculator on "payslip" or "ppppd"),
+//   trackSource ("page" on a dedicated tool page, so analytics can separate a
+//     visitor who searched for the tool from one who found the tab by accident),
 //   sourceNote (JSX, optional) }
 export function ToolPage({ cfg }) {
   useSeo({
@@ -35,7 +38,8 @@ export function ToolPage({ cfg }) {
         : cfg.calc === "godisnji-odmor" ? <GodisnjiOdmorCalculator />
         : cfg.calc === "jubilarna" ? <JubilarnaCalculator />
         : cfg.calc === "ugovor-o-delu" ? <UgovorODeluCalculator />
-        : <CalculatorPage focusSection={cfg.focusSection} />}
+        : <CalculatorPage key={cfg.slug} focusSection={cfg.focusSection}
+                         initialTab={cfg.initialTab} trackSource={cfg.trackSource} />}
       <div className="disclaimer">{DISCLAIMER}</div>
       <section className="tool-guide">{cfg.guide}</section>
       {cfg.faq && cfg.faq.length > 0 && (
@@ -463,6 +467,7 @@ export function BolovanjePage() {
     ],
     related: [
       { href: "/", label: "Bruto u neto kalkulator" },
+      { href: "/platni-listic", label: "Platni listić i PDF" },
       { href: "/minuli-rad", label: "Kalkulator minulog rada" },
       { href: "/otpremnina", label: "Kalkulator otpremnine" },
       { href: "/radni-dani-2026", label: "Radni dani 2026" },
@@ -1441,5 +1446,169 @@ export function PrazniciPage() {
     ],
     // VERIFY (owner): confirm praznici2026 dates against the official Vlada RS decision on neradni dani before publishing.
     sourceNote: <>Izvor: Zakon o državnim i drugim praznicima u Republici Srbiji (Sl. glasnik RS) i Vlada RS.</>,
+  }} />;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Employer document tools. Added 16.9.2026.
+//
+// WHY THESE PAGES EXIST. The PDF payslip and the PPP-PD XML generator were both
+// built as TABS inside the homepage calculator — no URL, not prerendered, not in
+// the sitemap, therefore zero search entry points. The only way to reach the
+// PPP-PD generator was to search a bruto/neto question, land on the homepage and
+// notice a tab. It produced ~10 generations a month, and that number was about
+// to be read as "the professional segment does not exist" when it in fact
+// measured nothing but discoverability.
+//
+// These are DOORWAYS, NOT DUPLICATES. Both render the same <CalculatorPage />,
+// just opened on the relevant tab, so there is one tool and one codebase. They
+// do not repeat the /bruto-neto mistake (two pages fighting over one intent):
+// the homepage owns bruto↔neto salary conversion, and these own the employer
+// document intent it has never targeted — platni listić, obračunski list zarade,
+// PPP-PD, program za obračun zarada.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export function PlatniListicPage() {
+  return <ToolPage cfg={{
+    slug: "platni-listic",
+    title: "Platni listić — šta mora da sadrži i PDF | PlatniListić",
+    description: "Platni listić (obračunski list zarade) — šta po zakonu mora da sadrži, zašto je obračun za neisplaćeni mesec izvršna isprava i besplatan PDF generator.",
+    h1: "Platni listić — obračunski list zarade i PDF generator",
+    breadcrumbName: "Platni listić",
+    calc: "full",
+    initialTab: "payslip",
+    trackSource: "page",
+    intro: (<p><strong>Platni listić</strong> (zakonski naziv: <em>obračun zarade, odnosno naknade zarade</em>) nije formalnost — poslodavac je dužan da ga dostavi zaposlenom <strong>prilikom svake isplate</strong>, ali i <strong>za mesec u kome isplata nije izvršena</strong>. Obračun za neisplaćeni mesec je <strong>izvršna isprava</strong>: sa njim zaposleni ide direktno na izvršenje, bez radnog spora. Popunite podatke ispod i preuzmite platni listić kao PDF.</p>),
+    guide: (<><h2>Zašto je platni listić zakonska obaveza</h2>
+      <p>Član 121. Zakona o radu propisuje dve odvojene obaveze, i poslodavci po pravilu znaju samo prvu. Prva: da se zaposlenom <strong>prilikom svake isplate</strong> zarade i naknade zarade dostavi obračun. Druga: da se obračun dostavi <strong>i za mesec za koji isplata nije izvršena</strong>, najkasnije do kraja meseca za prethodni mesec, uz obaveštenje da isplata nije izvršena i iz kojih razloga. Za nedostavljanje obračuna propisana je prekršajna kazna koja ide do dva miliona dinara.</p>
+
+      <h2>Obračun za neisplaćeni mesec je izvršna isprava</h2>
+      <p>Ovo je odredba zbog koje platni listić vredi mnogo više nego što izgleda. Prema članu 121. stav 6. Zakona o radu, obračun zarade koja nije isplaćena <strong>predstavlja izvršnu ispravu</strong>. Praktična posledica: zaposleni koji ima uredan obračun ne mora da pokreće radni spor da bi naplatio neisplaćenu zaradu — ide pravo na izvršenje, što je neuporedivo brže.</p>
+      <p>Da bi obračun zaista imao to dejstvo, nije dovoljno da bude tačan. Mora da sadrži podatke propisane <strong>Pravilnikom o sadržaju obračuna zarade, odnosno naknade zarade</strong> („Sl. glasnik RS", br. 90/2014, sa kasnijim izmenama) i mora biti <strong>potpisan od strane ovlašćenog lica</strong> kod poslodavca, uz pečat ako ga poslodavac koristi u poslovanju. Nepotpisan PDF nije izvršna isprava — to je najskuplja greška u ovoj temi, i pravi se tiho, jer sve izgleda uredno dok ne zatreba.</p>
+
+      <h2>Šta platni listić mora da sadrži</h2>
+      <table className="ref-table" aria-label="Obavezni sadržaj obračuna zarade (platnog listića)">
+        <thead><tr><th>Grupa podataka</th><th>Šta ulazi</th></tr></thead>
+        <tbody>
+          <tr><td>Podaci o poslodavcu</td><td>naziv, sedište i adresa, PIB, matični broj</td></tr>
+          <tr><td>Podaci o zaposlenom</td><td>ime i prezime, adresa, JMBG, naziv banke i broj računa na koji se zarada isplaćuje</td></tr>
+          <tr><td>Period</td><td>mesec i godina na koje se obračun odnosi, i dan dospelosti za isplatu</td></tr>
+          <tr><td>Časovi rada</td><td>redovan rad, praznik, noćni rad, prekovremeni rad, pripravnost</td></tr>
+          <tr><td>Časovi naknade zarade</td><td>godišnji odmor, bolovanje, porodiljsko odsustvo, plaćeno odsustvo i ostali osnovi</td></tr>
+          <tr><td>Zarada i uvećanja</td><td>osnovna zarada, minuli rad, uvećanja po članu 108, topli obrok, regres</td></tr>
+          <tr><td>Porez i doprinosi</td><td>osnovica, porez na zaradu, PIO, zdravstveno i osiguranje za slučaj nezaposlenosti</td></tr>
+          <tr><td>Obustave i neto</td><td>administrativne i sudske zabrane, krediti, i konačan neto iznos za isplatu</td></tr>
+          <tr><td>Potpis</td><td>potpis ovlašćenog lica (i pečat, ako ga poslodavac koristi) — uslov za dejstvo izvršne isprave</td></tr>
+        </tbody>
+      </table>
+      <p>Kada se vrši delimična isplata, obračun ne mora da sadrži pun raspored časova — osim ako je reč o konačnom obračunu.</p>
+
+      <h2>Kako da napravite platni listić</h2>
+      <p>U kartici <strong>🧾 Platni Listić</strong> iznad unesite podatke o firmi i zaposlenom, a u kartici <strong>📝 Unos</strong> zaradu, dane bolovanja, minuli rad i dodatke. Obračun se radi u vašem pretraživaču — <strong>nijedan podatak ne odlazi na server</strong>, pa PIB, JMBG i broj računa ostaju na vašem računaru. Rezultat preuzimate kao PDF i potpisujete.</p>
+      <p>Za prijavu poreza i doprinosa uz istu isplatu koristite <a href="/ppp-pd">PPP-PD generator</a> — isti uneti podaci, izlaz je XML za ePorezi.</p>
+
+      <h2>Najčešće greške</h2>
+      <ul>
+        <li><strong>Obračun se ne dostavlja kad nema isplate.</strong> Obaveza tada ne prestaje — ona je tada i najvažnija, jer taj obračun je izvršna isprava.</li>
+        <li><strong>PDF bez potpisa ovlašćenog lica.</strong> Sadržaj može biti besprekoran, ali bez potpisa obračun nema dejstvo izvršne isprave.</li>
+        <li><strong>Platni listić se izjednačava sa PPP-PD prijavom.</strong> To su dva različita dokumenta sa različitim adresatima: platni listić ide zaposlenom, PPP-PD Poreskoj upravi.</li>
+        <li><strong>Izostavljanje naziva banke i broja računa.</strong> Ti podaci su deo propisanog sadržaja; izostavljaju se samo za zaposlenog koji se izjasnio za isplatu na ruke.</li>
+        <li><strong>Neto se navodi bez razrade.</strong> Obračun mora da pokaže put od bruto iznosa preko poreza i doprinosa do neto iznosa, a ne samo krajnju cifru.</li>
+      </ul>
+
+      <h2>Pravni okvir</h2>
+      <p>Obavezu, rok i dejstvo izvršne isprave uređuje <strong>Zakon o radu</strong> (čl. 121). Sadržaj obračuna propisuje <strong>Pravilnik o sadržaju obračuna zarade, odnosno naknade zarade</strong> („Sl. glasnik RS", br. 90/2014, sa kasnijim izmenama), koji propisuje i obrasce za obračun. Elementi samog obračuna — minuli rad, uvećanja zarade, naknada zarade — uređeni su članovima 105–121. Zakona o radu.</p></>),
+    faq: [
+      { q: "Šta je platni listić?", a: "Platni listić je obračun zarade, odnosno naknade zarade — dokument kojim poslodavac zaposlenom razlaže kako je od bruto zarade došao do neto iznosa na računu: časove rada i naknade, osnovnu zaradu, minuli rad i uvećanja, osnovicu, porez, doprinose, obustave i konačan neto. U propisima se sreće i kao obračunski list zarade ili isplatni listić." },
+      { q: "Da li je poslodavac dužan da izda platni listić?", a: "Da. Član 121. Zakona o radu propisuje da poslodavac zaposlenom dostavi obračun prilikom svake isplate zarade i naknade zarade, a i za mesec u kome isplata nije izvršena — najkasnije do kraja meseca za prethodni mesec, uz obaveštenje o razlozima. Za nedostavljanje je propisana prekršajna kazna do dva miliona dinara." },
+      { q: "Zašto je platni listić izvršna isprava?", a: "Prema članu 121. stav 6. Zakona o radu, obračun zarade koja nije isplaćena predstavlja izvršnu ispravu. Zaposleni sa takvim obračunom naplatu pokreće kroz izvršni postupak, bez vođenja radnog spora. Uslov je da obračun sadrži podatke propisane Pravilnikom i da bude potpisan od ovlašćenog lica, uz pečat ako ga poslodavac koristi." },
+      { q: "Šta mora da piše na platnom listiću?", a: "Podaci o poslodavcu i zaposlenom (uključujući naziv banke i broj računa), period i dan dospelosti isplate, časovi redovnog rada i časovi naknade zarade po osnovima, osnovna zarada sa minulim radom i uvećanjima, osnovica, porez i doprinosi po vrstama, obustave i konačan neto iznos, te potpis ovlašćenog lica. Sadržaj propisuje Pravilnik o sadržaju obračuna zarade, odnosno naknade zarade." },
+      { q: "Da li je platni listić isto što i PPP-PD?", a: "Nije. Platni listić je dokument koji poslodavac dostavlja zaposlenom po Zakonu o radu. PPP-PD je pojedinačna poreska prijava koju poslodavac podnosi Poreskoj upravi elektronski, pre svake isplate. Ista isplata traži oba dokumenta, ali oni imaju različite adresate, sadržaj i rokove." },
+      { q: "Da li su moji podaci bezbedni u ovom generatoru?", a: "Jesu. Ceo obračun se izvršava u vašem pretraživaču i nijedan uneti podatak se ne šalje na server — ni PIB, ni JMBG, ni broj računa, ni iznos zarade. PDF se generiše lokalno na vašem uređaju." },
+    ],
+    related: [
+      { href: "/ppp-pd", label: "PPP-PD generator" },
+      { href: "/", label: "Bruto u neto kalkulator" },
+      { href: "/bolovanje", label: "Kalkulator bolovanja" },
+      { href: "/minuli-rad", label: "Kalkulator minulog rada" },
+    ],
+  }} />;
+}
+
+export function PPPPDPage() {
+  return <ToolPage cfg={{
+    slug: "ppp-pd",
+    title: "PPP-PD obrazac — generator XML prijave | PlatniListić",
+    description: "Besplatan generator PPP-PD XML fajla za ePorezi. Unesite zaradu i preuzmite prijavu — bez instalacije i bez slanja podataka. Uz rok i ŠVP šifre.",
+    h1: "PPP-PD obrazac — generator XML prijave",
+    breadcrumbName: "PPP-PD",
+    calc: "full",
+    initialTab: "ppppd",
+    trackSource: "page",
+    intro: (<p><strong>PPP-PD</strong> je pojedinačna poreska prijava o obračunatim porezima i doprinosima po odbitku. Podnosi je isplatilac, <strong>elektronski preko portala ePorezi</strong>, i to <strong>pre svake isplate</strong> — ne posle nje i ne zbirno na kraju meseca. Unesite zaradu u kalkulatoru ispod i preuzmite gotov <strong>XML fajl</strong> koji učitavate na ePorezi.</p>),
+    guide: (<><h2>Šta je PPP-PD prijava</h2>
+      <p>PPP-PD je prijava kojom isplatilac prijavljuje poreze i doprinose po odbitku na primanja koja isplaćuje fizičkim licima — zaradu, naknadu zarade, ugovor o delu, zakup i ostale prihode. Jedna prijava pokriva jednu isplatu i može da sadrži veći broj primalaca. Podnosi se isključivo elektronski, preko portala <strong>ePorezi</strong>, i to kvalifikovanim elektronskim sertifikatom.</p>
+
+      <h2>Rok: prijava ide PRE isplate</h2>
+      <p>Ovo je mesto gde se najčešće greši. PPP-PD se ne podnosi posle isplate ni na kraju meseca — <strong>podnosi se pre nego što novac krene ka primaocu</strong>. Redosled je uvek isti:</p>
+      <table className="ref-table" aria-label="Redosled koraka kod PPP-PD prijave">
+        <thead><tr><th>Korak</th><th>Šta se dešava</th></tr></thead>
+        <tbody>
+          <tr><td>1. Obračun zarade</td><td>Utvrđuju se bruto, osnovice, porez i doprinosi po zaposlenom</td></tr>
+          <tr><td>2. Podnošenje PPP-PD</td><td>Prijava se šalje preko ePorezi, pre isplate</td></tr>
+          <tr><td>3. Prihvatanje prijave</td><td>Poreska uprava vraća <strong>BOP</strong> — broj odobrenja za plaćanje</td></tr>
+          <tr><td>4. Plaćanje obaveza</td><td>BOP se koristi kao poziv na broj pri uplati poreza i doprinosa</td></tr>
+          <tr><td>5. Isplata zaposlenom</td><td>Tek tada ide isplata neto iznosa i dostavljanje <a href="/platni-listic">platnog listića</a></td></tr>
+        </tbody>
+      </table>
+      <p>Bez prihvaćene prijave nema BOP-a, a bez BOP-a uplata poreza i doprinosa se ne može pravilno povezati sa obavezom.</p>
+
+      <h2>Besplatan program za obračun zarada</h2>
+      <p>Za poslodavca sa nekoliko zaposlenih, pun softver za obračun zarada je po pravilu skuplji i teži nego što posao traži. Kalkulator na ovoj strani pokriva ceo mesečni ciklus za jednog zaposlenog po isplati: obračun zarade sa minulim radom, bolovanjem, prekovremenim radom i neoporezivim iznosima, <a href="/platni-listic">platni listić kao PDF</a>, i <strong>PPP-PD XML</strong> spreman za učitavanje na ePorezi.</p>
+      <p>Bez instalacije, bez naloga i bez slanja podataka — <strong>sve se računa u vašem pretraživaču</strong>, pa PIB, JMBG i iznosi zarada nikada ne napuštaju vaš uređaj. Ograničenje je pošteno reći: ovo je alat za obračun po zaposlenom, nije kadrovska evidencija i ne čuva istoriju obračuna.</p>
+
+      <h2>ŠVP — šifra vrste prihoda</h2>
+      <p>Svaki red prijave nosi ŠVP, devetocifrenu šifru koja govori o kojoj vrsti prihoda je reč. Pogrešan ŠVP je najčešći razlog odbijanja prijave. Najčešće korišćene:</p>
+      <table className="ref-table" aria-label="Najčešće ŠVP šifre u PPP-PD prijavi">
+        <thead><tr><th>ŠVP</th><th>Vrsta prihoda</th></tr></thead>
+        <tbody>
+          <tr><td>111001001</td><td>Zarada — redovan rad</td></tr>
+          <tr><td>111001002</td><td>Zarada — prekovremeni rad</td></tr>
+          <tr><td>111002001</td><td>Naknada zarade — bolovanje do 30 dana</td></tr>
+          <tr><td>111002002</td><td>Naknada zarade — godišnji odmor</td></tr>
+          <tr><td>111002003</td><td>Naknada zarade — praznik</td></tr>
+          <tr><td>111005001</td><td>Regres za godišnji odmor</td></tr>
+          <tr><td>111006001</td><td>Jubilarna nagrada</td></tr>
+          <tr><td>101001001</td><td>Zarada preduzetnika</td></tr>
+        </tbody>
+      </table>
+      <p>Šifre se biraju u kartici <strong>🏛️ PPP-PD</strong> iznad. Pun spisak šifara objavljuje Poreska uprava i pre podnošenja vredi proveriti da važeća šifra nije promenjena.</p>
+
+      <h2>Česte greške</h2>
+      <ul>
+        <li><strong>Prijava se podnosi posle isplate.</strong> Rok je pre isplate — obrnut redosled znači prijavu koja kasni po zakonu, bez obzira na to što je porez plaćen.</li>
+        <li><strong>Pogrešan ŠVP.</strong> Regres, jubilarna nagrada i naknada zarade imaju svoje šifre i ne prijavljuju se kao redovna zarada.</li>
+        <li><strong>Mešanje broja kalendarskih dana i efektivnih sati.</strong> To su dva različita polja i prijava se odbija kada se ne slažu sa obračunom.</li>
+        <li><strong>Uplata bez BOP-a.</strong> Bez poziva na broj iz prihvaćene prijave uplata se ne povezuje sa prijavljenom obavezom.</li>
+        <li><strong>PPP-PD se shvata kao zamena za platni listić.</strong> Prijava ide Poreskoj upravi; zaposlenom i dalje mora da se dostavi obračun zarade po članu 121. Zakona o radu.</li>
+      </ul>
+
+      <h2>Napomena o generatoru</h2>
+      <p>XML koji ovaj alat pravi sadrži jedan red prihoda za jednog primaoca i namenjen je standardnoj mesečnoj isplati zarade. Pre učitavanja proverite PIB isplatioca, JMBG primaoca, šifru opštine i ŠVP — alat ne može da zna koje su vrednosti tačne za vaš slučaj. Za više zaposlenih po prijavi ili za nestandardne vrste prihoda potreban je obračun koji vodi vaša knjigovodstvena služba.</p></>),
+    faq: [
+      { q: "Šta je PPP-PD obrazac?", a: "PPP-PD je pojedinačna poreska prijava o obračunatim porezima i doprinosima po odbitku. Njome isplatilac prijavljuje Poreskoj upravi poreze i doprinose na primanja koja isplaćuje fizičkim licima — zaradu, naknadu zarade, ugovor o delu, zakup i druge prihode. Jedna prijava odnosi se na jednu isplatu i može da obuhvati više primalaca." },
+      { q: "Kada se podnosi PPP-PD prijava?", a: "Pre svake isplate, a ne posle nje. Redosled je: obračun zarade, podnošenje prijave preko ePorezi, dobijanje BOP-a (broj odobrenja za plaćanje), uplata poreza i doprinosa pozivom na taj broj, pa tek onda isplata neto iznosa zaposlenom." },
+      { q: "Kako se podnosi PPP-PD?", a: "Isključivo elektronski, preko portala ePorezi Poreske uprave, uz kvalifikovani elektronski sertifikat. Prijava se može popuniti u samom portalu ili učitati kao XML fajl, što je brže kada obračun već postoji u drugom alatu." },
+      { q: "Šta je BOP?", a: "BOP je broj odobrenja za plaćanje koji Poreska uprava dodeljuje kada prihvati podnetu prijavu. Koristi se kao poziv na broj pri uplati prijavljenih poreza i doprinosa i time povezuje uplatu sa konkretnom prijavom." },
+      { q: "Postoji li besplatan program za obračun zarada?", a: "Za jednog zaposlenog po isplati, kalkulator na ovoj strani pokriva ceo ciklus besplatno: obračun zarade sa minulim radom, bolovanjem i uvećanjima, platni listić kao PDF i PPP-PD XML za ePorezi. Radi u pretraživaču, bez instalacije i naloga. Nije zamena za knjigovodstveni softver kada treba voditi evidenciju i istoriju obračuna za više zaposlenih." },
+      { q: "Da li podaci koje unesem odlaze na server?", a: "Ne. Obračun i generisanje XML-a izvršavaju se u vašem pretraživaču. PIB, matični broj, JMBG, ime zaposlenog i iznosi zarade ne šalju se nigde i ostaju na vašem uređaju." },
+      { q: "Da li PPP-PD zamenjuje platni listić?", a: "Ne. To su dva dokumenta sa različitim adresatima. PPP-PD ide Poreskoj upravi pre isplate, a obračun zarade — platni listić — dostavlja se zaposlenom po članu 121. Zakona o radu, prilikom svake isplate i za mesec u kome isplate nije bilo." },
+    ],
+    related: [
+      { href: "/platni-listic", label: "Platni listić i PDF" },
+      { href: "/", label: "Bruto u neto kalkulator" },
+      { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
+      { href: "/neoporezivi-iznos-2026", label: "Neoporezivi iznos 2026" },
+    ],
   }} />;
 }

@@ -26,10 +26,15 @@ const RATE_FIELDS = [
 ];
 
 const EVENTS = {
-  ppppd_generate:      [],           // clicked "Generiši PPP-PD XML" — employer/bookkeeper
-  ppppd_download:      [],           // took the .xml file
-  ppppd_copy:          [],           // copied XML (pasting into another system)
-  payslip_pdf:         [],           // generated a PDF payslip — an employer act
+  // The four employer acts. The detail is the SURFACE the act happened on, so we
+  // can tell a professional who searched for the tool ("page") from one who
+  // stumbled onto the tab from the consumer calculator ("home"). Added 16.9.2026 —
+  // until then these tools had no URL of their own, so the raw count could not
+  // distinguish demand from discoverability.
+  ppppd_generate:      ["home", "page"],  // clicked "Generiši PPP-PD XML"
+  ppppd_download:      ["home", "page"],  // took the .xml file
+  ppppd_copy:          ["home", "page"],  // copied XML (pasting into another system)
+  payslip_pdf:         ["home", "page"],  // generated a PDF payslip
   company_pib_entered: ["valid"],    // a complete 9-digit PIB was typed. Value NEVER sent
   rates_edited:        RATE_FIELDS,  // overrode a statutory rate — only a professional
   // Custom-software lead funnel (src/lead.jsx). Details are FIXED surface

@@ -26,6 +26,9 @@ const BolovanjePage = lazy(() => import("./pages.jsx").then(m => ({ default: m.B
 const OtpremninaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.OtpremninaPage })));
 const MinuliRadPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinuliRadPage })));
 const MinimalnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.MinimalnaZaradaPage })));
+// Employer document tools — doorways onto the payslip and PPP-PD tabs. See pages.jsx.
+const PlatniListicPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PlatniListicPage })));
+const PPPPDPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.PPPPDPage })));
 const DodaciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.DodaciPage })));
 const GodisnjiPorezPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiPorezPage })));
 const GodisnjiOdmorPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.GodisnjiOdmorPage })));
@@ -535,7 +538,11 @@ function CalcSection({ name, icon, title, focusSection, children }) {
 // CalculatorPage — shared embedded calculator. `focusSection` (optional) names a
 // section to surface first and highlight on tool pages (e.g. "bolovanje" on the
 // /bolovanje page); when unset, sections render in their natural order.
-export function CalculatorPage({ focusSection } = {}) {
+// `initialTab` opens the calculator on a tab other than "inputs" — used by the
+// dedicated tool pages (/platni-listic, /ppp-pd) so a visitor who searched for
+// the document lands on it instead of the consumer salary form.
+// `trackSource` labels which surface an employer act happened on. See track.js.
+export function CalculatorPage({ focusSection, initialTab, trackSource = "home" } = {}) {
   const now = new Date();
   const [calcMode, setCalcMode] = useState("bruto");
   const [targetNeto, setTargetNeto] = useState(70000);
@@ -557,7 +564,7 @@ export function CalculatorPage({ focusSection } = {}) {
     month: now.getMonth() + 1, year: now.getFullYear(),
   });
   const [rates, setRates] = useState({ ...DEFAULT_RATES });
-  const [activeTab, setActiveTab] = useState("inputs");
+  const [activeTab, setActiveTab] = useState(initialTab || "inputs");
 
   // In neto mode the solver must see the very inputs we are about to render,
   // otherwise the bruto it returns and the neto we display describe different
@@ -984,7 +991,7 @@ export function CalculatorPage({ focusSection } = {}) {
             </div>
             <div className="pdf-note">Sva polja su opcionalna. Platni listić se generiše sa unetim podacima.</div>
             <div style={{padding:"14px 16px"}}>
-              <button className="btn-pdf btn-pdf-full" onClick={() => { track("payslip_pdf"); printPayslip(effectiveInputs, r, info, rates); }} style={{margin: 0, width: "100%"}}>
+              <button className="btn-pdf btn-pdf-full" onClick={() => { track("payslip_pdf", trackSource); printPayslip(effectiveInputs, r, info, rates); }} style={{margin: 0, width: "100%"}}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                   <polyline points="14,2 14,8 20,8"/>
@@ -1142,7 +1149,7 @@ export function CalculatorPage({ focusSection } = {}) {
 
       {activeTab === "ppppd" && (
         <Suspense fallback={<div className="route-loader">Učitavam PPP-PD modul…</div>}>
-          <PPPPDTab inputs={effectiveInputs} r={r} info={info} setI={setI} />
+          <PPPPDTab inputs={effectiveInputs} r={r} info={info} setI={setI} source={trackSource} />
           <ProCTA variant="ppppd" />
         </Suspense>
       )}
@@ -1261,6 +1268,8 @@ function HomePage() {
           <li><a href="/bolovanje">Kalkulator bolovanja</a></li>
           <li><a href="/otpremnina">Kalkulator otpremnine</a></li>
           <li><a href="/minuli-rad">Kalkulator minulog rada</a></li>
+          <li><a href="/platni-listic">Platni listić — obračunski list zarade</a></li>
+          <li><a href="/ppp-pd">PPP-PD obrazac — generator XML prijave</a></li>
           <li><a href="/dodaci-na-zaradu">Dodaci na zaradu — prekovremeni, noćni</a></li>
           <li><a href="/ugovor-o-delu">Ugovor o delu kalkulator</a></li>
           <li><a href="/godisnji-porez">Godišnji porez kalkulator</a></li>
@@ -1480,6 +1489,8 @@ export default function App() {
     { path: "/bolovanje", icon: "🏥", label: "Bolovanje" },
     { path: "/otpremnina", icon: "📤", label: "Otpremnina" },
     { path: "/minuli-rad", icon: "📈", label: "Minuli rad" },
+    { path: "/platni-listic", icon: "🧾", label: "Platni listić" },
+    { path: "/ppp-pd", icon: "🏛️", label: "PPP-PD" },
     { path: "/blog", icon: "📰", label: "Blog" },
   ];
 
@@ -1546,6 +1557,8 @@ export default function App() {
             <Route path="/godisnji-odmor" element={<Suspense fallback={<RouteLoader />}><GodisnjiOdmorPage /></Suspense>} />
             <Route path="/jubilarna-nagrada" element={<Suspense fallback={<RouteLoader />}><JubilarnaPage /></Suspense>} />
             <Route path="/ugovor-o-delu" element={<Suspense fallback={<RouteLoader />}><UgovorODeluPage /></Suspense>} />
+            <Route path="/platni-listic" element={<Suspense fallback={<RouteLoader />}><PlatniListicPage /></Suspense>} />
+            <Route path="/ppp-pd" element={<Suspense fallback={<RouteLoader />}><PPPPDPage /></Suspense>} />
             <Route path="/minimalna-zarada" element={<Suspense fallback={<RouteLoader />}><MinimalnaZaradaPage /></Suspense>} />
             {/* Legacy dated URL — server-side 301 lives in vercel.json; this client-side
                 fallback covers SPA navigation that reaches the router before Vercel. */}

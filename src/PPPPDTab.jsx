@@ -77,13 +77,13 @@ const SVP_LIST = [
   ["101001001","101001001 — Zarada preduzetnika"],
 ];
 
-export default function PPPPDTab({ inputs, r, info, setI }) {
+export default function PPPPDTab({ inputs, r, info, setI, source = "home" }) {
   const [xml, setXml] = useState("");
   const [copied, setCopied] = useState(false);
   const [showXml, setShowXml] = useState(false);
 
   const generate = () => {
-    track("ppppd_generate");
+    track("ppppd_generate", source);
     const generated = generatePPPPD(inputs, r, info);
     setXml(generated);
     setShowXml(true);
@@ -91,7 +91,7 @@ export default function PPPPDTab({ inputs, r, info, setI }) {
   };
 
   const download = () => {
-    track("ppppd_download");
+    track("ppppd_download", source);
     const pad2 = (n) => String(n).padStart(2, "0");
     const blob = new Blob([xml], { type: "application/xml" });
     const url = URL.createObjectURL(blob);
@@ -104,7 +104,7 @@ export default function PPPPDTab({ inputs, r, info, setI }) {
 
   const copy = () => {
     navigator.clipboard.writeText(xml).then(() => {
-      track("ppppd_copy");
+      track("ppppd_copy", source);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });

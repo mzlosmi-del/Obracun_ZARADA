@@ -11,7 +11,7 @@ const ROOT = join(__dirname, "..");
 const DIST = join(ROOT, "dist");
 const SITE_URL = "https://www.platnilistic.rs";
 
-const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/softver-po-meri", "/privatnost", "/uslovi", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/godisnji-odmor", "/jubilarna-nagrada", "/ugovor-o-delu", "/minimalna-zarada", "/radni-dani-2026", "/praznici-2026", "/prosecna-zarada", "/neoporezivi-iznos-2026", "/stope-doprinosa-2026"];
+const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/softver-po-meri", "/privatnost", "/uslovi", "/neto-bruto", "/pausal", "/bolovanje", "/otpremnina", "/minuli-rad", "/dodaci-na-zaradu", "/godisnji-porez", "/godisnji-odmor", "/jubilarna-nagrada", "/ugovor-o-delu", "/minimalna-zarada", "/radni-dani-2026", "/praznici-2026", "/prosecna-zarada", "/neoporezivi-iznos-2026", "/stope-doprinosa-2026", "/platni-listic", "/ppp-pd"];
 
 // Blog posts that 301-redirect to a canonical page (see vercel.json). They must
 // NOT be prerendered or listed in the sitemap — a redirected URL in the sitemap
@@ -55,6 +55,10 @@ function sitemapXml() {
     "/godisnji-odmor": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/jubilarna-nagrada": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     "/ugovor-o-delu": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    // Employer document tools — the payslip and PPP-PD generators finally have
+    // their own URLs (16.9.2026). Priority 0.8 like the other tool pages.
+    "/platni-listic": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
+    "/ppp-pd": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },
     // Evergreen head-term page (was /minimalna-zarada-2026, 301 in vercel.json) —
     // refreshed in place every year, so monthly changefreq and higher priority.
     "/minimalna-zarada": { changefreq: "monthly", priority: "0.8", lastmod: new Date().toISOString().slice(0, 10) },

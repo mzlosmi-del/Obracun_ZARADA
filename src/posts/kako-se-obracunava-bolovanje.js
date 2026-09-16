@@ -119,7 +119,7 @@ Papirna doznaka od **1. januara 2026.** više ne postoji: izabrani lekar izdaje 
 
 ## Kalkulator obračuna bolovanja do 30 dana (sa PDF-om)
 
-Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i naknadu za **bolovanje do 30 dana** prema unetom procentu (65–100%). Primer kalkulacije možete videti u kartici „Obračun" — bolovanje se prikazuje kao zasebna stavka, a ceo obračun možete preuzeti kao **PDF platni listić**.
+Naš [kalkulator zarade](/) automatski obračunava odbitak za dane bolovanja i naknadu za **bolovanje do 30 dana** prema unetom procentu (65–100%). Primer kalkulacije možete videti u kartici „Obračun" — bolovanje se prikazuje kao zasebna stavka, a ceo obračun možete preuzeti kao [PDF platni listić](/platni-listic). Za prijavu poreza i doprinosa uz istu isplatu koristite [PPP-PD generator](/ppp-pd).
 
 ## Izvori
 
