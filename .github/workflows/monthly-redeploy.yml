@@ -1,0 +1,60 @@
+# Monthly redeploy — keeps the prerendered month name fresh.
+#
+# WHY THIS EXISTS
+# Several pages bake the current month into their HTML at prerender time
+# (/minimalna-zarada, /radni-dani-2026, /blog/porodiljsko-odsustvo,
+# /blog/kako-se-obracunava-penzija). React re-computes the month on hydration,
+# so a browser always looks correct — but Googlebot reads the prerendered HTML,
+# which keeps last month's name until the next deploy.
+#
+# This fired on 7.9.2026: the 31.8 deploy baked "avgust" and Google served it
+# for the first week of September. "minimalac za septembar 2026" ran 1,3% CTR
+# on 848 impressions, against the 13–24% that month-named queries normally do
+# on a page that answers them.
+#
+# SETUP (one time, manual):
+#   1. Vercel → Project Settings → Git → Deploy Hooks → Create Hook
+#      Name: monthly-prerender-refresh   Branch: main
+#   2. Copy the URL, then in GitHub:
+#      Settings → Secrets and variables → Actions → New repository secret
+#      Name: VERCEL_DEPLOY_HOOK   Value: <the hook URL>
+#   3. Actions tab → "Monthly redeploy" → Run workflow, to confirm it works.
+
+name: Monthly redeploy
+
+on:
+  schedule:
+    # 03:10 UTC on the 1st of every month. Off the hour on purpose —
+    # GitHub delays cron jobs scheduled exactly at :00 under load.
+    - cron: '10 3 1 * *'
+  workflow_dispatch:
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail loudly if the deploy hook is not configured
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "::error::VERCEL_DEPLOY_HOOK secret is not set."
+            echo "Create the hook in Vercel (Settings -> Git -> Deploy Hooks)"
+            echo "and add the URL as a repository secret named VERCEL_DEPLOY_HOOK."
+            exit 1
+          fi
+
+      - name: Trigger the Vercel deploy hook
+        env:
+          HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o response.json -w '%{http_code}' -X POST "$HOOK")
+          echo "HTTP $code"
+          cat response.json || true
+          echo
+          case "$code" in
+            2*) echo "Deploy triggered. Prerendered month names will refresh." ;;
+            *)  echo "::error::Deploy hook returned HTTP $code — prerender NOT refreshed."
+                exit 1 ;;
+          esac

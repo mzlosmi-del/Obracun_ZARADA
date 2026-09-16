@@ -271,11 +271,11 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-bolovanje",
     date: "1. maj 2026",
-    updated: "27. avgust 2026",
+    updated: "16. septembar 2026",
     tag: "Bolovanje",
     title: "Kako se obračunava bolovanje do 30 dana — naknada 65%",
     summary: "Obračun bolovanja do 30 dana: naknada je minimum 65% prosečne zarade, a od 31. dana na teret RFZO. Kalkulator sa primerima i PDF platni listić.",
-    hasFaq: false,
+    hasFaq: true,
   },
   {
     id: "minuli-rad-obracun",
