@@ -1,30 +1,30 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" role="img" aria-labelledby="t3 d3" font-family="Inter, Arial, sans-serif">
-  <title id="t3">Prosečna neto plata po gradovima i regionima u Srbiji, jun 2026</title>
-  <desc id="d3">Horizontalni bar grafikon neto zarada za jun 2026: Stari grad (Beograd) 194.499, Beogradski region 148.687, državni prosek 120.401, Vojvodina 113.637, Šumadija i Zapadna Srbija 103.389 dinara. Stari grad je opština sa najvišom prosečnom neto zaradom u Srbiji.</desc>
+  <title id="t3">Prosečna neto plata po opštinama i regionima u Srbiji, jul 2026</title>
+  <desc id="d3">Horizontalni bar grafikon neto zarada za jul 2026: Stari grad (Beograd) 213.244, Vračar 196.384, Beogradski region 149.577, državni prosek 121.346, Preševo 83.504 dinara. Stari grad je opština sa najvišom, a Preševo sa najnižom prosečnom neto zaradom u Srbiji.</desc>
   <rect width="720" height="380" fill="#ffffff"/>
-  <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Prosečna neto plata po gradovima (jun 2026)</text>
-  <text x="40" y="60" font-size="13" fill="#64748b">Jun 2026 · mesečno, neto · Izvor: RZS</text>
+  <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Prosečna neto plata po opštinama (jul 2026)</text>
+  <text x="40" y="60" font-size="13" fill="#64748b">Jul 2026 · mesečno, neto · Izvor: RZS</text>
 
   <g font-size="13" fill="#0f2742" text-anchor="end" font-weight="600">
-    <text x="190" y="95">Stari grad (Beograd)</text>
-    <text x="190" y="147">Beogradski region</text>
-    <text x="190" y="199">Državni prosek</text>
-    <text x="190" y="251">Vojvodina</text>
-    <text x="190" y="303">Šumadija i Zap. Srbija</text>
+    <text x="190" y="101">Stari grad (Beograd)</text>
+    <text x="190" y="153">Vračar (Beograd)</text>
+    <text x="190" y="205">Beogradski region</text>
+    <text x="190" y="257">Državni prosek</text>
+    <text x="190" y="309">Preševo</text>
   </g>
 
-  <!-- bars (x start 200, max width 480 at value 194499) -->
+  <!-- bars (x start 200, max width 480 at value 213244) -->
   <g>
-    <rect x="200" y="80"  width="480"   height="30" rx="4" fill="#1f6feb"/>
-    <text x="688" y="101" font-size="13" font-weight="800" fill="#1f6feb">194.499</text>
-    <rect x="200" y="132" width="366.9" height="30" rx="4" fill="#3b82f6"/>
-    <text x="575" y="153" font-size="13" font-weight="700" fill="#0f2742">148.687</text>
-    <rect x="200" y="184" width="297.1" height="30" rx="4" fill="#16a34a"/>
-    <text x="505" y="205" font-size="13" font-weight="800" fill="#16a34a">120.401</text>
-    <rect x="200" y="236" width="280.4" height="30" rx="4" fill="#94a3b8"/>
-    <text x="488" y="257" font-size="13" font-weight="700" fill="#475569">113.637</text>
-    <rect x="200" y="288" width="255.2" height="30" rx="4" fill="#cbd5e1"/>
-    <text x="463" y="309" font-size="13" font-weight="700" fill="#475569">103.389</text>
+    <rect x="200" y="80" width="480.0" height="30" rx="4" fill="#1f6feb"/>
+    <text x="688" y="101" font-size="13" font-weight="800" fill="#1f6feb">213.244</text>
+    <rect x="200" y="132" width="442.0" height="30" rx="4" fill="#3b82f6"/>
+    <text x="650" y="153" font-size="13" font-weight="700" fill="#0f2742">196.384</text>
+    <rect x="200" y="184" width="336.7" height="30" rx="4" fill="#3b82f6"/>
+    <text x="545" y="205" font-size="13" font-weight="700" fill="#0f2742">149.577</text>
+    <rect x="200" y="236" width="273.1" height="30" rx="4" fill="#16a34a"/>
+    <text x="481" y="257" font-size="13" font-weight="800" fill="#16a34a">121.346</text>
+    <rect x="200" y="288" width="188.0" height="30" rx="4" fill="#cbd5e1"/>
+    <text x="396" y="309" font-size="13" font-weight="700" fill="#475569">83.504</text>
   </g>
-  <text x="40" y="360" font-size="12" fill="#94a3b8">platnilistic.rs · Beograd je ~23% iznad državnog proseka, Šum. i Zap. Srbija ~14% ispod</text>
+  <text x="40" y="360" font-size="12" fill="#94a3b8">platnilistic.rs · Beograd je ~23% iznad državnog proseka, Preševo ~31% ispod</text>
 </svg>

@@ -993,7 +993,7 @@ export function ProsecnaZaradaPage() {
       { href: "/minimalna-zarada", label: "Minimalna zarada — minimalac 2026. i 2027." },
       { href: "/stope-doprinosa-2026", label: "Stope doprinosa 2026" },
     ],
-    sourceNote: (<>Izvor: {p.izvor}, {p.mesec}. Kurs: 1 € = {p.kursEur} RSD (NBS).</>),
+    sourceNote: (<>Izvor: {p.izvor}, {p.mesec}. Kurs: 1 € = {p.kursEur.toLocaleString("sr-RS", { minimumFractionDigits: 2 })} RSD (NBS).</>),
   }} />;
 }
 

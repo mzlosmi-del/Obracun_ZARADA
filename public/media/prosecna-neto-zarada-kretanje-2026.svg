@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" role="img" aria-labelledby="t1 d1" font-family="Inter, Arial, sans-serif">
-  <title id="t1">Kretanje prosečne neto zarade u Srbiji, januar – jun 2026</title>
-  <desc id="d1">Linijski grafikon: prosečna neto zarada po mesecima 2026 — januar 118.429, februar 116.127, mart 121.650, april 121.805, maj 118.398, jun 120.401 dinara. Najviša vrednost je u aprilu, a u junu zarada ponovo raste u odnosu na maj.</desc>
+  <title id="t1">Kretanje prosečne neto zarade u Srbiji, januar – jul 2026</title>
+  <desc id="d1">Linijski grafikon: prosečna neto zarada po mesecima 2026 — januar 118.429, februar 116.127, mart 121.650, april 121.805, maj 118.398, jun 120.401, jul 121.346 dinara. Najviša vrednost je u aprilu, a u junu i julu zarada ponovo raste.</desc>
   <rect width="720" height="420" fill="#ffffff"/>
   <text x="40" y="38" font-size="20" font-weight="700" fill="#0f2742">Prosečna neto zarada u Srbiji (din)</text>
-  <text x="40" y="60" font-size="13" fill="#64748b">Januar – jun 2026 · Izvor: Republički zavod za statistiku</text>
+  <text x="40" y="60" font-size="13" fill="#64748b">Januar – jul 2026 · Izvor: Republički zavod za statistiku</text>
 
   <!-- gridlines + y labels (110k,120k,130k) -->
   <g stroke="#e2e8f0" stroke-width="1">
@@ -17,31 +17,31 @@
     <text x="90" y="261">110.000</text>
   </g>
 
-  <!-- area + line -->
-  <polyline points="100,186.6 212,205.8 324,159.7 436,158.4 548,186.9 660,170.2" fill="none" stroke="#1f6feb" stroke-width="3.5" stroke-linejoin="round"/>
-  <!-- dots + value labels -->
+  <polyline points="100.0,186.1 193.3,205.3 286.7,159.2 380.0,157.9 473.3,186.4 566.7,169.7 660.0,161.8" fill="none" stroke="#1f6feb" stroke-width="3.5" stroke-linejoin="round"/>
   <g>
-    <circle cx="100" cy="186.6" r="5.5" fill="#1f6feb"/>
-    <text x="100" y="205" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.429</text>
-    <circle cx="212" cy="205.8" r="5.5" fill="#1f6feb"/>
-    <text x="212" y="228" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">116.127</text>
-    <circle cx="324" cy="159.7" r="5.5" fill="#1f6feb"/>
-    <text x="324" y="146" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.650</text>
-    <circle cx="436" cy="158.4" r="5.5" fill="#1f6feb"/>
-    <text x="436" y="144" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.805</text>
-    <circle cx="548" cy="186.9" r="5.5" fill="#1f6feb"/>
-    <text x="548" y="209" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.398</text>
-    <circle cx="660" cy="170.2" r="6.5" fill="#16a34a"/>
-    <text x="660" y="156" font-size="13" font-weight="800" fill="#16a34a" text-anchor="middle">120.401</text>
+    <circle cx="100.0" cy="186.1" r="5.5" fill="#1f6feb"/>
+    <text x="100.0" y="172.1" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.429</text>
+    <circle cx="193.3" cy="205.3" r="5.5" fill="#1f6feb"/>
+    <text x="193.3" y="225.3" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">116.127</text>
+    <circle cx="286.7" cy="159.2" r="5.5" fill="#1f6feb"/>
+    <text x="286.7" y="179.2" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.650</text>
+    <circle cx="380.0" cy="157.9" r="5.5" fill="#1f6feb"/>
+    <text x="380.0" y="143.9" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">121.805</text>
+    <circle cx="473.3" cy="186.4" r="5.5" fill="#1f6feb"/>
+    <text x="473.3" y="206.4" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">118.398</text>
+    <circle cx="566.7" cy="169.7" r="5.5" fill="#1f6feb"/>
+    <text x="566.7" y="189.7" font-size="12.5" font-weight="700" fill="#0f2742" text-anchor="middle">120.401</text>
+    <circle cx="660.0" cy="161.8" r="6.5" fill="#16a34a"/>
+    <text x="656.0" y="147.8" font-size="13" font-weight="800" fill="#16a34a" text-anchor="middle">121.346</text>
   </g>
-  <!-- x labels -->
   <g font-size="12.5" fill="#475569" text-anchor="middle">
-    <text x="100" y="372">Jan 2026</text>
-    <text x="212" y="372">Feb 2026</text>
-    <text x="324" y="372">Mar 2026</text>
-    <text x="436" y="372">Apr 2026</text>
-    <text x="548" y="372">Maj 2026</text>
-    <text x="660" y="372">Jun 2026</text>
+    <text x="100.0" y="372">Jan 2026</text>
+    <text x="193.3" y="372">Feb 2026</text>
+    <text x="286.7" y="372">Mar 2026</text>
+    <text x="380.0" y="372">Apr 2026</text>
+    <text x="473.3" y="372">Maj 2026</text>
+    <text x="566.7" y="372">Jun 2026</text>
+    <text x="660.0" y="372">Jul 2026</text>
   </g>
   <text x="40" y="406" font-size="12" fill="#94a3b8">platnilistic.rs · neto (bez poreza i doprinosa)</text>
 </svg>

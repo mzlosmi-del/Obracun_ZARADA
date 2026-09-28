@@ -137,17 +137,17 @@ export const REFERENCE_DATA = {
     obrazac: "PP GPDG",
     izvor: "Poreska uprava — Poreski informator, april 2026",
   },
-  // Prosečna zarada — RZS, jun 2026 (Saopštenje ZR10 br. 228, objavljeno 25.8.2026).
-  // Ažurirano 27.8.2026.
+  // Prosečna zarada — RZS, jul 2026 (Saopštenje ZR10 br. 262, objavljeno 25.9.2026).
+  // Ažurirano 28.9.2026. Kurs: NBS srednji 28.9.2026 (117,4993).
   // NAPOMENA: `objavljeno` se koristi u statičnom tekstu na /prosecna-zarada (pages.jsx,
   // ProsecnaZaradaPage) — ažurirati zajedno sa mesec/neto/bruto svakog refresh-a.
   prosecnaZarada2026: {
-    neto: 120401,
-    bruto: 166123,
-    medijalnaNeto: 94281,
-    mesec: "jun 2026",
-    objavljeno: "25. avgusta 2026",
-    kursEur: 117.39,
+    neto: 121346,
+    bruto: 167402,
+    medijalnaNeto: 95036,
+    mesec: "jul 2026",
+    objavljeno: "25. septembra 2026",
+    kursEur: 117.5,
     izvor: "RZS",
   },
   // Državni praznici i neradni dani u Srbiji za 2026.
