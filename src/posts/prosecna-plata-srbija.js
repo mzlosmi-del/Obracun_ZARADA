@@ -108,7 +108,7 @@ Prosečna zarada raste već nekoliko godina po stopi iznad 10% godišnje. Prema 
 |---|---|---|
 | 2022. | 1.239.792 din | ~103.316 din |
 | 2024. | 1.624.836 din | ~135.403 din |
-| 2025. | 1.775.340 din | ~147.945 din |
+| 2025. | 1.813.032 din | ~151.086 din |
 
 Neto zarada prati isti trend i čini približno 72% bruto iznosa. Ovo je nominalan rast — deo je pojela inflacija. Koliko je zarada stvarno porasla u kupovnoj moći od 2016. do danas, uz poređenje proseka i medijane i konkretan primer koliko hleba, goriva i kvadrata stana plata "kupuje" danas naspram 2016., pogledajte u [data studiji o kupovnoj moći plate 2016–2026](/blog/kupovna-moc-plate-2016-2026).
 
