@@ -1,4 +1,5 @@
 import { track } from "@vercel/analytics";
+import { REFERENCE_DATA } from "./rates.js";
 
 // ── AFFILIATE JOB LISTINGS ────────────────────────────────────────────────────
 // Single source of truth for partner (job agency) affiliate links.
@@ -16,8 +17,12 @@ import { track } from "@vercel/analytics";
 //   perks      – 3-4 short benefit chips (emoji + 2-3 words each)
 //   badge      – small attention label ("NOVO", "TOP PLATA") or null
 //   location   – city / "Remote"
-//   salaryMin/salaryMax – RSD range if the agency lists it (null = unknown).
+//   salaryMin/salaryMax – range if the agency lists it (null = unknown), in
+//                RSD unless salaryCurrency says otherwise.
 //                Used to match jobs to the visitor's calculated salary.
+//   salaryCurrency – optional, "EUR" when the ad quotes euros. Shown to the
+//                visitor in EUR exactly as the ad says; converted to RSD
+//                (RZS kurs from rates.js) only for salary matching.
 //   salaryNeto – true ONLY if the ad explicitly says the range is neto.
 //                Accuracy is our moat — never claim neto when unspecified.
 //   link       – the agency's landing-page URL WITH the ?promotion=...
@@ -25,6 +30,17 @@ import { track } from "@vercel/analytics";
 //   active     – false hides the job everywhere without deleting the entry
 
 export const JOBS = [
+  {
+    id: "marketing-menadzer",
+    title: "Marketing menadžer",
+    hook: "Imaš 4+ godine iskustva u marketingu i već si vodio tim? Kompanija iz sektora nekretnina nudi 2.000–3.000 € neto i vođenje kompletnog marketing sektora.",
+    perks: ["👥 Vođenje tima", "🏢 Sektor nekretnina", "📚 Obuke i razvoj", "🎯 Uticaj na brend"],
+    badge: "TOP PLATA",
+    location: "Beograd",
+    salaryMin: 2000, salaryMax: 3000, salaryCurrency: "EUR", salaryNeto: true,
+    link: "https://poslovi.friendlyhr.rs/jobs/8433729-marketing-menadzer?promotion=2212579-trackable-share-link-platnilistic",
+    active: true,
+  },
   {
     id: "agent-kontakt-centra-de",
     title: "Agent kontakt centra — nemački jezik",
@@ -52,10 +68,21 @@ export const JOBS = [
     title: "Office administrator",
     hook: "Voliš red u dokumentaciji i komunikaciju sa klijentima? Kompanija iz oblasti bezbednosti i zaštite na radu nudi 90–100.000 RSD neto, radno vreme pon–pet (8h) na Karaburmi.",
     perks: ["🗓️ Pon–pet, 8h", "📍 Karaburma", "🧾 Fakture i ponude", "🤝 Stabilna firma"],
-    badge: "NOVO",
+    badge: null,
     location: "Beograd (Karaburma)",
     salaryMin: 90000, salaryMax: 100000, salaryNeto: true,
     link: "https://poslovi.friendlyhr.rs/jobs/8240751-office-administrator?promotion=2163239-trackable-share-link-platnilistic",
+    active: true,
+  },
+  {
+    id: "category-direktor",
+    title: "Category direktor",
+    hook: "Imaš 10+ godina u category menadžmentu ili komercijali? Distributivna kompanija u Beogradu traži lidera za razvoj kategorija i portfolija — uz službeni automobil i privatno zdravstveno osiguranje.",
+    perks: ["🚗 Službeni automobil", "🩺 Privatno osiguranje", "🌍 Međunarodni partneri", "🎯 Strateška uloga"],
+    badge: "NOVO",
+    location: "Beograd",
+    salaryMin: null, salaryMax: null, salaryNeto: false,
+    link: "https://poslovi.friendlyhr.rs/jobs/8371099-category-director?promotion=2212573-trackable-share-link-platnilistic",
     active: true,
   },
   {
@@ -74,10 +101,21 @@ export const JOBS = [
     title: "Šef gradilišta",
     hook: "Znaš kako gradilište treba da „diše“? Kompanija specijalizovana za fasadne sisteme i stolariju traži iskusnog šefa gradilišta (3+ godine) za značajne projekte u Beogradu.",
     perks: ["🏗️ Značajni projekti", "🤝 Dugoročna saradnja", "📈 Profesionalni razvoj"],
-    badge: "NOVO",
+    badge: null,
     location: "Beograd",
     salaryMin: null, salaryMax: null, salaryNeto: false,
     link: "https://poslovi.friendlyhr.rs/jobs/7994428-sef-gradilista?promotion=2090408-trackable-share-link-platnilistic",
+    active: true,
+  },
+  {
+    id: "vaspitac",
+    title: "Vaspitač",
+    hook: "Imaš završeno obrazovanje za vaspitača i voliš rad sa decom? Privatna predškolska ustanova na Novom Beogradu traži toplog i odgovornog vaspitača za svoj tim.",
+    perks: ["👶 Rad sa decom", "🏫 Privatni vrtić", "📍 Novi Beograd", "🤝 Prijatan tim"],
+    badge: "NOVO",
+    location: "Beograd (Novi Beograd)",
+    salaryMin: null, salaryMax: null, salaryNeto: false,
+    link: "https://poslovi.friendlyhr.rs/jobs/8417044-vaspitac?promotion=2212596-trackable-share-link-platnilistic",
     active: true,
   },
   {
@@ -96,6 +134,10 @@ export const JOBS = [
 // Jobs currently open.
 export const activeJobs = () => JOBS.filter(j => j.active);
 
+// Multiplier that turns a job's salary figures into RSD (for matching only).
+const toRsd = (j) =>
+  j.salaryCurrency === "EUR" ? (REFERENCE_DATA.prosecnaZarada2026?.kursEur ?? 117) : 1;
+
 // Jobs relevant for a given calculated neto salary: within ±30% of the job's
 // range (or all active jobs when the job has no range / no salary given).
 export function matchJobs(neto) {
@@ -103,8 +145,9 @@ export function matchJobs(neto) {
   if (!neto || neto <= 0) return open;
   const matched = open.filter(j => {
     if (j.salaryMin == null && j.salaryMax == null) return true;
-    const lo = (j.salaryMin ?? j.salaryMax) * 0.7;
-    const hi = (j.salaryMax ?? j.salaryMin) * 1.3;
+    const k = toRsd(j);
+    const lo = (j.salaryMin ?? j.salaryMax) * k * 0.7;
+    const hi = (j.salaryMax ?? j.salaryMin) * k * 1.3;
     return neto >= lo && neto <= hi;
   });
   // Never show an empty widget if there ARE open jobs — fall back to all.
@@ -140,7 +183,8 @@ const fmtRsd = (n) => new Intl.NumberFormat("sr-RS").format(n);
 // Never appends "neto" unless the ad said so explicitly.
 export function salaryLabel(j) {
   if (j.salaryMin == null && j.salaryMax == null) return null;
-  const suffix = j.salaryNeto ? " RSD neto" : " RSD";
+  const cur = j.salaryCurrency || "RSD";
+  const suffix = j.salaryNeto ? ` ${cur} neto` : ` ${cur}`;
   if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)}${suffix}`;
   return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
 }
