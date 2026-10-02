@@ -10,7 +10,9 @@ export const body = `
 
 > **Provereno i ažurirano: 27. avgust 2026.** Tekst je usklađen sa **Zakonom o razmeni podataka, dokumenata i obaveštenja u slučaju nastupanja privremene sprečenosti za rad korišćenjem softverskog rešenja „e-Bolovanje – Poslodavac”** („Sl. glasnik RS”, br. 109/2025, na snazi od 12. decembra 2025, u primeni od 1. januara 2026), sa **novim Pravilnikom** („Sl. glasnik RS”, br. 71/2026 od 31. jula 2026, na snazi od 8. avgusta 2026, kojim je stavljen van snage Pravilnik 121/2025) i sa **Zakonom o zdravstvenom osiguranju** (čl. 101, čl. 102, čl. 143 i čl. 260, sa izmenama iz „Sl. glasnika RS”, br. 92/2023).
 
-Od 1. januara 2026. papirna doznaka više ne postoji — potvrda izabranog lekara stiže poslodavcu elektronski, a od 1. aprila 2026. i zahtevi prema RFZO-u idu kroz isti portal. Ovaj vodič prolazi kroz **e-bolovanje za poslodavce** korak po korak: od registracije pravnog lica na Portalu eUprava, preko dodele uloga u firmi, do roka od sedam dana u kome poslodavac mora da isplati zaposlenom sredstva koja je dobio od RFZO-a. Bez formula i procenata — ovde su samo procedura, rokovi i kazne.
+**e-Bolovanje za poslodavce** se koristi preko Portala eUprava: zakonski zastupnik firme se prijavi na euprava.gov.rs kvalifikovanim elektronskim sertifikatom (KES) ili aplikacijom ConsentID, izabere pravno lice, dodeli uloge u sistemu „eBolovanje – Poslodavac” i u profilu poslodavca unese namenski račun. Od 1. januara 2026. potvrda izabranog lekara stiže poslodavcu elektronski, a od 1. aprila 2026. kroz isti sistem idu i zahtevi RFZO-u. Za bolovanje preko 30 dana važe rokovi **15 – 21 – 7**: zahtev se podnosi u roku od 15 dana od dana isplate zarade za mesec na koji se naknada odnosi (rok iz uputstva RFZO-a), filijala prenosi sredstva u roku od 21 dana od prijema potpunog zahteva, a poslodavac ih isplaćuje zaposlenom u roku od 7 dana od prijema.
+
+Ovaj vodič prolazi kroz postupak korak po korak: od prijave i registracije pravnog lica na Portalu eUprava, preko dodele uloga u firmi, do isplate zaposlenom. Bez formula i procenata — ovde su samo procedura, rokovi i kazne.
 
 **Ukratko:** **e-Bolovanje za poslodavce** je obavezan državni sistem preko kog poslodavac prima potvrde o privremenoj sprečenosti za rad i podnosi zahteve matičnoj filijali RFZO-a. Registracija je bila obavezna **do 1. januara 2026** za pravna lica, organe i ustanove, a rok za registraciju preduzetnika sa zaposlenima je **1. januar 2027**; elektronsko podnošenje zahteva za obračun naknade zarade radi od **1. aprila 2026**. Odloženi rok se odnosi **samo na registraciju preduzetnika u sistem** — obaveza zaposlenog da donese doznaku prestala je 1. januara 2026. bez obzira na to kod kog poslodavca radi. Nekorišćenje sistema košta pravno lice **50.000–200.000 RSD** (čl. 10 Zakona 109/2025), pri čemu čl. 10 st. 1 izričito izuzima Republiku Srbiju, teritorijalne autonomije i jedinice lokalne samouprave i njihove organe od te kazne.
 
@@ -44,7 +46,7 @@ Izuzeti su samo: Bezbednosno-informativna agencija, profesionalna vojna lica i l
 
 Napomena o 1. aprilu 2026, jer se prenosi protivrečno: čl. 15 kaže da se odredbe o zahtevima **primenjuju** od tog datuma, zvanična vest Paragrafa kaže da je poslodavcima „omogućeno” elektronsko podnošenje, a deo medija je to preneo kao „obavezno”. Praktično: sistem je predviđeni kanal — ne oslanjajte se na papir.
 
-## Registracija i podešavanje: šest koraka kroz portal
+## Prijava poslodavca na e-Bolovanje (eUprava): šest koraka
 
 Ceo postupak radi **zakonski zastupnik** firme. Pripremite pre početka: KES na kartici ili instaliran ConsentID, PIB i matični broj, broj **namenskog (posebnog) računa** na koji RFZO prenosi sredstva, i službeni imejl za obaveštenja.
 
@@ -187,7 +189,7 @@ export const faq = [
     a: "Da, za poslodavce iz čl. 2 Zakona („Sl. glasnik RS”, br. 109/2025) — pravna lica, državne organe, ustanove, javne beležnike i javne izvršitelje — obaveza registracije važi od 1. januara 2026. Preduzetnici koji imaju zaposlene imaju rok do 1. januara 2027 (čl. 13), ali se taj odloženi rok odnosi samo na registraciju poslodavca u sistem — obaveza zaposlenog da donese doznaku prestala je 1. januara 2026. bez obzira na to kod kog poslodavca radi. Izuzeti su BIA, profesionalna vojna lica i lica koja zapošljavaju isključivo kućno osoblje.",
   },
   {
-    q: "Kako se poslodavac prijavljuje na e-Bolovanje?",
+    q: "Kako se poslodavac prijavljuje na e-Bolovanje preko eUprave?",
     a: "Preko Portala eUprava (euprava.gov.rs). Zakonski zastupnik se prijavljuje elektronskom identifikacijom visokog nivoa pouzdanosti — kvalifikovanim elektronskim sertifikatom (KES) ili aplikacijom ConsentID — izabere pravno lice, kroz „Administraciju korisnika” dodeli ulogu „Rad u sistemu eBolovanje – Poslodavac”, a zatim popuni profil poslodavca: PIB, matični broj, namenski račun, poziv na broj i imejl za obaveštenja.",
   },
   {
@@ -209,5 +211,13 @@ export const faq = [
   {
     q: "Kolike su kazne ako poslodavac ne koristi e-Bolovanje?",
     a: "Po čl. 10 Zakona 109/2025: pravno lice 50.000–200.000 RSD, preduzetnik sa zaposlenima 10.000–50.000 RSD, odgovorno lice u pravnom licu 5.000–25.000 RSD. Čl. 10 st. 1 izuzima Republiku Srbiju, teritorijalne autonomije i jedinice lokalne samouprave i njihove organe od novčane kazne za pravno lice; obaveza korišćenja sistema za njih ostaje. Odvojeno od toga, Zakon o zdravstvenom osiguranju (čl. 260) predviđa kaznu od 300.000 do 1.000.000 RSD za poslodavca koji ne podnese zahtev sa dokazima, ne isplati naknadu zaposlenom u roku od 7 dana ili ne vrati sredstva sa kamatom.",
+  },
+  {
+    q: "Od kada poslodavac podnosi zahteve RFZO-u kroz e-Bolovanje?",
+    a: "Od 1. aprila 2026. Od tog datuma se kroz sistem elektronski podnose zahtevi za obračun naknade zarade, prigovori, zahtevi za preispitivanje i zahtevi za sprovođenje veštačenja (čl. 15 Zakona 109/2025). Zvanična vest Paragrafa navodi da je elektronsko podnošenje poslodavcima „omogućeno”, a ne „obavezno”, ali sistem je predviđeni kanal i ne treba se oslanjati na papir.",
+  },
+  {
+    q: "Ko u firmi sme da radi u sistemu e-Bolovanje?",
+    a: "Pristup dodeljuje zakonski zastupnik, na Portalu eUprava kroz „Administraciju korisnika”, ulogom „Rad u sistemu eBolovanje – Poslodavac”. Unutar sistema Pravilnik razlikuje uloge „zakonski zastupnik” (pun pristup i upravljanje korisnicima), „rad sa privremenom sprečenošću za rad” (uvid u bolovanja i podnošenje prigovora) i „rad sa obračunima” (izveštaji i zahtevi za obračun naknade). Dodelite pristup bar dvema osobama; ako zakonski zastupnik napusti firmu, novi zastupnik mora ponovo da uspostavi ovlašćenja, jer se nalozi ne prenose sami.",
   },
 ];
