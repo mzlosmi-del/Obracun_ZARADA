@@ -781,6 +781,7 @@ export function CalculatorPage({ focusSection, initialTab, trackSource = "home" 
                 </div>
               )}
               <NumberInput label="Standardnih radnih sati" value={inputs.standardHours} onChange={set("standardHours")} unit="h" sublabel="(21 dan × 8h = 168)" />
+              <p style={{margin:0, fontSize:11.5, color:"var(--text3)", lineHeight:1.45}}>Obračun pretpostavlja puno radno vreme; kod nepunog radnog vremena neoporezivi iznos se umanjuje srazmerno radnom vremenu (čl. 15a ZPDG), pa ga ručno umanjite na kartici Stope.</p>
             </div>
             </CalcSection>
             <SectionTitle icon="⏰">Prekovremeni rad</SectionTitle>

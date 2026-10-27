@@ -1,6 +1,13 @@
 // src/rates.js — single source of truth for all tax/contribution/reference figures.
 // Cite sources in page footnotes. Do not hardcode these values anywhere else.
 
+// Neoporezivi iznos zarade po godini isplate (ZPDG čl. 15a st. 2; za nepuno radno vreme
+// srazmerno, st. 3). 2027: 37.369 RSD — izmene ZPDG, „Sl. glasnik RS" 80/2026 (usvojeno
+// 31.8.2026, primena od 1.1.2027; provereno na Paragrafu 2.10.2026). Strane koje u tekstu
+// imenuju godinu („…za 2026.") moraju da čitaju odavde, ne iz getNonTaxable(), koji prati
+// datum isplate i od 1.1.2027. vraća 37.369.
+export const NEOPOREZIVI_IZNOS = { 2025: 28423, 2026: 34221, 2027: 37369 };
+
 export function getNonTaxable() {
   // 34.221 RSD važi za isplate zarada od 1. JANUARA 2026 — izmene ZPDG, Sl. glasnik RS 109/2025
   // (ISPRAVKA 13.7.2026: ranije pogrešno citirano 115/2025 — to je publikacija usklađenih din.
@@ -8,8 +15,9 @@ export function getNonTaxable() {
   // din. izn. i 6/2026 - usklađeni din. izn."). Od 1. februara 2026. važe samo OSTALI usklađeni
   // neoporezivi iznosi (dnevnice, pomoći, prevoz — Sl. glasnik 6/2026), ne neoporezivi deo zarade.
   const yr = new Date().getFullYear();
-  if (yr >= 2026) return 34221;
-  return 28423;
+  if (yr >= 2027) return NEOPOREZIVI_IZNOS[2027];
+  if (yr >= 2026) return NEOPOREZIVI_IZNOS[2026];
+  return NEOPOREZIVI_IZNOS[2025];
 }
 
 export const DEFAULT_RATES = {
@@ -92,10 +100,9 @@ export const REFERENCE_DATA = {
     rastProcenat: 9.2,
     vaziOd: "1. januar 2027",
     izvor: "Odluka Vlade RS od 20.8.2026",
-    // Bruto iznosi za 2027. se NAMERNO ne fiksiraju: zavise od neoporezivog iznosa zarade,
-    // koji za 2027. još nije izglasan. Predlog je 37.369 RSD (sada važi 34.221) i tek ide
-    // u skupštinsku proceduru — do usvajanja se bruto računa uz važećih 34.221.
-    neoporeziviPredlog2027: 37369,
+    // Bruto za 2027. računa se uz neoporezivi iznos 2027 (37.369, „Sl. glasnik RS" 80/2026),
+    // jer porez prati datum isplate: sve zarade isplaćene od 1.1.2027 (i decembarska 2026.
+    // isplaćena u januaru) koriste 37.369. Vrednost se čita iz NEOPOREZIVI_IZNOS[2027].
   },
   // radniDani2027 — „mogući“ fond (pon–pet), isti metod kao radniDani2026: to je fond koji
   // se koristi za obračun minimalca (cena radnog časa × fond sati). Izračunato iz kalendara

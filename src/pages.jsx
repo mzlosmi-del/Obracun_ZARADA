@@ -3,7 +3,7 @@ import { CalculatorPage } from "./App.jsx";
 import { breadcrumbLd, webAppLd } from "./schema.js";
 import { useState } from "react";
 import { Breadcrumb, FreshnessStamp, PovezaniKalkulatori, NumberInput, ResultRow, fmt } from "./ui.jsx";
-import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES, UGOVOR_O_DELU_RATES } from "./rates.js";
+import { REFERENCE_DATA, PAUSAL_RATES, DEFAULT_RATES, UGOVOR_O_DELU_RATES, NEOPOREZIVI_IZNOS } from "./rates.js";
 
 const FRESHNESS = "septembar 2026.";
 const DISCLAIMER = "⚠️ PlatniListić pruža informativne obračune. Rezultati ne predstavljaju pravni ni poreski savet. Za zvanični obračun konsultujte računovođu ili nadležni organ.";
@@ -998,7 +998,10 @@ export function ProsecnaZaradaPage() {
 }
 
 export function NeoporeziviPage() {
-  const nonTaxable = DEFAULT_RATES.nonTaxable;
+  // Strana imenuje 2026. u naslovu i tekstu — zato fiksni iznos za 2026, a ne getNonTaxable(),
+  // koji od 1.1.2027. prelazi na 37.369 (v. rates.js NEOPOREZIVI_IZNOS).
+  const nonTaxable = NEOPOREZIVI_IZNOS[2026];
+  const nonTaxable27 = NEOPOREZIVI_IZNOS[2027];
   return <ReferencePage cfg={{
     slug: "neoporezivi-iznos-2026",
     title: "Neoporezivi iznos zarade 2026 — 34.221 RSD | PlatniListić",
@@ -1010,6 +1013,7 @@ export function NeoporeziviPage() {
       <table className="ref-table">
         <tbody>
           <tr><th>Neoporezivi iznos (2026)</th><td>{nonTaxable.toLocaleString("sr-RS")} RSD</td></tr>
+          <tr><th>Neoporezivi iznos (od 1. januara 2027)</th><td>{nonTaxable27.toLocaleString("sr-RS")} RSD</td></tr>
           <tr><th>Neoporezivi iznos (2025)</th><td>28.423 RSD</td></tr>
           <tr><th>Stopa poreza na zaradu</th><td>10%</td></tr>
         </tbody>
@@ -1017,7 +1021,7 @@ export function NeoporeziviPage() {
       <p>Neoporezivi iznos se primenjuje mesečno, po zaposlenom. Znači da se porez na zaradu plaća samo na onaj deo bruto zarade koji prelazi {nonTaxable.toLocaleString("sr-RS")} RSD. Ovo direktno povećava neto iznos koji zaposleni prima na račun. Vidite kako neoporezivi iznos utiče na vaš obračun: <a href="/">bruto u neto kalkulator</a>. Saznajte više o razlici između bruto i neto zarade: <a href="/">bruto neto razlika</a>.</p>
 
       <h2>Neoporezivi iznos zarade 2026 — zvanični izvor</h2>
-      <p>Neoporezivi deo zarade za 2026. iznosi <strong>{nonTaxable.toLocaleString("sr-RS")} RSD</strong> i primenjuje se na isplate zarada <strong>od 1. januara 2026</strong>. Iznos je utvrđen izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 109/2025), a ne februarskim usklađivanjem ostalih neoporezivih primanja. Zvanične podatke objavljuju <a href="https://www.mfin.gov.rs/" target="_blank" rel="noopener noreferrer">Ministarstvo finansija</a> i <a href="https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html" target="_blank" rel="noopener noreferrer">Poreska uprava Srbije</a>. Prvo naredno usklađivanje je 1. januara 2027.</p>
+      <p>Neoporezivi deo zarade za 2026. iznosi <strong>{nonTaxable.toLocaleString("sr-RS")} RSD</strong> i primenjuje se na isplate zarada <strong>od 1. januara 2026</strong>. Iznos je utvrđen izmenama Zakona o porezu na dohodak građana („Sl. glasnik RS" br. 109/2025), a ne februarskim usklađivanjem ostalih neoporezivih primanja. Zvanične podatke objavljuju <a href="https://www.mfin.gov.rs/" target="_blank" rel="noopener noreferrer">Ministarstvo finansija</a> i <a href="https://www.purs.gov.rs/lat/fizicka-lica/porez-na-dohodak-gradjana/zarade.html" target="_blank" rel="noopener noreferrer">Poreska uprava Srbije</a>. Od <strong>1. januara 2027.</strong> neoporezivi iznos raste na <strong>{nonTaxable27.toLocaleString("sr-RS")} RSD</strong> mesečno — izmene Zakona o porezu na dohodak građana objavljene su u „Sl. glasniku RS" br. 80/2026. Pošto se porez obračunava po propisima koji važe na dan isplate, novi iznos se primenjuje i na zaradu za decembar 2026. ako je isplaćena u januaru 2027.</p>
 
       <h2>Primer obračuna sa neoporezivim iznosom</h2>
       <p>Za zaposlenog sa bruto zaradom od 100.000 RSD, poreska osnovica je 100.000 − {nonTaxable.toLocaleString("sr-RS")} = {(100000 - nonTaxable).toLocaleString("sr-RS")} RSD, a porez (10%) iznosi {Math.round((100000 - nonTaxable) * 0.1).toLocaleString("sr-RS")} RSD. Bez neoporezivog iznosa porez bi bio 10.000 RSD, pa je mesečna ušteda {(10000 - Math.round((100000 - nonTaxable) * 0.1)).toLocaleString("sr-RS")} RSD. Detaljan vodič: <a href="/">razlika između bruto i neto zarade</a>.</p>
@@ -1044,6 +1048,7 @@ export function NeoporeziviPage() {
     </>),
     faq: [
       { q: "Koliki je neoporezivi iznos zarade u 2026?", a: `Neoporezivi iznos zarade za 2026. iznosi ${nonTaxable.toLocaleString("sr-RS")} RSD mesečno i primenjuje se od 1. januara 2026. Na deo zarade iznad ovog iznosa primenjuje se porez od 10%.` },
+      { q: "Koliki je neoporezivi iznos zarade u 2027?", a: `Od 1. januara 2027. neoporezivi iznos zarade iznosi ${nonTaxable27.toLocaleString("sr-RS")} RSD mesečno za puno radno vreme (izmene Zakona o porezu na dohodak građana, „Sl. glasnik RS" br. 80/2026). Primenjuje se na sve zarade isplaćene od tog dana, uključujući zaradu za decembar 2026. isplaćenu u januaru 2027. Za nepuno radno vreme iznos se umanjuje srazmerno radnom vremenu.` },
       { q: "Kako se primenjuje neoporezivi iznos?", a: "Neoporezivi iznos se oduzima od bruto 1 zarade, a porez od 10% plaća se samo na razliku. Na primer, za bruto zaradu od 100.000 RSD, poreska osnovica je 100.000 − " + nonTaxable.toLocaleString("sr-RS") + " = " + (100000 - nonTaxable).toLocaleString("sr-RS") + " RSD, a porez iznosi 10% od toga." },
       { q: "Da li se neoporezivi iznos odnosi na svaki mesec?", a: "Da, neoporezivi iznos se primenjuje mesečno, posebno za svakog zaposlenog. Ne kumulira se — svaki mesec se iznova oduzima od bruto zarade pre obračuna poreza." },
       { q: "Koliki je neoporezivi iznos za prevoz u 2026?", a: "Naknada dokumentovanih troškova prevoza za dolazak i odlazak sa rada neoporeziva je do 5.782 RSD mesečno, za isplate od 1. februara 2026. do 31. januara 2027. („Sl. glasnik RS” 6/2026)." },
@@ -1112,7 +1117,10 @@ export function MinimalnaZaradaPage() {
   const dopZap = (R.pioPct_emp + R.health_emp + R.unemp_emp) / 100; // 19,90%
   const dopPosl = (R.pio_er + R.health_er) / 100; // 15,15%
   const tax = R.taxRate / 100; // 10%
-  const netoUBruto = (neto) => (neto - R.nonTaxable * tax) / (1 - dopZap - tax);
+  // Neoporezivi iznos zavisi od godine ISPLATE: tabela 2026 koristi 34.221, tabela 2027 37.369.
+  const neo26 = NEOPOREZIVI_IZNOS[2026];
+  const neo27 = NEOPOREZIVI_IZNOS[2027];
+  const netoUBruto = (neto, neo = neo26) => (neto - neo * tax) / (1 - dopZap - tax);
   const fmt2 = (n) => n.toLocaleString("sr-RS", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
   const fmt0 = (n) => Math.round(n).toLocaleString("sr-RS");
   const perMonth = REFERENCE_DATA.radniDani2026.map((r) => {
@@ -1123,18 +1131,18 @@ export function MinimalnaZaradaPage() {
   const godisnjeNeto = m.cenaRadnogCasaNeto * ukupnoSati; // 774.648 RSD
   const godisnjeBruto = perMonth.reduce((s, r) => s + r.bruto, 0);
   // --- Minimalac 2027 (Odluka Vlade RS od 20.8.2026) ---------------------------------
-  // Neto satnica je konačna; bruto se izvodi istom formulom, ali uz VAŽEĆI neoporezivi
-  // iznos (34.221), jer predlog od 37.369 za 2027. još nije izglasan.
+  // Neto satnica i neoporezivi iznos za 2027. su konačni (Odluka Vlade 20.8.2026;
+  // „Sl. glasnik RS" 80/2026), pa je i bruto 2027 konačan.
   const m27 = REFERENCE_DATA.minimalnaZarada2027;
   const perMonth2027 = REFERENCE_DATA.radniDani2027.map((r) => {
     const neto = m27.cenaRadnogCasaNeto * r.radniSati;
-    return { mesec: r.mesec, dani: r.radniDani, sati: r.radniSati, neto, bruto: netoUBruto(neto) };
+    return { mesec: r.mesec, dani: r.radniDani, sati: r.radniSati, neto, bruto: netoUBruto(neto, neo27) };
   });
   const ukupnoSati27 = REFERENCE_DATA.radniDani2027.reduce((s, r) => s + r.radniSati, 0); // 2.088 h
   const godisnjeNeto27 = m27.cenaRadnogCasaNeto * ukupnoSati27;
-  // Ako se usvoji neoporezivi 37.369, svaki bruto pada za KONSTANTNIH 449,07 RSD:
-  // (37.369 − 34.221) × 10% / 70,1%. Ne zavisi od fonda sati.
-  const brutoDelta27 = ((m27.neoporeziviPredlog2027 - R.nonTaxable) * tax) / (1 - dopZap - tax);
+  // Razlika bruta zbog višeg neoporezivog iznosa: KONSTANTNIH (37.369 − 34.221) × 10% / 70,1%
+  // = 449,07 RSD po mesecu, nezavisno od fonda sati.
+  const brutoDelta27 = ((neo27 - neo26) * tax) / (1 - dopZap - tax);
   // Primer obračuna prati TEKUĆI mesec — bake-uje se pri svakom deploy-u (isti
   // obrazac kao title na /radni-dani-2026); van 2026. se drži januar/decembar.
   const now = new Date();
@@ -1148,7 +1156,7 @@ export function MinimalnaZaradaPage() {
   const MESECI_LOK = ["januaru", "februaru", "martu", "aprilu", "maju", "junu", "julu", "avgustu", "septembru", "oktobru", "novembru", "decembru"];
   const exMesecLok = MESECI_LOK[mIdx];
   const exDoprinosi = ex.bruto * dopZap;
-  const exPorez = (ex.bruto - R.nonTaxable) * tax;
+  const exPorez = (ex.bruto - neo26) * tax;
   const exPoslodavac = ex.bruto * dopPosl;
   // Rok isplate po čl. 110 ZoR: „najkasnije do kraja tekućeg meseca za prethodni
   // mesec" — „tekući" je mesec ISPLATE, ne mesec rada, pa zarada za avgust dospeva
@@ -1227,7 +1235,7 @@ export function MinimalnaZaradaPage() {
           ))}
         </tbody>
       </table>
-      <p><strong>Zašto su bruto iznosi za 2027. još privremeni.</strong> Neto satnica od {m27.cenaRadnogCasaNeto} RSD je konačna — utvrđena je odlukom Vlade. Bruto iznos, međutim, zavisi i od <a href="/neoporezivi-iznos-2026">neoporezivog iznosa zarade</a>, a on za 2027. <strong>još nije izglasan</strong>: predlog je {m27.neoporeziviPredlog2027.toLocaleString("sr-RS")} RSD umesto sadašnjih {R.nonTaxable.toLocaleString("sr-RS")} RSD i tek ulazi u skupštinsku proceduru. Tabela iznad zato računa bruto uz <em>važeći</em> neoporezivi iznos. Ako predlog bude usvojen, svaki bruto iznos iz tabele biće manji za <strong>tačno {fmt2(brutoDelta27)} RSD</strong> — razlika je identična u svakom mesecu, jer se neoporezivi iznos odbija od poreske osnovice, a ne srazmerno fondu sati. Stranicu ažuriramo čim izmene budu objavljene u „Službenom glasniku RS“.</p>
+      <p><strong>Bruto iznosi za 2027. su konačni.</strong> Neto satnica od {m27.cenaRadnogCasaNeto} RSD utvrđena je odlukom Vlade, a <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade</a> za isplate od 1. januara 2027. iznosi <strong>{neo27.toLocaleString("sr-RS")} RSD</strong> umesto dosadašnjih {neo26.toLocaleString("sr-RS")} RSD („Sl. glasnik RS" br. 80/2026). Zbog višeg neoporezivog iznosa bruto minimalac je za <strong>{fmt2(brutoDelta27)} RSD</strong> niži nego što bi bio uz stari iznos — razlika je ista u svakom mesecu, jer se neoporezivi iznos odbija od poreske osnovice, a ne srazmerno fondu sati.</p>
       <p>Godišnji fond sati u 2027. je isti kao u 2026. ({ukupnoSati27.toLocaleString("sr-RS")} h, 261 radni dan), pa je ukupan neto minimalac za celu godinu {godisnjeNeto27.toLocaleString("sr-RS")} RSD — {(godisnjeNeto27 - godisnjeNeto).toLocaleString("sr-RS")} RSD više nego u 2026. Konkretan iznos za bilo koju platu izračunajte kroz <a href="/">bruto u neto kalkulator</a>.</p>
 
       <h2>Minimalac po mesecima 2026 — neto i bruto tabela</h2>
@@ -1249,7 +1257,7 @@ export function MinimalnaZaradaPage() {
           ))}
         </tbody>
       </table>
-      <p>Bruto iznosi su preračunati uz <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade od {R.nonTaxable.toLocaleString("sr-RS")} RSD</a>, koji važi za isplate od 1. januara 2026, i poklapaju se sa zvaničnim tabelama za obračun. Ako se zarada za neki mesec isplaćuje u različitim godinama, primenjuje se minimalna cena rada koja važi na dan isplate.</p>
+      <p>Bruto iznosi su preračunati uz <a href="/neoporezivi-iznos-2026">neoporezivi iznos zarade od {neo26.toLocaleString("sr-RS")} RSD</a>, koji važi za isplate od 1. januara 2026, i poklapaju se sa zvaničnim tabelama za obračun. Ako se zarada za neki mesec isplaćuje u različitim godinama, primenjuje se minimalna cena rada koja važi na dan isplate.</p>
 
       <h2>Fond sati i praznici — zašto minimalac ne pada zbog praznika</h2>
       <p>Fond sati u tabeli obuhvata sve dane ponedeljak–petak, <strong>uključujući i državne praznike</strong> koji padnu na radni dan — tako se fond zvanično utvrđuje za obračun minimalne zarade. Za praznik zaposleni ne radi, ali prima naknadu zarade u visini proseka svoje zarade za prethodnih 12 meseci (čl. 114 Zakona o radu), pa praznik ne umanjuje mesečno primanje. Spisak neradnih dana je u pregledu <a href="/praznici-2026">državnih praznika za 2026</a>, a raspored fonda po mesecima u pregledu <a href="/radni-dani-2026">radnih dana 2026</a>.</p>
@@ -1261,7 +1269,7 @@ export function MinimalnaZaradaPage() {
           <tr><th>Neto minimalac ({m.cenaRadnogCasaNeto} × {ex.sati} h)</th><td>{ex.neto.toLocaleString("sr-RS")},00 RSD</td></tr>
           <tr><th>Bruto 1 zarada</th><td>{fmt2(ex.bruto)} RSD</td></tr>
           <tr><th>Doprinosi na teret zaposlenog (19,90%)</th><td>−{fmt2(exDoprinosi)} RSD</td></tr>
-          <tr><th>Porez 10% (na bruto iznad {R.nonTaxable.toLocaleString("sr-RS")})</th><td>−{fmt2(exPorez)} RSD</td></tr>
+          <tr><th>Porez 10% (na bruto iznad {neo26.toLocaleString("sr-RS")})</th><td>−{fmt2(exPorez)} RSD</td></tr>
           <tr><th>Doprinosi na teret poslodavca (15,15%)</th><td>+{fmt2(exPoslodavac)} RSD</td></tr>
           <tr><th>Ukupan trošak poslodavca (bruto 2)</th><td>{fmt2(ex.bruto + exPoslodavac)} RSD</td></tr>
         </tbody>
@@ -1314,10 +1322,10 @@ export function MinimalnaZaradaPage() {
     faq: [
       { q: "Koliko je minimalac u Srbiji 2026?", a: `Minimalac (minimalna cena rada) je ${m.cenaRadnogCasaNeto} RSD neto po radnom času (od ${m.vaziOd}, „Sl. glasnik RS“ 78/2025). Mesečni neto iznos zavisi od fonda sati: od ${m.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m.netoMax.toLocaleString("sr-RS")} RSD (184 h), prosečno oko ${m.netoMesecno.toLocaleString("sr-RS")} RSD.` },
       { q: "Koliki je minimalac 2027?", a: `Minimalac za 2027. godinu iznosi ${m27.cenaRadnogCasaNeto} RSD neto po radnom času. Vlada Srbije donela je odluku 20. avgusta 2026, a primenjuje se na zarade od 1. januara 2027. To je ${m27.rastProcenat.toLocaleString("sr-RS")}% više nego u 2026. (${m.cenaRadnogCasaNeto} RSD). Mesečni neto iznos zavisi od fonda sati: od ${m27.netoMin.toLocaleString("sr-RS")} RSD (160 h) do ${m27.netoMax.toLocaleString("sr-RS")} RSD (184 h).` },
-      { q: "Kolika je minimalna zarada 2027. po mesecima?", a: `Mesečni minimalac u 2027. dobija se množenjem satnice od ${m27.cenaRadnogCasaNeto} RSD neto fondom radnih sati u mesecu. Neto iznosi po mesecima: ${perMonth2027.map((r) => `${r.mesec.toLowerCase()} ${r.neto.toLocaleString("sr-RS")} RSD (${r.sati} h)`).join(", ")}. Bruto iznosi za 2027. su privremeni dok se ne usvoji neoporezivi iznos zarade za 2027.` },
-      { q: "Od kada važi minimalac 2027?", a: `Minimalac od ${m27.cenaRadnogCasaNeto} RSD neto po radnom času važi od 1. januara 2027, na osnovu odluke Vlade Srbije od 20. avgusta 2026. Primenjuje se satnica koja važi na dan isplate, pa se po ${m27.cenaRadnogCasaNeto} RSD obračunava i zarada za decembar 2026. ako je isplaćena u januaru 2027. Za januar 2027. (${perMonth2027[0].sati} h) minimalac iznosi ${perMonth2027[0].neto.toLocaleString("sr-RS")} RSD neto.` },
+      { q: "Kolika je minimalna zarada 2027. po mesecima?", a: `Mesečni minimalac u 2027. dobija se množenjem satnice od ${m27.cenaRadnogCasaNeto} RSD neto fondom radnih sati u mesecu. Neto iznosi po mesecima: ${perMonth2027.map((r) => `${r.mesec.toLowerCase()} ${r.neto.toLocaleString("sr-RS")} RSD (${r.sati} h)`).join(", ")}. Bruto iznosi za 2027. računaju se uz neoporezivi iznos od ${neo27.toLocaleString("sr-RS")} RSD, koji važi od 1. januara 2027.` },
+      { q: "Od kada važi minimalac 2027?", a: `Minimalac od ${m27.cenaRadnogCasaNeto} RSD neto po radnom času važi od 1. januara 2027, na osnovu odluke Vlade Srbije od 20. avgusta 2026. Primenjuje se minimalna cena rada koja važi za mesec u kojem se vrši isplata (član 111. stav 5. Zakona o radu), pa se po ${m27.cenaRadnogCasaNeto} RSD obračunava i zarada za decembar 2026. ako je isplaćena u januaru 2027. Za januar 2027. (${perMonth2027[0].sati} h) minimalac iznosi ${perMonth2027[0].neto.toLocaleString("sr-RS")} RSD neto.` },
       { q: "Da li je minimalac 2027. zaista 70.470 dinara mesečno?", a: `Ne kao fiksan mesečni iznos. ${m27.netoMesecno.toLocaleString("sr-RS")} RSD je cena radnog časa (${m27.cenaRadnogCasaNeto} RSD) pomnožena sa 174 sata, a 174 h je samo prosečan mesečni fond — nijedan mesec 2027. nema tačno toliko sati. Stvarni mesečni neto minimalac kreće se od ${m27.netoMin.toLocaleString("sr-RS")} do ${m27.netoMax.toLocaleString("sr-RS")} RSD.` },
-      { q: "Koji minimalac važi za decembar 2026. ako se isplaćuje u januaru 2027?", a: `Važi satnica na dan isplate — dakle ${m27.cenaRadnogCasaNeto} RSD neto po radnom času, iako se zarada odnosi na decembar 2026. Isto pravilo je važilo i na prelazu 2025/2026.` },
+      { q: "Koji minimalac važi za decembar 2026. ako se isplaćuje u januaru 2027?", a: `Primenjuje se minimalna cena rada koja važi za mesec u kojem se vrši isplata (član 111. stav 5. Zakona o radu) — dakle ${m27.cenaRadnogCasaNeto} RSD neto po radnom času, iako se zarada odnosi na decembar 2026. Da je ista zarada isplaćena još u decembru 2026, primenila bi se satnica od ${m.cenaRadnogCasaNeto} RSD. Isto pravilo je važilo i na prelazu 2025/2026.` },
       { q: "Kako se obračunava minimalac po mesecima?", a: `Cena radnog časa (${m.cenaRadnogCasaNeto} RSD neto) množi se brojem radnih sati u tom mesecu. Zato mesečni minimalac varira — meseci sa više radnih dana donose veći iznos. Tabela minimalca za svaki mesec 2026. je iznad.` },
       { q: `Koliki je minimalac za ${exMesecLc} 2026?`, a: `Minimalac za ${exMesecLc} 2026. iznosi ${ex.neto.toLocaleString("sr-RS")} RSD neto (fond od ${ex.sati} h × ${m.cenaRadnogCasaNeto} RSD po satu), odnosno ${fmt2(ex.bruto)} RSD bruto 1.` },
       { q: `Kada se isplaćuje minimalac za ${exMesecLc} 2026?`, a: `Zarada se isplaćuje najmanje jedanput mesečno, a najkasnije do kraja tekućeg meseca za prethodni mesec (čl. 110 Zakona o radu). Minimalac za ${exMesecLc} 2026. mora biti isplaćen najkasnije do kraja ${exSledeciMesecGen}. Tačan dan isplate poslodavac utvrđuje opštim aktom ili ugovorom o radu — zakon propisuje samo krajnji rok.` },
