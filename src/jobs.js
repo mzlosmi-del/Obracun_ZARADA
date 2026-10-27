@@ -53,6 +53,17 @@ export const JOBS = [
     active: true,
   },
   {
+    id: "referent-uvoza",
+    title: "Referent uvoza",
+    hook: "Imaš 2+ godine iskustva u uvozu i aktivno koristiš engleski? Uvoznik lične zaštitne opreme u Beogradu nudi 120.000 RSD mesečno i mogućnost 13. i 14. plate.",
+    perks: ["🌍 Inostrani partneri", "💰 Moguća 13. i 14. plata", "🕘 9–17h + svaka druga subota", "📈 Profesionalni razvoj"],
+    badge: "NOVO",
+    location: "Beograd",
+    salaryMin: 120000, salaryMax: 120000, salaryNeto: false,
+    link: "https://poslovi.friendlyhr.rs/jobs/8573291-referent-uvoza?promotion=2258055-trackable-share-link-platnilistic",
+    active: true,
+  },
+  {
     id: "glavni-knjigovodja",
     title: "Glavni knjigovođa",
     hook: "Vodiš knjige za više firmi bez po muke? Grupacija kompanija nudi 200–250.000 RSD mesečno, rad u senior timu i punu autonomiju u organizaciji procesa.",
@@ -75,11 +86,22 @@ export const JOBS = [
     active: true,
   },
   {
+    id: "agent-prodaje-nekretnina",
+    title: "Agent prodaje nekretnina",
+    hook: "Znaš da prodaješ i poznaješ tržište nekretnina u Beogradu ili Novom Sadu? Fiksna plata 80–90.000 RSD uz progresivne bonuse bez gornje granice, a pripremu za stručni ispit plaća poslodavac.",
+    perks: ["💰 Bonusi bez gornje granice", "📞 Gotovi upiti klijenata", "🎓 Plaćena priprema za licencu", "🤝 Mentorstvo i obuke"],
+    badge: "NOVO",
+    location: "Beograd ili Novi Sad",
+    salaryMin: 80000, salaryMax: 90000, salaryNeto: false,
+    link: "https://poslovi.friendlyhr.rs/jobs/8555728-agent-prodaje-nekretnina?promotion=2258063-trackable-share-link-platnilistic",
+    active: true,
+  },
+  {
     id: "category-direktor",
     title: "Category direktor",
     hook: "Imaš 10+ godina u category menadžmentu ili komercijali? Distributivna kompanija u Beogradu traži lidera za razvoj kategorija i portfolija — uz službeni automobil i privatno zdravstveno osiguranje.",
     perks: ["🚗 Službeni automobil", "🩺 Privatno osiguranje", "🌍 Međunarodni partneri", "🎯 Strateška uloga"],
-    badge: "NOVO",
+    badge: null,
     location: "Beograd",
     salaryMin: null, salaryMax: null, salaryNeto: false,
     link: "https://poslovi.friendlyhr.rs/jobs/8371099-category-director?promotion=2212573-trackable-share-link-platnilistic",
@@ -112,7 +134,7 @@ export const JOBS = [
     title: "Vaspitač",
     hook: "Imaš završeno obrazovanje za vaspitača i voliš rad sa decom? Privatna predškolska ustanova na Novom Beogradu traži toplog i odgovornog vaspitača za svoj tim.",
     perks: ["👶 Rad sa decom", "🏫 Privatni vrtić", "📍 Novi Beograd", "🤝 Prijatan tim"],
-    badge: "NOVO",
+    badge: null,
     location: "Beograd (Novi Beograd)",
     salaryMin: null, salaryMax: null, salaryNeto: false,
     link: "https://poslovi.friendlyhr.rs/jobs/8417044-vaspitac?promotion=2212596-trackable-share-link-platnilistic",
@@ -185,6 +207,7 @@ export function salaryLabel(j) {
   if (j.salaryMin == null && j.salaryMax == null) return null;
   const cur = j.salaryCurrency || "RSD";
   const suffix = j.salaryNeto ? ` ${cur} neto` : ` ${cur}`;
+  if (j.salaryMin != null && j.salaryMin === j.salaryMax) return `${fmtRsd(j.salaryMin)}${suffix}`;
   if (j.salaryMin != null && j.salaryMax != null) return `${fmtRsd(j.salaryMin)} – ${fmtRsd(j.salaryMax)}${suffix}`;
   return `od ${fmtRsd(j.salaryMin ?? j.salaryMax)}${suffix}`;
 }
