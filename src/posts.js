@@ -136,7 +136,7 @@ export const POSTS = [
   {
     id: "porodiljsko-odsustvo",
     date: "11. jul 2026",
-    updated: "28. septembar 2026",
+    updated: "5. novembar 2026",
     tag: "Zakon o radu",
     title: "Porodiljsko odsustvo 2026 — naknada, obračun i isplata",
     summary: "Isplata porodiljskog stiže po pravilu oko 20. u mesecu — zakon ne fiksira datum. Naknada = prosek osnovica za 18 meseci, najviše 5 prosečnih zarada.",
@@ -145,7 +145,7 @@ export const POSTS = [
   {
     id: "otkaz-ugovora-o-radu",
     date: "25. jun 2026",
-    updated: "28. septembar 2026",
+    updated: "5. novembar 2026",
     tag: "Zakon o radu",
     title: "Otkaz ugovora o radu 2026 — razlozi, postupak i otpremnina",
     summary: "Otkaz ugovora o radu 2026: razlozi za otkaz po Zakonu o radu, otkazni rok (8–30 dana), otpremnina za tehnološki višak i prava zaposlenog. Obračun sa primerom.",
@@ -154,10 +154,10 @@ export const POSTS = [
   {
     id: "prosecna-plata-srbija",
     date: "19. jun 2026",
-    updated: "28. septembar 2026",
+    updated: "5. novembar 2026",
     tag: "Zarada",
-    title: "Prosečna plata u Srbiji 2026: 121.346 din (1.033 €), jul",
-    summary: "121.346 din (≈1.033 €) — prosečna neto plata u Srbiji, jul 2026 (RZS). Bruto 167.402, medijalna 95.036 din. Pregled po mesecima, sektorima i gradovima.",
+    title: "Prosečna plata u Srbiji 2026: 117.282 din (998 €), avgust",
+    summary: "117.282 din (≈998 €) — prosečna neto plata u Srbiji, avgust 2026 (RZS). Bruto 161.953, medijalna 93.325 din. Pregled po mesecima, sektorima i gradovima.",
     ogImage: "https://www.platnilistic.rs/media/prosecna-plata-2026.png",
     hasFaq: true,
   },
@@ -272,7 +272,7 @@ export const POSTS = [
   {
     id: "kako-se-obracunava-bolovanje",
     date: "1. maj 2026",
-    updated: "16. septembar 2026",
+    updated: "5. novembar 2026",
     tag: "Bolovanje",
     title: "Kako se obračunava bolovanje do 30 dana — naknada 65%",
     summary: "Obračun bolovanja do 30 dana: naknada je minimum 65% prosečne zarade, a od 31. dana na teret RFZO. Kalkulator sa primerima i PDF platni listić.",
@@ -299,7 +299,7 @@ export const POSTS = [
   {
     id: "jubilarna-nagrada",
     date: "15. februar 2026",
-    updated: "28. septembar 2026",
+    updated: "5. novembar 2026",
     tag: "Porez",
     title: "Jubilarna nagrada 2026 — iznos, porez i neoporezivih 28.912",
     summary: "Jubilarna nagrada 2026: visina je stvar kolektivnog ugovora (obično 1–3 prosečne zarade), neoporezivo je 28.912 RSD godišnje, a iznad se plaća samo porez 10% — bez doprinosa.",
@@ -370,10 +370,10 @@ export const POSTS = [
   {
     id: "otpremnina-obracun",
     date: "5. januar 2026",
-    updated: "28. septembar 2026",
+    updated: "5. novembar 2026",
     tag: "Zakon o radu",
     title: "Otpremnina za penziju i tehnološki višak — iznos, obračun i porez",
-    summary: "Otpremnina za odlazak u penziju: najmanje 2 prosečne zarade RS (242.692 RSD, jul 2026). Za tehnološki višak: min. 1/3 zarade po godini staža. Obračun i porez.",
+    summary: "Otpremnina za odlazak u penziju: najmanje 2 prosečne zarade RS (234.564 RSD, avgust 2026). Za tehnološki višak: min. 1/3 zarade po godini staža. Obračun i porez.",
     hasFaq: true,
   },
 ];

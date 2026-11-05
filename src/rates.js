@@ -144,19 +144,32 @@ export const REFERENCE_DATA = {
     obrazac: "PP GPDG",
     izvor: "Poreska uprava — Poreski informator, april 2026",
   },
-  // Prosečna zarada — RZS, jul 2026 (Saopštenje ZR10 br. 262, objavljeno 25.9.2026).
-  // Ažurirano 28.9.2026. Kurs: NBS srednji 28.9.2026 (117,4993).
+  // Prosečna zarada — RZS, avgust 2026 (Saopštenje ZR10 br. 285, objavljeno 26.10.2026).
+  // Ažurirano 5.11.2026. Kurs: NBS srednji 2.11.2026 (117,5417).
   // NAPOMENA: `objavljeno` se koristi u statičnom tekstu na /prosecna-zarada (pages.jsx,
   // ProsecnaZaradaPage) — ažurirati zajedno sa mesec/neto/bruto svakog refresh-a.
   prosecnaZarada2026: {
-    neto: 121346,
-    bruto: 167402,
-    medijalnaNeto: 95036,
-    mesec: "jul 2026",
-    objavljeno: "25. septembra 2026",
-    kursEur: 117.5,
+    neto: 117282,
+    bruto: 161953,
+    medijalnaNeto: 93325,
+    beogradNeto: 143965, // Beogradski region, neto
+    mesec: "avgust 2026",
+    objavljeno: "26. oktobra 2026",
+    kursEur: 117.54,
     izvor: "RZS",
   },
+  // Mesečni niz 2026 (RZS) — tabela na /prosecna-zarada. Svaki refresh: dodati red.
+  // medijalna: null = RZS podatak nije preuzet za taj mesec.
+  prosecnaZaradaPoMesecima2026: [
+    { mesec: "Januar", bruto: 163385, neto: 118429, medijalna: 92671 },
+    { mesec: "Februar", bruto: 160067, neto: 116127, medijalna: 91399 },
+    { mesec: "Mart", bruto: 167263, neto: 121650, medijalna: null },
+    { mesec: "April", bruto: 168008, neto: 121805, medijalna: 94585 },
+    { mesec: "Maj", bruto: 163470, neto: 118398, medijalna: 93277 },
+    { mesec: "Jun", bruto: 166123, neto: 120401, medijalna: 94281 },
+    { mesec: "Jul", bruto: 167402, neto: 121346, medijalna: 95036 },
+    { mesec: "Avgust", bruto: 161953, neto: 117282, medijalna: 93325 },
+  ],
   // Državni praznici i neradni dani u Srbiji za 2026.
   // VERIFY: Confirm dates against Vlada RS decision on neradni dani before merge.
   praznici2026: [

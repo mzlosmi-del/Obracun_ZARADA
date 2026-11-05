@@ -3,7 +3,7 @@
 export const body = `
 ![Bolovanje i naknada zarade](https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80)
 
-> **Provereno i ažurirano: 27. avgust 2026.** Vodič je usklađen sa Zakonom o radu (čl. 77, 103 i 115), Zakonom o zdravstvenom osiguranju („Sl. glasnik RS", br. 25/2019, 92/2023 i 109/2025 – dr. zakon; čl. 95, 101, 102, 143 i 148) i Zakonom o razmeni podataka, dokumenata i obaveštenja u slučaju nastupanja privremene sprečenosti za rad korišćenjem softverskog rešenja „e-Bolovanje – Poslodavac" („Sl. glasnik RS", br. 109/2025, u primeni od 1. januara 2026). Propisi se mogu menjati tokom godine.
+> **Provereno i ažurirano: 5. novembar 2026.** Vodič je usklađen sa Zakonom o radu (čl. 77, 103 i 115), Zakonom o zdravstvenom osiguranju („Sl. glasnik RS", br. 25/2019, 92/2023 i 109/2025 – dr. zakon; čl. 95, 101, 102, 143 i 148) i Zakonom o razmeni podataka, dokumenata i obaveštenja u slučaju nastupanja privremene sprečenosti za rad korišćenjem softverskog rešenja „e-Bolovanje – Poslodavac" („Sl. glasnik RS", br. 109/2025, u primeni od 1. januara 2026). Propisi se mogu menjati tokom godine.
 
 Bolovanje, odnosno **naknada zarade za vreme privremene sprečenosti za rad**, regulisano je **Zakonom o zdravstvenom osiguranju** i **Zakonom o radu** (čl. 115). Evo svega što zaposleni i poslodavci treba da znaju o obračunu — sa formulom, primerom u dinarima i onim što se promenilo 2026.
 
@@ -12,6 +12,10 @@ Bolovanje, odnosno **naknada zarade za vreme privremene sprečenosti za rad**, r
 > **Napomena:** Ovaj tekst je informativnog karaktera i ne predstavlja pravni, poreski ni medicinski savet. Za konkretan obračun obratite se knjigovođi, filijali RFZO ili izabranom lekaru. Propisi se menjaju — pre postupanja proverite važeći tekst zakona.
 
 > 🧮 Brzo izračunajte naknadu: [kalkulator bolovanja](/bolovanje).
+
+## Kada se isplaćuje bolovanje?
+
+**Bolovanje do 30 dana isplaćuje se zajedno sa redovnom zaradom**, istog dana kada poslodavac isplaćuje plate — poslodavac je obveznik isplate i nema posebnog roka. **Bolovanje preko 30 dana** zaposleni takođe dobija od poslodavca, ali tek pošto poslodavac primi sredstva od RFZO: zahtev filijali podnosi u roku od **15 dana** od isplate zarade za mesec na koji se naknada odnosi, filijala prenosi sredstva u roku od **21 dan** od prijema potpunog zahteva, a poslodavac ih zaposlenom isplaćuje u roku od **7 dana** od prijema (čl. 102 Zakona o zdravstvenom osiguranju; rok od 15 dana je iz uputstva RFZO-a). Zbir tih rokova je **do 43 dana** od isplate zarade za mesec bolovanja. Zakon ne propisuje kalendarski datum isplate, pa se dan razlikuje od firme do firme; ako novac kasni, reklamacija se upućuje poslodavcu, ne RFZO-u. Ceo postupak je opisan niže, u odeljku „Šta ako bolovanje traje duže od 30 dana?".
 
 ## Ko snosi trošak bolovanja?
 

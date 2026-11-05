@@ -740,7 +740,7 @@ export function GodisnjiPorezPage() {
         </tbody>
       </table>
       <h2>Radni primer (ilustracija)</h2>
-      <p>Cenzus se računa po formuli 3 × (12 × prosečna mesečna bruto zarada). Uzimajući poslednju objavljenu prosečnu bruto zaradu od {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} RSD, godišnja prosečna zarada iznosi {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} × 12 ≈ {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12).toLocaleString("sr-RS")} RSD, pa bi ilustrativan cenzus (3×) bio oko {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} RSD, a dvostruki cenzus oko {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 6).toLocaleString("sr-RS")} RSD. <em>Napomena: zvanični cenzus za konkretnu poresku godinu objavljuje Poreska uprava na osnovu podatka RZS o prosečnoj godišnjoj zaradi za tu godinu — iznos iz ovog primera je ilustracija formule, ne zvanično objavljena cifra.</em> Pod ovom pretpostavkom, poreski obveznik sa ukupnim godišnjim dohotkom od 8.000.000 RSD imao bi oporezivi višak od 8.000.000 − {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} ≈ 1.951.712 RSD, u celosti u prvom razredu (jer ne prelazi dvostruki cenzus), pa bi godišnji porez iznosio 1.951.712 × 10% ≈ <strong>195.171 RSD</strong>. Da je isti obveznik ostvario dohodak iznad dvostrukog cenzusa, deo preko te granice oporezovao bi se dodatnom stopom od 15%.</p>
+      <p>Cenzus se računa po formuli 3 × (12 × prosečna mesečna bruto zarada). Uzimajući poslednju objavljenu prosečnu bruto zaradu od {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} RSD, godišnja prosečna zarada iznosi {REFERENCE_DATA.prosecnaZarada2026.bruto.toLocaleString("sr-RS")} × 12 ≈ {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12).toLocaleString("sr-RS")} RSD, pa bi ilustrativan cenzus (3×) bio oko {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} RSD, a dvostruki cenzus oko {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 6).toLocaleString("sr-RS")} RSD. <em>Napomena: zvanični cenzus za konkretnu poresku godinu objavljuje Poreska uprava na osnovu podatka RZS o prosečnoj godišnjoj zaradi za tu godinu — iznos iz ovog primera je ilustracija formule, ne zvanično objavljena cifra.</em> Pod ovom pretpostavkom, poreski obveznik sa ukupnim godišnjim dohotkom od 8.000.000 RSD imao bi oporezivi višak od 8.000.000 − {(REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} ≈ {(8000000 - REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} RSD, u celosti u prvom razredu (jer ne prelazi dvostruki cenzus), pa bi godišnji porez iznosio {(8000000 - REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3).toLocaleString("sr-RS")} × 10% ≈ <strong>{Math.round((8000000 - REFERENCE_DATA.prosecnaZarada2026.bruto * 12 * 3) * 0.1).toLocaleString("sr-RS")} RSD</strong>. Da je isti obveznik ostvario dohodak iznad dvostrukog cenzusa, deo preko te granice oporezovao bi se dodatnom stopom od 15%.</p>
       <h2>Česte greške</h2>
       <ul>
         <li>Uverenje da godišnji porez plaćaju svi zaposleni — u stvarnosti ga plaća uzak krug lica čiji ukupan godišnji dohodak iz svih izvora prelazi cenzus od tri prosečne godišnje zarade; velika većina zaposlenih sa jednom prosečnom ili čak natprosečnom platom nikada ne dostigne taj prag.</li>
@@ -943,8 +943,8 @@ export function ProsecnaZaradaPage() {
   const min = REFERENCE_DATA.minimalnaZarada2026;
   return <ReferencePage cfg={{
     slug: "prosecna-zarada",
-    title: `Prosečna zarada ${p.mesec} — neto ${p.neto.toLocaleString("sr-RS")} RSD (RZS) | PlatniListić`,
-    description: `Neto ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")}, medijalna ${p.medijalnaNeto.toLocaleString("sr-RS")} RSD (${p.mesec}, RZS). Tabela prosečnih zarada po mesecima i godinama.`,
+    title: `Prosečna zarada ${p.mesec} — neto ${p.neto.toLocaleString("sr-RS")} RSD | PlatniListić`,
+    description: `Neto ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")}, medijalna ${p.medijalnaNeto.toLocaleString("sr-RS")} RSD (${p.mesec}, RZS). Tabela prosečnih zarada po mesecima 2026.`,
     h1: "Prosečna zarada u Srbiji — zvanična tabela RZS",
     breadcrumbName: "Prosečna zarada",
     body: (<>
@@ -956,6 +956,18 @@ export function ProsecnaZaradaPage() {
         </tbody>
       </table>
       <p>Podaci su za {p.mesec} (RZS). Medijalna zarada (polovina zaposlenih zarađuje manje) realnije opisuje tipičnu platu od proseka. Detaljan pregled po sektorima i gradovima: <a href="/blog/prosecna-plata-srbija">prosečna plata u Srbiji 2026</a>.</p>
+
+      <h2>Prosečna zarada po mesecima 2026</h2>
+      <table className="ref-table">
+        <thead>
+          <tr><th>Mesec 2026.</th><th>Bruto</th><th>Neto</th><th>Medijalna neto</th></tr>
+        </thead>
+        <tbody>
+          {REFERENCE_DATA.prosecnaZaradaPoMesecima2026.map((r) => (
+            <tr key={r.mesec}><td>{r.mesec}</td><td>{r.bruto.toLocaleString("sr-RS")} RSD</td><td>{r.neto.toLocaleString("sr-RS")} RSD</td><td>{r.medijalna ? `${r.medijalna.toLocaleString("sr-RS")} RSD` : "—"}</td></tr>
+          ))}
+        </tbody>
+      </table>
 
       <h2>Kako i kada RZS objavljuje podatak o prosečnoj zaradi</h2>
       <p>Republički zavod za statistiku (RZS) objavljuje podatak o prosečnoj mesečnoj zaradi u redovnom mesečnom statističkom saopštenju, sa uobičajenim zaostatkom od oko 55 dana po isteku meseca — podatak za {p.mesec} objavljen je {p.objavljeno}. Zaostatak postoji zato što je za obračun proseka potrebno prikupiti i obraditi izveštaje o isplaćenim zaradama od velikog broja poslodavaca u zemlji, pa je reč o konačnom, a ne procenjenom broju. Zbog ovog zaostatka, iznos koji važi „danas" u praksi je uvek podatak za jedan od prethodnih meseci — to je i razlog zašto se u zakonskim obračunima (otpremnina, jubilarna nagrada, cenzus) izričito koristi formulacija „poslednji objavljeni podatak", a ne podatak za tekući mesec, koji u trenutku obračuna još nije objavljen.</p>
@@ -984,8 +996,8 @@ export function ProsecnaZaradaPage() {
     </>),
     faq: [
       { q: "Za koji mesec važi poslednji zvanični podatak RZS?", a: `Tabela prikazuje poslednji objavljeni podatak Republičkog zavoda za statistiku — za ${p.mesec}: neto ${p.neto.toLocaleString("sr-RS")} RSD, bruto ${p.bruto.toLocaleString("sr-RS")} RSD. RZS objavljuje zaradu za prethodni mesec sa oko dva meseca zadrške, pa se tabela ažurira po svakom saopštenju.` },
-      { q: "Gde da vidim prosečnu zaradu po mesecima i godinama?", a: `Tabela na ovoj stranici daje zvanične iznose RZS po mesecima (neto, bruto i medijalna zarada), sa uporednim pregledom po godinama. Za analizu proseka po sektorima, gradovima i u evrima pogledajte vodič „prosečna plata u Srbiji 2026" na blogu.` },
-      { q: "Kolika je prosečna plata u Beogradu?", a: `Podatak od ${p.neto.toLocaleString("sr-RS")} RSD neto (${p.mesec}) je republički prosek koji RZS objavljuje za celu Srbiju, ne posebno za Beograd. Pregled proseka po gradovima i sektorima potražite u vodiču "prosečna plata u Srbiji" na blogu.` },
+      { q: "Gde da vidim prosečnu zaradu po mesecima i godinama?", a: `Tabela na ovoj stranici daje zvanične iznose RZS po mesecima 2026 (bruto, neto i medijalna zarada). Prosečnu godišnju zaradu po godinama, kao i analizu po sektorima, gradovima i u evrima, pogledajte u vodiču „prosečna plata u Srbiji 2026" na blogu.` },
+      { q: "Kolika je prosečna plata u Beogradu?", a: `Prosečna neto zarada u Beogradskom regionu za ${p.mesec} iznosi ${p.beogradNeto.toLocaleString("sr-RS")} RSD, dok je republički prosek ${p.neto.toLocaleString("sr-RS")} RSD (RZS). Pregled proseka po opštinama i sektorima potražite u vodiču "prosečna plata u Srbiji" na blogu.` },
       { q: "Šta je medijalna zarada i zašto se razlikuje od prosečne?", a: `Medijalna zarada je vrednost koja deli sve zaposlene na dve jednake polovine — polovina zarađuje manje, polovina više. Za razliku od proseka, na nju ne utiče mali broj vrlo visokih primanja, pa je bliža onome što tipičan zaposleni stvarno prima. U ${p.mesec} medijalna neto zarada (${p.medijalnaNeto.toLocaleString("sr-RS")} RSD) je za ${(p.neto - p.medijalnaNeto).toLocaleString("sr-RS")} RSD niža od prosečne (${p.neto.toLocaleString("sr-RS")} RSD).` },
     ],
     related: [
