@@ -170,6 +170,10 @@ export const REFERENCE_DATA = {
     { mesec: "Jul", bruto: 167402, neto: 121346, medijalna: 95036 },
     { mesec: "Avgust", bruto: 161953, neto: 117282, medijalna: 93325 },
   ],
+  // Decembar 2025 (RZS, objavljeno februara 2026) — osnovica za jubilarnu nagradu
+  // u državnim organima (PKU čl. 46: „poslednji mesec u prethodnoj kalendarskoj godini")
+  // i zdravstvu (PKU čl. 105: „decembar prethodne godine"). Važi za jubileje u 2026.
+  prosecnaZarada2025Decembar: { bruto: 169921, neto: 124089 },
   // Državni praznici i neradni dani u Srbiji za 2026.
   // VERIFY: Confirm dates against Vlada RS decision on neradni dani before merge.
   praznici2026: [

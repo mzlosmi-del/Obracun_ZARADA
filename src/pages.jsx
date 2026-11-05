@@ -171,44 +171,77 @@ export function OtpremninaCalculator() {
 // neoporezivih iznosa). NAPOMENA: ranija verzija kalkulatora pogrešno je koristila
 // koeficijent × prosečna zarada kao PORESKI limit — to je skala visine ISPLATE iz kolektivnih
 // ugovora (javni sektor), ne poreska granica.
-// Koeficijenti visine isplate (uobičajeno u praksi/PKU): 10 god. 1×, 20 god. 2×, 30 god. 2,5×, 40 god. 3×.
-const JUBILEJI = [
-  { god: 10, koef: 1 },
-  { god: 20, koef: 2 },
-  { god: 30, koef: 2.5 },
-  { god: 40, koef: 3 },
+// Visina ISPLATE po sektoru — posebni kolektivni ugovori (PKU), VERIFIKOVANO 5.11.2026:
+//  • Državni organi — PKU čl. 46 („Sl. glasnik RS" 38/2019, 55/2020, 44/2023, 49/2026):
+//    1× prosečna mesečna zarada u RS za decembar prethodne godine, +30% za svaki naredni
+//    jubilej (od 1.1.2024. bez „bez poreza i doprinosa" → bruto). Važi do 31.5.2027.
+//  • Zdravstvo — PKU čl. 105 (96/2019 … 2/2024): 0,5 / 1 / 1,5 / 2 / 3 prosečne zarade u RS
+//    za decembar prethodne godine. PKU ne kaže bruto/neto. Važi do 9.1.2027.
+//  • Prosveta (osnovne i srednje škole, domovi) — PKU čl. 31 (21/2015 … 13/2025):
+//    0,5 / 1 / 1,5 / 2 / 2,5 prosečne plate (prosek ustanove ili RS za prethodni mesec, šta je
+//    povoljnije); nečlanovima sindikata potpisnika 50% — Apelacioni sud u Novom Sadu
+//    pravnosnažno (avg. 2026): diskriminacija. Važi do 5.3.2028.
+//  • Policija — PKU za policijske službenike čl. 38: 1 / 1,2 / 1,3 / 1,3 / 1,4 prosečne NETO
+//    plate u MUP za mesec pre isplate (MUP je ne objavljuje → korisnik unosi iznos).
+// Skala „1 / 2 / 2,5 / 3" koju je kalkulator ranije nudio kao „uobičajenu" ne postoji ni u
+// jednom od ovih PKU — uklonjena 5.11.2026.
+const JUBILEJI = [10, 20, 30, 35, 40];
+const JUB_SEKTORI = [
+  { id: "drzavni", label: "Državni organi", koef: { 10: 1, 20: 1.3, 30: 1.69, 35: 2.197, 40: 2.8561 }, osnovica: "dec",
+    napomena: "PKU za državne organe, čl. 46: prosečna bruto zarada u RS za decembar prethodne godine; svaki naredni jubilej +30%." },
+  { id: "zdravstvo", label: "Zdravstvo", koef: { 10: 0.5, 20: 1, 30: 1.5, 35: 2, 40: 3 }, osnovica: "dec",
+    napomena: "PKU za zdravstvene ustanove, čl. 105: prosečna zarada u RS za decembar prethodne godine. PKU ne navodi bruto ili neto — prikazan je bruto iznos. PKU važi do 9.1.2027." },
+  { id: "prosveta", label: "Prosveta", koef: { 10: 0.5, 20: 1, 30: 1.5, 35: 2, 40: 2.5 }, osnovica: "poslednja",
+    napomena: "PKU za osnovne i srednje škole, čl. 31: prosečna plata u školi ili prosečna zarada u RS za prethodni mesec — šta je povoljnije (prikazan je poslednji objavljeni prosek RS, bruto). PKU nečlanovima sindikata potpisnika daje 50%, ali je Apelacioni sud u Novom Sadu to pravnosnažno ocenio kao diskriminaciju." },
+  { id: "mup", label: "Policija (MUP)", koef: { 10: 1, 20: 1.2, 30: 1.3, 35: 1.3, 40: 1.4 }, osnovica: null,
+    napomena: "PKU za policijske službenike, čl. 38: prosečna neto plata isplaćena u MUP u mesecu pre isplate. Ministarstvo taj prosek ne objavljuje — unesite iznos sa rešenja." },
+  { id: "ostalo", label: "Privatni / drugo", koef: null, osnovica: null,
+    napomena: "Kod privatnih poslodavaca visinu (i da li se nagrada uopšte isplaćuje) određuje kolektivni ugovor, pravilnik o radu ili ugovor o radu — unesite iznos." },
 ];
 export function JubilarnaCalculator() {
-  const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  const pz = REFERENCE_DATA.prosecnaZarada2026;
+  const dec = REFERENCE_DATA.prosecnaZarada2025Decembar;
   const neoporezivo = REFERENCE_DATA.neoporeziviOstali2026.jubilarnaNagrada;
+  const [sektorId, setSektorId] = useState("drzavni");
   const [god, setGod] = useState(20);
   const [isplata, setIsplata] = useState(0);
-  const koef = (JUBILEJI.find((j) => j.god === god) || JUBILEJI[1]).koef;
-  const uobicajenaIsplata = Math.round(prosBruto * koef);
-  const osnovica = isplata || uobicajenaIsplata;
+  const sektor = JUB_SEKTORI.find((x) => x.id === sektorId) || JUB_SEKTORI[0];
+  const koef = sektor.koef ? sektor.koef[god] : null;
+  const baza = sektor.osnovica === "dec" ? dec.bruto : sektor.osnovica === "poslednja" ? pz.bruto : null;
+  const bazaOpis = sektor.osnovica === "dec" ? "decembar 2025, bruto" : `${pz.mesec}, bruto`;
+  const poPKU = koef && baza ? Math.round(baza * koef) : 0;
+  const osnovica = isplata || poPKU;
   const oporezivi = Math.max(osnovica - neoporezivo, 0);
   const porez = oporezivi * DEFAULT_RATES.taxRate / 100;
   const neto = osnovica - porez;
   return (
     <div className="pausal-calc">
+      <div className="mode-toggle" role="tablist" aria-label="Sektor" style={{ marginBottom: 8, flexWrap: "wrap" }}>
+        {JUB_SEKTORI.map((x) => (
+          <button key={x.id} className={`mode-btn ${sektorId === x.id ? "active" : ""}`} onClick={() => setSektorId(x.id)} role="tab" aria-selected={sektorId === x.id}>
+            {x.label}
+          </button>
+        ))}
+      </div>
       <div className="mode-toggle" role="tablist" aria-label="Godine staža" style={{ marginBottom: 12, flexWrap: "wrap" }}>
-        {JUBILEJI.map((j) => (
-          <button key={j.god} className={`mode-btn ${god === j.god ? "active" : ""}`} onClick={() => setGod(j.god)} role="tab" aria-selected={god === j.god}>
-            {j.god} god.
+        {JUBILEJI.map((g) => (
+          <button key={g} className={`mode-btn ${god === g ? "active" : ""}`} onClick={() => setGod(g)} role="tab" aria-selected={god === g}>
+            {g} god.
           </button>
         ))}
       </div>
       <div className="pausal-results results-body">
-        <ResultRow label={`Uobičajena visina nagrade (${koef.toLocaleString("sr-RS")}× prosečna bruto zarada)`} value={uobicajenaIsplata} />
+        {poPKU > 0 && <ResultRow label={`Nagrada po PKU (${koef.toLocaleString("sr-RS")}× prosek, ${bazaOpis})`} value={poPKU} />}
         <ResultRow label="Neoporezivo (ZPDG čl. 18 tač. 9, godišnje)" value={neoporezivo} type="positive" />
       </div>
-      <NumberInput label="Iznos koji poslodavac isplaćuje (opciono)" sublabel="(ako se ne unese, računa se uobičajena visina za izabrani jubilej)" value={isplata} onChange={setIsplata} step={10000} />
+      {koef && !baza && <p className="pausal-note">Po PKU: <strong>{koef.toLocaleString("sr-RS")}× prosečna neto plata u MUP</strong> za mesec pre isplate.</p>}
+      <NumberInput label="Iznos koji poslodavac isplaćuje" sublabel={poPKU > 0 ? "(opciono — ako se ne unese, računa se iznos po PKU)" : "(unesite iznos sa rešenja ili iz akta poslodavca)"} value={isplata} onChange={setIsplata} step={10000} />
       <div className="pausal-results results-body">
         <ResultRow label="Oporezivi deo (iznad neoporezivog)" value={oporezivi} />
         <ResultRow label={`Porez na zarade (${DEFAULT_RATES.taxRate}%) — bez doprinosa`} value={porez} type="negative" />
         <ResultRow label="Neto na račun" value={neto} type="positive" />
       </div>
-      <p className="pausal-note">Neoporezivi iznos jubilarne nagrade je fiksan: {neoporezivo.toLocaleString("sr-RS")} RSD godišnje za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Na deo iznad plaća se samo porez na zarade 10% — doprinosi se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu). Visina nagrade (npr. 1–3 prosečne zarade) stvar je kolektivnog ugovora ili ugovora o radu, a koeficijenti u kalkulatoru odražavaju uobičajenu praksu. Prosek: {prosBruto.toLocaleString("sr-RS")} RSD bruto ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS).</p>
+      <p className="pausal-note">{sektor.napomena} Neoporezivo je fiksnih {neoporezivo.toLocaleString("sr-RS")} RSD godišnje za isplate od 1.2.2026. do 31.1.2027. („Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9); na deo iznad plaća se samo porez na zarade 10% — doprinosi se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu).</p>
     </div>
   );
 }
@@ -816,53 +849,55 @@ export function GodisnjiOdmorPage() {
 }
 
 export function JubilarnaPage() {
-  const prosBruto = REFERENCE_DATA.prosecnaZarada2026.bruto;
+  const dec = REFERENCE_DATA.prosecnaZarada2025Decembar;
+  const pz = REFERENCE_DATA.prosecnaZarada2026;
+  const neop = REFERENCE_DATA.neoporeziviOstali2026.jubilarnaNagrada;
+  const r = (x) => Math.round(x).toLocaleString("sr-RS");
+  const primer = Math.round(dec.bruto * 1.3);
+  const primerPorez = Math.round((primer - neop) * 0.1);
+  const red = (id) => JUB_SEKTORI.find((x) => x.id === id).koef;
   return <ToolPage cfg={{
     slug: "jubilarna-nagrada",
     title: "Kalkulator jubilarne nagrade 2026 | PlatniListić",
-    description: "Kalkulator jubilarne nagrade za 10, 20, 30 i 40 godina staža — neoporezivo 28.912 RSD (čl. 18 ZPDG), porez 10% bez doprinosa. Za Srbiju 2026. Besplatno.",
+    description: "Jubilarna nagrada za 10, 20, 30, 35 i 40 godina po sektoru — državni organi, zdravstvo, prosveta, MUP. Neoporezivo 28.912 RSD, porez 10%, bez doprinosa.",
     h1: "Kalkulator jubilarne nagrade (2026)",
     breadcrumbName: "Jubilarna nagrada",
     calc: "jubilarna",
-    intro: (<p>Ovaj <strong>kalkulator jubilarne nagrade</strong> računa porez za 10, 20, 30 i 40 godina rada kod istog poslodavca: neoporezivo je fiksnih <strong>28.912 RSD godišnje</strong> (ZPDG čl. 18 tač. 9), a na deo iznad plaća se samo porez 10% — bez doprinosa. Detaljna pravila i primeri: vodič <a href="/blog/jubilarna-nagrada">jubilarna nagrada 2026 — iznos i obračun</a>.</p>),
+    intro: (<p>Ovaj <strong>kalkulator jubilarne nagrade</strong> računa iznos po posebnom kolektivnom ugovoru vašeg sektora (državni organi, zdravstvo, prosveta, policija) za 10, 20, 30, 35 i 40 godina rada, a zatim porez: neoporezivo je fiksnih <strong>28.912 RSD godišnje</strong> (ZPDG čl. 18 tač. 9), a na deo iznad plaća se samo porez 10% — bez doprinosa. Detaljna pravila: vodič <a href="/blog/jubilarna-nagrada">jubilarna nagrada 2026 — iznos i obračun</a>.</p>),
     guide: (<>
-      <h2>Kako se obračunava jubilarna nagrada</h2>
-      <p>Jubilarna nagrada je jednokratna isplata povodom navršenih „okruglih" godina rada kod istog poslodavca. Poreski tretman je jednostavan, ali ga mnogi izvori pogrešno prikazuju: neoporeziv je <strong>fiksan iznos od 28.912 RSD godišnje</strong> (za isplate od 1.2.2026. do 31.1.2027, „Sl. glasnik RS" 6/2026, ZPDG čl. 18 tač. 9). Na deo iznad tog iznosa plaća se <strong>samo porez na zarade od 10%</strong> — doprinosi za socijalno osiguranje se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 u vezi sa čl. 120 tač. 1 Zakona o radu).</p>
-      <h2>Neoporezivi iznos i visina nagrade — dve različite stvari</h2>
-      <p><strong>Najčešća greška</strong> u tekstovima o jubilarnoj nagradi je mešanje visine isplate sa poreskim limitom. Skala „1 prosečna zarada za 10 godina, 2 za 20, 2,5 za 30, 3 za 40" jeste uobičajena visina nagrade iz kolektivnih ugovora (posebno u javnom sektoru) — ali to <em>nije</em> neoporezivi iznos. Poreski neoporezivo je uvek samo 28.912 RSD godišnje, bez obzira na jubilej. Uobičajene visine isplate uz prosečnu bruto zaradu od {prosBruto.toLocaleString("sr-RS")} RSD ({REFERENCE_DATA.prosecnaZarada2026.mesec}, RZS):</p>
-      <table className="ref-table" aria-label="Uobičajena visina jubilarne nagrade 2026 i poreski tretman">
-        <thead><tr><th>Jubilej</th><th>Uobičajena visina (koef. × prosek)</th><th>Neoporezivo (fiksno)</th></tr></thead>
+      <h2>Koliko iznosi jubilarna nagrada po sektorima</h2>
+      <p>Zakon o radu ne propisuje visinu jubilarne nagrade — nju određuje kolektivni ugovor. U javnom sektoru to su posebni kolektivni ugovori (PKU), i oni se međusobno razlikuju i po koeficijentima i po osnovici:</p>
+      <table className="ref-table" aria-label="Jubilarna nagrada po sektorima — koeficijenti iz posebnih kolektivnih ugovora">
+        <thead><tr><th>Jubilej</th><th>Državni organi</th><th>Zdravstvo</th><th>Prosveta</th><th>Policija (MUP)</th></tr></thead>
         <tbody>
-          {JUBILEJI.map((j) => (
-            <tr key={j.god}>
-              <td>{j.god} godina</td>
-              <td>≈ {Math.round(prosBruto * j.koef).toLocaleString("sr-RS")} RSD</td>
-              <td>28.912 RSD</td>
-            </tr>
+          {JUBILEJI.map((g) => (
+            <tr key={g}><td>{g} godina</td><td>{red("drzavni")[g].toLocaleString("sr-RS")}×</td><td>{red("zdravstvo")[g].toLocaleString("sr-RS")}×</td><td>{red("prosveta")[g].toLocaleString("sr-RS")}×</td><td>{red("mup")[g].toLocaleString("sr-RS")}×</td></tr>
           ))}
         </tbody>
       </table>
+      <p><strong>Osnovica nije ista:</strong> u državnim organima i zdravstvu to je prosečna zarada u RS za decembar prethodne godine ({r(dec.bruto)} RSD bruto za decembar 2025, RZS); u prosveti prosečna plata u školi ili prosečna zarada u RS za prethodni mesec — šta je povoljnije; u policiji prosečna neto plata isplaćena u MUP u mesecu pre isplate. Za državne organe 2026. to znači: 10 godina {r(dec.bruto)} RSD, 20 godina {r(dec.bruto * 1.3)} RSD, 30 godina {r(dec.bruto * 1.69)} RSD, 35 godina {r(dec.bruto * 2.197)} RSD i 40 godina {r(dec.bruto * 2.8561)} RSD.</p>
+      <h2>Neoporezivi iznos i visina nagrade — dve različite stvari</h2>
+      <p><strong>Najčešća greška</strong> u tekstovima o jubilarnoj nagradi je mešanje visine isplate sa poreskim limitom. Koeficijenti iz tabele su visina isplate; neoporezivo je uvek samo <strong>{neop.toLocaleString("sr-RS")} RSD godišnje</strong> (za isplate od 1.2.2026. do 31.1.2027, „Sl. glasnik RS" 6/2026), bez obzira na jubilej i sektor. Na deo iznad plaća se <strong>samo porez na zarade od 10%</strong> — doprinosi se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 u vezi sa čl. 120 tač. 1 Zakona o radu). Česta je i skala „1, 2, 2,5 i 3 prosečne zarade" — nju ne predviđa nijedan od četiri navedena posebna kolektivna ugovora.</p>
       <h2>Radni primer</h2>
-      <p>Zaposleni navršava 20 godina rada i poslodavac mu, po kolektivnom ugovoru, isplaćuje dve prosečne zarade — {(prosBruto * 2).toLocaleString("sr-RS")} RSD. Neoporezivo je 28.912 RSD; oporezivi deo je {(prosBruto * 2 - 28912).toLocaleString("sr-RS")} RSD, porez 10% iznosi {Math.round((prosBruto * 2 - 28912) * 0.1).toLocaleString("sr-RS")} RSD, a zaposleni na račun prima {Math.round(prosBruto * 2 - (prosBruto * 2 - 28912) * 0.1).toLocaleString("sr-RS")} RSD. Doprinosi se ne obračunavaju ni na jedan deo isplate.</p>
-      <p>Kalkulator na ovoj stranici automatski primenjuje ovaj obrazac: izaberete jubilej (10, 20, 30 ili 40 godina), po potrebi unesete stvarni iznos isplate, a alat prikazuje neoporezivi iznos, oporezivi deo, porez i neto iznos koji zaposleni dobija na račun.</p>
+      <p>Državni službenik navršava 20 godina rada u državnim organima u 2026. Po PKU za državne organe (čl. 46) nagrada je prosečna zarada za decembar 2025. uvećana za 30%: {r(dec.bruto)} × 1,3 = <strong>{r(primer)} RSD</strong>. Neoporezivo je {neop.toLocaleString("sr-RS")} RSD; oporezivi deo je {r(primer - neop)} RSD, porez 10% iznosi {r(primerPorez)} RSD, a zaposleni na račun prima <strong>{r(primer - primerPorez)} RSD</strong>. Doprinosi se ne obračunavaju ni na jedan deo isplate.</p>
       <h2>Šta se računa kao staž za jubilej</h2>
-      <p>Kao i kod minulog rada, broji se <strong>samo staž kod istog poslodavca</strong>, ne ukupan staž osiguranja. Statusne promene poslodavca (spajanje, pripajanje) prenose i staž za jubilej. Više: <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
+      <p>Zavisi od akta, i tu je velika razlika između javnog i privatnog sektora. PKU za državne organe računa rad u bilo kom državnom organu, organu autonomne pokrajine ili jedinice lokalne samouprave; PKU za policiju — ukupan rad u MUP i drugim državnim organima; PKU za škole — godine rada „ostvarenog u radnom odnosu", bez ograničenja na istog poslodavca. Kod privatnih poslodavaca najčešće se broji samo staž kod tog poslodavca, ali to određuje njihov opšti akt ili ugovor o radu. Statusne promene poslodavca (spajanje, pripajanje) prenose i staž za jubilej.</p>
+      <h2>Kada se isplaćuje</h2>
+      <p>U državnim organima i zdravstvu u roku od 30 dana od dana sticanja prava (u državnim organima, za jubilej u januaru — čim RZS objavi decembarski prosek). U policiji: pravo stečeno u prvoj polovini godine isplaćuje se do kraja jula, a u drugoj polovini do kraja godine. U prosveti — u godini u kojoj se jubilej navršava.</p>
       <h2>Jubilarna nagrada i minuli rad — u čemu je razlika</h2>
-      <p>Jubilarna nagrada i minuli rad su dva odvojena instituta i lako se mešaju. Minuli rad je <strong>redovan mesečni dodatak na zaradu</strong> koji raste sa svakom godinom staža i isplaćuje se svakog meseca uz platu. Jubilarna nagrada je, nasuprot tome, <strong>jednokratna isplata</strong> koja se dešava samo kada zaposleni navrši tačno određen broj „okruglih" godina staža kod istog poslodavca — najčešće 10, 20, 30 ili 40. Za obračun minulog rada koristi se poseban kalkulator, dostupan na stranici <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
-      <h2>Zašto poslodavci isplaćuju jubilarnu nagradu</h2>
-      <p>Jubilarna nagrada u praksi služi kao priznanje dugogodišnje lojalnosti zaposlenog i alat za zadržavanje kadra. Iznos, jubileji za koje se isplaćuje i eventualni dodatni uslovi (npr. minimalna ocena rada) razlikuju se od poslodavca do poslodavca, zavisno od toga šta je predviđeno kolektivnim ugovorom, opštim aktom ili pojedinačnim ugovorom o radu. Zato dva zaposlena sa istim stažem kod različitih poslodavaca mogu dobiti različit iznos nagrade — ili je uopšte ne dobiti, ako poslodavac nema takvu obavezu ugovorenu.</p>
+      <p>Minuli rad je <strong>redovan mesečni dodatak na zaradu</strong> koji raste sa svakom godinom staža. Jubilarna nagrada je <strong>jednokratna isplata</strong> kada zaposleni navrši tačno 10, 20, 30, 35 ili 40 godina rada. Za minuli rad koristite <a href="/minuli-rad">kalkulator minulog rada</a>.</p>
       <h2>Trošak za poslodavca</h2>
-      <p>Za poslodavca je jubilarna nagrada povoljnija od bonusa: pošto nema karakter zarade, na nju se <strong>ne plaćaju doprinosi</strong> — ni na teret zaposlenog ni na teret poslodavca. Trošak poslodavca jednak je isplaćenom iznosu, a iz njega se obustavlja samo porez od 10% na deo iznad 28.912 RSD. Za poređenje: isti iznos isplaćen kao običan bonus tereti se punim doprinosima i porezom kao zarada — vidi <a href="/blog/porez-na-bonus">porez na bonus</a>. Cela nagrada (i neoporezivi i oporezivi deo) priznaje se kao trošak poslovanja.</p>
+      <p>Pošto nema karakter zarade, na jubilarnu nagradu se <strong>ne plaćaju doprinosi</strong> — ni na teret zaposlenog ni na teret poslodavca. Trošak poslodavca jednak je isplaćenom iznosu, a obustavlja se samo porez od 10% na deo iznad {neop.toLocaleString("sr-RS")} RSD. Isti iznos isplaćen kao bonus tereti se punim doprinosima i porezom — vidi <a href="/blog/porez-na-bonus">porez na bonus</a>.</p>
       <h2>Kako koristiti kalkulator</h2>
-      <p>Prvi korak je izbor jubileja — dugme za 10, 20, 30 ili 40 godina staža — čime kalkulator prikazuje uobičajenu visinu nagrade za taj jubilej (koeficijent × prosečna bruto zarada u RS) i odmah računa porez na nju. Ako vaš poslodavac isplaćuje drugačiji iznos, unesite ga u polje za iznos; kalkulator prikazuje neoporezivi deo (28.912 RSD), oporezivi deo, porez od 10% i konačan neto koji zaposleni prima na račun.</p>
+      <p>Izaberite sektor i jubilej. Za državne organe, zdravstvo i prosvetu kalkulator prikazuje iznos po PKU (koeficijent × osnovica) i odmah računa porez. Za policiju i privatni sektor osnovica nije javno objavljena, pa unesite iznos sa rešenja ili iz akta poslodavca. Prosečna zarada za {pz.mesec} je {r(pz.bruto)} RSD bruto (RZS) — pregled po mesecima: <a href="/prosecna-zarada">prosečna zarada</a>.</p>
       <h2>Pravni okvir</h2>
-      <p>Neoporezivi iznos propisuje čl. 18 tač. 9 Zakona o porezu na dohodak građana (usklađuje se svakog februara — 28.912 RSD važi za isplate od 1.2.2026. do 31.1.2027, „Sl. glasnik RS" 6/2026). Obavezu isplate i visinu utvrđuje kolektivni ugovor ili ugovor o radu (Zakon o radu, čl. 120 tač. 1) — jubilarna nagrada nije zakonska obaveza, ali ako je poslodavac ugovorio, mora je isplatiti.</p>
+      <p>Neoporezivi iznos: čl. 18 st. 1 tač. 9 Zakona o porezu na dohodak građana (usklađuje se svakog februara). Visina i uslovi: Zakon o radu čl. 120 tač. 1 i kolektivni ugovori — PKU za državne organe („Sl. glasnik RS" 38/2019, 55/2020, 44/2023, 49/2026; čl. 46, važi do 31.5.2027), PKU za zdravstvene ustanove (96/2019 sa izmenama; čl. 105, važi do 9.1.2027), PKU za osnovne i srednje škole i domove učenika (21/2015 … 13/2025; čl. 31, važi do 5.3.2028) i PKU za policijske službenike (62/2019 sa izmenama; čl. 38, produžen do 31.12.2026).</p>
     </>),
     faq: [
-      { q: "Koliki je neoporezivi iznos jubilarne nagrade u 2026?", a: "28.912 RSD godišnje, za isplate od 1. februara 2026. do 31. januara 2027. (ZPDG čl. 18 tač. 9, „Sl. glasnik RS” 6/2026). Neoporezivi iznos je fiksan i isti za sve jubileje — ne zavisi od broja godina staža ni od prosečne zarade." },
+      { q: "Koliki je neoporezivi iznos jubilarne nagrade u 2026?", a: "28.912 RSD godišnje, za isplate od 1. februara 2026. do 31. januara 2027. (ZPDG čl. 18 tač. 9, „Sl. glasnik RS” 6/2026). Neoporezivi iznos je fiksan i isti za sve jubileje i sektore." },
       { q: "Da li se plaća porez na jubilarnu nagradu?", a: "Na deo do 28.912 RSD godišnje ne plaća se ništa. Na deo iznad plaća se samo porez na zarade od 10% — doprinosi se ne plaćaju, jer jubilarna nagrada nema karakter zarade (čl. 105 st. 3 Zakona o radu)." },
-      { q: "Koliko iznosi jubilarna nagrada za 10, 20, 30 ili 40 godina?", a: `Visinu određuje kolektivni ugovor ili ugovor o radu. Uobičajena praksa (naročito u javnom sektoru) je 1 prosečna zarada za 10 godina, 2 za 20, 2,5 za 30 i 3 za 40 godina — uz prosek od ${prosBruto.toLocaleString("sr-RS")} RSD bruto to je približno ${Math.round(prosBruto).toLocaleString("sr-RS")} do ${(prosBruto * 3).toLocaleString("sr-RS")} RSD. To je visina isplate, a ne poreski limit.` },
-      { q: "Za koliko godina staža se isplaćuje jubilarna nagrada?", a: "Najčešće za 10, 20, 30 i 40 godina rada kod istog poslodavca. Tačne jubileje i iznose utvrđuje kolektivni ugovor ili ugovor o radu — poslodavac nije zakonski obavezan, osim ako se sam obavezao." },
+      { q: "Koliko iznosi jubilarna nagrada za 35 godina staža?", a: `Zavisi od sektora: u državnim organima 2,197 prosečne zarade za decembar prethodne godine (≈ ${r(dec.bruto * 2.197)} RSD u 2026), u zdravstvu i prosveti 2 prosečne zarade, u policiji 1,3 prosečne neto plate u MUP. Kod privatnih poslodavaca — prema njihovom aktu.` },
+      { q: "Za koliko godina staža se isplaćuje jubilarna nagrada?", a: "U javnom sektoru za 10, 20, 30, 35 i 40 godina rada — svi posebni kolektivni ugovori (državni organi, zdravstvo, prosveta, policija) imaju i jubilej od 35 godina. Kod privatnih poslodavaca jubileje određuje kolektivni ugovor, pravilnik ili ugovor o radu." },
     ],
     related: [
       { href: "/", label: "Bruto u neto kalkulator" },

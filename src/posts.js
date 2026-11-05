@@ -301,8 +301,8 @@ export const POSTS = [
     date: "15. februar 2026",
     updated: "5. novembar 2026",
     tag: "Porez",
-    title: "Jubilarna nagrada 2026 — iznos, porez i neoporezivih 28.912",
-    summary: "Jubilarna nagrada 2026: visina je stvar kolektivnog ugovora (obično 1–3 prosečne zarade), neoporezivo je 28.912 RSD godišnje, a iznad se plaća samo porez 10% — bez doprinosa.",
+    title: "Jubilarna nagrada 2026 — iznos po sektorima i porez",
+    summary: "Jubilarna nagrada 2026 za 10–40 godina: državni organi, zdravstvo, prosveta i MUP po PKU. Neoporezivo 28.912 RSD, iznad samo porez 10%, bez doprinosa.",
     hasFaq: true,
   },
   {
