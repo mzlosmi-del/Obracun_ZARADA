@@ -39,11 +39,14 @@ const PrazniciPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.Pr
 const ProsecnaZaradaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.ProsecnaZaradaPage })));
 const NeoporeziviPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.NeoporeziviPage })));
 const StopeDoprinosaPage = lazy(() => import("./pages.jsx").then(m => ({ default: m.StopeDoprinosaPage })));
+// Embeddable calculator (iframe on other sites). Own chunk — Embed.jsx must never be
+// imported statically, see the note at the top of that file.
+const EmbedBrutoNeto = lazy(() => import("./Embed.jsx").then(m => ({ default: m.EmbedBrutoNeto })));
 
 const MONTHS = ["Januar","Februar","Mart","April","Maj","Jun","Jul","Avgust","Septembar","Oktobar","Novembar","Decembar"];
 
 // ── CALCULATE ─────────────────────────────────────────────────────────────────
-function calculate(inputs, rates) {
+export function calculate(inputs, rates) {
   const { basicBruto, standardHours, overtimeH, nightH, weekendH, holidayH, fixedBonus, bonusPct, yearsOfService, minuliRadPct, transport, mealDays, mealDailyActual, regres, sickDays, sickPct, publicHolidayDays, vacationHolidayDays, unpaidDays, syndikat, syndikatPct, kredit, adminZabrana, ostaliOdbici } = inputs;
   const R = rates;
   const totalWorkDays = (standardHours || 168) / 8;
@@ -148,7 +151,7 @@ function calculate(inputs, rates) {
 // Returns { bruto, reachable, minNeto }. `reachable: false` means no Bruto 1
 // yields this neto — the caller must say so rather than show a bogus number.
 // `minNeto` is the smallest neto these inputs can produce (neto at Bruto 1 = 0).
-function netoToBruto(targetNeto, rates, baseInputs) {
+export function netoToBruto(targetNeto, rates, baseInputs) {
   const netoAt = (bruto) => calculate({ ...baseInputs, basicBruto: bruto }, rates).neto;
 
   // Bruto 1 = 0 still carries the meal/regres allowances, so the floor is
@@ -1217,6 +1220,43 @@ const HOME_FAQ = [
   },
 ];
 
+// "Ugradi kalkulator na svoj sajt" — the embed offer on the homepage (Q4 test,
+// decided 28.9.2026). Measured by evt/embed_copy (GoatCounter) and by referrers on
+// /embed/bruto-neto (Vercel Analytics). Verdict after 2–3 months: >=5 foreign
+// domains -> extend (minimalac, otpremnina); 0–1 -> remove this block.
+// The backlink in the snippet is BRANDED on purpose — a keyword anchor in a
+// distributed widget is a link scheme under Google's spam policies.
+const EMBED_SNIPPET =
+  '<iframe src="https://www.platnilistic.rs/embed/bruto-neto" title="Bruto u neto kalkulator" ' +
+  'width="100%" height="520" style="border:0;max-width:520px" loading="lazy"></iframe>\n' +
+  '<p style="font-size:12px;margin:4px 0 0">Kalkulator: <a href="https://www.platnilistic.rs/">PlatniListić</a></p>';
+
+function EmbedOffer() {
+  const [copied, setCopied] = useState(false);
+  const onCopy = () => {
+    trackOnce("embed_copy");
+    const done = () => { setCopied(true); setTimeout(() => setCopied(false), 2500); };
+    try {
+      navigator.clipboard.writeText(EMBED_SNIPPET).then(done, () => {});
+    } catch { /* old browser: the textarea is selectable by hand */ }
+  };
+  return (
+    <details className="home-embed">
+      <summary>Ugradite ovaj kalkulator na svoj sajt — besplatno</summary>
+      <p>
+        Kopirajte kod i nalepite ga u HTML svoje stranice. Kalkulator se uvek računa po važećim
+        stopama — kada se propisi promene, vaša stranica se ažurira sama. Obračun se vrši u
+        pregledaču posetioca; ne prikupljamo podatke koje unese.
+      </p>
+      <textarea readOnly rows={4} value={EMBED_SNIPPET} onCopy={() => trackOnce("embed_copy")} onFocus={(e) => e.target.select()} aria-label="Kod za ugradnju kalkulatora" />
+      <div className="home-embed-actions">
+        <button type="button" className="btn-pdf" onClick={onCopy}>{copied ? "Kod je kopiran ✓" : "Kopiraj kod"}</button>
+        <a href="/embed/bruto-neto" target="_blank" rel="noopener">Pogledaj kako izgleda</a>
+      </div>
+    </details>
+  );
+}
+
 function HomePage() {
   useSeo({
     title: "Bruto u neto kalkulator 2026 — obračun plate | PlatniListić",
@@ -1261,6 +1301,7 @@ function HomePage() {
         </p>
       </section>
       <CalculatorPage />
+      <EmbedOffer />
       <nav className="home-tools" aria-label="Kalkulatori i alati">
         <h2 className="home-tools-title">Kalkulatori i alati</h2>
         <ul>
@@ -1482,6 +1523,20 @@ export default function App() {
     document.body.classList.toggle("sidebar-open", sidebarOpen);
     return () => document.body.classList.remove("sidebar-open");
   }, [sidebarOpen]);
+
+  // /embed/* is the iframe widget: no sidebar, jobs bar or lead modal — just the
+  // calculator, plus Vercel Analytics so the embedding domains show up as referrers.
+  if (location.pathname.startsWith("/embed/")) {
+    return (
+      <>
+        <Routes>
+          <Route path="/embed/bruto-neto" element={<Suspense fallback={null}><EmbedBrutoNeto /></Suspense>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Analytics />
+      </>
+    );
+  }
 
   const navItems = [
     { path: "/", icon: "⚡", label: "Bruto u neto" },

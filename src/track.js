@@ -51,6 +51,11 @@ const EVENTS = {
     "blog-limit-za-pausalce", "blog-pdv-prag-preduzetnik", "blog-pausal-ili-doo",
     "blog-frilenser-pausalac-firma", "blog-porez-na-bonus", "blog-registracija-doo",
   ],
+  // Embeddable calculator test (Q4 2026). No details: which domain embeds us is
+  // read from Vercel Analytics referrers on /embed/bruto-neto, never sent here.
+  embed_copy:          [],  // copied the snippet on the homepage (once per session)
+  embed_view:          [],  // the iframe loaded on some page (once per session)
+  embed_click:         [],  // clicked the branded link inside the iframe
 };
 
 // Returns the path suffix, or null if this call is not permitted.

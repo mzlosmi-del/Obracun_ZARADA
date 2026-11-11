@@ -18,7 +18,11 @@ const STATIC_ROUTES = ["/", "/blog", "/o-nama", "/softver-po-meri", "/privatnost
 // is a soft error and dilutes crawl budget. Content is merged into the target.
 // Source of truth: REDIRECTED_POST_IDS in src/posts.js.
 const INDEXABLE_POSTS = POSTS.filter((p) => !REDIRECTED_POST_IDS.has(p.id));
-const ROUTES = [...STATIC_ROUTES, ...INDEXABLE_POSTS.map((p) => `/blog/${p.id}`)];
+// Iframe widgets for other sites (src/Embed.jsx). Prerendered so the iframe paints
+// at once instead of flashing the homepage shell, but NOT in the sitemap: they are
+// noindex (meta + X-Robots-Tag in vercel.json) and not pages for search.
+const EMBED_ROUTES = ["/embed/bruto-neto"];
+const ROUTES = [...STATIC_ROUTES, ...EMBED_ROUTES, ...INDEXABLE_POSTS.map((p) => `/blog/${p.id}`)];
 
 const MONTHS = {
   januar: "01", februar: "02", mart: "03", april: "04", maj: "05", jun: "06",
