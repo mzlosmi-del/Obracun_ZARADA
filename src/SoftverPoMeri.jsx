@@ -1,4 +1,10 @@
-// src/SoftverPoMeri.jsx — the /softver-po-meri landing page (the case study).
+// src/SoftverPoMeri.jsx — the /softver-po-meri landing page.
+//
+// Since 17.11.2026 this ONE page sells both offers: website building (#sajt)
+// and custom software (the case study, #prica). The URL stays /softver-po-meri
+// — it is indexed and linked; every on-site hint (src/WebsitePromo.jsx, ProCTA,
+// BlogSoftwareCTA) leads here. Figures in the #sajt section come from
+// WEB_STATS in WebsitePromo.jsx — read the accuracy rules there before editing.
 //
 // ⚠️ SPLIT OUT OF lead.jsx DELIBERATELY. This route is lazy-loaded, but lead.jsx
 // is ALSO statically imported by App.jsx (LeadModalHost, LEAD_PATH) and Blog.jsx
@@ -12,10 +18,23 @@ import { Link } from "react-router-dom";
 import { useSeo } from "./seo.jsx";
 import { track } from "./track.js";
 import { LEAD_PATH, CONTACT_EMAIL, useLeadForm, LeadFormContent } from "./lead.jsx";
+import { WEB_STATS, StatsSource } from "./WebsitePromo.jsx";
 
 // ── LANDING PAGE ─────────────────────────────────────────────────────────────
 
 const FAQ = [
+  {
+    q: "Koliko košta izrada sajta za firmu?",
+    a: "Zavisi od obima — predstavljanje firme na nekoliko strana nije isto što i katalog proizvoda ili onlajn poručivanje. Zato posle prvog razgovora dobijate grubu procenu opsega i cene. Taj korak je besplatan i ni na šta vas ne obavezuje.",
+  },
+  {
+    q: "Već imamo sajt, ali je zastareo. Da li mora sve ispočetka?",
+    a: "Ne nužno. Prvo pogledam šta postoji. Adresa sajta (domen) i sadržaj koji vredi po pravilu ostaju, a menja se ono što koči: brzina, prikaz na telefonu, preglednost i put do kontakta.",
+  },
+  {
+    q: "Treba li nam sajt ako već imamo stranicu na društvenim mrežama?",
+    a: "Stranica na društvenoj mreži je korisna, ali nije vaša — pravila i vidljivost određuje platforma. Sajt je mesto koje vi kontrolišete: ponuda, cene i kontakt stoje onako kako ste ih vi postavili, i nalaze se i preko pretraživača.",
+  },
   {
     q: "Koliko košta softver po meri za malu firmu?",
     a: "Zavisi od obima — nije isto pokriti evidenciju porudžbina i napraviti kompletan sistem. Zato posle prvog razgovora dobijate popis zahteva po prioritetu i grubu procenu opsega i cene. Taj korak je besplatan i ni na šta vas ne obavezuje.",
@@ -62,8 +81,8 @@ export function SoftverPoMeriPage() {
   const { form, setForm, status, submit } = useLeadForm("page");
 
   useSeo({
-    title: "Izrada softvera po meri za male firme u Srbiji — PlatniListić",
-    description: "Pravim interne web aplikacije po meri za mala i srednja preduzeća: evidencija porudžbina i radnih naloga, izveštaji, prava pristupa po ulozi. Priča jednog projekta.",
+    title: "Izrada sajtova i softvera po meri za firme — PlatniListić",
+    description: "Pravim moderne sajtove i softver po meri za male firme u Srbiji: brz sajt koji radi na telefonu, evidencija porudžbina, izveštaji. Priča jednog projekta.",
     path: LEAD_PATH,
     faq: FAQ,
     jsonLd: {
@@ -72,12 +91,12 @@ export function SoftverPoMeriPage() {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Početna", "item": "https://www.platnilistic.rs/" },
-          { "@type": "ListItem", "position": 2, "name": "Softver po meri", "item": `https://www.platnilistic.rs${LEAD_PATH}` },
+          { "@type": "ListItem", "position": 2, "name": "Sajtovi i softver po meri", "item": `https://www.platnilistic.rs${LEAD_PATH}` },
         ],
       }, {
       "@type": "Service",
-      "name": "Izrada softvera po meri za male firme",
-      "serviceType": "Razvoj poslovnih web aplikacija i internih alata",
+      "name": "Izrada sajtova i softvera po meri za male firme",
+      "serviceType": "Izrada veb-sajtova, poslovnih web aplikacija i internih alata",
       "areaServed": { "@type": "Country", "name": "Srbija" },
       "availableLanguage": ["sr", "en", "de"],
       "provider": {
@@ -86,7 +105,7 @@ export function SoftverPoMeriPage() {
         "url": "https://www.platnilistic.rs",
         "email": CONTACT_EMAIL,
       },
-      "description": "Izrada internih web aplikacija po meri za mala i srednja preduzeća: evidencija porudžbina i radnih naloga, šifarnik kupaca, prava pristupa po ulozi i izveštaji za vlasnika.",
+      "description": "Izrada modernih veb-sajtova za firme i internih web aplikacija po meri za mala i srednja preduzeća: evidencija porudžbina i radnih naloga, šifarnik kupaca, prava pristupa po ulozi i izveštaji za vlasnika.",
       }],
     },
   });
@@ -94,12 +113,13 @@ export function SoftverPoMeriPage() {
   return (
     <div className="sw-page">
       <div className="sw-hero">
-        <div className="lead-eyebrow">Softver po meri · male firme i knjigovodstvene agencije</div>
-        <h1 className="sw-h1">Softver po meri za male firme u Srbiji</h1>
+        <div className="lead-eyebrow">Sajtovi i softver po meri · male firme i knjigovodstvene agencije</div>
+        <h1 className="sw-h1">Sajtovi i softver po meri za male firme u Srbiji</h1>
         <p className="sw-lede">
-          Kalkulator koji upravo koristite je moj rad. Isti pristup primenjujem na proces
-          vaše firme — alat koji radi posao umesto vas, napravljen prema tome kako vi
-          stvarno radite, a ne kako je neko zamislio da bi trebalo.
+          Sajt i kalkulator koje upravo koristite su moj rad. Isti pristup primenjujem na
+          vašu firmu: sajt preko kog vas kupci nalaze i alat koji radi posao umesto vas,
+          napravljen prema tome kako vi stvarno radite, a ne kako je neko zamislio da bi
+          trebalo.
         </p>
         <div className="sw-hero-actions">
           <button type="button" className="sw-btn-primary" onClick={() => { track("lead_form_open", "hero"); window.dispatchEvent(new Event("open-lead-modal")); }}>
@@ -109,8 +129,59 @@ export function SoftverPoMeriPage() {
         </div>
       </div>
 
+      <section className="sw-scope sw-offer" aria-labelledby="sw-offer-title">
+        <h2 id="sw-offer-title">Šta mogu da napravim za vašu firmu</h2>
+        <ul className="sw-list">
+          <li>
+            <strong>Moderan sajt.</strong> Predstavlja firmu, ponudu i cene, brzo se
+            učitava, čita se na telefonu i vodi posetioca do upita ili poziva.
+            <br /><a href="#sajt">Šta dobijate sa sajtom ↓</a>
+          </li>
+          <li>
+            <strong>Softver po meri.</strong> Jedan alat za jedan proces — onaj na kome
+            se danas gubi vreme ili se posao zagubi: porudžbine, radni nalozi, obračuni,
+            izveštaji.
+            <br /><a href="#prica">Priča jednog projekta ↓</a>
+          </li>
+        </ul>
+        <p style={{ marginTop: 16, marginBottom: 0 }}>
+          Često ide jedno za drugim: sajt dovede upite, a alat se postara da se nijedan
+          ne zaboravi. Može i samo jedno — počinjemo od onoga što vam je sada potrebnije.
+        </p>
+      </section>
+
+      <section className="sw-scope sw-web" id="sajt" aria-labelledby="sw-web-title">
+        <div className="sw-tag">Izrada sajta</div>
+        <h2 id="sw-web-title">Vaši kupci su već na internetu. Da li tamo nalaze vas?</h2>
+        <div className="web-promo-stats">
+          {WEB_STATS.map((s) => (
+            <div className="web-promo-stat" key={s.value}>
+              <span className="web-promo-stat-value">{s.value}</span>
+              <span className="web-promo-stat-label">{s.label}</span>
+            </div>
+          ))}
+        </div>
+        <StatsSource />
+        <p>
+          Kada je toliko ljudi na internetu, kupac firmu često prvo potraži tamo. Ako vas nema, ili zatekne sajt
+          koji se na telefonu jedva čita, lako ode kod onoga koga je našao. Pravim sajtove
+          koji taj prvi utisak rade kako treba:
+        </p>
+        <ul className="sw-check">
+          <li><strong>Dostupni ste 24 sata dnevno.</strong> Ponuda, cene i kontakt na jednom mestu, i kada ne radite.</li>
+          <li><strong>Brz je i čita se na telefonu.</strong> Učitava se bez čekanja i ne traži zumiranje.</li>
+          <li><strong>Upiti stižu direktno vama.</strong> Kontakt forma i poziv jednim dodirom — bez posrednika i provizije.</li>
+          <li><strong>Pretraživači ga razumeju.</strong> Uredna struktura, naslovi i opisi, da vas kupac nađe kada traži ono što nudite.</li>
+          <li><strong>Raste sa firmom.</strong> Kada zatreba, na isti sajt se dodaju katalog, poručivanje ili alat po meri.</li>
+        </ul>
+        <p style={{ marginBottom: 0 }}>
+          Kako to izgleda u praksi vidite upravo sada — ovaj sajt sam napravio na isti
+          način. <a href="#kontakt">Zakažite besplatan razgovor ↓</a>
+        </p>
+      </section>
+
       <article className="sw-story" id="prica">
-        <div className="sw-tag">Priča jednog projekta</div>
+        <div className="sw-tag">Softver po meri · priča jednog projekta</div>
 
         <h2>Firma od sedam ljudi kojoj je rast počeo da smeta</h2>
         <p>
@@ -188,7 +259,7 @@ export function SoftverPoMeriPage() {
       </article>
 
       <section className="sw-signs" aria-labelledby="sw-signs-title">
-        <h2 id="sw-signs-title">Da li je ovo i vaš problem?</h2>
+        <h2 id="sw-signs-title">Da li vam treba softver po meri?</h2>
         <ul className="sw-check">
           {SIGNS.map((s) => <li key={s}>{s}</li>)}
         </ul>
@@ -211,8 +282,8 @@ export function SoftverPoMeriPage() {
           <li>
             <span className="sw-step-n">2</span>
             <div>
-              <strong>Popis zahteva i procena.</strong> Na papiru dobijate šta bi alat
-              radio, poređano po prioritetu, plus grubu procenu opsega i cene.
+              <strong>Popis zahteva i procena.</strong> Na papiru dobijate šta bi sajt ili
+              alat radio, poređano po prioritetu, plus grubu procenu opsega i cene.
             </div>
           </li>
           <li>
@@ -237,7 +308,7 @@ export function SoftverPoMeriPage() {
       </section>
 
       <section className="sw-scope" aria-labelledby="sw-scope-title">
-        <h2 id="sw-scope-title">Šta pravim za mala i srednja preduzeća</h2>
+        <h2 id="sw-scope-title">Kakav softver pravim za mala i srednja preduzeća</h2>
         <p>
           Ne pravim univerzalni poslovni softver koji pokriva sve i ne rešava ništa.
           Pravim <strong>jedan alat za jedan proces</strong> — onaj koji vas trenutno
@@ -260,15 +331,15 @@ export function SoftverPoMeriPage() {
         </p>
       </section>
 
-      <section className="lead-section" aria-labelledby="sw-form-title">
+      <section className="lead-section" id="kontakt" aria-labelledby="sw-form-title">
         <div className="lead-inner">
           <div className="lead-text">
             <div className="lead-eyebrow">Besplatan razgovor · bez obaveze</div>
-            <h2 id="sw-form-title" className="lead-title">Ispričajte mi gde se vaš posao zaglavi</h2>
+            <h2 id="sw-form-title" className="lead-title">Recite mi šta vam treba — sajt, alat ili oboje</h2>
             <p className="lead-body">
               Ostavite kontakt i kratko napišite čime se firma bavi. Javljam se u roku od
               24 sata i dogovaramo termin koji vama odgovara. Ako posle razgovora
-              zaključim da vam softver ne treba, reći ću vam to — to je i dalje bolji
+              zaključim da vam to ne treba, reći ću vam — to je i dalje bolji
               ishod od projekta koji niko ne koristi.
             </p>
           </div>

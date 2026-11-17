@@ -5,12 +5,9 @@ import { fmt, pct, NumberInput, TextInput, ResultRow, SectionTitle, AnimatedNum,
 import { useSeo } from "./seo.jsx";
 import { webAppLd } from "./schema.js";
 import { getNonTaxable, DEFAULT_RATES } from "./rates.js";
-import { JobsWidget } from "./JobsWidget.jsx";
-import { JobSlideIn } from "./JobSlideIn.jsx";
-import { activeJobs, scrollToJobs } from "./jobs.js";
+import { WebsitePromo, WebsiteCTABanner, SidebarWebsiteTeaser, WebsiteStickyFooter } from "./WebsitePromo.jsx";
 import { track, trackOnce } from "./track.js";
 import { LeadModalHost, LEAD_PATH } from "./lead.jsx";
-import { showsSoftwareCTA } from "./software.js";
 
 // Lazy-loaded routes — keep main bundle small
 const BlogList = lazy(() => import("./Blog.jsx").then(m => ({ default: m.BlogList })));
@@ -322,94 +319,11 @@ function printPayslip(inputs, r, info, rates) {
   win.onload = () => { win.focus(); win.print(); };
 }
 
-// ── JOBS TEASERS (affiliate funnel) ──────────────────────────────────────────
-// Both signup forms (newsletter + lead) are commented out below — every CTA
-// slot now funnels to the partner job listings (JobsWidget) to maximize
-// affiliate conversion. Re-enable the forms by uncommenting their usages.
-
-// GoatCounter + Vercel Analytics event for teaser clicks (production only).
-function trackJobsTeaser(placement) {
-  if (!/(^|\.)platnilistic\.rs$/.test(window.location.hostname)) return;
-  try {
-    if (window.goatcounter && window.goatcounter.count) {
-      window.goatcounter.count({ path: `jobs-teaser/${placement}`, event: true });
-    }
-  } catch { /* no-op */ }
-}
-
-// Compact sidebar card: question hook + live job count.
-function SidebarJobsTeaser({ onGo }) {
-  const navigate = useNavigate();
-  const jobs = activeJobs();
-  if (jobs.length === 0) return null;
-  return (
-    <div className="sidebar-jobs">
-      <div className="sidebar-jobs-title">Tražite bolje plaćen posao?</div>
-      <div className="sidebar-jobs-sub">
-        {jobs.length} {jobs.length % 10 === 1 && jobs.length % 100 !== 11 ? "otvorena pozicija" : [2,3,4].includes(jobs.length % 10) && ![12,13,14].includes(jobs.length % 100) ? "otvorene pozicije" : "otvorenih pozicija"} kod partnerske agencije
-      </div>
-      <button
-        type="button"
-        className="sidebar-jobs-btn"
-        onClick={() => { trackJobsTeaser("sidebar"); onGo?.(); scrollToJobs(navigate); }}
-      >
-        Pogledaj poslove →
-      </button>
-    </div>
-  );
-}
-
-// Mobile-only sticky footer (affiliate funnel), mounted once at the App root so
-// it appears on every page. Reuses scrollToJobs: scrolls to the on-page
-// JobsWidget, or navigates home and scrolls there. Hidden when no active jobs.
-function JobsStickyFooter() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const jobs = activeJobs();
-  // Split by audience, exactly like the in-article slot: no jobs bar on the
-  // lead page or on the business-owner posts that carry the software CTA.
-  // A vlasnik firme reading about the PDV threshold is doing the hiring.
-  const postId = location.pathname.startsWith("/blog/") ? location.pathname.slice(6) : null;
-  if (location.pathname === LEAD_PATH || (postId && showsSoftwareCTA(postId))) return null;
-  if (jobs.length === 0) return null;
-  return (
-    <button
-      type="button"
-      className="jobs-sticky"
-      onClick={() => { trackJobsTeaser("sticky"); scrollToJobs(navigate); }}
-      aria-label="Pogledajte otvorene pozicije partnerske agencije"
-    >
-      <span className="jobs-sticky-check" aria-hidden="true">✓</span>
-      <span className="jobs-sticky-text">Izračunali ste platu — pogledajte ko nudi više</span>
-      <span className="jobs-sticky-cta" aria-hidden="true">Poslovi →</span>
-    </button>
-  );
-}
-
-// Full-width banner replacing the old lead-form section on the homepage.
-function JobsCTABanner() {
-  const navigate = useNavigate();
-  const jobs = activeJobs();
-  if (jobs.length === 0) return null;
-  return (
-    <section className="jobs-cta" aria-label="Otvorene pozicije partnera">
-      <div className="jobs-cta-text">
-        <div className="jobs-cta-eyebrow">Poslovi · licencirana agencija</div>
-        <h2 className="jobs-cta-title">Izračunali ste platu — pogledajte ko nudi više</h2>
-        <p className="jobs-cta-body">
-          Proverene ponude licencirane agencije za zapošljavanje. Prijava online, besplatno, bez registracije.
-        </p>
-      </div>
-      <button
-        type="button"
-        className="jobs-cta-btn"
-        onClick={() => { trackJobsTeaser("home-banner"); scrollToJobs(navigate); }}
-      >
-        Pogledaj otvorene pozicije →
-      </button>
-    </section>
-  );
-}
+// ── WEBSITE PROMO ────────────────────────────────────────────────────────────
+// The partner job ads were removed 17.11.2026. Their slots (card under the
+// result, sidebar teaser, mobile sticky bar, homepage banner) now promote the
+// combined offer (sajtovi + softver po meri) and all lead to /softver-po-meri —
+// all four live in src/WebsitePromo.jsx.
 
 // ── BREVO SIGNUP ─────────────────────────────────────────────────────────────
 // NOTE: currently unused — commented out in the sidebar in favor of the jobs
@@ -497,7 +411,7 @@ function ProCTA({ variant }) {
   return (
     <aside className="pro-cta" aria-label="Ponuda za firme i knjigovođe">
       <div className="pro-cta-text">
-        <div className="pro-cta-eyebrow">Za firme i knjigovođe</div>
+        <div className="pro-cta-eyebrow">Za firme i knjigovođe · sajtovi i softver po meri</div>
         <p>{PRO_CTA_COPY[v] || PRO_CTA_COPY.results}</p>
       </div>
       {/* Primary action goes to the case study, not to the form. This reader is
@@ -759,8 +673,7 @@ export function CalculatorPage({ focusSection, initialTab, trackSource = "home" 
         </div>
       </div>
 
-      <JobsWidget neto={r.neto} placement="kalkulator" />
-      <JobSlideIn neto={r.neto} trigger="calc" placement="kalkulator-slidein" />
+      <WebsitePromo placement="promo-kalkulator" />
 
       <div className="tabs" role="tablist" aria-label="Sekcije kalkulatora">
         {["inputs","payslip","results","rates","ppppd"].map((t) => (
@@ -1323,7 +1236,7 @@ function HomePage() {
           <li><a href="/prosecna-zarada">Prosečna zarada u Srbiji</a></li>
           <li><a href="/radni-dani-2026">Radni dani 2026</a></li>
           <li><a href="/praznici-2026">Praznici 2026</a></li>
-          <li><a href="/softver-po-meri">Softver po meri za male firme</a></li>
+          <li><a href="/softver-po-meri">Sajtovi i softver po meri za male firme</a></li>
         </ul>
       </nav>
       <section className="home-seo" aria-label="Kako se obračunava zarada 2026">
@@ -1501,11 +1414,10 @@ function HomePage() {
           <li><a href="/blog/kupovna-moc-plate-2016-2026">Kupovna moć plate 2016–2026: realno +53%</a></li>
         </ul>
       </nav>
-      {/* Homepage keeps the jobs affiliate banner: homepage traffic is
-          employees checking their net salary, not software buyers. The
-          custom-software funnel lives on the professional tabs (ProCTA) and on
-          /softver-po-meri — see src/lead.jsx. */}
-      <JobsCTABanner />
+      {/* Website-building promo (replaced the jobs affiliate banner 17.11.2026).
+          The custom-software funnel still lives on the professional tabs
+          (ProCTA) and on /softver-po-meri — see src/lead.jsx. */}
+      <WebsiteCTABanner />
     </>
   );
 }
@@ -1516,15 +1428,15 @@ export default function App() {
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // While the mobile drawer is open it owns the screen, so the sticky jobs bar
+  // While the mobile drawer is open it owns the screen, so the sticky promo bar
   // stands down — it is fixed at z-index 200 and was covering the sidebar
-  // footer links. Mirrors `body.has-job-slidein` in JobSlideIn.jsx.
+  // footer links.
   useEffect(() => {
     document.body.classList.toggle("sidebar-open", sidebarOpen);
     return () => document.body.classList.remove("sidebar-open");
   }, [sidebarOpen]);
 
-  // /embed/* is the iframe widget: no sidebar, jobs bar or lead modal — just the
+  // /embed/* is the iframe widget: no sidebar, promo bar or lead modal — just the
   // calculator, plus Vercel Analytics so the embedding domains show up as referrers.
   if (location.pathname.startsWith("/embed/")) {
     return (
@@ -1576,13 +1488,13 @@ export default function App() {
             </button>
           ))}
         </nav>
-        {/* Newsletter form disabled in favor of the jobs teaser (affiliate
-            funnel). Re-enable by uncommenting: <BrevoSignup /> */}
-        <SidebarJobsTeaser onGo={() => setSidebarOpen(false)} />
+        {/* Newsletter form disabled in favor of the website-promo teaser.
+            Re-enable by uncommenting: <BrevoSignup /> */}
+        <SidebarWebsiteTeaser onGo={() => setSidebarOpen(false)} />
         <div className="sidebar-footer">
           <div className="sidebar-footer-site">platnilistic.rs</div>
           <div className="sidebar-footer-links">
-            <Link className="sidebar-footer-link" to={LEAD_PATH} onClick={() => setSidebarOpen(false)}>Softver po meri</Link>
+            <Link className="sidebar-footer-link" to={LEAD_PATH} onClick={() => setSidebarOpen(false)}>Sajt i softver po meri</Link>
             <Link className="sidebar-footer-link" to="/o-nama" onClick={() => setSidebarOpen(false)}>O nama</Link>
             <Link className="sidebar-footer-link" to="/privatnost" onClick={() => setSidebarOpen(false)}>Privatnost</Link>
             <Link className="sidebar-footer-link" to="/uslovi" onClick={() => setSidebarOpen(false)}>Uslovi</Link>
@@ -1634,7 +1546,7 @@ export default function App() {
           <LeadModalHost />
         </div>
       </main>
-      <JobsStickyFooter />
+      <WebsiteStickyFooter />
       <Analytics />
     </div>
   );

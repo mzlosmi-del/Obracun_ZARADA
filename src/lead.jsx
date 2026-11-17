@@ -7,6 +7,8 @@
 //                        "open-lead-modal" event that ProCTA dispatches inside
 //                        the professional calculator tabs
 //   • BlogSoftwareCTA   — the end-of-post card on allowlisted business posts
+// One landing page (/softver-po-meri) and one form serve BOTH offers — website
+// building and custom software. The on-site hints live in src/WebsitePromo.jsx.
 //
 // The /softver-po-meri landing page itself lives in src/SoftverPoMeri.jsx and
 // must NOT be moved here: this module is statically imported, so folding the
@@ -14,9 +16,8 @@
 //
 // Placement rule (decided 10.9.2026): this funnel lives on the PROFESSIONAL
 // surfaces (Obračun / Stope / PPP-PD tabs) and on its own landing page — NOT on
-// the homepage. The homepage keeps the jobs affiliate banner, because homepage
-// traffic is employees checking their net salary and they cannot buy software.
-// See project memory: lead-funnel-strategy.
+// the homepage. Since 17.11.2026 the consumer surfaces carry promo hints for the
+// combined offer too (they replaced the jobs affiliate) — src/WebsitePromo.jsx.
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { track } from "./track.js";
@@ -85,8 +86,8 @@ export function LeadFormContent({ onSubmit, form, setForm, status }) {
       <input id="lead-ime" className="lead-input" type="text" placeholder="Ime i prezime" autoComplete="name" value={form.ime} onChange={e => setForm(f => ({...f, ime: e.target.value}))} disabled={status === "loading"} required />
       <label htmlFor="lead-email" className="visually-hidden">Email adresa</label>
       <input id="lead-email" className="lead-input" type="email" placeholder="Email adresa" autoComplete="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} disabled={status === "loading"} required />
-      <label htmlFor="lead-opis" className="visually-hidden">Opis problema (opciono)</label>
-      <textarea id="lead-opis" className="lead-input lead-textarea" placeholder="Ukratko: čime se firma bavi i gde se posao najčešće zaglavi? (opciono)" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} />
+      <label htmlFor="lead-opis" className="visually-hidden">Šta vam treba (opciono)</label>
+      <textarea id="lead-opis" className="lead-input lead-textarea" placeholder="Ukratko: čime se firma bavi i šta vam treba — sajt, alat ili oboje? (opciono)" value={form.opis} onChange={e => setForm(f => ({...f, opis: e.target.value}))} disabled={status === "loading"} rows={3} />
 
       {/* Zakon o zaštiti podataka o ličnosti / GDPR: an explicit, unticked,
           separate consent box is what makes this collection lawful. Do not
@@ -121,14 +122,15 @@ export function LeadFormContent({ onSubmit, form, setForm, status }) {
 // the story is what does the selling.
 export function BlogSoftwareCTA({ placement }) {
   return (
-    <aside className="blog-swcta" aria-label="Softver po meri za firme">
-      <div className="blog-swcta-eyebrow">Za vlasnike firmi</div>
+    <aside className="blog-swcta" aria-label="Sajtovi i softver po meri za firme">
+      <div className="blog-swcta-eyebrow">Za vlasnike firmi · sajtovi i softver po meri</div>
       <h3 className="blog-swcta-title">Firma raste, a posao se sve češće zaglavi?</h3>
       <p className="blog-swcta-body">
         Kada porudžbine stignu na tri kanala i evidencija živi u svesci i Excel
         tabeli, prva stvar koja se gubi je porudžbina koju niko nije ispratio.
         Napisao sam kako je to rešeno u jednoj proizvodnoj firmi od sedam ljudi —
-        šta smo pitali, šta smo napravili i šta se promenilo.
+        šta smo pitali, šta smo napravili i šta se promenilo. Na istoj strani je i
+        šta dobijate kada vam napravim sajt.
       </p>
       <Link
         className="blog-swcta-btn"
@@ -167,11 +169,11 @@ export function LeadModalHost() {
     <div className="lead-modal-overlay lead-modal-overlay--any" onClick={() => setOpen(false)} role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
       <div className="lead-modal" onClick={e => e.stopPropagation()}>
         <button className="lead-modal-close" onClick={() => setOpen(false)} aria-label="Zatvori">✕</button>
-        <div className="lead-eyebrow">Za firme i knjigovođe · softver po meri</div>
-        <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:10}}>Vašoj firmi treba alat koji radi posao umesto vas?</h2>
+        <div className="lead-eyebrow">Za vlasnike firmi · sajtovi i softver po meri</div>
+        <h2 id="lead-modal-title" className="lead-title" style={{marginBottom:10}}>Vašoj firmi treba sajt ili alat po meri?</h2>
         <p className="lead-body" style={{marginBottom:16}}>
           Ostavite kontakt i javljam se u roku od 24 sata. Prvi razgovor je besplatan i bez obaveze —{" "}
-          <Link to={LEAD_PATH} className="lead-consent-link" onClick={() => setOpen(false)}>pročitajte kako je izgledao jedan projekat</Link>.
+          <Link to={LEAD_PATH} className="lead-consent-link" onClick={() => setOpen(false)}>pogledajte šta radim i kako je izgledao jedan projekat</Link>.
         </p>
         <LeadFormContent onSubmit={submit} form={form} setForm={setForm} status={status} />
       </div>

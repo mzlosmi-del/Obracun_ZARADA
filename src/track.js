@@ -39,7 +39,10 @@ const EVENTS = {
   rates_edited:        RATE_FIELDS,  // overrode a statutory rate — only a professional
   // Custom-software lead funnel (src/lead.jsx). Details are FIXED surface
   // labels, never anything the visitor typed.
-  lead_form_open:      ["payslip", "results", "rates", "ppppd", "hero"],
+  // The "promo-*" labels are the hints in src/WebsitePromo.jsx, which took over
+  // the job-ad slots on 17.11.2026 and promote the combined offer (sajtovi +
+  // softver po meri).
+  lead_form_open:      ["payslip", "results", "rates", "ppppd", "hero", "promo-kalkulator", "promo-blog"],
   lead_submit:         ["modal", "page"],
   // Clicked through to the /softver-po-meri case study. The blog details are
   // the allowlisted post ids from src/software.js — fixed slugs, never a typed
@@ -50,6 +53,7 @@ const EVENTS = {
     "blog", // BlogSoftwareCTA's fallback when no placement is passed
     "blog-limit-za-pausalce", "blog-pdv-prag-preduzetnik", "blog-pausal-ili-doo",
     "blog-frilenser-pausalac-firma", "blog-porez-na-bonus", "blog-registracija-doo",
+    "promo-kalkulator", "promo-blog", "promo-sidebar", "promo-sticky", "promo-banner",
   ],
   // Embeddable calculator test (Q4 2026). No details: which domain embeds us is
   // read from Vercel Analytics referrers on /embed/bruto-neto, never sent here.

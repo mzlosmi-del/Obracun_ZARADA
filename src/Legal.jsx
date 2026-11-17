@@ -11,7 +11,7 @@ export function PolitikaPrivatnosti({ onBack }) {
     <div className="legal-page">
       <button className="back-btn" onClick={onBack} aria-label="Nazad na kalkulator">← Nazad</button>
       <h1 className="legal-title">Politika privatnosti</h1>
-      <p className="legal-date">Poslednje ažuriranje: septembar 2026.</p>
+      <p className="legal-date">Poslednje ažuriranje: novembar 2026.</p>
 
       <div className="legal-body">
         <h2>Ko smo mi</h2>
@@ -21,7 +21,7 @@ export function PolitikaPrivatnosti({ onBack }) {
         <p>Prikupljamo isključivo podatke koje nam vi dobrovoljno date:</p>
         <ul>
           <li><strong>Email adresa</strong> — samo ako se prijavite na newsletter putem forme u bočnom meniju. Ova adresa se čuva u sistemu Brevo (brevo.com) i koristi se samo za slanje informacija o promenama poreskih parametara i novostima vezanim za obračun zarada.</li>
-          <li><strong>Ime, email adresa i opis koji sami napišete</strong> — samo ako pošaljete upit preko forme za <a href="/softver-po-meri">softver po meri</a>. Ove podatke šaljete dobrovoljno, uz izričitu saglasnost koju potvrđujete pre slanja, i koriste se <strong>isključivo</strong> radi kontakta i odgovora na vaš upit. Ne koriste se za newsletter, ne prodaju se i ne prosleđuju trećim licima radi oglašavanja. Podaci se čuvaju u sistemu Brevo (Brevo SAS, Francuska), u posebnoj listi odvojenoj od newsletter liste.</li>
+          <li><strong>Ime, email adresa i opis koji sami napišete</strong> — samo ako pošaljete upit preko forme za <a href="/softver-po-meri">izradu sajta ili softvera po meri</a>. Ove podatke šaljete dobrovoljno, uz izričitu saglasnost koju potvrđujete pre slanja, i koriste se <strong>isključivo</strong> radi kontakta i odgovora na vaš upit. Ne koriste se za newsletter, ne prodaju se i ne prosleđuju trećim licima radi oglašavanja. Podaci se čuvaju u sistemu Brevo (Brevo SAS, Francuska), u posebnoj listi odvojenoj od newsletter liste.</li>
         </ul>
         <p><strong>Pravni osnov i rok čuvanja.</strong> Obrada se vrši na osnovu vaše saglasnosti (čl. 12 st. 1 tač. 1 Zakona o zaštiti podataka o ličnosti, odnosno čl. 6(1)(a) GDPR). Saglasnost možete povući u bilo kom trenutku, bez obrazloženja, pisanjem na <strong>kontakt@platnilistic.rs</strong> — povlačenje ne utiče na zakonitost obrade pre povlačenja. Podatke iz upita čuvamo dok traje komunikacija i najduže <strong>24 meseca</strong> od poslednjeg kontakta, nakon čega se brišu.</p>
         <p>Podaci koje unosite u kalkulator (iznosi zarada, sati rada, bonusi) <strong>se ne čuvaju</strong> ni na kakvom serveru — obračun se vrši isključivo u vašem pregledaču i nigde se ne prenosi.</p>
@@ -46,8 +46,7 @@ export function PolitikaPrivatnosti({ onBack }) {
         </ul>
 
         <h2>Partnerski (affiliate) linkovi</h2>
-        <p>Pojedini linkovi ka oglasima za posao partnerske agencije su partnerski linkovi — ako se preko njih prijavite i zaposlite, ostvarujemo proviziju. To ne utiče na uslove posla niti na vašu zaradu, a takvi blokovi su na sajtu jasno označeni kao „oglasi partnera".</p>
-        <p>Na pojedinim člancima prikazujemo i partnerske ponude drugih usluga (na primer <strong>eSIM kartice za internet u inostranstvu</strong>), preko affiliate mreže <strong>Impact.com</strong>. Ako kupite preko takvog linka, ostvarujemo proviziju — <strong>cena za vas je ista</strong>. Klikom na partnerski link napuštate ovaj sajt; prodavac tada može postaviti sopstvene kolačiće radi evidentiranja porudžbine, u skladu sa svojom politikom privatnosti. Sami linkovi ne prenose nikakve podatke koje ste uneli u kalkulator — obračun je i dalje u celosti na vašem uređaju.</p>
+        <p>Na pojedinim člancima prikazujemo partnerske ponude drugih usluga (na primer <strong>eSIM kartice za internet u inostranstvu</strong>), preko affiliate mreže <strong>Impact.com</strong>. Ako kupite preko takvog linka, ostvarujemo proviziju — <strong>cena za vas je ista</strong>. Klikom na partnerski link napuštate ovaj sajt; prodavac tada može postaviti sopstvene kolačiće radi evidentiranja porudžbine, u skladu sa svojom politikom privatnosti. Sami linkovi ne prenose nikakve podatke koje ste uneli u kalkulator — obračun je i dalje u celosti na vašem uređaju.</p>
 
         <h2>Newsletter</h2>
         <p>Ako se prijavite na newsletter, vaša email adresa se šalje servisu Brevo (SAS, Francuska), koji je usklađen sa GDPR regulativom. Možete se odjaviti u bilo kom trenutku klikom na link u svakom emailu koji primite.</p>

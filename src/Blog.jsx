@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { POSTS, LIVE_POSTS, REDIRECT_MAP } from "./posts.js";
 import { useSeo } from "./seo.jsx";
-import { JobsWidget } from "./JobsWidget.jsx";
-import { JobSlideIn } from "./JobSlideIn.jsx";
+import { WebsitePromo } from "./WebsitePromo.jsx";
 import { EsimWidget } from "./EsimWidget.jsx";
 import { showsEsim } from "./esim.js";
 import { showsSoftwareCTA } from "./software.js";
@@ -207,23 +206,19 @@ function BlogPost({ post, navigate }) {
       )}
 
       {/* Contextual affiliate, allowlisted per post (src/esim.js). Sits ABOVE
-          the jobs widget on the few travel-intent articles that carry it: on
+          the promo card on the few travel-intent articles that carry it: on
           those pages the eSIM is the relevant offer, and it is the one the
           reader's next action ("kad krenem na put…") actually matches. */}
       {showsEsim(post.id) && <EsimWidget placement={`blog-${post.id}`} />}
 
-      {/* One offer per post, matched to who reads it. On the allowlisted
-          business-owner posts (src/software.js) the software CTA takes the slot
-          and BOTH jobs surfaces stand down — a vlasnik firme reading about the
-          PDV threshold is not looking for a job, and stacking two CTAs means
-          neither gets clicked. Everywhere else the jobs affiliate is unchanged. */}
+      {/* One offer per post. On the allowlisted business-owner posts
+          (src/software.js) the custom-software CTA takes the slot; everywhere
+          else it is the website-building promo (which replaced the partner job
+          ads on 17.11.2026). Never stack both. */}
       {showsSoftwareCTA(post.id) ? (
         <BlogSoftwareCTA placement={`blog-${post.id}`} />
       ) : (
-        <>
-          <JobsWidget placement="blog" />
-          <JobSlideIn trigger="exit" placement="blog-exit" />
-        </>
+        <WebsitePromo placement="promo-blog" compact />
       )}
 
       <div className="post-cta">
